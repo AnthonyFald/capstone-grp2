@@ -12,7 +12,7 @@ class RuntimePathTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             with patch.object(sys, 'frozen', True, create=True), patch.object(sys, '_MEIPASS', directory, create=True):
                 with patch.dict(os.environ, {'EVERGREEN_DEMO_DATA_DIR': str(Path(directory) / 'user-data')}):
-                    self.assertEqual(runtime_paths.resource_root(), Path(directory) / 'site')
+                    self.assertEqual(runtime_paths.resource_root(), (Path(directory) / 'site').resolve())
                     self.assertEqual(runtime_paths.data_root(), (Path(directory) / 'user-data').resolve())
 
     def test_windows_storage_does_not_use_the_readonly_app_folder(self):

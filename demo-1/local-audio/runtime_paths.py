@@ -6,7 +6,8 @@ from pathlib import Path
 
 def resource_root():
     if getattr(sys, 'frozen', False):
-        return Path(sys._MEIPASS) / 'site'
+        # macOS bundles link data from Frameworks into Resources. Compare real paths.
+        return (Path(sys._MEIPASS) / 'site').resolve()
     return Path(__file__).resolve().parents[2]
 
 
