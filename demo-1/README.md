@@ -10,16 +10,16 @@ For a local preview, run `node scripts/serve.mjs` from the repository root. The 
 
 ## Start from a recording on Windows or Mac
 
-Install Python 3.12 from https://www.python.org/downloads/ and extract the complete repository folder.
+Download the packaged app from [the latest desktop release](https://github.com/AnthonyFald/capstone-grp2/releases/latest). Python and the audio libraries are included. No terminal commands or Python installation are needed.
 
-- Windows: double-click `demo-1/Start Audio Demo.cmd`. Enable Add Python to PATH when installing Python.
-- Mac: open Terminal in the repository folder and run `bash "demo-1/Start Audio Demo.command"`.
+- Windows x64: Extract All, open the extracted folder, then double-click **Evergreen Meeting Demo.exe**. Keep its _internal folder beside it.
+- Apple silicon Mac (M-series): unzip, move **Evergreen Meeting Demo.app** to Applications, and open it. Intel Macs are not supported.
 
-The launcher installs free packages in an isolated environment and opens http://127.0.0.1:4176/demo-1/ . Keep the terminal running. Expand **Start from a recording**, choose an English MP3/WAV/M4A/OGG/FLAC, set the speaker count if known, and start processing. Current limits: 10 minutes and 80 MB. Start with a 1–5 minute recording. Base is faster; Small is a larger and generally more accurate transcription model.
+Keep the small companion window open. It opens the local demo in installed Chrome or Edge when available. Expand **Start from a recording**, choose an English MP3/WAV/M4A/OGG/FLAC, set the speaker count if known, and process it. Current limits: 10 minutes and 80 MB. Start with a 1–5 minute recording. Base is faster; Small is larger. First use downloads free model files.
 
-During audio processing, the app shows the current step’s percentage, elapsed time, and an estimated minutes:seconds countdown. Estimates adapt to observed progress and prior successful runs in the same launcher session. Initial estimates are approximate. Downloads have separate estimates when their sizes are known; model initialization shows an estimating message. A late estimate never claims the job is finished.
+During processing, the app shows percentage, elapsed time and an estimated minutes:seconds countdown. Estimates adjust to progress and prior successful runs in the same session. Model downloads have separate estimates. **Audio completed in…** measures receipt of the local file through the finished transcript, including model setup. **Notes completed in…** measures the generation request through finished notes; automatic model setup is broken out separately. Human review time is not included. Independent model loading before clicking Generate is outside that note run.
 
-Audio uses the CPU, with no GPU requirement. The selected libraries support Windows x64 and both Intel and Apple Silicon Macs; Windows on ARM is not verified. Actual installation and audio inference were tested on Windows. Mac execution still needs a teammate's check. Browser note generation separately needs WebGPU and sufficient GPU memory.
+Audio uses the CPU; browser notes need WebGPU and sufficient GPU memory. These are unsigned student builds: Windows or macOS may need one-time first-open approval. The setup page explains the platform prompts. Windows ARM is not supported. Packaged-app test reports accompany releases; a teammate should still check a full browser workflow on the presentation computer.
 
 For introductions, use "My name is Maya and I'm the general contractor." Let each person speak separately. The app suggests names and roles from explicit introduction wording. Review those suggestions, listen to timestamped turns, correct text or speaker assignments, and click **Use reviewed transcript for notes**. Export the speaker JSON to reopen it on the hosted website without installing audio tools there.
 
@@ -38,7 +38,7 @@ Use one sentence or short speaker turn per line. Input is capped at 24,000 chara
 
 ## Local data and cost
 
-First use downloads public models; recordings and transcripts are not sent to an inference service. Model packages are downloaded from public GitHub/Hugging Face/CDN sources. Audio caches live under `local-audio/.models`; recordings get a temporary local copy that is deleted after processing. A forced shutdown can leave a temporary file in `.audio-temp`. The most recent audio transcript remains in server memory until the launcher stops. The browser stores no notes automatically; export before closing or reloading. Exported files remain wherever you save them.
+First use downloads public models; recordings and transcripts are not sent to an inference service. Model packages are downloaded from public GitHub/Hugging Face/CDN sources. Packaged audio caches live under `%LOCALAPPDATA%/Evergreen Meeting Demo/.models` on Windows or `~/Library/Application Support/Evergreen Meeting Demo/.models` on Mac (source launchers use `local-audio/.models`); recordings get a temporary local copy that is deleted after processing. A forced shutdown can leave a temporary file in `.audio-temp`. The most recent audio transcript remains in server memory until the launcher stops. The browser stores no notes automatically; export before closing or reloading. Exported files remain wherever you save them.
 
 The companion only binds to 127.0.0.1, rejects foreign origins/hosts, and requires a session token for audio submissions. There are no external completion endpoints or fallbacks to paid services. Git ignores caches, virtual environments, temporary audio, and runtime output folders. Do not commit private recordings or transcripts.
 
@@ -68,6 +68,12 @@ python -m unittest discover -s demo-1/local-audio -p "test_*.py"
 ```
 
 Use your installed Python environment for the Python command. The tests do not download models or call paid APIs. CLI example, from `demo-1`: `local-audio/.venv/bin/python local-audio/processor.py meeting.mp3 --speakers 3 --output audio-results/transcript.json` (Windows uses `local-audio\.venv\Scripts\python.exe`).
+
+## Build desktop packages
+
+On the target OS with Python 3.12, install desktop/requirements-build.txt and run desktop/build.py --audio-test from this folder. PyInstaller bundles the runtime, libraries, licenses and public website files. Models and private recordings are excluded. Output is in the ignored desktop-build directory at repository root.
+
+The GitHub workflow uses standard public-repository Windows x64 and macOS arm64 runners. It releases both ZIPs together only after each actual bundled executable passes GUI-runtime, server, transcription and diarization checks. No paid inference API is used. Source-only development launchers remain available: Start Audio Demo.cmd on Windows and Start Audio Demo.command on Mac, with Python 3.12 installed.
 
 ## Sources
 

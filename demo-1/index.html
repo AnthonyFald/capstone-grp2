@@ -4,7 +4,7 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Demo 1 — Meeting Notes · Evergreen Capstone</title>
   <meta name="description" content="A free, local AI demo that turns construction meeting transcripts into source-backed notes.">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=desktop-1">
   <link rel="stylesheet" href="project-nav.css">
   <script defer src="data/scenarios.js"></script><script defer src="core.js"></script><script defer src="audio-core.js"></script><script defer src="model-download.js"></script><script defer src="app.js"></script><script defer src="audio.js"></script>
 </head>
@@ -33,11 +33,11 @@
       <p>Process a recorded meeting on your computer with free Whisper and speaker-detection models. English audio, up to 10 minutes / 80 MB. Start with a short, clear recording.</p>
       <p id="audio-connection" role="status">Checking local audio support…</p>
       <div id="audio-setup">
-        <h3>Download once, then open on your computer</h3>
-        <p>To turn a recording into a transcript, download the free audio companion. The ZIP includes the complete project and launchers for Windows and Mac. Python 3.12 is required; packages and models download during first use.</p>
-        <div class="audio-actions"><a class="button primary download-link" href="https://github.com/AnthonyFald/capstone-grp2/archive/refs/heads/main.zip">Download audio companion (.zip)</a><a class="button secondary download-link" href="audio-setup.html" target="_blank" rel="noopener">Windows & Mac instructions ↗</a></div>
-        <ol class="setup-steps"><li><strong>Extract the ZIP.</strong> Windows: right-click → Extract All. Mac: double-click the ZIP in Finder.</li><li><strong>Open the extracted capstone-grp2-main folder, then demo-1.</strong> Follow the Windows or Mac instructions to run the audio launcher.</li><li><strong>Use the local page it opens.</strong> Keep the launcher running, expand “Start from a recording,” and choose your audio file.</li></ol>
-        <p class="muted">The website cannot launch a downloaded program for you. After setup, the local page handles your audio and meeting notes. You can also import an exported speaker transcript here.</p>
+        <h3>Download, open, choose your recording.</h3>
+        <p>Everything needed for local audio processing is included. No Python installation or terminal commands. Free models download on first use.</p>
+        <div class="audio-actions"><a class="button primary download-link" href="https://github.com/AnthonyFald/capstone-grp2/releases/latest/download/Evergreen-Meeting-Demo-Windows.zip">Download for Windows</a><a class="button primary download-link" href="https://github.com/AnthonyFald/capstone-grp2/releases/latest/download/Evergreen-Meeting-Demo-Mac-Apple-Silicon.zip">Download for Mac · Apple silicon</a><a class="button secondary download-link" href="audio-setup.html" target="_blank" rel="noopener">Setup help ↗</a></div>
+        <ol class="setup-steps"><li><strong>Extract the download.</strong> Windows: right-click → Extract All. Mac: double-click the ZIP.</li><li><strong>Open Evergreen Meeting Demo.</strong> Windows: open the .exe in the extracted folder. Mac: move the .app to Applications and open it.</li><li><strong>Use the page it opens.</strong> Keep the companion window open and choose your audio file. Chrome or Edge is needed for AI notes.</li></ol>
+        <p class="muted">Windows x64 and M-series Macs. These student builds may need a one-time security approval; see Setup help. Your audio and notes stay on your computer.</p>
       </div>
       <div id="audio-controls" hidden>
         <label for="audio-file">Choose a recording</label><input type="file" id="audio-file" accept="audio/*,.mp3,.wav,.m4a,.ogg,.flac">

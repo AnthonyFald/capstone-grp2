@@ -1,6 +1,6 @@
 {
   "app": "Team 2 Demo 1",
-  "checks_passed": 45,
+  "checks_passed": 49,
   "checks_failed": 0,
   "webllm_version": "0.2.85",
   "model_identifier_verified": true,
@@ -36,7 +36,7 @@
     "observed_issue": "Two context/closing lines were unnecessarily classified as questions. All 11 reference source/category pairs appeared. This is development inspection, not an independent evaluation.",
     "raw_output": "development-text-run.json"
   },
-  "verification_limit": "Mac execution and real team recordings are untested. Small synthetic fixtures and one official two-speaker test do not establish accuracy or thesis targets. Human transcript and note review remain required.",
+  "verification_limit": "Full browser workflow tested on Windows; bundled GUI-runtime, server, transcription and diarization smoke tests passed on Windows x64 and macOS arm64 runners. A teammate should still check the full browser workflow on an Apple silicon Mac. Small synthetic fixtures do not establish accuracy or thesis targets. Human review remains required.",
   "github_publication": "Deployment status is tracked in the repository's GitHub Pages build and deployment workflow.",
   "paid_api_calls": 0,
   "api_keys_created": 0,
@@ -70,5 +70,28 @@
     ],
     "latest_javascript_checks": 34,
     "unchanged_python_checks_from_previous_run": 11
+  },
+  "completion_time_verification": {
+    "audio_seconds": 32.49,
+    "audio_completed_in_seconds": 3.7,
+    "notes_total_seconds": 3.9,
+    "included_cached_model_setup_seconds": 2.6,
+    "note_processing_seconds": 1.3,
+    "observed": "Real synthetic WAV transcription and browser Qwen inference. Both completion labels and text-export timing fields verified. Audio time survives page reload while the companion remains running.",
+    "limit": "These are development samples with downloaded models already cached, not four-minute meeting benchmarks."
+  },
+  "desktop_packages": {
+    "workflow": "https://github.com/AnthonyFald/capstone-grp2/actions/runs/38476324208",
+    "targets": [
+      "Windows x64",
+      "Apple silicon macOS arm64"
+    ],
+    "checks": [
+      "Bundled Python and native ML library imports",
+      "Bundled Tk GUI runtime",
+      "Bundled website and local server",
+      "Real Whisper transcription and sherpa-onnx diarization of the included fictional 32.49-second WAV"
+    ],
+    "paid_services": false
   }
 }
