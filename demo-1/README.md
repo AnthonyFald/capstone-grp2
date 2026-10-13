@@ -32,7 +32,7 @@ See [audio setup](audio-setup.html) for the full instructions. The GitHub-hosted
 3. faster-whisper produces English text and word timestamps on the CPU. Words are aligned with speaker intervals. Overlap/unmatched words are flagged. Sentence boundaries become editable turns.
 4. A small set of explicit introduction patterns suggests names and roles. This step is rules, not another model. Users can correct labels and every turn.
 5. Qwen classifies each transcript line as decision, action, unresolved question, or none. The app copies the selected source wording into the notes instead of letting the small model rewrite facts. Simple source patterns fill explicit owners and deadline phrases for single-commitment turns. Missing or ambiguous fields remain blank. This is an AI-assisted extraction pipeline, not entirely LLM-generated prose.
-6. Review and edit notes, then export Markdown and JSON. The rules-only mode remains separately labeled.
+6. Review and edit notes, then export plain text (.txt), Markdown (.md), or JSON. The plain-text file separates decisions, action items (including owners and deadlines), open questions, and source references; it includes current saved corrections and review status. The rules-only mode remains separately labeled.
 
 Use one sentence or short speaker turn per line. Input is capped at 24,000 characters; AI classifies each turn separately and can miss context across turns. One line may receive only one category, so split mixed-topic turns. A line over 3,000 characters must be split. Models can miss, misclassify, or mishear content. Even a real source quote can be classified incorrectly.
 

@@ -57,6 +57,45 @@
     let out='# '+title+'\n\nMethod: '+(result.mode==='ai'?'Local AI — '+result.model:'Basic extraction — rules, not AI')+'\nProcessing time: '+(result.elapsedMs/1000).toFixed(2)+' seconds.\nAll items require human verification.\n\n';
     for(const kind of kinds){out+='## '+labels[kind]+'\n\n';const items=result.items.filter(x=>x.kind===kind);if(!items.length)out+='None extracted.\n\n';for(const i of items){out+='- ['+(i.reviewed?'x':' ')+'] '+i.text.replace(/\n/g,' ')+'\n';if(kind==='action')out+='  - Owner: '+(i.owner||'Not specified')+'\n  - Due: '+(i.due||'Not specified')+'\n';out+='  - Source line '+i.line+': '+i.evidence.replace(/\n/g,' ')+'\n';}out+='\n';}return out;
   }
-  const api={kinds,labels,lines,validateTranscript,extractBasic,normalizeModelOutput,compare,timing,exportMarkdown};
+  function exportPlainText(result,title='Meeting notes'){
+    const out=[],oneLine=value=>String(value??'').replace(/\s+/g,' ').trim();
+    function write(text,prefix='',indent=prefix){
+      let line=prefix;
+      for(const word of oneLine(text).split(' ')){
+        if(line.length>prefix.length&&line.length+word.length+1>80){out.push(line);line=indent;}
+        line+=(line===prefix||line===indent?'':' ')+word;
+      }
+      out.push(line);
+    }
+    function section(name){out.push(name,'-'.repeat(name.length),'');}
+    out.push('MEETING NOTES','='.repeat(80),'');
+    write('Title: '+title);
+    if(result.createdAt)write('Notes generated: '+result.createdAt);
+    write('Method: '+(result.mode==='ai'?'Local AI - '+result.model:'Basic extraction - rules, not AI'));
+    if(Number.isFinite(result.elapsedMs))write('Note processing time: '+(result.elapsedMs/1000).toFixed(2)+' seconds');
+    write('Reviewed against source: '+result.items.filter(i=>i.reviewed).length+' of '+result.items.length+' items');
+    out.push('');write('These notes include your saved corrections. Items marked Pending need human review. Missing details have not been guessed.');out.push('');
+    for(const kind of kinds){
+      const items=result.items.filter(i=>i.kind===kind);section(labels[kind].toUpperCase());
+      if(!items.length){write('None extracted. Check the transcript for omissions.');out.push('');}
+      items.forEach((item,index)=>{
+        write(item.text,(index+1)+'. ','   ');
+        if(kind==='action'){
+          write('Owner: '+(oneLine(item.owner)||'Not specified'),'   ');
+          write('Deadline: '+(oneLine(item.due)||'Not specified'),'   ');
+        }
+        write('Review: '+(item.reviewed?'Reviewed against source':'Pending'),'   ');
+        write('Source: transcript line '+item.line,'   ');
+        for(const flag of item.flags||[])write('Review note: '+flag,'   ');
+        out.push('');
+      });
+    }
+    section('SOURCE REFERENCES');
+    const sources=new Map(result.items.map(item=>[item.line,item.evidence]));
+    if(!sources.size)write('No source references exported.');
+    for(const [line,evidence] of sources){write('Transcript line '+line+':');write(evidence,'  ');out.push('');}
+    return out.join('\r\n').trimEnd()+'\r\n';
+  }
+  const api={kinds,labels,lines,validateTranscript,extractBasic,normalizeModelOutput,compare,timing,exportMarkdown,exportPlainText};
   root.MeetingCore=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

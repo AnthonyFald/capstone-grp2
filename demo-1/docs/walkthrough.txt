@@ -8,7 +8,7 @@ DEMO 1 WALKTHROUGH
 6. Load Qwen and generate AI notes. AI selects categories; the app preserves source wording and extracts explicit owner/deadline fields. This is not just the rules-only mode.
 7. Check source quotes, categories, owners and deadlines. Correct mistakes. Explain that diarization and transcription can be wrong and name suggestions are not identity verification.
 8. For the unchanged text samples, use Reference comparison to score the original output. For audio or custom text, create independent reference notes. Record manual and total assisted time, including transcript correction.
-9. Export notes and results. Repeat on unseen meetings; show errors honestly. A working app is not evidence of the numerical thesis targets by itself.
+9. Click Export notes .txt for a readable file with separate decisions, action items, owners, deadlines, open questions, and source references. Markdown and full JSON results are also available. Repeat on unseen meetings; show errors honestly. A working app is not evidence of the numerical thesis targets by itself.
 
 BEFORE CLASS
 Verify one full run on the presentation computer. Windows tested during development; a teammate still needs to test Mac. Confirm the synthetic references, collect independent baseline notes, and complete the demo-note results and truthful contribution statements. If AI fails, disclose it; the rules baseline does not validate AI performance.

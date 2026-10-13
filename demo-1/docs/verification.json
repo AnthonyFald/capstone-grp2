@@ -1,6 +1,6 @@
 {
   "app": "Team 2 Demo 1",
-  "checks_passed": 42,
+  "checks_passed": 45,
   "checks_failed": 0,
   "webllm_version": "0.2.85",
   "model_identifier_verified": true,
@@ -57,5 +57,18 @@
     "second_run_seconds": 22.73,
     "observed": "API polling and browser upload both completed. Live percentage, countdown and elapsed time displayed. In-session estimates used prior timing. First-time downloads excluded from these runs.",
     "estimate_limit": "Estimates can rise or fall and are not completion guarantees."
+  },
+  "plain_text_export": {
+    "browser_download_verified": true,
+    "encoding": "UTF-8 with BOM and CRLF line endings",
+    "checks": [
+      "Separated decisions, action items and open questions",
+      "Explicit owners and deadlines, with missing fields labeled",
+      "Current saved edits and review status",
+      "Source references and wrapped lines",
+      "Unicode names retained"
+    ],
+    "latest_javascript_checks": 34,
+    "unchanged_python_checks_from_previous_run": 11
   }
 }

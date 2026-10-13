@@ -112,6 +112,7 @@
   $('notes-list').onclick=e=>{if(e.target.dataset.edit)editItem(e.target.dataset.edit);if(e.target.dataset.remove){result.items=result.items.filter(i=>i.id!==e.target.dataset.remove);renderNotes();status('Removed from reviewed notes. The original output is preserved in the reference comparison and results export.');}};
   $('evaluation-content').onchange=e=>{if(e.target.dataset.score!==undefined){scores[e.target.dataset.score]=e.target.value;renderEvaluation();}};
   $('evaluation-content').oninput=e=>{if(e.target.id==='manual-time')measurements.manual=e.target.value;if(e.target.id==='review-time')measurements.review=e.target.value;updateTiming();};
+  $('export-txt').onclick=()=>{if(result)download('meeting-notes.txt','\uFEFF'+core.exportPlainText(result,result.scenarioId?scenarios[result.scenarioId].title:'Meeting notes'),'text/plain;charset=utf-8');};
   $('export-notes').onclick=()=>{if(result)download('meeting-notes.md',core.exportMarkdown(result,result.scenarioId?scenarios[result.scenarioId].title:'Meeting notes'),'text/markdown');};
   $('export-json').onclick=()=>{if(result)download('meeting-results.json',JSON.stringify({...result,evaluation:{scores,measurements,reference:result.scenarioId?scenarios[result.scenarioId].reference:null,warning:'Reference matches are not automatic accuracy judgments.'}},null,2),'application/json');};
   $('about-button').onclick=()=>$('about').showModal();$('close-about').onclick=()=>$('about').close();
