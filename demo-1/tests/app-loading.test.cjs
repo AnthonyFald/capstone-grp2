@@ -1,14 +1,14 @@
 const test=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
 const core=require('../core.js'),download=require('../model-download.js');require('../data/scenarios.js');
 function app(){
-  const elements=new Map(),workers=[],timers=new Map();let nextTimer=0;
+  const elements=new Map(),workers=[],timers=new Map();let nextTimer=0,clock=1;
   const element=id=>{if(!elements.has(id))elements.set(id,{value:id==='mode'?'ai':id==='scenario'?'repair':'',textContent:'',hidden:false,disabled:false,classList:{toggle(){}},setAttribute(){},removeAttribute(){}});return elements.get(id);};
   class Worker{constructor(){workers.push(this);this.messages=[];}postMessage(message){this.messages.push(message);}terminate(){this.terminated=true;}emit(data){this.onmessage({data});}}
   const context={document:{getElementById:element},MeetingCore:core,DEMO_SCENARIOS,ModelDownload:download,Worker,
     navigator:{gpu:{requestAdapter:async()=>({features:new Set(['shader-f16'])})}},window:{isSecureContext:true},location:{protocol:'http:'},
-    console:{warn(){}},performance:{now:()=>1},setTimeout(fn,ms){const id=++nextTimer;timers.set(id,{fn,ms});return id;},clearTimeout(id){timers.delete(id);}};
+    console:{warn(){}},performance:{now:()=>clock},setTimeout(fn,ms){const id=++nextTimer;timers.set(id,{fn,ms});return id;},clearTimeout(id){timers.delete(id);}};
   vm.runInNewContext(fs.readFileSync(require.resolve('../app.js'),'utf8'),context);
-  return {element,workers,timers,async generate(){await element('generate').onclick();},retry(){const entry=[...timers].find(([,v])=>v.ms<10000);assert.ok(entry);timers.delete(entry[0]);entry[1].fn();}};
+  return {element,workers,timers,setTime(value){clock=value;},async generate(){await element('generate').onclick();},retry(){const entry=[...timers].find(([,v])=>v.ms<10000);assert.ok(entry);timers.delete(entry[0]);entry[1].fn();}};
 }
 test('Generate loads AI once and continues with the preserved transcript',async()=>{
   const a=app(),before=a.element('transcript').value;await a.generate();
@@ -29,4 +29,11 @@ test('cancel during recovery prevents stale workers or queued retries from gener
   stale.emit({type:'error',phase:'load',retryable:true,message:'Failed to fetch'});
   a.element('cancel').onclick();stale.emit({type:'ready'});
   assert.equal(a.timers.size,0);assert.equal(stale.messages.length,1);assert.equal(a.element('generate').disabled,false);
+});
+test('completion time includes automatic model loading but repeated generation measures a fresh run',async()=>{
+  const a=app();a.setTime(1000);await a.generate();a.setTime(6000);a.workers[0].emit({type:'ready'});
+  a.setTime(7000);a.workers[0].emit({type:'result',content:JSON.stringify({items:[]})});
+  assert.match(a.element('elapsed').textContent,/Notes completed in 6.0s \(model setup: 5.0s; processing: 1.0s\)/);
+  a.setTime(10000);await a.generate();a.setTime(12000);a.workers[0].emit({type:'result',content:JSON.stringify({items:[]})});
+  assert.equal(a.element('elapsed').textContent,'Notes completed in 2.0s');
 });

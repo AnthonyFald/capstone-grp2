@@ -22,7 +22,7 @@
       const state=await response.json();status(state.message,state.state==='error');
       if(state.state==='running'){showProgress(state.progress);setTimeout(poll,1000);return;}
       $('audio-progress-panel').hidden=true;
-      lock(false);if(state.state==='done'){data=core.validate(state.result);render();status('Transcript ready. '+data.duration+' seconds of audio processed in '+data.elapsedSeconds+' seconds (includes model setup if needed). Review names and wording.');}
+      lock(false);if(state.state==='done'){data=core.validate(state.result);render();status('Audio completed in '+MeetingCore.formatDuration(data.elapsedSeconds*1000)+'. Transcript ready for review. Time includes local transfer and model setup when needed.');}
     }catch(error){lock(false);$('audio-progress-panel').hidden=true;status(error.message,true);}
   }
   async function connect(){
@@ -30,7 +30,7 @@
     try{
       const response=await fetch('/api/audio/config',{cache:'no-store'});if(!response.ok)throw Error();const info=await response.json();if(!info.localAudio)throw Error();
       token=info.token;$('audio-controls').hidden=false;$('audio-setup').hidden=true;$('audio-connection').textContent='Local audio companion connected. Recordings stay on this computer.';
-      const check=await fetch('/api/audio/status',{cache:'no-store'});const state=await check.json();if(state.state==='running'){lock(true);$('audio-panel').open=true;poll();}else if(state.state==='done'){data=core.validate(state.result);render();$('audio-panel').open=true;status('Recovered the last transcript from this running local session.');}
+      const check=await fetch('/api/audio/status',{cache:'no-store'});const state=await check.json();if(state.state==='running'){lock(true);$('audio-panel').open=true;poll();}else if(state.state==='done'){data=core.validate(state.result);render();$('audio-panel').open=true;status('Audio completed in '+MeetingCore.formatDuration(data.elapsedSeconds*1000)+'. Recovered the transcript from this running session.');}
     }catch{$('audio-connection').textContent='Audio processing uses the optional local companion.';}
   }
   $('process-audio').onclick=async()=>{

@@ -8,9 +8,10 @@ import tarfile
 import time
 import urllib.request
 from pathlib import Path
+from runtime_paths import data_root
 
 HERE = Path(__file__).resolve().parent
-CACHE = HERE / '.models'
+CACHE = data_root() / '.models'
 RELEASE = 'https://github.com/k2-fsa/sherpa-onnx/releases/download/'
 SEGMENTATION = 'sherpa-onnx-pyannote-segmentation-3-0'
 EMBEDDING = 'nemo_en_titanet_small.onnx'
@@ -105,11 +106,11 @@ def console_progress(message, **details):
 
 
 def process(path, speaker_count=0, progress=console_progress, model_size='base.en'):
+    started = time.monotonic()
     from faster_whisper import WhisperModel
     from faster_whisper.audio import decode_audio
     import sherpa_onnx
 
-    started = time.monotonic()
     progress('Reading the recording on this computer…', stage='reading')
     audio = decode_audio(str(path), sampling_rate=16000)
     duration = len(audio) / 16000

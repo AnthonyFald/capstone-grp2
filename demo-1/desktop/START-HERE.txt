@@ -1,0 +1,31 @@
+EVERGREEN MEETING DEMO
+
+WINDOWS
+1. Extract the entire ZIP first (right-click > Extract All).
+2. Open the extracted Evergreen Meeting Demo folder.
+3. Double-click Evergreen Meeting Demo.exe.
+   Keep the _internal folder beside the app.
+
+APPLE SILICON MAC
+1. Double-click the Mac ZIP to extract it.
+2. Move Evergreen Meeting Demo.app into Applications, then open it.
+   This download is for M-series Macs, not Intel Macs.
+
+No Python installation or terminal commands are required.
+The launcher opens the local demo in Chrome or Edge if installed.
+Keep its small window open while using the demo. Quit it when finished.
+
+Choose your recording in Start from a recording. First use downloads the
+free audio models. Review the transcript, generate notes, and export them.
+Recordings and inference stay on this computer. No paid AI account or key.
+Note generation needs Chrome or Edge with WebGPU. Model setup needs internet.
+
+This is an unsigned student demo. Windows or macOS may ask for approval on
+first opening. Download only from the project's own GitHub release. A Mac
+may require System Settings > Privacy & Security > Open Anyway for this app.
+Do not disable system security. On a managed computer, ask its administrator.
+
+Export your transcript and notes before quitting or refreshing the browser.
+If something fails, click Show support log in the launcher.
+
+Updates and source: https://github.com/AnthonyFald/capstone-grp2

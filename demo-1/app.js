@@ -2,7 +2,7 @@
   'use strict';
   const $=id=>document.getElementById(id), core=MeetingCore, scenarios=DEMO_SCENARIOS;
   let result=null,worker=null,ready=false,busy=false,timeout=null,runStart=0,runTranscript='',modelName='',referenceId=null,loadTicket=0;
-  let scores={},measurements={manual:'',review:''},retryTimer=null,loading=false,generateAfterLoad=false;
+  let scores={},measurements={manual:'',review:''},retryTimer=null,loading=false,generateAfterLoad=false,queuedNoteStart=null,runTotalStart=0;
   const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function status(text,error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
   function updateCount(){$('word-count').textContent=($('transcript').value.trim().match(/\S+/g)||[]).length+' words';}
@@ -12,7 +12,7 @@
   function setMode(){const ai=$('mode').value==='ai';$('ai-info').hidden=!ai;$('rules-info').hidden=ai;$('generate').textContent=ai?(ready?'Generate AI meeting notes →':'Load AI & generate notes →'):'Extract notes with rules →';status(ai?(ready?'Free local AI is ready.':'Click Load AI & generate notes to start.'):'Basic extraction works instantly and offline. It is not AI.');}
   function tabs(view){$('notes-view').hidden=view!=='notes';$('evaluation-view').hidden=view!=='evaluation';for(const name of ['notes','evaluation']){const active=name===view;$(name+'-tab').classList.toggle('active',active);$(name+'-tab').setAttribute('aria-selected',String(active));}}
   function stopWorker(message,error=false){
-    loadTicket++;clearTimeout(retryTimer);if(worker)worker.terminate();worker=null;ready=false;loading=false;generateAfterLoad=false;
+    loadTicket++;clearTimeout(retryTimer);if(worker)worker.terminate();worker=null;ready=false;loading=false;generateAfterLoad=false;queuedNoteStart=null;
     clearTimeout(timeout);setBusy(false);$('load-model').textContent=error?'Retry AI model download':'Load free AI model';$('load-model').disabled=false;
     $('model-progress').hidden=true;$('model-status').textContent=error?message:'Model not loaded.';setMode();status(message,error);
   }
@@ -22,7 +22,7 @@
     if(location.protocol==='file:'){status('For local AI, open Start Demo.cmd from the project folder. Direct file opening supports only Basic extraction.',true);return;}
     if(!window.isSecureContext||!navigator.gpu){status('This browser does not offer WebGPU. Open the local demo in current Chrome or Edge with hardware acceleration, or use Basic extraction.',true);return;}
     const ticket=++loadTicket;
-    generateAfterLoad=!!options.generateAfterLoad;loading=true;
+    generateAfterLoad=!!options.generateAfterLoad;queuedNoteStart=generateAfterLoad?performance.now():null;loading=true;
     setBusy(true);$('model-progress').hidden=false;$('model-progress').removeAttribute('value');$('model-status').textContent='Preparing the free AI model…';
     status(generateAfterLoad?'Loading AI, then generating your notes automatically.':'Checking your computer, then downloading the free model.');
     timeout=setTimeout(()=>stopWorker('Model loading took too long. Check the connection and retry. Successfully saved files can be reused; your transcript is still here.',true),15*60*1000);
@@ -66,8 +66,9 @@
     }catch(e){if(ticket===loadTicket)stopWorker(ModelDownload.explain(e),true);}
   }
   function finish(data){
-    result={...data,elapsedMs:performance.now()-runStart,createdAt:new Date().toISOString(),transcript:runTranscript,scenarioId:referenceId,originalItems:JSON.parse(JSON.stringify(data.items))};
-    scores={};measurements={manual:'',review:''};$('empty').hidden=true;$('results').hidden=false;$('run-label').textContent=data.mode==='ai'?'LOCAL AI':'RULES · NOT AI';$('summary').textContent=data.summary;$('elapsed').textContent=(result.elapsedMs/1000).toFixed(2)+'s processing';
+    const completed=performance.now();
+    result={...data,elapsedMs:completed-runStart,totalElapsedMs:completed-runTotalStart,modelLoadMs:Math.max(0,runStart-runTotalStart),createdAt:new Date().toISOString(),transcript:runTranscript,scenarioId:referenceId,originalItems:JSON.parse(JSON.stringify(data.items))};
+    scores={};measurements={manual:'',review:''};$('empty').hidden=true;$('results').hidden=false;$('run-label').textContent=data.mode==='ai'?'LOCAL AI':'RULES · NOT AI';$('summary').textContent=data.summary;$('elapsed').textContent='Notes completed in '+core.formatDuration(result.totalElapsedMs)+(result.modelLoadMs>100?' (model setup: '+core.formatDuration(result.modelLoadMs)+'; processing: '+core.formatDuration(result.elapsedMs)+')':'');
     renderNotes();renderEvaluation();tabs('notes');status(data.items.length?'Notes generated. Review the source for each item.'+(data.rejected?' '+data.rejected+' invalid model items were rejected.':''):'No items extracted. Review the transcript manually; this does not mean there are no action items.');
   }
   async function generate(){
@@ -75,7 +76,7 @@
     try{
       const text=core.validateTranscript($('transcript').value);
       if($('mode').value==='ai'&&!ready){await loadModel({generateAfterLoad:true});return;}
-      runTranscript=text;referenceId=Object.keys(scenarios).find(id=>scenarios[id].transcript===text)||null;runStart=performance.now();setBusy(true);
+      runTranscript=text;referenceId=Object.keys(scenarios).find(id=>scenarios[id].transcript===text)||null;runTotalStart=queuedNoteStart??performance.now();queuedNoteStart=null;runStart=performance.now();setBusy(true);
       if($('mode').value==='rules'){finish(core.extractBasic(text));setBusy(false);return;}
       status('Qwen is reading the meeting locally. This can take a minute or two.');
       worker.postMessage({type:'generate',transcript:text.split(/\r?\n/).map((line,i)=>'['+(i+1)+'] '+line).join('\n')});

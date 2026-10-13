@@ -5,6 +5,7 @@ import json
 import secrets
 import tempfile
 import threading
+import time
 import webbrowser
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -12,8 +13,9 @@ from urllib.parse import unquote, urlsplit
 
 from processor import process
 from progress import AudioProgress
+from runtime_paths import resource_root, data_root
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = resource_root()
 TOKEN = secrets.token_urlsafe(32)
 LOCK = threading.Lock()
 STATE = dict(state='idle', message='Ready for a recording.')
@@ -35,6 +37,7 @@ def run_audio(path, count, model):
     try:
         result = process(path, count, report, model_size=model)
         with LOCK:
+            result['elapsedSeconds'] = round(time.monotonic() - TRACKER.started, 2)
             TIMING_RATES.update(TRACKER.learned)
         update(state='done', message='Transcript ready. Review the speakers and wording.', result=result)
     except Exception as error:
@@ -113,10 +116,10 @@ class Handler(SimpleHTTPRequestHandler):
             STATE.clear()
             TRACKER = AudioProgress(model=model, rates=TIMING_RATES)
             STATE.update(state='running', message='Reading audio…')
-        temp = ROOT / 'demo-1' / 'local-audio' / '.audio-temp'
-        temp.mkdir(exist_ok=True)
+        temp = data_root() / '.audio-temp'
         path = None
         try:
+            temp.mkdir(parents=True, exist_ok=True)
             self.connection.settimeout(60)
             with tempfile.NamedTemporaryFile(dir=temp, suffix='.audio', delete=False) as out:
                 path = Path(out.name)
@@ -136,12 +139,16 @@ class Handler(SimpleHTTPRequestHandler):
             return self.reply(400, dict(error=str(error)))
 
 
+def create_server(port=4176):
+    return ThreadingHTTPServer(('127.0.0.1', port), functools.partial(Handler, directory=str(ROOT)))
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--port', type=int, default=4176)
     parser.add_argument('--no-browser', action='store_true')
     args = parser.parse_args()
-    server = ThreadingHTTPServer(('127.0.0.1', args.port), functools.partial(Handler, directory=str(ROOT)))
+    server = create_server(args.port)
     url = f'http://127.0.0.1:{server.server_port}/demo-1/'
     print(f'Demo 1 with local audio: {url}', flush=True)
     print('Audio stays on this computer. First use downloads free models. Ctrl+C to stop.', flush=True)

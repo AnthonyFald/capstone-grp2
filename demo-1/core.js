@@ -57,6 +57,13 @@
     let out='# '+title+'\n\nMethod: '+(result.mode==='ai'?'Local AI — '+result.model:'Basic extraction — rules, not AI')+'\nProcessing time: '+(result.elapsedMs/1000).toFixed(2)+' seconds.\nAll items require human verification.\n\n';
     for(const kind of kinds){out+='## '+labels[kind]+'\n\n';const items=result.items.filter(x=>x.kind===kind);if(!items.length)out+='None extracted.\n\n';for(const i of items){out+='- ['+(i.reviewed?'x':' ')+'] '+i.text.replace(/\n/g,' ')+'\n';if(kind==='action')out+='  - Owner: '+(i.owner||'Not specified')+'\n  - Due: '+(i.due||'Not specified')+'\n';out+='  - Source line '+i.line+': '+i.evidence.replace(/\n/g,' ')+'\n';}out+='\n';}return out;
   }
+  function formatDuration(milliseconds){
+    const seconds=Math.max(0,Number(milliseconds)||0)/1000;
+    if(seconds<.1)return '< 0.1s';
+    if(seconds<60)return seconds.toFixed(1)+'s';
+    const total=Math.round(seconds);
+    return Math.floor(total/60)+'m '+String(total%60).padStart(2,'0')+'s';
+  }
   function exportPlainText(result,title='Meeting notes'){
     const out=[],oneLine=value=>String(value??'').replace(/\s+/g,' ').trim();
     function write(text,prefix='',indent=prefix){
@@ -73,6 +80,8 @@
     if(result.createdAt)write('Notes generated: '+result.createdAt);
     write('Method: '+(result.mode==='ai'?'Local AI - '+result.model:'Basic extraction - rules, not AI'));
     if(Number.isFinite(result.elapsedMs))write('Note processing time: '+(result.elapsedMs/1000).toFixed(2)+' seconds');
+    if(Number.isFinite(result.totalElapsedMs))write('Total note generation completed in: '+formatDuration(result.totalElapsedMs));
+    if(result.modelLoadMs>100)write('Included AI model setup: '+formatDuration(result.modelLoadMs));
     write('Reviewed against source: '+result.items.filter(i=>i.reviewed).length+' of '+result.items.length+' items');
     out.push('');write('These notes include your saved corrections. Items marked Pending need human review. Missing details have not been guessed.');out.push('');
     for(const kind of kinds){
@@ -96,6 +105,6 @@
     for(const [line,evidence] of sources){write('Transcript line '+line+':');write(evidence,'  ');out.push('');}
     return out.join('\r\n').trimEnd()+'\r\n';
   }
-  const api={kinds,labels,lines,validateTranscript,extractBasic,normalizeModelOutput,compare,timing,exportMarkdown,exportPlainText};
+  const api={kinds,labels,lines,validateTranscript,extractBasic,normalizeModelOutput,compare,timing,exportMarkdown,exportPlainText,formatDuration};
   root.MeetingCore=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
