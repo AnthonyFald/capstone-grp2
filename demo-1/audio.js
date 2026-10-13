@@ -4,6 +4,12 @@
   let token=null,data=null,objectURL=null,running=false;
   const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function status(text,error=false){$('audio-status').textContent=text;$('audio-status').className=error?'status error':'status';}
+  function showProgress(progress){
+    $('audio-progress-panel').hidden=false;
+    if(Number.isFinite(progress?.percent))$('audio-progress').value=progress.percent;else $('audio-progress').removeAttribute('value');
+    $('audio-eta').textContent=core.etaText(progress);
+    $('audio-elapsed').textContent=(Number.isFinite(progress?.elapsedSeconds)?'Elapsed: '+core.stamp(progress.elapsedSeconds)+'. ':'')+'Estimates adjust as processing progresses. First-time model downloads can add time.';
+  }
   function lock(value){running=value;for(const id of ['process-audio','audio-file','speaker-count','whisper-model','import-audio-button'])$(id).disabled=value;}
   function render(){
     $('audio-review').hidden=false;
@@ -14,9 +20,10 @@
     try{
       const response=await fetch('/api/audio/status',{cache:'no-store'});if(!response.ok)throw Error('Local audio service stopped. Keep the launcher running.');
       const state=await response.json();status(state.message,state.state==='error');
-      if(state.state==='running'){setTimeout(poll,1000);return;}
+      if(state.state==='running'){showProgress(state.progress);setTimeout(poll,1000);return;}
+      $('audio-progress-panel').hidden=true;
       lock(false);if(state.state==='done'){data=core.validate(state.result);render();status('Transcript ready. '+data.duration+' seconds of audio processed in '+data.elapsedSeconds+' seconds (includes model setup if needed). Review names and wording.');}
-    }catch(error){lock(false);status(error.message,true);}
+    }catch(error){lock(false);$('audio-progress-panel').hidden=true;status(error.message,true);}
   }
   async function connect(){
     if(location.hostname!=='127.0.0.1'){ $('audio-connection').textContent='Audio processing uses the optional local companion.';return;}
@@ -29,11 +36,11 @@
   $('process-audio').onclick=async()=>{
     const file=$('audio-file').files[0];if(!file){status('Choose a recording first.',true);return;}if(file.size>80*1024*1024){status('Use a recording under 80 MB.',true);return;}
     if(objectURL)URL.revokeObjectURL(objectURL);objectURL=URL.createObjectURL(file);$('recording-player').src=objectURL;$('recording-player').hidden=false;
-    lock(true);$('audio-review').hidden=true;status('Sending the recording to the local companion on this computer…');
+    lock(true);$('audio-review').hidden=true;showProgress(null);status('Sending the recording to the local companion on this computer…');
     try{
       const response=await fetch('/api/audio/jobs',{method:'POST',headers:{'Content-Type':'application/octet-stream','X-Local-Token':token,'X-Speaker-Count':$('speaker-count').value,'X-Whisper-Model':$('whisper-model').value},body:file});
       if(!response.ok){const err=await response.json();throw Error(err.error||'Audio processing could not start.');}poll();
-    }catch(error){lock(false);status(error.message,true);}
+    }catch(error){lock(false);$('audio-progress-panel').hidden=true;status(error.message,true);}
   };
   $('speaker-editor').oninput=e=>{const i=e.target.dataset.person;if(i===undefined)return;data.speakers[i][e.target.dataset.field]=e.target.value;data.speakers[i].suggested=false;for(const select of $('turn-editor').querySelectorAll('select'))for(const option of select.options)option.textContent=core.label(data.speakers.find(p=>p.id===option.value));};
   $('add-speaker').onclick=()=>{if(!data||data.speakers.length>=30)return;let n=1;while(data.speakers.some(p=>p.id==='speaker_'+n))n++;data.speakers.push({id:'speaker_'+n,name:'',role:'',suggested:false});render();status('New speaker added. Enter a name and assign the appropriate turns.');};

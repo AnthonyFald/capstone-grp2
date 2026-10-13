@@ -11,11 +11,14 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from processor import process
+from progress import AudioProgress
 
 ROOT = Path(__file__).resolve().parents[2]
 TOKEN = secrets.token_urlsafe(32)
 LOCK = threading.Lock()
 STATE = dict(state='idle', message='Ready for a recording.')
+TRACKER = None
+TIMING_RATES = {}
 MAX_BYTES = 80 * 1024 * 1024
 
 
@@ -25,8 +28,14 @@ def update(**values):
 
 
 def run_audio(path, count, model):
+    def report(message, **details):
+        with LOCK:
+            TRACKER.update(message, **details)
+            STATE['message'] = message
     try:
-        result = process(path, count, lambda message: update(message=message), model_size=model)
+        result = process(path, count, report, model_size=model)
+        with LOCK:
+            TIMING_RATES.update(TRACKER.learned)
         update(state='done', message='Transcript ready. Review the speakers and wording.', result=result)
     except Exception as error:
         update(state='error', message=str(error))
@@ -60,6 +69,8 @@ class Handler(SimpleHTTPRequestHandler):
         if path == '/api/audio/status':
             with LOCK:
                 snapshot = dict(STATE)
+                if TRACKER and STATE['state'] == 'running':
+                    snapshot['progress'] = TRACKER.snapshot()
             return self.reply(200, snapshot)
         return super().do_GET()
 
@@ -83,6 +94,7 @@ class Handler(SimpleHTTPRequestHandler):
         return None
 
     def do_POST(self):
+        global TRACKER
         if not self.allowed() or self.headers.get('X-Local-Token') != TOKEN:
             return self.reply(403, dict(error='Refresh the local app before trying again.'))
         if self.path != '/api/audio/jobs':
@@ -99,6 +111,7 @@ class Handler(SimpleHTTPRequestHandler):
             if STATE['state'] == 'running':
                 return self.reply(409, dict(error='A recording is already processing.'))
             STATE.clear()
+            TRACKER = AudioProgress(model=model, rates=TIMING_RATES)
             STATE.update(state='running', message='Reading audio…')
         temp = ROOT / 'demo-1' / 'local-audio' / '.audio-temp'
         temp.mkdir(exist_ok=True)

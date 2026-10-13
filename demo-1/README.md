@@ -4,7 +4,7 @@ A simple, free meeting documentation demo for the capstone website. It accepts a
 
 ## Start from text
 
-Open the website's **Demo 1** tab in Chrome or Edge with WebGPU. Load the free Qwen 2.5 1.5B model (roughly 1 GB on first use), choose a sample or paste text, and generate notes. Notes run locally on your GPU. The labeled rules mode is a separate non-AI baseline.
+Open the website's **Demo 1** tab in Chrome or Edge with WebGPU. Choose a sample or paste text, then click **Load AI & generate notes**. It loads free Qwen 2.5 1.5B (roughly 1 GB on first use) and generates notes automatically. Model files use IndexedDB storage. Interrupted downloads retry automatically, up to three load attempts, reusing completed files; a failed load preserves the transcript and offers a retry. Notes run locally on your GPU. The labeled rules mode is a separate non-AI baseline.
 
 For a local preview, run `node scripts/serve.mjs` from the repository root. The standalone `demo-1/Start Demo.cmd` also serves the demo on Windows. Neither requires an npm installation.
 
@@ -16,6 +16,8 @@ Install Python 3.12 from https://www.python.org/downloads/ and extract the compl
 - Mac: open Terminal in the repository folder and run `bash "demo-1/Start Audio Demo.command"`.
 
 The launcher installs free packages in an isolated environment and opens http://127.0.0.1:4176/demo-1/ . Keep the terminal running. Expand **Start from a recording**, choose an English MP3/WAV/M4A/OGG/FLAC, set the speaker count if known, and start processing. Current limits: 10 minutes and 80 MB. Start with a 1–5 minute recording. Base is faster; Small is a larger and generally more accurate transcription model.
+
+During audio processing, the app shows the current step’s percentage, elapsed time, and an estimated minutes:seconds countdown. Estimates adapt to observed progress and prior successful runs in the same launcher session. Initial estimates are approximate. Downloads have separate estimates when their sizes are known; model initialization shows an estimating message. A late estimate never claims the job is finished.
 
 Audio uses the CPU, with no GPU requirement. The selected libraries support Windows x64 and both Intel and Apple Silicon Macs; Windows on ARM is not verified. Actual installation and audio inference were tested on Windows. Mac execution still needs a teammate's check. Browser note generation separately needs WebGPU and sufficient GPU memory.
 

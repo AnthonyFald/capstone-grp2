@@ -14,7 +14,14 @@
     return {...data,speakers,segments};
   }
   function stamp(seconds){const n=Math.floor(seconds);return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0');}
+  function etaText(progress){
+    if(!progress)return 'Estimating time remaining…';
+    if(Number.isFinite(progress.etaSeconds)&&progress.etaSeconds>0)return (progress.etaScope==='download'?'Estimated time left for this download: ':'Estimated processing time left: ')+stamp(Math.ceil(progress.etaSeconds));
+    if(progress.overdue)return 'Still working — updating the time estimate…';
+    if(progress.stage==='preparing'||progress.stage==='download')return 'Preparing model files — time remaining is not available yet.';
+    return 'Estimating time remaining…';
+  }
   function label(person){return (person.name.trim()||person.id.replace('speaker_','Speaker '))+(person.role.trim()?' ('+person.role.trim()+')':'');}
   function transcript(data){return data.segments.filter(s=>s.text.trim()).map(s=>label(data.speakers.find(p=>p.id===s.speaker)).replace(/[\r\n:]/g,' ') + ': '+s.text.trim().replace(/[\r\n]+/g,' ')+' ['+stamp(s.start)+'–'+stamp(s.end)+']').join('\n');}
-  const api={validate,stamp,label,transcript};root.AudioCore=api;if(typeof module!=='undefined')module.exports=api;
+  const api={validate,stamp,label,transcript,etaText};root.AudioCore=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

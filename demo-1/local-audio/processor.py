@@ -28,9 +28,15 @@ def download(url, destination, progress):
     destination.parent.mkdir(parents=True, exist_ok=True)
     partial = destination.with_suffix(destination.suffix + '.part')
     try:
-        progress('Downloading free model: ' + destination.name)
+        progress('Downloading free model: ' + destination.name, stage='download', step=destination.name)
         with urllib.request.urlopen(url, timeout=120) as response, partial.open('wb') as out:
-            shutil.copyfileobj(response, out)
+            total = int(response.headers.get('Content-Length', '0'))
+            received = 0
+            while chunk := response.read(1024 * 1024):
+                out.write(chunk)
+                received += len(chunk)
+                progress('Downloading free model: ' + destination.name, stage='download',
+                         step=destination.name, fraction=min(1, received / total) if total else None)
         partial.replace(destination)
     finally:
         partial.unlink(missing_ok=True)
@@ -94,19 +100,24 @@ def suggest_people(segments):
     return list(people.values())
 
 
-def process(path, speaker_count=0, progress=print, model_size='base.en'):
+def console_progress(message, **details):
+    print(message, flush=True)
+
+
+def process(path, speaker_count=0, progress=console_progress, model_size='base.en'):
     from faster_whisper import WhisperModel
     from faster_whisper.audio import decode_audio
     import sherpa_onnx
 
     started = time.monotonic()
-    progress('Reading the recording on this computer…')
+    progress('Reading the recording on this computer…', stage='reading')
     audio = decode_audio(str(path), sampling_rate=16000)
     duration = len(audio) / 16000
     if duration < 2 or duration > 600:
         raise ValueError('Use a recording between 2 seconds and 10 minutes for this demo.')
     if not 0 <= speaker_count <= 12:
         raise ValueError('Speaker count must be 0 (automatic) through 12.')
+    progress('Preparing speaker models…', stage='preparing', duration=duration)
     segment, embedding = models(progress)
     config = sherpa_onnx.OfflineSpeakerDiarizationConfig(
         segmentation=sherpa_onnx.OfflineSpeakerSegmentationModelConfig(
@@ -116,26 +127,30 @@ def process(path, speaker_count=0, progress=print, model_size='base.en'):
         min_duration_on=.3, min_duration_off=.5)
     if not config.validate():
         raise RuntimeError('Speaker models could not be loaded. Remove local-audio/.models and retry the download.')
-    progress('Grouping voices across the entire recording…')
+    progress('Grouping voices across the entire recording…', stage='grouping', fraction=0)
     diarizer = sherpa_onnx.OfflineSpeakerDiarization(config)
     def report(done, total):
-        progress(f'Grouping voices: {round(100 * done / max(1, total))}%')
+        fraction = min(1, done / max(1, total))
+        progress(f'Grouping voices: {round(100 * fraction)}%', stage='grouping', fraction=fraction)
         return 0
     turns = [dict(start=float(s.start), end=float(s.end), speaker=f'speaker_{s.speaker + 1}')
              for s in diarizer.process(audio, callback=report).sort_by_start_time()]
     del diarizer
-    progress('Loading Whisper ' + model_size + ' (first use downloads a free model)…')
+    progress('Loading Whisper ' + model_size + ' (first use downloads a free model)…', stage='preparing')
     model_args = dict(device='cpu', compute_type='int8', cpu_threads=4, download_root=str(CACHE / 'whisper'))
     try:
         model = WhisperModel(model_size, local_files_only=True, **model_args)
     except (OSError, ValueError):
         model = WhisperModel(model_size, **model_args)
+    progress('Transcribing the recording…', stage='transcription', fraction=0)
     segments, _ = model.transcribe(audio, beam_size=5, language='en', word_timestamps=True,
                                   vad_filter=True, condition_on_previous_text=False)
     words = []
     for segment in segments:
         words.extend(dict(start=w.start, end=w.end, text=w.word) for w in segment.words or [])
-        progress(f'Transcribing: {min(100, round(100 * segment.end / duration))}%')
+        fraction = min(1, segment.end / duration)
+        progress(f'Transcribing: {round(100 * fraction)}%', stage='transcription', fraction=fraction)
+    progress('Matching words to speakers and preparing your transcript…', stage='finishing', fraction=0)
     rows = assign_words(words, turns)
     if not rows:
         raise ValueError('No speech was transcribed. Try a clearer recording.')

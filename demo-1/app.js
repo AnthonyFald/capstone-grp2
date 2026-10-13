@@ -2,39 +2,68 @@
   'use strict';
   const $=id=>document.getElementById(id), core=MeetingCore, scenarios=DEMO_SCENARIOS;
   let result=null,worker=null,ready=false,busy=false,timeout=null,runStart=0,runTranscript='',modelName='',referenceId=null,loadTicket=0;
-  let scores={},measurements={manual:'',review:''};
+  let scores={},measurements={manual:'',review:''},retryTimer=null,loading=false,generateAfterLoad=false;
   const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function status(text,error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
   function updateCount(){$('word-count').textContent=($('transcript').value.trim().match(/\S+/g)||[]).length+' words';}
   function setBusy(value){busy=value;for(const id of ['generate','load-model','mode','scenario','upload-button','transcript'])$(id).disabled=value;$('cancel').hidden=!value;if(!value)clearTimeout(timeout);}
   function resetResult(){result=null;scores={};measurements={manual:'',review:''};$('empty').hidden=false;$('results').hidden=true;$('run-label').textContent='Ready when you are';renderEvaluation();}
   function loadScenario(){const s=scenarios[$('scenario').value];$('transcript').value=s?s.transcript:'';resetResult();updateCount();status(s?'Synthetic meeting loaded. Choose a processing method.':'Paste a transcript or upload a plain text file.');}
-  function setMode(){const ai=$('mode').value==='ai';$('ai-info').hidden=!ai;$('rules-info').hidden=ai;$('generate').textContent=ai?'Generate AI meeting notes →':'Extract notes with rules →';status(ai?(ready?'Free local AI is ready.':'Load the model, then generate notes.'):'Basic extraction works instantly and offline. It is not AI.');}
+  function setMode(){const ai=$('mode').value==='ai';$('ai-info').hidden=!ai;$('rules-info').hidden=ai;$('generate').textContent=ai?(ready?'Generate AI meeting notes →':'Load AI & generate notes →'):'Extract notes with rules →';status(ai?(ready?'Free local AI is ready.':'Click Load AI & generate notes to start.'):'Basic extraction works instantly and offline. It is not AI.');}
   function tabs(view){$('notes-view').hidden=view!=='notes';$('evaluation-view').hidden=view!=='evaluation';for(const name of ['notes','evaluation']){const active=name===view;$(name+'-tab').classList.toggle('active',active);$(name+'-tab').setAttribute('aria-selected',String(active));}}
-  function stopWorker(message,error=false){loadTicket++;if(worker)worker.terminate();worker=null;ready=false;clearTimeout(timeout);setBusy(false);$('load-model').textContent='Load free AI model';$('load-model').disabled=false;$('model-progress').hidden=true;$('model-status').textContent='Model not loaded.';status(message,error);}
-  async function loadModel(){
-    if(ready){status('The local AI model is already loaded.');return;}
+  function stopWorker(message,error=false){
+    loadTicket++;clearTimeout(retryTimer);if(worker)worker.terminate();worker=null;ready=false;loading=false;generateAfterLoad=false;
+    clearTimeout(timeout);setBusy(false);$('load-model').textContent=error?'Retry AI model download':'Load free AI model';$('load-model').disabled=false;
+    $('model-progress').hidden=true;$('model-status').textContent=error?message:'Model not loaded.';setMode();status(message,error);
+  }
+  async function loadModel(options={}){
+    if(busy)return;
+    if(ready){if(options.generateAfterLoad)generate();else status('The local AI model is already loaded.');return;}
     if(location.protocol==='file:'){status('For local AI, open Start Demo.cmd from the project folder. Direct file opening supports only Basic extraction.',true);return;}
     if(!window.isSecureContext||!navigator.gpu){status('This browser does not offer WebGPU. Open the local demo in current Chrome or Edge with hardware acceleration, or use Basic extraction.',true);return;}
     const ticket=++loadTicket;
-    setBusy(true);$('model-progress').hidden=false;$('model-progress').value=0;status('Checking your computer, then downloading the free model.');
-    try{
-      const adapter=await navigator.gpu.requestAdapter();if(ticket!==loadTicket)return;if(!adapter)throw new Error('No compatible graphics adapter was found. Try Chrome or Edge, or use Basic extraction.');
-      modelName=adapter.features.has('shader-f16')?'Qwen2.5-1.5B-Instruct-q4f16_1-MLC':'Qwen2.5-1.5B-Instruct-q4f32_1-MLC';
-      worker=new Worker('ai-worker.js',{type:'module'});
-      worker.onerror=event=>stopWorker('Local AI could not start. '+(event.message||'Check your connection and browser WebGPU support.'),true);
-      worker.onmessage=({data})=>{
+    generateAfterLoad=!!options.generateAfterLoad;loading=true;
+    setBusy(true);$('model-progress').hidden=false;$('model-progress').removeAttribute('value');$('model-status').textContent='Preparing the free AI model…';
+    status(generateAfterLoad?'Loading AI, then generating your notes automatically.':'Checking your computer, then downloading the free model.');
+    timeout=setTimeout(()=>stopWorker('Model loading took too long. Check the connection and retry. Successfully saved files can be reused; your transcript is still here.',true),15*60*1000);
+    function startWorker(attempt){
+      if(ticket!==loadTicket)return;
+      const current=new Worker('ai-worker.js',{type:'module'});worker=current;
+      function failed(message,retryable){
+        if(ticket!==loadTicket||worker!==current)return;
+        if(loading&&retryable&&attempt<3){
+          current.terminate();worker=null;
+          $('model-status').textContent='Download interrupted. Resuming saved files (attempt '+(attempt+1)+' of 3)…';
+          $('model-progress').removeAttribute('value');
+          retryTimer=setTimeout(()=>{try{startWorker(attempt+1);}catch(error){if(ticket===loadTicket)stopWorker(ModelDownload.explain(error),true);}},1500*attempt);return;
+        }
+        console.warn('Local model failure:',message);
+        stopWorker(ModelDownload.explain(message),true);
+      }
+      current.onerror=event=>failed(event.message||'The AI worker could not start.',ModelDownload.retryable(event.message));
+      current.onmessage=({data})=>{
+        if(ticket!==loadTicket||worker!==current)return;
         if(data.type==='progress'){$('model-status').textContent=data.text;$('model-progress').value=Math.max(0,Math.min(1,data.progress||0));}
+        if(data.type==='download-status')$('model-status').textContent=data.text;
         if(data.type==='generation-progress')status(data.text);
-        if(data.type==='ready'){ready=true;setBusy(false);$('model-progress').hidden=true;$('model-status').textContent='Qwen 2.5 1.5B is loaded. All text processing stays on this computer.';$('load-model').textContent='AI model ready';$('load-model').disabled=true;status('Ready. Generate notes to run the real local AI model.');}
+        if(data.type==='ready'){
+          ready=true;loading=false;setBusy(false);$('model-progress').hidden=true;$('model-status').textContent='Qwen 2.5 1.5B is loaded. All text processing stays on this computer.';
+          $('load-model').textContent='AI model ready';$('load-model').disabled=true;setMode();
+          const queued=generateAfterLoad;generateAfterLoad=false;if(queued)generate();else status('Ready. Generate notes to run the real local AI model.');
+        }
         if(data.type==='result'){
           try{const parsed=core.normalizeModelOutput(data.content,runTranscript);parsed.model=modelName;finish(parsed);}catch(e){status(e.message,true);}finally{setBusy(false);if(ready)$('load-model').disabled=true;}
         }
-        if(data.type==='error'){stopWorker('Local AI: '+data.message+' No paid service was used.',true);}
+        if(data.type==='error')failed(data.message,data.phase==='load'&&data.retryable);
       };
-      worker.postMessage({type:'load',model:modelName});
-      timeout=setTimeout(()=>stopWorker('Model loading took too long. Check the internet connection and retry; cached files may be reused.',true),15*60*1000);
-    }catch(e){stopWorker(e.message,true);}
+      current.postMessage({type:'load',model:modelName});
+    }
+    try{
+      const adapter=await navigator.gpu.requestAdapter({powerPreference:'high-performance'});if(ticket!==loadTicket)return;
+      if(!adapter)throw new Error('No compatible graphics adapter was found. Try Chrome or Edge with hardware acceleration, or use Basic extraction.');
+      modelName=adapter.features.has('shader-f16')?'Qwen2.5-1.5B-Instruct-q4f16_1-MLC':'Qwen2.5-1.5B-Instruct-q4f32_1-MLC';
+      startWorker(1);
+    }catch(e){if(ticket===loadTicket)stopWorker(ModelDownload.explain(e),true);}
   }
   function finish(data){
     result={...data,elapsedMs:performance.now()-runStart,createdAt:new Date().toISOString(),transcript:runTranscript,scenarioId:referenceId,originalItems:JSON.parse(JSON.stringify(data.items))};
@@ -45,7 +74,7 @@
     if(busy)return;
     try{
       const text=core.validateTranscript($('transcript').value);
-      if($('mode').value==='ai'&&!ready){status('Load the free AI model first. This does not require an account or API key.',true);return;}
+      if($('mode').value==='ai'&&!ready){await loadModel({generateAfterLoad:true});return;}
       runTranscript=text;referenceId=Object.keys(scenarios).find(id=>scenarios[id].transcript===text)||null;runStart=performance.now();setBusy(true);
       if($('mode').value==='rules'){finish(core.extractBasic(text));setBusy(false);return;}
       status('Qwen is reading the meeting locally. This can take a minute or two.');

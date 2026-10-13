@@ -1,6 +1,6 @@
 {
   "app": "Team 2 Demo 1",
-  "checks_passed": 30,
+  "checks_passed": 42,
   "checks_failed": 0,
   "webllm_version": "0.2.85",
   "model_identifier_verified": true,
@@ -8,7 +8,15 @@
   "visual_browser_verified": true,
   "platform_tested": "Windows x64; Codex in-app Chromium browser with WebGPU",
   "audio_libraries_tested": "faster-whisper 1.2.1, sherpa-onnx 1.13.8, CTranslate2 4.8.3, PyAV 16.0.1; Python 3.12.14",
-  "audio_verified": ["Real CPU transcription", "Recording-wide clustering with supplied two-speaker count", "Automatic speaker-count mode", "WAV and MP3 input", "Explicit introduction name/role suggestion", "Speaker transcript export and import", "MP3 transcript to real Qwen notes, followed by removal of an irrelevant candidate"],
+  "audio_verified": [
+    "Real CPU transcription",
+    "Recording-wide clustering with supplied two-speaker count",
+    "Automatic speaker-count mode",
+    "WAV and MP3 input",
+    "Explicit introduction name/role suggestion",
+    "Speaker transcript export and import",
+    "MP3 transcript to real Qwen notes, followed by removal of an irrelevant candidate"
+  ],
   "audio_smoke_tests": {
     "two_speaker_sample_seconds": 34,
     "known_count_run_seconds": 4.83,
@@ -31,5 +39,23 @@
   "verification_limit": "Mac execution and real team recordings are untested. Small synthetic fixtures and one official two-speaker test do not establish accuracy or thesis targets. Human transcript and note review remain required.",
   "github_publication": "Deployment status is tracked in the repository's GitHub Pages build and deployment workflow.",
   "paid_api_calls": 0,
-  "api_keys_created": 0
+  "api_keys_created": 0,
+  "model_loading_recovery": {
+    "cache_backend": "indexeddb",
+    "real_model_load_and_generation_verified": true,
+    "regressions": [
+      "Transient download retries",
+      "Bounded retries and useful failure guidance",
+      "Generate loads model and automatically continues",
+      "Cancel ignores stale worker messages and queued retries"
+    ],
+    "paid_fallback": false
+  },
+  "audio_countdown_verification": {
+    "fixture": "Included synthetic introduction repeated to 240 seconds; not a real meeting",
+    "first_cached_model_run_seconds": 29.58,
+    "second_run_seconds": 22.73,
+    "observed": "API polling and browser upload both completed. Live percentage, countdown and elapsed time displayed. In-session estimates used prior timing. First-time downloads excluded from these runs.",
+    "estimate_limit": "Estimates can rise or fall and are not completion guarantees."
+  }
 }
