@@ -32,7 +32,13 @@
       <summary><strong>Start from a recording</strong><span>MP3 / WAV / M4A → speakers → transcript → notes</span></summary>
       <p>Process a recorded meeting on your computer with free Whisper and speaker-detection models. English audio, up to 10 minutes / 80 MB. Start with a short, clear recording.</p>
       <p id="audio-connection" role="status">Checking local audio support…</p>
-      <div id="audio-setup"><p>The website can review transcripts. To process audio, run the local companion once installed, or import a transcript it exported.</p><a class="text-button" href="audio-setup.html" target="_blank" rel="noopener">Windows & Mac setup instructions ↗</a></div>
+      <div id="audio-setup">
+        <h3>Download once, then open on your computer</h3>
+        <p>To turn a recording into a transcript, download the free audio companion. The ZIP includes the complete project and launchers for Windows and Mac. Python 3.12 is required; packages and models download during first use.</p>
+        <div class="audio-actions"><a class="button primary download-link" href="https://github.com/AnthonyFald/capstone-grp2/archive/refs/heads/main.zip">Download audio companion (.zip)</a><a class="button secondary download-link" href="audio-setup.html" target="_blank" rel="noopener">Windows & Mac instructions ↗</a></div>
+        <ol class="setup-steps"><li><strong>Extract the ZIP.</strong> Windows: right-click → Extract All. Mac: double-click the ZIP in Finder.</li><li><strong>Open the extracted capstone-grp2-main folder, then demo-1.</strong> Follow the Windows or Mac instructions to run the audio launcher.</li><li><strong>Use the local page it opens.</strong> Keep the launcher running, expand “Start from a recording,” and choose your audio file.</li></ol>
+        <p class="muted">The website cannot launch a downloaded program for you. After setup, the local page handles your audio and meeting notes. You can also import an exported speaker transcript here.</p>
+      </div>
       <div id="audio-controls" hidden>
         <label for="audio-file">Choose a recording</label><input type="file" id="audio-file" accept="audio/*,.mp3,.wav,.m4a,.ogg,.flac">
         <div class="audio-options"><label>Number of speakers<select id="speaker-count"><option value="0">Detect automatically</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></label><label>Transcription model<select id="whisper-model"><option value="base.en">Whisper Base · faster</option><option value="small.en">Whisper Small · more accurate, slower</option></select></label></div>
