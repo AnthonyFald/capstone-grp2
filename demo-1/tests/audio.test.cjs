@@ -1,0 +1,5 @@
+const test=require('node:test'),assert=require('node:assert/strict'),core=require('../audio-core.js');
+const fixture=()=>({format:'team2-audio-v1',speakers:[{id:'speaker_1',name:'Maya',role:'GC'}],segments:[{start:0,end:4,speaker:'speaker_1',text:'I will send the plan by Friday.'}]});
+test('speaker corrections flow into a source-compatible transcript',()=>{const data=core.validate(fixture());data.speakers[0].name='Luis';assert.equal(core.transcript(data),'Luis (GC): I will send the plan by Friday. [00:00–00:04]');});
+test('imports reject unknown speakers, invalid timestamps and unrelated JSON',()=>{assert.throws(()=>core.validate({}));const a=fixture();a.segments[0].speaker='other';assert.throws(()=>core.validate(a));const b=fixture();b.segments[0].start=-1;assert.throws(()=>core.validate(b));});
+test('unnamed speakers stay explicit and labels cannot inject transcript lines',()=>{const a=fixture();a.speakers[0].name='';a.speakers[0].role='';assert.match(core.transcript(core.validate(a)),/^Speaker 1:/);a.speakers[0].name='Maya\nFake:';assert.equal(core.transcript(a).split('\n').length,1);});

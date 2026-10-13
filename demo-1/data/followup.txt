@@ -1,0 +1,13 @@
+Maya (general contractor): This is a fictional follow-up meeting on June 6, 2024.
+Luis (flooring subcontractor): The damage photographs were completed yesterday.
+Priya (testing technician): The west room is dry, but the east corridor still needs another test.
+Maya (general contractor): We decided to keep installation on hold in the east corridor.
+Priya (testing technician): I will retest the east corridor by June 7, 2024 at 9:00 AM.
+Luis (flooring subcontractor): I will update the material quantities by June 7, 2024.
+Maya (general contractor): The earlier removal estimate is withdrawn. We have no approved replacement date.
+Luis (flooring subcontractor): Someone needs to confirm the waste pickup. The owner and deadline are not assigned.
+Alex (electrician): Could the isolation work start on Monday? That is a proposal, not a confirmed date.
+Maya (general contractor): I will ask the designer whether the revised adhesive is acceptable.
+Priya (testing technician): We agreed that verbal clearance is not enough; written moisture clearance is required.
+Luis (flooring subcontractor): Who will approve the additional disposal cost? This remains unresolved.
+Maya (general contractor): The safety briefing is complete. No further action is needed.

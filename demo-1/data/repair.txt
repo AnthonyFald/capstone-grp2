@@ -1,0 +1,13 @@
+Maya (general contractor): This is a fictional repair coordination meeting on June 3, 2024. We are discussing the water-damaged concrete flooring in the east corridor.
+Maya (general contractor): We decided to keep the east corridor closed until the moisture results have been reviewed.
+Luis (flooring subcontractor): I will photograph the damaged floor and mark the removal boundary by June 4, 2024 at 10:00 AM.
+Priya (testing technician): I will send the moisture test results by June 5, 2024 at 2:00 PM.
+Maya (general contractor): I will issue the revised access plan by June 4, 2024 at 3:00 PM.
+Alex (electrician): I will isolate the corridor power before any demolition begins.
+Luis (flooring subcontractor): Can we reuse the existing adhesive, or do we need a new product? This is still unresolved.
+Maya (general contractor): The adhesive choice is pending designer confirmation. Do not treat it as approved.
+Priya (testing technician): We agreed to wait for written moisture clearance before installing replacement flooring.
+Maya (general contractor): I will ask the designer to confirm the adhesive specification by June 6, 2024.
+Luis (flooring subcontractor): Who is responsible for hauling away the removed concrete? No owner has been assigned.
+Alex (electrician): There is no approved date for restarting installation.
+Maya (general contractor): Thanks, everyone. These notes still need human review.

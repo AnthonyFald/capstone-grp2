@@ -1,0 +1,4 @@
+faster-whisper==1.2.1
+sherpa-onnx==1.13.8
+ctranslate2==4.8.3
+av==16.0.1

@@ -19,6 +19,7 @@
     <a href="#case-study"><span>02</span> Case study</a>
     <a href="#approach"><span>03</span> Our approach</a>
     <a href="#experiments"><span>04</span> Experiments</a>
+    <a class="demo-nav" href="demo-1/"><span>RUN</span> Demo 1</a>
     <a href="#evaluation"><span>05</span> Data & evaluation</a>
     <a href="#team"><span>06</span> The team</a>
     <a href="#resources"><span>07</span> Resources</a>
@@ -31,7 +32,7 @@
     <div class="eyebrow">01 / OVERVIEW</div>
     <h1>Better information.<br>Better coordination.</h1>
     <p class="intro">Exploring how AI can help concrete flooring subcontractors find answers, reduce unnecessary RFIs, and coordinate work after unexpected construction disruptions.</p>
-    <div class="overview-links"><a class="button" href="#experiments">Explore the four experiments <span aria-hidden="true">↓</span></a><a class="text-link" href="#case-study">Meet the case study <span aria-hidden="true">↗</span></a></div>
+    <div class="overview-links"><a class="button" href="demo-1/">Try Demo 1 <span aria-hidden="true">→</span></a><a class="text-link" href="#experiments">Explore the four experiments <span aria-hidden="true">↓</span></a><a class="text-link" href="#case-study">Meet the case study <span aria-hidden="true">↗</span></a></div>
     <div class="thesis"><div class="eyebrow">OUR THESIS</div><p>AI-assisted documentation and information retrieval can improve communication between subcontractors and general contractors, reduce unnecessary Requests for Information, and support more effective task coordination.</p><div class="thesis-note">A hypothesis to test. Results have not yet been reported.</div></div>
     <div class="two-col problem"><h2>When information exists,<br>but doesn’t reach the crew.</h2><div><p>Decisions, deadlines, and responsibilities are scattered across meeting notes, daily reports, and schedules. Subcontractors may repeat questions, miss updates, or plan work using outdated information.</p><p>A <strong>Request for Information (RFI)</strong> formally asks for clarification. Our focus is on avoidable requests whose answers already exist in the project record. Necessary RFIs remain part of the process.</p></div></div>
   </section>
@@ -47,7 +48,8 @@
     <p class="small">Primary artifacts: RFIs, meeting notes, daily reports, change orders, and schedules. Submittals and inspection records may provide supporting references.</p>
   </section>
   <section id="experiments">
-    <div class="section-heading"><div><div class="eyebrow">04 / EXPERIMENTS</div><h2>Four demos. One coordination problem.</h2></div><button class="expand-all" type="button" aria-controls="demo-list">Expand all</button></div><p class="section-intro">Planned tests using synthetic construction records. Open each experiment for its scenario, comparison, and success measures.</p>
+    <div class="section-heading"><div><div class="eyebrow">04 / EXPERIMENTS</div><h2>Four demos. One coordination problem.</h2></div><button class="expand-all" type="button" aria-controls="demo-list">Expand all</button></div><p class="section-intro">Tests using synthetic construction records. Demo 1 is available to try; the remaining demos are planned. Open each experiment for its scenario, comparison, and success measures.</p>
+    <div class="demo-launch"><div><strong>Try assisted meeting documentation</strong><p>Use a real Qwen model in your browser to extract decisions, tasks, and open questions. No paid API or account is needed. The first run downloads the model.</p></div><a class="button" href="demo-1/">Open Demo 1 <span aria-hidden="true">→</span></a></div>
     <div id="demo-list">
       <details class="demo" open><summary><span class="demo-num">01</span><span><h3>Assisted meeting documentation</h3><span>Capture decisions, responsibilities, and deadlines.</span></span><span class="plus" aria-hidden="true"></span></summary><div class="demo-content"><div><h4>Scenario & test</h4><p>After the water damage, contractors meet to discuss repairs and new deadlines. An AI agent reads a synthetic transcript and extracts decisions, owners, due dates, and unresolved questions.</p></div><div><h4>Comparison</h4><p>Check the AI summary against reference notes and manually prepared meeting summaries.</p></div><div class="metrics"><h4>Success measures</h4><p>Correct action items · Missing details · Summary preparation time</p></div></div></details>
       <details class="demo"><summary><span class="demo-num">02</span><span><h3>Assisted daily report analysis</h3><span>Surface delays, inconsistencies, and unresolved issues.</span></span><span class="plus" aria-hidden="true"></span></summary><div class="demo-content"><div><h4>Scenario & test</h4><p>Flooring crews submit daily reports on completed repairs, complications, and outstanding work. An AI agent identifies delays, conflicting updates, and issues other contractors need to know about.</p></div><div><h4>Comparison</h4><p>Compare findings with a predefined list of issues deliberately included in the synthetic reports.</p></div><div class="metrics"><h4>Success measures</h4><p>Relevant issues identified (%) · Missed issues · Report review time</p></div></div></details>

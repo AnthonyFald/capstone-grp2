@@ -1,0 +1,35 @@
+{
+  "app": "Team 2 Demo 1",
+  "checks_passed": 30,
+  "checks_failed": 0,
+  "webllm_version": "0.2.85",
+  "model_identifier_verified": true,
+  "live_model_inference_verified": true,
+  "visual_browser_verified": true,
+  "platform_tested": "Windows x64; Codex in-app Chromium browser with WebGPU",
+  "audio_libraries_tested": "faster-whisper 1.2.1, sherpa-onnx 1.13.8, CTranslate2 4.8.3, PyAV 16.0.1; Python 3.12.14",
+  "audio_verified": ["Real CPU transcription", "Recording-wide clustering with supplied two-speaker count", "Automatic speaker-count mode", "WAV and MP3 input", "Explicit introduction name/role suggestion", "Speaker transcript export and import", "MP3 transcript to real Qwen notes, followed by removal of an irrelevant candidate"],
+  "audio_smoke_tests": {
+    "two_speaker_sample_seconds": 34,
+    "known_count_run_seconds": 4.83,
+    "automatic_count_run_seconds": 4.5,
+    "automatic_count_observed_issue": "Over-split this two-speaker sample into three voice clusters, plus unmatched words. Supplying a known speaker count is recommended.",
+    "synthetic_mp3_seconds": 32.49,
+    "synthetic_mp3_processing_seconds": 4.33,
+    "synthetic_mp3_note_processing_seconds": 1.29,
+    "synthetic_mp3_note_observed_issue": "An irrelevant closing statement was included and then removed with the review UI. No independent accuracy benchmark was conducted."
+  },
+  "text_smoke_test": {
+    "fixture": "repair",
+    "elapsed_seconds": 2.03,
+    "decisions": 2,
+    "actions": 5,
+    "question_candidates": 6,
+    "observed_issue": "Two context/closing lines were unnecessarily classified as questions. All 11 reference source/category pairs appeared. This is development inspection, not an independent evaluation.",
+    "raw_output": "development-text-run.json"
+  },
+  "verification_limit": "Mac execution and real team recordings are untested. Small synthetic fixtures and one official two-speaker test do not establish accuracy or thesis targets. Human transcript and note review remain required.",
+  "github_publication": "Deployment status is tracked in the repository's GitHub Pages build and deployment workflow.",
+  "paid_api_calls": 0,
+  "api_keys_created": 0
+}

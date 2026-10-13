@@ -1,0 +1,417 @@
+{
+  "mode": "ai",
+  "model": "Qwen2.5-1.5B-Instruct-q4f16_1-MLC",
+  "items": [
+    {
+      "id": "n1",
+      "kind": "question",
+      "line": 1,
+      "text": "This is a fictional repair coordination meeting on June 3, 2024. We are discussing the water-damaged concrete flooring in the east corridor.",
+      "owner": null,
+      "due": null,
+      "evidence": "Maya (general contractor): This is a fictional repair coordination meeting on June 3, 2024. We are discussing the water-damaged concrete flooring in the east corridor.",
+      "reviewed": false,
+      "flags": []
+    },
+    {
+      "id": "n2",
+      "kind": "decision",
+      "line": 2,
+      "text": "We decided to keep the east corridor closed until the moisture results have been reviewed.",
+      "owner": null,
+      "due": null,
+      "evidence": "Maya (general contractor): We decided to keep the east corridor closed until the moisture results have been reviewed.",
+      "reviewed": false,
+      "flags": []
+    },
+    {
+      "id": "n3",
+      "kind": "action",
+      "line": 3,
+      "text": "I will photograph the damaged floor and mark the removal boundary by June 4, 2024 at 10:00 AM.",
+      "owner": "Luis",
+      "due": "June 4, 2024 at 10:00 AM",
+      "evidence": "Luis (flooring subcontractor): I will photograph the damaged floor and mark the removal boundary by June 4, 2024 at 10:00 AM.",
+      "reviewed": false,
+      "flags": [
+        "Owner filled from an explicit commitment in the source. Verify it.",
+        "Deadline filled from the source wording. Verify it."
+      ]
+    },
+    {
+      "id": "n4",
+      "kind": "action",
+      "line": 4,
+      "text": "I will send the moisture test results by June 5, 2024 at 2:00 PM.",
+      "owner": "Priya",
+      "due": "June 5, 2024 at 2:00 PM",
+      "evidence": "Priya (testing technician): I will send the moisture test results by June 5, 2024 at 2:00 PM.",
+      "reviewed": false,
+      "flags": [
+        "Owner filled from an explicit commitment in the source. Verify it.",
+        "Deadline filled from the source wording. Verify it."
+      ]
+    },
+    {
+      "id": "n5",
+      "kind": "action",
+      "line": 5,
+      "text": "I will issue the revised access plan by June 4, 2024 at 3:00 PM.",
+      "owner": "Maya",
+      "due": "June 4, 2024 at 3:00 PM",
+      "evidence": "Maya (general contractor): I will issue the revised access plan by June 4, 2024 at 3:00 PM.",
+      "reviewed": false,
+      "flags": [
+        "Owner filled from an explicit commitment in the source. Verify it.",
+        "Deadline filled from the source wording. Verify it."
+      ]
+    },
+    {
+      "id": "n6",
+      "kind": "action",
+      "line": 6,
+      "text": "I will isolate the corridor power before any demolition begins.",
+      "owner": "Alex",
+      "due": "before any demolition begins",
+      "evidence": "Alex (electrician): I will isolate the corridor power before any demolition begins.",
+      "reviewed": false,
+      "flags": [
+        "Owner filled from an explicit commitment in the source. Verify it.",
+        "Deadline filled from the source wording. Verify it."
+      ]
+    },
+    {
+      "id": "n7",
+      "kind": "question",
+      "line": 7,
+      "text": "Can we reuse the existing adhesive, or do we need a new product? This is still unresolved.",
+      "owner": null,
+      "due": null,
+      "evidence": "Luis (flooring subcontractor): Can we reuse the existing adhesive, or do we need a new product? This is still unresolved.",
+      "reviewed": false,
+      "flags": []
+    },
+    {
+      "id": "n8",
+      "kind": "question",
+      "line": 8,
+      "text": "The adhesive choice is pending designer confirmation. Do not treat it as approved.",
+      "owner": null,
+      "due": null,
+      "evidence": "Maya (general contractor): The adhesive choice is pending designer confirmation. Do not treat it as approved.",
+      "reviewed": false,
+      "flags": []
+    },
+    {
+      "id": "n9",
+      "kind": "decision",
+      "line": 9,
+      "text": "We agreed to wait for written moisture clearance before installing replacement flooring.",
+      "owner": null,
+      "due": null,
+      "evidence": "Priya (testing technician): We agreed to wait for written moisture clearance before installing replacement flooring.",
+      "reviewed": false,
+      "flags": []
+    },
+    {
+      "id": "n10",
+      "kind": "action",
+      "line": 10,
+      "text": "I will ask the designer to confirm the adhesive specification by June 6, 2024.",
+      "owner": "Maya",
+      "due": "June 6, 2024",
+      "evidence": "Maya (general contractor): I will ask the designer to confirm the adhesive specification by June 6, 2024.",
+      "reviewed": false,
+      "flags": [
+        "Owner filled from an explicit commitment in the source. Verify it.",
+        "Deadline filled from the source wording. Verify it."
+      ]
+    },
+    {
+      "id": "n11",
+      "kind": "question",
+      "line": 11,
+      "text": "Who is responsible for hauling away the removed concrete? No owner has been assigned.",
+      "owner": null,
+      "due": null,
+      "evidence": "Luis (flooring subcontractor): Who is responsible for hauling away the removed concrete? No owner has been assigned.",
+      "reviewed": false,
+      "flags": []
+    },
+    {
+      "id": "n12",
+      "kind": "question",
+      "line": 12,
+      "text": "There is no approved date for restarting installation.",
+      "owner": null,
+      "due": null,
+      "evidence": "Alex (electrician): There is no approved date for restarting installation.",
+      "reviewed": false,
+      "flags": []
+    },
+    {
+      "id": "n13",
+      "kind": "question",
+      "line": 13,
+      "text": "Thanks, everyone. These notes still need human review.",
+      "owner": null,
+      "due": null,
+      "evidence": "Maya (general contractor): Thanks, everyone. These notes still need human review.",
+      "reviewed": false,
+      "flags": []
+    }
+  ],
+  "rejected": 0,
+  "summary": "13 candidate items generated by local AI.",
+  "elapsedMs": 2025.4000000953674,
+  "createdAt": "2026-10-13T20:06:53.324Z",
+  "transcript": "Maya (general contractor): This is a fictional repair coordination meeting on June 3, 2024. We are discussing the water-damaged concrete flooring in the east corridor.\nMaya (general contractor): We decided to keep the east corridor closed until the moisture results have been reviewed.\nLuis (flooring subcontractor): I will photograph the damaged floor and mark the removal boundary by June 4, 2024 at 10:00 AM.\nPriya (testing technician): I will send the moisture test results by June 5, 2024 at 2:00 PM.\nMaya (general contractor): I will issue the revised access plan by June 4, 2024 at 3:00 PM.\nAlex (electrician): I will isolate the corridor power before any demolition begins.\nLuis (flooring subcontractor): Can we reuse the existing adhesive, or do we need a new product? This is still unresolved.\nMaya (general contractor): The adhesive choice is pending designer confirmation. Do not treat it as approved.\nPriya (testing technician): We agreed to wait for written moisture clearance before installing replacement flooring.\nMaya (general contractor): I will ask the designer to confirm the adhesive specification by June 6, 2024.\nLuis (flooring subcontractor): Who is responsible for hauling away the removed concrete? No owner has been assigned.\nAlex (electrician): There is no approved date for restarting installation.\nMaya (general contractor): Thanks, everyone. These notes still need human review.",
+  "scenarioId": "repair",
+  "originalItems": [
+    {
+      "id": "n1",
+      "kind": "question",
+      "line": 1,
+      "text": "This is a fictional repair coordination meeting on June 3, 2024. We are discussing the water-damaged concrete flooring in the east corridor.",
+      "owner": null,
+      "due": null,
+      "evidence": "Maya (general contractor): This is a fictional repair coordination meeting on June 3, 2024. We are discussing the water-damaged concrete flooring in the east corridor.",
+      "reviewed": false,
+      "flags": []
+    },
+    {
+      "id": "n2",
+      "kind": "decision",
+      "line": 2,
+      "text": "We decided to keep the east corridor closed until the moisture results have been reviewed.",
+      "owner": null,
+      "due": null,
+      "evidence": "Maya (general contractor): We decided to keep the east corridor closed until the moisture results have been reviewed.",
+      "reviewed": false,
+      "flags": []
+    },
+    {
+      "id": "n3",
+      "kind": "action",
+      "line": 3,
+      "text": "I will photograph the damaged floor and mark the removal boundary by June 4, 2024 at 10:00 AM.",
+      "owner": "Luis",
+      "due": "June 4, 2024 at 10:00 AM",
+      "evidence": "Luis (flooring subcontractor): I will photograph the damaged floor and mark the removal boundary by June 4, 2024 at 10:00 AM.",
+      "reviewed": false,
+      "flags": [
+        "Owner filled from an explicit commitment in the source. Verify it.",
+        "Deadline filled from the source wording. Verify it."
+      ]
+    },
+    {
+      "id": "n4",
+      "kind": "action",
+      "line": 4,
+      "text": "I will send the moisture test results by June 5, 2024 at 2:00 PM.",
+      "owner": "Priya",
+      "due": "June 5, 2024 at 2:00 PM",
+      "evidence": "Priya (testing technician): I will send the moisture test results by June 5, 2024 at 2:00 PM.",
+      "reviewed": false,
+      "flags": [
+        "Owner filled from an explicit commitment in the source. Verify it.",
+        "Deadline filled from the source wording. Verify it."
+      ]
+    },
+    {
+      "id": "n5",
+      "kind": "action",
+      "line": 5,
+      "text": "I will issue the revised access plan by June 4, 2024 at 3:00 PM.",
+      "owner": "Maya",
+      "due": "June 4, 2024 at 3:00 PM",
+      "evidence": "Maya (general contractor): I will issue the revised access plan by June 4, 2024 at 3:00 PM.",
+      "reviewed": false,
+      "flags": [
+        "Owner filled from an explicit commitment in the source. Verify it.",
+        "Deadline filled from the source wording. Verify it."
+      ]
+    },
+    {
+      "id": "n6",
+      "kind": "action",
+      "line": 6,
+      "text": "I will isolate the corridor power before any demolition begins.",
+      "owner": "Alex",
+      "due": "before any demolition begins",
+      "evidence": "Alex (electrician): I will isolate the corridor power before any demolition begins.",
+      "reviewed": false,
+      "flags": [
+        "Owner filled from an explicit commitment in the source. Verify it.",
+        "Deadline filled from the source wording. Verify it."
+      ]
+    },
+    {
+      "id": "n7",
+      "kind": "question",
+      "line": 7,
+      "text": "Can we reuse the existing adhesive, or do we need a new product? This is still unresolved.",
+      "owner": null,
+      "due": null,
+      "evidence": "Luis (flooring subcontractor): Can we reuse the existing adhesive, or do we need a new product? This is still unresolved.",
+      "reviewed": false,
+      "flags": []
+    },
+    {
+      "id": "n8",
+      "kind": "question",
+      "line": 8,
+      "text": "The adhesive choice is pending designer confirmation. Do not treat it as approved.",
+      "owner": null,
+      "due": null,
+      "evidence": "Maya (general contractor): The adhesive choice is pending designer confirmation. Do not treat it as approved.",
+      "reviewed": false,
+      "flags": []
+    },
+    {
+      "id": "n9",
+      "kind": "decision",
+      "line": 9,
+      "text": "We agreed to wait for written moisture clearance before installing replacement flooring.",
+      "owner": null,
+      "due": null,
+      "evidence": "Priya (testing technician): We agreed to wait for written moisture clearance before installing replacement flooring.",
+      "reviewed": false,
+      "flags": []
+    },
+    {
+      "id": "n10",
+      "kind": "action",
+      "line": 10,
+      "text": "I will ask the designer to confirm the adhesive specification by June 6, 2024.",
+      "owner": "Maya",
+      "due": "June 6, 2024",
+      "evidence": "Maya (general contractor): I will ask the designer to confirm the adhesive specification by June 6, 2024.",
+      "reviewed": false,
+      "flags": [
+        "Owner filled from an explicit commitment in the source. Verify it.",
+        "Deadline filled from the source wording. Verify it."
+      ]
+    },
+    {
+      "id": "n11",
+      "kind": "question",
+      "line": 11,
+      "text": "Who is responsible for hauling away the removed concrete? No owner has been assigned.",
+      "owner": null,
+      "due": null,
+      "evidence": "Luis (flooring subcontractor): Who is responsible for hauling away the removed concrete? No owner has been assigned.",
+      "reviewed": false,
+      "flags": []
+    },
+    {
+      "id": "n12",
+      "kind": "question",
+      "line": 12,
+      "text": "There is no approved date for restarting installation.",
+      "owner": null,
+      "due": null,
+      "evidence": "Alex (electrician): There is no approved date for restarting installation.",
+      "reviewed": false,
+      "flags": []
+    },
+    {
+      "id": "n13",
+      "kind": "question",
+      "line": 13,
+      "text": "Thanks, everyone. These notes still need human review.",
+      "owner": null,
+      "due": null,
+      "evidence": "Maya (general contractor): Thanks, everyone. These notes still need human review.",
+      "reviewed": false,
+      "flags": []
+    }
+  ],
+  "evaluation": {
+    "scores": {},
+    "measurements": {
+      "manual": "",
+      "review": ""
+    },
+    "reference": [
+      {
+        "kind": "decision",
+        "line": 2,
+        "text": "Keep the east corridor closed until moisture results are reviewed.",
+        "owner": null,
+        "due": null
+      },
+      {
+        "kind": "action",
+        "line": 3,
+        "text": "Photograph damage and mark the removal boundary.",
+        "owner": "Luis",
+        "due": "June 4, 2024 at 10:00 AM"
+      },
+      {
+        "kind": "action",
+        "line": 4,
+        "text": "Send moisture test results.",
+        "owner": "Priya",
+        "due": "June 5, 2024 at 2:00 PM"
+      },
+      {
+        "kind": "action",
+        "line": 5,
+        "text": "Issue the revised access plan.",
+        "owner": "Maya",
+        "due": "June 4, 2024 at 3:00 PM"
+      },
+      {
+        "kind": "action",
+        "line": 6,
+        "text": "Isolate corridor power.",
+        "owner": "Alex",
+        "due": "before any demolition begins"
+      },
+      {
+        "kind": "question",
+        "line": 7,
+        "text": "Confirm whether the existing adhesive can be reused.",
+        "owner": null,
+        "due": null
+      },
+      {
+        "kind": "question",
+        "line": 8,
+        "text": "Adhesive choice needs designer confirmation; it is not approved.",
+        "owner": null,
+        "due": null
+      },
+      {
+        "kind": "decision",
+        "line": 9,
+        "text": "Obtain written moisture clearance before replacement flooring.",
+        "owner": null,
+        "due": null
+      },
+      {
+        "kind": "action",
+        "line": 10,
+        "text": "Ask the designer to confirm the adhesive specification.",
+        "owner": "Maya",
+        "due": "June 6, 2024"
+      },
+      {
+        "kind": "question",
+        "line": 11,
+        "text": "Assign an owner for concrete waste hauling.",
+        "owner": null,
+        "due": null
+      },
+      {
+        "kind": "question",
+        "line": 12,
+        "text": "Confirm an installation restart date.",
+        "owner": null,
+        "due": null
+      }
+    ],
+    "warning": "Reference matches are not automatic accuracy judgments."
+  }
+}

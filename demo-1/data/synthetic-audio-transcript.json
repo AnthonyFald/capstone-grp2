@@ -1,0 +1,84 @@
+{
+  "format": "team2-audio-v1",
+  "filename": "tmphb7za0sy.audio",
+  "duration": 32.49,
+  "elapsedSeconds": 4.33,
+  "models": {
+    "transcription": "faster-whisper/base.en",
+    "diarization": "sherpa-onnx/pyannote-segmentation-3.0 + NeMo TitaNet small"
+  },
+  "speakers": [
+    {
+      "id": "speaker_1",
+      "name": "Maya",
+      "role": "general contractor",
+      "suggested": true
+    }
+  ],
+  "segments": [
+    {
+      "start": 0,
+      "end": 2.32,
+      "text": "My name is Maya and I'm the general contractor.",
+      "speaker": "speaker_1",
+      "uncertain": false
+    },
+    {
+      "start": 3.64,
+      "end": 5.58,
+      "text": "This is a fictional construction meeting.",
+      "speaker": "speaker_1",
+      "uncertain": false
+    },
+    {
+      "start": 6.72,
+      "end": 11,
+      "text": "We decided to keep the East Corridor closed until the moisture results are reviewed.",
+      "speaker": "speaker_1",
+      "uncertain": false
+    },
+    {
+      "start": 12.32,
+      "end": 15,
+      "text": "I will send the revised access plan by Friday.",
+      "speaker": "speaker_1",
+      "uncertain": false
+    },
+    {
+      "start": 16.04,
+      "end": 18.64,
+      "text": "Luis will photograph the damaged floor by Thursday.",
+      "speaker": "speaker_1",
+      "uncertain": false
+    },
+    {
+      "start": 19.92,
+      "end": 22.24,
+      "text": "The adhesive specification is still unresolved.",
+      "speaker": "speaker_1",
+      "uncertain": false
+    },
+    {
+      "start": 23.72,
+      "end": 25.96,
+      "text": "Who is responsible for hauling away the concrete?",
+      "speaker": "speaker_1",
+      "uncertain": false
+    },
+    {
+      "start": 27.02,
+      "end": 28.62,
+      "text": "No owner has been assigned.",
+      "speaker": "speaker_1",
+      "uncertain": false
+    },
+    {
+      "start": 29.36,
+      "end": 31.3,
+      "text": "These notes need human review.",
+      "speaker": "speaker_1",
+      "uncertain": false
+    }
+  ],
+  "warning": "Automatic transcript and speaker labels need review. Introductions are suggestions, not verified identities."
+}

@@ -1,0 +1,17 @@
+DEMO 1 WALKTHROUGH
+
+1. Start Audio Demo.cmd on Windows, or run bash "demo-1/Start Audio Demo.command" from the repo on Mac. Follow audio-setup.html; keep the local terminal open.
+2. Explain that this tests decisions, responsibilities, deadlines and open questions as a step toward the team's RFI thesis. No paid API powers the demo.
+3. Expand Start from a recording. Choose data/synthetic-introduction.wav (fictional, one synthetic speaker) or a permitted team recording. Set the known speaker count and process it. Download models before presenting; disclose setup separately.
+4. Show the timestamped transcript. Check the introduction's suggested name and role. Listen to a turn, correct wording or speaker labels, and export the speaker transcript JSON.
+5. Use the reviewed transcript for notes. Alternatively import that JSON on the hosted Demo 1 tab. GitHub Pages runs the notes interface; audio processing needs the local companion.
+6. Load Qwen and generate AI notes. AI selects categories; the app preserves source wording and extracts explicit owner/deadline fields. This is not just the rules-only mode.
+7. Check source quotes, categories, owners and deadlines. Correct mistakes. Explain that diarization and transcription can be wrong and name suggestions are not identity verification.
+8. For the unchanged text samples, use Reference comparison to score the original output. For audio or custom text, create independent reference notes. Record manual and total assisted time, including transcript correction.
+9. Export notes and results. Repeat on unseen meetings; show errors honestly. A working app is not evidence of the numerical thesis targets by itself.
+
+BEFORE CLASS
+Verify one full run on the presentation computer. Windows tested during development; a teammate still needs to test Mac. Confirm the synthetic references, collect independent baseline notes, and complete the demo-note results and truthful contribution statements. If AI fails, disclose it; the rules baseline does not validate AI performance.
+
+SUBMISSION
+Publish this repository update and provide the live website or recorded walkthrough. Include source, generators, prompts, dependencies, actual evaluation results, a <=500-word demo note and truthful individual contributions. Current publication state is reported separately; a local preview is not a public deployment.

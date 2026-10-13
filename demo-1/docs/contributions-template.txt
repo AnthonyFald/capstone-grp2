@@ -1,0 +1,8 @@
+Demo 1 individual contributions — fill in work actually completed
+
+[Anthony Faldetta], [section], [specific contribution]
+[Cole Wieland], [section], [specific contribution]
+[Crystal Doan Tran], [section], [specific contribution]
+[Haohao Li], [section], [specific contribution]
+
+Do not reuse thesis-proposal contributions as claims about this demo unless the work was actually done. App code, synthetic data, and initial documentation were developed with Codex assistance; follow the course's disclosure requirements.
