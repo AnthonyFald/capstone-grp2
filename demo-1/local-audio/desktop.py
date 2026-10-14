@@ -252,4 +252,8 @@ def main():
 
 
 if __name__ == '__main__':
+    # Native dependencies may start multiprocessing helpers in a frozen app.
+    # Dispatch those before argparse treats their internal flags as app options.
+    import multiprocessing
+    multiprocessing.freeze_support()
     sys.exit(main())
