@@ -12,7 +12,8 @@ APPLE SILICON MAC
    This download is for M-series Macs, not Intel Macs.
 
 No Python installation or terminal commands are required.
-The launcher opens the local demo in Chrome or Edge if installed.
+Return to your existing Demo 1 browser tab; it connects automatically.
+The app opens a page only when you click Open demo, using your default browser.
 Keep its small window open while using the demo. Quit it when finished.
 
 Choose your recording in Start from a recording. First use downloads the
@@ -27,5 +28,8 @@ Do not disable system security. On a managed computer, ask its administrator.
 
 Export your transcript and notes before quitting or refreshing the browser.
 If something fails, click Show support log in the launcher.
+A browser may ask for local network access to contact this computer only.
+The companion does not discover or connect to other devices on your network.
+If the browser blocks that connection, Open demo provides a local page.
 
 Updates and source: https://github.com/AnthonyFald/capstone-grp2

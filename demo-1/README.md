@@ -15,7 +15,7 @@ Download the packaged app from [the latest desktop release](https://github.com/A
 - Windows x64: Extract All, open the extracted folder, then double-click **Evergreen Meeting Demo.exe**. Keep its _internal folder beside it.
 - Apple silicon Mac (M-series): unzip, move **Evergreen Meeting Demo.app** to Applications, and open it. Intel Macs are not supported.
 
-Keep the small companion window open. It opens the local demo in installed Chrome or Edge when available. Expand **Start from a recording**, choose an English MP3/WAV/M4A/OGG/FLAC, set the speaker count if known, and process it. Current limits: 10 minutes and 80 MB. Start with a 1–5 minute recording. Base is faster; Small is larger. First use downloads free model files.
+Keep the small companion window open. Return to your existing Demo 1 tab; it connects automatically, including when the app starts after the page. The app opens a page only when you click **Open demo**, using your default browser. Audio connection is browser-independent; AI notes still need a compatible WebGPU browser. Expand **Start from a recording**, choose an English MP3/WAV/M4A/OGG/FLAC, set the speaker count if known, and process it. Current limits: 10 minutes and 80 MB. Start with a 1–5 minute recording. Base is faster; Small is larger. First use downloads free model files.
 
 During processing, the app shows percentage, elapsed time and an estimated minutes:seconds countdown. Estimates adjust to progress and prior successful runs in the same session. Model downloads have separate estimates. **Audio completed in…** measures receipt of the local file through the finished transcript, including model setup. **Notes completed in…** measures the generation request through finished notes; automatic model setup is broken out separately. Human review time is not included. Independent model loading before clicking Generate is outside that note run.
 
@@ -23,7 +23,7 @@ Audio uses the CPU; browser notes need WebGPU and sufficient GPU memory. These a
 
 For introductions, use "My name is Maya and I'm the general contractor." Let each person speak separately. The app suggests names and roles from explicit introduction wording. Review those suggestions, listen to timestamped turns, correct text or speaker assignments, and click **Use reviewed transcript for notes**. Export the speaker JSON to reopen it on the hosted website without installing audio tools there.
 
-See [audio setup](audio-setup.html) for the full instructions. The GitHub-hosted static website does not run Python itself; the companion serves the same interface on your computer.
+See [audio setup](audio-setup.html) for the full instructions. The GitHub-hosted static website connects to the companion on this computer for audio processing. The companion also serves a bundled local page as a fallback. Browser permissions can block the hosted-to-loopback connection; the setup page explains how to reconnect or use Open demo.
 
 ## How processing works
 
@@ -40,7 +40,7 @@ Use one sentence or short speaker turn per line. Input is capped at 24,000 chara
 
 First use downloads public models; recordings and transcripts are not sent to an inference service. Model packages are downloaded from public GitHub/Hugging Face/CDN sources. Packaged audio caches live under `%LOCALAPPDATA%/Evergreen Meeting Demo/.models` on Windows or `~/Library/Application Support/Evergreen Meeting Demo/.models` on Mac (source launchers use `local-audio/.models`); recordings get a temporary local copy that is deleted after processing. A forced shutdown can leave a temporary file in `.audio-temp`. The most recent audio transcript remains in server memory until the launcher stops. The browser stores no notes automatically; export before closing or reloading. Exported files remain wherever you save them.
 
-The companion only binds to 127.0.0.1, rejects foreign origins/hosts, and requires a session token for audio submissions. There are no external completion endpoints or fallbacks to paid services. Git ignores caches, virtual environments, temporary audio, and runtime output folders. Do not commit private recordings or transcripts.
+The companion only binds to 127.0.0.1, rejects foreign hosts and origins except the exact published site origin (`https://anthonyfald.github.io`) on its audio API, and requires a session token for audio submissions, status, and browser heartbeats. Browser heartbeats identify an open Demo 1 page without inspecting browser tabs or launching a browser. No LAN discovery is performed. Browsers may require website permission to reach loopback; macOS LAN-device access is not required for this loopback-only service. There are no external completion endpoints or fallbacks to paid services. Git ignores caches, virtual environments, temporary audio, and runtime output folders. Do not commit private recordings or transcripts.
 
 ## Test the thesis honestly
 
@@ -71,9 +71,9 @@ Use your installed Python environment for the Python command. The tests do not d
 
 ## Build desktop packages
 
-On the target OS with Python 3.12, install desktop/requirements-build.txt and run desktop/build.py --audio-test from this folder. PyInstaller bundles the runtime, libraries, licenses and public website files. Models and private recordings are excluded. Output is in the ignored desktop-build directory at repository root.
+On the target OS with Python 3.12, install desktop/requirements-build.txt and run desktop/build.py --audio-test from this folder. PyInstaller bundles the runtime, libraries, licenses and public website files. The certifi CA bundle is explicitly included and the speaker-model downloader uses it with certificate and hostname verification enabled. Models and private recordings are excluded. Output is in the ignored desktop-build directory at repository root.
 
-The GitHub workflow uses standard public-repository Windows x64 and macOS arm64 runners. It releases both ZIPs together only after each actual bundled executable passes GUI-runtime, server, transcription and diarization checks. No paid inference API is used. Source-only development launchers remain available: Start Audio Demo.cmd on Windows and Start Audio Demo.command on Mac, with Python 3.12 installed.
+The GitHub workflow uses standard public-repository Windows x64 and macOS arm64 runners. It releases both ZIPs together only after each actual bundled executable passes GUI-runtime, server, HTTPS download with empty system certificate paths, transcription and diarization checks. Pull requests run the same checks without publishing a release. No paid inference API is used. Source-only development launchers remain available: Start Audio Demo.cmd on Windows and Start Audio Demo.command on Mac, with Python 3.12 installed.
 
 ## Sources
 

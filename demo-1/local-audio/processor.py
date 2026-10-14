@@ -7,6 +7,7 @@ import shutil
 import tarfile
 import time
 import urllib.request
+from model_tls import download_context
 from pathlib import Path
 from runtime_paths import data_root
 
@@ -30,7 +31,7 @@ def download(url, destination, progress):
     partial = destination.with_suffix(destination.suffix + '.part')
     try:
         progress('Downloading free model: ' + destination.name, stage='download', step=destination.name)
-        with urllib.request.urlopen(url, timeout=120) as response, partial.open('wb') as out:
+        with urllib.request.urlopen(url, timeout=120, context=download_context()) as response, partial.open('wb') as out:
             total = int(response.headers.get('Content-Length', '0'))
             received = 0
             while chunk := response.read(1024 * 1024):
