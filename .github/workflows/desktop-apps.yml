@@ -1,6 +1,8 @@
 name: Build desktop apps
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
     paths:
@@ -14,7 +16,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: desktop-apps
+  group: desktop-apps-${{ github.ref }}
   cancel-in-progress: false
 jobs:
   build:
@@ -63,6 +65,7 @@ jobs:
             desktop-build/work/**/warn-*.txt
           retention-days: 1
   publish:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -87,7 +90,7 @@ jobs:
 
           Windows: Extract All, open the extracted folder, and double-click Evergreen Meeting Demo.exe. Keep _internal beside it. Mac: unzip, move Evergreen Meeting Demo.app to Applications, and open it. Intel Macs and Windows ARM are not supported by these packages.
 
-          First use downloads free models. Chrome or Edge is needed for AI notes. Processing remains on-device, without a paid AI account or API key. Export transcripts and notes before quitting.
+          Return to the Demo 1 tab you already have open; it connects to the companion. No browser opens automatically. Click Open demo only when needed; it uses your default browser. First use downloads free models using bundled trusted certificates. Chrome or Edge is needed for AI notes. Processing remains on-device, without a paid AI account or API key. Export transcripts and notes before quitting.
 
           These student builds are not developer-signed/notarized, so your OS may request first-open approval. Download only from this project's release. Mac users may need System Settings > Privacy & Security > Open Anyway for this app. Do not disable system security. https://support.apple.com/en-us/102445
 

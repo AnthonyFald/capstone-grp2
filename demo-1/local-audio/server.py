@@ -6,6 +6,7 @@ import secrets
 import tempfile
 import threading
 import time
+import traceback
 import webbrowser
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -22,6 +23,15 @@ STATE = dict(state='idle', message='Ready for a recording.')
 TRACKER = None
 TIMING_RATES = {}
 MAX_BYTES = 80 * 1024 * 1024
+HOSTED_ORIGIN = 'https://anthonyfald.github.io'
+HOSTED_PATH = '/capstone-grp2/demo-1/'
+API_PATHS = {'/api/audio/config', '/api/audio/status', '/api/audio/heartbeat', '/api/audio/jobs'}
+LAST_BROWSER_SEEN = None
+
+
+def browser_connected():
+    with LOCK:
+        return LAST_BROWSER_SEEN is not None and time.monotonic() - LAST_BROWSER_SEEN < 90
 
 
 def update(**values):
@@ -41,6 +51,7 @@ def run_audio(path, count, model):
             TIMING_RATES.update(TRACKER.learned)
         update(state='done', message='Transcript ready. Review the speakers and wording.', result=result)
     except Exception as error:
+        traceback.print_exc()
         update(state='error', message=str(error))
     finally:
         path.unlink(missing_ok=True)
@@ -51,7 +62,31 @@ class Handler(SimpleHTTPRequestHandler):
         expected = '127.0.0.1:' + str(self.server.server_port)
         host = self.headers.get('Host', '')
         origin = self.headers.get('Origin')
-        return host == expected and (not origin or origin == 'http://' + expected)
+        return host == expected and (not origin or origin == 'http://' + expected or (
+            origin == HOSTED_ORIGIN and urlsplit(self.path).path in API_PATHS))
+
+    def end_headers(self):
+        origin = self.headers.get('Origin')
+        if self.allowed() and origin:
+            self.send_header('Access-Control-Allow-Origin', origin)
+            self.send_header('Vary', 'Origin')
+        super().end_headers()
+
+    def do_OPTIONS(self):
+        if not self.allowed() or urlsplit(self.path).path not in API_PATHS:
+            return self.reply(403, dict(error='This website cannot connect to the companion.'))
+        requested = {h.strip().lower() for h in self.headers.get('Access-Control-Request-Headers', '').split(',') if h.strip()}
+        allowed = {'content-type', 'x-local-token', 'x-speaker-count', 'x-whisper-model', 'x-demo-page'}
+        if self.headers.get('Access-Control-Request-Method') not in ('GET', 'POST') or not requested <= allowed:
+            return self.reply(403, dict(error='Unsupported request.'))
+        self.send_response(204)
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST')
+        self.send_header('Access-Control-Allow-Headers', ', '.join(sorted(allowed)))
+        # Older browsers use Private Network Access preflights.
+        if self.headers.get('Access-Control-Request-Private-Network') == 'true':
+            self.send_header('Access-Control-Allow-Private-Network', 'true')
+        self.send_header('Content-Length', '0')
+        self.end_headers()
 
     def reply(self, code, data):
         raw = json.dumps(data).encode()
@@ -68,8 +103,10 @@ class Handler(SimpleHTTPRequestHandler):
             return self.reply(403, dict(error='Open the local app at its printed 127.0.0.1 address.'))
         path = urlsplit(self.path).path
         if path == '/api/audio/config':
-            return self.reply(200, dict(localAudio=True, token=TOKEN))
+            return self.reply(200, dict(localAudio=True, app='evergreen-meeting-demo', protocol=1, token=TOKEN))
         if path == '/api/audio/status':
+            if self.headers.get('X-Local-Token') != TOKEN:
+                return self.reply(403, dict(error='Reconnect to the companion before trying again.'))
             with LOCK:
                 snapshot = dict(STATE)
                 if TRACKER and STATE['state'] == 'running':
@@ -97,9 +134,20 @@ class Handler(SimpleHTTPRequestHandler):
         return None
 
     def do_POST(self):
-        global TRACKER
+        global TRACKER, LAST_BROWSER_SEEN
         if not self.allowed() or self.headers.get('X-Local-Token') != TOKEN:
             return self.reply(403, dict(error='Refresh the local app before trying again.'))
+        if self.path == '/api/audio/heartbeat':
+            page = urlsplit(self.headers.get('X-Demo-Page', ''))
+            local_origin = f'http://127.0.0.1:{self.server.server_port}'
+            page_origin = f'{page.scheme}://{page.netloc}'
+            expected_path = HOSTED_PATH if page_origin == HOSTED_ORIGIN else '/demo-1/'
+            origin = self.headers.get('Origin')
+            if page_origin not in (HOSTED_ORIGIN, local_origin) or (origin and origin != page_origin) or page.path not in (expected_path, expected_path + 'index.html'):
+                return self.reply(400, dict(error='Connect from the Demo 1 page.'))
+            with LOCK:
+                LAST_BROWSER_SEEN = time.monotonic()
+            return self.reply(200, dict(connected=True))
         if self.path != '/api/audio/jobs':
             return self.reply(404, dict(error='Not found.'))
         try:

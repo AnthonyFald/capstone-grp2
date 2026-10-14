@@ -50,6 +50,7 @@ def main():
                '--specpath', str(build), '--paths', str(ROOT / 'demo-1/local-audio'),
                '--add-data', str(site) + ':site', '--add-data', str(notices) + ':third-party-licenses',
                '--recursive-copy-metadata', 'faster-whisper', '--recursive-copy-metadata', 'sherpa-onnx']
+    command += ['--collect-data', 'certifi']
     for package in ['faster_whisper', 'sherpa_onnx', 'ctranslate2', 'av', 'onnxruntime', 'tokenizers']:
         command += ['--collect-all', package]
     # ML packages expose optional integrations; do not ship unrelated frameworks.
@@ -82,6 +83,7 @@ def main():
     assert result['success'] and result['frozen'], result
     if args.audio_test:
         assert result['transcription_and_diarization'], result
+        assert result['bundled_certificates_https'], result
     release = build / 'release'
     release.mkdir(exist_ok=True)
     stem = 'Evergreen-Meeting-Demo-' + target

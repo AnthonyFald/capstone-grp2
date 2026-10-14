@@ -32,25 +32,9 @@ def start_service():
 
 
 def open_demo(url):
-    """Prefer an installed browser compatible with the note model."""
-    if sys.platform == 'darwin':
-        for app in ['Google Chrome', 'Microsoft Edge']:
-            if any((folder / (app + '.app')).exists() for folder in [Path('/Applications'), Path.home() / 'Applications']):
-                subprocess.Popen(['open', '-a', app, url])
-                return
-    elif sys.platform == 'win32':
-        for directory, relative in [
-            ('PROGRAMFILES', 'Google/Chrome/Application/chrome.exe'),
-            ('LOCALAPPDATA', 'Google/Chrome/Application/chrome.exe'),
-            ('PROGRAMFILES(X86)', 'Microsoft/Edge/Application/msedge.exe'),
-            ('PROGRAMFILES', 'Microsoft/Edge/Application/msedge.exe'),
-        ]:
-            if os.environ.get(directory):
-                executable = Path(os.environ[directory]) / relative
-                if executable.is_file():
-                    subprocess.Popen([str(executable), url], creationflags=subprocess.CREATE_NO_WINDOW)
-                    return
-    webbrowser.open(url)
+    """Only the Open demo button calls this; respect the default browser."""
+    if not webbrowser.open(url):
+        raise RuntimeError('The default browser could not be opened.')
 
 
 def run_window():
@@ -90,7 +74,7 @@ def run_window():
             open_demo(url)
         except Exception:
             traceback.print_exc()
-            messagebox.showinfo(APP_NAME, 'Open this address in Chrome or Edge:\n\n' + url, parent=window)
+            messagebox.showinfo(APP_NAME, 'Open this address in your browser:\n\n' + url, parent=window)
 
     open_button = ttk.Button(buttons, text='Open demo', command=launch_browser, state='disabled')
     open_button.pack(side='left')
@@ -117,7 +101,8 @@ def run_window():
         with server.LOCK:
             snapshot = dict(server.STATE)
             timing = server.TRACKER.snapshot() if server.TRACKER and snapshot['state'] == 'running' else None
-        status.set(snapshot['message'] if snapshot['state'] != 'idle' else 'Ready. Choose a recording in the browser.')
+        ready = 'Demo 1 connected. Choose a recording in your open browser tab.' if server.browser_connected() else 'Ready. Return to your Demo 1 tab, or click Open demo.'
+        status.set(snapshot['message'] if snapshot['state'] != 'idle' else ready)
         if timing:
             percent = timing.get('percent')
             if percent is None:
@@ -144,7 +129,6 @@ def run_window():
             service, url = start_service()
             open_button.configure(state='normal')
             refresh()
-            launch_browser()
         except Exception as error:
             traceback.print_exc()
             progress.stop()
@@ -176,20 +160,40 @@ def self_test(report, audio=False):
     base = f'http://127.0.0.1:{service.server_port}'
     result = {'success': False, 'platform': platform.platform(), 'architecture': platform.machine(), 'frozen': bool(getattr(sys, 'frozen', False))}
     try:
-        for path in ['/demo-1/', '/demo-1/app.js', '/demo-1/model-download.js', '/demo-1/audio.js']:
+        for path in ['/demo-1/', '/demo-1/app.js', '/demo-1/model-download.js', '/demo-1/audio-connection.js', '/demo-1/audio.js']:
             with urllib.request.urlopen(base + path, timeout=10) as response:
                 assert response.status == 200 and len(response.read()) > 50, path
         config = json.load(urllib.request.urlopen(base + '/api/audio/config'))
         assert config['localAudio']
         result['gui_runtime_and_local_server'] = True
         if audio:
+            # Do not let the build machine's CA install hide a broken bundle.
+            # Exercise the actual downloader with empty OpenSSL default paths.
+            from processor import download, RELEASE, SEGMENTATION
+            probe = data_root() / 'certificate-probe.tar.bz2'
+            empty_defaults = {'SSL_CERT_FILE': os.devnull, 'SSL_CERT_DIR': str(data_root() / 'missing-certs')}
+            original_defaults = {name: os.environ.get(name) for name in empty_defaults}
+            try:
+                probe.unlink(missing_ok=True)
+                os.environ.update(empty_defaults)
+                download(RELEASE + 'speaker-segmentation-models/' + SEGMENTATION + '.tar.bz2', probe, lambda *a, **k: None)
+                assert probe.stat().st_size > 1000
+                result['bundled_certificates_https'] = True
+            finally:
+                for name, value in original_defaults.items():
+                    if value is None:
+                        os.environ.pop(name, None)
+                    else:
+                        os.environ[name] = value
+                probe.unlink(missing_ok=True)
             fixture = resource_root() / 'demo-1/data/synthetic-introduction.wav'
             request = urllib.request.Request(base + '/api/audio/jobs', data=fixture.read_bytes(), headers={
                 'X-Local-Token': config['token'], 'X-Speaker-Count': '1', 'X-Whisper-Model': 'base.en', 'Content-Type': 'application/octet-stream'})
             assert urllib.request.urlopen(request).status == 202
             deadline = time.monotonic() + 600
             while time.monotonic() < deadline:
-                state = json.load(urllib.request.urlopen(base + '/api/audio/status', timeout=30))
+                request = urllib.request.Request(base + '/api/audio/status', headers={'X-Local-Token': config['token']})
+                state = json.load(urllib.request.urlopen(request, timeout=30))
                 if state['state'] != 'running':
                     assert state['state'] == 'done', state['message']
                     transcript = state['result']
@@ -248,4 +252,8 @@ def main():
 
 
 if __name__ == '__main__':
+    # Native dependencies may start multiprocessing helpers in a frozen app.
+    # Dispatch those before argparse treats their internal flags as app options.
+    import multiprocessing
+    multiprocessing.freeze_support()
     sys.exit(main())

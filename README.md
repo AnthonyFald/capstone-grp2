@@ -14,9 +14,9 @@ The GitHub Pages demo URL is https://anthonyfald.github.io/capstone-grp2/demo-1/
 
 ## Recorded meetings: optional local companion
 
-Audio transcription and speaker separation run on the device with free CPU models. On the website, expand **Start from a recording** and click **Download audio companion (.zip)**, or [download the project here](https://github.com/AnthonyFald/capstone-grp2/archive/refs/heads/main.zip). Extract the ZIP before running anything. Install Python 3.12, then launch `demo-1/Start Audio Demo.cmd` on Windows or run `bash "demo-1/Start Audio Demo.command"` from the extracted project folder on Mac. The local companion opens the same website at http://127.0.0.1:4176/demo-1/ . Choose a recorded English MP3/WAV/M4A, review speaker names and roles, and generate notes. Limits are 10 minutes / 80 MB. No paid API, AI account, or GPU is required for the audio stage.
+Audio transcription and speaker separation run on the device with free CPU models. On Demo 1, expand **Start from a recording** and download the Windows x64 or Apple silicon Mac app. Extract it and open **Evergreen Meeting Demo**; Python and audio libraries are included. Keep the companion open and return to your existing Demo 1 tab, which connects automatically. **Open demo** is an optional button that opens the bundled page in your default browser. The app never launches a browser at startup.
 
-The hosted website also imports exported speaker-transcript JSON files. It cannot run the Python companion by itself. See [audio setup](demo-1/audio-setup.html). Windows audio and browser inference were tested; Mac needs a teammate's execution check.
+Choose a recorded English MP3/WAV/M4A, review speaker names and roles, and generate notes. Limits are 10 minutes / 80 MB. No paid API, AI account, or GPU is required for the audio stage. The companion listens only on this computer, not your Wi-Fi network; browsers may require website permission to connect to it. See [audio setup](demo-1/audio-setup.html) for permissions, fallback, and first-open help. Exported speaker-transcript JSON can also be imported without the companion.
 
 AI note generation classifies source turns and preserves the original wording. Explicit owner/deadline fields use simple source patterns; human corrections remain necessary. See [verification](demo-1/docs/verification.json) for test scope.
 

@@ -1,7 +1,8 @@
 (function(){
   'use strict';
   const $=id=>document.getElementById(id),core=AudioCore;
-  let token=null,data=null,objectURL=null,running=false;
+  let data=null,objectURL=null,running=false,connecting=false,connectionTimer=null;
+  const companion=AudioConnection.create({location});
   const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function status(text,error=false){$('audio-status').textContent=text;$('audio-status').className=error?'status error':'status';}
   function showProgress(progress){
@@ -18,7 +19,7 @@
   }
   async function poll(){
     try{
-      const response=await fetch('/api/audio/status',{cache:'no-store'});if(!response.ok)throw Error('Local audio service stopped. Keep the launcher running.');
+      const response=await companion.request('/api/audio/status');if(!response.ok)throw Error('Local audio service stopped. Keep the launcher running.');
       const state=await response.json();status(state.message,state.state==='error');
       if(state.state==='running'){showProgress(state.progress);setTimeout(poll,1000);return;}
       $('audio-progress-panel').hidden=true;
@@ -26,19 +27,24 @@
     }catch(error){lock(false);$('audio-progress-panel').hidden=true;status(error.message,true);}
   }
   async function connect(){
-    if(location.hostname!=='127.0.0.1'){ $('audio-connection').textContent='Audio processing uses the optional local companion.';return;}
+    if(connecting)return;
+    connecting=true;clearTimeout(connectionTimer);
     try{
-      const response=await fetch('/api/audio/config',{cache:'no-store'});if(!response.ok)throw Error();const info=await response.json();if(!info.localAudio)throw Error();
-      token=info.token;$('audio-controls').hidden=false;$('audio-setup').hidden=true;$('audio-connection').textContent='Local audio companion connected. Recordings stay on this computer.';
-      const check=await fetch('/api/audio/status',{cache:'no-store'});const state=await check.json();if(state.state==='running'){lock(true);$('audio-panel').open=true;poll();}else if(state.state==='done'){data=core.validate(state.result);render();$('audio-panel').open=true;status('Audio completed in '+MeetingCore.formatDuration(data.elapsedSeconds*1000)+'. Recovered the transcript from this running session.');}
-    }catch{$('audio-connection').textContent='Audio processing uses the optional local companion.';}
+      const fresh=await companion.connect();
+      $('audio-controls').hidden=false;$('audio-setup').hidden=true;$('audio-connection').textContent='Local audio companion connected. Recordings stay on this computer.';
+      if(fresh&&!running){
+        const check=await companion.request('/api/audio/status');if(!check.ok)throw Error('Could not read companion status.');
+        const state=await check.json();if(state.state==='running'){lock(true);$('audio-panel').open=true;poll();}else if(state.state==='done'&&!data){data=core.validate(state.result);render();$('audio-panel').open=true;status('Audio completed in '+MeetingCore.formatDuration(data.elapsedSeconds*1000)+'. Recovered the transcript from this running session.');}
+      }
+    }catch(error){$('audio-controls').hidden=true;$('audio-setup').hidden=false;$('audio-connection').textContent=error.message;}
+    finally{connecting=false;connectionTimer=setTimeout(connect,5000);}
   }
   $('process-audio').onclick=async()=>{
     const file=$('audio-file').files[0];if(!file){status('Choose a recording first.',true);return;}if(file.size>80*1024*1024){status('Use a recording under 80 MB.',true);return;}
     if(objectURL)URL.revokeObjectURL(objectURL);objectURL=URL.createObjectURL(file);$('recording-player').src=objectURL;$('recording-player').hidden=false;
     lock(true);$('audio-review').hidden=true;showProgress(null);status('Sending the recording to the local companion on this computer…');
     try{
-      const response=await fetch('/api/audio/jobs',{method:'POST',headers:{'Content-Type':'application/octet-stream','X-Local-Token':token,'X-Speaker-Count':$('speaker-count').value,'X-Whisper-Model':$('whisper-model').value},body:file});
+      const response=await companion.request('/api/audio/jobs',{method:'POST',headers:{'Content-Type':'application/octet-stream','X-Speaker-Count':$('speaker-count').value,'X-Whisper-Model':$('whisper-model').value},body:file});
       if(!response.ok){const err=await response.json();throw Error(err.error||'Audio processing could not start.');}poll();
     }catch(error){lock(false);$('audio-progress-panel').hidden=true;status(error.message,true);}
   };
@@ -54,5 +60,7 @@
   $('download-audio').onclick=()=>{if(!data)return;const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const link=document.createElement('a');link.href=url;link.download='speaker-transcript.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),30000);};
   $('import-audio-button').onclick=()=>$('import-audio').click();
   $('import-audio').onchange=async()=>{const file=$('import-audio').files[0];if(!file)return;try{if(file.size>2*1024*1024)throw Error('Use a transcript JSON under 2 MB.');data=core.validate(JSON.parse(await file.text()));if(objectURL)URL.revokeObjectURL(objectURL);objectURL=null;$('recording-player').removeAttribute('src');$('recording-player').hidden=true;render();status('Speaker transcript imported locally. Review names and wording before generating notes.');}catch(error){status(error.message,true);}finally{$('import-audio').value='';}};
+  $('reconnect-audio').onclick=connect;
+  window.addEventListener('focus',connect);
   connect();
 })();
