@@ -33,6 +33,8 @@ def start_service():
 
 def open_demo(url):
     """Only the Open demo button calls this; respect the default browser."""
+    # A new address prevents browsers from reopening a cached pre-update page.
+    url += ('&' if '?' in url else '?') + 'launch=' + str(time.time_ns())
     if not webbrowser.open(url):
         raise RuntimeError('The default browser could not be opened.')
 
@@ -160,9 +162,16 @@ def self_test(report, audio=False):
     base = f'http://127.0.0.1:{service.server_port}'
     result = {'success': False, 'platform': platform.platform(), 'architecture': platform.machine(), 'frozen': bool(getattr(sys, 'frozen', False))}
     try:
-        for path in ['/demo-1/', '/demo-1/app.js', '/demo-1/model-download.js', '/demo-1/audio-connection.js', '/demo-1/audio.js']:
+        pages = {}
+        for path in ['/demo-1/', '/demo-1/app.js', '/demo-1/core.js', '/demo-1/ai-worker.js', '/demo-1/note-engine.js', '/demo-1/model-download.js', '/demo-1/audio-connection.js', '/demo-1/audio.js']:
             with urllib.request.urlopen(base + path, timeout=10) as response:
-                assert response.status == 200 and len(response.read()) > 50, path
+                pages[path] = response.read()
+                assert response.status == 200 and len(pages[path]) > 50, path
+                assert response.headers.get('Cache-Control') == 'no-store', path
+        assert b'id="generation-elapsed"' in pages['/demo-1/']
+        for path, contents in pages.items():
+            assert b'five-minute' not in contents and b'MAX_PROCESSING_MS' not in contents, path
+        result['current_notes_ui_no_cutoff'] = True
         config = json.load(urllib.request.urlopen(base + '/api/audio/config'))
         assert config['localAudio']
         result['gui_runtime_and_local_server'] = True

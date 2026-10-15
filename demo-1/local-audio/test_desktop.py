@@ -29,7 +29,12 @@ class DesktopTests(unittest.TestCase):
             open_demo.assert_called_once_with('http://127.0.0.1:4176/demo-1/')
 
     def test_explicit_open_uses_default_browser(self):
-        with patch.object(desktop.webbrowser, 'open', return_value=True) as browser, patch.object(desktop.subprocess, 'Popen') as spawn:
+        with patch.object(desktop.webbrowser, 'open', return_value=True) as browser, patch.object(desktop.subprocess, 'Popen') as spawn, patch.object(desktop.time, 'time_ns', side_effect=[100, 200, 300]):
             desktop.open_demo('http://127.0.0.1:4176/demo-1/')
-            browser.assert_called_once_with('http://127.0.0.1:4176/demo-1/')
+            desktop.open_demo('http://127.0.0.1:4176/demo-1/')
+            desktop.open_demo('http://127.0.0.1:4176/demo-1/?v=notes-4')
+            self.assertEqual([call.args[0] for call in browser.call_args_list], [
+                'http://127.0.0.1:4176/demo-1/?launch=100',
+                'http://127.0.0.1:4176/demo-1/?launch=200',
+                'http://127.0.0.1:4176/demo-1/?v=notes-4&launch=300'])
             spawn.assert_not_called()

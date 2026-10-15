@@ -66,6 +66,9 @@ class Handler(SimpleHTTPRequestHandler):
             origin == HOSTED_ORIGIN and urlsplit(self.path).path in API_PATHS))
 
     def end_headers(self):
+        # The app can be replaced while its loopback address stays the same.
+        # Never let an earlier bundle's HTML or worker code survive that update.
+        self.send_header('Cache-Control', 'no-store')
         origin = self.headers.get('Origin')
         if self.allowed() and origin:
             self.send_header('Access-Control-Allow-Origin', origin)
@@ -93,7 +96,6 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_response(code)
         self.send_header('Content-Type', 'application/json')
         self.send_header('Content-Length', str(len(raw)))
-        self.send_header('Cache-Control', 'no-store')
         self.send_header('X-Content-Type-Options', 'nosniff')
         self.end_headers()
         self.wfile.write(raw)
@@ -115,6 +117,10 @@ class Handler(SimpleHTTPRequestHandler):
         return super().do_GET()
 
     def send_head(self):
+        # Old installations allowed cached pages. Return the actual current file
+        # even when a browser revalidates one of those entries after an upgrade.
+        if 'If-Modified-Since' in self.headers:
+            del self.headers['If-Modified-Since']
         # Never expose model caches, Python files, dotfiles, uploads or arbitrary folders.
         if not self.allowed():
             self.send_error(403)

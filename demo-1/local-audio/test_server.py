@@ -40,6 +40,16 @@ class LocalServerTests(unittest.TestCase):
         self.assertEqual(code, 200)
         self.assertTrue(json.loads(raw)['localAudio'])
 
+    def test_updated_pages_and_workers_cannot_reuse_old_cached_files(self):
+        for path in ['/demo-1/', '/demo-1/?launch=123', '/demo-1/app.js?v=notes-4',
+                     '/demo-1/ai-worker.js?v=notes-4', '/demo-1/note-engine.js?v=notes-4']:
+            code, headers, raw = self.exchange(path, headers={'If-Modified-Since': 'Fri, 31 Dec 9999 23:59:59 GMT'})
+            self.assertEqual(code, 200, path)
+            self.assertEqual(headers['Cache-Control'], 'no-store', path)
+            self.assertNotIn(b'five-minute', raw, path)
+            if path.startswith('/demo-1/?') or path == '/demo-1/':
+                self.assertIn(b'id="generation-elapsed"', raw)
+
     def test_private_paths_and_foreign_origins_are_blocked(self):
         self.assertEqual(self.request('/demo-1/local-audio/requirements.txt')[0], 404)
         self.assertEqual(self.request('/.git/config')[0], 404)
