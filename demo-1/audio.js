@@ -11,7 +11,7 @@
     $('audio-eta').textContent=core.etaText(progress);
     $('audio-elapsed').textContent=(Number.isFinite(progress?.elapsedSeconds)?'Elapsed: '+core.stamp(progress.elapsedSeconds)+'. ':'')+'Estimates adjust as processing progresses. First-time model downloads can add time.';
   }
-  function lock(value){running=value;for(const id of ['process-audio','audio-file','speaker-count','whisper-model','import-audio-button'])$(id).disabled=value;}
+  function lock(value){running=value;for(const id of ['process-audio','audio-file','speaker-count','whisper-model','transcription-hints','import-audio-button'])$(id).disabled=value;}
   function render(){
     $('audio-review').hidden=false;
     $('speaker-editor').innerHTML=data.speakers.map((p,i)=>'<div class="speaker-row"><strong>'+escape(p.id.replace('speaker_','Speaker '))+'</strong><label>Name<input maxlength="80" data-person="'+i+'" data-field="name" value="'+escape(p.name)+'" placeholder="Enter name"></label><label>Role<input maxlength="100" data-person="'+i+'" data-field="role" value="'+escape(p.role)+'" placeholder="Enter role"></label><small>'+(p.suggested?'Suggested from introduction · check it':'Enter from introduction or leave unnamed')+'</small></div>').join('');
@@ -44,7 +44,8 @@
     if(objectURL)URL.revokeObjectURL(objectURL);objectURL=URL.createObjectURL(file);$('recording-player').src=objectURL;$('recording-player').hidden=false;
     lock(true);$('audio-review').hidden=true;showProgress(null);status('Sending the recording to the local companion on this computer…');
     try{
-      const response=await companion.request('/api/audio/jobs',{method:'POST',headers:{'Content-Type':'application/octet-stream','X-Speaker-Count':$('speaker-count').value,'X-Whisper-Model':$('whisper-model').value},body:file});
+      if($('transcription-hints').value.trim()&&!companion.supportsHints)throw Error('Download and open the latest companion to use spelling hints, or leave this optional field blank.');
+      const response=await companion.request('/api/audio/jobs',{method:'POST',headers:{'Content-Type':'application/octet-stream','X-Speaker-Count':$('speaker-count').value,'X-Whisper-Model':$('whisper-model').value,...($('transcription-hints').value.trim()?{'X-Transcription-Hints':encodeURIComponent($('transcription-hints').value.trim())}:{})},body:file});
       if(!response.ok){const err=await response.json();throw Error(err.error||'Audio processing could not start.');}poll();
     }catch(error){lock(false);$('audio-progress-panel').hidden=true;status(error.message,true);}
   };
@@ -55,7 +56,7 @@
   $('turn-editor').onclick=e=>{if(e.target.dataset.play!==undefined&&objectURL){$('recording-player').currentTime=data.segments[e.target.dataset.play].start;$('recording-player').play().catch(()=>status('Press play on the recording to listen.'));}};
   $('apply-audio').onclick=()=>{
     if(!data)return;if($('transcript').disabled){status('Wait for note generation to finish first.',true);return;}
-    try{const text=core.transcript(data);MeetingCore.validateTranscript(text);$('transcript').value=text;$('transcript').dispatchEvent(new Event('input',{bubbles:true}));$('audio-panel').open=false;$('transcript').focus();}catch(error){status(error.message+' Export the transcript and split it into shorter sections.',true);}
+    try{const text=core.transcript(data);MeetingCore.validateTranscript(text);$('transcript').value=text;$('transcript').dispatchEvent(new Event('input',{bubbles:true}));const seconds=Number.isFinite(data.processingSeconds)?data.processingSeconds:data.elapsedSeconds;if(Number.isFinite(seconds)&&seconds>=0)$('transcript').dataset.audioProcessingMs=String(seconds*1000);$('audio-panel').open=false;$('transcript').focus();}catch(error){status(error.message+' Export the transcript and split it into shorter sections.',true);}
   };
   $('download-audio').onclick=()=>{if(!data)return;const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const link=document.createElement('a');link.href=url;link.download='speaker-transcript.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),30000);};
   $('import-audio-button').onclick=()=>$('import-audio').click();

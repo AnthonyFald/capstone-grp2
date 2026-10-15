@@ -10,7 +10,7 @@
     return [];
   }
   function create({location,fetchImpl=root.fetch.bind(root),timeoutMs=15000}){
-    let base=null,token=null;
+    let base=null,token=null,transcriptionHints=false;
     async function fetchAt(origin,path,options={}){
       const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),path==='/api/audio/jobs'?60000:timeoutMs);
       try{
@@ -38,17 +38,17 @@
           const response=await fetchAt(origin,'/api/audio/config');
           if(!response.ok)return null;
           const info=await response.json();
-          if(info.app==='evergreen-meeting-demo'&&info.protocol===1&&info.localAudio&&typeof info.token==='string'&&info.token.length>=32)return {origin,token:info.token};
+          if(info.app==='evergreen-meeting-demo'&&info.protocol===1&&info.localAudio&&typeof info.token==='string'&&info.token.length>=32)return {origin,token:info.token,transcriptionHints:info.transcriptionHints===true};
         }catch{}
         return null;
       }));
       const match=found.find(Boolean);
       if(!match)throw Error('Open the companion and keep this tab open. If your browser asks to connect to the local network, allow it to reach the companion on this computer. If blocked, use Open demo in the app.');
-      base=match.origin;token=match.token;
+      base=match.origin;token=match.token;transcriptionHints=match.transcriptionHints;
       try{await heartbeat();}catch(error){base=token=null;throw error;}
       return true;
     }
-    return {connect,request,get connected(){return !!token;}};
+    return {connect,request,get connected(){return !!token;},get supportsHints(){return !!token&&transcriptionHints;}};
   }
   const api={create,candidates};root.AudioConnection=api;
   if(typeof module!=='undefined')module.exports=api;

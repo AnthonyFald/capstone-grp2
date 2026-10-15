@@ -106,8 +106,17 @@ def console_progress(message, **details):
     print(message, flush=True)
 
 
-def process(path, speaker_count=0, progress=console_progress, model_size='base.en'):
+VOCABULARY = 'Construction vocabulary: self-leveling underlayment, polished concrete, repour, vapor barrier, vapor retarder, moisture mitigation, epoxy primer, subgrade, change order, floor box conduits.'
+
+def transcription_prompt(hints=''):
+    if not isinstance(hints, str) or len(hints) > 600 or any(ord(c) < 32 for c in hints):
+        raise ValueError('Use up to 600 characters of names and vocabulary on one line.')
+    return VOCABULARY + (' Names and terms: ' + hints.strip() if hints.strip() else '')
+
+def process(path, speaker_count=0, progress=console_progress, model_size='small.en', hints=''):
     started = time.monotonic()
+    prompt = transcription_prompt(hints)
+    setup_seconds = 0.0
     from faster_whisper import WhisperModel
     from faster_whisper.audio import decode_audio
     import sherpa_onnx
@@ -120,7 +129,9 @@ def process(path, speaker_count=0, progress=console_progress, model_size='base.e
     if not 0 <= speaker_count <= 12:
         raise ValueError('Speaker count must be 0 (automatic) through 12.')
     progress('Preparing speaker models…', stage='preparing', duration=duration)
+    setup_start = time.monotonic()
     segment, embedding = models(progress)
+    setup_seconds += time.monotonic() - setup_start
     config = sherpa_onnx.OfflineSpeakerDiarizationConfig(
         segmentation=sherpa_onnx.OfflineSpeakerSegmentationModelConfig(
             pyannote=sherpa_onnx.OfflineSpeakerSegmentationPyannoteModelConfig(model=str(segment)), num_threads=2),
@@ -140,13 +151,15 @@ def process(path, speaker_count=0, progress=console_progress, model_size='base.e
     del diarizer
     progress('Loading Whisper ' + model_size + ' (first use downloads a free model)…', stage='preparing')
     model_args = dict(device='cpu', compute_type='int8', cpu_threads=4, download_root=str(CACHE / 'whisper'))
+    setup_start = time.monotonic()
     try:
         model = WhisperModel(model_size, local_files_only=True, **model_args)
     except (OSError, ValueError):
         model = WhisperModel(model_size, **model_args)
+    setup_seconds += time.monotonic() - setup_start
     progress('Transcribing the recording…', stage='transcription', fraction=0)
     segments, _ = model.transcribe(audio, beam_size=5, language='en', word_timestamps=True,
-                                  vad_filter=True, condition_on_previous_text=False)
+                                  vad_filter=True, condition_on_previous_text=False, initial_prompt=prompt)
     words = []
     for segment in segments:
         words.extend(dict(start=w.start, end=w.end, text=w.word) for w in segment.words or [])
@@ -158,6 +171,8 @@ def process(path, speaker_count=0, progress=console_progress, model_size='base.e
         raise ValueError('No speech was transcribed. Try a clearer recording.')
     return dict(format='team2-audio-v1', filename=Path(path).name, duration=round(duration, 2),
                 elapsedSeconds=round(time.monotonic() - started, 2),
+                processingSeconds=round(max(0, time.monotonic() - started - setup_seconds), 2),
+                modelSetupSeconds=round(setup_seconds, 2),
                 models=dict(transcription='faster-whisper/' + model_size,
                             diarization='sherpa-onnx/pyannote-segmentation-3.0 + NeMo TitaNet small'),
                 speakers=suggest_people(rows), segments=rows,
@@ -169,7 +184,7 @@ if __name__ == '__main__':
     parser.add_argument('audio', type=Path)
     parser.add_argument('--speakers', type=int, default=0)
     parser.add_argument('--output', type=Path, default=Path('audio-results/transcript.json'))
-    parser.add_argument('--model', choices=['base.en', 'small.en'], default='base.en')
+    parser.add_argument('--model', choices=['base.en', 'small.en'], default='small.en')
     args = parser.parse_args()
     result = process(args.audio, args.speakers, model_size=args.model)
     args.output.parent.mkdir(parents=True, exist_ok=True)

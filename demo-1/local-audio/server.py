@@ -12,7 +12,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-from processor import process
+from processor import process, transcription_prompt
 from progress import AudioProgress
 from runtime_paths import resource_root, data_root
 
@@ -39,13 +39,13 @@ def update(**values):
         STATE.update(values)
 
 
-def run_audio(path, count, model):
+def run_audio(path, count, model, hints=''):
     def report(message, **details):
         with LOCK:
             TRACKER.update(message, **details)
             STATE['message'] = message
     try:
-        result = process(path, count, report, model_size=model)
+        result = process(path, count, report, model_size=model, **({'hints': hints} if hints else {}))
         with LOCK:
             result['elapsedSeconds'] = round(time.monotonic() - TRACKER.started, 2)
             TIMING_RATES.update(TRACKER.learned)
@@ -76,7 +76,7 @@ class Handler(SimpleHTTPRequestHandler):
         if not self.allowed() or urlsplit(self.path).path not in API_PATHS:
             return self.reply(403, dict(error='This website cannot connect to the companion.'))
         requested = {h.strip().lower() for h in self.headers.get('Access-Control-Request-Headers', '').split(',') if h.strip()}
-        allowed = {'content-type', 'x-local-token', 'x-speaker-count', 'x-whisper-model', 'x-demo-page'}
+        allowed = {'content-type', 'x-local-token', 'x-speaker-count', 'x-whisper-model', 'x-demo-page', 'x-transcription-hints'}
         if self.headers.get('Access-Control-Request-Method') not in ('GET', 'POST') or not requested <= allowed:
             return self.reply(403, dict(error='Unsupported request.'))
         self.send_response(204)
@@ -103,7 +103,7 @@ class Handler(SimpleHTTPRequestHandler):
             return self.reply(403, dict(error='Open the local app at its printed 127.0.0.1 address.'))
         path = urlsplit(self.path).path
         if path == '/api/audio/config':
-            return self.reply(200, dict(localAudio=True, app='evergreen-meeting-demo', protocol=1, token=TOKEN))
+            return self.reply(200, dict(localAudio=True, transcriptionHints=True, app='evergreen-meeting-demo', protocol=1, token=TOKEN))
         if path == '/api/audio/status':
             if self.headers.get('X-Local-Token') != TOKEN:
                 return self.reply(403, dict(error='Reconnect to the companion before trying again.'))
@@ -153,7 +153,9 @@ class Handler(SimpleHTTPRequestHandler):
         try:
             size = int(self.headers.get('Content-Length', '0'))
             count = int(self.headers.get('X-Speaker-Count', '0'))
-            model = self.headers.get('X-Whisper-Model', 'base.en')
+            model = self.headers.get('X-Whisper-Model', 'small.en')
+            hints = unquote(self.headers.get('X-Transcription-Hints', ''), errors='strict')
+            transcription_prompt(hints)
             if not 0 < size <= MAX_BYTES or not 0 <= count <= 12 or model not in ('base.en', 'small.en'):
                 raise ValueError('Use an audio file under 80 MB and 0–12 speakers.')
         except ValueError as error:
@@ -178,7 +180,7 @@ class Handler(SimpleHTTPRequestHandler):
                         raise ValueError('The audio transfer was interrupted.')
                     out.write(chunk)
                     remaining -= len(chunk)
-            threading.Thread(target=run_audio, args=(path, count, model), daemon=True).start()
+            threading.Thread(target=run_audio, args=(path, count, model, hints), daemon=True).start()
             return self.reply(202, dict(state='running'))
         except Exception as error:
             if path:

@@ -16,7 +16,7 @@ test('text export never invents missing fields or hides empty sections',()=>{
   const result={...core.extractBasic('I will send the report.'),elapsedMs:5};
   const text=core.exportPlainText(result,'Custom meeting');
   assert.match(text,/rules, not AI/);assert.match(text,/Owner: Not specified/);assert.match(text,/Deadline: Not specified/);
-  assert.equal(text.split('None extracted. Check the transcript for omissions.').length-1,2);
+  assert.equal(text.split('None extracted. Check the transcript for omissions.').length-1,3);
 });
 test('export uses current items only and wraps long notes without losing words',()=>{
   const text='Review the east corridor repairs and confirm access with the subcontractor before starting demolition. '.repeat(4).trim();

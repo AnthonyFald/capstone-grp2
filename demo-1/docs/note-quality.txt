@@ -1,70 +1,76 @@
-Contextual meeting notes — development and evaluation
+Contextual meeting notes v3 — development and evaluation
 
-The previous approach labeled one source line at a time and copied it verbatim.
-This could classify a social instruction as a task, preserve a bare date without
-its subject, or leave a question open after a later answer. The revised pipeline
-checks explicit possible follow-ups against the complete discussion, then checks
-decisions/restrictions and unresolved questions in a separate pass. Both passes
-see the entire meeting; a pending question must not hide a promised investigation. It changes inference behavior; it does not
-train or modify the model weights.
+Qwen3.5 9B reads the complete meeting in two passes. First it creates a bounded
+internal working record of tasks, owners, deadlines, later changes, restrictions,
+conditional milestones and unresolved questions. The second call independently
+checks that record against the complete transcript and returns four separate
+lists: actions, decisions, schedules and unresolved questions. Neither call
+filters the meeting down to phrase-matched action candidates.
 
-Review criteria
-- An action is future project work that someone actually commits to or is assigned.
-  Greetings, seating requests, completed inspections and background observations
-  are not actions. A proposed start date is not a commitment.
-- Every note must identify its subject. Short replies need their surrounding
-  discussion; names, dates and conditions must not migrate between tasks.
-- Keep morning/afternoon and dependencies. Do not convert relative dates to
-  calendar dates without a verified meeting date.
-- A decision needs agreement, approval, a restriction or a prerequisite. Describe
-  tentative schedules as unresolved, not approved.
-- Check the end of the discussion for answers, cancellations and replacements.
-  A promise to investigate an issue does not itself answer the issue.
-- Each note can cite multiple original lines. Citations must exist, but existence
-  alone does not establish semantic accuracy. Review the actual evidence.
+The internal record is never displayed/exported and may end at its reasoning
+allowance. The final pass reads the whole source again. A truncated final response
+fails visibly. Only complete final notes with valid references are displayed.
+Schedules have their own section and can be marked tentative. These are model
+selection and inference/prompt changes; model weights are unchanged.
 
-Reproducible development checks
-The offline node tests check complete-context input, the
-supported non-thinking request, strict parsing of final output,
-citation and metadata validation, preserving later corrections, complete exports,
-and cancellation/loading behavior. Mock
-responses test the software workflow; they do not measure model quality.
+Source line numbers must exist. Original wording is retrieved verbatim and retained
+in the UI and exports. Owners/deadlines must occur in cited evidence. This checks
+provenance, not whether the model interpreted the evidence correctly. Every note
+still requires human review. The pipeline can omit a follow-up, misclassify scope,
+lose a qualification, or repeat an outdated proposal; it does not certify accuracy.
 
-For real local inference, install Python Playwright in a development environment
-and use installed Chrome. From the repository root run:
-  python demo-1/scripts/evaluate-notes.py --model Qwen3-8B-q4f16_1-MLC
+Timing
+The browser terminates note generation at a five-minute processing budget.
+Known processing time from an applied audio transcript is deducted. Model setup
+and user review are excluded when separately measurable. The companion reports
+processingSeconds separately from modelSetupSeconds. Older imported transcripts
+use elapsedSeconds conservatively. Audio processing itself depends on recording
+length/hardware and is not interrupted by the browser's note timer. A recording
+that consumes the budget cannot proceed to AI notes without a shorter new run.
+The budget is not an assurance that every input will complete successfully.
 
-The script downloads public model files and runs the actual application worker
-with the fictional fixtures from
-  demo-1/tests/fixtures/note-quality.json
-and saves original notes plus human review criteria under the ignored
-  desktop-build/note-evaluation/
-folder. --profile, --output, and --fixtures can select local paths. Nothing is
-uploaded. Keep private transcripts and evaluation reports out of the public repo.
-Inspect every result, including correct tasks that are missing; an empty result
-is not a quality success. These are small development examples, not an independent
-benchmark or evidence for thesis performance targets.
+Transcription
+Whisper Small is the accuracy default; Base remains available. A construction
+vocabulary and optional user spelling hints are passed as initial_prompt.
+They are hints, not automatic transcript replacements or verified identities.
+No original user audio was available for this iteration: supplied ASR transcripts
+can test note extraction but cannot establish improved recognition accuracy.
 
-Known limits
-The action candidate finder uses explicit request/commitment wording. Implicit
-assignments, requests to cancel a booking without evidence that it exists,
-transcription errors, overlapping tasks within a turn, and long or
-ambiguous discussions can still produce omissions or incorrect notes. Conservative wording checks reject obvious background facts mislabeled as
-decisions and resolved statements mislabeled as questions. Repeated actions
-with matching wording, owner and overlapping sources retain the version citing
-later evidence. These checks can miss subtle cases or reject valid notes. Quote
-matching checks provenance, not whether a conclusion follows. Review output and
-record corrections; do not treat a passing development example as a guarantee.
+Checks
+node --test demo-1/tests/*.test.cjs tests/*.test.cjs
+python -m unittest discover -s demo-1/local-audio -p "test_*.py"
+python demo-1/scripts/evaluate-notes.py --model Qwen3.5-9B-q4f16_1-MLC
 
-Further tuning
-Collect separately reviewed full transcripts and target notes across different
-meetings. Score useful-item precision, missed items, correct owner/deadline pairs,
-resolved-question handling, and human correction time. Keep some meetings held
-out from prompt changes. Current JSON exports preserve original model output and
-saved human corrections, but those corrections are not automatically training
-data or permission to upload private meeting content.
+The real-browser evaluator uses the actual worker and an isolated Chrome profile.
+--temperature selects 0.1 (default), 0.3 or 0.7 for final extraction only; the
+internal reasoning pass stays at 0.7. Default fictional development fixtures are
+tests/fixtures/note-quality-v3.json. Reports retain actual final model output,
+source references, code hashes, runtime and criteria for qualitative review.
+Internal reasoning is not exported. Keep private transcripts/reports out of Git.
 
-Weight fine-tuning would be a separate project: curate approved labeled examples,
-train an adapter, evaluate it against held-out meetings, then quantize and compile
-the chosen weights for the browser runtime. One flawed export is enough to expose
-pipeline bugs, but not enough to establish a reliable training dataset.
+Evaluate supported facts, missed key information, correct owner/deadline pairs,
+false commitments and the time needed to review/correct results. These development
+fixtures influenced prompt choices and are not an independent accuracy benchmark.
+No 90% accuracy or guaranteed five-minute success claim is made. Future evaluations
+should keep independently authored meetings held out from prompt changes and
+repeat runs to measure variability.
+
+Selection and limitations
+Several larger/faster configurations were rejected after actual browser runs:
+parameter count and speed alone did not predict correct assignments and dates.
+Longer unrestricted reasoning could use the entire budget without producing final
+notes. The selected approach limits its initial reasoning to reserve time for the
+final source-checked output. See note-quality-v3-results.json for measured results
+and remaining errors, rather than treating an additional model pass as proof.
+
+Supplied transcripts were used only for local development checks and are not in
+this repository. Public results use fictional fixtures and qualitative assistant
+review, not a blinded accuracy score. The historical note-quality-results.json
+and verification.json describe earlier checks and are not current performance
+claims. Notes can inherit transcription errors; review the transcript first.
+
+The published snapshot runs three selected regressions from the eight available
+fictional fixtures. The first two retain the key facts but repeat an item across
+categories. The longer case omits important follow-ups/conditions and distorts
+a ventilation restriction. The raw output and those findings are retained;
+completion status is not a semantic pass or an accuracy percentage.

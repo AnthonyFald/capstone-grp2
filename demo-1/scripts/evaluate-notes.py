@@ -22,11 +22,12 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--model', required=True, choices=['Qwen3-8B-q4f16_1-MLC', 'Qwen3-8B-q4f32_1-MLC'], help='A model supported by the application template')
+    parser.add_argument('--model', required=True, choices=['Qwen3.5-9B-q4f16_1-MLC', 'Qwen3.5-9B-q4f32_1-MLC'], help='A model supported by the application template')
     parser.add_argument('--profile', type=Path, default=ROOT / 'desktop-build/note-evaluation/browser')
     parser.add_argument('--output', type=Path, default=ROOT / 'desktop-build/note-evaluation/results.json')
     parser.add_argument('--port', type=int, default=4189)
-    parser.add_argument('--fixtures', type=Path, default=ROOT / 'demo-1/tests/fixtures/note-quality.json')
+    parser.add_argument('--fixtures', type=Path, default=ROOT / 'demo-1/tests/fixtures/note-quality-v3.json')
+    parser.add_argument('--temperature', type=float, default=0.1, choices=[0.1, 0.3, 0.7])
     args = parser.parse_args()
     args.profile.mkdir(parents=True, exist_ok=True)
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -38,7 +39,7 @@ def main():
     server = http.server.ThreadingHTTPServer(('127.0.0.1', args.port), functools.partial(Handler, directory=str(ROOT)))
     threading.Thread(target=server.serve_forever, daemon=True).start()
     fixtures = json.loads(args.fixtures.read_text())
-    report = {'model': args.model, 'platform': platform.platform(), 'webllm': '0.2.85',
+    report = {'model': args.model, 'platform': platform.platform(), 'webllm': '0.2.85', 'temperature': args.temperature, 'temperature_scope': 'Final extraction; internal reasoning is fixed at 0.7',
               'pipeline_sha256': hashlib.sha256((ROOT / 'demo-1/note-engine.js').read_bytes()).hexdigest(),
               'normalizer_sha256': hashlib.sha256((ROOT / 'demo-1/core.js').read_bytes()).hexdigest(),
               'scope': 'Development examples with model-generated output. Read each review criterion and judge the notes. This is not an independent accuracy benchmark.',
@@ -59,12 +60,14 @@ def main():
                     await import('/demo-1/core.js');
                     window.noteWorker=new Worker('/demo-1/ai-worker.js',{type:'module'});
                     window.askWorker=message=>new Promise((resolve,reject)=>{
-                      const timer=setTimeout(()=>{noteWorker.terminate();reject(new Error('Local model timed out after fifteen minutes.'));},15*60*1000);
+                      window.lastTrace=[];
+                      const timer=setTimeout(()=>{noteWorker.terminate();reject(new Error('Local model timed out.'));},message.type==='load'?15*60*1000:305000);
                       const fail=error=>{clearTimeout(timer);reject(error);};
                       const done=value=>{clearTimeout(timer);resolve(value);};
                       noteWorker.onerror=event=>fail(new Error(event.message));
                       noteWorker.onmessage=({data})=>{
-                        if(data.type==='error')fail(new Error(data.message));
+                        if(data.type==='debug')lastTrace.push({phase:data.phase,value:data.value});
+                        else if(data.type==='error')fail(new Error(data.message));
                         else if(data.type==='ready')done(data);
                         else if(data.type==='result'){try{done(JSON.parse(data.content));}catch(error){fail(error);}}
                         else if(data.type==='progress'||data.type==='download-status')modelProgress(data);
@@ -80,15 +83,19 @@ def main():
                     print('Evaluating:', case['id'], flush=True)
                     start = time.monotonic()
                     try:
-                        result = page.evaluate('''async fixture=>{
+                        result = page.evaluate('''async ({fixture,temperature})=>{
                             const transcript=fixture.transcript.split('\\n').map((line,i)=>'['+(i+1)+'] '+line).join('\\n');
-                            const raw=await askWorker({type:'generate',transcript});
+                            const raw=await askWorker({type:'generate',transcript,temperature,debug:true});
                             return MeetingCore.normalizeModelOutput(raw,fixture.transcript);
-                        }''', case)
+                        }''', {'fixture': case, 'temperature': args.temperature})
                         result['model'] = args.model
-                        report['cases'].append({**case, 'seconds': round(time.monotonic()-start, 2), 'result': result})
+                        report['cases'].append({**case, 'seconds': round(time.monotonic()-start, 2), 'result': result, 'trace': page.evaluate('window.lastTrace')})
                     except Exception as error:
-                        report['cases'].append({**case, 'seconds': round(time.monotonic()-start, 2), 'error': str(error)})
+                        report['cases'].append({**case, 'seconds': round(time.monotonic()-start, 2), 'error': str(error), 'trace': page.evaluate('window.lastTrace')})
+                        # A timed-out worker may have been terminated. Do not
+                        # make subsequent cases wait on a dead worker.
+                        args.output.write_text(json.dumps(report, indent=2)+'\n')
+                        break
                     args.output.write_text(json.dumps(report, indent=2)+'\n')
             finally:
                 browser.close()
