@@ -5,3 +5,5 @@
 
 /* Keep complete processing times readable alongside the meeting notes. */
 .result-summary{flex-direction:column;align-items:flex-start;gap:8px}.result-summary #elapsed{font-size:12px;line-height:1.6;text-align:left;color:var(--green);background:#eef4f0;border-radius:5px;padding:7px 10px;width:100%}
+
+.source blockquote{white-space:pre-line}

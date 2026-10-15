@@ -4,7 +4,7 @@ A simple, free meeting documentation demo for the capstone website. It accepts a
 
 ## Start from text
 
-Open the website's **Demo 1** tab in Chrome or Edge with WebGPU. Choose a sample or paste text, then click **Load AI & generate notes**. It loads free Qwen 2.5 1.5B (roughly 1 GB on first use) and generates notes automatically. Model files use IndexedDB storage. Interrupted downloads retry automatically, up to three load attempts, reusing completed files; a failed load preserves the transcript and offers a retry. Notes run locally on your GPU. The labeled rules mode is a separate non-AI baseline.
+Open the website's **Demo 1** tab in Chrome or Edge with WebGPU. Choose a sample or paste text, then click **Load AI & generate notes**. It loads free Qwen 3 8B (about 5 GB on first use) and generates notes automatically. Model files use IndexedDB storage. Interrupted downloads retry automatically, up to three load attempts, reusing completed files; a failed load preserves the transcript and offers a retry. Notes run locally on your GPU. This is a larger model than the former 1.5B version; 16 GB or more system memory and sufficient GPU memory are recommended. Performance varies by device; measured development results are in `docs/note-quality-results.json`. The labeled rules mode is a separate non-AI baseline.
 
 For a local preview, run `node scripts/serve.mjs` from the repository root. The standalone `demo-1/Start Demo.cmd` also serves the demo on Windows. Neither requires an npm installation.
 
@@ -31,10 +31,10 @@ See [audio setup](audio-setup.html) for the full instructions. The GitHub-hosted
 2. sherpa-onnx combines pyannote segmentation with NeMo TitaNet speaker embeddings and clusters voices across the recording. Labels are anonymous and may be wrong; this is not identity verification.
 3. faster-whisper produces English text and word timestamps on the CPU. Words are aligned with speaker intervals. Overlap/unmatched words are flagged. Sentence boundaries become editable turns.
 4. A small set of explicit introduction patterns suggests names and roles. This step is rules, not another model. Users can correct labels and every turn.
-5. Qwen classifies each transcript line as decision, action, unresolved question, or none. The app copies the selected source wording into the notes instead of letting the small model rewrite facts. Simple source patterns fill explicit owners and deadline phrases for single-commitment turns. Missing or ambiguous fields remain blank. This is an AI-assisted extraction pipeline, not entirely LLM-generated prose.
+5. Qwen 3 8B checks potential follow-ups against the whole discussion, then separately extracts decisions/restrictions and unresolved issues. The prompts distinguish future commitments from chatter, completed work and tentative plans, with fictional worked examples. Related turns can support one complete note. Exact source quotes must match the transcript, and owners/deadlines must appear in the cited evidence. Later corrections are not overwritten with earlier dates by pattern matching. This tunes the inference pipeline and prompt, not the model weights.
 6. Review and edit notes, then export plain text (.txt), Markdown (.md), or JSON. The plain-text file separates decisions, action items (including owners and deadlines), open questions, and source references; it includes current saved corrections and review status. The rules-only mode remains separately labeled.
 
-Use one sentence or short speaker turn per line. Input is capped at 24,000 characters; AI classifies each turn separately and can miss context across turns. One line may receive only one category, so split mixed-topic turns. A line over 3,000 characters must be split. Models can miss, misclassify, or mishear content. Even a real source quote can be classified incorrectly.
+Use one sentence or short speaker turn per line. Input is capped at 24,000 characters and 3,000 characters per turn. Each model pass receives the complete meeting so late answers and cancellations remain visible. Explicit request/commitment wording identifies potential actions; subtle implied assignments may be missed. There are also limits of 30,000 UTF-8 bytes and 28 potential follow-up turns. Inputs that exceed the model space fail instead of silently discarding the ending. Notes link to all cited source turns. Generated summaries can still omit details, misread context, or assign the wrong owner or date; valid citations alone do not prove a note is accurate. Correct transcription errors before generating notes. The unchanged rules mode is intentionally a simpler comparison baseline.
 
 ## Local data and cost
 
@@ -48,11 +48,12 @@ Demo 1 tests accurate documentation as a step toward reducing avoidable RFIs. It
 
 Collect independent manual notes and record manual preparation, audio processing, transcript correction, note processing, and note review time. The built-in timing comparison covers note processing plus the review time you enter; for audio experiments include transcription and transcript correction in the overall experiment log. Report one-time setup/download separately. Source/category matches are navigation aids, not automatic accuracy scores. Original system output and reviewed notes are exported separately.
 
-Two synthetic text meetings and a single-speaker synthetic audio sample are included. They are not real Evergreen correspondence. Reference checklists were authored with Codex assistance and need independent team review. A single-speaker sample verifies transcription and introductions; it cannot validate multi-speaker accuracy. See `docs/verification.json` for development checks and limits.
+Two synthetic text meetings and a single-speaker synthetic audio sample are included. They are not real Evergreen correspondence. Reference checklists were authored with Codex assistance and need independent team review. A single-speaker sample verifies transcription and introductions; it cannot validate multi-speaker accuracy. See `docs/note-quality.txt` for the current notes evaluation process and `docs/verification.json` for historical audio and browser checks.
 
 ## Reproduce
 
-- `ai-worker.js`: actual classification prompt, schema and inference configuration.
+- `note-engine.js`: contextual extraction prompt, final-output validation, source matching, and inference pipeline.
+- `ai-worker.js`: local model loading and worker messages.
 - `core.js`: source-backed notes, explicit metadata patterns, comparisons and exports.
 - `local-audio/processor.py`: model selection, voice clustering, word alignment, introduction suggestions; also usable as a CLI.
 - `local-audio/requirements.txt`: pinned primary audio dependencies.
@@ -81,5 +82,5 @@ The GitHub workflow uses standard public-repository Windows x64 and macOS arm64 
 - https://k2-fsa.github.io/sherpa/onnx/speaker-diarization/models.html
 - https://opennmt.net/CTranslate2/installation.html
 - https://webllm.mlc.ai/docs/user/get_started.html
-- https://huggingface.co/mlc-ai/Qwen2.5-1.5B-Instruct-q4f16_1-MLC
+- https://huggingface.co/mlc-ai/Qwen3-8B-q4f16_1-MLC
 - Supplied Team 2 final thesis, thesis slides, and Demo 1 assignment. Fictional scenarios must not be attributed to real contractors.

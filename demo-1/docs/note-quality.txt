@@ -1,0 +1,70 @@
+Contextual meeting notes — development and evaluation
+
+The previous approach labeled one source line at a time and copied it verbatim.
+This could classify a social instruction as a task, preserve a bare date without
+its subject, or leave a question open after a later answer. The revised pipeline
+checks explicit possible follow-ups against the complete discussion, then checks
+decisions/restrictions and unresolved questions in a separate pass. Both passes
+see the entire meeting; a pending question must not hide a promised investigation. It changes inference behavior; it does not
+train or modify the model weights.
+
+Review criteria
+- An action is future project work that someone actually commits to or is assigned.
+  Greetings, seating requests, completed inspections and background observations
+  are not actions. A proposed start date is not a commitment.
+- Every note must identify its subject. Short replies need their surrounding
+  discussion; names, dates and conditions must not migrate between tasks.
+- Keep morning/afternoon and dependencies. Do not convert relative dates to
+  calendar dates without a verified meeting date.
+- A decision needs agreement, approval, a restriction or a prerequisite. Describe
+  tentative schedules as unresolved, not approved.
+- Check the end of the discussion for answers, cancellations and replacements.
+  A promise to investigate an issue does not itself answer the issue.
+- Each note can cite multiple original lines. Citations must exist, but existence
+  alone does not establish semantic accuracy. Review the actual evidence.
+
+Reproducible development checks
+The offline node tests check complete-context input, the
+supported non-thinking request, strict parsing of final output,
+citation and metadata validation, preserving later corrections, complete exports,
+and cancellation/loading behavior. Mock
+responses test the software workflow; they do not measure model quality.
+
+For real local inference, install Python Playwright in a development environment
+and use installed Chrome. From the repository root run:
+  python demo-1/scripts/evaluate-notes.py --model Qwen3-8B-q4f16_1-MLC
+
+The script downloads public model files and runs the actual application worker
+with the fictional fixtures from
+  demo-1/tests/fixtures/note-quality.json
+and saves original notes plus human review criteria under the ignored
+  desktop-build/note-evaluation/
+folder. --profile, --output, and --fixtures can select local paths. Nothing is
+uploaded. Keep private transcripts and evaluation reports out of the public repo.
+Inspect every result, including correct tasks that are missing; an empty result
+is not a quality success. These are small development examples, not an independent
+benchmark or evidence for thesis performance targets.
+
+Known limits
+The action candidate finder uses explicit request/commitment wording. Implicit
+assignments, requests to cancel a booking without evidence that it exists,
+transcription errors, overlapping tasks within a turn, and long or
+ambiguous discussions can still produce omissions or incorrect notes. Conservative wording checks reject obvious background facts mislabeled as
+decisions and resolved statements mislabeled as questions. Repeated actions
+with matching wording, owner and overlapping sources retain the version citing
+later evidence. These checks can miss subtle cases or reject valid notes. Quote
+matching checks provenance, not whether a conclusion follows. Review output and
+record corrections; do not treat a passing development example as a guarantee.
+
+Further tuning
+Collect separately reviewed full transcripts and target notes across different
+meetings. Score useful-item precision, missed items, correct owner/deadline pairs,
+resolved-question handling, and human correction time. Keep some meetings held
+out from prompt changes. Current JSON exports preserve original model output and
+saved human corrections, but those corrections are not automatically training
+data or permission to upload private meeting content.
+
+Weight fine-tuning would be a separate project: curate approved labeled examples,
+train an adapter, evaluate it against held-out meetings, then quantize and compile
+the chosen weights for the browser runtime. One flawed export is enough to expose
+pipeline bugs, but not enough to establish a reliable training dataset.

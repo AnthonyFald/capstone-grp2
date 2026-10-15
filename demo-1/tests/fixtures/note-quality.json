@@ -1,0 +1,37 @@
+[
+  {
+    "id": "work-versus-chatter",
+    "transcript": "Nora: Hi Eli, take a chair.\nEli: Thanks. Jo inspected the lobby yesterday.\nNora: Was that rooms 201 and 202?\nEli: Yes, 201 and 202.\nNora: We still need the lobby inspection photos for the permit file.\nEli: I'll email them by tomorrow afternoon.",
+    "review": "Only the future email of lobby inspection photos is an action. Eli owns it, due tomorrow afternoon. The room question is answered; the greeting and completed inspection are not tasks."
+  },
+  {
+    "id": "schedule-dependency",
+    "transcript": "Drew: Can the west hallway flooring start on Monday?\nLee: No. We could start Thursday at the earliest, if the electricians finish their conduit work Wednesday.\nDrew: Their finish date is not confirmed yet. Let me call Pat today to verify it.\nDrew: I will email you once Pat confirms.\nLee: Good. We have not approved a flooring start date yet.",
+    "review": "Drew's call to Pat to verify electrical completion, with a follow-up email, is the action due today (email after confirmation). Thursday is an earliest proposed hallway flooring start, not an assigned task or approved decision. Electrical completion/flooring start remains unresolved."
+  },
+  {
+    "id": "approval-and-cancellation",
+    "transcript": "Tara: Who will pay the surcharge for the acoustic panels? Is it covered by change order four?\nBen: I don't know. Let me ask the client tomorrow morning whether we need a separate change request.\nTara: We won't order the panels until the client approves that cost.\nBen: I'll book a delivery truck for Friday.\nTara: Cancel that truck booking; the delivery date isn't set.\nBen: Okay, no truck booking.",
+    "review": "Ben must ask the client tomorrow morning about surcharge coverage/new change request. Funding approval remains open. Do not order panels until approval is a restriction. The canceled truck booking is not an action."
+  },
+  {
+    "id": "different-task-deadlines",
+    "transcript": "Mina: I will send the revised loading plan by Tuesday morning.\nOmar: I'll inspect the south stair handrail by Friday afternoon.\nMina: Who is handling the roof inspection?\nOmar: The roof inspection owner has not been assigned.\nMina: We agreed to keep the south stair closed until the handrail passes inspection.",
+    "review": "Two distinct actions with correct owner/date pairs: Mina sends loading plan Tuesday morning; Omar inspects south stair handrail Friday afternoon. Roof inspection ownership remains open. Stair closure until a passing inspection is a decision."
+  },
+  {
+    "id": "accepted-assignment-and-corrected-date",
+    "transcript": "Anika: Omar, can you send the door schedule to the architect?\nOmar: Yes, I'll send it by Friday noon.\nAnika: Friday is too late. We need it Monday morning instead.\nOmar: Understood. Monday morning replaces Friday for the door schedule.\nAnika: Is the north entrance approved for deliveries?\nOmar: Yes, the site manager approved that entrance this morning.",
+    "review": "One action: Omar sends the door schedule to the architect, due Monday morning; Friday has been superseded. North entrance approval is resolved, not an open question."
+  },
+  {
+    "id": "no-work-commitments",
+    "transcript": "Cass: Hi, come sit over here.\nDev: Thanks. I sent the lift certificate yesterday.\nCass: Was that lift A or B?\nDev: Lift B.\nCass: Great. We could discuss next month's deliveries later, but nothing is scheduled.\nDev: Okay, thanks everyone.",
+    "review": "No future work commitments, agreed project plans, or unanswered substantive questions. The seating request, completed certificate delivery, answered lift identity, and vague suggestion are not action items."
+  },
+  {
+    "id": "confirmed-work-and-real-cancellation",
+    "transcript": "Jules: Can you send the revised fire door labels to the inspector by Wednesday?\nMira: I could send a draft Tuesday, but the final labels need the architect's approval.\nJules: We received that written approval this morning.\nMira: Great. I'll send the approved final labels Wednesday afternoon; forget the Tuesday draft.\nJules: The lift is already booked for Friday.\nMira: Please cancel it; we will use the permanent stairs.\nJules: I'll cancel the lift booking after this meeting.\nJules: Does our access permit cover weekend work?\nMira: We don't have an answer yet. I will ask the site office tomorrow.",
+    "review": "Mira sends approved fire door labels to the inspector Wednesday afternoon; no Tuesday draft task or pending architect approval. Jules cancels the already-booked lift after this meeting (Friday is the canceled booking date, not the cancellation deadline). Mira asks the site office tomorrow about weekend permit coverage, which remains open."
+  }
+]
