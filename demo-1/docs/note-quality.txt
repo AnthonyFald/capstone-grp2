@@ -3,10 +3,11 @@ Contextual meeting notes v4 — development and evaluation
 The model remains Qwen3.5 9B, quantized for local WebGPU. No fine-tuning, model
 replacement, remote inference or new download is required for existing users.
 
-Pass one completes its reasoning and produces a structured inventory of tasks, owners, exact deadlines,
-conditions, work scope, project milestones and unresolved questions. Both passes
-read the complete transcript. The second pass reviews each numbered inventory
-fact: it must cover it in the final notes or explicitly explain its omission.
+The first stage works through consecutive small groups of source turns, producing
+a structured inventory of tasks, owners, exact deadlines, conditions, work scope,
+project milestones and unresolved questions. Every call receives the complete
+transcript for context, including later corrections. The focused excerpts cover
+every source turn once. The final stage reviews each numbered inventory fact: it must cover it in the final notes or explicitly explain its omission.
 It also checks the original transcript for missing facts. Dated physical work
 belongs in schedules; calls/emails/submissions belong in actions. The prompts
 separate follow-up messages and preserve prerequisites from earlier turns.
@@ -37,8 +38,8 @@ python demo-1/scripts/evaluate-notes.py --model Qwen3.5-9B-q4f16_1-MLC
 
 The browser evaluator uses the actual worker in an isolated Chrome profile.
 Public model files download once; transcripts never leave the local runtime.
---temperature applies to final review (default 0.1); inventory reasoning uses
-0.7, as in v3, but must finish instead of publishing a truncated working draft.
+--temperature applies to the structured extraction and final review (default 0.1).
+Both stages use complete structured output; there is no free-form thinking draft.
 Default fictional
 fixtures are tests/fixtures/note-quality-v3.json. Reports retain inventory, final
 output, source references, code hashes and timings for human review. Debug

@@ -3,17 +3,18 @@ const notes=require('../note-engine.js'),core=require('../core.js');
 const numbered=text=>text.split('\n').map((line,i)=>'['+(i+1)+'] '+line).join('\n');
 const fact={kind:'action',status:'active',text:'Call the supplier to confirm the delivery slot.',owner:'Rae',due:'tomorrow afternoon',lines:[1,2]};
 const transcript='Sam: When will you check the delivery slot?\nRae: Let me call the supplier tomorrow afternoon.\nSam: Thanks, grab a chair.';
-function engine(items,final=items,calls=[]){return {chat:{completions:{create:async request=>{
+function engine(items,final=items,calls=[]){let inventoryCount=0;return {chat:{completions:{create:async request=>{
  calls.push(request);
- const inventory=calls.length===1,selected=inventory?items:final;
+ const inventory=request.messages[0].content.includes('For this call inventory ONLY'),selected=inventory?items:final;
+ if(inventory)inventoryCount+=items.length;
  const entries=selected.map((x,i)=>({...x,...(inventory?{conditions:null}:{covers:i<items.length?[i+1]:[]})}));
- const value={actions:entries.filter(x=>x.kind==='action'),decisions:entries.filter(x=>x.kind==='decision'),schedules:entries.filter(x=>x.kind==='schedule'),questions:entries.filter(x=>x.kind==='question'),...(inventory?{}:{review:Object.fromEntries(items.map((_,i)=>['F'+(i+1),'Included in the final notes.']))})};
+ const value={actions:entries.filter(x=>x.kind==='action'),decisions:entries.filter(x=>x.kind==='decision'),schedules:entries.filter(x=>x.kind==='schedule'),questions:entries.filter(x=>x.kind==='question'),...(inventory?{}:{review:Object.fromEntries(Array.from({length:inventoryCount},(_,i)=>['F'+(i+1),'Included in the final notes.']))})};
  return {choices:[{finish_reason:'stop',message:{content:JSON.stringify(value)}}]};
 }}}};}
 test('reasoning and final notes both read the full meeting, including later replies',async()=>{
  const calls=[],raw=await notes.generate(engine([fact],[fact],calls),numbered(transcript));
  assert.equal(calls.length,2);for(const call of calls)assert.match(call.messages.at(-1).content,/grab a chair/);
- assert.equal(calls[0].extra_body.enable_thinking,true);assert.equal(calls[1].extra_body.enable_thinking,false);
+ assert.equal(calls[0].extra_body.enable_thinking,false);assert.equal(calls[1].extra_body.enable_thinking,false);
  const item=core.normalizeModelOutput(raw,transcript).items[0];assert.deepEqual(item.lines,[1,2]);assert.equal(item.owner,'Rae');assert.equal(item.due,'tomorrow afternoon');
 });
 test('structured inventory is traced separately and never published as minutes',async()=>{
@@ -90,4 +91,17 @@ test('truncated inventory is rejected rather than guiding the final notes',async
  let calls=0;
  const mock={chat:{completions:{create:async()=>{calls++;return {choices:[{finish_reason:'length',message:{content:'{"actions":['}}]};}}}};
  await assert.rejects(notes.generate(mock,numbered(transcript)),/ran out of space/);assert.equal(calls,1);
+});
+
+test('focused passes cover every source turn once while retaining all later context',async()=>{
+ const text='Rae: I will send the drawing Monday.\n'+Array.from({length:18},(_,i)=>'Sam: Background '+i+' '+('routine context '.repeat(12))).join('\n')+'\nSam: I will take over and send it Tuesday instead.';
+ const calls=[];await notes.generate(engine([],[],calls),numbered(text));
+ assert.ok(calls.length>2);
+ const focused=calls.slice(0,-1),covered=[];
+ for(const call of focused){
+  const input=call.messages.at(-1).content;
+  assert.match(input,/I will send the drawing Monday/);assert.match(input,/send it Tuesday instead/);
+  const focus=input.match(/<focus>\n([\s\S]*?)\n<\/focus>/)[1];covered.push(...notes.parseTranscript(focus).map(row=>row.line));
+ }
+ assert.deepEqual(covered,text.split('\n').map((_,i)=>i+1));
 });

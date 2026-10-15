@@ -90,11 +90,22 @@ For every note write one concise complete sentence, without topic headings or la
       return parseResponse(await engine.chat.completions.create({messages:[{role:'system',content:prompt+(thinking?'\nAfter reasoning, return only the complete JSON inventory matching this schema: '+JSON.stringify(schema):'')},...examples,{role:'user',content:user}],temperature:thinking?0.7:options.temperature??0.1,top_p:0.8,presence_penalty:thinking?1.5:0,extra_body:{enable_thinking:thinking},max_tokens,...(thinking?{}:{response_format:{type:'json_object',schema:JSON.stringify(schema)}})}));
     }
     async function work(){
-      progress('Extracting each task, owner, deadline and project condition…');
-      const ledger=await call(ANALYSIS_PROMPT,INVENTORY_EXAMPLES,source,listSchema({ledger:true}),8192,true);
-      const facts=flatten(ledger).items;
-      validateItems({items:facts},rows);
-      if(facts.some(item=>item.conditions!==null&&typeof item.conditions!=='string'))throw new Error('The model returned an incomplete factual inventory. Please try again.');
+      const windows=[];let pending=[];
+      for(const row of rows){
+        if(pending.length&&bytes(render([...pending,row]))>1300){windows.push(pending);pending=[];}
+        pending.push(row);
+      }
+      if(pending.length)windows.push(pending);
+      const facts=[];
+      for(const [index,window] of windows.entries()){
+        progress('Extracting details from the transcript ('+(index+1)+' of '+windows.length+')…');
+        const focused=source+'\n<focus>\n'+render(window)+'\n</focus>';
+        const ledger=await call(ANALYSIS_PROMPT+'\nFor this call inventory ONLY facts introduced or changed in the FOCUS turns. Read EVERY sentence and every separate promise in these turns. Use the complete transcript to resolve context, answers and later changes, but do not extract unrelated facts from other turns. Do not reduce the focused turns to their main topic.',INVENTORY_EXAMPLES,focused,listSchema({ledger:true}),2400);
+        const batch=flatten(ledger).items;
+        validateItems({items:batch},rows);
+        if(batch.some(item=>item.conditions!==null&&typeof item.conditions!=='string'))throw new Error('The model returned an incomplete factual inventory. Please try again.');
+        facts.push(...batch);
+      }
       const inventory=facts.map((item,index)=>({fact:'F'+(index+1),...item}));
       options.trace?.('inventory',inventory);
       progress('Checking coverage, resolving assignments and preserving conditions…');
