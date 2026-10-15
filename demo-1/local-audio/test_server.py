@@ -119,6 +119,26 @@ class LocalServerTests(unittest.TestCase):
             self.assertEqual(received, [(b'synthetic audio', 2, 'small.en')])
             self.assertFalse(list(Path(folder).rglob('*.audio')))
 
+    def test_vocabulary_hints_cross_only_the_authenticated_local_api(self):
+        headers = {'Origin': server.HOSTED_ORIGIN, 'X-Local-Token': server.TOKEN,
+                   'X-Transcription-Hints': 'Rae%20Chen%2C%20Eastvale'}
+        received = []
+        def process(path, count, report, model_size, hints):
+            received.append((model_size, hints))
+            return {'format': 'team2-audio-v1', 'segments': [], 'speakers': []}
+        with tempfile.TemporaryDirectory() as folder, patch.object(server, 'data_root', return_value=Path(folder)), patch.object(server, 'process', side_effect=process):
+            code, _, _ = self.exchange('/api/audio/jobs', 'POST', headers, b'synthetic')
+            self.assertEqual(code, 202)
+            for _ in range(100):
+                state = json.loads(self.request('/api/audio/status', headers)[1])
+                if state['state'] != 'running' and not list(Path(folder).rglob('*.audio')):
+                    break
+                time.sleep(.01)
+            self.assertEqual(state['state'], 'done')
+            self.assertEqual(received, [('small.en', 'Rae Chen, Eastvale')])
+        for invalid in ['x' * 601, 'name%0Aextra']:
+            self.assertEqual(self.exchange('/api/audio/jobs', 'POST', dict(headers, **{'X-Transcription-Hints': invalid}), b'synthetic')[0], 400)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -46,6 +46,18 @@ test('app restart replaces its session token and recovers without reloading the 
   assert.equal(await client.connect(),true);assert.equal(used.at(-1),token);
 });
 
+test('spelling-hint support is advertised explicitly and forgotten after disconnect',async()=>{
+ let hints=false,connected=true;
+ const client=create({location:new URL('http://127.0.0.1:4176/demo-1/'),fetchImpl:async url=>{
+  if(url.endsWith('/config'))return reply({...info(),transcriptionHints:hints});
+  return reply({},connected?200:403);
+ }});
+ await client.connect();assert.equal(client.supportsHints,false);
+ connected=false;await assert.rejects(client.request('/api/audio/status'));
+ hints=true;connected=true;await client.connect();assert.equal(client.supportsHints,true);
+ connected=false;await assert.rejects(client.request('/api/audio/status'));assert.equal(client.supportsHints,false);
+});
+
 test('unrelated service, denied permission and hung requests never count as a connected demo',async()=>{
   const unrelated=create({location:hosted,fetchImpl:async()=>reply({localAudio:true,token:'a'.repeat(43)})});
   await assert.rejects(unrelated.connect());assert.equal(unrelated.connected,false);

@@ -20,6 +20,20 @@ class AlignmentTests(unittest.TestCase):
         self.assertEqual(people[0]['role'], 'general contractor')
         self.assertEqual(people[1]['name'], '')
 
+class VocabularyTests(unittest.TestCase):
+    def test_terms_are_hints_not_automatic_name_or_transcript_replacements(self):
+        from processor import transcription_prompt
+        prompt = transcription_prompt('Rae Chen, Eastvale Construction')
+        self.assertIn('repour', prompt)
+        self.assertIn('Rae Chen, Eastvale Construction', prompt)
+        self.assertNotIn('Rae Chen', transcription_prompt())
+
+    def test_invalid_hint_payloads_are_rejected(self):
+        from processor import transcription_prompt
+        for value in ['x' * 601, 'name\nsecond line', None]:
+            with self.assertRaises(ValueError):
+                transcription_prompt(value)
+
 
 if __name__ == '__main__':
     unittest.main()

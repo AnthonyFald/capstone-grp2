@@ -4,7 +4,7 @@
   "webllm": "0.2.85",
   "pipeline_sha256": "5e720125faf94e1a6cac79099e38d5f49f8a753aa769f5fa489aa8b035b73dcb",
   "normalizer_sha256": "564a344db3a13e0b19be188e48247ca4d7f6e17e7be004acc8071f5005cffaa0",
-  "scope": "Development examples with model-generated output. Read each review criterion and judge the notes. This is not an independent accuracy benchmark.",
+  "scope": "Historical v2 development examples, using the former Qwen3 8B pipeline. See note-quality-v3-results.json for the current implementation. This is not an independent accuracy benchmark.",
   "cases": [
     {
       "id": "work-versus-chatter",

@@ -37,3 +37,10 @@ test('completion time includes automatic model loading but repeated generation m
   a.setTime(10000);await a.generate();a.setTime(12000);a.workers[0].emit({type:'result',content:JSON.stringify({items:[]})});
   assert.equal(a.element('elapsed').textContent,'Notes completed in 2.0s');
 });
+test('five-minute worker deadline includes the processing time of the applied recording',async()=>{
+ const a=app();a.element('transcript').dataset={audioProcessingMs:'60000'};await a.generate();a.workers[0].emit({type:'ready'});
+ assert.equal(a.workers[0].messages[1].budgetMs,240000);const timer=[...a.timers.values()].find(t=>t.ms===240000);assert.ok(timer);timer.fn();assert.equal(a.workers[0].terminated,true);assert.match(a.element('status').textContent,/five-minute/);
+});
+test('audio that already consumed the budget does not trigger a model download',async()=>{
+ const a=app();a.element('transcript').dataset={audioProcessingMs:'300001'};await a.generate();assert.equal(a.workers.length,0);assert.match(a.element('status').textContent,/five-minute limit/);
+});

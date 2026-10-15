@@ -1,0 +1,725 @@
+{
+  "model": "Qwen3.5-9B-q4f16_1-MLC",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "webllm": "0.2.85",
+  "temperature": 0.1,
+  "temperature_scope": "Final extraction; internal reasoning is fixed at 0.7",
+  "pipeline_sha256": "4357cf0caa72fe9231bcd28d59842aeabfd0946eaa581b54b045e8da8e16a276",
+  "normalizer_sha256": "a592605bc1f55e9a65b1bc4d871def5db1ebb7f39daae3e77a9c2d9b51db99cf",
+  "scope": "Three selected fictional development regressions, not all eight fixtures and not an independent or blinded benchmark. Complete means the runs completed, not that every note is accurate. These examples informed prompt development. No percentage accuracy claim.",
+  "cases": [
+    {
+      "id": "informal-schedule-and-completed-check",
+      "transcript": "Priya: Could the clinic entrance open Tuesday?\nNoah: Thursday at the earliest, provided the glazing inspection passes Wednesday.\nPriya: Let me look at the delivery list. Okay, all doors arrived yesterday.\nNoah: Do I need to order another access reader?\nPriya: We don't know whether the spare will work. I'll ask security today.\nNoah: Fine. Let's touch base Friday morning about the entrance.\nPriya: Agreed, Friday morning.",
+      "review": "Retain tentative Thursday entrance opening with Wednesday glazing prerequisite; Priya asks security today; Friday morning check-in is a follow-up. Reader requirement remains unresolved. Do not assign delivery-list checking or purchasing another reader.",
+      "seconds": 106.2,
+      "result": {
+        "mode": "ai",
+        "model": "Qwen3.5-9B-q4f16_1-MLC",
+        "pipeline": "context-notes-v3",
+        "verification": "Full-transcript model review; human verification still required.",
+        "items": [
+          {
+            "id": "n1",
+            "kind": "action",
+            "line": 5,
+            "lines": [
+              5
+            ],
+            "text": "Ask security whether the spare access reader will work.",
+            "owner": "Priya",
+            "due": "today",
+            "sources": [
+              {
+                "line": 5,
+                "evidence": "Priya: We don't know whether the spare will work. I'll ask security today."
+              }
+            ],
+            "evidence": "Priya: We don't know whether the spare will work. I'll ask security today.",
+            "reviewed": false,
+            "flags": [],
+            "status": "active"
+          },
+          {
+            "id": "n2",
+            "kind": "action",
+            "line": 6,
+            "lines": [
+              6,
+              7
+            ],
+            "text": "Touch base about the clinic entrance.",
+            "owner": null,
+            "due": "Friday morning",
+            "sources": [
+              {
+                "line": 6,
+                "evidence": "Noah: Fine. Let's touch base Friday morning about the entrance."
+              },
+              {
+                "line": 7,
+                "evidence": "Priya: Agreed, Friday morning."
+              }
+            ],
+            "evidence": "[6] Noah: Fine. Let's touch base Friday morning about the entrance.\n[7] Priya: Agreed, Friday morning.",
+            "reviewed": false,
+            "flags": [
+              "Unsupported owner removed. Check the source."
+            ],
+            "status": "active"
+          },
+          {
+            "id": "n3",
+            "kind": "decision",
+            "line": 2,
+            "lines": [
+              2
+            ],
+            "text": "Clinic entrance opening restricted to Thursday at the earliest, subject to glazing inspection passing Wednesday.",
+            "owner": null,
+            "due": null,
+            "sources": [
+              {
+                "line": 2,
+                "evidence": "Noah: Thursday at the earliest, provided the glazing inspection passes Wednesday."
+              }
+            ],
+            "evidence": "Noah: Thursday at the earliest, provided the glazing inspection passes Wednesday.",
+            "reviewed": false,
+            "flags": [],
+            "status": "active"
+          },
+          {
+            "id": "n4",
+            "kind": "schedule",
+            "line": 2,
+            "lines": [
+              2
+            ],
+            "text": "Clinic entrance opening tentatively Thursday at the earliest if glazing inspection passes Wednesday.",
+            "owner": null,
+            "due": null,
+            "sources": [
+              {
+                "line": 2,
+                "evidence": "Noah: Thursday at the earliest, provided the glazing inspection passes Wednesday."
+              }
+            ],
+            "evidence": "Noah: Thursday at the earliest, provided the glazing inspection passes Wednesday.",
+            "reviewed": false,
+            "flags": [],
+            "status": "tentative"
+          },
+          {
+            "id": "n5",
+            "kind": "question",
+            "line": 5,
+            "lines": [
+              5
+            ],
+            "text": "Whether the spare access reader will work remains unresolved.",
+            "owner": null,
+            "due": null,
+            "sources": [
+              {
+                "line": 5,
+                "evidence": "Priya: We don't know whether the spare will work. I'll ask security today."
+              }
+            ],
+            "evidence": "Priya: We don't know whether the spare will work. I'll ask security today.",
+            "reviewed": false,
+            "flags": [],
+            "status": "active"
+          }
+        ],
+        "rejected": 0,
+        "summary": "5 candidate items generated by local AI."
+      },
+      "trace": [
+        {
+          "phase": "final",
+          "value": {
+            "actions": [
+              {
+                "text": "Ask security whether the spare access reader will work.",
+                "lines": [
+                  5
+                ],
+                "owner": "Priya",
+                "due": "today"
+              },
+              {
+                "text": "Touch base about the clinic entrance.",
+                "lines": [
+                  6,
+                  7
+                ],
+                "owner": "Priya and Noah",
+                "due": "Friday morning"
+              }
+            ],
+            "decisions": [
+              {
+                "text": "Clinic entrance opening restricted to Thursday at the earliest, subject to glazing inspection passing Wednesday.",
+                "lines": [
+                  2
+                ]
+              }
+            ],
+            "schedules": [
+              {
+                "text": "Clinic entrance opening tentatively Thursday at the earliest if glazing inspection passes Wednesday.",
+                "lines": [
+                  2
+                ],
+                "status": "tentative"
+              }
+            ],
+            "questions": [
+              {
+                "text": "Whether the spare access reader will work remains unresolved.",
+                "lines": [
+                  5
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "qualitative_assistant_review": {
+        "assessment": "Core requested facts retained; duplicate categorization remains.",
+        "supported": [
+          "Priya asks security today, rather than ordering a reader",
+          "Agreed Friday morning follow-up",
+          "Thursday at earliest and Wednesday inspection prerequisite retained",
+          "Reader functionality remains unresolved"
+        ],
+        "issues": [
+          "Opening restriction repeated as both a decision and a schedule"
+        ],
+        "false_commitments_observed": false
+      }
+    },
+    {
+      "id": "handoff-and-revised-deliverable",
+      "transcript": "Leah: I'll submit the permit drawings by Tuesday.\nMateo: I can take that submission instead. The reviewer needs it Wednesday afternoon.\nLeah: Agreed, Mateo will submit the permit drawings Wednesday afternoon instead of me.\nMateo: I'll send Leah the receipt once the portal accepts them.\nLeah: We will keep demolition on hold until the permit is issued.",
+      "review": "One drawing submission owned by Mateo due Wednesday afternoon; no Leah/Tuesday task. Separate receipt email after portal acceptance, with no fixed deadline. Demolition hold until permit issued is preserved.",
+      "seconds": 96.32,
+      "result": {
+        "mode": "ai",
+        "model": "Qwen3.5-9B-q4f16_1-MLC",
+        "pipeline": "context-notes-v3",
+        "verification": "Full-transcript model review; human verification still required.",
+        "items": [
+          {
+            "id": "n1",
+            "kind": "action",
+            "line": 1,
+            "lines": [
+              1,
+              2,
+              3
+            ],
+            "text": "Submit the permit drawings.",
+            "owner": "Mateo",
+            "due": "Wednesday afternoon",
+            "sources": [
+              {
+                "line": 1,
+                "evidence": "Leah: I'll submit the permit drawings by Tuesday."
+              },
+              {
+                "line": 2,
+                "evidence": "Mateo: I can take that submission instead. The reviewer needs it Wednesday afternoon."
+              },
+              {
+                "line": 3,
+                "evidence": "Leah: Agreed, Mateo will submit the permit drawings Wednesday afternoon instead of me."
+              }
+            ],
+            "evidence": "[1] Leah: I'll submit the permit drawings by Tuesday.\n[2] Mateo: I can take that submission instead. The reviewer needs it Wednesday afternoon.\n[3] Leah: Agreed, Mateo will submit the permit drawings Wednesday afternoon instead of me.",
+            "reviewed": false,
+            "flags": [],
+            "status": "active"
+          },
+          {
+            "id": "n2",
+            "kind": "action",
+            "line": 4,
+            "lines": [
+              4
+            ],
+            "text": "Send Leah the receipt once the portal accepts the drawings.",
+            "owner": "Mateo",
+            "due": null,
+            "sources": [
+              {
+                "line": 4,
+                "evidence": "Mateo: I'll send Leah the receipt once the portal accepts them."
+              }
+            ],
+            "evidence": "Mateo: I'll send Leah the receipt once the portal accepts them.",
+            "reviewed": false,
+            "flags": [
+              "No fixed deadline supplied; check the timing condition in the note."
+            ],
+            "status": "active"
+          },
+          {
+            "id": "n3",
+            "kind": "decision",
+            "line": 5,
+            "lines": [
+              5
+            ],
+            "text": "Keep demolition on hold until the permit is issued.",
+            "owner": null,
+            "due": null,
+            "sources": [
+              {
+                "line": 5,
+                "evidence": "Leah: We will keep demolition on hold until the permit is issued."
+              }
+            ],
+            "evidence": "Leah: We will keep demolition on hold until the permit is issued.",
+            "reviewed": false,
+            "flags": [],
+            "status": "active"
+          },
+          {
+            "id": "n4",
+            "kind": "schedule",
+            "line": 3,
+            "lines": [
+              3
+            ],
+            "text": "The permit drawings will be submitted Wednesday afternoon.",
+            "owner": null,
+            "due": null,
+            "sources": [
+              {
+                "line": 3,
+                "evidence": "Leah: Agreed, Mateo will submit the permit drawings Wednesday afternoon instead of me."
+              }
+            ],
+            "evidence": "Leah: Agreed, Mateo will submit the permit drawings Wednesday afternoon instead of me.",
+            "reviewed": false,
+            "flags": [],
+            "status": "active"
+          }
+        ],
+        "rejected": 0,
+        "summary": "4 candidate items generated by local AI."
+      },
+      "trace": [
+        {
+          "phase": "final",
+          "value": {
+            "actions": [
+              {
+                "text": "Submit the permit drawings.",
+                "lines": [
+                  1,
+                  2,
+                  3
+                ],
+                "owner": "Mateo",
+                "due": "Wednesday afternoon"
+              },
+              {
+                "text": "Send Leah the receipt once the portal accepts the drawings.",
+                "lines": [
+                  4
+                ],
+                "owner": "Mateo",
+                "due": "once the portal accepts them"
+              }
+            ],
+            "decisions": [
+              {
+                "text": "Keep demolition on hold until the permit is issued.",
+                "lines": [
+                  5
+                ]
+              }
+            ],
+            "schedules": [
+              {
+                "text": "The permit drawings will be submitted Wednesday afternoon.",
+                "lines": [
+                  3
+                ],
+                "status": "active"
+              }
+            ],
+            "questions": []
+          }
+        }
+      ],
+      "qualitative_assistant_review": {
+        "assessment": "Correct final assignee, corrected date, receipt follow-up and demolition hold; duplicate categorization remains.",
+        "supported": [
+          "Mateo owns the Wednesday afternoon submission; no stale Leah/Tuesday action",
+          "Receipt sent after portal acceptance with no invented fixed deadline",
+          "Demolition remains on hold until permit issuance"
+        ],
+        "issues": [
+          "Submission repeated as an action and a schedule"
+        ],
+        "false_commitments_observed": false
+      }
+    },
+    {
+      "id": "mechanical-coordination-multiple-topics",
+      "transcript": "Mara: We need to coordinate the laboratory ventilation work with the occupied wing. The revised air handler arrived Friday and the delivery inspection was signed off yesterday. We are discussing installation today, not a new equipment order.\nIvo: My duct crew cannot start Monday as previously planned. Wednesday is our earliest estimate, provided the roof curb inspection passes Tuesday. If that inspection slips, the duct start slips too; I cannot commit to a replacement date yet.\nLena: The inspector currently has Tuesday at nine in the morning reserved, but high winds could move that visit. I will call the inspector Monday morning to confirm the appointment, then email the result once I hear back.\nMara: We agreed to keep the existing ventilation operating until the new system has passed its functional test. The tenants cannot occupy an unventilated laboratory, even for one shift.\nIvo: The crane is already booked for Wednesday. If roof access remains closed we would pay for an idle crane. Should I cancel that booking now?\nMara: Yes, please cancel the existing crane booking. We will arrange a new booking only after the roof access date is confirmed.\nIvo: Okay, I'll cancel the crane after this meeting. I am not making another reservation today.\nLena: The controls contractor still needs the final sensor list. I was going to send it Tuesday afternoon, but I am covering another site then.\nMara: I will take over that delivery and send the final sensor list to the controls contractor by Thursday noon.\nLena: Agreed. Thursday noon replaces my Tuesday plan, and Mara owns it. The controls contractor has accepted that timing.\nIvo: Does the allowance cover overtime for the weekend shutdown, or do I need to submit a separate price? I can price it if needed, but we have not agreed to overtime.\nMara: The owner has not answered the funding question. I'll ask the owner tomorrow afternoon whether weekend overtime is covered. Don't schedule the overtime until we receive approval.\nLena: We also need someone to manage the tenant notices for the shutdown. I cannot own that because I will be away.\nMara: No one has been assigned the tenant notices yet. We must leave that responsibility open today.\nIvo: Let's touch base Friday morning about roof access and the duct start.\nMara: Yes, Friday morning. We will revisit the crane date then, without promising a new booking now.",
+      "review": "Capture tentative Wednesday duct start dependent on Tuesday roof inspection, Tuesday 9 AM inspection weather dependency, ventilation restriction, actual crane cancellation by Ivo after this meeting with no new booking, final sensor list reassigned to Mara Thursday noon (no Lena Tuesday action), owner funding inquiry by Mara tomorrow afternoon, unresolved overtime coverage and hold, unassigned tenant notices, and Friday morning check-in. No new air-handler order, no commitment to price overtime, no new crane booking.",
+      "seconds": 118.75,
+      "result": {
+        "mode": "ai",
+        "model": "Qwen3.5-9B-q4f16_1-MLC",
+        "pipeline": "context-notes-v3",
+        "verification": "Full-transcript model review; human verification still required.",
+        "items": [
+          {
+            "id": "n1",
+            "kind": "action",
+            "line": 3,
+            "lines": [
+              3
+            ],
+            "text": "Call the inspector Monday morning to confirm the Tuesday 9 am appointment.",
+            "owner": "Lena",
+            "due": "Monday morning",
+            "sources": [
+              {
+                "line": 3,
+                "evidence": "Lena: The inspector currently has Tuesday at nine in the morning reserved, but high winds could move that visit. I will call the inspector Monday morning to confirm the appointment, then email the result once I hear back."
+              }
+            ],
+            "evidence": "Lena: The inspector currently has Tuesday at nine in the morning reserved, but high winds could move that visit. I will call the inspector Monday morning to confirm the appointment, then email the result once I hear back.",
+            "reviewed": false,
+            "flags": [],
+            "status": "active"
+          },
+          {
+            "id": "n2",
+            "kind": "action",
+            "line": 3,
+            "lines": [
+              3
+            ],
+            "text": "Email the inspector appointment result once heard back.",
+            "owner": "Lena",
+            "due": null,
+            "sources": [
+              {
+                "line": 3,
+                "evidence": "Lena: The inspector currently has Tuesday at nine in the morning reserved, but high winds could move that visit. I will call the inspector Monday morning to confirm the appointment, then email the result once I hear back."
+              }
+            ],
+            "evidence": "Lena: The inspector currently has Tuesday at nine in the morning reserved, but high winds could move that visit. I will call the inspector Monday morning to confirm the appointment, then email the result once I hear back.",
+            "reviewed": false,
+            "flags": [],
+            "status": "active"
+          },
+          {
+            "id": "n3",
+            "kind": "action",
+            "line": 5,
+            "lines": [
+              5,
+              6,
+              7
+            ],
+            "text": "Cancel the existing crane booking.",
+            "owner": "Ivo",
+            "due": "after this meeting",
+            "sources": [
+              {
+                "line": 5,
+                "evidence": "Ivo: The crane is already booked for Wednesday. If roof access remains closed we would pay for an idle crane. Should I cancel that booking now?"
+              },
+              {
+                "line": 6,
+                "evidence": "Mara: Yes, please cancel the existing crane booking. We will arrange a new booking only after the roof access date is confirmed."
+              },
+              {
+                "line": 7,
+                "evidence": "Ivo: Okay, I'll cancel the crane after this meeting. I am not making another reservation today."
+              }
+            ],
+            "evidence": "[5] Ivo: The crane is already booked for Wednesday. If roof access remains closed we would pay for an idle crane. Should I cancel that booking now?\n[6] Mara: Yes, please cancel the existing crane booking. We will arrange a new booking only after the roof access date is confirmed.\n[7] Ivo: Okay, I'll cancel the crane after this meeting. I am not making another reservation today.",
+            "reviewed": false,
+            "flags": [],
+            "status": "active"
+          },
+          {
+            "id": "n4",
+            "kind": "action",
+            "line": 12,
+            "lines": [
+              12
+            ],
+            "text": "Ask the owner whether weekend overtime is covered.",
+            "owner": "Mara",
+            "due": "tomorrow afternoon",
+            "sources": [
+              {
+                "line": 12,
+                "evidence": "Mara: The owner has not answered the funding question. I'll ask the owner tomorrow afternoon whether weekend overtime is covered. Don't schedule the overtime until we receive approval."
+              }
+            ],
+            "evidence": "Mara: The owner has not answered the funding question. I'll ask the owner tomorrow afternoon whether weekend overtime is covered. Don't schedule the overtime until we receive approval.",
+            "reviewed": false,
+            "flags": [],
+            "status": "active"
+          },
+          {
+            "id": "n5",
+            "kind": "decision",
+            "line": 6,
+            "lines": [
+              6
+            ],
+            "text": "Hold the new crane booking until the roof access date is confirmed.",
+            "owner": null,
+            "due": null,
+            "sources": [
+              {
+                "line": 6,
+                "evidence": "Mara: Yes, please cancel the existing crane booking. We will arrange a new booking only after the roof access date is confirmed."
+              }
+            ],
+            "evidence": "Mara: Yes, please cancel the existing crane booking. We will arrange a new booking only after the roof access date is confirmed.",
+            "reviewed": false,
+            "flags": [],
+            "status": "active"
+          },
+          {
+            "id": "n6",
+            "kind": "schedule",
+            "line": 2,
+            "lines": [
+              2
+            ],
+            "text": "The duct crew will start Wednesday at the earliest, if the roof curb inspection passes Tuesday.",
+            "owner": null,
+            "due": null,
+            "sources": [
+              {
+                "line": 2,
+                "evidence": "Ivo: My duct crew cannot start Monday as previously planned. Wednesday is our earliest estimate, provided the roof curb inspection passes Tuesday. If that inspection slips, the duct start slips too; I cannot commit to a replacement date yet."
+              }
+            ],
+            "evidence": "Ivo: My duct crew cannot start Monday as previously planned. Wednesday is our earliest estimate, provided the roof curb inspection passes Tuesday. If that inspection slips, the duct start slips too; I cannot commit to a replacement date yet.",
+            "reviewed": false,
+            "flags": [],
+            "status": "tentative"
+          },
+          {
+            "id": "n7",
+            "kind": "schedule",
+            "line": 4,
+            "lines": [
+              4
+            ],
+            "text": "The new ventilation system must pass its functional test before tenants occupy the laboratory.",
+            "owner": null,
+            "due": null,
+            "sources": [
+              {
+                "line": 4,
+                "evidence": "Mara: We agreed to keep the existing ventilation operating until the new system has passed its functional test. The tenants cannot occupy an unventilated laboratory, even for one shift."
+              }
+            ],
+            "evidence": "Mara: We agreed to keep the existing ventilation operating until the new system has passed its functional test. The tenants cannot occupy an unventilated laboratory, even for one shift.",
+            "reviewed": false,
+            "flags": [],
+            "status": "active"
+          },
+          {
+            "id": "n8",
+            "kind": "schedule",
+            "line": 9,
+            "lines": [
+              9,
+              10
+            ],
+            "text": "The controls contractor will receive the final sensor list on Thursday noon.",
+            "owner": null,
+            "due": null,
+            "sources": [
+              {
+                "line": 9,
+                "evidence": "Mara: I will take over that delivery and send the final sensor list to the controls contractor by Thursday noon."
+              },
+              {
+                "line": 10,
+                "evidence": "Lena: Agreed. Thursday noon replaces my Tuesday plan, and Mara owns it. The controls contractor has accepted that timing."
+              }
+            ],
+            "evidence": "[9] Mara: I will take over that delivery and send the final sensor list to the controls contractor by Thursday noon.\n[10] Lena: Agreed. Thursday noon replaces my Tuesday plan, and Mara owns it. The controls contractor has accepted that timing.",
+            "reviewed": false,
+            "flags": [],
+            "status": "active"
+          },
+          {
+            "id": "n9",
+            "kind": "question",
+            "line": 11,
+            "lines": [
+              11,
+              12
+            ],
+            "text": "Whether the allowance covers weekend overtime for the shutdown.",
+            "owner": null,
+            "due": null,
+            "sources": [
+              {
+                "line": 11,
+                "evidence": "Ivo: Does the allowance cover overtime for the weekend shutdown, or do I need to submit a separate price? I can price it if needed, but we have not agreed to overtime."
+              },
+              {
+                "line": 12,
+                "evidence": "Mara: The owner has not answered the funding question. I'll ask the owner tomorrow afternoon whether weekend overtime is covered. Don't schedule the overtime until we receive approval."
+              }
+            ],
+            "evidence": "[11] Ivo: Does the allowance cover overtime for the weekend shutdown, or do I need to submit a separate price? I can price it if needed, but we have not agreed to overtime.\n[12] Mara: The owner has not answered the funding question. I'll ask the owner tomorrow afternoon whether weekend overtime is covered. Don't schedule the overtime until we receive approval.",
+            "reviewed": false,
+            "flags": [],
+            "status": "active"
+          }
+        ],
+        "rejected": 0,
+        "summary": "9 candidate items generated by local AI."
+      },
+      "trace": [
+        {
+          "phase": "final",
+          "value": {
+            "actions": [
+              {
+                "text": "Call the inspector Monday morning to confirm the Tuesday 9 am appointment.",
+                "lines": [
+                  3
+                ],
+                "owner": "Lena",
+                "due": "Monday morning"
+              },
+              {
+                "text": "Email the inspector appointment result once heard back.",
+                "lines": [
+                  3
+                ],
+                "owner": "Lena",
+                "due": null
+              },
+              {
+                "text": "Cancel the existing crane booking.",
+                "lines": [
+                  5,
+                  6,
+                  7
+                ],
+                "owner": "Ivo",
+                "due": "after this meeting"
+              },
+              {
+                "text": "Ask the owner whether weekend overtime is covered.",
+                "lines": [
+                  12
+                ],
+                "owner": "Mara",
+                "due": "tomorrow afternoon"
+              }
+            ],
+            "decisions": [
+              {
+                "text": "Hold the new crane booking until the roof access date is confirmed.",
+                "lines": [
+                  6
+                ]
+              }
+            ],
+            "schedules": [
+              {
+                "text": "The duct crew will start Wednesday at the earliest, if the roof curb inspection passes Tuesday.",
+                "lines": [
+                  2
+                ],
+                "status": "tentative"
+              },
+              {
+                "text": "The new ventilation system must pass its functional test before tenants occupy the laboratory.",
+                "lines": [
+                  4
+                ],
+                "status": "active"
+              },
+              {
+                "text": "The controls contractor will receive the final sensor list on Thursday noon.",
+                "lines": [
+                  9,
+                  10
+                ],
+                "status": "active"
+              }
+            ],
+            "questions": [
+              {
+                "text": "Whether the allowance covers weekend overtime for the shutdown.",
+                "lines": [
+                  11,
+                  12
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "qualitative_assistant_review": {
+        "assessment": "Partial coverage on the longer multi-topic meeting; manual correction required.",
+        "supported": [
+          "Inspector call and follow-up email, with correct call deadline",
+          "Actual crane cancellation and hold on a replacement booking",
+          "Owner funding inquiry with correct owner and deadline",
+          "Tentative Wednesday duct start with Tuesday inspection prerequisite",
+          "Final sensor-list deadline survives the earlier Tuesday proposal",
+          "Overtime funding remains unresolved"
+        ],
+        "issues": [
+          "Sensor-list task is misclassified as a schedule and omits Mara as owner",
+          "Existing-ventilation operating restriction is distorted into a new-system-before-occupancy statement",
+          "Separate inspection/weather dependency, overtime scheduling hold, unassigned tenant notices and Friday check-in omitted"
+        ],
+        "false_commitments_observed": false,
+        "factual_errors_observed": true
+      }
+    }
+  ],
+  "status": "complete",
+  "browser": "155.0.8059.79",
+  "model_setup_seconds": 8.52,
+  "evaluated_on": "2026-10-15",
+  "hardware": "Apple M1 Max, 64 GB unified memory",
+  "model_setup_scope": "Cached model files; setup timing is not the initial approximately 5 GB download.",
+  "verification_limits": [
+    "Other GPUs and the q4f32 variant were not benchmarked in these browser runs.",
+    "Longer discussions can still lose conditions, misclassify notes or omit follow-ups; source-reference validation does not prove semantic correctness.",
+    "Private supplied transcripts and reports are excluded. Original user audio was unavailable, so these checks do not demonstrate improved ASR on those recordings."
+  ],
+  "software_checks": {
+    "javascript_tests_passed": 59,
+    "python_tests_passed": 26,
+    "browser_ui": "Small default, optional hints, schedule status/editing, text export and mobile width verified with a mock model worker."
+  },
+  "audio_smoke": {
+    "fixture": "Included fictional 32.49-second synthetic introduction",
+    "duration_seconds": 32.49,
+    "elapsed_seconds": 16.44,
+    "processing_seconds": 6.09,
+    "model_setup_seconds": 10.36,
+    "transcription_model": "faster-whisper/small.en",
+    "scope": "Real source-runtime audio processing; does not establish real-meeting accuracy or multi-speaker performance."
+  }
+}

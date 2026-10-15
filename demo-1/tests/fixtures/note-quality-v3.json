@@ -1,0 +1,42 @@
+[
+  {
+    "id": "informal-schedule-and-completed-check",
+    "transcript": "Priya: Could the clinic entrance open Tuesday?\nNoah: Thursday at the earliest, provided the glazing inspection passes Wednesday.\nPriya: Let me look at the delivery list. Okay, all doors arrived yesterday.\nNoah: Do I need to order another access reader?\nPriya: We don't know whether the spare will work. I'll ask security today.\nNoah: Fine. Let's touch base Friday morning about the entrance.\nPriya: Agreed, Friday morning.",
+    "review": "Retain tentative Thursday entrance opening with Wednesday glazing prerequisite; Priya asks security today; Friday morning check-in is a follow-up. Reader requirement remains unresolved. Do not assign delivery-list checking or purchasing another reader."
+  },
+  {
+    "id": "handoff-and-revised-deliverable",
+    "transcript": "Leah: I'll submit the permit drawings by Tuesday.\nMateo: I can take that submission instead. The reviewer needs it Wednesday afternoon.\nLeah: Agreed, Mateo will submit the permit drawings Wednesday afternoon instead of me.\nMateo: I'll send Leah the receipt once the portal accepts them.\nLeah: We will keep demolition on hold until the permit is issued.",
+    "review": "One drawing submission owned by Mateo due Wednesday afternoon; no Leah/Tuesday task. Separate receipt email after portal acceptance, with no fixed deadline. Demolition hold until permit issued is preserved."
+  },
+  {
+    "id": "material-availability-is-not-approval",
+    "transcript": "Hana: Is the acoustic sealant stocked or special order?\nOwen: Our supplier in Spokane can supply it. It costs 40 percent more than the specified sealant.\nHana: Do I need to submit a change request?\nOwen: I don't know whether the allowance covers it. I'll check with the owner tomorrow morning.\nHana: We agreed to hold the purchase until the owner approves the extra cost.\nOwen: Yes. I'll email the answer after the owner responds.",
+    "review": "Do not infer standard-stock or special-order status. No commitment to prepare a change request. Owen checks cost coverage tomorrow morning and emails after response; purchasing hold and unresolved cost coverage remain."
+  },
+  {
+    "id": "completed-work-and-recap",
+    "transcript": "Dylan: Please reserve the inspection slot for Thursday.\nSofia: I booked it this morning; the inspector confirmed Thursday at 9 AM.\nDylan: Good, no need to book again. We agreed to use the north entrance for the inspection.\nSofia: I'll notify the tenant today, and send the access instructions by tomorrow afternoon.\nDylan: To recap, inspection Thursday at 9 AM, north entrance, and Sofia handles the two messages.",
+    "review": "No new booking action. Confirmed inspection Thursday 9 AM and north entrance choice; Sofia notifies tenant today and sends access instructions tomorrow afternoon. Recap must not duplicate the two tasks or create a third message."
+  },
+  {
+    "id": "approval-and-cancellation",
+    "transcript": "Tara: Who will pay the surcharge for the acoustic panels? Is it covered by change order four?\nBen: I don't know. Let me ask the client tomorrow morning whether we need a separate change request.\nTara: We won't order the panels until the client approves that cost.\nBen: I'll book a delivery truck for Friday.\nTara: Cancel that truck booking; the delivery date isn't set.\nBen: Okay, no truck booking.",
+    "review": "Ben must ask the client tomorrow morning about surcharge coverage/new change request. Funding approval remains open. Do not order panels until approval is a restriction. The canceled truck booking is not an action."
+  },
+  {
+    "id": "accepted-assignment-and-corrected-date",
+    "transcript": "Anika: Omar, can you send the door schedule to the architect?\nOmar: Yes, I'll send it by Friday noon.\nAnika: Friday is too late. We need it Monday morning instead.\nOmar: Understood. Monday morning replaces Friday for the door schedule.\nAnika: Is the north entrance approved for deliveries?\nOmar: Yes, the site manager approved that entrance this morning.",
+    "review": "One action: Omar sends the door schedule to the architect, due Monday morning; Friday has been superseded. North entrance approval is resolved, not an open question."
+  },
+  {
+    "id": "confirmed-work-and-real-cancellation",
+    "transcript": "Jules: Can you send the revised fire door labels to the inspector by Wednesday?\nMira: I could send a draft Tuesday, but the final labels need the architect's approval.\nJules: We received that written approval this morning.\nMira: Great. I'll send the approved final labels Wednesday afternoon; forget the Tuesday draft.\nJules: The lift is already booked for Friday.\nMira: Please cancel it; we will use the permanent stairs.\nJules: I'll cancel the lift booking after this meeting.\nJules: Does our access permit cover weekend work?\nMira: We don't have an answer yet. I will ask the site office tomorrow.",
+    "review": "Mira sends approved fire door labels to the inspector Wednesday afternoon; no Tuesday draft task or pending architect approval. Jules cancels the already-booked lift after this meeting (Friday is the canceled booking date, not the cancellation deadline). Mira asks the site office tomorrow about weekend permit coverage, which remains open."
+  },
+  {
+    "id": "mechanical-coordination-multiple-topics",
+    "transcript": "Mara: We need to coordinate the laboratory ventilation work with the occupied wing. The revised air handler arrived Friday and the delivery inspection was signed off yesterday. We are discussing installation today, not a new equipment order.\nIvo: My duct crew cannot start Monday as previously planned. Wednesday is our earliest estimate, provided the roof curb inspection passes Tuesday. If that inspection slips, the duct start slips too; I cannot commit to a replacement date yet.\nLena: The inspector currently has Tuesday at nine in the morning reserved, but high winds could move that visit. I will call the inspector Monday morning to confirm the appointment, then email the result once I hear back.\nMara: We agreed to keep the existing ventilation operating until the new system has passed its functional test. The tenants cannot occupy an unventilated laboratory, even for one shift.\nIvo: The crane is already booked for Wednesday. If roof access remains closed we would pay for an idle crane. Should I cancel that booking now?\nMara: Yes, please cancel the existing crane booking. We will arrange a new booking only after the roof access date is confirmed.\nIvo: Okay, I'll cancel the crane after this meeting. I am not making another reservation today.\nLena: The controls contractor still needs the final sensor list. I was going to send it Tuesday afternoon, but I am covering another site then.\nMara: I will take over that delivery and send the final sensor list to the controls contractor by Thursday noon.\nLena: Agreed. Thursday noon replaces my Tuesday plan, and Mara owns it. The controls contractor has accepted that timing.\nIvo: Does the allowance cover overtime for the weekend shutdown, or do I need to submit a separate price? I can price it if needed, but we have not agreed to overtime.\nMara: The owner has not answered the funding question. I'll ask the owner tomorrow afternoon whether weekend overtime is covered. Don't schedule the overtime until we receive approval.\nLena: We also need someone to manage the tenant notices for the shutdown. I cannot own that because I will be away.\nMara: No one has been assigned the tenant notices yet. We must leave that responsibility open today.\nIvo: Let's touch base Friday morning about roof access and the duct start.\nMara: Yes, Friday morning. We will revisit the crane date then, without promising a new booking now.",
+    "review": "Capture tentative Wednesday duct start dependent on Tuesday roof inspection, Tuesday 9 AM inspection weather dependency, ventilation restriction, actual crane cancellation by Ivo after this meeting with no new booking, final sensor list reassigned to Mara Thursday noon (no Lena Tuesday action), owner funding inquiry by Mara tomorrow afternoon, unresolved overtime coverage and hold, unassigned tenant notices, and Friday morning check-in. No new air-handler order, no commitment to price overtime, no new crane booking."
+  }
+]

@@ -13,3 +13,15 @@ test('timing includes processing and requires real positive baseline',()=>{asser
 test('exports disclose processing mode and incomplete review',()=>{const r={...core.extractBasic('Maya: I will write the access plan.'),elapsedMs:1};const text=core.exportMarkdown(r,'Test');assert.match(text,/rules, not AI/);assert.match(text,/- \[ \]/);assert.match(text,/Source line 1/);});
 test('blank and oversized input are rejected',()=>{assert.throws(()=>core.validateTranscript(''));assert.throws(()=>core.validateTranscript('x'.repeat(24001)));});
 test('source helpers fill explicit commitments but avoid multi-action ambiguity',()=>{const item={kind:'action',line:1,text:'Send plan.',owner:null,due:null};const one=core.normalizeModelOutput({items:[item]},'Maya: I will send the plan by Friday.').items[0];assert.equal(one.owner,'Maya');assert.equal(one.due,'Friday');assert.equal(one.flags.length,2);const mixed=core.normalizeModelOutput({items:[item]},'Maya: I will send the plan by Friday. Luis will photograph the floor by Tuesday.').items[0];assert.equal(mixed.owner,null);assert.equal(mixed.due,null);});
+test('an inferred calendar suffix cannot erase a supported relative deadline',()=>{
+  const text='Rae: I will send the access plan tomorrow afternoon.';
+  const raw={format:'meeting-notes-v2',items:[{kind:'action',line:1,text:'Send the access plan.',owner:'Rae',due:'Tomorrow afternoon, May 23rd, 2024'}]};
+  const item=core.normalizeModelOutput(raw,text).items[0];
+  assert.equal(item.due,'Tomorrow afternoon');assert.match(item.flags[0],/calendar date removed/);
+});
+test('deadline article differences preserve the stated time without inferring a new date',()=>{
+ const source='Rae: I will confirm the inspection by end of the day today.';
+ const raw={format:'meeting-notes-v2',items:[{kind:'action',text:'Confirm the inspection.',line:1,owner:'Rae',due:'end of day today'}]};
+ assert.equal(core.normalizeModelOutput(raw,source).items[0].due,'end of day today');
+ raw.items[0].due='end of day tomorrow';assert.equal(core.normalizeModelOutput(raw,source).items[0].due,null);
+});
