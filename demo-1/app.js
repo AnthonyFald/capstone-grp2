@@ -28,7 +28,7 @@
     timeout=setTimeout(()=>stopWorker('Model loading took too long. Check the connection and retry. Successfully saved files can be reused; your transcript is still here.',true),15*60*1000);
     function startWorker(attempt){
       if(ticket!==loadTicket)return;
-      const current=new Worker('ai-worker.js',{type:'module'});worker=current;
+      const current=new Worker('ai-worker.js?v=notes-2',{type:'module'});worker=current;
       function failed(message,retryable){
         if(ticket!==loadTicket||worker!==current)return;
         if(loading&&retryable&&attempt<3){
@@ -47,7 +47,7 @@
         if(data.type==='download-status')$('model-status').textContent=data.text;
         if(data.type==='generation-progress')status(data.text);
         if(data.type==='ready'){
-          ready=true;loading=false;setBusy(false);$('model-progress').hidden=true;$('model-status').textContent='Qwen 2.5 1.5B is loaded. All text processing stays on this computer.';
+          ready=true;loading=false;setBusy(false);$('model-progress').hidden=true;$('model-status').textContent='Qwen 3 8B is loaded. All text processing stays on this computer.';
           $('load-model').textContent='AI model ready';$('load-model').disabled=true;setMode();
           const queued=generateAfterLoad;generateAfterLoad=false;if(queued)generate();else status('Ready. Generate notes to run the real local AI model.');
         }
@@ -61,7 +61,7 @@
     try{
       const adapter=await navigator.gpu.requestAdapter({powerPreference:'high-performance'});if(ticket!==loadTicket)return;
       if(!adapter)throw new Error('No compatible graphics adapter was found. Try Chrome or Edge with hardware acceleration, or use Basic extraction.');
-      modelName=adapter.features.has('shader-f16')?'Qwen2.5-1.5B-Instruct-q4f16_1-MLC':'Qwen2.5-1.5B-Instruct-q4f32_1-MLC';
+      modelName=adapter.features.has('shader-f16')?'Qwen3-8B-q4f16_1-MLC':'Qwen3-8B-q4f32_1-MLC';
       startWorker(1);
     }catch(e){if(ticket===loadTicket)stopWorker(ModelDownload.explain(e),true);}
   }
@@ -78,14 +78,14 @@
       if($('mode').value==='ai'&&!ready){await loadModel({generateAfterLoad:true});return;}
       runTranscript=text;referenceId=Object.keys(scenarios).find(id=>scenarios[id].transcript===text)||null;runTotalStart=queuedNoteStart??performance.now();queuedNoteStart=null;runStart=performance.now();setBusy(true);
       if($('mode').value==='rules'){finish(core.extractBasic(text));setBusy(false);return;}
-      status('Qwen is reading the meeting locally. This can take a minute or two.');
+      status('Local AI is checking the meeting and writing your notes. Keep this tab open.');
       worker.postMessage({type:'generate',transcript:text.split(/\r?\n/).map((line,i)=>'['+(i+1)+'] '+line).join('\n')});
       timeout=setTimeout(()=>stopWorker('This computer took more than fifteen minutes to generate notes. Try a shorter transcript.',true),15*60*1000);
     }catch(e){setBusy(false);status(e.message,true);}
   }
   function renderNotes(){
     if(!result)return;
-    $('notes-list').innerHTML=core.kinds.map(kind=>{const group=result.items.filter(i=>i.kind===kind);return '<section><div class="section-heading"><h3>'+core.labels[kind]+'</h3><span class="count">'+group.length+'</span></div>'+(!group.length?'<p class="muted">None extracted.</p>':group.map(i=>'<article class="note '+(i.reviewed?'reviewed':'')+'" data-id="'+i.id+'"><p class="note-text">'+escape(i.text)+'</p>'+(kind==='action'?'<div class="note-meta"><span>Owner <strong>'+escape(i.owner||'Not specified')+'</strong></span><span>Due <strong>'+escape(i.due||'Not specified')+'</strong></span></div>':'')+(i.flags.length?'<p class="warning">'+i.flags.map(escape).join(' ')+'</p>':'')+'<details class="source"><summary>View source · line '+i.line+'</summary><blockquote>'+escape(i.evidence)+'</blockquote></details><div class="note-actions"><label><input type="checkbox" data-review="'+i.id+'" '+(i.reviewed?'checked':'')+'>Reviewed against source</label><button class="text-button" data-edit="'+i.id+'">Edit</button><button class="text-button" data-remove="'+i.id+'">Remove</button></div></article>').join(''))+'</section>';}).join('');
+    $('notes-list').innerHTML=core.kinds.map(kind=>{const group=result.items.filter(i=>i.kind===kind);return '<section><div class="section-heading"><h3>'+core.labels[kind]+'</h3><span class="count">'+group.length+'</span></div>'+(!group.length?'<p class="muted">None extracted.</p>':group.map(i=>'<article class="note '+(i.reviewed?'reviewed':'')+'" data-id="'+i.id+'"><p class="note-text">'+escape(i.text)+'</p>'+(kind==='action'?'<div class="note-meta"><span>Owner <strong>'+escape(i.owner||'Not specified')+'</strong></span><span>Due <strong>'+escape(i.due||'Not specified')+'</strong></span></div>':'')+(i.flags.length?'<p class="warning">'+i.flags.map(escape).join(' ')+'</p>':'')+'<details class="source"><summary>View source · '+escape(core.sourceLabel(i))+'</summary><blockquote>'+escape(i.evidence)+'</blockquote></details><div class="note-actions"><label><input type="checkbox" data-review="'+i.id+'" '+(i.reviewed?'checked':'')+'>Reviewed against source</label><button class="text-button" data-edit="'+i.id+'">Edit</button><button class="text-button" data-remove="'+i.id+'">Remove</button></div></article>').join(''))+'</section>';}).join('');
     $('review-count').textContent=result.items.filter(i=>i.reviewed).length+' of '+result.items.length+' reviewed';
   }
   function editItem(id){
