@@ -54,3 +54,10 @@ test('identities elsewhere in the meeting cannot supply unrelated cited ownershi
  assert.equal(actionOwner(transcript,'Rae Chen',3).owner,null);
  assert.equal(actionOwner(transcript,'Bo Patel',3).owner,'Bo Patel');
 });
+test('canonical names do not bypass the check for an invented self-recipient',()=>{
+ const transcript='Rae Chen (Architect)\nRae: I will email you the plan.';
+ for(const recipient of ['Rae','Rae Chen']){
+  const raw={format:'meeting-notes-v2',items:[{kind:'action',text:'Email '+recipient+' the plan.',line:2,owner:'Rae Chen',due:null}]};
+  const item=core.normalizeModelOutput(raw,transcript).items[0];assert.equal(item.text,'Email the plan.');assert.equal(item.owner,'Rae Chen');
+ }
+});

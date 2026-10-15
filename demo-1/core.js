@@ -94,8 +94,9 @@
       if(contextual&&x.kind==='action'&&owner&&/\byou\b/i.test(row.text)&&!/\bmyself\b/i.test(row.text)){
         const bare=value=>value.replace(/\s*\([^)]*\)\s*/g,'').trim();
         if(row.speaker&&resolveOwner(row.speaker,[row]).owner===owner){
-          const escaped=bare(owner).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-          const selfRecipient=new RegExp('^(Email|Call|Contact|Notify)\\s+'+escaped+'(?:\\s*\\([^)]*\\))?(?=\\s|[.,;]|$)','i');
+          const aliases=[bare(owner),bare(row.speaker),bare(owner).split(' ')[0]].filter(name=>resolveOwner(name,[row]).owner===owner);
+          const escaped=[...new Set(aliases)].sort((a,b)=>b.length-a.length).map(name=>name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|');
+          const selfRecipient=new RegExp('^(Email|Call|Contact|Notify)\\s+(?:'+escaped+')(?:\\s*\\([^)]*\\))?(?=\\s|[.,;]|$)','i');
           const corrected=noteText.replace(selfRecipient,'$1');
           if(corrected!==noteText){noteText=corrected;flags.push('Inferred self-recipient removed. Verify the recipient against the source.');}
         }
