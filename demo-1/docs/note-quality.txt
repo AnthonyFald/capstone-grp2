@@ -3,20 +3,28 @@ Contextual meeting notes v4 — development and evaluation
 The model remains Qwen3.5 9B, quantized for local WebGPU. No fine-tuning, model
 replacement, remote inference or new download is required for existing users.
 
-The first stage works through consecutive small groups of source turns, producing
-a structured inventory of tasks, owners, exact deadlines, conditions, work scope,
-project milestones and unresolved questions. Every call receives the complete
-transcript for context, including later corrections. The focused excerpts cover
-every source turn once. The final stage reviews each numbered inventory fact: it must cover it in the final notes or explicitly explain its omission.
-It also checks the original transcript for missing facts. Dated physical work
-belongs in schedules; calls/emails/submissions belong in actions. The prompts
-separate follow-up messages and preserve prerequisites from earlier turns.
+The model reads the full meeting separately for follow-ups, scope/restrictions,
+physical milestones, and unanswered questions. Long speaker turns are formatted
+as smaller sentences and coordinated promises, keeping an exact mapping back to
+the original source lines. This changes presentation, not the original transcript.
 
-Both responses must be complete structured output. Invented source references,
-truncated responses and missing inventory assessments fail validation. This is
-coverage bookkeeping, NOT proof that the model correctly understood each fact.
-The audit can still make a bad omission decision or miss a fact in both passes.
-No automatic semantic accuracy claim is made.
+Potential commitment clauses each receive an explicit action review, with an
+additional-actions list for commitments without a pattern cue. Candidates are not
+automatic assignments: the model must reject completed work, canceled tasks,
+unaccepted offers, incidental movements and recaps. Full context remains available
+for later answers, reassignment and deadline changes. The accepting speaker owns
+a requested task; the requester is not automatically its owner. A deadline appearing only
+in a later independent task in the same turn does not date an earlier task.
+
+Each milestone receives a separate full-source check of its work, timing and
+supporting lines. Qualifying timing statements are copied verbatim into the note
+when selected, rather than asking the model to invent a dependency summary. The
+model can still select incomplete or irrelevant evidence, and the timing-context
+filter can miss qualifications; this is not a guarantee of complete dependencies.
+Administrative submissions and undated milestone placeholders are filtered out.
+All generated sections must be complete and cite real original source lines.
+These checks establish provenance, not semantic correctness. Human review is
+still required for omissions, duplicate facts, unsupported certainty and wording.
 
 Owner normalization recognizes unique short/full speaker names and attendee
 metadata. Role suffixes do not invalidate a name. Ambiguous first names remain
@@ -38,12 +46,11 @@ python demo-1/scripts/evaluate-notes.py --model Qwen3.5-9B-q4f16_1-MLC
 
 The browser evaluator uses the actual worker in an isolated Chrome profile.
 Public model files download once; transcripts never leave the local runtime.
---temperature applies to the structured extraction and final review (default 0.1).
-Both stages use complete structured output; there is no free-form thinking draft.
-Default fictional
-fixtures are tests/fixtures/note-quality-v3.json. Reports retain inventory, final
-output, source references, code hashes and timings for human review. Debug
-inventories are not included in user exports. Keep private reports out of Git.
+--temperature applies to the section extraction (default 0.1).
+Each call returns complete structured output; there is no free-form thinking draft.
+Default fictional fixtures are tests/fixtures/note-quality-v3.json. Reports retain section and final
+output, source references, code hashes and timings for human review. Internal review
+metadata is not included in user exports. Keep private reports out of Git.
 
 Measure factual correctness and completeness separately. Freeze the reference
 checklist before inspecting new outputs, count each required fact only once,
@@ -55,4 +62,4 @@ The supplied private scripts and baseline exports are used only on the local
 machine and are excluded from this repository. Historical v3 results remain in
 note-quality-v3-results.json; they describe the previous pipeline, not this one.
 Notes may still miss information or misread conditions. Valid citations and a
-complete coverage ledger do not eliminate the need to review generated notes.
+structured extraction do not eliminate the need to review generated notes.

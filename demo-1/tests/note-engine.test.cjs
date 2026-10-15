@@ -3,21 +3,22 @@ const notes=require('../note-engine.js'),core=require('../core.js');
 const numbered=text=>text.split('\n').map((line,i)=>'['+(i+1)+'] '+line).join('\n');
 const fact={kind:'action',status:'active',text:'Call the supplier to confirm the delivery slot.',owner:'Rae',due:'tomorrow afternoon',lines:[1,2]};
 const transcript='Sam: When will you check the delivery slot?\nRae: Let me call the supplier tomorrow afternoon.\nSam: Thanks, grab a chair.';
-function engine(items,final=items,calls=[]){let inventoryCount=0;return {chat:{completions:{create:async request=>{
+function engine(items,final=items,calls=[]){return {chat:{completions:{create:async request=>{
  calls.push(request);
- const inventory=request.messages[0].content.includes('For this call inventory ONLY'),selected=inventory?items:final;
- if(inventory)inventoryCount+=items.length;
- const entries=selected.map((x,i)=>({...x,...(inventory?{conditions:null}:{covers:i<items.length?[i+1]:[]})}));
- const value={actions:entries.filter(x=>x.kind==='action'),decisions:entries.filter(x=>x.kind==='decision'),schedules:entries.filter(x=>x.kind==='schedule'),questions:entries.filter(x=>x.kind==='question'),...(inventory?{}:{review:Object.fromEntries(Array.from({length:inventoryCount},(_,i)=>['F'+(i+1),'Included in the final notes.']))})};
+ const properties=JSON.parse(request.response_format.schema).properties,section=Object.keys(properties)[0];
+ const kinds={candidate_actions:'action',work_scope_and_restrictions:'decision',milestones:'schedule',milestone:'schedule',unanswered_questions:'question'};
+ const entries=final.filter(item=>item.kind===kinds[section]).map(item=>['milestones','milestone'].includes(section)?{...item,work:item.work||'Roof work',when:item.when||'Friday at the earliest',resources:item.resources||[],conditions:item.conditions?[item.conditions]:[]}:({...item,conditions:item.conditions??null}));
+ const ids=section==='candidate_actions'?Object.keys(properties.candidate_actions.properties):[];
+ const value=section==='milestone'?{milestone:entries[0]}:section==='candidate_actions'?{candidate_actions:Object.fromEntries(ids.map((id,index)=>[id,index===0?entries:[]])),additional_actions:ids.length?[]:entries}:{[section]:entries};
  return {choices:[{finish_reason:'stop',message:{content:JSON.stringify(value)}}]};
 }}}};}
-test('reasoning and final notes both read the full meeting, including later replies',async()=>{
+test('each section reads the full meeting, including later replies',async()=>{
  const calls=[],raw=await notes.generate(engine([fact],[fact],calls),numbered(transcript));
- assert.equal(calls.length,2);for(const call of calls)assert.match(call.messages.at(-1).content,/grab a chair/);
+ assert.equal(calls.length,4);for(const call of calls)assert.match(call.messages.at(-1).content,/grab a chair/);
  assert.equal(calls[0].extra_body.enable_thinking,false);assert.equal(calls[1].extra_body.enable_thinking,false);
  const item=core.normalizeModelOutput(raw,transcript).items[0];assert.deepEqual(item.lines,[1,2]);assert.equal(item.owner,'Rae');assert.equal(item.due,'tomorrow afternoon');
 });
-test('structured inventory is traced separately and never published as minutes',async()=>{
+test('structured fields are rendered into notes without leaking intermediate metadata',async()=>{
  const raw=await notes.generate(engine([fact]),numbered(transcript));
  assert.equal(raw.items[0].text,fact.text);assert.equal(raw.pipeline,'context-notes-v4');
  assert.doesNotMatch(JSON.stringify(raw),/conditions|covers|review\":/);
@@ -29,10 +30,10 @@ test('empty-section placeholders are treated as empty, while real claims still r
 });
 test('tentative milestones retain subject, condition and citations through display and both exports',async()=>{
  const text='Sam: When does roof work start?\nRae: Friday at the earliest if the inspection passes.';
- const schedule={kind:'schedule',status:'tentative',text:'Roof work starts Friday at the earliest if the inspection passes.',owner:null,due:null,lines:[1,2]};
+ const schedule={kind:'schedule',status:'tentative',text:'Roof work starts Friday at the earliest if the inspection passes.',conditions:'if the inspection passes',owner:null,due:null,lines:[1,2]};
  const result=core.normalizeModelOutput(await notes.generate(engine([schedule]),numbered(text)),text);
  assert.equal(result.items[0].status,'tentative');assert.deepEqual(result.items[0].lines,[1,2]);
- for(const exported of [core.exportPlainText(result),core.exportMarkdown({...result,elapsedMs:100},'Test')]){assert.match(exported,/SCHEDULE & DEPENDENCIES|Schedule & dependencies/);assert.match(exported,/Friday at the earliest if the inspection passes/);}
+ for(const exported of [core.exportPlainText(result),core.exportMarkdown({...result,elapsedMs:100},'Test')]){assert.match(exported,/SCHEDULE & DEPENDENCIES|Schedule & dependencies/);assert.match(exported,/Friday at the earliest/);assert.match(result.items[0].text,/if the inspection passes/);}
 });
 test('unsupported final references fail without returning partial notes',async()=>{
  await assert.rejects(notes.generate(engine([fact],[{...fact,lines:[999]}]),numbered(transcript)),/evidence references/);
@@ -83,25 +84,55 @@ test('conditional triggers do not become fixed dates',()=>{
  const raw={format:'meeting-notes-v2',items:[{kind:'action',text:'Email once the designer replies.',line:1,owner:'Rae',due:'once the designer replies'}]};
  const item=core.normalizeModelOutput(raw,'Rae: I will email once the designer replies.').items[0];assert.equal(item.due,null);
 });
-test('coverage review requires a nonempty assessment of every inventory fact',()=>{
- assert.doesNotThrow(()=>notes.validateCoverage({review:{F1:'Retained.',F2:'Omitted: duplicate recap.'}},2));
- for(const review of [{F1:'Retained.'},{F1:'Retained.',F9:'Fabricated reference.'},{F1:'Retained.',F2:''},[]])assert.throws(()=>notes.validateCoverage({review},2),/incomplete/);
-});
-test('truncated inventory is rejected rather than guiding the final notes',async()=>{
+test('truncated sections are rejected rather than publishing partial notes',async()=>{
  let calls=0;
  const mock={chat:{completions:{create:async()=>{calls++;return {choices:[{finish_reason:'length',message:{content:'{"actions":['}}]};}}}};
  await assert.rejects(notes.generate(mock,numbered(transcript)),/ran out of space/);assert.equal(calls,1);
 });
 
-test('focused passes cover every source turn once while retaining all later context',async()=>{
+test('all four sections independently read the complete transcript',async()=>{
  const text='Rae: I will send the drawing Monday.\n'+Array.from({length:18},(_,i)=>'Sam: Background '+i+' '+('routine context '.repeat(12))).join('\n')+'\nSam: I will take over and send it Tuesday instead.';
  const calls=[];await notes.generate(engine([],[],calls),numbered(text));
- assert.ok(calls.length>2);
- const focused=calls.slice(0,-1),covered=[];
- for(const call of focused){
-  const input=call.messages.at(-1).content;
-  assert.match(input,/I will send the drawing Monday/);assert.match(input,/send it Tuesday instead/);
-  const focus=input.match(/<focus>\n([\s\S]*?)\n<\/focus>/)[1];covered.push(...notes.parseTranscript(focus).map(row=>row.line));
- }
- assert.deepEqual(covered,text.split('\n').map((_,i)=>i+1));
+ assert.equal(calls.length,4);
+ for(const call of calls){assert.match(call.messages.at(-1).content,/I will send the drawing Monday/);assert.match(call.messages.at(-1).content,/send it Tuesday instead/);}
+ assert.deepEqual(calls.map(call=>Object.keys(JSON.parse(call.response_format.schema).properties)[0]),['candidate_actions','work_scope_and_restrictions','milestones','unanswered_questions']);
+});
+test('structured prerequisites cannot be lost from displayed and exported notes',async()=>{
+ const text='Rae: The roof work can finish Friday if an extra crew starts Monday.';
+ const item={kind:'schedule',status:'tentative',text:'Roof work can finish Friday.',lines:[1],owner:null,due:null,conditions:'if an extra crew starts Monday'};
+ const result=core.normalizeModelOutput(await notes.generate(engine([item]),numbered(text)),text);
+ assert.match(result.items[0].text,/if an extra crew starts Monday/);
+ assert.match(core.exportPlainText(result),/if an extra crew starts Monday/);
+ assert.equal((result.items[0].text.match(/extra crew/g)||[]).length,1);
+});
+
+test('sentence segmentation preserves source identity and coordinated promises',()=>{
+ const original='Rae: I will check with Dr. Chen today and send an email after confirmation.\nBo: I’ll go to the truck, adjust the roster, and email the plan tomorrow.';
+ const rows=notes.segmentTranscript(notes.parseTranscript(numbered(original)));
+ assert.ok(rows.some(row=>/Dr. Chen/.test(row.raw)));
+ assert.ok(rows.some(row=>/Rae: and send an email/.test(row.raw)&&row.sourceLine===1));
+ assert.ok(rows.some(row=>/adjust the roster/.test(row.raw)&&row.sourceLine===2));
+ assert.ok(rows.some(row=>/Bo: and email the plan tomorrow/.test(row.raw)&&row.sourceLine===2));
+ assert.equal(rows.length,5);
+});
+test('negated coordinated work is not split into an apparent positive promise',()=>{
+ const rows=notes.segmentTranscript(notes.parseTranscript('[1] Rae: I will not call the supplier and send the order.'));
+ assert.equal(rows.length,1);assert.match(rows[0].raw,/will not call/);
+});
+
+test('a later message deadline is not borrowed by a preparation task in the same turn',()=>{
+ const rows=notes.segmentTranscript(notes.parseTranscript('[1] Rae: I will adjust the roster and email the plan tomorrow afternoon.'));
+ const roster={text:'Adjust the roster by tomorrow afternoon.',due:'tomorrow afternoon'};
+ assert.equal(notes.separateDeadline(roster,rows[0],rows).due,null);
+ assert.equal(notes.separateDeadline(roster,rows[0],rows).text,'Adjust the roster.');
+ const email={text:'Email the plan.',due:'tomorrow afternoon'};assert.equal(notes.separateDeadline(email,rows[1],rows).due,'tomorrow afternoon');
+ const reply=notes.segmentTranscript(notes.parseTranscript('[1] Rae: I will adjust the roster.\n[2] Bo: Tomorrow afternoon, please.'));
+ assert.equal(notes.separateDeadline(roster,reply[0],reply).due,'tomorrow afternoon');
+});
+
+test('administrative submissions and undated placeholders are not physical milestones',()=>{
+ for(const work of ['Permit drawings submission','Fire door labels submission'])assert.equal(notes.physicalMilestone({work,when:'Wednesday afternoon'}),false);
+ for(const when of ['tentative','TBD','not specified'])assert.equal(notes.physicalMilestone({work:'Demolition start',when}),false);
+ assert.equal(notes.physicalMilestone({work:'Duct installation',when:'Wednesday at the earliest'}),true);
+ assert.equal(notes.physicalMilestone({work:'Concrete curing',when:'three days after the pour'}),true);
 });
