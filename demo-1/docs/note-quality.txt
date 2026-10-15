@@ -20,14 +20,11 @@ still requires human review. The pipeline can omit a follow-up, misclassify scop
 lose a qualification, or repeat an outdated proposal; it does not certify accuracy.
 
 Timing
-The browser terminates note generation at a five-minute processing budget.
-Known processing time from an applied audio transcript is deducted. Model setup
-and user review are excluded when separately measurable. The companion reports
-processingSeconds separately from modelSetupSeconds. Older imported transcripts
-use elapsedSeconds conservatively. Audio processing itself depends on recording
-length/hardware and is not interrupted by the browser's note timer. A recording
-that consumes the budget cannot proceed to AI notes without a shorter new run.
-The budget is not an assurance that every input will complete successfully.
+Note generation has no elapsed-time cutoff. It continues until completion,
+cancellation, or an error. A live minutes:seconds timer runs during inference
+and stops when the run ends. Model setup and audio timing remain separate.
+The published development snapshot predates this timer-only change; model,
+prompts and inference settings are unchanged.
 
 Transcription
 Whisper Small is the accuracy default; Base remains available. A construction
@@ -51,16 +48,15 @@ Internal reasoning is not exported. Keep private transcripts/reports out of Git.
 Evaluate supported facts, missed key information, correct owner/deadline pairs,
 false commitments and the time needed to review/correct results. These development
 fixtures influenced prompt choices and are not an independent accuracy benchmark.
-No 90% accuracy or guaranteed five-minute success claim is made. Future evaluations
+No 90% accuracy or guaranteed completion time is claimed. Future evaluations
 should keep independently authored meetings held out from prompt changes and
 repeat runs to measure variability.
 
 Selection and limitations
 Several larger/faster configurations were rejected after actual browser runs:
 parameter count and speed alone did not predict correct assignments and dates.
-Longer unrestricted reasoning could use the entire budget without producing final
-notes. The selected approach limits its initial reasoning to reserve time for the
-final source-checked output. See note-quality-v3-results.json for measured results
+The selected approach retains its existing token allowance for internal reasoning
+and then generates the final source-checked output. See note-quality-v3-results.json for measured results
 and remaining errors, rather than treating an additional model pass as proof.
 
 Supplied transcripts were used only for local development checks and are not in

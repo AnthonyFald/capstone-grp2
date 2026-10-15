@@ -1,13 +1,16 @@
 (() => {
   'use strict';
   const $=id=>document.getElementById(id), core=MeetingCore, scenarios=DEMO_SCENARIOS;
-  let result=null,worker=null,ready=false,busy=false,timeout=null,runStart=0,runTranscript='',modelName='',referenceId=null,loadTicket=0,runAudioMs=0;
+  let result=null,worker=null,ready=false,busy=false,timeout=null,runStart=0,runTranscript='',modelName='',referenceId=null,loadTicket=0,runAudioMs=0,generationTicker=null;
   let scores={},measurements={manual:'',review:''},retryTimer=null,loading=false,generateAfterLoad=false,queuedNoteStart=null,runTotalStart=0;
   const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function status(text,error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
+  function updateGenerationElapsed(){const seconds=Math.max(0,Math.floor((performance.now()-runStart)/1000));$('generation-elapsed').textContent='Note generation elapsed: '+Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');}
+  function stopGenerationClock(){if(generationTicker!==null){updateGenerationElapsed();clearInterval(generationTicker);generationTicker=null;}}
+  function startGenerationClock(){stopGenerationClock();$('generation-elapsed').hidden=false;updateGenerationElapsed();generationTicker=setInterval(updateGenerationElapsed,1000);}
   function updateCount(){$('word-count').textContent=($('transcript').value.trim().match(/\S+/g)||[]).length+' words';}
-  function setBusy(value){busy=value;for(const id of ['generate','load-model','mode','scenario','upload-button','transcript'])$(id).disabled=value;$('cancel').hidden=!value;if(!value)clearTimeout(timeout);}
-  function resetResult(){result=null;scores={};measurements={manual:'',review:''};$('empty').hidden=false;$('results').hidden=true;$('run-label').textContent='Ready when you are';renderEvaluation();}
+  function setBusy(value){busy=value;for(const id of ['generate','load-model','mode','scenario','upload-button','transcript'])$(id).disabled=value;$('cancel').hidden=!value;if(value)$('generation-elapsed').hidden=true;else{clearTimeout(timeout);stopGenerationClock();}}
+  function resetResult(){$('generation-elapsed').hidden=true;result=null;scores={};measurements={manual:'',review:''};$('empty').hidden=false;$('results').hidden=true;$('run-label').textContent='Ready when you are';renderEvaluation();}
   function loadScenario(){if($('transcript').dataset)delete $('transcript').dataset.audioProcessingMs;const s=scenarios[$('scenario').value];$('transcript').value=s?s.transcript:'';resetResult();updateCount();status(s?'Synthetic meeting loaded. Choose a processing method.':'Paste a transcript or upload a plain text file.');}
   function setMode(){const ai=$('mode').value==='ai';$('ai-info').hidden=!ai;$('rules-info').hidden=ai;$('generate').textContent=ai?(ready?'Generate AI meeting notes →':'Load AI & generate notes →'):'Extract notes with rules →';status(ai?(ready?'Free local AI is ready.':'Click Load AI & generate notes to start.'):'Basic extraction works instantly and offline. It is not AI.');}
   function tabs(view){$('notes-view').hidden=view!=='notes';$('evaluation-view').hidden=view!=='evaluation';for(const name of ['notes','evaluation']){const active=name===view;$(name+'-tab').classList.toggle('active',active);$(name+'-tab').setAttribute('aria-selected',String(active));}}
@@ -28,7 +31,7 @@
     timeout=setTimeout(()=>stopWorker('Model loading took too long. Check the connection and retry. Successfully saved files can be reused; your transcript is still here.',true),15*60*1000);
     function startWorker(attempt){
       if(ticket!==loadTicket)return;
-      const current=new Worker('ai-worker.js?v=notes-3',{type:'module'});worker=current;
+      const current=new Worker('ai-worker.js?v=notes-4',{type:'module'});worker=current;
       function failed(message,retryable){
         if(ticket!==loadTicket||worker!==current)return;
         if(loading&&retryable&&attempt<3){
@@ -77,14 +80,12 @@
     try{
       const text=core.validateTranscript($('transcript').value);
       runAudioMs=Math.max(0,Number($('transcript').dataset?.audioProcessingMs)||0);
-      const budgetMs=core.processingBudget(runAudioMs);
-      if($('mode').value==='ai'&&budgetMs<=0)throw new Error('Audio processing used the five-minute limit. Keep your transcript; use a shorter recording or Whisper Base for a new run.');
       if($('mode').value==='ai'&&!ready){await loadModel({generateAfterLoad:true});return;}
       runTranscript=text;referenceId=Object.keys(scenarios).find(id=>scenarios[id].transcript===text)||null;runTotalStart=queuedNoteStart??performance.now();queuedNoteStart=null;runStart=performance.now();setBusy(true);
       if($('mode').value==='rules'){finish(core.extractBasic(text));setBusy(false);return;}
       status('Local AI is checking the meeting and writing your notes. Keep this tab open.');
-      worker.postMessage({type:'generate',budgetMs,transcript:text.split(/\r?\n/).map((line,i)=>'['+(i+1)+'] '+line).join('\n')});
-      timeout=setTimeout(()=>stopWorker('The five-minute processing limit was reached. No unchecked draft was published. Your transcript is still here; try a shorter recording or transcript.',true),budgetMs);
+      startGenerationClock();
+      worker.postMessage({type:'generate',transcript:text.split(/\r?\n/).map((line,i)=>'['+(i+1)+'] '+line).join('\n')});
     }catch(e){setBusy(false);status(e.message,true);}
   }
   function renderNotes(){

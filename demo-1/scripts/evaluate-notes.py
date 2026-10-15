@@ -61,7 +61,7 @@ def main():
                     window.noteWorker=new Worker('/demo-1/ai-worker.js',{type:'module'});
                     window.askWorker=message=>new Promise((resolve,reject)=>{
                       window.lastTrace=[];
-                      const timer=setTimeout(()=>{noteWorker.terminate();reject(new Error('Local model timed out.'));},message.type==='load'?15*60*1000:305000);
+                      const timer=message.type==='load'?setTimeout(()=>{noteWorker.terminate();reject(new Error('Local model loading timed out.'));},15*60*1000):null;
                       const fail=error=>{clearTimeout(timer);reject(error);};
                       const done=value=>{clearTimeout(timer);resolve(value);};
                       noteWorker.onerror=event=>fail(new Error(event.message));

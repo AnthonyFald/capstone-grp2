@@ -1,6 +1,6 @@
 /* Free local AI reads discussions, drafts source-linked notes, and checks relevance. */
 import './model-download.js';
-import './note-engine.js?v=notes-3';
+import './note-engine.js?v=notes-4';
 self.fetch=ModelDownload.resilientFetch(self.fetch.bind(self),{notify:text=>self.postMessage({type:'download-status',text})});
 let engine;
 self.onmessage=async({data})=>{
@@ -15,7 +15,7 @@ self.onmessage=async({data})=>{
     }
     if(data.type==='generate'){
       if(!engine)throw new Error('Load the local model first.');
-      const notes=await MeetingNotes.generate(engine,data.transcript,text=>self.postMessage({type:'generation-progress',text}),{budgetMs:data.budgetMs,temperature:data.temperature,trace:data.debug?(phase,value)=>self.postMessage({type:'debug',phase,value}):undefined});
+      const notes=await MeetingNotes.generate(engine,data.transcript,text=>self.postMessage({type:'generation-progress',text}),{temperature:data.temperature,trace:data.debug?(phase,value)=>self.postMessage({type:'debug',phase,value}):undefined});
       self.postMessage({type:'result',content:JSON.stringify(notes)});
     }
   }catch(error){self.postMessage({type:'error',phase:data.type,retryable:ModelDownload.retryable(error),message:error.message||String(error)});}

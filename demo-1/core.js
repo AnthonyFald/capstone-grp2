@@ -82,7 +82,6 @@
     const matches=reference.map(ref=>({reference:ref,candidates:items.filter(i=>i.kind===ref.kind&&(i.lines||[i.line]).includes(ref.line))}));
     return {matches,found:matches.filter(x=>x.candidates.length).length,total:reference.length,unmatched:items.filter(i=>!reference.some(r=>r.kind===i.kind&&(i.lines||[i.line]).includes(r.line)))};
   }
-  function processingBudget(audioMs=0){return Math.max(0,300000-(Number.isFinite(audioMs)?Math.max(0,audioMs):0));}
   function timing(manualSeconds,reviewSeconds,processingMs){
     if(!Number.isFinite(manualSeconds)||manualSeconds<=0||!Number.isFinite(reviewSeconds)||reviewSeconds<0)return null;
     const assisted=reviewSeconds+processingMs/1000;return {assisted,savings:(manualSeconds-assisted)/manualSeconds*100};
@@ -145,6 +144,6 @@
     for(const [line,evidence] of sources){write('Transcript line '+line+':');write(evidence,'  ');out.push('');}
     return out.join('\r\n').trimEnd()+'\r\n';
   }
-  const api={kinds,labels,lines,validateTranscript,extractBasic,normalizeModelOutput,compare,timing,exportMarkdown,exportPlainText,formatDuration,sourceReferences,sourceLabel,processingBudget};
+  const api={kinds,labels,lines,validateTranscript,extractBasic,normalizeModelOutput,compare,timing,exportMarkdown,exportPlainText,formatDuration,sourceReferences,sourceLabel};
   root.MeetingCore=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
