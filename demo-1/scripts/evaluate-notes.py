@@ -39,7 +39,7 @@ def main():
     server = http.server.ThreadingHTTPServer(('127.0.0.1', args.port), functools.partial(Handler, directory=str(ROOT)))
     threading.Thread(target=server.serve_forever, daemon=True).start()
     fixtures = json.loads(args.fixtures.read_text())
-    report = {'model': args.model, 'platform': platform.platform(), 'webllm': '0.2.85', 'temperature': args.temperature, 'temperature_scope': 'Final extraction; internal reasoning is fixed at 0.7',
+    report = {'model': args.model, 'platform': platform.platform(), 'webllm': '0.2.85', 'temperature': args.temperature, 'temperature_scope': 'Final coverage review; complete inventory reasoning uses 0.7',
               'pipeline_sha256': hashlib.sha256((ROOT / 'demo-1/note-engine.js').read_bytes()).hexdigest(),
               'normalizer_sha256': hashlib.sha256((ROOT / 'demo-1/core.js').read_bytes()).hexdigest(),
               'scope': 'Development examples with model-generated output. Read each review criterion and judge the notes. This is not an independent accuracy benchmark.',

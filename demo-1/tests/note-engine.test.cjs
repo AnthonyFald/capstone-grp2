@@ -5,8 +5,9 @@ const fact={kind:'action',status:'active',text:'Call the supplier to confirm the
 const transcript='Sam: When will you check the delivery slot?\nRae: Let me call the supplier tomorrow afternoon.\nSam: Thanks, grab a chair.';
 function engine(items,final=items,calls=[]){return {chat:{completions:{create:async request=>{
  calls.push(request);
- if(calls.length===1)return {choices:[{finish_reason:'length',message:{content:'Internal working record only.'}}]};
- const value={actions:final.filter(x=>x.kind==='action'),decisions:final.filter(x=>x.kind==='decision'),schedules:final.filter(x=>x.kind==='schedule'),questions:final.filter(x=>x.kind==='question')};
+ const inventory=calls.length===1,selected=inventory?items:final;
+ const entries=selected.map((x,i)=>({...x,...(inventory?{conditions:null}:{covers:i<items.length?[i+1]:[]})}));
+ const value={actions:entries.filter(x=>x.kind==='action'),decisions:entries.filter(x=>x.kind==='decision'),schedules:entries.filter(x=>x.kind==='schedule'),questions:entries.filter(x=>x.kind==='question'),...(inventory?{}:{review:Object.fromEntries(items.map((_,i)=>['F'+(i+1),'Included in the final notes.']))})};
  return {choices:[{finish_reason:'stop',message:{content:JSON.stringify(value)}}]};
 }}}};}
 test('reasoning and final notes both read the full meeting, including later replies',async()=>{
@@ -15,10 +16,10 @@ test('reasoning and final notes both read the full meeting, including later repl
  assert.equal(calls[0].extra_body.enable_thinking,true);assert.equal(calls[1].extra_body.enable_thinking,false);
  const item=core.normalizeModelOutput(raw,transcript).items[0];assert.deepEqual(item.lines,[1,2]);assert.equal(item.owner,'Rae');assert.equal(item.due,'tomorrow afternoon');
 });
-test('bounded internal reasoning is never published as minutes',async()=>{
+test('structured inventory is traced separately and never published as minutes',async()=>{
  const raw=await notes.generate(engine([fact]),numbered(transcript));
- assert.equal(raw.items[0].text,fact.text);assert.equal(raw.pipeline,'context-notes-v3');
- assert.doesNotMatch(JSON.stringify(raw),/Internal working record/);
+ assert.equal(raw.items[0].text,fact.text);assert.equal(raw.pipeline,'context-notes-v4');
+ assert.doesNotMatch(JSON.stringify(raw),/conditions|covers|review\":/);
 });
 test('empty-section placeholders are treated as empty, while real claims still require valid citations',async()=>{
  const empty={kind:'decision',text:'None',lines:[-1],status:'active',owner:null,due:null};
@@ -80,4 +81,13 @@ test('unsupported metadata is removed and earlier dates are not restored after r
 test('conditional triggers do not become fixed dates',()=>{
  const raw={format:'meeting-notes-v2',items:[{kind:'action',text:'Email once the designer replies.',line:1,owner:'Rae',due:'once the designer replies'}]};
  const item=core.normalizeModelOutput(raw,'Rae: I will email once the designer replies.').items[0];assert.equal(item.due,null);
+});
+test('coverage review requires a nonempty assessment of every inventory fact',()=>{
+ assert.doesNotThrow(()=>notes.validateCoverage({review:{F1:'Retained.',F2:'Omitted: duplicate recap.'}},2));
+ for(const review of [{F1:'Retained.'},{F1:'Retained.',F9:'Fabricated reference.'},{F1:'Retained.',F2:''},[]])assert.throws(()=>notes.validateCoverage({review},2),/incomplete/);
+});
+test('truncated inventory is rejected rather than guiding the final notes',async()=>{
+ let calls=0;
+ const mock={chat:{completions:{create:async()=>{calls++;return {choices:[{finish_reason:'length',message:{content:'{"actions":['}}]};}}}};
+ await assert.rejects(notes.generate(mock,numbered(transcript)),/ran out of space/);assert.equal(calls,1);
 });

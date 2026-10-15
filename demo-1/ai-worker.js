@@ -1,6 +1,6 @@
 /* Free local AI reads discussions, drafts source-linked notes, and checks relevance. */
 import './model-download.js';
-import './note-engine.js?v=notes-4';
+import './note-engine.js?v=notes-5';
 self.fetch=ModelDownload.resilientFetch(self.fetch.bind(self),{notify:text=>self.postMessage({type:'download-status',text})});
 let engine;
 self.onmessage=async({data})=>{

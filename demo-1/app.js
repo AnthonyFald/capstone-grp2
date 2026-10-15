@@ -31,7 +31,7 @@
     timeout=setTimeout(()=>stopWorker('Model loading took too long. Check the connection and retry. Successfully saved files can be reused; your transcript is still here.',true),15*60*1000);
     function startWorker(attempt){
       if(ticket!==loadTicket)return;
-      const current=new Worker('ai-worker.js?v=notes-4',{type:'module'});worker=current;
+      const current=new Worker('ai-worker.js?v=notes-5',{type:'module'});worker=current;
       function failed(message,retryable){
         if(ticket!==loadTicket||worker!==current)return;
         if(loading&&retryable&&attempt<3){
