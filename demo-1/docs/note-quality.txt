@@ -1,72 +1,65 @@
-Contextual meeting notes v3 — development and evaluation
+Contextual meeting notes v4 — development and evaluation
 
-Qwen3.5 9B reads the complete meeting in two passes. First it creates a bounded
-internal working record of tasks, owners, deadlines, later changes, restrictions,
-conditional milestones and unresolved questions. The second call independently
-checks that record against the complete transcript and returns four separate
-lists: actions, decisions, schedules and unresolved questions. Neither call
-filters the meeting down to phrase-matched action candidates.
+The model remains Qwen3.5 9B, quantized for local WebGPU. No fine-tuning, model
+replacement, remote inference or new download is required for existing users.
 
-The internal record is never displayed/exported and may end at its reasoning
-allowance. The final pass reads the whole source again. A truncated final response
-fails visibly. Only complete final notes with valid references are displayed.
-Schedules have their own section and can be marked tentative. These are model
-selection and inference/prompt changes; model weights are unchanged.
+The model reads the full meeting separately for follow-ups, scope/restrictions,
+physical milestones, and unanswered questions. Long speaker turns are formatted
+as smaller sentences and coordinated promises, keeping an exact mapping back to
+the original source lines. This changes presentation, not the original transcript.
 
-Source line numbers must exist. Original wording is retrieved verbatim and retained
-in the UI and exports. Owners/deadlines must occur in cited evidence. This checks
-provenance, not whether the model interpreted the evidence correctly. Every note
-still requires human review. The pipeline can omit a follow-up, misclassify scope,
-lose a qualification, or repeat an outdated proposal; it does not certify accuracy.
+Potential commitment clauses each receive an explicit action review, with an
+additional-actions list for commitments without a pattern cue. Candidates are not
+automatic assignments: the model must reject completed work, canceled tasks,
+unaccepted offers, incidental movements and recaps. Full context remains available
+for later answers, reassignment and deadline changes. The accepting speaker owns
+a requested task; the requester is not automatically its owner. A deadline appearing only
+in a later independent task in the same turn does not date an earlier task.
+
+Each milestone receives a separate full-source check of its work, timing and
+supporting lines. Qualifying timing statements are copied verbatim into the note
+when selected, rather than asking the model to invent a dependency summary. The
+model can still select incomplete or irrelevant evidence, and the timing-context
+filter can miss qualifications; this is not a guarantee of complete dependencies.
+Administrative submissions and undated milestone placeholders are filtered out.
+All generated sections must be complete and cite real original source lines.
+These checks establish provenance, not semantic correctness. Human review is
+still required for omissions, duplicate facts, unsupported certainty and wording.
+
+Owner normalization recognizes unique short/full speaker names and attendee
+metadata. Role suffixes do not invalidate a name. Ambiguous first names remain
+unassigned and flagged. A person must still be supported in the cited source;
+a company is not automatically replaced with its manager. Original evidence
+is retrieved verbatim. Names and deadline checks establish textual provenance,
+not whether the assignment/deadline belongs to that particular task.
 
 Timing
 Note generation has no elapsed-time cutoff. It continues until completion,
 cancellation, or an error. A live minutes:seconds timer runs during inference
 and stops when the run ends. Model setup and audio timing remain separate.
-The published development snapshot predates this timer-only change; model,
-prompts and inference settings are unchanged.
 
-Transcription
-Whisper Small is the accuracy default; Base remains available. A construction
-vocabulary and optional user spelling hints are passed as initial_prompt.
-They are hints, not automatic transcript replacements or verified identities.
-No original user audio was available for this iteration: supplied ASR transcripts
-can test note extraction but cannot establish improved recognition accuracy.
 
 Checks
 node --test demo-1/tests/*.test.cjs tests/*.test.cjs
 python -m unittest discover -s demo-1/local-audio -p "test_*.py"
 python demo-1/scripts/evaluate-notes.py --model Qwen3.5-9B-q4f16_1-MLC
 
-The real-browser evaluator uses the actual worker and an isolated Chrome profile.
---temperature selects 0.1 (default), 0.3 or 0.7 for final extraction only; the
-internal reasoning pass stays at 0.7. Default fictional development fixtures are
-tests/fixtures/note-quality-v3.json. Reports retain actual final model output,
-source references, code hashes, runtime and criteria for qualitative review.
-Internal reasoning is not exported. Keep private transcripts/reports out of Git.
+The browser evaluator uses the actual worker in an isolated Chrome profile.
+Public model files download once; transcripts never leave the local runtime.
+--temperature applies to the section extraction (default 0.1).
+Each call returns complete structured output; there is no free-form thinking draft.
+Default fictional fixtures are tests/fixtures/note-quality-v3.json. Reports retain section and final
+output, source references, code hashes and timings for human review. Internal review
+metadata is not included in user exports. Keep private reports out of Git.
 
-Evaluate supported facts, missed key information, correct owner/deadline pairs,
-false commitments and the time needed to review/correct results. These development
-fixtures influenced prompt choices and are not an independent accuracy benchmark.
-No 90% accuracy or guaranteed completion time is claimed. Future evaluations
-should keep independently authored meetings held out from prompt changes and
-repeat runs to measure variability.
+Measure factual correctness and completeness separately. Freeze the reference
+checklist before inspecting new outputs, count each required fact only once,
+and report duplicates, owners, timing and unsupported certainty. Test clean
+written scripts to isolate extraction from transcription. Repeated runs and
+independent meetings are needed before claiming a general accuracy improvement.
 
-Selection and limitations
-Several larger/faster configurations were rejected after actual browser runs:
-parameter count and speed alone did not predict correct assignments and dates.
-The selected approach retains its existing token allowance for internal reasoning
-and then generates the final source-checked output. See note-quality-v3-results.json for measured results
-and remaining errors, rather than treating an additional model pass as proof.
-
-Supplied transcripts were used only for local development checks and are not in
-this repository. Public results use fictional fixtures and qualitative assistant
-review, not a blinded accuracy score. The historical note-quality-results.json
-and verification.json describe earlier checks and are not current performance
-claims. Notes can inherit transcription errors; review the transcript first.
-
-The published snapshot runs three selected regressions from the eight available
-fictional fixtures. The first two retain the key facts but repeat an item across
-categories. The longer case omits important follow-ups/conditions and distorts
-a ventilation restriction. The raw output and those findings are retained;
-completion status is not a semantic pass or an accuracy percentage.
+The supplied private scripts and baseline exports are used only on the local
+machine and are excluded from this repository. Historical v3 results remain in
+note-quality-v3-results.json; they describe the previous pipeline, not this one.
+Notes may still miss information or misread conditions. Valid citations and a
+structured extraction do not eliminate the need to review generated notes.

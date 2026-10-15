@@ -25,3 +25,39 @@ test('deadline article differences preserve the stated time without inferring a 
  assert.equal(core.normalizeModelOutput(raw,source).items[0].due,'end of day today');
  raw.items[0].due='end of day tomorrow';assert.equal(core.normalizeModelOutput(raw,source).items[0].due,null);
 });
+function actionOwner(transcript,owner,line){
+ return core.normalizeModelOutput({format:'meeting-notes-v2',items:[{kind:'action',text:'Send the plan.',line,owner,due:null}]},transcript).items[0];
+}
+test('attendee names and unique shortened speaker labels preserve the actual owner',()=>{
+ const transcript='Rae Chen (Project Manager, North Construction)\nRae (GC): I will send the plan.';
+ for(const owner of ['Rae','Rae Chen','Rae Chen (GC)']){
+  const item=actionOwner(transcript,owner,2);assert.equal(item.owner,'Rae Chen');assert.deepEqual(item.flags,[]);
+ }
+});
+test('full and short speaker labels resolve without inventing a surname',()=>{
+ assert.equal(actionOwner('Rae Chen: Hello.\nRae: I will send the plan.','Rae Chen',2).owner,'Rae Chen');
+ assert.equal(actionOwner('Rae: I will send the plan.','Rae Chen',1).owner,null);
+});
+test('ambiguous first names and substring matches do not authorize assignments',()=>{
+ const transcript='Sam Chen (Architect)\nSam Ortiz (Engineer)\nSam: I will send the plan.';
+ assert.equal(actionOwner(transcript,'Sam',3).owner,null);
+ assert.equal(actionOwner(transcript,'Sam Chen',3).owner,null);
+ assert.equal(actionOwner('Joanna: I will send the plan.','Anna',1).owner,null);
+});
+test('company assignments remain with the company rather than its manager',()=>{
+ const transcript='Rae Chen (Project Manager, North Construction)\nNorth Construction will send the plan.';
+ assert.equal(actionOwner(transcript,'North Construction',2).owner,'North Construction');
+ assert.equal(actionOwner(transcript,'Rae Chen',2).owner,null);
+});
+test('identities elsewhere in the meeting cannot supply unrelated cited ownership',()=>{
+ const transcript='Rae Chen (Architect)\nBo Patel (Engineer)\nBo: I will send the plan.';
+ assert.equal(actionOwner(transcript,'Rae Chen',3).owner,null);
+ assert.equal(actionOwner(transcript,'Bo Patel',3).owner,'Bo Patel');
+});
+test('canonical names do not bypass the check for an invented self-recipient',()=>{
+ const transcript='Rae Chen (Architect)\nRae: I will email you the plan.';
+ for(const recipient of ['Rae','Rae Chen']){
+  const raw={format:'meeting-notes-v2',items:[{kind:'action',text:'Email '+recipient+' the plan.',line:2,owner:'Rae Chen',due:null}]};
+  const item=core.normalizeModelOutput(raw,transcript).items[0];assert.equal(item.text,'Email the plan.');assert.equal(item.owner,'Rae Chen');
+ }
+});

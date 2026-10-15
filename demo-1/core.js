@@ -13,6 +13,36 @@
     if(/\b(?:I will|I'll|I shall|let me)\b/i.test(row.text))return row.speaker?.replace(/\s*\([^)]*\)\s*/g,'').trim()||null;
     const m=row.text.match(/^([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+(?:will|must|needs to)\b/);return m?m[1]:null;
   }
+  // Resolve only identities actually present in speaker labels/attendee lines.
+  // A company assignment is not automatically an assignment to its manager.
+  function ownerResolver(rows){
+    const bare=value=>value.replace(/\s*\([^)]*\)\s*/g,'').trim();
+    const key=value=>bare(value).toLocaleLowerCase().replace(/\s+/g,' ');
+    const names=new Map();
+    for(const row of rows){
+      const attendee=row.raw.match(/^\s*(?:[•○*-]\s*)?([\p{L}][\p{L}'’.-]*(?:\s+[\p{L}][\p{L}'’.-]*){1,3})\s*\([^)]*\)\s*$/u);
+      const name=bare(row.speaker||attendee?.[1]||'');
+      if(name&&!/^(?:date|location|attendees|project|meeting|unknown|speaker \d+)$/i.test(name))names.set(key(name),name);
+    }
+    function identities(value){
+      const k=key(value),full=[...names.keys()].filter(n=>n.includes(' ')&&n.split(' ')[0]===k);
+      if(!k.includes(' ')&&full.length)return full;
+      return names.has(k)?[k]:[];
+    }
+    function contains(text,name){
+      const escaped=name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+      return new RegExp('(^|[^\\p{L}\\p{N}])'+escaped+'(?=$|[^\\p{L}\\p{N}])','iu').test(text);
+    }
+    return (candidate,cited)=>{
+      const wanted=identities(candidate);
+      if(wanted.length>1)return {owner:null,flag:'Ambiguous owner. Check which person was assigned.'};
+      if(wanted.length===1){
+        const id=wanted[0],aliases=[...names.keys()].filter(n=>{const ids=identities(n);return ids.length===1&&ids[0]===id;});
+        if(cited.some(row=>aliases.some(alias=>contains(row.raw,alias))))return {owner:names.get(id)};
+      }else if(cited.some(row=>contains(row.raw,bare(candidate))))return {owner:bare(candidate)};
+      return {owner:null,flag:'Unsupported owner removed. Check the source.'};
+    };
+  }
   function extractBasic(text){
     validateTranscript(text);const items=[];
     for(const row of lines(text)){
@@ -29,7 +59,7 @@
     if(typeof raw==='string'){raw=raw.trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/,'');try{raw=JSON.parse(raw);}catch{throw new Error('The local model returned incomplete or invalid JSON. Try a shorter transcript or run again.');}}
     if(!raw||!Array.isArray(raw.items))throw new Error('The model response did not contain a list of meeting items.');
     if(raw.items.length>500)throw new Error('The model returned too many items. Try a shorter transcript.');
-    const source=lines(text), items=[], contextual=raw.format==='meeting-notes-v2';let rejected=Number.isInteger(raw.rejected)&&raw.rejected>=0&&raw.rejected<=80?raw.rejected:0;
+    const source=lines(text),resolveOwner=ownerResolver(source), items=[], contextual=raw.format==='meeting-notes-v2';let rejected=Number.isInteger(raw.rejected)&&raw.rejected>=0&&raw.rejected<=80?raw.rejected:0;
     for(const x of raw.items){
       if(!x||!kinds.includes(x.kind)||typeof x.text!=='string'||!x.text.trim()||!(Number.isInteger(x.line)||Array.isArray(x.lines))){rejected++;continue;}
       const citations=Array.isArray(x.lines)?[...new Set(x.lines)]:[x.line];
@@ -45,7 +75,7 @@
       if(!contextual&&x.kind==='action'&&singleCommitment&&!owner){owner=ownerFrom(row);if(owner)flags.push('Owner filled from an explicit commitment in the source. Verify it.');}
       if(!contextual&&x.kind==='action'&&singleCommitment&&!due){due=dueFrom(row.text);if(due)flags.push('Deadline filled from the source wording. Verify it.');}
       const support=sources.map(r=>r.evidence).join(' ').toLowerCase().replace(/\s+/g,' ');
-      if(owner&&!support.includes(owner.toLowerCase().replace(/\s+/g,' '))){flags.push('Unsupported owner removed. Check the source.');owner=null;}
+      if(owner){const resolved=resolveOwner(owner,source.filter(r=>citations.includes(r.line)));owner=resolved.owner;if(resolved.flag)flags.push(resolved.flag);}
       // An omitted article does not change a deadline: "end of day today"
       // and "end of the day today" refer to the same stated time. Do not
       // discard that time or infer a different date from other source lines.
@@ -63,9 +93,10 @@
       let noteText=x.text.trim().slice(0,1200);
       if(contextual&&x.kind==='action'&&owner&&/\byou\b/i.test(row.text)&&!/\bmyself\b/i.test(row.text)){
         const bare=value=>value.replace(/\s*\([^)]*\)\s*/g,'').trim();
-        if(row.speaker&&bare(row.speaker).toLowerCase()===bare(owner).toLowerCase()){
-          const escaped=bare(owner).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-          const selfRecipient=new RegExp('^(Email|Call|Contact|Notify)\\s+'+escaped+'(?:\\s*\\([^)]*\\))?(?=\\s|[.,;]|$)','i');
+        if(row.speaker&&resolveOwner(row.speaker,[row]).owner===owner){
+          const aliases=[bare(owner),bare(row.speaker),bare(owner).split(' ')[0]].filter(name=>resolveOwner(name,[row]).owner===owner);
+          const escaped=[...new Set(aliases)].sort((a,b)=>b.length-a.length).map(name=>name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|');
+          const selfRecipient=new RegExp('^(Email|Call|Contact|Notify)\\s+(?:'+escaped+')(?:\\s*\\([^)]*\\))?(?=\\s|[.,;]|$)','i');
           const corrected=noteText.replace(selfRecipient,'$1');
           if(corrected!==noteText){noteText=corrected;flags.push('Inferred self-recipient removed. Verify the recipient against the source.');}
         }
