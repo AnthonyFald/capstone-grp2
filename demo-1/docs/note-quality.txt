@@ -1,4 +1,4 @@
-Contextual meeting notes v4 — development and evaluation
+Contextual meeting notes v4.1 — development and evaluation
 
 The model remains Qwen3.5 9B, quantized for local WebGPU. No fine-tuning, model
 replacement, remote inference or new download is required for existing users.
@@ -15,12 +15,28 @@ unaccepted offers, incidental movements and recaps. Full context remains availab
 for later answers, reassignment and deadline changes. The accepting speaker owns
 a requested task; the requester is not automatically its owner. A deadline appearing only
 in a later independent task in the same turn does not date an earlier task.
+Segmentation recognizes then-coordination, repeated positive future subjects, and
+rough punctuation-delimited communication clauses. Original words and source
+line mapping remain intact. Communication nouns (such as an email template in a
+document list) are not automatically converted into message-sending tasks.
+
+Each non-schedule draft receives an additional full-source check with a stable
+claim ID. The check distinguishes the operation from the deliverable, assigns
+a date only to its own task, and can split confused jobs. Supported claims are
+retained even when no correction is returned. Model duplicate labels cannot
+delete notes; exact deterministic de-duplication handles repeats. Non-action
+owner/date fields are normalized before evidence validation. The model can
+still misclassify, omit or incorrectly rewrite a claim.
 
 Each milestone receives a separate full-source check of its work, timing and
-supporting lines. Qualifying timing statements are copied verbatim into the note
+supporting lines. Its initial work label can be corrected rather than locked in;
+an unclear work stage must not be replaced with a guessed specific operation. Prerequisite source lines are selected separately from the draft milestone.
+Up to three qualifying timing statements are copied verbatim into the note
 when selected, rather than asking the model to invent a dependency summary. The
-model can still select incomplete or irrelevant evidence, and the timing-context
-filter can miss qualifications; this is not a guarantee of complete dependencies.
+model can still select incomplete or irrelevant evidence. Selected prerequisite
+quotes are no longer discarded because they name another team or lack a date.
+Causal continuations can include their antecedent from the preceding source turn.
+This is not a guarantee of complete or semantically correct dependencies.
 Administrative submissions and undated milestone placeholders are filtered out.
 All generated sections must be complete and cite real original source lines.
 These checks establish provenance, not semantic correctness. Human review is
@@ -32,6 +48,12 @@ unassigned and flagged. A person must still be supported in the cited source;
 a company is not automatically replaced with its manager. Original evidence
 is retrieved verbatim. Names and deadline checks establish textual provenance,
 not whether the assignment/deadline belongs to that particular task.
+
+The model is instructed to resolve garbled wording only from clearer statements
+in the same transcript, or retain the clear broader task and flag the unclear
+phrase. This instruction does not guarantee that every unclear phrase is caught.
+There are no private script names, dates, answer lookups, term-replacement
+dictionaries, changed model weights, or remote inference calls in this change.
 
 Timing
 Note generation has no elapsed-time cutoff. It continues until completion,
@@ -50,7 +72,8 @@ Public model files download once; transcripts never leave the local runtime.
 Each call returns complete structured output; there is no free-form thinking draft.
 Default fictional fixtures are tests/fixtures/note-quality-v3.json. Reports retain section and final
 output, source references, code hashes and timings for human review. Internal review
-metadata is not included in user exports. Keep private reports out of Git.
+metadata is not included in user exports. Code-hash-specific test URLs and
+browser-served file hashes prevent cached pipeline mix-ups. Keep private reports out of Git.
 
 Measure factual correctness and completeness separately. Freeze the reference
 checklist before inspecting new outputs, count each required fact only once,
@@ -63,3 +86,9 @@ machine and are excluded from this repository. Historical v3 results remain in
 note-quality-v3-results.json; they describe the previous pipeline, not this one.
 Notes may still miss information or misread conditions. Valid citations and a
 structured extraction do not eliminate the need to review generated notes.
+
+Unrelated timing/wording fixtures are in tests/fixtures/note-quality-v4-timing.json.
+Freeze code and reference criteria before private repeat runs. Compare identical
+saved audio transcripts with the same checklist; preserve failed/rejected
+attempts and distinguish note quality from run completion. Do not present
+scores on these development examples as independent general-accuracy estimates.

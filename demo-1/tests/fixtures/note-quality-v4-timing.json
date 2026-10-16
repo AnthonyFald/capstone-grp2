@@ -1,0 +1,61 @@
+[
+  {
+    "id": "exhibition",
+    "transcript": "Nia: I will update the guest list then email the seating plan Friday afternoon.\nOmar: Can the exhibition open Saturday?\nNia: Saturday at the earliest if power certification is complete. We also need two installers to arrive Friday to finish setup in time.\nOmar: The electrical assessor expects to finish certification Friday afternoon, but that appointment is not confirmed. I'll call the assessor today and message you once she confirms.\nNia: Agreed. Hold the public opening announcement until certification is confirmed.",
+    "facts": [
+      "Nia updates guest list",
+      "No deadline borrowed for guest list",
+      "Nia emails seating plan Friday afternoon",
+      "Omar calls assessor today",
+      "Separate Omar message to Nia after confirmation, not to assessor",
+      "Exhibition Saturday at earliest",
+      "Opening depends on completed power certification",
+      "Opening depends on two installers arriving Friday",
+      "Certification expected Friday afternoon, unconfirmed",
+      "Opening announcement held until certification confirmed"
+    ]
+  },
+  {
+    "id": "software-release",
+    "transcript": "Cam: The billing rollout could be Wednesday if the load test passes Tuesday and the security review is closed.\nLeena: The security review will not finish before Thursday afternoon, and that is still an estimate.\nCam: Then Friday at the earliest replaces Wednesday for rollout. We still need both checks to pass.\nElio: I'll check security's progress today and message Cam after the team replies.\nCam: I will update our on-call roster and email the rollback plan Friday morning.\nElio: I'll take over emailing the rollback plan and send it Thursday noon instead.\nCam: Agreed. Elio sends the plan Thursday noon. I'll still update the roster; we haven't set a date for that.",
+    "facts": [
+      "Rollout Friday earliest replaces Wednesday",
+      "Rollout depends on passing Tuesday load test",
+      "Rollout depends on closed security review",
+      "Security finish Thursday afternoon is tentative",
+      "Elio checks security today",
+      "Elio separately messages Cam after reply, no fixed due",
+      "Cam updates roster with no deadline",
+      "Elio sends rollback plan Thursday noon",
+      "No surviving Cam/Friday rollback email assignment"
+    ]
+  },
+  {
+    "id": "workshop-materials",
+    "transcript": "Mira: We need the replacement filter cartridge before packaging.\nSol: Does the maintenance budget cover the filter cartridge, or do we need a separate purchase request?\nMira: The budget covers inspection labor. I'm not sure about the filter carriage. I'll ask Finance tomorrow morning and email you after the answer.\nSol: Fine, don't order until Finance confirms coverage.\nMira: We also need the part from the damaged label. It sounds like zindle, but I cannot make out the part number. Do not guess it.\nSol: I will photograph that label today. Packaging could finish Monday if the filter arrives Sunday.\nMira: The supplier says Sunday delivery is possible, not confirmed.",
+    "facts": [
+      "Replacement filter cartridge required before packaging",
+      "Known budget covers inspection labor",
+      "Cartridge coverage vs separate purchase request unresolved",
+      "Mira asks Finance tomorrow morning",
+      "Separate Mira email to Sol after answer, no fixed deadline",
+      "Purchase hold until Finance confirms coverage",
+      "Part identification remains uncertain; no invented number or confident zindle part",
+      "Sol photographs label today",
+      "Packaging Monday conditional on filter arrival Sunday",
+      "Sunday delivery possible/unconfirmed"
+    ]
+  },
+  {
+    "id": "document-nouns",
+    "transcript": "Priya: I'll write the guide, an email template, and a checklist by Tuesday.\nJun: Good. No need to send a message to anyone yet; these are three draft documents.\nPriya: I will send the completed documents to Jun after legal approval.\nJun: The launch can be Monday only if legal approval arrives Friday.\nPriya: If legal is late, Monday moves too. We have not confirmed an alternate date.",
+    "facts": [
+      "Priya writes guide, email template and checklist as documents",
+      "Writing all three documents due Tuesday",
+      "No invented email-message task from the email-template noun",
+      "Separate Priya delivery to Jun after legal approval, no fixed deadline",
+      "Monday launch conditional on legal approval Friday",
+      "No invented alternate launch date"
+    ]
+  }
+]

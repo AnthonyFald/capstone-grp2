@@ -12,12 +12,17 @@ import http.server
 import json
 from pathlib import Path
 import platform
+import re
 import threading
 import time
 
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
+ASSETS = ['core.js', 'note-engine.js', 'ai-worker.js', 'model-download.js']
+ASSET_HASHES = {name: hashlib.sha256((ROOT / 'demo-1' / name).read_bytes()).hexdigest() for name in ASSETS}
+PREFIX = '/evaluation-' + hashlib.sha256(json.dumps(ASSET_HASHES, sort_keys=True).encode()).hexdigest()[:16]
+PIPELINE = re.search(r"const VERSION='([^']+)'", (ROOT / 'demo-1/note-engine.js').read_text()).group(1)
 
 
 def main():
@@ -33,6 +38,17 @@ def main():
     args.output.parent.mkdir(parents=True, exist_ok=True)
 
     class Handler(http.server.SimpleHTTPRequestHandler):
+        def do_GET(self):
+            if self.path.startswith(PREFIX + '/'):
+                self.path = self.path[len(PREFIX):]
+            if 'If-Modified-Since' in self.headers:
+                del self.headers['If-Modified-Since']
+            return super().do_GET()
+
+        def end_headers(self):
+            self.send_header('Cache-Control', 'no-store')
+            super().end_headers()
+
         def log_message(self, *_):
             pass
 
@@ -52,13 +68,13 @@ def main():
                 report['browser'] = browser.browser.version if browser.browser else 'Chrome'
                 page = browser.pages[0]
                 # A plain source page supplies the local secure origin without starting the UI.
-                page.goto(f'http://127.0.0.1:{args.port}/demo-1/tests/fixtures/note-quality.json')
+                page.goto(f'http://127.0.0.1:{args.port}{PREFIX}/demo-1/tests/fixtures/note-quality.json')
                 page.expose_function('modelProgress', lambda value: print(value['text'], flush=True))
                 page.expose_function('noteProgress', lambda value: print(value, flush=True))
                 setup_start = time.monotonic()
-                page.evaluate('''async model=>{
-                    await import('/demo-1/core.js');
-                    window.noteWorker=new Worker('/demo-1/ai-worker.js',{type:'module'});
+                page.evaluate('''async ({model,prefix})=>{
+                    await import(prefix+'/demo-1/core.js');
+                    window.noteWorker=new Worker(prefix+'/demo-1/ai-worker.js',{type:'module'});
                     window.askWorker=message=>new Promise((resolve,reject)=>{
                       window.lastTrace=[];
                       const timer=message.type==='load'?setTimeout(()=>{noteWorker.terminate();reject(new Error('Local model loading timed out.'));},15*60*1000):null;
@@ -76,8 +92,21 @@ def main():
                       noteWorker.postMessage(message);
                     });
                     await askWorker({type:'load',model});
-                }''', args.model)
+                }''', {'model':args.model,'prefix':PREFIX})
                 report['model_setup_seconds'] = round(time.monotonic()-setup_start, 2)
+                served = page.evaluate('''async ({prefix,files})=>{
+                    const hashes={};
+                    for(const name of files){
+                        const response=await fetch(prefix+'/demo-1/'+name,{cache:'no-store'});
+                        const digest=await crypto.subtle.digest('SHA-256',await response.arrayBuffer());
+                        hashes[name]=Array.from(new Uint8Array(digest),x=>x.toString(16).padStart(2,'0')).join('');
+                    }
+                    return hashes;
+                }''', {'prefix':PREFIX,'files':ASSETS})
+                if served != ASSET_HASHES:
+                    raise RuntimeError('Browser-served source does not match the evaluated pipeline.')
+                report['browser_served_sha256'] = served
+                report['version_url_prefix'] = PREFIX
                 args.output.write_text(json.dumps(report, indent=2)+'\n')
                 for case in fixtures:
                     print('Evaluating:', case['id'], flush=True)
@@ -88,6 +117,8 @@ def main():
                             const raw=await askWorker({type:'generate',transcript,temperature,debug:true});
                             return MeetingCore.normalizeModelOutput(raw,fixture.transcript);
                         }''', {'fixture': case, 'temperature': args.temperature})
+                        if result.get('pipeline') != PIPELINE:
+                            raise RuntimeError('A different cached pipeline executed.')
                         result['model'] = args.model
                         report['cases'].append({**case, 'seconds': round(time.monotonic()-start, 2), 'result': result, 'trace': page.evaluate('window.lastTrace')})
                     except Exception as error:

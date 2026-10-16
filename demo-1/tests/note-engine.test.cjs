@@ -5,22 +5,23 @@ const fact={kind:'action',status:'active',text:'Call the supplier to confirm the
 const transcript='Sam: When will you check the delivery slot?\nRae: Let me call the supplier tomorrow afternoon.\nSam: Thanks, grab a chair.';
 function engine(items,final=items,calls=[]){return {chat:{completions:{create:async request=>{
  calls.push(request);
- const properties=JSON.parse(request.response_format.schema).properties,section=Object.keys(properties)[0];
+ const properties=JSON.parse(request.response_format.schema).properties,section=properties.milestone?'milestone':Object.keys(properties)[0];
+ if(section==='checks'){const drafts=JSON.parse(request.messages.at(-1).content.split('</transcript>\n')[1]).drafts;return {choices:[{finish_reason:'stop',message:{content:JSON.stringify({checks:drafts.map(({id,...item})=>({id,assessment:'supported',notes:[item]}))})}}]};}
  const kinds={candidate_actions:'action',work_scope_and_restrictions:'decision',milestones:'schedule',milestone:'schedule',unanswered_questions:'question'};
  const entries=final.filter(item=>item.kind===kinds[section]).map(item=>['milestones','milestone'].includes(section)?{...item,work:item.work||'Roof work',when:item.when||'Friday at the earliest',resources:item.resources||[],conditions:item.conditions?[item.conditions]:[]}:({...item,conditions:item.conditions??null}));
  const ids=section==='candidate_actions'?Object.keys(properties.candidate_actions.properties):[];
- const value=section==='milestone'?{milestone:entries[0]}:section==='candidate_actions'?{candidate_actions:Object.fromEntries(ids.map((id,index)=>[id,index===0?entries:[]])),additional_actions:ids.length?[]:entries}:{[section]:entries};
+ const value=section==='milestone'?{prerequisite_lines:[],milestone:entries[0]}:section==='candidate_actions'?{candidate_actions:Object.fromEntries(ids.map((id,index)=>[id,index===0?entries:[]])),additional_actions:ids.length?[]:entries}:{[section]:entries};
  return {choices:[{finish_reason:'stop',message:{content:JSON.stringify(value)}}]};
 }}}};}
 test('each section reads the full meeting, including later replies',async()=>{
  const calls=[],raw=await notes.generate(engine([fact],[fact],calls),numbered(transcript));
- assert.equal(calls.length,4);for(const call of calls)assert.match(call.messages.at(-1).content,/grab a chair/);
+ assert.equal(calls.length,5);for(const call of calls)assert.match(call.messages.at(-1).content,/grab a chair/);
  assert.equal(calls[0].extra_body.enable_thinking,false);assert.equal(calls[1].extra_body.enable_thinking,false);
  const item=core.normalizeModelOutput(raw,transcript).items[0];assert.deepEqual(item.lines,[1,2]);assert.equal(item.owner,'Rae');assert.equal(item.due,'tomorrow afternoon');
 });
 test('structured fields are rendered into notes without leaking intermediate metadata',async()=>{
  const raw=await notes.generate(engine([fact]),numbered(transcript));
- assert.equal(raw.items[0].text,fact.text);assert.equal(raw.pipeline,'context-notes-v4');
+ assert.equal(raw.items[0].text,fact.text);assert.equal(raw.pipeline,'context-notes-v4.1');
  assert.doesNotMatch(JSON.stringify(raw),/conditions|covers|review\":/);
 });
 test('empty-section placeholders are treated as empty, while real claims still require valid citations',async()=>{
@@ -132,7 +133,66 @@ test('a later message deadline is not borrowed by a preparation task in the same
 
 test('administrative submissions and undated placeholders are not physical milestones',()=>{
  for(const work of ['Permit drawings submission','Fire door labels submission'])assert.equal(notes.physicalMilestone({work,when:'Wednesday afternoon'}),false);
- for(const when of ['tentative','TBD','not specified'])assert.equal(notes.physicalMilestone({work:'Demolition start',when}),false);
+ for(const when of ['tentative','TBD','not specified','null','undefined'])assert.equal(notes.physicalMilestone({work:'Demolition start',when}),false);
  assert.equal(notes.physicalMilestone({work:'Duct installation',when:'Wednesday at the earliest'}),true);
  assert.equal(notes.physicalMilestone({work:'Concrete curing',when:'three days after the pour'}),true);
+});
+
+test('then-coordinated jobs keep separate deadlines without modifying source words',()=>{
+ const rows=notes.segmentTranscript(notes.parseTranscript('[1] Nia: I will update the guest list then email the seating plan Friday afternoon.'));
+ assert.equal(rows.length,2);assert.match(rows[1].raw,/then email/);
+ assert.equal(notes.separateDeadline({text:'Update the guest list.',due:'Friday afternoon'},rows[0],rows).due,null);
+ assert.equal(notes.separateDeadline({text:'Email the seating plan.',due:'Friday afternoon'},rows[1],rows).due,'Friday afternoon');
+ assert.ok(rows.every(row=>row.sourceLine===1));
+});
+test('rough communication clauses are candidates while document-noun lists stay intact',()=>{
+ const rough=notes.segmentTranscript(notes.parseTranscript('[1] Nia: I will prepare the figures, an email you the budget Monday.'));
+ assert.equal(rough.length,2);assert.match(rough[1].raw,/an email you/);
+ const documents=notes.segmentTranscript(notes.parseTranscript('[1] Nia: I will write the guide, an email template, and a checklist by Tuesday.'));
+ assert.equal(documents.length,1);
+});
+test('selected prerequisites survive different speaker/topic words and no date in their clause',()=>{
+ const rows=notes.parseTranscript('[1] Nia: The exhibition opens Saturday.\n[2] Dev: Power certification must finish before opening.\n[3] Mei: We also need two installers Friday to finish setup on time.');
+ const segments=notes.segmentTranscript(rows);
+ const context=notes.timingContext({work:'Exhibition opening',when:'Saturday',lines:[2,3]},segments,rows);
+ assert.match(context.quotes.join(' '),/Power certification must finish before opening/);
+ assert.match(context.quotes.join(' '),/need two installers Friday/);
+});
+test('causal continuation keeps its antecedent even across original turns',()=>{
+ const rows=notes.parseTranscript('[1] Dev: If the inspection passes Thursday, ventilation can finish Friday.\n[2] Nia: That means the exhibition can open Saturday.');
+ const segments=notes.segmentTranscript(rows);
+ const context=notes.timingContext({work:'Exhibition opening',when:'Saturday',lines:[2]},segments,rows);
+ assert.match(context.quotes.join(' '),/inspection passes Thursday/);assert.deepEqual(context.lines,[2,1]);
+});
+
+test('claim checks keep source citations and never export internal assessment',async()=>{
+ const result=await notes.reviewClaims(engine([]),'actions',[fact],notes.parseTranscript(numbered(transcript)),()=>{},{});
+ assert.deepEqual(result[0].lines,[1,2]);assert.equal(result[0].due,'tomorrow afternoon');assert.ok(!('assessment' in result[0]));
+});
+test('claim checking rejects duplicate IDs, missing checks and invented evidence',async()=>{
+ for(const checks of [[],[{id:'wrong',notes:[fact]}],[{id:'N1',notes:[{...fact,lines:[999]}]}]]){
+  const mock={chat:{completions:{create:async()=>({choices:[{finish_reason:'stop',message:{content:JSON.stringify({checks})}}]})}}};
+  await assert.rejects(notes.reviewClaims(mock,'actions',[fact],notes.parseTranscript(numbered(transcript)),()=>{},{}),/source check|evidence references/);
+ }
+});
+
+test('a supported claim with no corrections retains the original note',async()=>{
+ const mock={chat:{completions:{create:async()=>({choices:[{finish_reason:'stop',message:{content:JSON.stringify({checks:[{id:'N1',assessment:'supported',notes:[]}]})}}]})}}};
+ const result=await notes.reviewClaims(mock,'actions',[fact],notes.parseTranscript(numbered(transcript)),()=>{},{});
+ assert.equal(result[0].text,fact.text);assert.equal(result[0].due,fact.due);
+});
+
+test('reviewer duplicate labels cannot delete two different valid commitments',async()=>{
+ const items=[fact,{...fact,text:'Email the delivery plan.',due:null}];
+ const mock={chat:{completions:{create:async()=>({choices:[{finish_reason:'stop',message:{content:JSON.stringify({checks:[{id:'N1',assessment:'duplicate',notes:[]},{id:'N2',assessment:'duplicate',notes:[]}]})}}]})}}};
+ const result=await notes.reviewClaims(mock,'actions',items,notes.parseTranscript(numbered(transcript)),()=>{},{});
+ assert.equal(result.length,2);assert.equal(result[0].text,fact.text);assert.equal(result[1].text,items[1].text);
+});
+
+test('unchanged non-action claims normalize empty owner/date fields before validation',async()=>{
+ for(const assessment of ['supported','duplicate','unclear_wording']){
+  const mock={chat:{completions:{create:async()=>({choices:[{finish_reason:'stop',message:{content:JSON.stringify({checks:[{id:'N1',assessment,notes:[]}]})}}]})}}};
+  const result=await notes.reviewClaims(mock,'decisions',[{text:'Hold purchase until the slot is confirmed.',lines:[1,2]}],notes.parseTranscript(numbered(transcript)),()=>{},{});
+  assert.equal(result.length,1);assert.equal(result[0].owner,null);assert.equal(result[0].due,null);
+ }
 });
