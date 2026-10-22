@@ -76,7 +76,7 @@
       "rfi_change_order_refs": "CO-01; RFI-017",
       "action_required": "Reconcile inspection status with the inspector and subcontractor; circulate the signed release and confirm whether RFI-017 is answered.",
       "responsible_party": "General Contractor / Quality Inspector",
-      "due_date": "2026-05-13 08:00",
+      "due_date": "2026-05-13 8:00",
       "quantity_or_measurement": "Not recorded",
       "supporting_evidence": "Call notes only; no inspection record attached"
     },
@@ -116,7 +116,7 @@
       "rfi_change_order_refs": "CO-01; RFI-017",
       "action_required": "Issue the formal RFI response, confirm receipt, and identify the applicable drawing revision.",
       "responsible_party": "Design Team / General Contractor",
-      "due_date": "2026-05-14 09:00",
+      "due_date": "2026-05-14 9:00",
       "quantity_or_measurement": "Not applicable",
       "supporting_evidence": "Internal engineering note; formal response not attached"
     },
@@ -156,7 +156,7 @@
       "rfi_change_order_refs": "CO-01; RFI-017 shown open",
       "action_required": "Confirm approved drawing revision and complete reinforcement inspection before placement.",
       "responsible_party": "General Contractor / Design Team / Quality Inspector",
-      "due_date": "2026-05-15 08:00",
+      "due_date": "2026-05-15 8:00",
       "quantity_or_measurement": "Reinforcement installed; concrete placed 0 m3",
       "supporting_evidence": "Message referenced but not attached; no reinforcement inspection record"
     },

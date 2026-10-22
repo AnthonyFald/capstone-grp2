@@ -1,0 +1,2293 @@
+{
+  "version": "daily-reports-v18",
+  "note": "New local inference consolidates unchanged retained candidates. Source discovery is reused; original source/predictions remain retained. No end-to-end latency measurement.",
+  "runs": [
+    {
+      "runId": "19212211-0024-4937-b170-c1b712f74328",
+      "createdAt": "2026-10-22T21:30:59.519Z",
+      "pipeline": "daily-reports-v18",
+      "backend": "ollama",
+      "profile": "native-thorough",
+      "thorough": true,
+      "model": "qwen3.5:27b",
+      "modelDigest": "64ae5b1d651fb2709d5928ccb8dcfb4bb2cc9c2c8001ac34497e36a6cf905b59",
+      "reasoning": false,
+      "seed": 42,
+      "nativePolicy": "native-sampling-3",
+      "contextWindow": 32768,
+      "datasetId": "reports-d",
+      "inputSha256": "b82eaabb9672786d8b231907908825a84d94886edbb21b609e81fb35c79d2034",
+      "reports": [
+        {
+          "report_id": "DR-D01",
+          "report_date": "2026-09-08",
+          "report_author": "Plant Maintenance - Shift Lead",
+          "work_area": "Northbank pumping station, standby pump P-6 skid",
+          "shift": "06:30-15:00",
+          "weather": "Indoor work; dry",
+          "crew_count": "3",
+          "work_planned": "Isolate standby pump P-6 and clear the skid for refurbishment.",
+          "work_completed": "Pump isolated, disconnected, and lifted clear. Residue cleaned from the drain pocket.",
+          "materials_equipment": "Pump setting tools, lifting frame, cementitious precision grout",
+          "issue_or_update": "An oily film reappeared in the drain pocket after cleaning. Its origin has not been established. The pump remains isolated.",
+          "schedule_status": "Skid refurbishment can continue under isolation; return to service requires investigation of the recurring film.",
+          "rfi_change_order_refs": "Isolation permit IP-P6-908",
+          "action_required": "Trace the recurring oily film and record the result before return to service.",
+          "responsible_party": "Plant Maintenance",
+          "due_date": "2026-09-15",
+          "quantity_or_measurement": "One pump isolated; approximately 150 mL residue collected",
+          "supporting_evidence": "Isolation certificate IP-P6-908 and maintenance photograph MP6-0801 recorded"
+        },
+        {
+          "report_id": "DR-D02",
+          "report_date": "2026-09-09",
+          "report_author": "Mechanical Installer - Chargehand",
+          "work_area": "Northbank pumping station, standby pump P-6 skid",
+          "shift": "06:30-15:00",
+          "weather": "Indoor work; dry",
+          "crew_count": "5",
+          "work_planned": "Set the replacement pump after bearing-face acceptance and confirmed shim detail.",
+          "work_completed": "Bearing face cleaned and leveling points surveyed. Replacement pump remained in the laydown zone.",
+          "materials_equipment": "Pump setting tools, lifting frame, cementitious precision grout",
+          "issue_or_update": "The crew received verbal clearance at 08:05. No signed bearing-face release had reached the crew by the end of this shift.",
+          "schedule_status": "Pump setting deferred for this shift pending the written bearing-face release and confirmation of the shim stack.",
+          "rfi_change_order_refs": "Work package WP-P6; technical query TQ-061",
+          "action_required": "Provide the signed bearing-face release and the issued shim detail to the installation crew.",
+          "responsible_party": "Principal Contractor / Quality Inspector / Designer",
+          "due_date": "2026-09-10 07:00",
+          "quantity_or_measurement": "Pump installed: 0; surveyed bearing points: 6",
+          "supporting_evidence": "Chargehand shift log and survey sheet SV-P6-09"
+        },
+        {
+          "report_id": "DR-D03",
+          "report_date": "2026-09-09",
+          "report_author": "Principal Contractor - General Foreperson",
+          "work_area": "Northbank pumping station, standby pump P-6 skid",
+          "shift": "06:30-15:00",
+          "weather": "Indoor work; dry",
+          "crew_count": "0",
+          "work_planned": "Coordinate inspection and installation readiness.",
+          "work_completed": "Inspection telephone call held at 07:50; delivery slot moved to the next shift.",
+          "materials_equipment": "Pump setting tools, lifting frame, cementitious precision grout",
+          "issue_or_update": "Foreperson notes say QC passed. This was a telephone update; the signed bearing-face sheet was awaiting issue at 14:30. The mechanical crew reported that its written release had not arrived. The existing M-214 revision B shows a 6 mm shim stack, while the replacement supplier sketch shows 9 mm.",
+          "schedule_status": "Setting held while the bearing-face sheet and applicable shim detail are confirmed.",
+          "rfi_change_order_refs": "TQ-061; M-214 revision B; supplier sketch SK-P6-04",
+          "action_required": "Confirm the applicable shim detail through TQ-061 and distribute the signed bearing-face sheet.",
+          "responsible_party": "Principal Contractor / Designer / Quality Inspector",
+          "due_date": "2026-09-10 07:00",
+          "quantity_or_measurement": "Existing detail: 6 mm; supplier proposal: 9 mm",
+          "supporting_evidence": "Telephone coordination note CN-P6-09; survey sheet SV-P6-09"
+        },
+        {
+          "report_id": "DR-D04",
+          "report_date": "2026-09-10",
+          "report_author": "Principal Contractor - Mechanical Engineer",
+          "work_area": "Northbank pumping station, standby pump P-6 skid",
+          "shift": "06:30-15:00",
+          "weather": "Indoor work; dry",
+          "crew_count": "0",
+          "work_planned": "Obtain designer decision and prepare the grout delivery.",
+          "work_completed": "Engineer circulated an internal draft proposing the 9 mm stack. Grout delivery accepted into the locked store. Pump setting did not start.",
+          "materials_equipment": "Pump setting tools, lifting frame, cementitious precision grout",
+          "issue_or_update": "The internal draft has not been issued by the designer through the document register. The installer has received no approved revision.",
+          "schedule_status": "Pump setting deferred for a second shift; release sheet and issued design detail were awaited at the start of the shift. No project completion-date effect has been calculated.",
+          "rfi_change_order_refs": "TQ-061 awaiting issue; draft M-214 revision D",
+          "action_required": "Issue the signed TQ-061 response with the drawing revision and obtain installation-crew receipt.",
+          "responsible_party": "Designer / Document Control",
+          "due_date": "2026-09-11 12:00",
+          "quantity_or_measurement": "22 sealed grout bags received under delivery GR-462",
+          "supporting_evidence": "Internal draft email and stores receipt GR-462"
+        },
+        {
+          "report_id": "DR-D05",
+          "report_date": "2026-09-10",
+          "report_author": "Quality Inspector - Civil Works",
+          "work_area": "Northbank pumping station, standby pump P-6 skid",
+          "shift": "06:30-15:00",
+          "weather": "Indoor work; dry",
+          "crew_count": "0",
+          "work_planned": "Complete bearing-face inspection.",
+          "work_completed": "Bearing-face inspection accepted at 10:20. Signed release BF-P6-0910 uploaded to the work package and received by the installation chargehand at 10:42.",
+          "materials_equipment": "Pump setting tools, lifting frame, cementitious precision grout",
+          "issue_or_update": "Bearing-face preparation acceptance is closed. This inspection covers bearing-face condition only; anchor torque requires its own witness and acceptance.",
+          "schedule_status": "Bearing-face release complete. Pump setting also requires the issued shim detail and anchor-torque acceptance.",
+          "rfi_change_order_refs": "BF-P6-0910; TQ-061",
+          "action_required": "Request the separate anchor-torque witness before placing grout.",
+          "responsible_party": "Mechanical Installer",
+          "due_date": "2026-09-11",
+          "quantity_or_measurement": "Six bearing points accepted",
+          "supporting_evidence": "Signed bearing-face release BF-P6-0910 uploaded with inspector signature"
+        },
+        {
+          "report_id": "DR-D06",
+          "report_date": "2026-09-11",
+          "report_author": "Mechanical Installer - Chargehand",
+          "work_area": "Northbank pumping station, standby pump P-6 skid",
+          "shift": "06:30-15:00",
+          "weather": "Indoor work; dry",
+          "crew_count": "5",
+          "work_planned": "Complete anchor torque and prepare setting operations.",
+          "work_completed": "Anchors torqued to the work-package values. Witness requested for the afternoon. Pump remained in the laydown zone at 11:30.",
+          "materials_equipment": "Pump setting tools, lifting frame, cementitious precision grout",
+          "issue_or_update": "Anchor torquing by the installer is complete, but inspector witness acceptance has not yet been entered. The crew still awaits the issued shim revision at 11:30.",
+          "schedule_status": "Grouting remains dependent on separate anchor-torque acceptance and receipt of the design instruction.",
+          "rfi_change_order_refs": "Torque work sheet TW-P6-11; TQ-061",
+          "action_required": "Obtain anchor-torque witness acceptance before grouting.",
+          "responsible_party": "Mechanical Installer / Quality Inspector",
+          "due_date": "2026-09-12 07:00",
+          "quantity_or_measurement": "Eight anchors torqued",
+          "supporting_evidence": "Installer torque sheet TW-P6-11; witness request WR-P6-11"
+        },
+        {
+          "report_id": "DR-D07",
+          "report_date": "2026-09-11",
+          "report_author": "Document Controller - Construction Team",
+          "work_area": "Northbank pumping station, standby pump P-6 skid",
+          "shift": "06:30-15:00",
+          "weather": "Indoor work; dry",
+          "crew_count": "0",
+          "work_planned": "Issue the final design instruction and check grout stores.",
+          "work_completed": "Signed TQ-061 response and drawing M-214 revision D issued at 13:10, specifying the 9 mm shim stack. Installation chargehand acknowledged receipt at 13:35.",
+          "materials_equipment": "Pump setting tools, lifting frame, cementitious precision grout",
+          "issue_or_update": "The issued instruction supersedes the earlier 6 mm detail; TQ-061 is closed. The stores check lists 22 bags received, 19 issued to the installer for the next day's grouting, and two sealed bags returned to the main store. One bag is unaccounted for in the transfer log.",
+          "schedule_status": "Design information is released for installation. Stores reconciliation remains open.",
+          "rfi_change_order_refs": "TQ-061 closed; M-214 revision D; transfer ST-P6-11",
+          "action_required": "Reconcile the one-bag difference against store transfers and recorded usage.",
+          "responsible_party": "Stores Controller / Mechanical Installer",
+          "due_date": "2026-09-14",
+          "quantity_or_measurement": "22 received; 19 issued for grouting; 2 sealed bags returned; 1 bag unreconciled",
+          "supporting_evidence": "Signed response TQ-061, revision D drawing, and receipt acknowledgement filed; stores transfer ST-P6-11"
+        },
+        {
+          "report_id": "DR-D08",
+          "report_date": "2026-09-12",
+          "report_author": "Mechanical Installer - Chargehand",
+          "work_area": "Northbank pumping station, standby pump P-6 skid",
+          "shift": "06:30-15:00",
+          "weather": "Indoor work; dry",
+          "crew_count": "5",
+          "work_planned": "Set and grout the replacement pump, then protect the grout during its specified cure.",
+          "work_completed": "Pump set at 07:40 and grouting completed at 09:10 using M-214 revision D with the 9 mm stack. Nineteen grout bags mixed. Crew erected the cure barrier and posted a release time of 2026-09-14 09:10.",
+          "materials_equipment": "Pump setting tools, lifting frame, cementitious precision grout",
+          "issue_or_update": "Anchor-torque inspection reference AT-P6-0912 is entered in the work package, but the signed acceptance sheet is not linked and could not be opened by the chargehand. Preliminary coupling alignment measured 0.18 mm vertical offset against the work-package acceptance limit of 0.10 mm; final alignment remains required before start-up.",
+          "schedule_status": "Physical pump setting and grouting are complete after the earlier deferrals. Grout cure is proceeding to the specified release time. Pump remains isolated for final alignment and start-up checks. Principal Contractor records that an access notice was sent to instrumentation on 2026-09-11.",
+          "rfi_change_order_refs": "M-214 revision D; TQ-061 closed; AT-P6-0912; alignment sheet AL-P6-12",
+          "action_required": "Link the signed anchor-torque acceptance and complete final alignment after cure before start-up.",
+          "responsible_party": "Quality Inspector / Mechanical Installer",
+          "due_date": "2026-09-15",
+          "quantity_or_measurement": "19 grout bags mixed; preliminary vertical offset 0.18 mm; acceptance limit 0.10 mm",
+          "supporting_evidence": "Grout batch sheet GB-P6-12 and preliminary alignment sheet AL-P6-12; signed AT-P6-0912 sheet not linked"
+        },
+        {
+          "report_id": "DR-D09",
+          "report_date": "2026-09-12",
+          "report_author": "Instrumentation Installer - Chargehand",
+          "work_area": "Northbank pumping station, service rack beside pump P-6",
+          "shift": "06:30-15:00",
+          "weather": "Indoor work; dry",
+          "crew_count": "3",
+          "work_planned": "Terminate instruments on the adjacent service rack.",
+          "work_completed": "Skid access restricted from 09:00 to 10:20 during grouting. Three technicians worked in the panel room during the restriction and returned to the rack at 10:20.",
+          "materials_equipment": "Pump setting tools, lifting frame, cementitious precision grout",
+          "issue_or_update": "The shift log does not establish whether this chargehand received the advance access notice. No lost full shift or project completion-date change is recorded.",
+          "schedule_status": "Adjacent instrument work was resequenced for 80 minutes. The cure barrier affects only the pump skid; service-rack access is available.",
+          "rfi_change_order_refs": "Coordination note IC-P6-12",
+          "action_required": "Check receipt of the advance access notice and record the agreed notification route for future skid work.",
+          "responsible_party": "Principal Contractor / Instrumentation Installer",
+          "due_date": "2026-09-14",
+          "quantity_or_measurement": "Three technicians reassigned for 80 minutes; rack work resumed at 10:20",
+          "supporting_evidence": "Instrumentation shift log IC-P6-12 and panel-room work record"
+        }
+      ],
+      "sourceRunId": "fe0f1c56-9ee6-42f6-908e-64155e8fe184",
+      "sourcePipeline": "daily-reports-v17",
+      "sourceFile": "development-v17-native27-d-staged.json",
+      "sourceCandidateCount": 16,
+      "sourceOriginalFindings": [
+        {
+          "id": "F1",
+          "title": "Cause requiring investigation",
+          "category": "unresolved",
+          "status": "open",
+          "observation": "Reported context · 2026-09-08 · DR-D01 · Plant Maintenance - Shift Lead: “An oily film reappeared in the drain pocket after cleaning.”\nReported context · 2026-09-08 · DR-D01 · Plant Maintenance - Shift Lead: “Its origin has not been established.”\nLatest cited update · 2026-09-08 · DR-D01 · Plant Maintenance - Shift Lead: “Skid refurbishment can continue under isolation; return to service requires investigation of the recurring film.”\nReported context · 2026-09-08 · DR-D01 · Plant Maintenance - Shift Lead: “Trace the recurring oily film and record the result before return to service.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D01",
+              "field": "issue_or_update",
+              "quote": "An oily film reappeared in the drain pocket after cleaning."
+            },
+            {
+              "report_id": "DR-D01",
+              "field": "issue_or_update",
+              "quote": "Its origin has not been established."
+            },
+            {
+              "report_id": "DR-D01",
+              "field": "schedule_status",
+              "quote": "Skid refurbishment can continue under isolation; return to service requires investigation of the recurring film."
+            },
+            {
+              "report_id": "DR-D01",
+              "field": "action_required",
+              "quote": "Trace the recurring oily film and record the result before return to service."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S004",
+            "S005",
+            "S007",
+            "S009"
+          ],
+          "latestFactIds": [
+            "S007"
+          ],
+          "kind": "cause",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F2",
+          "title": "Decision communication and receipt",
+          "category": "communication",
+          "status": "resolved",
+          "observation": "Reported context · 2026-09-09 · DR-D02 · Mechanical Installer - Chargehand: “No signed bearing-face release had reached the crew by the end of this shift.”\nReported context · 2026-09-09 · DR-D03 · Principal Contractor - General Foreperson: “The mechanical crew reported that its written release had not arrived.”\nLatest cited update · 2026-09-10 · DR-D05 · Quality Inspector - Civil Works: “Signed release BF-P6-0910 uploaded to the work package and received by the installation chargehand at 10:42.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D02",
+              "field": "issue_or_update",
+              "quote": "No signed bearing-face release had reached the crew by the end of this shift."
+            },
+            {
+              "report_id": "DR-D03",
+              "field": "issue_or_update",
+              "quote": "The mechanical crew reported that its written release had not arrived."
+            },
+            {
+              "report_id": "DR-D05",
+              "field": "work_completed",
+              "quote": "Signed release BF-P6-0910 uploaded to the work package and received by the installation chargehand at 10:42."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S016",
+            "S026",
+            "S047"
+          ],
+          "latestFactIds": [
+            "S047"
+          ],
+          "kind": "communication",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F3",
+          "title": "Approved detail or revision",
+          "category": "unresolved",
+          "status": "resolved",
+          "observation": "Reported context · 2026-09-09 · DR-D03 · Principal Contractor - General Foreperson: “The existing M-214 revision B shows a 6 mm shim stack, while the replacement supplier sketch shows 9 mm.”\nReported context · 2026-09-09 · DR-D03 · Principal Contractor - General Foreperson: “Existing detail: 6 mm; supplier proposal: 9 mm”\nReported context · 2026-09-10 · DR-D04 · Principal Contractor - Mechanical Engineer: “Engineer circulated an internal draft proposing the 9 mm stack.”\nReported context · 2026-09-10 · DR-D04 · Principal Contractor - Mechanical Engineer: “The internal draft has not been issued by the designer through the document register.”\nReported context · 2026-09-10 · DR-D04 · Principal Contractor - Mechanical Engineer: “The installer has received no approved revision.”\nLatest cited update · 2026-09-11 · DR-D07 · Document Controller - Construction Team: “Signed TQ-061 response and drawing M-214 revision D issued at 13:10, specifying the 9 mm shim stack.”\nLatest cited update · 2026-09-11 · DR-D07 · Document Controller - Construction Team: “Installation chargehand acknowledged receipt at 13:35.”\nLatest cited update · 2026-09-11 · DR-D07 · Document Controller - Construction Team: “The issued instruction supersedes the earlier 6 mm detail; TQ-061 is closed.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D03",
+              "field": "issue_or_update",
+              "quote": "The existing M-214 revision B shows a 6 mm shim stack, while the replacement supplier sketch shows 9 mm."
+            },
+            {
+              "report_id": "DR-D03",
+              "field": "quantity_or_measurement",
+              "quote": "Existing detail: 6 mm; supplier proposal: 9 mm"
+            },
+            {
+              "report_id": "DR-D04",
+              "field": "work_completed",
+              "quote": "Engineer circulated an internal draft proposing the 9 mm stack."
+            },
+            {
+              "report_id": "DR-D04",
+              "field": "issue_or_update",
+              "quote": "The internal draft has not been issued by the designer through the document register."
+            },
+            {
+              "report_id": "DR-D04",
+              "field": "issue_or_update",
+              "quote": "The installer has received no approved revision."
+            },
+            {
+              "report_id": "DR-D07",
+              "field": "work_completed",
+              "quote": "Signed TQ-061 response and drawing M-214 revision D issued at 13:10, specifying the 9 mm shim stack."
+            },
+            {
+              "report_id": "DR-D07",
+              "field": "work_completed",
+              "quote": "Installation chargehand acknowledged receipt at 13:35."
+            },
+            {
+              "report_id": "DR-D07",
+              "field": "issue_or_update",
+              "quote": "The issued instruction supersedes the earlier 6 mm detail; TQ-061 is closed."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S027",
+            "S031",
+            "S034",
+            "S037",
+            "S038",
+            "S068",
+            "S069",
+            "S070"
+          ],
+          "latestFactIds": [
+            "S068",
+            "S069",
+            "S070"
+          ],
+          "kind": "revision",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F4",
+          "title": "Resolution and supporting record",
+          "category": "communication",
+          "status": "needs_verification",
+          "observation": "Reported context · 2026-09-10 · DR-D05 · Quality Inspector - Civil Works: “Request the separate anchor-torque witness before placing grout.”\nReported context · 2026-09-11 · DR-D06 · Mechanical Installer - Chargehand: “Anchor torquing by the installer is complete, but inspector witness acceptance has not yet been entered.”\nReported context · 2026-09-11 · DR-D06 · Mechanical Installer - Chargehand: “Obtain anchor-torque witness acceptance before grouting.”\nLatest cited update · 2026-09-12 · DR-D08 · Mechanical Installer - Chargehand: “Anchor-torque inspection reference AT-P6-0912 is entered in the work package, but the signed acceptance sheet is not linked and could not be opened by the chargehand.”\nReported context · 2026-09-12 · DR-D08 · Mechanical Installer - Chargehand: “Grout batch sheet GB-P6-12 and preliminary alignment sheet AL-P6-12; signed AT-P6-0912 sheet not linked”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D05",
+              "field": "action_required",
+              "quote": "Request the separate anchor-torque witness before placing grout."
+            },
+            {
+              "report_id": "DR-D06",
+              "field": "issue_or_update",
+              "quote": "Anchor torquing by the installer is complete, but inspector witness acceptance has not yet been entered."
+            },
+            {
+              "report_id": "DR-D06",
+              "field": "action_required",
+              "quote": "Obtain anchor-torque witness acceptance before grouting."
+            },
+            {
+              "report_id": "DR-D08",
+              "field": "issue_or_update",
+              "quote": "Anchor-torque inspection reference AT-P6-0912 is entered in the work package, but the signed acceptance sheet is not linked and could not be opened by the chargehand."
+            },
+            {
+              "report_id": "DR-D08",
+              "field": "supporting_evidence",
+              "quote": "Grout batch sheet GB-P6-12 and preliminary alignment sheet AL-P6-12; signed AT-P6-0912 sheet not linked"
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S053",
+            "S060",
+            "S064",
+            "S083",
+            "S092"
+          ],
+          "latestFactIds": [
+            "S083"
+          ],
+          "kind": "record",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F5",
+          "title": "Quantity reconciliation",
+          "category": "conflict",
+          "status": "open",
+          "observation": "Reported context · 2026-09-11 · DR-D07 · Document Controller - Construction Team: “The stores check lists 22 bags received, 19 issued to the installer for the next day's grouting, and two sealed bags returned to the main store.”\nReported context · 2026-09-11 · DR-D07 · Document Controller - Construction Team: “One bag is unaccounted for in the transfer log.”\nLatest cited update · 2026-09-11 · DR-D07 · Document Controller - Construction Team: “Stores reconciliation remains open.”\nLatest cited update · 2026-09-11 · DR-D07 · Document Controller - Construction Team: “Reconcile the one-bag difference against store transfers and recorded usage.”\nReported context · 2026-09-11 · DR-D07 · Document Controller - Construction Team: “22 received; 19 issued for grouting; 2 sealed bags returned; 1 bag unreconciled”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D07",
+              "field": "issue_or_update",
+              "quote": "The stores check lists 22 bags received, 19 issued to the installer for the next day's grouting, and two sealed bags returned to the main store."
+            },
+            {
+              "report_id": "DR-D07",
+              "field": "issue_or_update",
+              "quote": "One bag is unaccounted for in the transfer log."
+            },
+            {
+              "report_id": "DR-D07",
+              "field": "schedule_status",
+              "quote": "Stores reconciliation remains open."
+            },
+            {
+              "report_id": "DR-D07",
+              "field": "action_required",
+              "quote": "Reconcile the one-bag difference against store transfers and recorded usage."
+            },
+            {
+              "report_id": "DR-D07",
+              "field": "quantity_or_measurement",
+              "quote": "22 received; 19 issued for grouting; 2 sealed bags returned; 1 bag unreconciled"
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S071",
+            "S072",
+            "S074",
+            "S076",
+            "S077"
+          ],
+          "latestFactIds": [
+            "S074",
+            "S076"
+          ],
+          "kind": "quantity",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F6",
+          "title": "Quality and closeout",
+          "category": "update",
+          "status": "open",
+          "observation": "Reported context · 2026-09-12 · DR-D08 · Mechanical Installer - Chargehand: “Preliminary coupling alignment measured 0.18 mm vertical offset against the work-package acceptance limit of 0.10 mm; final alignment remains required before start-up.”\nLatest cited update · 2026-09-12 · DR-D08 · Mechanical Installer - Chargehand: “Link the signed anchor-torque acceptance and complete final alignment after cure before start-up.”\nReported context · 2026-09-12 · DR-D08 · Mechanical Installer - Chargehand: “19 grout bags mixed; preliminary vertical offset 0.18 mm; acceptance limit 0.10 mm”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D08",
+              "field": "issue_or_update",
+              "quote": "Preliminary coupling alignment measured 0.18 mm vertical offset against the work-package acceptance limit of 0.10 mm; final alignment remains required before start-up."
+            },
+            {
+              "report_id": "DR-D08",
+              "field": "action_required",
+              "quote": "Link the signed anchor-torque acceptance and complete final alignment after cure before start-up."
+            },
+            {
+              "report_id": "DR-D08",
+              "field": "quantity_or_measurement",
+              "quote": "19 grout bags mixed; preliminary vertical offset 0.18 mm; acceptance limit 0.10 mm"
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S084",
+            "S090",
+            "S091"
+          ],
+          "latestFactIds": [
+            "S090"
+          ],
+          "kind": "closeout",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F7",
+          "title": "Decision communication and receipt",
+          "category": "communication",
+          "status": "needs_verification",
+          "observation": "Reported context · 2026-09-12 · DR-D08 · Mechanical Installer - Chargehand: “Principal Contractor records that an access notice was sent to instrumentation on 2026-09-11.”\nReported context · 2026-09-12 · DR-D09 · Instrumentation Installer - Chargehand: “Skid access restricted from 09:00 to 10:20 during grouting.”\nLatest cited update · 2026-09-12 · DR-D09 · Instrumentation Installer - Chargehand: “The shift log does not establish whether this chargehand received the advance access notice.”\nLatest cited update · 2026-09-12 · DR-D09 · Instrumentation Installer - Chargehand: “Check receipt of the advance access notice and record the agreed notification route for future skid work.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D08",
+              "field": "schedule_status",
+              "quote": "Principal Contractor records that an access notice was sent to instrumentation on 2026-09-11."
+            },
+            {
+              "report_id": "DR-D09",
+              "field": "work_completed",
+              "quote": "Skid access restricted from 09:00 to 10:20 during grouting."
+            },
+            {
+              "report_id": "DR-D09",
+              "field": "issue_or_update",
+              "quote": "The shift log does not establish whether this chargehand received the advance access notice."
+            },
+            {
+              "report_id": "DR-D09",
+              "field": "action_required",
+              "quote": "Check receipt of the advance access notice and record the agreed notification route for future skid work."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S088",
+            "S094",
+            "S096",
+            "S101"
+          ],
+          "latestFactIds": [
+            "S096",
+            "S101"
+          ],
+          "kind": "communication",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F8",
+          "title": "Resolution and supporting record",
+          "category": "communication",
+          "status": "needs_verification",
+          "observation": "Latest cited update · 2026-09-12 · DR-D08 · Mechanical Installer - Chargehand: “Anchor-torque inspection reference AT-P6-0912 is entered in the work package, but the signed acceptance sheet is not linked and could not be opened by the chargehand.”\nReported context · 2026-09-12 · DR-D08 · Mechanical Installer - Chargehand: “Link the signed anchor-torque acceptance and complete final alignment after cure before start-up.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D08",
+              "field": "issue_or_update",
+              "quote": "Anchor-torque inspection reference AT-P6-0912 is entered in the work package, but the signed acceptance sheet is not linked and could not be opened by the chargehand."
+            },
+            {
+              "report_id": "DR-D08",
+              "field": "action_required",
+              "quote": "Link the signed anchor-torque acceptance and complete final alignment after cure before start-up."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S083",
+            "S090"
+          ],
+          "latestFactIds": [
+            "S083"
+          ],
+          "kind": "record",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F9",
+          "title": "Decision communication and receipt",
+          "category": "communication",
+          "status": "needs_verification",
+          "observation": "Reported context · 2026-09-12 · DR-D08 · Mechanical Installer - Chargehand: “Principal Contractor records that an access notice was sent to instrumentation on 2026-09-11.”\nReported context · 2026-09-12 · DR-D09 · Instrumentation Installer - Chargehand: “The shift log does not establish whether this chargehand received the advance access notice.”\nLatest cited update · 2026-09-12 · DR-D09 · Instrumentation Installer - Chargehand: “Check receipt of the advance access notice and record the agreed notification route for future skid work.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D08",
+              "field": "schedule_status",
+              "quote": "Principal Contractor records that an access notice was sent to instrumentation on 2026-09-11."
+            },
+            {
+              "report_id": "DR-D09",
+              "field": "issue_or_update",
+              "quote": "The shift log does not establish whether this chargehand received the advance access notice."
+            },
+            {
+              "report_id": "DR-D09",
+              "field": "action_required",
+              "quote": "Check receipt of the advance access notice and record the agreed notification route for future skid work."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S088",
+            "S096",
+            "S101"
+          ],
+          "latestFactIds": [
+            "S101"
+          ],
+          "kind": "communication",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F10",
+          "title": "Work sequence and postponement",
+          "category": "delay",
+          "status": "resolved",
+          "observation": "Reported context · 2026-09-09 · DR-D02 · Mechanical Installer - Chargehand: “Replacement pump remained in the laydown zone.”\nReported context · 2026-09-09 · DR-D02 · Mechanical Installer - Chargehand: “No signed bearing-face release had reached the crew by the end of this shift.”\nReported context · 2026-09-09 · DR-D02 · Mechanical Installer - Chargehand: “Pump setting deferred for this shift pending the written bearing-face release and confirmation of the shim stack.”\nReported context · 2026-09-09 · DR-D03 · Principal Contractor - General Foreperson: “Inspection telephone call held at 07:50; delivery slot moved to the next shift.”\nReported context · 2026-09-09 · DR-D03 · Principal Contractor - General Foreperson: “This was a telephone update; the signed bearing-face sheet was awaiting issue at 14:30.”\nReported context · 2026-09-09 · DR-D03 · Principal Contractor - General Foreperson: “The mechanical crew reported that its written release had not arrived.”\nLatest cited update · 2026-09-10 · DR-D05 · Quality Inspector - Civil Works: “Signed release BF-P6-0910 uploaded to the work package and received by the installation chargehand at 10:42.”\nLatest cited update · 2026-09-10 · DR-D05 · Quality Inspector - Civil Works: “Bearing-face release complete.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D02",
+              "field": "work_completed",
+              "quote": "Replacement pump remained in the laydown zone."
+            },
+            {
+              "report_id": "DR-D02",
+              "field": "issue_or_update",
+              "quote": "No signed bearing-face release had reached the crew by the end of this shift."
+            },
+            {
+              "report_id": "DR-D02",
+              "field": "schedule_status",
+              "quote": "Pump setting deferred for this shift pending the written bearing-face release and confirmation of the shim stack."
+            },
+            {
+              "report_id": "DR-D03",
+              "field": "work_completed",
+              "quote": "Inspection telephone call held at 07:50; delivery slot moved to the next shift."
+            },
+            {
+              "report_id": "DR-D03",
+              "field": "issue_or_update",
+              "quote": "This was a telephone update; the signed bearing-face sheet was awaiting issue at 14:30."
+            },
+            {
+              "report_id": "DR-D03",
+              "field": "issue_or_update",
+              "quote": "The mechanical crew reported that its written release had not arrived."
+            },
+            {
+              "report_id": "DR-D05",
+              "field": "work_completed",
+              "quote": "Signed release BF-P6-0910 uploaded to the work package and received by the installation chargehand at 10:42."
+            },
+            {
+              "report_id": "DR-D05",
+              "field": "schedule_status",
+              "quote": "Bearing-face release complete."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S014",
+            "S016",
+            "S017",
+            "S023",
+            "S025",
+            "S026",
+            "S047",
+            "S050"
+          ],
+          "latestFactIds": [
+            "S047",
+            "S050"
+          ],
+          "kind": "progress",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F11",
+          "title": "Work sequence and postponement",
+          "category": "delay",
+          "status": "resolved",
+          "observation": "Reported context · 2026-09-09 · DR-D03 · Principal Contractor - General Foreperson: “The existing M-214 revision B shows a 6 mm shim stack, while the replacement supplier sketch shows 9 mm.”\nReported context · 2026-09-09 · DR-D03 · Principal Contractor - General Foreperson: “Setting held while the bearing-face sheet and applicable shim detail are confirmed.”\nReported context · 2026-09-10 · DR-D04 · Principal Contractor - Mechanical Engineer: “The internal draft has not been issued by the designer through the document register.”\nReported context · 2026-09-10 · DR-D04 · Principal Contractor - Mechanical Engineer: “The installer has received no approved revision.”\nReported context · 2026-09-10 · DR-D04 · Principal Contractor - Mechanical Engineer: “Pump setting deferred for a second shift; release sheet and issued design detail were awaited at the start of the shift.”\nReported context · 2026-09-11 · DR-D06 · Mechanical Installer - Chargehand: “The crew still awaits the issued shim revision at 11:30.”\nLatest cited update · 2026-09-11 · DR-D07 · Document Controller - Construction Team: “Signed TQ-061 response and drawing M-214 revision D issued at 13:10, specifying the 9 mm shim stack.”\nLatest cited update · 2026-09-11 · DR-D07 · Document Controller - Construction Team: “Installation chargehand acknowledged receipt at 13:35.”\nLatest cited update · 2026-09-11 · DR-D07 · Document Controller - Construction Team: “The issued instruction supersedes the earlier 6 mm detail; TQ-061 is closed.”\nLatest cited update · 2026-09-11 · DR-D07 · Document Controller - Construction Team: “Design information is released for installation.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D03",
+              "field": "issue_or_update",
+              "quote": "The existing M-214 revision B shows a 6 mm shim stack, while the replacement supplier sketch shows 9 mm."
+            },
+            {
+              "report_id": "DR-D03",
+              "field": "schedule_status",
+              "quote": "Setting held while the bearing-face sheet and applicable shim detail are confirmed."
+            },
+            {
+              "report_id": "DR-D04",
+              "field": "issue_or_update",
+              "quote": "The internal draft has not been issued by the designer through the document register."
+            },
+            {
+              "report_id": "DR-D04",
+              "field": "issue_or_update",
+              "quote": "The installer has received no approved revision."
+            },
+            {
+              "report_id": "DR-D04",
+              "field": "schedule_status",
+              "quote": "Pump setting deferred for a second shift; release sheet and issued design detail were awaited at the start of the shift."
+            },
+            {
+              "report_id": "DR-D06",
+              "field": "issue_or_update",
+              "quote": "The crew still awaits the issued shim revision at 11:30."
+            },
+            {
+              "report_id": "DR-D07",
+              "field": "work_completed",
+              "quote": "Signed TQ-061 response and drawing M-214 revision D issued at 13:10, specifying the 9 mm shim stack."
+            },
+            {
+              "report_id": "DR-D07",
+              "field": "work_completed",
+              "quote": "Installation chargehand acknowledged receipt at 13:35."
+            },
+            {
+              "report_id": "DR-D07",
+              "field": "issue_or_update",
+              "quote": "The issued instruction supersedes the earlier 6 mm detail; TQ-061 is closed."
+            },
+            {
+              "report_id": "DR-D07",
+              "field": "schedule_status",
+              "quote": "Design information is released for installation."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S027",
+            "S028",
+            "S037",
+            "S038",
+            "S039",
+            "S061",
+            "S068",
+            "S069",
+            "S070",
+            "S073"
+          ],
+          "latestFactIds": [
+            "S068",
+            "S069",
+            "S070",
+            "S073"
+          ],
+          "kind": "progress",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F12",
+          "title": "Work sequence and postponement",
+          "category": "delay",
+          "status": "needs_verification",
+          "observation": "Reported context · 2026-09-10 · DR-D05 · Quality Inspector - Civil Works: “Pump setting also requires the issued shim detail and anchor-torque acceptance.”\nReported context · 2026-09-11 · DR-D06 · Mechanical Installer - Chargehand: “Anchor torquing by the installer is complete, but inspector witness acceptance has not yet been entered.”\nReported context · 2026-09-11 · DR-D06 · Mechanical Installer - Chargehand: “Grouting remains dependent on separate anchor-torque acceptance and receipt of the design instruction.”\nReported context · 2026-09-11 · DR-D06 · Mechanical Installer - Chargehand: “Obtain anchor-torque witness acceptance before grouting.”\nLatest cited update · 2026-09-12 · DR-D08 · Mechanical Installer - Chargehand: “Anchor-torque inspection reference AT-P6-0912 is entered in the work package, but the signed acceptance sheet is not linked and could not be opened by the chargehand.”\nLatest cited update · 2026-09-12 · DR-D08 · Mechanical Installer - Chargehand: “Link the signed anchor-torque acceptance and complete final alignment after cure before start-up.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D05",
+              "field": "schedule_status",
+              "quote": "Pump setting also requires the issued shim detail and anchor-torque acceptance."
+            },
+            {
+              "report_id": "DR-D06",
+              "field": "issue_or_update",
+              "quote": "Anchor torquing by the installer is complete, but inspector witness acceptance has not yet been entered."
+            },
+            {
+              "report_id": "DR-D06",
+              "field": "schedule_status",
+              "quote": "Grouting remains dependent on separate anchor-torque acceptance and receipt of the design instruction."
+            },
+            {
+              "report_id": "DR-D06",
+              "field": "action_required",
+              "quote": "Obtain anchor-torque witness acceptance before grouting."
+            },
+            {
+              "report_id": "DR-D08",
+              "field": "issue_or_update",
+              "quote": "Anchor-torque inspection reference AT-P6-0912 is entered in the work package, but the signed acceptance sheet is not linked and could not be opened by the chargehand."
+            },
+            {
+              "report_id": "DR-D08",
+              "field": "action_required",
+              "quote": "Link the signed anchor-torque acceptance and complete final alignment after cure before start-up."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S051",
+            "S060",
+            "S062",
+            "S064",
+            "S083",
+            "S090"
+          ],
+          "latestFactIds": [
+            "S083",
+            "S090"
+          ],
+          "kind": "progress",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F13",
+          "title": "Work sequence and postponement",
+          "category": "delay",
+          "status": "historical",
+          "observation": "Reported context · 2026-09-12 · DR-D09 · Instrumentation Installer - Chargehand: “Skid access restricted from 09:00 to 10:20 during grouting.”\nReported context · 2026-09-12 · DR-D09 · Instrumentation Installer - Chargehand: “Three technicians worked in the panel room during the restriction and returned to the rack at 10:20.”\nReported context · 2026-09-12 · DR-D09 · Instrumentation Installer - Chargehand: “The shift log does not establish whether this chargehand received the advance access notice.”\nLatest cited update · 2026-09-12 · DR-D09 · Instrumentation Installer - Chargehand: “Adjacent instrument work was resequenced for 80 minutes.”\nLatest cited update · 2026-09-12 · DR-D09 · Instrumentation Installer - Chargehand: “The cure barrier affects only the pump skid; service-rack access is available.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D09",
+              "field": "work_completed",
+              "quote": "Skid access restricted from 09:00 to 10:20 during grouting."
+            },
+            {
+              "report_id": "DR-D09",
+              "field": "work_completed",
+              "quote": "Three technicians worked in the panel room during the restriction and returned to the rack at 10:20."
+            },
+            {
+              "report_id": "DR-D09",
+              "field": "issue_or_update",
+              "quote": "The shift log does not establish whether this chargehand received the advance access notice."
+            },
+            {
+              "report_id": "DR-D09",
+              "field": "schedule_status",
+              "quote": "Adjacent instrument work was resequenced for 80 minutes."
+            },
+            {
+              "report_id": "DR-D09",
+              "field": "schedule_status",
+              "quote": "The cure barrier affects only the pump skid; service-rack access is available."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S094",
+            "S095",
+            "S096",
+            "S098",
+            "S099"
+          ],
+          "latestFactIds": [
+            "S098",
+            "S099"
+          ],
+          "kind": "progress",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F14",
+          "title": "Readiness and written release",
+          "category": "communication",
+          "status": "resolved",
+          "observation": "Reported context · 2026-09-09 · DR-D02 · Mechanical Installer - Chargehand: “The crew received verbal clearance at 08:05.”\nReported context · 2026-09-09 · DR-D02 · Mechanical Installer - Chargehand: “No signed bearing-face release had reached the crew by the end of this shift.”\nReported context · 2026-09-09 · DR-D03 · Principal Contractor - General Foreperson: “Foreperson notes say QC passed.”\nReported context · 2026-09-09 · DR-D03 · Principal Contractor - General Foreperson: “This was a telephone update; the signed bearing-face sheet was awaiting issue at 14:30.”\nReported context · 2026-09-09 · DR-D03 · Principal Contractor - General Foreperson: “The mechanical crew reported that its written release had not arrived.”\nLatest cited update · 2026-09-10 · DR-D05 · Quality Inspector - Civil Works: “Signed release BF-P6-0910 uploaded to the work package and received by the installation chargehand at 10:42.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D02",
+              "field": "issue_or_update",
+              "quote": "The crew received verbal clearance at 08:05."
+            },
+            {
+              "report_id": "DR-D02",
+              "field": "issue_or_update",
+              "quote": "No signed bearing-face release had reached the crew by the end of this shift."
+            },
+            {
+              "report_id": "DR-D03",
+              "field": "issue_or_update",
+              "quote": "Foreperson notes say QC passed."
+            },
+            {
+              "report_id": "DR-D03",
+              "field": "issue_or_update",
+              "quote": "This was a telephone update; the signed bearing-face sheet was awaiting issue at 14:30."
+            },
+            {
+              "report_id": "DR-D03",
+              "field": "issue_or_update",
+              "quote": "The mechanical crew reported that its written release had not arrived."
+            },
+            {
+              "report_id": "DR-D05",
+              "field": "work_completed",
+              "quote": "Signed release BF-P6-0910 uploaded to the work package and received by the installation chargehand at 10:42."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S015",
+            "S016",
+            "S024",
+            "S025",
+            "S026",
+            "S047"
+          ],
+          "latestFactIds": [
+            "S047"
+          ],
+          "kind": "release",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F15",
+          "title": "Approved detail or revision",
+          "category": "unresolved",
+          "status": "resolved",
+          "observation": "Reported context · 2026-09-09 · DR-D03 · Principal Contractor - General Foreperson: “The existing M-214 revision B shows a 6 mm shim stack, while the replacement supplier sketch shows 9 mm.”\nReported context · 2026-09-10 · DR-D04 · Principal Contractor - Mechanical Engineer: “The internal draft has not been issued by the designer through the document register.”\nReported context · 2026-09-10 · DR-D04 · Principal Contractor - Mechanical Engineer: “The installer has received no approved revision.”\nReported context · 2026-09-11 · DR-D06 · Mechanical Installer - Chargehand: “The crew still awaits the issued shim revision at 11:30.”\nLatest cited update · 2026-09-11 · DR-D07 · Document Controller - Construction Team: “Signed TQ-061 response and drawing M-214 revision D issued at 13:10, specifying the 9 mm shim stack.”\nLatest cited update · 2026-09-11 · DR-D07 · Document Controller - Construction Team: “Installation chargehand acknowledged receipt at 13:35.”\nLatest cited update · 2026-09-11 · DR-D07 · Document Controller - Construction Team: “The issued instruction supersedes the earlier 6 mm detail; TQ-061 is closed.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D03",
+              "field": "issue_or_update",
+              "quote": "The existing M-214 revision B shows a 6 mm shim stack, while the replacement supplier sketch shows 9 mm."
+            },
+            {
+              "report_id": "DR-D04",
+              "field": "issue_or_update",
+              "quote": "The internal draft has not been issued by the designer through the document register."
+            },
+            {
+              "report_id": "DR-D04",
+              "field": "issue_or_update",
+              "quote": "The installer has received no approved revision."
+            },
+            {
+              "report_id": "DR-D06",
+              "field": "issue_or_update",
+              "quote": "The crew still awaits the issued shim revision at 11:30."
+            },
+            {
+              "report_id": "DR-D07",
+              "field": "work_completed",
+              "quote": "Signed TQ-061 response and drawing M-214 revision D issued at 13:10, specifying the 9 mm shim stack."
+            },
+            {
+              "report_id": "DR-D07",
+              "field": "work_completed",
+              "quote": "Installation chargehand acknowledged receipt at 13:35."
+            },
+            {
+              "report_id": "DR-D07",
+              "field": "issue_or_update",
+              "quote": "The issued instruction supersedes the earlier 6 mm detail; TQ-061 is closed."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S027",
+            "S037",
+            "S038",
+            "S061",
+            "S068",
+            "S069",
+            "S070"
+          ],
+          "latestFactIds": [
+            "S068",
+            "S069",
+            "S070"
+          ],
+          "kind": "revision",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F16",
+          "title": "Resolution and supporting record",
+          "category": "communication",
+          "status": "needs_verification",
+          "observation": "Reported context · 2026-09-10 · DR-D05 · Quality Inspector - Civil Works: “This inspection covers bearing-face condition only; anchor torque requires its own witness and acceptance.”\nReported context · 2026-09-10 · DR-D05 · Quality Inspector - Civil Works: “Request the separate anchor-torque witness before placing grout.”\nReported context · 2026-09-11 · DR-D06 · Mechanical Installer - Chargehand: “Anchor torquing by the installer is complete, but inspector witness acceptance has not yet been entered.”\nLatest cited update · 2026-09-12 · DR-D08 · Mechanical Installer - Chargehand: “Anchor-torque inspection reference AT-P6-0912 is entered in the work package, but the signed acceptance sheet is not linked and could not be opened by the chargehand.”\nReported context · 2026-09-12 · DR-D08 · Mechanical Installer - Chargehand: “Link the signed anchor-torque acceptance and complete final alignment after cure before start-up.”\nLatest cited update · 2026-09-12 · DR-D08 · Mechanical Installer - Chargehand: “Grout batch sheet GB-P6-12 and preliminary alignment sheet AL-P6-12; signed AT-P6-0912 sheet not linked”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-D05",
+              "field": "issue_or_update",
+              "quote": "This inspection covers bearing-face condition only; anchor torque requires its own witness and acceptance."
+            },
+            {
+              "report_id": "DR-D05",
+              "field": "action_required",
+              "quote": "Request the separate anchor-torque witness before placing grout."
+            },
+            {
+              "report_id": "DR-D06",
+              "field": "issue_or_update",
+              "quote": "Anchor torquing by the installer is complete, but inspector witness acceptance has not yet been entered."
+            },
+            {
+              "report_id": "DR-D08",
+              "field": "issue_or_update",
+              "quote": "Anchor-torque inspection reference AT-P6-0912 is entered in the work package, but the signed acceptance sheet is not linked and could not be opened by the chargehand."
+            },
+            {
+              "report_id": "DR-D08",
+              "field": "action_required",
+              "quote": "Link the signed anchor-torque acceptance and complete final alignment after cure before start-up."
+            },
+            {
+              "report_id": "DR-D08",
+              "field": "supporting_evidence",
+              "quote": "Grout batch sheet GB-P6-12 and preliminary alignment sheet AL-P6-12; signed AT-P6-0912 sheet not linked"
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S049",
+            "S053",
+            "S060",
+            "S083",
+            "S090",
+            "S092"
+          ],
+          "latestFactIds": [
+            "S083",
+            "S092"
+          ],
+          "kind": "record",
+          "rendering": "exact-source-passages"
+        }
+      ],
+      "sourceMaterialityRemovals": [],
+      "candidateSelection": "Previously accepted items; rejected candidates are not reintroduced.",
+      "analysisEngineSha256": "8ec0f746cea15374dc01bdb6af883295a1f57d8b2b3079533b0fb7c4d7e2f796",
+      "analysisEngineSnapshot": "engine-v18f-frozen.js",
+      "timingMode": "postprocessing-only-not-end-to-end",
+      "elapsedMs": null,
+      "totalMs": null,
+      "loadMs": null,
+      "status": "failed",
+      "error": "Different concern aspects cannot be merged.",
+      "diagnostics": {
+        "promptVersion": "daily-review-18f-consolidated",
+        "timings": [
+          {
+            "stage": "Consolidating saved concerns · identify independent concerns",
+            "elapsedMs": 201885.915,
+            "usage": {
+              "prompt_tokens": 11981,
+              "completion_tokens": 1465,
+              "load_duration_ns": 27005300,
+              "prompt_eval_duration_ns": 8401347000,
+              "eval_duration_ns": 193304829000,
+              "total_duration_ns": 201882714000,
+              "sampling": {
+                "temperature": 0.7,
+                "top_p": 0.8,
+                "top_k": 20,
+                "min_p": 0,
+                "presence_penalty": 1.5,
+                "repeat_penalty": 1
+              },
+              "policy": "native-sampling-3",
+              "contextWindow": 32768
+            }
+          },
+          {
+            "stage": "Consolidating saved concerns · independently audit concern boundaries",
+            "elapsedMs": 207352.0432,
+            "usage": {
+              "prompt_tokens": 13150,
+              "completion_tokens": 1462,
+              "load_duration_ns": 5685200,
+              "prompt_eval_duration_ns": 10867693000,
+              "eval_duration_ns": 196235902000,
+              "total_duration_ns": 207348023200,
+              "sampling": {
+                "temperature": 0.7,
+                "top_p": 0.8,
+                "top_k": 20,
+                "min_p": 0,
+                "presence_penalty": 1.5,
+                "repeat_penalty": 1
+              },
+              "policy": "native-sampling-3",
+              "contextWindow": 32768
+            }
+          }
+        ],
+        "responses": [
+          {
+            "stage": "Consolidating saved concerns · identify independent concerns",
+            "raw": "{\n  \"assignments\": {\n    \"0\": {\n      \"aspect\": \"cause\",\n      \"same_as\": 0,\n      \"basisSourceId\": \"S005\",\n      \"basisRole\": \"unconfirmed_origin\",\n      \"subjectSourceId\": \"S004\",\n      \"subjectLabel\": \"Recurring oily film in drain pocket\",\n      \"subjectRole\": \"observed_condition\"\n    },\n    \"1\": {\n      \"aspect\": \"decision_communication\",\n      \"same_as\": 1,\n      \"basisSourceId\": \"S047\",\n      \"basisRole\": \"formal_issue_or_receipt\",\n      \"subjectSourceId\": \"S016\",\n      \"subjectLabel\": \"Signed bearing-face release receipt\",\n      \"subjectRole\": \"formal_response\"\n    },\n    \"2\": {\n      \"aspect\": \"technical_choice\",\n      \"same_as\": 2,\n      \"basisSourceId\": \"S068\",\n      \"basisRole\": \"technical_selection\",\n      \"subjectSourceId\": \"S027\",\n      \"subjectLabel\": \"Approved shim stack dimension\",\n      \"subjectRole\": \"technical_decision\"\n    },\n    \"3\": {\n      \"aspect\": \"supporting_record\",\n      \"same_as\": 15,\n      \"basisSourceId\": \"S083\",\n      \"basisRole\": \"explicit_record_submission_or_availability\",\n      \"subjectSourceId\": \"S083\",\n      \"subjectLabel\": \"Signed anchor-torque acceptance sheet linkage\",\n      \"subjectRole\": \"supporting_document\"\n    },\n    \"4\": {\n      \"aspect\": \"quantity\",\n      \"same_as\": 4,\n      \"basisSourceId\": \"S072\",\n      \"basisRole\": \"measured_quantity_discrepancy\",\n      \"subjectSourceId\": \"S071\",\n      \"subjectLabel\": \"Unreconciled grout bag count\",\n      \"subjectRole\": \"measured_item\"\n    },\n    \"5\": {\n      \"aspect\": \"quality_followup\",\n      \"same_as\": 5,\n      \"basisSourceId\": \"S090\",\n      \"basisRole\": \"explicit_quality_or_handoff_task\",\n      \"subjectSourceId\": \"S084\",\n      \"subjectLabel\": \"Final coupling alignment task\",\n      \"subjectRole\": \"quality_task\"\n    },\n    \"6\": {\n      \"aspect\": \"access_notice\",\n      \"same_as\": 8,\n      \"basisSourceId\": \"S096\",\n      \"basisRole\": \"advance_notice_receipt\",\n      \"subjectSourceId\": \"S088\",\n      \"subjectLabel\": \"Advance access notice receipt confirmation\",\n      \"subjectRole\": \"notice_event\"\n    },\n    \"7\": {\n      \"aspect\": \"supporting_record\",\n      \"same_as\": 15,\n      \"basisSourceId\": \"S083\",\n      \"basisRole\": \"explicit_record_submission_or_availability\",\n      \"subjectSourceId\": \"S090\",\n      \"subjectLabel\": \"Signed anchor-torque acceptance sheet linkage\",\n      \"subjectRole\": \"supporting_document\"\n    },\n    \"8\": {\n      \"aspect\": \"access_notice\",\n      \"same_as\": 8,\n      \"basisSourceId\": \"S101\",\n      \"basisRole\": \"advance_notice_receipt\",\n      \"subjectSourceId\": \"S096\",\n      \"subjectLabel\": \"Advance access notice receipt confirmation\",\n      \"subjectRole\": \"notice_event\"\n    },\n    \"9\": {\n      \"aspect\": \"work_progress\",\n      \"same_as\": 13,\n      \"basisSourceId\": \"S047\",\n      \"basisRole\": \"actual_work_hold_or_completion\",\n      \"subjectSourceId\": \"S017\",\n      \"subjectLabel\": \"Pump setting operation hold\",\n      \"subjectRole\": \"work_operation\"\n    },\n    \"10\": {\n      \"aspect\": \"work_progress\",\n      \"same_as\": 9,\n      \"basisSourceId\": \"S068\",\n      \"basisRole\": \"actual_work_hold_or_completion\",\n      \"subjectSourceId\": \"S039\",\n      \"subjectLabel\": \"Pump setting operation hold\",\n      \"subjectRole\": \"work_operation\"\n    },\n    \"11\": {\n      \"aspect\": \"work_progress\",\n      \"same_as\": 15,\n      \"basisSourceId\": \"S083\",\n      \"basisRole\": \"actual_work_hold_or_completion\",\n      \"subjectSourceId\": \"S062\",\n      \"subjectLabel\": \"Grouting operation hold\",\n      \"subjectRole\": \"work_operation\"\n    },\n    \"12\": {\n      \"aspect\": \"trade_disruption\",\n      \"same_as\": 12,\n      \"basisSourceId\": \"S098\",\n      \"basisRole\": \"actual_trade_restriction_or_resumption\",\n      \"subjectSourceId\": \"S094\",\n      \"subjectLabel\": \"Instrumentation work resequencing event\",\n      \"subjectRole\": \"trade_access_event\"\n    },\n    \"13\": {\n      \"aspect\": \"work_progress\",\n      \"same_as\": 9,\n      \"basisSourceId\": \"S047\",\n      \"basisRole\": \"actual_work_hold_or_completion\",\n      \"subjectSourceId\": \"S025\",\n      \"subjectLabel\": \"Pump setting operation hold\",\n      \"subjectRole\": \"work_operation\"\n    },\n    \"14\": {\n      \"aspect\": \"technical_choice\",\n      \"same_as\": 2,\n      \"basisSourceId\": \"S068\",\n      \"basisRole\": \"technical_selection\",\n      \"subjectSourceId\": \"S037\",\n      \"subjectLabel\": \"Approved shim stack dimension\",\n      \"subjectRole\": \"technical_decision\"\n    },\n    \"15\": {\n      \"aspect\": \"supporting_record\",\n      \"same_as\": 15,\n      \"basisSourceId\": \"S083\",\n      \"basisRole\": \"explicit_record_submission_or_availability\",\n      \"subjectSourceId\": \"S092\",\n      \"subjectLabel\": \"Signed anchor-torque acceptance sheet linkage\",\n      \"subjectRole\": \"supporting_document\"\n    }\n  }\n}"
+          },
+          {
+            "stage": "Consolidating saved concerns · independently audit concern boundaries",
+            "raw": "{\n  \"assignments\": {\n    \"0\": {\n      \"aspect\": \"cause\",\n      \"same_as\": 0,\n      \"basisSourceId\": \"S005\",\n      \"basisRole\": \"unconfirmed_origin\",\n      \"subjectSourceId\": \"S004\",\n      \"subjectLabel\": \"Recurring oily film in drain pocket\",\n      \"subjectRole\": \"observed_condition\"\n    },\n    \"1\": {\n      \"aspect\": \"physical_acceptance\",\n      \"same_as\": 1,\n      \"basisSourceId\": \"S047\",\n      \"basisRole\": \"acceptance_or_release\",\n      \"subjectSourceId\": \"S016\",\n      \"subjectLabel\": \"Bearing-face written release receipt\",\n      \"subjectRole\": \"inspected_scope\"\n    },\n    \"2\": {\n      \"aspect\": \"technical_choice\",\n      \"same_as\": 2,\n      \"basisSourceId\": \"S068\",\n      \"basisRole\": \"technical_selection\",\n      \"subjectSourceId\": \"S027\",\n      \"subjectLabel\": \"Approved shim stack dimension\",\n      \"subjectRole\": \"technical_decision\"\n    },\n    \"3\": {\n      \"aspect\": \"supporting_record\",\n      \"same_as\": 15,\n      \"basisSourceId\": \"S083\",\n      \"basisRole\": \"explicit_record_submission_or_availability\",\n      \"subjectSourceId\": \"S083\",\n      \"subjectLabel\": \"Linked anchor-torque acceptance record\",\n      \"subjectRole\": \"supporting_document\"\n    },\n    \"4\": {\n      \"aspect\": \"quantity\",\n      \"same_as\": 4,\n      \"basisSourceId\": \"S072\",\n      \"basisRole\": \"measured_quantity_discrepancy\",\n      \"subjectSourceId\": \"S071\",\n      \"subjectLabel\": \"Unreconciled grout bag count\",\n      \"subjectRole\": \"measured_item\"\n    },\n    \"5\": {\n      \"aspect\": \"quality_followup\",\n      \"same_as\": 5,\n      \"basisSourceId\": \"S090\",\n      \"basisRole\": \"explicit_quality_or_handoff_task\",\n      \"subjectSourceId\": \"S084\",\n      \"subjectLabel\": \"Final coupling alignment task\",\n      \"subjectRole\": \"quality_task\"\n    },\n    \"6\": {\n      \"aspect\": \"access_notice\",\n      \"same_as\": 8,\n      \"basisSourceId\": \"S096\",\n      \"basisRole\": \"advance_notice_receipt\",\n      \"subjectSourceId\": \"S088\",\n      \"subjectLabel\": \"Advance access notice receipt confirmation\",\n      \"subjectRole\": \"notice_event\"\n    },\n    \"7\": {\n      \"aspect\": \"supporting_record\",\n      \"same_as\": 15,\n      \"basisSourceId\": \"S083\",\n      \"basisRole\": \"explicit_record_submission_or_availability\",\n      \"subjectSourceId\": \"S090\",\n      \"subjectLabel\": \"Linked anchor-torque acceptance record\",\n      \"subjectRole\": \"supporting_document\"\n    },\n    \"8\": {\n      \"aspect\": \"access_notice\",\n      \"same_as\": 8,\n      \"basisSourceId\": \"S101\",\n      \"basisRole\": \"advance_notice_receipt\",\n      \"subjectSourceId\": \"S096\",\n      \"subjectLabel\": \"Advance access notice receipt confirmation\",\n      \"subjectRole\": \"notice_event\"\n    },\n    \"9\": {\n      \"aspect\": \"work_progress\",\n      \"same_as\": 10,\n      \"basisSourceId\": \"S047\",\n      \"basisRole\": \"actual_work_hold_or_completion\",\n      \"subjectSourceId\": \"S017\",\n      \"subjectLabel\": \"Pump setting operation hold\",\n      \"subjectRole\": \"work_operation\"\n    },\n    \"10\": {\n      \"aspect\": \"work_progress\",\n      \"same_as\": 9,\n      \"basisSourceId\": \"S068\",\n      \"basisRole\": \"actual_work_hold_or_completion\",\n      \"subjectSourceId\": \"S039\",\n      \"subjectLabel\": \"Pump setting operation hold\",\n      \"subjectRole\": \"work_operation\"\n    },\n    \"11\": {\n      \"aspect\": \"work_progress\",\n      \"same_as\": 15,\n      \"basisSourceId\": \"S083\",\n      \"basisRole\": \"actual_work_hold_or_completion\",\n      \"subjectSourceId\": \"S062\",\n      \"subjectLabel\": \"Grouting operation hold\",\n      \"subjectRole\": \"work_operation\"\n    },\n    \"12\": {\n      \"aspect\": \"trade_disruption\",\n      \"same_as\": 12,\n      \"basisSourceId\": \"S098\",\n      \"basisRole\": \"actual_trade_restriction_or_resumption\",\n      \"subjectSourceId\": \"S094\",\n      \"subjectLabel\": \"Instrumentation work resequencing event\",\n      \"subjectRole\": \"trade_access_event\"\n    },\n    \"13\": {\n      \"aspect\": \"work_progress\",\n      \"same_as\": 9,\n      \"basisSourceId\": \"S047\",\n      \"basisRole\": \"actual_work_hold_or_completion\",\n      \"subjectSourceId\": \"S025\",\n      \"subjectLabel\": \"Pump setting operation hold\",\n      \"subjectRole\": \"work_operation\"\n    },\n    \"14\": {\n      \"aspect\": \"technical_choice\",\n      \"same_as\": 2,\n      \"basisSourceId\": \"S068\",\n      \"basisRole\": \"technical_selection\",\n      \"subjectSourceId\": \"S037\",\n      \"subjectLabel\": \"Approved shim stack dimension\",\n      \"subjectRole\": \"technical_decision\"\n    },\n    \"15\": {\n      \"aspect\": \"supporting_record\",\n      \"same_as\": 15,\n      \"basisSourceId\": \"S083\",\n      \"basisRole\": \"explicit_record_submission_or_availability\",\n      \"subjectSourceId\": \"S092\",\n      \"subjectLabel\": \"Linked anchor-torque acceptance record\",\n      \"subjectRole\": \"supporting_document\"\n    }\n  }\n}"
+          }
+        ],
+        "consolidationHistory": [],
+        "preConsolidationCandidates": [
+          {
+            "topic": "What is the origin of the recurring oily film?",
+            "kind": "cause",
+            "status": "open",
+            "facts": [
+              "S004",
+              "S005",
+              "S009"
+            ],
+            "latest": [
+              "S007"
+            ],
+            "memberCandidateIndices": [
+              0
+            ]
+          },
+          {
+            "topic": "Was the signed bearing-face release received?",
+            "kind": "communication",
+            "status": "resolved",
+            "facts": [
+              "S016",
+              "S026"
+            ],
+            "latest": [
+              "S047"
+            ],
+            "memberCandidateIndices": [
+              1
+            ]
+          },
+          {
+            "topic": "Which shim stack detail was approved?",
+            "kind": "revision",
+            "status": "resolved",
+            "facts": [
+              "S027",
+              "S031",
+              "S034",
+              "S037",
+              "S038"
+            ],
+            "latest": [
+              "S068",
+              "S069",
+              "S070"
+            ],
+            "memberCandidateIndices": [
+              2
+            ]
+          },
+          {
+            "topic": "Is the signed anchor-torque acceptance linked in the work package?",
+            "kind": "record",
+            "status": "needs_verification",
+            "facts": [
+              "S053",
+              "S060",
+              "S064",
+              "S092"
+            ],
+            "latest": [
+              "S083"
+            ],
+            "memberCandidateIndices": [
+              3
+            ]
+          },
+          {
+            "topic": "Is the missing grout bag in stores reconciled?",
+            "kind": "quantity",
+            "status": "open",
+            "facts": [
+              "S071",
+              "S072",
+              "S077"
+            ],
+            "latest": [
+              "S074",
+              "S076"
+            ],
+            "memberCandidateIndices": [
+              4
+            ]
+          },
+          {
+            "topic": "Is final coupling alignment within acceptance limits?",
+            "kind": "closeout",
+            "status": "open",
+            "facts": [
+              "S084",
+              "S091"
+            ],
+            "latest": [
+              "S090"
+            ],
+            "memberCandidateIndices": [
+              5
+            ]
+          },
+          {
+            "topic": "Did the instrumentation crew receive the advance access notice?",
+            "kind": "communication",
+            "status": "needs_verification",
+            "facts": [
+              "S088",
+              "S094"
+            ],
+            "latest": [
+              "S096",
+              "S101"
+            ],
+            "memberCandidateIndices": [
+              6
+            ]
+          },
+          {
+            "topic": "Is the signed anchor-torque acceptance linked?",
+            "kind": "record",
+            "status": "needs_verification",
+            "facts": [
+              "S090"
+            ],
+            "latest": [
+              "S083"
+            ],
+            "memberCandidateIndices": [
+              7
+            ]
+          },
+          {
+            "topic": "Has the advance access notice receipt been confirmed?",
+            "kind": "communication",
+            "status": "needs_verification",
+            "facts": [
+              "S088",
+              "S096"
+            ],
+            "latest": [
+              "S101"
+            ],
+            "memberCandidateIndices": [
+              8
+            ]
+          },
+          {
+            "topic": "Was pump setting deferred due to missing bearing-face release?",
+            "kind": "progress",
+            "status": "resolved",
+            "facts": [
+              "S014",
+              "S016",
+              "S017",
+              "S023",
+              "S025",
+              "S026"
+            ],
+            "latest": [
+              "S047",
+              "S050"
+            ],
+            "memberCandidateIndices": [
+              9
+            ]
+          },
+          {
+            "topic": "Was pump setting deferred pending issued shim detail revision?",
+            "kind": "progress",
+            "status": "resolved",
+            "facts": [
+              "S027",
+              "S028",
+              "S037",
+              "S038",
+              "S039",
+              "S061"
+            ],
+            "latest": [
+              "S068",
+              "S069",
+              "S070",
+              "S073"
+            ],
+            "memberCandidateIndices": [
+              10
+            ]
+          },
+          {
+            "topic": "Was grouting deferred pending anchor-torque witness acceptance?",
+            "kind": "progress",
+            "status": "needs_verification",
+            "facts": [
+              "S051",
+              "S060",
+              "S062",
+              "S064"
+            ],
+            "latest": [
+              "S083",
+              "S090"
+            ],
+            "memberCandidateIndices": [
+              11
+            ]
+          },
+          {
+            "topic": "Was instrumentation work resequenced due to grouting access restriction?",
+            "kind": "progress",
+            "status": "historical",
+            "facts": [
+              "S094",
+              "S095",
+              "S096"
+            ],
+            "latest": [
+              "S098",
+              "S099"
+            ],
+            "memberCandidateIndices": [
+              12
+            ]
+          },
+          {
+            "topic": "Was there a discrepancy between verbal clearance and written bearing-face release receipt?",
+            "kind": "release",
+            "status": "resolved",
+            "facts": [
+              "S015",
+              "S016",
+              "S024",
+              "S025",
+              "S026"
+            ],
+            "latest": [
+              "S047"
+            ],
+            "memberCandidateIndices": [
+              13
+            ]
+          },
+          {
+            "topic": "Was the discrepancy between the 6mm and 9mm shim details resolved by an issued revision?",
+            "kind": "revision",
+            "status": "resolved",
+            "facts": [
+              "S027",
+              "S037",
+              "S038",
+              "S061"
+            ],
+            "latest": [
+              "S068",
+              "S069",
+              "S070"
+            ],
+            "memberCandidateIndices": [
+              14
+            ]
+          },
+          {
+            "topic": "Is the signed anchor-torque acceptance record linked?",
+            "kind": "record",
+            "status": "needs_verification",
+            "facts": [
+              "S049",
+              "S053",
+              "S060",
+              "S090"
+            ],
+            "latest": [
+              "S083",
+              "S092"
+            ],
+            "memberCandidateIndices": [
+              15
+            ]
+          }
+        ],
+        "sourceInventory": [
+          {
+            "id": "S001",
+            "report_id": "DR-D01",
+            "report_date": "2026-09-08",
+            "report_author": "Plant Maintenance - Shift Lead",
+            "field": "work_planned",
+            "quote": "Isolate standby pump P-6 and clear the skid for refurbishment."
+          },
+          {
+            "id": "S002",
+            "report_id": "DR-D01",
+            "report_date": "2026-09-08",
+            "report_author": "Plant Maintenance - Shift Lead",
+            "field": "work_completed",
+            "quote": "Pump isolated, disconnected, and lifted clear."
+          },
+          {
+            "id": "S003",
+            "report_id": "DR-D01",
+            "report_date": "2026-09-08",
+            "report_author": "Plant Maintenance - Shift Lead",
+            "field": "work_completed",
+            "quote": "Residue cleaned from the drain pocket."
+          },
+          {
+            "id": "S004",
+            "report_id": "DR-D01",
+            "report_date": "2026-09-08",
+            "report_author": "Plant Maintenance - Shift Lead",
+            "field": "issue_or_update",
+            "quote": "An oily film reappeared in the drain pocket after cleaning."
+          },
+          {
+            "id": "S005",
+            "report_id": "DR-D01",
+            "report_date": "2026-09-08",
+            "report_author": "Plant Maintenance - Shift Lead",
+            "field": "issue_or_update",
+            "quote": "Its origin has not been established."
+          },
+          {
+            "id": "S006",
+            "report_id": "DR-D01",
+            "report_date": "2026-09-08",
+            "report_author": "Plant Maintenance - Shift Lead",
+            "field": "issue_or_update",
+            "quote": "The pump remains isolated."
+          },
+          {
+            "id": "S007",
+            "report_id": "DR-D01",
+            "report_date": "2026-09-08",
+            "report_author": "Plant Maintenance - Shift Lead",
+            "field": "schedule_status",
+            "quote": "Skid refurbishment can continue under isolation; return to service requires investigation of the recurring film."
+          },
+          {
+            "id": "S008",
+            "report_id": "DR-D01",
+            "report_date": "2026-09-08",
+            "report_author": "Plant Maintenance - Shift Lead",
+            "field": "rfi_change_order_refs",
+            "quote": "Isolation permit IP-P6-908"
+          },
+          {
+            "id": "S009",
+            "report_id": "DR-D01",
+            "report_date": "2026-09-08",
+            "report_author": "Plant Maintenance - Shift Lead",
+            "field": "action_required",
+            "quote": "Trace the recurring oily film and record the result before return to service."
+          },
+          {
+            "id": "S010",
+            "report_id": "DR-D01",
+            "report_date": "2026-09-08",
+            "report_author": "Plant Maintenance - Shift Lead",
+            "field": "quantity_or_measurement",
+            "quote": "One pump isolated; approximately 150 mL residue collected"
+          },
+          {
+            "id": "S011",
+            "report_id": "DR-D01",
+            "report_date": "2026-09-08",
+            "report_author": "Plant Maintenance - Shift Lead",
+            "field": "supporting_evidence",
+            "quote": "Isolation certificate IP-P6-908 and maintenance photograph MP6-0801 recorded"
+          },
+          {
+            "id": "S012",
+            "report_id": "DR-D02",
+            "report_date": "2026-09-09",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "work_planned",
+            "quote": "Set the replacement pump after bearing-face acceptance and confirmed shim detail."
+          },
+          {
+            "id": "S013",
+            "report_id": "DR-D02",
+            "report_date": "2026-09-09",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "work_completed",
+            "quote": "Bearing face cleaned and leveling points surveyed."
+          },
+          {
+            "id": "S014",
+            "report_id": "DR-D02",
+            "report_date": "2026-09-09",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "work_completed",
+            "quote": "Replacement pump remained in the laydown zone."
+          },
+          {
+            "id": "S015",
+            "report_id": "DR-D02",
+            "report_date": "2026-09-09",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "issue_or_update",
+            "quote": "The crew received verbal clearance at 08:05."
+          },
+          {
+            "id": "S016",
+            "report_id": "DR-D02",
+            "report_date": "2026-09-09",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "issue_or_update",
+            "quote": "No signed bearing-face release had reached the crew by the end of this shift."
+          },
+          {
+            "id": "S017",
+            "report_id": "DR-D02",
+            "report_date": "2026-09-09",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "schedule_status",
+            "quote": "Pump setting deferred for this shift pending the written bearing-face release and confirmation of the shim stack."
+          },
+          {
+            "id": "S018",
+            "report_id": "DR-D02",
+            "report_date": "2026-09-09",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "rfi_change_order_refs",
+            "quote": "Work package WP-P6; technical query TQ-061"
+          },
+          {
+            "id": "S019",
+            "report_id": "DR-D02",
+            "report_date": "2026-09-09",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "action_required",
+            "quote": "Provide the signed bearing-face release and the issued shim detail to the installation crew."
+          },
+          {
+            "id": "S020",
+            "report_id": "DR-D02",
+            "report_date": "2026-09-09",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "quantity_or_measurement",
+            "quote": "Pump installed: 0; surveyed bearing points: 6"
+          },
+          {
+            "id": "S021",
+            "report_id": "DR-D02",
+            "report_date": "2026-09-09",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "supporting_evidence",
+            "quote": "Chargehand shift log and survey sheet SV-P6-09"
+          },
+          {
+            "id": "S022",
+            "report_id": "DR-D03",
+            "report_date": "2026-09-09",
+            "report_author": "Principal Contractor - General Foreperson",
+            "field": "work_planned",
+            "quote": "Coordinate inspection and installation readiness."
+          },
+          {
+            "id": "S023",
+            "report_id": "DR-D03",
+            "report_date": "2026-09-09",
+            "report_author": "Principal Contractor - General Foreperson",
+            "field": "work_completed",
+            "quote": "Inspection telephone call held at 07:50; delivery slot moved to the next shift."
+          },
+          {
+            "id": "S024",
+            "report_id": "DR-D03",
+            "report_date": "2026-09-09",
+            "report_author": "Principal Contractor - General Foreperson",
+            "field": "issue_or_update",
+            "quote": "Foreperson notes say QC passed."
+          },
+          {
+            "id": "S025",
+            "report_id": "DR-D03",
+            "report_date": "2026-09-09",
+            "report_author": "Principal Contractor - General Foreperson",
+            "field": "issue_or_update",
+            "quote": "This was a telephone update; the signed bearing-face sheet was awaiting issue at 14:30."
+          },
+          {
+            "id": "S026",
+            "report_id": "DR-D03",
+            "report_date": "2026-09-09",
+            "report_author": "Principal Contractor - General Foreperson",
+            "field": "issue_or_update",
+            "quote": "The mechanical crew reported that its written release had not arrived."
+          },
+          {
+            "id": "S027",
+            "report_id": "DR-D03",
+            "report_date": "2026-09-09",
+            "report_author": "Principal Contractor - General Foreperson",
+            "field": "issue_or_update",
+            "quote": "The existing M-214 revision B shows a 6 mm shim stack, while the replacement supplier sketch shows 9 mm."
+          },
+          {
+            "id": "S028",
+            "report_id": "DR-D03",
+            "report_date": "2026-09-09",
+            "report_author": "Principal Contractor - General Foreperson",
+            "field": "schedule_status",
+            "quote": "Setting held while the bearing-face sheet and applicable shim detail are confirmed."
+          },
+          {
+            "id": "S029",
+            "report_id": "DR-D03",
+            "report_date": "2026-09-09",
+            "report_author": "Principal Contractor - General Foreperson",
+            "field": "rfi_change_order_refs",
+            "quote": "TQ-061; M-214 revision B; supplier sketch SK-P6-04"
+          },
+          {
+            "id": "S030",
+            "report_id": "DR-D03",
+            "report_date": "2026-09-09",
+            "report_author": "Principal Contractor - General Foreperson",
+            "field": "action_required",
+            "quote": "Confirm the applicable shim detail through TQ-061 and distribute the signed bearing-face sheet."
+          },
+          {
+            "id": "S031",
+            "report_id": "DR-D03",
+            "report_date": "2026-09-09",
+            "report_author": "Principal Contractor - General Foreperson",
+            "field": "quantity_or_measurement",
+            "quote": "Existing detail: 6 mm; supplier proposal: 9 mm"
+          },
+          {
+            "id": "S032",
+            "report_id": "DR-D03",
+            "report_date": "2026-09-09",
+            "report_author": "Principal Contractor - General Foreperson",
+            "field": "supporting_evidence",
+            "quote": "Telephone coordination note CN-P6-09; survey sheet SV-P6-09"
+          },
+          {
+            "id": "S033",
+            "report_id": "DR-D04",
+            "report_date": "2026-09-10",
+            "report_author": "Principal Contractor - Mechanical Engineer",
+            "field": "work_planned",
+            "quote": "Obtain designer decision and prepare the grout delivery."
+          },
+          {
+            "id": "S034",
+            "report_id": "DR-D04",
+            "report_date": "2026-09-10",
+            "report_author": "Principal Contractor - Mechanical Engineer",
+            "field": "work_completed",
+            "quote": "Engineer circulated an internal draft proposing the 9 mm stack."
+          },
+          {
+            "id": "S035",
+            "report_id": "DR-D04",
+            "report_date": "2026-09-10",
+            "report_author": "Principal Contractor - Mechanical Engineer",
+            "field": "work_completed",
+            "quote": "Grout delivery accepted into the locked store."
+          },
+          {
+            "id": "S036",
+            "report_id": "DR-D04",
+            "report_date": "2026-09-10",
+            "report_author": "Principal Contractor - Mechanical Engineer",
+            "field": "work_completed",
+            "quote": "Pump setting did not start."
+          },
+          {
+            "id": "S037",
+            "report_id": "DR-D04",
+            "report_date": "2026-09-10",
+            "report_author": "Principal Contractor - Mechanical Engineer",
+            "field": "issue_or_update",
+            "quote": "The internal draft has not been issued by the designer through the document register."
+          },
+          {
+            "id": "S038",
+            "report_id": "DR-D04",
+            "report_date": "2026-09-10",
+            "report_author": "Principal Contractor - Mechanical Engineer",
+            "field": "issue_or_update",
+            "quote": "The installer has received no approved revision."
+          },
+          {
+            "id": "S039",
+            "report_id": "DR-D04",
+            "report_date": "2026-09-10",
+            "report_author": "Principal Contractor - Mechanical Engineer",
+            "field": "schedule_status",
+            "quote": "Pump setting deferred for a second shift; release sheet and issued design detail were awaited at the start of the shift."
+          },
+          {
+            "id": "S040",
+            "report_id": "DR-D04",
+            "report_date": "2026-09-10",
+            "report_author": "Principal Contractor - Mechanical Engineer",
+            "field": "schedule_status",
+            "quote": "No project completion-date effect has been calculated."
+          },
+          {
+            "id": "S041",
+            "report_id": "DR-D04",
+            "report_date": "2026-09-10",
+            "report_author": "Principal Contractor - Mechanical Engineer",
+            "field": "rfi_change_order_refs",
+            "quote": "TQ-061 awaiting issue; draft M-214 revision D"
+          },
+          {
+            "id": "S042",
+            "report_id": "DR-D04",
+            "report_date": "2026-09-10",
+            "report_author": "Principal Contractor - Mechanical Engineer",
+            "field": "action_required",
+            "quote": "Issue the signed TQ-061 response with the drawing revision and obtain installation-crew receipt."
+          },
+          {
+            "id": "S043",
+            "report_id": "DR-D04",
+            "report_date": "2026-09-10",
+            "report_author": "Principal Contractor - Mechanical Engineer",
+            "field": "quantity_or_measurement",
+            "quote": "22 sealed grout bags received under delivery GR-462"
+          },
+          {
+            "id": "S044",
+            "report_id": "DR-D04",
+            "report_date": "2026-09-10",
+            "report_author": "Principal Contractor - Mechanical Engineer",
+            "field": "supporting_evidence",
+            "quote": "Internal draft email and stores receipt GR-462"
+          },
+          {
+            "id": "S045",
+            "report_id": "DR-D05",
+            "report_date": "2026-09-10",
+            "report_author": "Quality Inspector - Civil Works",
+            "field": "work_planned",
+            "quote": "Complete bearing-face inspection."
+          },
+          {
+            "id": "S046",
+            "report_id": "DR-D05",
+            "report_date": "2026-09-10",
+            "report_author": "Quality Inspector - Civil Works",
+            "field": "work_completed",
+            "quote": "Bearing-face inspection accepted at 10:20."
+          },
+          {
+            "id": "S047",
+            "report_id": "DR-D05",
+            "report_date": "2026-09-10",
+            "report_author": "Quality Inspector - Civil Works",
+            "field": "work_completed",
+            "quote": "Signed release BF-P6-0910 uploaded to the work package and received by the installation chargehand at 10:42."
+          },
+          {
+            "id": "S048",
+            "report_id": "DR-D05",
+            "report_date": "2026-09-10",
+            "report_author": "Quality Inspector - Civil Works",
+            "field": "issue_or_update",
+            "quote": "Bearing-face preparation acceptance is closed."
+          },
+          {
+            "id": "S049",
+            "report_id": "DR-D05",
+            "report_date": "2026-09-10",
+            "report_author": "Quality Inspector - Civil Works",
+            "field": "issue_or_update",
+            "quote": "This inspection covers bearing-face condition only; anchor torque requires its own witness and acceptance."
+          },
+          {
+            "id": "S050",
+            "report_id": "DR-D05",
+            "report_date": "2026-09-10",
+            "report_author": "Quality Inspector - Civil Works",
+            "field": "schedule_status",
+            "quote": "Bearing-face release complete."
+          },
+          {
+            "id": "S051",
+            "report_id": "DR-D05",
+            "report_date": "2026-09-10",
+            "report_author": "Quality Inspector - Civil Works",
+            "field": "schedule_status",
+            "quote": "Pump setting also requires the issued shim detail and anchor-torque acceptance."
+          },
+          {
+            "id": "S052",
+            "report_id": "DR-D05",
+            "report_date": "2026-09-10",
+            "report_author": "Quality Inspector - Civil Works",
+            "field": "rfi_change_order_refs",
+            "quote": "BF-P6-0910; TQ-061"
+          },
+          {
+            "id": "S053",
+            "report_id": "DR-D05",
+            "report_date": "2026-09-10",
+            "report_author": "Quality Inspector - Civil Works",
+            "field": "action_required",
+            "quote": "Request the separate anchor-torque witness before placing grout."
+          },
+          {
+            "id": "S054",
+            "report_id": "DR-D05",
+            "report_date": "2026-09-10",
+            "report_author": "Quality Inspector - Civil Works",
+            "field": "quantity_or_measurement",
+            "quote": "Six bearing points accepted"
+          },
+          {
+            "id": "S055",
+            "report_id": "DR-D05",
+            "report_date": "2026-09-10",
+            "report_author": "Quality Inspector - Civil Works",
+            "field": "supporting_evidence",
+            "quote": "Signed bearing-face release BF-P6-0910 uploaded with inspector signature"
+          },
+          {
+            "id": "S056",
+            "report_id": "DR-D06",
+            "report_date": "2026-09-11",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "work_planned",
+            "quote": "Complete anchor torque and prepare setting operations."
+          },
+          {
+            "id": "S057",
+            "report_id": "DR-D06",
+            "report_date": "2026-09-11",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "work_completed",
+            "quote": "Anchors torqued to the work-package values."
+          },
+          {
+            "id": "S058",
+            "report_id": "DR-D06",
+            "report_date": "2026-09-11",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "work_completed",
+            "quote": "Witness requested for the afternoon."
+          },
+          {
+            "id": "S059",
+            "report_id": "DR-D06",
+            "report_date": "2026-09-11",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "work_completed",
+            "quote": "Pump remained in the laydown zone at 11:30."
+          },
+          {
+            "id": "S060",
+            "report_id": "DR-D06",
+            "report_date": "2026-09-11",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "issue_or_update",
+            "quote": "Anchor torquing by the installer is complete, but inspector witness acceptance has not yet been entered."
+          },
+          {
+            "id": "S061",
+            "report_id": "DR-D06",
+            "report_date": "2026-09-11",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "issue_or_update",
+            "quote": "The crew still awaits the issued shim revision at 11:30."
+          },
+          {
+            "id": "S062",
+            "report_id": "DR-D06",
+            "report_date": "2026-09-11",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "schedule_status",
+            "quote": "Grouting remains dependent on separate anchor-torque acceptance and receipt of the design instruction."
+          },
+          {
+            "id": "S063",
+            "report_id": "DR-D06",
+            "report_date": "2026-09-11",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "rfi_change_order_refs",
+            "quote": "Torque work sheet TW-P6-11; TQ-061"
+          },
+          {
+            "id": "S064",
+            "report_id": "DR-D06",
+            "report_date": "2026-09-11",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "action_required",
+            "quote": "Obtain anchor-torque witness acceptance before grouting."
+          },
+          {
+            "id": "S065",
+            "report_id": "DR-D06",
+            "report_date": "2026-09-11",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "quantity_or_measurement",
+            "quote": "Eight anchors torqued"
+          },
+          {
+            "id": "S066",
+            "report_id": "DR-D06",
+            "report_date": "2026-09-11",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "supporting_evidence",
+            "quote": "Installer torque sheet TW-P6-11; witness request WR-P6-11"
+          },
+          {
+            "id": "S067",
+            "report_id": "DR-D07",
+            "report_date": "2026-09-11",
+            "report_author": "Document Controller - Construction Team",
+            "field": "work_planned",
+            "quote": "Issue the final design instruction and check grout stores."
+          },
+          {
+            "id": "S068",
+            "report_id": "DR-D07",
+            "report_date": "2026-09-11",
+            "report_author": "Document Controller - Construction Team",
+            "field": "work_completed",
+            "quote": "Signed TQ-061 response and drawing M-214 revision D issued at 13:10, specifying the 9 mm shim stack."
+          },
+          {
+            "id": "S069",
+            "report_id": "DR-D07",
+            "report_date": "2026-09-11",
+            "report_author": "Document Controller - Construction Team",
+            "field": "work_completed",
+            "quote": "Installation chargehand acknowledged receipt at 13:35."
+          },
+          {
+            "id": "S070",
+            "report_id": "DR-D07",
+            "report_date": "2026-09-11",
+            "report_author": "Document Controller - Construction Team",
+            "field": "issue_or_update",
+            "quote": "The issued instruction supersedes the earlier 6 mm detail; TQ-061 is closed."
+          },
+          {
+            "id": "S071",
+            "report_id": "DR-D07",
+            "report_date": "2026-09-11",
+            "report_author": "Document Controller - Construction Team",
+            "field": "issue_or_update",
+            "quote": "The stores check lists 22 bags received, 19 issued to the installer for the next day's grouting, and two sealed bags returned to the main store."
+          },
+          {
+            "id": "S072",
+            "report_id": "DR-D07",
+            "report_date": "2026-09-11",
+            "report_author": "Document Controller - Construction Team",
+            "field": "issue_or_update",
+            "quote": "One bag is unaccounted for in the transfer log."
+          },
+          {
+            "id": "S073",
+            "report_id": "DR-D07",
+            "report_date": "2026-09-11",
+            "report_author": "Document Controller - Construction Team",
+            "field": "schedule_status",
+            "quote": "Design information is released for installation."
+          },
+          {
+            "id": "S074",
+            "report_id": "DR-D07",
+            "report_date": "2026-09-11",
+            "report_author": "Document Controller - Construction Team",
+            "field": "schedule_status",
+            "quote": "Stores reconciliation remains open."
+          },
+          {
+            "id": "S075",
+            "report_id": "DR-D07",
+            "report_date": "2026-09-11",
+            "report_author": "Document Controller - Construction Team",
+            "field": "rfi_change_order_refs",
+            "quote": "TQ-061 closed; M-214 revision D; transfer ST-P6-11"
+          },
+          {
+            "id": "S076",
+            "report_id": "DR-D07",
+            "report_date": "2026-09-11",
+            "report_author": "Document Controller - Construction Team",
+            "field": "action_required",
+            "quote": "Reconcile the one-bag difference against store transfers and recorded usage."
+          },
+          {
+            "id": "S077",
+            "report_id": "DR-D07",
+            "report_date": "2026-09-11",
+            "report_author": "Document Controller - Construction Team",
+            "field": "quantity_or_measurement",
+            "quote": "22 received; 19 issued for grouting; 2 sealed bags returned; 1 bag unreconciled"
+          },
+          {
+            "id": "S078",
+            "report_id": "DR-D07",
+            "report_date": "2026-09-11",
+            "report_author": "Document Controller - Construction Team",
+            "field": "supporting_evidence",
+            "quote": "Signed response TQ-061, revision D drawing, and receipt acknowledgement filed; stores transfer ST-P6-11"
+          },
+          {
+            "id": "S079",
+            "report_id": "DR-D08",
+            "report_date": "2026-09-12",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "work_planned",
+            "quote": "Set and grout the replacement pump, then protect the grout during its specified cure."
+          },
+          {
+            "id": "S080",
+            "report_id": "DR-D08",
+            "report_date": "2026-09-12",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "work_completed",
+            "quote": "Pump set at 07:40 and grouting completed at 09:10 using M-214 revision D with the 9 mm stack."
+          },
+          {
+            "id": "S081",
+            "report_id": "DR-D08",
+            "report_date": "2026-09-12",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "work_completed",
+            "quote": "Nineteen grout bags mixed."
+          },
+          {
+            "id": "S082",
+            "report_id": "DR-D08",
+            "report_date": "2026-09-12",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "work_completed",
+            "quote": "Crew erected the cure barrier and posted a release time of 2026-09-14 09:10."
+          },
+          {
+            "id": "S083",
+            "report_id": "DR-D08",
+            "report_date": "2026-09-12",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "issue_or_update",
+            "quote": "Anchor-torque inspection reference AT-P6-0912 is entered in the work package, but the signed acceptance sheet is not linked and could not be opened by the chargehand."
+          },
+          {
+            "id": "S084",
+            "report_id": "DR-D08",
+            "report_date": "2026-09-12",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "issue_or_update",
+            "quote": "Preliminary coupling alignment measured 0.18 mm vertical offset against the work-package acceptance limit of 0.10 mm; final alignment remains required before start-up."
+          },
+          {
+            "id": "S085",
+            "report_id": "DR-D08",
+            "report_date": "2026-09-12",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "schedule_status",
+            "quote": "Physical pump setting and grouting are complete after the earlier deferrals."
+          },
+          {
+            "id": "S086",
+            "report_id": "DR-D08",
+            "report_date": "2026-09-12",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "schedule_status",
+            "quote": "Grout cure is proceeding to the specified release time."
+          },
+          {
+            "id": "S087",
+            "report_id": "DR-D08",
+            "report_date": "2026-09-12",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "schedule_status",
+            "quote": "Pump remains isolated for final alignment and start-up checks."
+          },
+          {
+            "id": "S088",
+            "report_id": "DR-D08",
+            "report_date": "2026-09-12",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "schedule_status",
+            "quote": "Principal Contractor records that an access notice was sent to instrumentation on 2026-09-11."
+          },
+          {
+            "id": "S089",
+            "report_id": "DR-D08",
+            "report_date": "2026-09-12",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "rfi_change_order_refs",
+            "quote": "M-214 revision D; TQ-061 closed; AT-P6-0912; alignment sheet AL-P6-12"
+          },
+          {
+            "id": "S090",
+            "report_id": "DR-D08",
+            "report_date": "2026-09-12",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "action_required",
+            "quote": "Link the signed anchor-torque acceptance and complete final alignment after cure before start-up."
+          },
+          {
+            "id": "S091",
+            "report_id": "DR-D08",
+            "report_date": "2026-09-12",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "quantity_or_measurement",
+            "quote": "19 grout bags mixed; preliminary vertical offset 0.18 mm; acceptance limit 0.10 mm"
+          },
+          {
+            "id": "S092",
+            "report_id": "DR-D08",
+            "report_date": "2026-09-12",
+            "report_author": "Mechanical Installer - Chargehand",
+            "field": "supporting_evidence",
+            "quote": "Grout batch sheet GB-P6-12 and preliminary alignment sheet AL-P6-12; signed AT-P6-0912 sheet not linked"
+          },
+          {
+            "id": "S093",
+            "report_id": "DR-D09",
+            "report_date": "2026-09-12",
+            "report_author": "Instrumentation Installer - Chargehand",
+            "field": "work_planned",
+            "quote": "Terminate instruments on the adjacent service rack."
+          },
+          {
+            "id": "S094",
+            "report_id": "DR-D09",
+            "report_date": "2026-09-12",
+            "report_author": "Instrumentation Installer - Chargehand",
+            "field": "work_completed",
+            "quote": "Skid access restricted from 09:00 to 10:20 during grouting."
+          },
+          {
+            "id": "S095",
+            "report_id": "DR-D09",
+            "report_date": "2026-09-12",
+            "report_author": "Instrumentation Installer - Chargehand",
+            "field": "work_completed",
+            "quote": "Three technicians worked in the panel room during the restriction and returned to the rack at 10:20."
+          },
+          {
+            "id": "S096",
+            "report_id": "DR-D09",
+            "report_date": "2026-09-12",
+            "report_author": "Instrumentation Installer - Chargehand",
+            "field": "issue_or_update",
+            "quote": "The shift log does not establish whether this chargehand received the advance access notice."
+          },
+          {
+            "id": "S097",
+            "report_id": "DR-D09",
+            "report_date": "2026-09-12",
+            "report_author": "Instrumentation Installer - Chargehand",
+            "field": "issue_or_update",
+            "quote": "No lost full shift or project completion-date change is recorded."
+          },
+          {
+            "id": "S098",
+            "report_id": "DR-D09",
+            "report_date": "2026-09-12",
+            "report_author": "Instrumentation Installer - Chargehand",
+            "field": "schedule_status",
+            "quote": "Adjacent instrument work was resequenced for 80 minutes."
+          },
+          {
+            "id": "S099",
+            "report_id": "DR-D09",
+            "report_date": "2026-09-12",
+            "report_author": "Instrumentation Installer - Chargehand",
+            "field": "schedule_status",
+            "quote": "The cure barrier affects only the pump skid; service-rack access is available."
+          },
+          {
+            "id": "S100",
+            "report_id": "DR-D09",
+            "report_date": "2026-09-12",
+            "report_author": "Instrumentation Installer - Chargehand",
+            "field": "rfi_change_order_refs",
+            "quote": "Coordination note IC-P6-12"
+          },
+          {
+            "id": "S101",
+            "report_id": "DR-D09",
+            "report_date": "2026-09-12",
+            "report_author": "Instrumentation Installer - Chargehand",
+            "field": "action_required",
+            "quote": "Check receipt of the advance access notice and record the agreed notification route for future skid work."
+          },
+          {
+            "id": "S102",
+            "report_id": "DR-D09",
+            "report_date": "2026-09-12",
+            "report_author": "Instrumentation Installer - Chargehand",
+            "field": "quantity_or_measurement",
+            "quote": "Three technicians reassigned for 80 minutes; rack work resumed at 10:20"
+          },
+          {
+            "id": "S103",
+            "report_id": "DR-D09",
+            "report_date": "2026-09-12",
+            "report_author": "Instrumentation Installer - Chargehand",
+            "field": "supporting_evidence",
+            "quote": "Instrumentation shift log IC-P6-12 and panel-room work record"
+          }
+        ]
+      },
+      "newSegmentElapsedMs": 409290.4966
+    }
+  ]
+}

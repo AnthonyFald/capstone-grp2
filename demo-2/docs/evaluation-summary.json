@@ -1,75 +1,55 @@
 {
-  "generatedAt": "2026-10-22T11:59:58.291Z",
-  "currentPipeline": "daily-reports-v17",
+  "generatedAt": "2026-10-22T23:37:24.731Z",
+  "currentPipeline": "daily-reports-v18",
+  "currentPrompt": "daily-review-18n-consolidated",
   "note": "Original predictions scored provisionally with Codex assistance; independent team adjudication and the controlled human study remain outstanding. Failed/development attempts are retained separately and are not silently counted as successful trials.",
-  "attempts": 20,
-  "completed": 20,
+  "attempts": 43,
+  "completed": 43,
   "failed": 0,
   "groups": [
     {
       "revision": "Current source-based pipeline",
-      "profile": "native27",
+      "profile": "native-thorough",
       "model": "qwen3.5:27b",
-      "promptVersion": "daily-review-17-extractive",
-      "pipeline": "daily-reports-v17",
-      "label": "Native Qwen 3.5 27B · thorough",
+      "promptVersion": "daily-review-18n-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · staged review",
+      "processingScope": "Staged review",
+      "method": "staged-verified-prefix-replay",
+      "sourceVersion": "Team CSV (current input)",
       "dataset": "reports-a",
       "originalDatasetIds": [
         "custom"
       ],
       "inputHashes": [
-        "4ae8d9d3b59811dcfe4284f650ba78c528303c646b643fcfa8243a8baee4b30e"
+        "9e38f32a4dc4f47ed8c30776ef50e1d9e930bd10ea4df0c467c399cf4b946dc8"
       ],
       "n": 1,
       "referenceIssues": 12,
-      "recallDisplay": "11/12 (92%)",
-      "partialDisplay": "1",
-      "unsupportedDisplay": "0",
-      "duplicateDisplay": "7",
-      "precisionDisplay": "100%",
-      "latencyObservations": 1,
-      "medianSeconds": 615.121356,
-      "minSeconds": 615.121356,
-      "maxSeconds": 615.121356,
-      "timeDisplay": "615.1 s · one observation"
-    },
-    {
-      "revision": "Current source-based pipeline",
-      "profile": "native-thorough",
-      "model": "qwen3.5:27b",
-      "promptVersion": "daily-review-17-extractive",
-      "pipeline": "daily-reports-v17",
-      "label": "Native Qwen 3.5 27B · thorough",
-      "dataset": "reports-b",
-      "originalDatasetIds": [
-        "reports-b"
-      ],
-      "inputHashes": [
-        "2d7224c3864ff2005397ce01d476d482de6fd57d1d8896511ec4578819fa3102"
-      ],
-      "n": 1,
-      "referenceIssues": 8,
-      "recallDisplay": "7/8 (88%)",
+      "recallDisplay": "12/12 (100%)",
       "partialDisplay": "0",
       "unsupportedDisplay": "0",
-      "duplicateDisplay": "5",
+      "duplicateDisplay": "0",
       "precisionDisplay": "100%",
-      "latencyObservations": 1,
-      "medianSeconds": 277.8758213,
-      "minSeconds": 277.8758213,
-      "maxSeconds": 277.8758213,
-      "timeDisplay": "277.9 s · one observation"
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Staged review · no end-to-end timing"
     },
     {
       "revision": "Current source-based pipeline",
-      "profile": "native-thorough",
+      "profile": "native27",
       "model": "qwen3.5:27b",
-      "promptVersion": "daily-review-17-extractive",
-      "pipeline": "daily-reports-v17",
+      "promptVersion": "daily-review-18n-consolidated",
+      "pipeline": "daily-reports-v18",
       "label": "Native Qwen 3.5 27B · thorough",
+      "processingScope": "Complete review",
+      "method": "source-inventory-shared-concern-consolidation",
+      "sourceVersion": null,
       "dataset": "reports-clean",
       "originalDatasetIds": [
-        "reports-clean"
+        "custom"
       ],
       "inputHashes": [
         "b0e0a1874339ed7ed42e7a3dc229fc61e8e3fec87a8275deca8f7d1f569fe235"
@@ -82,18 +62,21 @@
       "duplicateDisplay": "0",
       "precisionDisplay": "Undefined",
       "latencyObservations": 1,
-      "medianSeconds": 13.120865100000001,
-      "minSeconds": 13.120865100000001,
-      "maxSeconds": 13.120865100000001,
-      "timeDisplay": "13.1 s · one observation"
+      "medianSeconds": 208.98222159999997,
+      "minSeconds": 208.98222159999997,
+      "maxSeconds": 208.98222159999997,
+      "timeDisplay": "209.0 s · one observation"
     },
     {
       "revision": "Current source-based pipeline",
       "profile": "native-thorough",
       "model": "qwen3.5:27b",
-      "promptVersion": "daily-review-17-extractive",
-      "pipeline": "daily-reports-v17",
-      "label": "Native Qwen 3.5 27B · thorough",
+      "promptVersion": "daily-review-18n-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · consolidation check",
+      "processingScope": "Consolidation of retained candidates",
+      "method": "staged-saved-candidate-consolidation",
+      "sourceVersion": null,
       "dataset": "reports-d",
       "originalDatasetIds": [
         "reports-d"
@@ -106,21 +89,24 @@
       "recallDisplay": "8/9 (89%)",
       "partialDisplay": "1",
       "unsupportedDisplay": "0",
-      "duplicateDisplay": "6",
+      "duplicateDisplay": "0",
       "precisionDisplay": "100%",
       "latencyObservations": 0,
       "medianSeconds": null,
       "minSeconds": null,
       "maxSeconds": null,
-      "timeDisplay": "Staged recovery · not a latency measurement"
+      "timeDisplay": "Consolidation only · no end-to-end timing"
     },
     {
       "revision": "Current source-based pipeline",
       "profile": "native-thorough",
       "model": "qwen3.5:27b",
-      "promptVersion": "daily-review-17-extractive",
-      "pipeline": "daily-reports-v17",
-      "label": "Native Qwen 3.5 27B · thorough",
+      "promptVersion": "daily-review-18n-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · staged review",
+      "processingScope": "Staged review",
+      "method": "verified-response-recovery",
+      "sourceVersion": null,
       "dataset": "reports-e",
       "originalDatasetIds": [
         "reports-e"
@@ -135,73 +121,52 @@
       "unsupportedDisplay": "0",
       "duplicateDisplay": "0",
       "precisionDisplay": "Undefined",
-      "latencyObservations": 1,
-      "medianSeconds": 34.41989000000001,
-      "minSeconds": 34.41989000000001,
-      "maxSeconds": 34.41989000000001,
-      "timeDisplay": "34.4 s · one observation"
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Response recovery · no end-to-end timing"
     },
     {
       "revision": "Current source-based pipeline",
       "profile": "native-thorough",
       "model": "qwen3.5:27b",
-      "promptVersion": "daily-review-17-extractive",
-      "pipeline": "daily-reports-v17",
-      "label": "Native Qwen 3.5 27B · thorough",
-      "dataset": "reports-f",
+      "promptVersion": "daily-review-18n-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · staged review",
+      "processingScope": "Staged review",
+      "method": "staged-verified-prefix-replay",
+      "sourceVersion": null,
+      "dataset": "reports-g",
       "originalDatasetIds": [
-        "reports-f"
+        "custom"
       ],
       "inputHashes": [
-        "33485d16d10c1ca7396bebda4e0024dd07467c6e3fe1164cc6d7fdf502085829"
+        "376ff8d2e2c282650a9462f775171dcb55bcdb584b8d5722813b7b116f0912f9"
       ],
       "n": 1,
-      "referenceIssues": 8,
-      "recallDisplay": "7/8 (88%)",
-      "partialDisplay": "1",
-      "unsupportedDisplay": "0",
-      "duplicateDisplay": "7",
-      "precisionDisplay": "100%",
-      "latencyObservations": 1,
-      "medianSeconds": 504.00377359999993,
-      "minSeconds": 504.00377359999993,
-      "maxSeconds": 504.00377359999993,
-      "timeDisplay": "504.0 s · one observation"
-    },
-    {
-      "revision": "Current source-based pipeline",
-      "profile": "fast",
-      "model": "Qwen3-4B-q4f16_1-MLC",
-      "promptVersion": "daily-review-17-extractive",
-      "pipeline": "daily-reports-v17",
-      "label": "Browser 4B · one pass",
-      "dataset": "reports-clean",
-      "originalDatasetIds": [
-        "reports-clean"
-      ],
-      "inputHashes": [
-        "b0e0a1874339ed7ed42e7a3dc229fc61e8e3fec87a8275deca8f7d1f569fe235"
-      ],
-      "n": 1,
-      "referenceIssues": 0,
-      "recallDisplay": "Undefined · no reference issues",
+      "referenceIssues": 5,
+      "recallDisplay": "5/5 (100%)",
       "partialDisplay": "0",
-      "unsupportedDisplay": "4",
+      "unsupportedDisplay": "0",
       "duplicateDisplay": "0",
-      "precisionDisplay": "0%",
-      "latencyObservations": 1,
-      "medianSeconds": 14.339899999976158,
-      "minSeconds": 14.339899999976158,
-      "maxSeconds": 14.339899999976158,
-      "timeDisplay": "14.3 s · one observation"
+      "precisionDisplay": "100%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Staged review · no end-to-end timing"
     },
     {
-      "revision": "Earlier pipeline",
+      "revision": "Earlier revision",
       "profile": "native",
       "model": "qwen3.5:9b",
       "promptVersion": "daily-review-8",
       "pipeline": "daily-reports-v8",
       "label": "Native Qwen 3.5 9B · thorough reasoning",
+      "processingScope": "Complete review",
+      "method": null,
+      "sourceVersion": "Earlier sample input",
       "dataset": "reports-a",
       "originalDatasetIds": [
         "reports-a"
@@ -223,12 +188,15 @@
       "timeDisplay": "598.9 s · one observation"
     },
     {
-      "revision": "Earlier pipeline",
+      "revision": "Earlier revision",
       "profile": "native",
       "model": "qwen3.5:9b",
       "promptVersion": "daily-review-8",
       "pipeline": "daily-reports-v8",
       "label": "Native Qwen 3.5 9B · thorough reasoning",
+      "processingScope": "Complete review",
+      "method": null,
+      "sourceVersion": null,
       "dataset": "reports-b",
       "originalDatasetIds": [
         "reports-b"
@@ -250,12 +218,15 @@
       "timeDisplay": "616.4 s · one observation"
     },
     {
-      "revision": "Earlier pipeline",
+      "revision": "Earlier revision",
       "profile": "thorough",
       "model": "Qwen3.5-9B-q4f16_1-MLC",
       "promptVersion": "daily-review-8",
       "pipeline": "daily-reports-v8",
       "label": "Browser 9B · thorough",
+      "processingScope": "Complete review",
+      "method": null,
+      "sourceVersion": "Earlier sample input",
       "dataset": "reports-a",
       "originalDatasetIds": [
         "reports-a"
@@ -277,12 +248,15 @@
       "timeDisplay": "277.3 s · one observation"
     },
     {
-      "revision": "Earlier pipeline",
+      "revision": "Earlier revision",
       "profile": "balanced",
       "model": "Qwen3.5-9B-q4f16_1-MLC",
       "promptVersion": "daily-review-8",
       "pipeline": "daily-reports-v8",
       "label": "Browser 9B · one pass",
+      "processingScope": "Complete review",
+      "method": null,
+      "sourceVersion": "Earlier sample input",
       "dataset": "reports-a",
       "originalDatasetIds": [
         "reports-a"
@@ -304,12 +278,15 @@
       "timeDisplay": "72.4 s median · 69.4–76.0 s"
     },
     {
-      "revision": "Earlier pipeline",
+      "revision": "Earlier revision",
       "profile": "fast",
       "model": "Qwen3-4B-q4f16_1-MLC",
       "promptVersion": "daily-review-8",
       "pipeline": "daily-reports-v8",
       "label": "Browser 4B · one pass",
+      "processingScope": "Complete review",
+      "method": null,
+      "sourceVersion": "Earlier sample input",
       "dataset": "reports-a",
       "originalDatasetIds": [
         "reports-a"
@@ -331,12 +308,45 @@
       "timeDisplay": "63.9 s median · 63.2–68.3 s"
     },
     {
-      "revision": "Earlier pipeline",
+      "revision": "Earlier revision",
+      "profile": "fast",
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "promptVersion": "daily-review-17-extractive",
+      "pipeline": "daily-reports-v17",
+      "label": "Browser 4B · one pass",
+      "processingScope": "Complete review",
+      "method": "source-inventory-and-id-selection",
+      "sourceVersion": null,
+      "dataset": "reports-clean",
+      "originalDatasetIds": [
+        "reports-clean"
+      ],
+      "inputHashes": [
+        "b0e0a1874339ed7ed42e7a3dc229fc61e8e3fec87a8275deca8f7d1f569fe235"
+      ],
+      "n": 1,
+      "referenceIssues": 0,
+      "recallDisplay": "Undefined · no reference issues",
+      "partialDisplay": "0",
+      "unsupportedDisplay": "4",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "0%",
+      "latencyObservations": 1,
+      "medianSeconds": 14.339899999976158,
+      "minSeconds": 14.339899999976158,
+      "maxSeconds": 14.339899999976158,
+      "timeDisplay": "14.3 s · one observation"
+    },
+    {
+      "revision": "Earlier revision",
       "profile": "native",
       "model": "qwen3.5:27b",
       "promptVersion": "daily-review-3",
       "pipeline": "daily-reports-v3",
       "label": "Native Qwen 3.5 27B · one pass reasoning",
+      "processingScope": "Complete review",
+      "method": null,
+      "sourceVersion": "Earlier sample input",
       "dataset": "reports-a",
       "originalDatasetIds": [
         "reports-a"
@@ -358,12 +368,735 @@
       "timeDisplay": "666.6 s · one observation"
     },
     {
-      "revision": "Earlier pipeline",
+      "revision": "Earlier revision",
+      "profile": "native27",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-17-extractive",
+      "pipeline": "daily-reports-v17",
+      "label": "Native Qwen 3.5 27B · thorough",
+      "processingScope": "Complete review",
+      "method": "source-inventory-and-id-selection",
+      "sourceVersion": "Earlier sample input",
+      "dataset": "reports-a",
+      "originalDatasetIds": [
+        "custom"
+      ],
+      "inputHashes": [
+        "4ae8d9d3b59811dcfe4284f650ba78c528303c646b643fcfa8243a8baee4b30e"
+      ],
+      "n": 1,
+      "referenceIssues": 12,
+      "recallDisplay": "11/12 (92%)",
+      "partialDisplay": "1",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "7",
+      "precisionDisplay": "100%",
+      "latencyObservations": 1,
+      "medianSeconds": 615.121356,
+      "minSeconds": 615.121356,
+      "maxSeconds": 615.121356,
+      "timeDisplay": "615.1 s · one observation"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18c-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · consolidation check",
+      "processingScope": "Consolidation of retained candidates",
+      "method": "saved-candidate-consolidation-only",
+      "sourceVersion": "Earlier sample input",
+      "dataset": "reports-a",
+      "originalDatasetIds": [
+        "custom"
+      ],
+      "inputHashes": [
+        "4ae8d9d3b59811dcfe4284f650ba78c528303c646b643fcfa8243a8baee4b30e"
+      ],
+      "n": 1,
+      "referenceIssues": 12,
+      "recallDisplay": "11/12 (92%)",
+      "partialDisplay": "1",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "100%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Consolidation only · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native27",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18c-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough",
+      "processingScope": "Complete review",
+      "method": "source-inventory-shared-concern-consolidation",
+      "sourceVersion": "Team CSV (current input)",
+      "dataset": "reports-a",
+      "originalDatasetIds": [
+        "custom"
+      ],
+      "inputHashes": [
+        "9e38f32a4dc4f47ed8c30776ef50e1d9e930bd10ea4df0c467c399cf4b946dc8"
+      ],
+      "n": 1,
+      "referenceIssues": 12,
+      "recallDisplay": "12/12 (100%)",
+      "partialDisplay": "0",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "1",
+      "precisionDisplay": "100%",
+      "latencyObservations": 1,
+      "medianSeconds": 873.9843237,
+      "minSeconds": 873.9843237,
+      "maxSeconds": 873.9843237,
+      "timeDisplay": "874.0 s · one observation"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18f-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · staged review",
+      "processingScope": "Staged review",
+      "method": "verified-response-recovery",
+      "sourceVersion": "Team CSV (current input)",
+      "dataset": "reports-a",
+      "originalDatasetIds": [
+        "custom"
+      ],
+      "inputHashes": [
+        "9e38f32a4dc4f47ed8c30776ef50e1d9e930bd10ea4df0c467c399cf4b946dc8"
+      ],
+      "n": 1,
+      "referenceIssues": 12,
+      "recallDisplay": "12/12 (100%)",
+      "partialDisplay": "0",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "100%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Response recovery · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18f-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · consolidation check",
+      "processingScope": "Consolidation of retained candidates",
+      "method": "saved-candidate-consolidation-only",
+      "sourceVersion": "Earlier sample input",
+      "dataset": "reports-a",
+      "originalDatasetIds": [
+        "custom"
+      ],
+      "inputHashes": [
+        "4ae8d9d3b59811dcfe4284f650ba78c528303c646b643fcfa8243a8baee4b30e"
+      ],
+      "n": 1,
+      "referenceIssues": 12,
+      "recallDisplay": "11/12 (92%)",
+      "partialDisplay": "1",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "100%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Consolidation only · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18k-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · staged review",
+      "processingScope": "Staged review",
+      "method": "staged-verified-prefix-replay",
+      "sourceVersion": "Team CSV (current input)",
+      "dataset": "reports-a",
+      "originalDatasetIds": [
+        "custom"
+      ],
+      "inputHashes": [
+        "9e38f32a4dc4f47ed8c30776ef50e1d9e930bd10ea4df0c467c399cf4b946dc8"
+      ],
+      "n": 1,
+      "referenceIssues": 12,
+      "recallDisplay": "12/12 (100%)",
+      "partialDisplay": "0",
+      "unsupportedDisplay": "1",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "92%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Staged review · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18m-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · staged review",
+      "processingScope": "Staged review",
+      "method": "staged-verified-prefix-replay",
+      "sourceVersion": "Team CSV (current input)",
+      "dataset": "reports-a",
+      "originalDatasetIds": [
+        "custom"
+      ],
+      "inputHashes": [
+        "9e38f32a4dc4f47ed8c30776ef50e1d9e930bd10ea4df0c467c399cf4b946dc8"
+      ],
+      "n": 1,
+      "referenceIssues": 12,
+      "recallDisplay": "12/12 (100%)",
+      "partialDisplay": "0",
+      "unsupportedDisplay": "2",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "86%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Staged review · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-17-extractive",
+      "pipeline": "daily-reports-v17",
+      "label": "Native Qwen 3.5 27B · thorough",
+      "processingScope": "Complete review",
+      "method": "source-inventory-and-id-selection",
+      "sourceVersion": null,
+      "dataset": "reports-b",
+      "originalDatasetIds": [
+        "reports-b"
+      ],
+      "inputHashes": [
+        "2d7224c3864ff2005397ce01d476d482de6fd57d1d8896511ec4578819fa3102"
+      ],
+      "n": 1,
+      "referenceIssues": 8,
+      "recallDisplay": "7/8 (88%)",
+      "partialDisplay": "0",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "5",
+      "precisionDisplay": "100%",
+      "latencyObservations": 1,
+      "medianSeconds": 277.8758213,
+      "minSeconds": 277.8758213,
+      "maxSeconds": 277.8758213,
+      "timeDisplay": "277.9 s · one observation"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18f-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · consolidation check",
+      "processingScope": "Consolidation of retained candidates",
+      "method": "saved-candidate-consolidation-only",
+      "sourceVersion": null,
+      "dataset": "reports-b",
+      "originalDatasetIds": [
+        "reports-b"
+      ],
+      "inputHashes": [
+        "2d7224c3864ff2005397ce01d476d482de6fd57d1d8896511ec4578819fa3102"
+      ],
+      "n": 1,
+      "referenceIssues": 8,
+      "recallDisplay": "7/8 (88%)",
+      "partialDisplay": "0",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "100%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Consolidation only · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-17-extractive",
+      "pipeline": "daily-reports-v17",
+      "label": "Native Qwen 3.5 27B · thorough",
+      "processingScope": "Complete review",
+      "method": "source-inventory-and-id-selection",
+      "sourceVersion": null,
+      "dataset": "reports-clean",
+      "originalDatasetIds": [
+        "reports-clean"
+      ],
+      "inputHashes": [
+        "b0e0a1874339ed7ed42e7a3dc229fc61e8e3fec87a8275deca8f7d1f569fe235"
+      ],
+      "n": 1,
+      "referenceIssues": 0,
+      "recallDisplay": "Undefined · no reference issues",
+      "partialDisplay": "0",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "Undefined",
+      "latencyObservations": 1,
+      "medianSeconds": 13.120865100000001,
+      "minSeconds": 13.120865100000001,
+      "maxSeconds": 13.120865100000001,
+      "timeDisplay": "13.1 s · one observation"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-17-extractive",
+      "pipeline": "daily-reports-v17",
+      "label": "Native Qwen 3.5 27B · thorough · staged review",
+      "processingScope": "Staged review",
+      "method": "source-inventory-and-id-selection",
+      "sourceVersion": null,
+      "dataset": "reports-d",
+      "originalDatasetIds": [
+        "reports-d"
+      ],
+      "inputHashes": [
+        "b82eaabb9672786d8b231907908825a84d94886edbb21b609e81fb35c79d2034"
+      ],
+      "n": 1,
+      "referenceIssues": 9,
+      "recallDisplay": "8/9 (89%)",
+      "partialDisplay": "1",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "6",
+      "precisionDisplay": "100%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Staged review · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18i-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · consolidation check",
+      "processingScope": "Consolidation of retained candidates",
+      "method": "staged-saved-candidate-consolidation",
+      "sourceVersion": null,
+      "dataset": "reports-d",
+      "originalDatasetIds": [
+        "reports-d"
+      ],
+      "inputHashes": [
+        "b82eaabb9672786d8b231907908825a84d94886edbb21b609e81fb35c79d2034"
+      ],
+      "n": 1,
+      "referenceIssues": 9,
+      "recallDisplay": "8/9 (89%)",
+      "partialDisplay": "1",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "1",
+      "precisionDisplay": "100%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Consolidation only · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18j-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · consolidation check",
+      "processingScope": "Consolidation of retained candidates",
+      "method": "staged-saved-candidate-consolidation",
+      "sourceVersion": null,
+      "dataset": "reports-d",
+      "originalDatasetIds": [
+        "reports-d"
+      ],
+      "inputHashes": [
+        "b82eaabb9672786d8b231907908825a84d94886edbb21b609e81fb35c79d2034"
+      ],
+      "n": 1,
+      "referenceIssues": 9,
+      "recallDisplay": "8/9 (89%)",
+      "partialDisplay": "1",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "100%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Consolidation only · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18k-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · consolidation check",
+      "processingScope": "Consolidation of retained candidates",
+      "method": "staged-saved-candidate-consolidation",
+      "sourceVersion": null,
+      "dataset": "reports-d",
+      "originalDatasetIds": [
+        "reports-d"
+      ],
+      "inputHashes": [
+        "b82eaabb9672786d8b231907908825a84d94886edbb21b609e81fb35c79d2034"
+      ],
+      "n": 1,
+      "referenceIssues": 9,
+      "recallDisplay": "8/9 (89%)",
+      "partialDisplay": "1",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "100%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Consolidation only · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18m-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · consolidation check",
+      "processingScope": "Consolidation of retained candidates",
+      "method": "staged-saved-candidate-consolidation",
+      "sourceVersion": null,
+      "dataset": "reports-d",
+      "originalDatasetIds": [
+        "reports-d"
+      ],
+      "inputHashes": [
+        "b82eaabb9672786d8b231907908825a84d94886edbb21b609e81fb35c79d2034"
+      ],
+      "n": 1,
+      "referenceIssues": 9,
+      "recallDisplay": "8/9 (89%)",
+      "partialDisplay": "1",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "100%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Consolidation only · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-17-extractive",
+      "pipeline": "daily-reports-v17",
+      "label": "Native Qwen 3.5 27B · thorough",
+      "processingScope": "Complete review",
+      "method": "source-inventory-and-id-selection",
+      "sourceVersion": null,
+      "dataset": "reports-e",
+      "originalDatasetIds": [
+        "reports-e"
+      ],
+      "inputHashes": [
+        "3317059b5c048c8c83b44ab7cb22aa89d74e5a6b9146d13126a0f15485918f36"
+      ],
+      "n": 1,
+      "referenceIssues": 0,
+      "recallDisplay": "Undefined · no reference issues",
+      "partialDisplay": "0",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "Undefined",
+      "latencyObservations": 1,
+      "medianSeconds": 34.41989000000001,
+      "minSeconds": 34.41989000000001,
+      "maxSeconds": 34.41989000000001,
+      "timeDisplay": "34.4 s · one observation"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18k-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough",
+      "processingScope": "Complete review",
+      "method": "source-inventory-shared-concern-consolidation",
+      "sourceVersion": null,
+      "dataset": "reports-e",
+      "originalDatasetIds": [
+        "reports-e"
+      ],
+      "inputHashes": [
+        "3317059b5c048c8c83b44ab7cb22aa89d74e5a6b9146d13126a0f15485918f36"
+      ],
+      "n": 1,
+      "referenceIssues": 0,
+      "recallDisplay": "Undefined · no reference issues",
+      "partialDisplay": "0",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "Undefined",
+      "latencyObservations": 1,
+      "medianSeconds": 454.19207889999996,
+      "minSeconds": 454.19207889999996,
+      "maxSeconds": 454.19207889999996,
+      "timeDisplay": "454.2 s · one observation"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18m-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · staged review",
+      "processingScope": "Staged review",
+      "method": "verified-response-recovery",
+      "sourceVersion": null,
+      "dataset": "reports-e",
+      "originalDatasetIds": [
+        "reports-e"
+      ],
+      "inputHashes": [
+        "3317059b5c048c8c83b44ab7cb22aa89d74e5a6b9146d13126a0f15485918f36"
+      ],
+      "n": 1,
+      "referenceIssues": 0,
+      "recallDisplay": "Undefined · no reference issues",
+      "partialDisplay": "0",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "Undefined",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Response recovery · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-17-extractive",
+      "pipeline": "daily-reports-v17",
+      "label": "Native Qwen 3.5 27B · thorough",
+      "processingScope": "Complete review",
+      "method": "source-inventory-and-id-selection",
+      "sourceVersion": null,
+      "dataset": "reports-f",
+      "originalDatasetIds": [
+        "reports-f"
+      ],
+      "inputHashes": [
+        "33485d16d10c1ca7396bebda4e0024dd07467c6e3fe1164cc6d7fdf502085829"
+      ],
+      "n": 1,
+      "referenceIssues": 8,
+      "recallDisplay": "7/8 (88%)",
+      "partialDisplay": "1",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "7",
+      "precisionDisplay": "100%",
+      "latencyObservations": 1,
+      "medianSeconds": 504.00377359999993,
+      "minSeconds": 504.00377359999993,
+      "maxSeconds": 504.00377359999993,
+      "timeDisplay": "504.0 s · one observation"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18f-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · consolidation check",
+      "processingScope": "Consolidation of retained candidates",
+      "method": "saved-candidate-consolidation-only",
+      "sourceVersion": null,
+      "dataset": "reports-f",
+      "originalDatasetIds": [
+        "reports-f"
+      ],
+      "inputHashes": [
+        "33485d16d10c1ca7396bebda4e0024dd07467c6e3fe1164cc6d7fdf502085829"
+      ],
+      "n": 1,
+      "referenceIssues": 8,
+      "recallDisplay": "7/8 (88%)",
+      "partialDisplay": "1",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "100%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Consolidation only · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native27",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18f-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough",
+      "processingScope": "Complete review",
+      "method": "source-inventory-shared-concern-consolidation",
+      "sourceVersion": null,
+      "dataset": "reports-g",
+      "originalDatasetIds": [
+        "custom"
+      ],
+      "inputHashes": [
+        "376ff8d2e2c282650a9462f775171dcb55bcdb584b8d5722813b7b116f0912f9"
+      ],
+      "n": 1,
+      "referenceIssues": 5,
+      "recallDisplay": "4/5 (80%)",
+      "partialDisplay": "1",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "100%",
+      "latencyObservations": 1,
+      "medianSeconds": 541.8335757000001,
+      "minSeconds": 541.8335757000001,
+      "maxSeconds": 541.8335757000001,
+      "timeDisplay": "541.8 s · one observation"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18j-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · staged review",
+      "processingScope": "Staged review",
+      "method": "staged-verified-prefix-replay",
+      "sourceVersion": null,
+      "dataset": "reports-g",
+      "originalDatasetIds": [
+        "custom"
+      ],
+      "inputHashes": [
+        "376ff8d2e2c282650a9462f775171dcb55bcdb584b8d5722813b7b116f0912f9"
+      ],
+      "n": 1,
+      "referenceIssues": 5,
+      "recallDisplay": "5/5 (100%)",
+      "partialDisplay": "0",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "100%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Staged review · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18k-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · staged review",
+      "processingScope": "Staged review",
+      "method": "staged-verified-prefix-replay",
+      "sourceVersion": null,
+      "dataset": "reports-g",
+      "originalDatasetIds": [
+        "custom"
+      ],
+      "inputHashes": [
+        "376ff8d2e2c282650a9462f775171dcb55bcdb584b8d5722813b7b116f0912f9"
+      ],
+      "n": 1,
+      "referenceIssues": 5,
+      "recallDisplay": "5/5 (100%)",
+      "partialDisplay": "0",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "100%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Staged review · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "promptVersion": "daily-review-18m-consolidated",
+      "pipeline": "daily-reports-v18",
+      "label": "Native Qwen 3.5 27B · thorough · staged review",
+      "processingScope": "Staged review",
+      "method": "staged-verified-prefix-replay",
+      "sourceVersion": null,
+      "dataset": "reports-g",
+      "originalDatasetIds": [
+        "custom"
+      ],
+      "inputHashes": [
+        "376ff8d2e2c282650a9462f775171dcb55bcdb584b8d5722813b7b116f0912f9"
+      ],
+      "n": 1,
+      "referenceIssues": 5,
+      "recallDisplay": "5/5 (100%)",
+      "partialDisplay": "0",
+      "unsupportedDisplay": "0",
+      "duplicateDisplay": "0",
+      "precisionDisplay": "100%",
+      "latencyObservations": 0,
+      "medianSeconds": null,
+      "minSeconds": null,
+      "maxSeconds": null,
+      "timeDisplay": "Staged review · no end-to-end timing"
+    },
+    {
+      "revision": "Earlier revision",
       "profile": "rules",
       "model": "keyword-rules-v1",
       "promptVersion": null,
       "pipeline": "daily-reports-v3",
       "label": "Keyword baseline",
+      "processingScope": "Complete review",
+      "method": null,
+      "sourceVersion": "Earlier sample input",
       "dataset": "reports-a",
       "originalDatasetIds": [
         "reports-a"
@@ -385,12 +1118,15 @@
       "timeDisplay": "<0.1 s · one observation"
     },
     {
-      "revision": "Earlier pipeline",
+      "revision": "Earlier revision",
       "profile": "rules",
       "model": "keyword-rules-v1",
       "promptVersion": null,
       "pipeline": "daily-reports-v3",
       "label": "Keyword baseline",
+      "processingScope": "Complete review",
+      "method": null,
+      "sourceVersion": null,
       "dataset": "reports-b",
       "originalDatasetIds": [
         "reports-b"
@@ -412,12 +1148,15 @@
       "timeDisplay": "<0.1 s · one observation"
     },
     {
-      "revision": "Earlier pipeline",
+      "revision": "Earlier revision",
       "profile": "rules",
       "model": "keyword-rules-v1",
       "promptVersion": null,
       "pipeline": "daily-reports-v3",
       "label": "Keyword baseline",
+      "processingScope": "Complete review",
+      "method": null,
+      "sourceVersion": null,
       "dataset": "reports-clean",
       "originalDatasetIds": [
         "reports-clean"

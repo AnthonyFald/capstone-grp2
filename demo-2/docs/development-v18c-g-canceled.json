@@ -1,0 +1,34 @@
+{
+  "version": "daily-reports-v18",
+  "runs": [
+    {
+      "runId": "canceled-v18c-g-20261022",
+      "recordedAt": "2026-10-22T20:24:09.816Z",
+      "startedAt": "2026-10-22T20:14:17.762Z",
+      "pipeline": "daily-reports-v18",
+      "promptVersion": "daily-review-18c-consolidated",
+      "backend": "ollama",
+      "model": "qwen3.5:27b",
+      "nativePolicy": "native-sampling-3",
+      "seed": 42,
+      "datasetId": "reports-g",
+      "inputSha256": "376ff8d2e2c282650a9462f775171dcb55bcdb584b8d5722813b7b116f0912f9",
+      "status": "failed",
+      "cancelled": true,
+      "error": "Superseded evaluation canceled after the full uploaded A run failed semantic consolidation checks.",
+      "completedPrediction": false,
+      "referenceExposedToImplementingAgents": false,
+      "elapsedMs": null,
+      "observedProgress": [
+        "Connecting concerns to exact report passages",
+        "Checking coverage and later resolutions",
+        "Checking uncited passages for missed concerns",
+        "Checking explicitly remaining closeout tasks",
+        "Checking historical work and delivery changes",
+        "Checking opposing release and inspection accounts",
+        "Organizing one shared list of concerns · identify independent concerns"
+      ],
+      "notes": "The process was stopped before any completed G prediction was exported or its source/reference contents were reviewed by the implementing agents. Per-call raw responses were not checkpointed by this interrupted CLI. This is not a completed quality or end-to-end latency observation. G source/reference remain unchanged for a new source freeze before the first completed G evaluation."
+    }
+  ]
+}

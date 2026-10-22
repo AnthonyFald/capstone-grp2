@@ -1,0 +1,3006 @@
+{
+  "version": "daily-reports-v18",
+  "note": "Staged development quality check: 13 unchanged requests were verified by exact request hashes against the archived engine before reusing their retained responses. Fresh inference calls: 0. Retained intermediate responses are not accepted quality predictions. Zero-call recovery changes only deterministic validation/normalization, retaining original raw responses and explicit repair traces. No end-to-end latency measurement.",
+  "runs": [
+    {
+      "runId": "15830727-7805-4698-ad43-acbb7fd4dad0",
+      "createdAt": "2026-10-22T23:32:30.200Z",
+      "pipeline": "daily-reports-v18",
+      "backend": "ollama",
+      "profile": "native-thorough",
+      "thorough": true,
+      "model": "qwen3.5:27b",
+      "modelDigest": "64ae5b1d651fb2709d5928ccb8dcfb4bb2cc9c2c8001ac34497e36a6cf905b59",
+      "reasoning": false,
+      "seed": 42,
+      "nativePolicy": "native-sampling-3",
+      "contextWindow": 32768,
+      "datasetId": "reports-e",
+      "inputSha256": "3317059b5c048c8c83b44ab7cb22aa89d74e5a6b9146d13126a0f15485918f36",
+      "reports": [
+        {
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "work_area": "East workshop, overhead corridor duct run",
+          "shift": "06:30-15:00",
+          "weather": "Indoor work; dry",
+          "crew_count": "4",
+          "work_planned": "Install four rectangular duct sections above the east workshop corridor.",
+          "work_completed": "Four duct sections installed on accepted supports; all joints inspected and sealed to approved detail V-208 revision F.",
+          "materials_equipment": "Rectangular duct sections, joint sealant, access platform, hand tools",
+          "issue_or_update": "Routine installation completed. Supports were accepted under signed inspection VS-1001 before loading. Approved instruction TQ-088 was received before this work began.",
+          "schedule_status": "Work remains on the agreed sequence. Joint-sealant cure is scheduled through 2026-10-02 12:00.",
+          "rfi_change_order_refs": "V-208 revision F; TQ-088 closed; VS-1001 accepted",
+          "action_required": "Maintain the posted cure barrier until the specified release time.",
+          "responsible_party": "Ventilation Installer",
+          "due_date": "2026-10-02 12:00",
+          "quantity_or_measurement": "Four duct sections received and four installed; two sealant cartridges issued and two consumed",
+          "supporting_evidence": "Signed support inspection VS-1001, approved drawing, instruction receipt, and material log filed"
+        },
+        {
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "work_area": "East workshop, overhead corridor duct run",
+          "shift": "06:30-15:00",
+          "weather": "Indoor work; dry",
+          "crew_count": "0",
+          "work_planned": "Inspect completed duct joints after the specified sealant cure.",
+          "work_completed": "Cure barrier removed at 12:15 after the specified 12:00 release. Joint inspection and leakage test passed at 13:20. Signed acceptance VQ-1002 recorded and linked in the work package.",
+          "materials_equipment": "Rectangular duct sections, joint sealant, access platform, hand tools",
+          "issue_or_update": "All tested joints met the approved leakage criterion. The installation and quality inspection are accepted; no corrective items were raised.",
+          "schedule_status": "Controls handoff remains scheduled for 2026-10-05 08:00. The controls supervisor acknowledged the handoff notice at 14:05 today.",
+          "rfi_change_order_refs": "VQ-1002 accepted; test LT-1002 passed",
+          "action_required": "Proceed with the agreed controls handoff on October 5.",
+          "responsible_party": "Controls Installer",
+          "due_date": "2026-10-05 08:00",
+          "quantity_or_measurement": "Four installed sections tested and accepted; measured leakage within the specified limit",
+          "supporting_evidence": "Signed acceptance VQ-1002, test sheet LT-1002, and acknowledged handoff notice HN-1002 filed"
+        },
+        {
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "work_area": "East workshop, corridor and controls cabinet zone",
+          "shift": "06:30-15:00",
+          "weather": "Indoor work; dry",
+          "crew_count": "0",
+          "work_planned": "Complete housekeeping and confirm next-week access.",
+          "work_completed": "Housekeeping completed and corridor returned to normal use. Controls equipment staged in the designated cabinet zone outside the duct work area.",
+          "materials_equipment": "Rectangular duct sections, joint sealant, access platform, hand tools",
+          "issue_or_update": "Work package reviewed: support inspection, approved detail, leakage-test result, and signed completion acceptance are all linked and complete. No outstanding corrective work or technical query is listed.",
+          "schedule_status": "Controls handoff remains booked for October 5 at 08:00. Both trade supervisors confirmed the plan and access route.",
+          "rfi_change_order_refs": "WP-V208 closed; handoff HN-1002 confirmed",
+          "action_required": "Follow the agreed October 5 handoff plan.",
+          "responsible_party": "Principal Contractor / Controls Installer",
+          "due_date": "2026-10-05 08:00",
+          "quantity_or_measurement": "Four duct sections installed and accepted; store and installation totals balanced",
+          "supporting_evidence": "Closed work-package checklist WC-1003 and coordination acknowledgement CA-1003 filed"
+        }
+      ],
+      "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+      "sourcePipeline": "daily-reports-v18",
+      "sourcePromptVersion": "daily-review-18k-consolidated",
+      "sourceStatus": "completed",
+      "sourceFile": "final-v18k-native27-e.json",
+      "reusedStageCount": 13,
+      "sourcePrefixRequestHashes": [
+        {
+          "stage": "Connecting concerns to exact report passages",
+          "requestSha256": "bc49091d81a6db6ef69488563e5b442af34c12728ddd3d27f33a15fd5319a063"
+        },
+        {
+          "stage": "Checking coverage and later resolutions",
+          "requestSha256": "a13ce35a1843a2c73869784246fe6a4f894e21ac041ed0da869d06c6ed266f29"
+        },
+        {
+          "stage": "Checking uncited passages for missed concerns",
+          "requestSha256": "058b74a7ff31de6dc80a4e106061e57750e080cd20afbe83052a2ff06293d8bd"
+        },
+        {
+          "stage": "Checking explicitly remaining closeout tasks",
+          "requestSha256": "c0bafc57885c5aed09d175567c8cfb8c7ab6d705dd61b5d32eff1f25468ea038"
+        },
+        {
+          "stage": "Checking historical work and delivery changes",
+          "requestSha256": "bf6dc302e160b4db0de9e87dff346c2ec44f4cf88f3fdb78907b21e8c1d457c6"
+        },
+        {
+          "stage": "Checking opposing release and inspection accounts",
+          "requestSha256": "adb7b72de6682e6c5e1ef7151323cc52142ac4439218cec5932bae068897f87d"
+        },
+        {
+          "stage": "Verifying relevance and full history 1–1",
+          "requestSha256": "a30d8f7b6d91f5b7eac1759ff1980367c45ab9a6754c95ad2733d0ada411a7c7"
+        },
+        {
+          "stage": "Independently rechecking proposed routine removals",
+          "requestSha256": "448d7689f07a5b2bb68bc15bb6735faf4c16fb0059a34e3273799ece835396b2"
+        },
+        {
+          "stage": "Checking every remaining source obligation",
+          "requestSha256": "2c51fb6c5c28449ba91b1ab4c0612d3bc897c07aa67672f895f748eae12eb3a1"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "4a3da48afb55d4b501225268f4736d2e265463e028cbc89722d62c41d4b2186e"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "c5c1a5d28bafdd79da49c5754aad7dec83f8061626c977f21da1fe856e3cb793"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "d86b64dc1b164841709f1d9964b1cb98088f7a7205a74ab587b699a8d6ef9095"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "41acf3c13f4a96891f6d5ed148c061a68f4838dd803dbc2ce0e69a2509a7166d"
+        }
+      ],
+      "sourcePrefixEngineSha256": "4d4e19a24a6d64505e96702cf0366a6bfb3178f0c50bf98e0a638cbb8df2d08c",
+      "sourcePrefixEngineFile": "engine-v18k-frozen.js",
+      "analysisEngineSha256": "c9f01be55eebda0f3241759b6ecbd3b7c06826d7d33c05d96e3b4d681b7587aa",
+      "sourcePrefixTimings": [
+        {
+          "stage": "Connecting concerns to exact report passages",
+          "elapsedMs": 2443.6854000000003,
+          "usage": {
+            "prompt_tokens": 2455,
+            "completion_tokens": 5,
+            "load_duration_ns": 4152900,
+            "prompt_eval_duration_ns": 1818520000,
+            "eval_duration_ns": 440255000,
+            "total_duration_ns": 2440050300,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking coverage and later resolutions",
+          "elapsedMs": 3379.8053999999997,
+          "usage": {
+            "prompt_tokens": 3087,
+            "completion_tokens": 9,
+            "load_duration_ns": 5743000,
+            "prompt_eval_duration_ns": 2396448000,
+            "eval_duration_ns": 877241000,
+            "total_duration_ns": 3367248900,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking uncited passages for missed concerns",
+          "elapsedMs": 2541.7439000000013,
+          "usage": {
+            "prompt_tokens": 2696,
+            "completion_tokens": 5,
+            "load_duration_ns": 5196800,
+            "prompt_eval_duration_ns": 1985639000,
+            "eval_duration_ns": 446909000,
+            "total_duration_ns": 2535163600,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking explicitly remaining closeout tasks",
+          "elapsedMs": 10398.255100000002,
+          "usage": {
+            "prompt_tokens": 2850,
+            "completion_tokens": 73,
+            "load_duration_ns": 4724900,
+            "prompt_eval_duration_ns": 2065260000,
+            "eval_duration_ns": 8190147000,
+            "total_duration_ns": 10388655100,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking historical work and delivery changes",
+          "elapsedMs": 2246.782800000001,
+          "usage": {
+            "prompt_tokens": 2330,
+            "completion_tokens": 5,
+            "load_duration_ns": 5179200,
+            "prompt_eval_duration_ns": 1712662000,
+            "eval_duration_ns": 436115000,
+            "total_duration_ns": 2244457900,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking opposing release and inspection accounts",
+          "elapsedMs": 2300.915799999999,
+          "usage": {
+            "prompt_tokens": 2338,
+            "completion_tokens": 5,
+            "load_duration_ns": 4186700,
+            "prompt_eval_duration_ns": 1734778000,
+            "eval_duration_ns": 437912000,
+            "total_duration_ns": 2298578400,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Verifying relevance and full history 1–1",
+          "elapsedMs": 9672.562599999997,
+          "usage": {
+            "prompt_tokens": 2875,
+            "completion_tokens": 67,
+            "load_duration_ns": 4695100,
+            "prompt_eval_duration_ns": 2046751000,
+            "eval_duration_ns": 7492154000,
+            "total_duration_ns": 9662712100,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Independently rechecking proposed routine removals",
+          "elapsedMs": 17443.4796,
+          "usage": {
+            "prompt_tokens": 2575,
+            "completion_tokens": 134,
+            "load_duration_ns": 5187600,
+            "prompt_eval_duration_ns": 2098918000,
+            "eval_duration_ns": 15245370000,
+            "total_duration_ns": 17440174800,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking every remaining source obligation",
+          "elapsedMs": 196332.0645,
+          "usage": {
+            "prompt_tokens": 10687,
+            "completion_tokens": 1405,
+            "load_duration_ns": 4658000,
+            "prompt_eval_duration_ns": 7290750000,
+            "eval_duration_ns": 188903085000,
+            "total_duration_ns": 196330032500,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "elapsedMs": 60619.500500000024,
+          "usage": {
+            "prompt_tokens": 6074,
+            "completion_tokens": 466,
+            "load_duration_ns": 5180700,
+            "prompt_eval_duration_ns": 4151783999,
+            "eval_duration_ns": 56252884000,
+            "total_duration_ns": 60615942000,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "elapsedMs": 59934.41320000001,
+          "usage": {
+            "prompt_tokens": 5908,
+            "completion_tokens": 461,
+            "load_duration_ns": 4658300,
+            "prompt_eval_duration_ns": 4101889000,
+            "eval_duration_ns": 55674729000,
+            "total_duration_ns": 59932472200,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "elapsedMs": 60732.86010000005,
+          "usage": {
+            "prompt_tokens": 5793,
+            "completion_tokens": 470,
+            "load_duration_ns": 5320000,
+            "prompt_eval_duration_ns": 4032332000,
+            "eval_duration_ns": 56531177000,
+            "total_duration_ns": 60730962800,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "elapsedMs": 26200.2255,
+          "usage": {
+            "prompt_tokens": 5072,
+            "completion_tokens": 190,
+            "load_duration_ns": 4700400,
+            "prompt_eval_duration_ns": 3487194000,
+            "eval_duration_ns": 22584375000,
+            "total_duration_ns": 26197328100,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        }
+      ],
+      "timingMode": "deterministic-recovery-not-end-to-end",
+      "elapsedMs": null,
+      "totalMs": null,
+      "loadMs": null,
+      "findings": [],
+      "items": [],
+      "sourceObligationAudit": {
+        "version": "source-obligation-coverage-6",
+        "draftBatchSize": 30,
+        "criticBatchSize": 4,
+        "attachmentBatchSize": 1,
+        "attachmentSelection": "novel-original-evidence-only",
+        "attachmentReviewScope": "Only new source quotations are independently matched; already-cited component labels remain unverified AI metadata.",
+        "checkedSourceFactIds": [
+          "S004",
+          "S005",
+          "S006",
+          "S007",
+          "S009",
+          "S012",
+          "S013",
+          "S018",
+          "S019",
+          "S021",
+          "S023",
+          "S029",
+          "S030",
+          "S031",
+          "S032"
+        ],
+        "uncitedSourceFactIds": [
+          "S004",
+          "S005",
+          "S006",
+          "S007",
+          "S009",
+          "S012",
+          "S013",
+          "S018",
+          "S019",
+          "S021",
+          "S023",
+          "S029",
+          "S030",
+          "S031",
+          "S032"
+        ],
+        "entries": [
+          {
+            "sourceFactId": "S004",
+            "components": [
+              {
+                "componentLabel": "Support inspection acceptance prior to loading",
+                "aspect": "supporting_record",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S004",
+                "componentIndex": 0,
+                "requirementId": "O-S004-0",
+                "sourceFactId": "S004",
+                "quote": "Supports were accepted under signed inspection VS-1001 before loading."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S005",
+            "components": [
+              {
+                "componentLabel": "Receipt of approved instruction TQ-088",
+                "aspect": "decision_communication",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S005",
+                "componentIndex": 0,
+                "requirementId": "O-S005-0",
+                "sourceFactId": "S005",
+                "quote": "Approved instruction TQ-088 was received before this work began."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S006",
+            "components": [
+              {
+                "componentLabel": "Work sequence adherence",
+                "aspect": "work_progress",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S006",
+                "componentIndex": 0,
+                "requirementId": "O-S006-0",
+                "sourceFactId": "S006",
+                "quote": "Work remains on the agreed sequence."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S007",
+            "components": [
+              {
+                "componentLabel": "Sealant cure schedule and barrier maintenance",
+                "aspect": "quality_followup",
+                "disposition": "closed",
+                "reasonCode": "explicit_later_closure",
+                "evidenceRole": "explicit_closure_of_this_requirement",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S013",
+                "componentIndex": 0,
+                "requirementId": "O-S007-0",
+                "sourceFactId": "S007",
+                "quote": "Joint-sealant cure is scheduled through 2026-10-02 12:00."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S009",
+            "components": [
+              {
+                "componentLabel": "Maintenance of cure barrier until release time",
+                "aspect": "quality_followup",
+                "disposition": "closed",
+                "reasonCode": "explicit_later_closure",
+                "evidenceRole": "explicit_closure_of_this_requirement",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S013",
+                "componentIndex": 0,
+                "requirementId": "O-S009-0",
+                "sourceFactId": "S009",
+                "quote": "Maintain the posted cure barrier until the specified release time."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S012",
+            "components": [
+              {
+                "componentLabel": "Inspection of duct joints after cure",
+                "aspect": "physical_acceptance",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S012",
+                "componentIndex": 0,
+                "requirementId": "O-S012-0",
+                "sourceFactId": "S012",
+                "quote": "Inspect completed duct joints after the specified sealant cure."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S013",
+            "components": [
+              {
+                "componentLabel": "Removal of cure barrier after release time",
+                "aspect": "quality_followup",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S013",
+                "componentIndex": 0,
+                "requirementId": "O-S013-0",
+                "sourceFactId": "S013",
+                "quote": "Cure barrier removed at 12:15 after the specified 12:00 release."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S018",
+            "components": [
+              {
+                "componentLabel": "Scheduled controls handoff date and time",
+                "aspect": "work_progress",
+                "disposition": "routine",
+                "reasonCode": "ordinary_plan",
+                "evidenceRole": "ordinary_plan_or_context",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "none",
+                "componentIndex": 0,
+                "requirementId": "O-S018-0",
+                "sourceFactId": "S018",
+                "quote": "Controls handoff remains scheduled for 2026-10-05 08:00."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S019",
+            "components": [
+              {
+                "componentLabel": "Acknowledgement of handoff notice by controls supervisor",
+                "aspect": "decision_communication",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S019",
+                "componentIndex": 0,
+                "requirementId": "O-S019-0",
+                "sourceFactId": "S019",
+                "quote": "The controls supervisor acknowledged the handoff notice at 14:05 today."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S021",
+            "components": [
+              {
+                "componentLabel": "Proceed with controls handoff on October 5",
+                "aspect": "work_progress",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S021",
+                "componentIndex": 0,
+                "requirementId": "O-S021-0",
+                "sourceFactId": "S021",
+                "quote": "Proceed with the agreed controls handoff on October 5."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S023",
+            "components": [
+              {
+                "componentLabel": "Filing of signed acceptance and test records",
+                "aspect": "supporting_record",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S023",
+                "componentIndex": 0,
+                "requirementId": "O-S023-0",
+                "sourceFactId": "S023",
+                "quote": "Signed acceptance VQ-1002, test sheet LT-1002, and acknowledged handoff notice HN-1002 filed"
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S029",
+            "components": [
+              {
+                "componentLabel": "Confirmation of controls handoff booking",
+                "aspect": "work_progress",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S029",
+                "componentIndex": 0,
+                "requirementId": "O-S029-0",
+                "sourceFactId": "S029",
+                "quote": "Controls handoff remains booked for October 5 at 08:00."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S030",
+            "components": [
+              {
+                "componentLabel": "Trade supervisor confirmation of plan and access route",
+                "aspect": "access_notice",
+                "disposition": "routine",
+                "reasonCode": "ordinary_plan",
+                "evidenceRole": "ordinary_plan_or_context",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "none",
+                "componentIndex": 0,
+                "requirementId": "O-S030-0",
+                "sourceFactId": "S030",
+                "quote": "Both trade supervisors confirmed the plan and access route."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S031",
+            "components": [
+              {
+                "componentLabel": "Work package closure and handoff confirmation",
+                "aspect": "supporting_record",
+                "disposition": "routine",
+                "reasonCode": "ordinary_plan",
+                "evidenceRole": "ordinary_plan_or_context",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "none",
+                "componentIndex": 0,
+                "requirementId": "O-S031-0",
+                "sourceFactId": "S031",
+                "quote": "WP-V208 closed; handoff HN-1002 confirmed"
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S032",
+            "components": [
+              {
+                "componentLabel": "Execution of agreed handoff plan",
+                "aspect": "work_progress",
+                "disposition": "routine",
+                "reasonCode": "ordinary_plan",
+                "evidenceRole": "ordinary_plan_or_context",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "none",
+                "componentIndex": 0,
+                "requirementId": "O-S032-0",
+                "sourceFactId": "S032",
+                "quote": "Follow the agreed October 5 handoff plan."
+              }
+            ]
+          }
+        ],
+        "initialRawLedgers": [
+          {
+            "checkingSourceFactIds": [
+              "S004",
+              "S005",
+              "S006",
+              "S007",
+              "S009",
+              "S012",
+              "S013",
+              "S018",
+              "S019",
+              "S021",
+              "S023",
+              "S029",
+              "S030",
+              "S031",
+              "S032"
+            ],
+            "coverage": {
+              "S004": [
+                {
+                  "componentLabel": "Support inspection acceptance prior to loading",
+                  "aspect": "supporting_record",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S005": [
+                {
+                  "componentLabel": "Receipt of approved instruction TQ-088",
+                  "aspect": "decision_communication",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S006": [
+                {
+                  "componentLabel": "Work sequence adherence",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S007": [
+                {
+                  "componentLabel": "Sealant cure schedule and barrier maintenance",
+                  "aspect": "quality_followup",
+                  "disposition": "closed",
+                  "reasonCode": "explicit_later_closure",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S013"
+                }
+              ],
+              "S009": [
+                {
+                  "componentLabel": "Maintenance of cure barrier until release time",
+                  "aspect": "quality_followup",
+                  "disposition": "represented",
+                  "reasonCode": "same_open_concern",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S012": [
+                {
+                  "componentLabel": "Inspection of duct joints after cure",
+                  "aspect": "physical_acceptance",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S013": [
+                {
+                  "componentLabel": "Removal of cure barrier after release time",
+                  "aspect": "quality_followup",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S018": [
+                {
+                  "componentLabel": "Scheduled controls handoff date and time",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S019": [
+                {
+                  "componentLabel": "Acknowledgement of handoff notice by controls supervisor",
+                  "aspect": "decision_communication",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S021": [
+                {
+                  "componentLabel": "Proceed with controls handoff on October 5",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S023": [
+                {
+                  "componentLabel": "Filing of signed acceptance and test records",
+                  "aspect": "supporting_record",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S029": [
+                {
+                  "componentLabel": "Confirmation of controls handoff booking",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S030": [
+                {
+                  "componentLabel": "Trade supervisor confirmation of plan and access route",
+                  "aspect": "access_notice",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S031": [
+                {
+                  "componentLabel": "Work package closure and handoff confirmation",
+                  "aspect": "supporting_record",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S032": [
+                {
+                  "componentLabel": "Execution of agreed handoff plan",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ]
+            },
+            "additions": []
+          }
+        ],
+        "rawLedgers": [
+          {
+            "checkingSourceFactIds": [
+              "S004",
+              "S005",
+              "S006",
+              "S007"
+            ],
+            "coverage": {
+              "S004": [
+                {
+                  "componentLabel": "Support inspection acceptance prior to loading",
+                  "aspect": "supporting_record",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S004"
+                }
+              ],
+              "S005": [
+                {
+                  "componentLabel": "Receipt of approved instruction TQ-088",
+                  "aspect": "decision_communication",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S005"
+                }
+              ],
+              "S006": [
+                {
+                  "componentLabel": "Work sequence adherence",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S006"
+                }
+              ],
+              "S007": [
+                {
+                  "componentLabel": "Sealant cure schedule and barrier maintenance",
+                  "aspect": "quality_followup",
+                  "disposition": "closed",
+                  "reasonCode": "explicit_later_closure",
+                  "evidenceRole": "explicit_closure_of_this_requirement",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S013"
+                }
+              ]
+            },
+            "additions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S009",
+              "S012",
+              "S013",
+              "S018"
+            ],
+            "coverage": {
+              "S009": [
+                {
+                  "componentLabel": "Maintenance of cure barrier until release time",
+                  "aspect": "quality_followup",
+                  "disposition": "closed",
+                  "reasonCode": "explicit_later_closure",
+                  "evidenceRole": "explicit_closure_of_this_requirement",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S013"
+                }
+              ],
+              "S012": [
+                {
+                  "componentLabel": "Inspection of duct joints after cure",
+                  "aspect": "physical_acceptance",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S012"
+                }
+              ],
+              "S013": [
+                {
+                  "componentLabel": "Removal of cure barrier after release time",
+                  "aspect": "quality_followup",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S013"
+                }
+              ],
+              "S018": [
+                {
+                  "componentLabel": "Scheduled controls handoff date and time",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "evidenceRole": "ordinary_plan_or_context",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ]
+            },
+            "additions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S019",
+              "S021",
+              "S023",
+              "S029"
+            ],
+            "coverage": {
+              "S019": [
+                {
+                  "componentLabel": "Acknowledgement of handoff notice by controls supervisor",
+                  "aspect": "decision_communication",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S019"
+                }
+              ],
+              "S021": [
+                {
+                  "componentLabel": "Proceed with controls handoff on October 5",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S021"
+                }
+              ],
+              "S023": [
+                {
+                  "componentLabel": "Filing of signed acceptance and test records",
+                  "aspect": "supporting_record",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S023"
+                }
+              ],
+              "S029": [
+                {
+                  "componentLabel": "Confirmation of controls handoff booking",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S029"
+                }
+              ]
+            },
+            "additions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S030",
+              "S031",
+              "S032"
+            ],
+            "coverage": {
+              "S030": [
+                {
+                  "componentLabel": "Trade supervisor confirmation of plan and access route",
+                  "aspect": "access_notice",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "evidenceRole": "ordinary_plan_or_context",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S031": [
+                {
+                  "componentLabel": "Work package closure and handoff confirmation",
+                  "aspect": "supporting_record",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "evidenceRole": "ordinary_plan_or_context",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S032": [
+                {
+                  "componentLabel": "Execution of agreed handoff plan",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "evidenceRole": "ordinary_plan_or_context",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ]
+            },
+            "additions": []
+          }
+        ],
+        "postOrphanLedgers": [
+          {
+            "checkingSourceFactIds": [
+              "S004",
+              "S005",
+              "S006",
+              "S007"
+            ],
+            "coverage": {
+              "S004": [
+                {
+                  "componentLabel": "Support inspection acceptance prior to loading",
+                  "aspect": "supporting_record",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S004"
+                }
+              ],
+              "S005": [
+                {
+                  "componentLabel": "Receipt of approved instruction TQ-088",
+                  "aspect": "decision_communication",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S005"
+                }
+              ],
+              "S006": [
+                {
+                  "componentLabel": "Work sequence adherence",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S006"
+                }
+              ],
+              "S007": [
+                {
+                  "componentLabel": "Sealant cure schedule and barrier maintenance",
+                  "aspect": "quality_followup",
+                  "disposition": "closed",
+                  "reasonCode": "explicit_later_closure",
+                  "evidenceRole": "explicit_closure_of_this_requirement",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S013"
+                }
+              ]
+            },
+            "additions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S009",
+              "S012",
+              "S013",
+              "S018"
+            ],
+            "coverage": {
+              "S009": [
+                {
+                  "componentLabel": "Maintenance of cure barrier until release time",
+                  "aspect": "quality_followup",
+                  "disposition": "closed",
+                  "reasonCode": "explicit_later_closure",
+                  "evidenceRole": "explicit_closure_of_this_requirement",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S013"
+                }
+              ],
+              "S012": [
+                {
+                  "componentLabel": "Inspection of duct joints after cure",
+                  "aspect": "physical_acceptance",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S012"
+                }
+              ],
+              "S013": [
+                {
+                  "componentLabel": "Removal of cure barrier after release time",
+                  "aspect": "quality_followup",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S013"
+                }
+              ],
+              "S018": [
+                {
+                  "componentLabel": "Scheduled controls handoff date and time",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "evidenceRole": "ordinary_plan_or_context",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ]
+            },
+            "additions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S019",
+              "S021",
+              "S023",
+              "S029"
+            ],
+            "coverage": {
+              "S019": [
+                {
+                  "componentLabel": "Acknowledgement of handoff notice by controls supervisor",
+                  "aspect": "decision_communication",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S019"
+                }
+              ],
+              "S021": [
+                {
+                  "componentLabel": "Proceed with controls handoff on October 5",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S021"
+                }
+              ],
+              "S023": [
+                {
+                  "componentLabel": "Filing of signed acceptance and test records",
+                  "aspect": "supporting_record",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S023"
+                }
+              ],
+              "S029": [
+                {
+                  "componentLabel": "Confirmation of controls handoff booking",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S029"
+                }
+              ]
+            },
+            "additions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S030",
+              "S031",
+              "S032"
+            ],
+            "coverage": {
+              "S030": [
+                {
+                  "componentLabel": "Trade supervisor confirmation of plan and access route",
+                  "aspect": "access_notice",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "evidenceRole": "ordinary_plan_or_context",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S031": [
+                {
+                  "componentLabel": "Work package closure and handoff confirmation",
+                  "aspect": "supporting_record",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "evidenceRole": "ordinary_plan_or_context",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S032": [
+                {
+                  "componentLabel": "Execution of agreed handoff plan",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "evidenceRole": "ordinary_plan_or_context",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ]
+            },
+            "additions": []
+          }
+        ],
+        "appliedLedgers": [
+          {
+            "checkingSourceFactIds": [
+              "S004",
+              "S005",
+              "S006",
+              "S007"
+            ],
+            "coverage": {
+              "S004": [
+                {
+                  "componentLabel": "Support inspection acceptance prior to loading",
+                  "aspect": "supporting_record",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S004"
+                }
+              ],
+              "S005": [
+                {
+                  "componentLabel": "Receipt of approved instruction TQ-088",
+                  "aspect": "decision_communication",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S005"
+                }
+              ],
+              "S006": [
+                {
+                  "componentLabel": "Work sequence adherence",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S006"
+                }
+              ],
+              "S007": [
+                {
+                  "componentLabel": "Sealant cure schedule and barrier maintenance",
+                  "aspect": "quality_followup",
+                  "disposition": "closed",
+                  "reasonCode": "explicit_later_closure",
+                  "evidenceRole": "explicit_closure_of_this_requirement",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S013"
+                }
+              ]
+            },
+            "additions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S009",
+              "S012",
+              "S013",
+              "S018"
+            ],
+            "coverage": {
+              "S009": [
+                {
+                  "componentLabel": "Maintenance of cure barrier until release time",
+                  "aspect": "quality_followup",
+                  "disposition": "closed",
+                  "reasonCode": "explicit_later_closure",
+                  "evidenceRole": "explicit_closure_of_this_requirement",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S013"
+                }
+              ],
+              "S012": [
+                {
+                  "componentLabel": "Inspection of duct joints after cure",
+                  "aspect": "physical_acceptance",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S012"
+                }
+              ],
+              "S013": [
+                {
+                  "componentLabel": "Removal of cure barrier after release time",
+                  "aspect": "quality_followup",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S013"
+                }
+              ],
+              "S018": [
+                {
+                  "componentLabel": "Scheduled controls handoff date and time",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "evidenceRole": "ordinary_plan_or_context",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ]
+            },
+            "additions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S019",
+              "S021",
+              "S023",
+              "S029"
+            ],
+            "coverage": {
+              "S019": [
+                {
+                  "componentLabel": "Acknowledgement of handoff notice by controls supervisor",
+                  "aspect": "decision_communication",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S019"
+                }
+              ],
+              "S021": [
+                {
+                  "componentLabel": "Proceed with controls handoff on October 5",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S021"
+                }
+              ],
+              "S023": [
+                {
+                  "componentLabel": "Filing of signed acceptance and test records",
+                  "aspect": "supporting_record",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S023"
+                }
+              ],
+              "S029": [
+                {
+                  "componentLabel": "Confirmation of controls handoff booking",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S029"
+                }
+              ]
+            },
+            "additions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S030",
+              "S031",
+              "S032"
+            ],
+            "coverage": {
+              "S030": [
+                {
+                  "componentLabel": "Trade supervisor confirmation of plan and access route",
+                  "aspect": "access_notice",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "evidenceRole": "ordinary_plan_or_context",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S031": [
+                {
+                  "componentLabel": "Work package closure and handoff confirmation",
+                  "aspect": "supporting_record",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "evidenceRole": "ordinary_plan_or_context",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S032": [
+                {
+                  "componentLabel": "Execution of agreed handoff plan",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "evidenceRole": "ordinary_plan_or_context",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ]
+            },
+            "additions": []
+          }
+        ],
+        "additionRepairs": [],
+        "attachmentCases": [],
+        "attachmentReviewBatches": [],
+        "attachmentDecisions": [],
+        "finalProductReview": {
+          "version": "product-change-entailment-1",
+          "stage": "Independently checking final product changes",
+          "batchSize": 1,
+          "preEntailmentConcerns": [],
+          "preEntailmentLedgers": [
+            {
+              "checkingSourceFactIds": [
+                "S004",
+                "S005",
+                "S006",
+                "S007"
+              ],
+              "coverage": {
+                "S004": [
+                  {
+                    "componentLabel": "Support inspection acceptance prior to loading",
+                    "aspect": "supporting_record",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S004"
+                  }
+                ],
+                "S005": [
+                  {
+                    "componentLabel": "Receipt of approved instruction TQ-088",
+                    "aspect": "decision_communication",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S005"
+                  }
+                ],
+                "S006": [
+                  {
+                    "componentLabel": "Work sequence adherence",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S006"
+                  }
+                ],
+                "S007": [
+                  {
+                    "componentLabel": "Sealant cure schedule and barrier maintenance",
+                    "aspect": "quality_followup",
+                    "disposition": "closed",
+                    "reasonCode": "explicit_later_closure",
+                    "evidenceRole": "explicit_closure_of_this_requirement",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S013"
+                  }
+                ]
+              },
+              "additions": []
+            },
+            {
+              "checkingSourceFactIds": [
+                "S009",
+                "S012",
+                "S013",
+                "S018"
+              ],
+              "coverage": {
+                "S009": [
+                  {
+                    "componentLabel": "Maintenance of cure barrier until release time",
+                    "aspect": "quality_followup",
+                    "disposition": "closed",
+                    "reasonCode": "explicit_later_closure",
+                    "evidenceRole": "explicit_closure_of_this_requirement",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S013"
+                  }
+                ],
+                "S012": [
+                  {
+                    "componentLabel": "Inspection of duct joints after cure",
+                    "aspect": "physical_acceptance",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S012"
+                  }
+                ],
+                "S013": [
+                  {
+                    "componentLabel": "Removal of cure barrier after release time",
+                    "aspect": "quality_followup",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S013"
+                  }
+                ],
+                "S018": [
+                  {
+                    "componentLabel": "Scheduled controls handoff date and time",
+                    "aspect": "work_progress",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "evidenceRole": "ordinary_plan_or_context",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ]
+              },
+              "additions": []
+            },
+            {
+              "checkingSourceFactIds": [
+                "S019",
+                "S021",
+                "S023",
+                "S029"
+              ],
+              "coverage": {
+                "S019": [
+                  {
+                    "componentLabel": "Acknowledgement of handoff notice by controls supervisor",
+                    "aspect": "decision_communication",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S019"
+                  }
+                ],
+                "S021": [
+                  {
+                    "componentLabel": "Proceed with controls handoff on October 5",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S021"
+                  }
+                ],
+                "S023": [
+                  {
+                    "componentLabel": "Filing of signed acceptance and test records",
+                    "aspect": "supporting_record",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S023"
+                  }
+                ],
+                "S029": [
+                  {
+                    "componentLabel": "Confirmation of controls handoff booking",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S029"
+                  }
+                ]
+              },
+              "additions": []
+            },
+            {
+              "checkingSourceFactIds": [
+                "S030",
+                "S031",
+                "S032"
+              ],
+              "coverage": {
+                "S030": [
+                  {
+                    "componentLabel": "Trade supervisor confirmation of plan and access route",
+                    "aspect": "access_notice",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "evidenceRole": "ordinary_plan_or_context",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "S031": [
+                  {
+                    "componentLabel": "Work package closure and handoff confirmation",
+                    "aspect": "supporting_record",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "evidenceRole": "ordinary_plan_or_context",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "S032": [
+                  {
+                    "componentLabel": "Execution of agreed handoff plan",
+                    "aspect": "work_progress",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "evidenceRole": "ordinary_plan_or_context",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ]
+              },
+              "additions": []
+            }
+          ],
+          "preEntailmentAddedCandidates": [],
+          "cases": [],
+          "rawReviews": [],
+          "decisions": [],
+          "abstentions": [],
+          "additionRemovals": []
+        },
+        "ledgerCorrections": [
+          {
+            "checkingSourceFactIds": [
+              "S004",
+              "S005",
+              "S006",
+              "S007"
+            ],
+            "draftLedgerIndices": [
+              0
+            ],
+            "sourceComponents": [
+              {
+                "sourceFactId": "S004",
+                "before": [
+                  {
+                    "componentLabel": "Support inspection acceptance prior to loading",
+                    "aspect": "supporting_record",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Support inspection acceptance prior to loading",
+                    "aspect": "supporting_record",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S004"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S005",
+                "before": [
+                  {
+                    "componentLabel": "Receipt of approved instruction TQ-088",
+                    "aspect": "decision_communication",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Receipt of approved instruction TQ-088",
+                    "aspect": "decision_communication",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S005"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S006",
+                "before": [
+                  {
+                    "componentLabel": "Work sequence adherence",
+                    "aspect": "work_progress",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Work sequence adherence",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S006"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S007",
+                "before": [
+                  {
+                    "componentLabel": "Sealant cure schedule and barrier maintenance",
+                    "aspect": "quality_followup",
+                    "disposition": "closed",
+                    "reasonCode": "explicit_later_closure",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S013"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Sealant cure schedule and barrier maintenance",
+                    "aspect": "quality_followup",
+                    "disposition": "closed",
+                    "reasonCode": "explicit_later_closure",
+                    "evidenceRole": "explicit_closure_of_this_requirement",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S013"
+                  }
+                ]
+              }
+            ],
+            "beforeAdditions": [],
+            "afterAdditions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S009",
+              "S012",
+              "S013",
+              "S018"
+            ],
+            "draftLedgerIndices": [
+              0
+            ],
+            "sourceComponents": [
+              {
+                "sourceFactId": "S009",
+                "before": [
+                  {
+                    "componentLabel": "Maintenance of cure barrier until release time",
+                    "aspect": "quality_followup",
+                    "disposition": "represented",
+                    "reasonCode": "same_open_concern",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Maintenance of cure barrier until release time",
+                    "aspect": "quality_followup",
+                    "disposition": "closed",
+                    "reasonCode": "explicit_later_closure",
+                    "evidenceRole": "explicit_closure_of_this_requirement",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S013"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S012",
+                "before": [
+                  {
+                    "componentLabel": "Inspection of duct joints after cure",
+                    "aspect": "physical_acceptance",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Inspection of duct joints after cure",
+                    "aspect": "physical_acceptance",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S012"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S013",
+                "before": [
+                  {
+                    "componentLabel": "Removal of cure barrier after release time",
+                    "aspect": "quality_followup",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Removal of cure barrier after release time",
+                    "aspect": "quality_followup",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S013"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S018",
+                "before": [
+                  {
+                    "componentLabel": "Scheduled controls handoff date and time",
+                    "aspect": "work_progress",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Scheduled controls handoff date and time",
+                    "aspect": "work_progress",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "evidenceRole": "ordinary_plan_or_context",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ]
+              }
+            ],
+            "beforeAdditions": [],
+            "afterAdditions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S019",
+              "S021",
+              "S023",
+              "S029"
+            ],
+            "draftLedgerIndices": [
+              0
+            ],
+            "sourceComponents": [
+              {
+                "sourceFactId": "S019",
+                "before": [
+                  {
+                    "componentLabel": "Acknowledgement of handoff notice by controls supervisor",
+                    "aspect": "decision_communication",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Acknowledgement of handoff notice by controls supervisor",
+                    "aspect": "decision_communication",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S019"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S021",
+                "before": [
+                  {
+                    "componentLabel": "Proceed with controls handoff on October 5",
+                    "aspect": "work_progress",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Proceed with controls handoff on October 5",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S021"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S023",
+                "before": [
+                  {
+                    "componentLabel": "Filing of signed acceptance and test records",
+                    "aspect": "supporting_record",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Filing of signed acceptance and test records",
+                    "aspect": "supporting_record",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S023"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S029",
+                "before": [
+                  {
+                    "componentLabel": "Confirmation of controls handoff booking",
+                    "aspect": "work_progress",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Confirmation of controls handoff booking",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S029"
+                  }
+                ]
+              }
+            ],
+            "beforeAdditions": [],
+            "afterAdditions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S030",
+              "S031",
+              "S032"
+            ],
+            "draftLedgerIndices": [
+              0
+            ],
+            "sourceComponents": [
+              {
+                "sourceFactId": "S030",
+                "before": [
+                  {
+                    "componentLabel": "Trade supervisor confirmation of plan and access route",
+                    "aspect": "access_notice",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Trade supervisor confirmation of plan and access route",
+                    "aspect": "access_notice",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "evidenceRole": "ordinary_plan_or_context",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S031",
+                "before": [
+                  {
+                    "componentLabel": "Work package closure and handoff confirmation",
+                    "aspect": "supporting_record",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Work package closure and handoff confirmation",
+                    "aspect": "supporting_record",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "evidenceRole": "ordinary_plan_or_context",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S032",
+                "before": [
+                  {
+                    "componentLabel": "Execution of agreed handoff plan",
+                    "aspect": "work_progress",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Execution of agreed handoff plan",
+                    "aspect": "work_progress",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "evidenceRole": "ordinary_plan_or_context",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ]
+              }
+            ],
+            "beforeAdditions": [],
+            "afterAdditions": []
+          }
+        ],
+        "beforeConcerns": [],
+        "afterConcerns": [],
+        "candidateStartIndex": 1,
+        "representedAdditions": [],
+        "latestPointerAdjustments": [],
+        "addedCandidateKeys": [],
+        "reconsolidated": false
+      },
+      "coverageAddedCandidates": [],
+      "materialityReviews": [
+        {
+          "topic": "Is the controls handoff scheduled for Oct 5 confirmed?",
+          "kind": "followup",
+          "status": "resolved",
+          "facts": [
+            "S018",
+            "S019",
+            "S029",
+            "S030",
+            "S032"
+          ],
+          "latest": [
+            "S029",
+            "S030",
+            "S032"
+          ],
+          "memberCandidateIndices": [
+            0
+          ],
+          "verdict": "routine",
+          "reasonCode": "routine_completed_work",
+          "index": 0
+        }
+      ],
+      "materialityRemovals": [
+        {
+          "index": 0,
+          "concernId": null,
+          "memberCandidateIndices": [
+            0
+          ],
+          "question": "Is the controls handoff scheduled for Oct 5 confirmed?",
+          "verdict": "routine",
+          "reasonCode": "no_material_concern",
+          "explanation": "Independent source review confirmed this as routine without a material concern for the original question.",
+          "retainedSourceFactIds": [
+            "S018",
+            "S019",
+            "S029",
+            "S030",
+            "S032"
+          ],
+          "reviewedSourceFactIds": [
+            "S018",
+            "S019",
+            "S029",
+            "S030",
+            "S032"
+          ],
+          "initialReasonCode": "routine_completed_work",
+          "adjudicated": true
+        }
+      ],
+      "materialityReconsiderations": [
+        {
+          "index": 0,
+          "memberCandidateIndices": [
+            0
+          ],
+          "initialReview": {
+            "topic": "Is the controls handoff scheduled for Oct 5 confirmed?",
+            "kind": "followup",
+            "status": "resolved",
+            "facts": [
+              "S018",
+              "S019",
+              "S029",
+              "S030",
+              "S032"
+            ],
+            "latest": [
+              "S029",
+              "S030",
+              "S032"
+            ],
+            "memberCandidateIndices": [
+              0
+            ],
+            "verdict": "routine",
+            "reasonCode": "routine_completed_work",
+            "index": 0
+          },
+          "review": {
+            "index": 0,
+            "verdict": "routine",
+            "reasonCode": "no_material_concern",
+            "facts": [
+              "S018",
+              "S019",
+              "S029",
+              "S030",
+              "S032"
+            ],
+            "latest": [
+              "S029",
+              "S030",
+              "S032"
+            ],
+            "status": "historical"
+          },
+          "outcome": "confirmed_routine",
+          "retainedSourceFactIds": [
+            "S018",
+            "S019",
+            "S029",
+            "S030",
+            "S032"
+          ],
+          "acceptedSourceFactIds": [],
+          "explanation": "Independent source review confirmed the proposed routine removal."
+        }
+      ],
+      "duplicateReviews": [],
+      "preConsolidationCandidates": [
+        {
+          "topic": "Is the controls handoff scheduled for Oct 5 confirmed?",
+          "kind": "followup",
+          "status": "open",
+          "facts": [
+            "S018",
+            "S019",
+            "S029",
+            "S030",
+            "S032"
+          ],
+          "latest": [
+            "S029",
+            "S030",
+            "S032"
+          ],
+          "memberCandidateIndices": [
+            0
+          ]
+        }
+      ],
+      "candidateHistory": [
+        {
+          "stage": "Initial source selection",
+          "items": []
+        },
+        {
+          "stage": "Coverage audit",
+          "items": []
+        },
+        {
+          "stage": "Uncited-source coverage",
+          "items": []
+        },
+        {
+          "stage": "Remaining task coverage",
+          "items": [
+            {
+              "topic": "Is the controls handoff scheduled for Oct 5 confirmed?",
+              "kind": "followup",
+              "status": "open",
+              "facts": [
+                "S018",
+                "S019",
+                "S029",
+                "S030",
+                "S032"
+              ],
+              "latest": [
+                "S029",
+                "S030",
+                "S032"
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "Checking historical work and delivery changes",
+          "items": [
+            {
+              "topic": "Is the controls handoff scheduled for Oct 5 confirmed?",
+              "kind": "followup",
+              "status": "open",
+              "facts": [
+                "S018",
+                "S019",
+                "S029",
+                "S030",
+                "S032"
+              ],
+              "latest": [
+                "S029",
+                "S030",
+                "S032"
+              ]
+            }
+          ]
+        },
+        {
+          "stage": "Checking opposing release and inspection accounts",
+          "items": [
+            {
+              "topic": "Is the controls handoff scheduled for Oct 5 confirmed?",
+              "kind": "followup",
+              "status": "open",
+              "facts": [
+                "S018",
+                "S019",
+                "S029",
+                "S030",
+                "S032"
+              ],
+              "latest": [
+                "S029",
+                "S030",
+                "S032"
+              ]
+            }
+          ]
+        }
+      ],
+      "consolidationHistory": [],
+      "pointerNormalizations": [],
+      "sourceInventory": [
+        {
+          "id": "S001",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "work_planned",
+          "quote": "Install four rectangular duct sections above the east workshop corridor."
+        },
+        {
+          "id": "S002",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "work_completed",
+          "quote": "Four duct sections installed on accepted supports; all joints inspected and sealed to approved detail V-208 revision F."
+        },
+        {
+          "id": "S003",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "issue_or_update",
+          "quote": "Routine installation completed."
+        },
+        {
+          "id": "S004",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "issue_or_update",
+          "quote": "Supports were accepted under signed inspection VS-1001 before loading."
+        },
+        {
+          "id": "S005",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "issue_or_update",
+          "quote": "Approved instruction TQ-088 was received before this work began."
+        },
+        {
+          "id": "S006",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "schedule_status",
+          "quote": "Work remains on the agreed sequence."
+        },
+        {
+          "id": "S007",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "schedule_status",
+          "quote": "Joint-sealant cure is scheduled through 2026-10-02 12:00."
+        },
+        {
+          "id": "S008",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "rfi_change_order_refs",
+          "quote": "V-208 revision F; TQ-088 closed; VS-1001 accepted"
+        },
+        {
+          "id": "S009",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "action_required",
+          "quote": "Maintain the posted cure barrier until the specified release time."
+        },
+        {
+          "id": "S010",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "quantity_or_measurement",
+          "quote": "Four duct sections received and four installed; two sealant cartridges issued and two consumed"
+        },
+        {
+          "id": "S011",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "supporting_evidence",
+          "quote": "Signed support inspection VS-1001, approved drawing, instruction receipt, and material log filed"
+        },
+        {
+          "id": "S012",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "work_planned",
+          "quote": "Inspect completed duct joints after the specified sealant cure."
+        },
+        {
+          "id": "S013",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "work_completed",
+          "quote": "Cure barrier removed at 12:15 after the specified 12:00 release."
+        },
+        {
+          "id": "S014",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "work_completed",
+          "quote": "Joint inspection and leakage test passed at 13:20."
+        },
+        {
+          "id": "S015",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "work_completed",
+          "quote": "Signed acceptance VQ-1002 recorded and linked in the work package."
+        },
+        {
+          "id": "S016",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "issue_or_update",
+          "quote": "All tested joints met the approved leakage criterion."
+        },
+        {
+          "id": "S017",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "issue_or_update",
+          "quote": "The installation and quality inspection are accepted; no corrective items were raised."
+        },
+        {
+          "id": "S018",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "schedule_status",
+          "quote": "Controls handoff remains scheduled for 2026-10-05 08:00."
+        },
+        {
+          "id": "S019",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "schedule_status",
+          "quote": "The controls supervisor acknowledged the handoff notice at 14:05 today."
+        },
+        {
+          "id": "S020",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "rfi_change_order_refs",
+          "quote": "VQ-1002 accepted; test LT-1002 passed"
+        },
+        {
+          "id": "S021",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "action_required",
+          "quote": "Proceed with the agreed controls handoff on October 5."
+        },
+        {
+          "id": "S022",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "quantity_or_measurement",
+          "quote": "Four installed sections tested and accepted; measured leakage within the specified limit"
+        },
+        {
+          "id": "S023",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "supporting_evidence",
+          "quote": "Signed acceptance VQ-1002, test sheet LT-1002, and acknowledged handoff notice HN-1002 filed"
+        },
+        {
+          "id": "S024",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "work_planned",
+          "quote": "Complete housekeeping and confirm next-week access."
+        },
+        {
+          "id": "S025",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "work_completed",
+          "quote": "Housekeeping completed and corridor returned to normal use."
+        },
+        {
+          "id": "S026",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "work_completed",
+          "quote": "Controls equipment staged in the designated cabinet zone outside the duct work area."
+        },
+        {
+          "id": "S027",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "issue_or_update",
+          "quote": "Work package reviewed: support inspection, approved detail, leakage-test result, and signed completion acceptance are all linked and complete."
+        },
+        {
+          "id": "S028",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "issue_or_update",
+          "quote": "No outstanding corrective work or technical query is listed."
+        },
+        {
+          "id": "S029",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "schedule_status",
+          "quote": "Controls handoff remains booked for October 5 at 08:00."
+        },
+        {
+          "id": "S030",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "schedule_status",
+          "quote": "Both trade supervisors confirmed the plan and access route."
+        },
+        {
+          "id": "S031",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "rfi_change_order_refs",
+          "quote": "WP-V208 closed; handoff HN-1002 confirmed"
+        },
+        {
+          "id": "S032",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "action_required",
+          "quote": "Follow the agreed October 5 handoff plan."
+        },
+        {
+          "id": "S033",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "quantity_or_measurement",
+          "quote": "Four duct sections installed and accepted; store and installation totals balanced"
+        },
+        {
+          "id": "S034",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "supporting_evidence",
+          "quote": "Closed work-package checklist WC-1003 and coordination acknowledgement CA-1003 filed"
+        }
+      ],
+      "timings": [
+        {
+          "stage": "Connecting concerns to exact report passages",
+          "elapsedMs": 0.09999999999999432,
+          "usage": {
+            "retainedSourceResponse": true,
+            "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+            "requestSha256": "bc49091d81a6db6ef69488563e5b442af34c12728ddd3d27f33a15fd5319a063"
+          }
+        },
+        {
+          "stage": "Checking coverage and later resolutions",
+          "elapsedMs": 0.06839999999999691,
+          "usage": {
+            "retainedSourceResponse": true,
+            "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+            "requestSha256": "a13ce35a1843a2c73869784246fe6a4f894e21ac041ed0da869d06c6ed266f29"
+          }
+        },
+        {
+          "stage": "Checking uncited passages for missed concerns",
+          "elapsedMs": 0.06049999999999045,
+          "usage": {
+            "retainedSourceResponse": true,
+            "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+            "requestSha256": "058b74a7ff31de6dc80a4e106061e57750e080cd20afbe83052a2ff06293d8bd"
+          }
+        },
+        {
+          "stage": "Checking explicitly remaining closeout tasks",
+          "elapsedMs": 0.052199999999999136,
+          "usage": {
+            "retainedSourceResponse": true,
+            "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+            "requestSha256": "c0bafc57885c5aed09d175567c8cfb8c7ab6d705dd61b5d32eff1f25468ea038"
+          }
+        },
+        {
+          "stage": "Checking historical work and delivery changes",
+          "elapsedMs": 0.04779999999999518,
+          "usage": {
+            "retainedSourceResponse": true,
+            "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+            "requestSha256": "bf6dc302e160b4db0de9e87dff346c2ec44f4cf88f3fdb78907b21e8c1d457c6"
+          }
+        },
+        {
+          "stage": "Checking opposing release and inspection accounts",
+          "elapsedMs": 0.06560000000000343,
+          "usage": {
+            "retainedSourceResponse": true,
+            "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+            "requestSha256": "adb7b72de6682e6c5e1ef7151323cc52142ac4439218cec5932bae068897f87d"
+          }
+        },
+        {
+          "stage": "Verifying relevance and full history 1–1",
+          "elapsedMs": 0.06510000000000105,
+          "usage": {
+            "retainedSourceResponse": true,
+            "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+            "requestSha256": "a30d8f7b6d91f5b7eac1759ff1980367c45ab9a6754c95ad2733d0ada411a7c7"
+          }
+        },
+        {
+          "stage": "Independently rechecking proposed routine removals",
+          "elapsedMs": 0.05460000000000775,
+          "usage": {
+            "retainedSourceResponse": true,
+            "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+            "requestSha256": "448d7689f07a5b2bb68bc15bb6735faf4c16fb0059a34e3273799ece835396b2"
+          }
+        },
+        {
+          "stage": "Checking every remaining source obligation",
+          "elapsedMs": 0.2220000000000084,
+          "usage": {
+            "retainedSourceResponse": true,
+            "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+            "requestSha256": "2c51fb6c5c28449ba91b1ab4c0612d3bc897c07aa67672f895f748eae12eb3a1"
+          }
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "elapsedMs": 0.1529999999999916,
+          "usage": {
+            "retainedSourceResponse": true,
+            "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+            "requestSha256": "4a3da48afb55d4b501225268f4736d2e265463e028cbc89722d62c41d4b2186e"
+          }
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "elapsedMs": 0.13400000000000034,
+          "usage": {
+            "retainedSourceResponse": true,
+            "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+            "requestSha256": "c5c1a5d28bafdd79da49c5754aad7dec83f8061626c977f21da1fe856e3cb793"
+          }
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "elapsedMs": 0.13530000000000086,
+          "usage": {
+            "retainedSourceResponse": true,
+            "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+            "requestSha256": "d86b64dc1b164841709f1d9964b1cb98088f7a7205a74ab587b699a8d6ef9095"
+          }
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "elapsedMs": 0.459699999999998,
+          "usage": {
+            "retainedSourceResponse": true,
+            "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+            "requestSha256": "41acf3c13f4a96891f6d5ed148c061a68f4838dd803dbc2ce0e69a2509a7166d"
+          }
+        }
+      ],
+      "responses": [
+        {
+          "stage": "Connecting concerns to exact report passages",
+          "raw": "{\"items\":[]}"
+        },
+        {
+          "stage": "Checking coverage and later resolutions",
+          "raw": "{\"edits\":[],\"additional\":[]}"
+        },
+        {
+          "stage": "Checking uncited passages for missed concerns",
+          "raw": "{\"items\":[]}"
+        },
+        {
+          "stage": "Checking explicitly remaining closeout tasks",
+          "raw": "{\"items\":[{\"topic\":\"Is the controls handoff scheduled for Oct 5 confirmed?\",\"facts\":[\"S018\",\"S019\",\"S029\",\"S030\",\"S032\"],\"latest\":[\"S029\",\"S030\",\"S032\"],\"kind\":\"followup\",\"status\":\"open\"}]}"
+        },
+        {
+          "stage": "Checking historical work and delivery changes",
+          "raw": "{\"items\":[]}"
+        },
+        {
+          "stage": "Checking opposing release and inspection accounts",
+          "raw": "{\"items\":[]}"
+        },
+        {
+          "stage": "Verifying relevance and full history 1–1",
+          "raw": "{\"reviews\":{\"0\":{\"verdict\":\"routine\",\"reasonCode\":\"routine_completed_work\",\"facts\":[\"S018\",\"S019\",\"S029\",\"S030\",\"S032\"],\"latest\":[\"S029\",\"S030\",\"S032\"],\"status\":\"resolved\"}}}"
+        },
+        {
+          "stage": "Independently rechecking proposed routine removals",
+          "raw": "{\n  \"reviews\": {\n    \"0\": {\n      \"verdict\": \"routine\",\n      \"reasonCode\": \"no_material_concern\",\n      \"facts\": [\n        \"S018\",\n        \"S019\",\n        \"S029\",\n        \"S030\",\n        \"S032\"\n      ],\n      \"latest\": [\n        \"S029\",\n        \"S030\",\n        \"S032\"\n      ],\n      \"status\": \"historical\"\n    }\n  }\n}"
+        },
+        {
+          "stage": "Checking every remaining source obligation",
+          "raw": "{\n  \"coverage\": {\n    \"S004\": [\n      {\n        \"componentLabel\": \"Support inspection acceptance prior to loading\",\n        \"aspect\": \"supporting_record\",\n        \"disposition\": \"routine\",\n        \"reasonCode\": \"ordinary_plan\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ],\n    \"S005\": [\n      {\n        \"componentLabel\": \"Receipt of approved instruction TQ-088\",\n        \"aspect\": \"decision_communication\",\n        \"disposition\": \"routine\",\n        \"reasonCode\": \"ordinary_plan\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ],\n    \"S006\": [\n      {\n        \"componentLabel\": \"Work sequence adherence\",\n        \"aspect\": \"work_progress\",\n        \"disposition\": \"routine\",\n        \"reasonCode\": \"ordinary_plan\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ],\n    \"S007\": [\n      {\n        \"componentLabel\": \"Sealant cure schedule and barrier maintenance\",\n        \"aspect\": \"quality_followup\",\n        \"disposition\": \"closed\",\n        \"reasonCode\": \"explicit_later_closure\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S013\"\n      }\n    ],\n    \"S009\": [\n      {\n        \"componentLabel\": \"Maintenance of cure barrier until release time\",\n        \"aspect\": \"quality_followup\",\n        \"disposition\": \"represented\",\n        \"reasonCode\": \"same_open_concern\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ],\n    \"S012\": [\n      {\n        \"componentLabel\": \"Inspection of duct joints after cure\",\n        \"aspect\": \"physical_acceptance\",\n        \"disposition\": \"routine\",\n        \"reasonCode\": \"ordinary_plan\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ],\n    \"S013\": [\n      {\n        \"componentLabel\": \"Removal of cure barrier after release time\",\n        \"aspect\": \"quality_followup\",\n        \"disposition\": \"routine\",\n        \"reasonCode\": \"ordinary_plan\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ],\n    \"S018\": [\n      {\n        \"componentLabel\": \"Scheduled controls handoff date and time\",\n        \"aspect\": \"work_progress\",\n        \"disposition\": \"routine\",\n        \"reasonCode\": \"ordinary_plan\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ],\n    \"S019\": [\n      {\n        \"componentLabel\": \"Acknowledgement of handoff notice by controls supervisor\",\n        \"aspect\": \"decision_communication\",\n        \"disposition\": \"routine\",\n        \"reasonCode\": \"ordinary_plan\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ],\n    \"S021\": [\n      {\n        \"componentLabel\": \"Proceed with controls handoff on October 5\",\n        \"aspect\": \"work_progress\",\n        \"disposition\": \"routine\",\n        \"reasonCode\": \"ordinary_plan\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ],\n    \"S023\": [\n      {\n        \"componentLabel\": \"Filing of signed acceptance and test records\",\n        \"aspect\": \"supporting_record\",\n        \"disposition\": \"routine\",\n        \"reasonCode\": \"ordinary_plan\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ],\n    \"S029\": [\n      {\n        \"componentLabel\": \"Confirmation of controls handoff booking\",\n        \"aspect\": \"work_progress\",\n        \"disposition\": \"routine\",\n        \"reasonCode\": \"ordinary_plan\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ],\n    \"S030\": [\n      {\n        \"componentLabel\": \"Trade supervisor confirmation of plan and access route\",\n        \"aspect\": \"access_notice\",\n        \"disposition\": \"routine\",\n        \"reasonCode\": \"ordinary_plan\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ],\n    \"S031\": [\n      {\n        \"componentLabel\": \"Work package closure and handoff confirmation\",\n        \"aspect\": \"supporting_record\",\n        \"disposition\": \"routine\",\n        \"reasonCode\": \"ordinary_plan\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ],\n    \"S032\": [\n      {\n        \"componentLabel\": \"Execution of agreed handoff plan\",\n        \"aspect\": \"work_progress\",\n        \"disposition\": \"routine\",\n        \"reasonCode\": \"ordinary_plan\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ]\n  },\n  \"additions\": []\n}"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "raw": "{\n  \"coverage\": {\n    \"S004\": [\n      {\n        \"componentLabel\": \"Support inspection acceptance prior to loading\",\n        \"aspect\": \"supporting_record\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S004\"\n      }\n    ],\n    \"S005\": [\n      {\n        \"componentLabel\": \"Receipt of approved instruction TQ-088\",\n        \"aspect\": \"decision_communication\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S005\"\n      }\n    ],\n    \"S006\": [\n      {\n        \"componentLabel\": \"Work sequence adherence\",\n        \"aspect\": \"work_progress\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S006\"\n      }\n    ],\n    \"S007\": [\n      {\n        \"componentLabel\": \"Sealant cure schedule and barrier maintenance\",\n        \"aspect\": \"quality_followup\",\n        \"disposition\": \"closed\",\n        \"reasonCode\": \"explicit_later_closure\",\n        \"evidenceRole\": \"explicit_closure_of_this_requirement\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S013\"\n      }\n    ]\n  },\n  \"additions\": []\n}"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "raw": "{\n  \"coverage\": {\n    \"S009\": [\n      {\n        \"componentLabel\": \"Maintenance of cure barrier until release time\",\n        \"aspect\": \"quality_followup\",\n        \"disposition\": \"closed\",\n        \"reasonCode\": \"explicit_later_closure\",\n        \"evidenceRole\": \"explicit_closure_of_this_requirement\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S013\"\n      }\n    ],\n    \"S012\": [\n      {\n        \"componentLabel\": \"Inspection of duct joints after cure\",\n        \"aspect\": \"physical_acceptance\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S012\"\n      }\n    ],\n    \"S013\": [\n      {\n        \"componentLabel\": \"Removal of cure barrier after release time\",\n        \"aspect\": \"quality_followup\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S013\"\n      }\n    ],\n    \"S018\": [\n      {\n        \"componentLabel\": \"Scheduled controls handoff date and time\",\n        \"aspect\": \"work_progress\",\n        \"disposition\": \"routine\",\n        \"reasonCode\": \"ordinary_plan\",\n        \"evidenceRole\": \"ordinary_plan_or_context\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ]\n  },\n  \"additions\": []\n}"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "raw": "{\n  \"coverage\": {\n    \"S019\": [\n      {\n        \"componentLabel\": \"Acknowledgement of handoff notice by controls supervisor\",\n        \"aspect\": \"decision_communication\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S019\"\n      }\n    ],\n    \"S021\": [\n      {\n        \"componentLabel\": \"Proceed with controls handoff on October 5\",\n        \"aspect\": \"work_progress\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S021\"\n      }\n    ],\n    \"S023\": [\n      {\n        \"componentLabel\": \"Filing of signed acceptance and test records\",\n        \"aspect\": \"supporting_record\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S023\"\n      }\n    ],\n    \"S029\": [\n      {\n        \"componentLabel\": \"Confirmation of controls handoff booking\",\n        \"aspect\": \"work_progress\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S029\"\n      }\n    ]\n  },\n  \"additions\": []\n}"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "raw": "{\"coverage\":{\"S030\":[{\"componentLabel\":\"Trade supervisor confirmation of plan and access route\",\"aspect\":\"access_notice\",\"disposition\":\"routine\",\"reasonCode\":\"ordinary_plan\",\"evidenceRole\":\"ordinary_plan_or_context\",\"targetConcernId\":\"none\",\"additionKey\":\"none\",\"closureSourceId\":\"none\"}],\"S031\":[{\"componentLabel\":\"Work package closure and handoff confirmation\",\"aspect\":\"supporting_record\",\"disposition\":\"routine\",\"reasonCode\":\"ordinary_plan\",\"evidenceRole\":\"ordinary_plan_or_context\",\"targetConcernId\":\"none\",\"additionKey\":\"none\",\"closureSourceId\":\"none\"}],\"S032\":[{\"componentLabel\":\"Execution of agreed handoff plan\",\"aspect\":\"work_progress\",\"disposition\":\"routine\",\"reasonCode\":\"ordinary_plan\",\"evidenceRole\":\"ordinary_plan_or_context\",\"targetConcernId\":\"none\",\"additionKey\":\"none\",\"closureSourceId\":\"none\"}]},\"additions\":[]}"
+        }
+      ],
+      "promptVersion": "daily-review-18n-consolidated",
+      "method": "verified-response-recovery",
+      "groupingRepairs": [],
+      "pipelineMethod": "source-inventory-shared-concern-consolidation",
+      "freshInferenceCalls": 0,
+      "originalFindings": [],
+      "newSegmentElapsedMs": 6.3416
+    }
+  ]
+}

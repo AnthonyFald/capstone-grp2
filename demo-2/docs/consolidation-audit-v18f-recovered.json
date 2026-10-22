@@ -1,0 +1,50 @@
+{
+  "version": "consolidation-audit-4",
+  "generatedAt": "2026-10-22T20:53:59.097Z",
+  "scope": "Mechanical evidence, identity, partition/accounting, materiality-verdict trace and TXT export checks only. No reference answers are read. Subject labels, grouping questions and statuses remain AI interpretations. Passing does not establish correct issue coverage, merge semantics, status interpretation or model accuracy.",
+  "ok": true,
+  "files": 1,
+  "passed": 1,
+  "failed": 0,
+  "skippedFailedInference": 0,
+  "results": [
+    {
+      "file": "development-v18f-native27-a-recovered.json",
+      "index": 0,
+      "runId": "a7342c40-aed0-47ae-8e68-fdfe3bbfcb98",
+      "pipeline": "daily-reports-v18",
+      "promptVersion": "daily-review-18f-consolidated",
+      "subjectGrounding": "AI grouping label with source pointer and typed role",
+      "datasetId": "reports-a",
+      "inputSha256": "9e38f32a4dc4f47ed8c30776ef50e1d9e930bd10ea4df0c467c399cf4b946dc8",
+      "status": "passed",
+      "ok": true,
+      "counts": {
+        "reports": 10,
+        "sourcePassages": 104,
+        "findings": 12,
+        "originalFindings": 12,
+        "renderedEvidenceQuotes": 70,
+        "originalEvidenceQuotes": 70,
+        "evidenceQuoteChecks": 140,
+        "concerns": 12,
+        "consolidationStages": 1,
+        "rawScopeResponsesVerified": 1,
+        "pointerNormalizations": 1,
+        "partitionCandidates": 24,
+        "partitionGroups": 12,
+        "preservedMemberPassages": 70,
+        "finalPreservedCandidatePassages": 68,
+        "materialityReviews": 24,
+        "materialityReconsiderations": 2,
+        "restoredCandidates": 2,
+        "confirmedRoutineCandidates": 0,
+        "explicitRemovals": 0,
+        "removedCandidates": 0,
+        "txtQuotedPassages": 70,
+        "txtCharacters": 13584
+      },
+      "errors": []
+    }
+  ]
+}

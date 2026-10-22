@@ -1,0 +1,280 @@
+{
+  "version": "browser-schema-compatibility-3",
+  "createdAt": "2026-10-22T22:34:17.939Z",
+  "status": "passed",
+  "scope": "Exact pinned WASM grammar checks only. Retained raw J outputs are used solely to generate actual schemas; synthetic grammar strings are not predictions. No model loading, GPU, inference, Mac execution, quality scoring or output repair has been performed.",
+  "engine": {
+    "promptVersion": "daily-review-18k-consolidated",
+    "sha256": "4d4e19a24a6d64505e96702cf0366a6bfb3178f0c50bf98e0a638cbb8df2d08c"
+  },
+  "runtime": {
+    "node": "v24.19.0",
+    "platform": "win32",
+    "webllmVersion": "0.2.85",
+    "webXGrammarVersion": "0.1.27",
+    "bundleSha256": "803713906fb3e53483ab03f33244a64d8ed818820be9abe520e615754bfd3e24",
+    "npmIntegrity": "sha512-0WJvW3mjotHA2NeAfaWFE2pQkOgXH9xC2U4IQOJNcioLac0k6VjSbj14jBRprt89frnPzxLo280riaEb+ZQqbg=="
+  },
+  "sources": [
+    {
+      "filename": "npm-version.json",
+      "url": "https://registry.npmjs.org/@mlc-ai%2fweb-xgrammar/0.1.27",
+      "bytes": 2454,
+      "sha256": "c5c769cd631b13cec5327f4180feec8cb80f86adb822ccf0a8fe40258a0ae9e4"
+    },
+    {
+      "filename": "webllm-package.json",
+      "url": "https://raw.githubusercontent.com/mlc-ai/web-llm/v0.2.85/package.json",
+      "bytes": 1840,
+      "sha256": "ee7bd864aa1f46dcc7bb1c65ef8d38ce0bd109bbad2df46f58aca5ab9300c73d"
+    },
+    {
+      "filename": "xgrammar-source.ts",
+      "url": "https://raw.githubusercontent.com/mlc-ai/xgrammar/v0.1.27/web/src/xgrammar.ts",
+      "bytes": 20258,
+      "sha256": "701e1bae9b7fd4bda13468caaaea4a8b59564b64b4a38a1183d1820f615429d3"
+    },
+    {
+      "filename": "web-xgrammar-0.1.27.tgz",
+      "url": "https://registry.npmjs.org/@mlc-ai/web-xgrammar/-/web-xgrammar-0.1.27.tgz",
+      "bytes": 804151,
+      "sha256": "ce4bab44c89d06c57600cefdfaf6c5c5f3a85ae55b13209a7d889aad47af8193"
+    }
+  ],
+  "results": [
+    {
+      "dataset": "A",
+      "sourceFile": "docs/development-v18j-native27-a-staged.json",
+      "sourceSha256": "b84016707e156b09e77d6e6c4c54dcfb95e2bda7fe9f4d26aeacbf8297183b01",
+      "criticBatches": 7,
+      "representedCases": 18,
+      "attachmentBatches": 5,
+      "maxSchemaCharacters": 22015,
+      "checks": [
+        {
+          "kind": "original-four-source-critic-0",
+          "schemaCharacters": 22015,
+          "schemaSha256": "e37a9d017ca84d6acb40cfc9437e1282a54ac041f1f5393a63f4a8cfd8f32298",
+          "grammarSha256": "8a60af315092e7e77d9dd736c45d1f4e945a59032505761f0b0bc078ab64336b",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": null,
+          "invalidStructuralSampleRejected": null,
+          "status": "passed"
+        },
+        {
+          "kind": "original-four-source-critic-1",
+          "schemaCharacters": 21427,
+          "schemaSha256": "32eb1ff2539af3ece4a7f5ccfb03df4e1a845f78a9f5089c20b3a979c5e8ae6c",
+          "grammarSha256": "b6607bc5472dd76e7654ca060de5aac35c20346f0c5b3dca53c84e297a2a0549",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": null,
+          "invalidStructuralSampleRejected": null,
+          "status": "passed"
+        },
+        {
+          "kind": "original-four-source-critic-2",
+          "schemaCharacters": 20867,
+          "schemaSha256": "e14744fd87c8d2b874a312cf83c97c4a08504e6db2fce3752290431268ceadf6",
+          "grammarSha256": "2e85a7a0b07b2e26516f00424c566aaf8b6e3f4078f41660bf83c4fecae9ee99",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": null,
+          "invalidStructuralSampleRejected": null,
+          "status": "passed"
+        },
+        {
+          "kind": "original-four-source-critic-3",
+          "schemaCharacters": 20573,
+          "schemaSha256": "d37f2961eb5dd946b99d6a78954deb446068b798324b1e7b1726a07477819df8",
+          "grammarSha256": "1cf5a3176ec6d6d2ee30314342e0dad02ed1692d556ec246c1dc5f44386dbc24",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": null,
+          "invalidStructuralSampleRejected": null,
+          "status": "passed"
+        },
+        {
+          "kind": "original-four-source-critic-4",
+          "schemaCharacters": 20279,
+          "schemaSha256": "77bc31c5eb044f3eac322a6c59a41857d4a7aa1fcf82207bc72093df6470b46a",
+          "grammarSha256": "8606ad51ef2b0979d00ec4b5c5fe2a488c6888a01dbf602e9117465ebf5168e2",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": null,
+          "invalidStructuralSampleRejected": null,
+          "status": "passed"
+        },
+        {
+          "kind": "original-four-source-critic-5",
+          "schemaCharacters": 19838,
+          "schemaSha256": "7bcd3ae63cb5de8021322c77c7031eb8971c7844a8f6d6580f0b12be1219e110",
+          "grammarSha256": "4c88836b37c453c5bdcb39814af9812bf050c4efa2c4a832b5420b5b5d26f447",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": null,
+          "invalidStructuralSampleRejected": null,
+          "status": "passed"
+        },
+        {
+          "kind": "original-four-source-critic-6",
+          "schemaCharacters": 15041,
+          "schemaSha256": "134cb4805326ab704e11e3e59033a6bc7d3877b14eae36d7d2bdcd7f40c73fb2",
+          "grammarSha256": "7b8bcf4fc172000b978c4addcd57a0326c5b019591b994eff01a759395986dc3",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": null,
+          "invalidStructuralSampleRejected": null,
+          "status": "passed"
+        },
+        {
+          "kind": "bounded-orphan-list-repair",
+          "schemaCharacters": 167,
+          "schemaSha256": "6095df47968811465d15a4bd952dc01f540928b34051b4e5da3d350fc436d0a3",
+          "grammarSha256": "a180a0beff63f4c088568b49876849e8d9801368726c9adfbaef8962ee95599b",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "invalidStructuralSampleRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "pairwise-attachment-batch-0",
+          "schemaCharacters": 20532,
+          "schemaSha256": "78142c13bf1dd67a5f4ca0333752b9732ad21da7abd139db0de518906b2d138d",
+          "grammarSha256": "40f92f2e4d7802d40319cea444ca593a69fbd932c94e8bd50aa75e7f8a02717e",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "invalidStructuralSampleRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "pairwise-attachment-batch-1",
+          "schemaCharacters": 19965,
+          "schemaSha256": "42bce0f9a00d060c6f8e905a74238f08eb80047f9993b77b5157030547717928",
+          "grammarSha256": "5396b1fededcfa43436bdc460fc4b11672e63693a78a9034f913e25e9ac4f29d",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "invalidStructuralSampleRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "pairwise-attachment-batch-2",
+          "schemaCharacters": 19528,
+          "schemaSha256": "e3aa35a41496aed5ffd56955d39eb50cb67990c225e32f493616969a669d828f",
+          "grammarSha256": "ccea95d4dc1a6eea1d11f810860325665b7f1c83ebea998ed6d16e35d5ce20da",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "invalidStructuralSampleRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "pairwise-attachment-batch-3",
+          "schemaCharacters": 19091,
+          "schemaSha256": "94a263b6b90b2837b5689c6a9603c57771bdec4cdfa2a429ea082d1064e4be8e",
+          "grammarSha256": "2e660a7c3acd0918deb74a9fb04d58d13e698f38d8d339c28805eb4370f4ea70",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "invalidStructuralSampleRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "pairwise-attachment-batch-4",
+          "schemaCharacters": 14298,
+          "schemaSha256": "94906919a468ae411169596a4caa1ba293d9dd41c542060a38f2665af151aebd",
+          "grammarSha256": "67108984b7af864d126de7797406bb61753727d1eac8559e3113734568adf91a",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "invalidStructuralSampleRejected": true,
+          "status": "passed"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "dataset": "G",
+      "sourceFile": "docs/development-v18j-native27-g-staged.json",
+      "sourceSha256": "fa052df7f1f8e426568e64f2646c19baca2cf9d007f0294c43f926281a5dfa3b",
+      "criticBatches": 5,
+      "representedCases": 12,
+      "attachmentBatches": 3,
+      "maxSchemaCharacters": 15395,
+      "checks": [
+        {
+          "kind": "original-four-source-critic-0",
+          "schemaCharacters": 15395,
+          "schemaSha256": "ef73f9117245b6b9133af63e1789b1af0c0a92ae56c3cbd39f0b947fd7d43d91",
+          "grammarSha256": "5a8bcae747d3621ca14c746fc176c67eabed5db4180d0a3f89d4ab76fa62bd95",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": null,
+          "invalidStructuralSampleRejected": null,
+          "status": "passed"
+        },
+        {
+          "kind": "original-four-source-critic-1",
+          "schemaCharacters": 15059,
+          "schemaSha256": "d91c8f365fefcf229ed24b3958ae7bfc43e3b8fc08b55558bcb791e557155dec",
+          "grammarSha256": "dfbeee3d5cbb8d139cdba632b03c2841c03b534716e91054ac6cb98052695e10",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": null,
+          "invalidStructuralSampleRejected": null,
+          "status": "passed"
+        },
+        {
+          "kind": "original-four-source-critic-2",
+          "schemaCharacters": 14590,
+          "schemaSha256": "65827a98fc993e827363a4ffd6caa4ab3071edbdb1643c7215beacfdc6a13e92",
+          "grammarSha256": "458c2d4f6af991ea87053fc5663a86b3e54568c67de7879a2990bb76b77a499c",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": null,
+          "invalidStructuralSampleRejected": null,
+          "status": "passed"
+        },
+        {
+          "kind": "original-four-source-critic-3",
+          "schemaCharacters": 14275,
+          "schemaSha256": "aa6bf8297bc1f730cbb57836ac2d236779f830f5ee3e393aa928323bbe844859",
+          "grammarSha256": "932ba5e587697483746b03599999b62839c991bdf428289430573e5602393b85",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": null,
+          "invalidStructuralSampleRejected": null,
+          "status": "passed"
+        },
+        {
+          "kind": "original-four-source-critic-4",
+          "schemaCharacters": 14275,
+          "schemaSha256": "48b0305b223486d308cf42d13a2723ca4106be78d580c15ba4a6e2c0d748f53f",
+          "grammarSha256": "2e945c2dc0b527bbe3a3383b530173f5d42005a0eff144278e42f0408984fbdb",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": null,
+          "invalidStructuralSampleRejected": null,
+          "status": "passed"
+        },
+        {
+          "kind": "pairwise-attachment-batch-0",
+          "schemaCharacters": 14122,
+          "schemaSha256": "9ab867df5dc5c344afa41bdcf682d4e940a96ab779a5a7ec8a42e843ceab5fa3",
+          "grammarSha256": "c4727bb4e8661bf9d353330acf51bc3710f8c6991cb44b1caaa20c3de0890434",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "invalidStructuralSampleRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "pairwise-attachment-batch-1",
+          "schemaCharacters": 13520,
+          "schemaSha256": "55c728f6e55d0930ad3394224f55ae4a95252e9644bfdad281a8edf0884eb254",
+          "grammarSha256": "459fea735e9ba6354466099c0e489882df80bfdc85cd1b6c11de23ad894cae58",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "invalidStructuralSampleRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "pairwise-attachment-batch-2",
+          "schemaCharacters": 13524,
+          "schemaSha256": "b9b34013689a402c2c4440e886421223b869f5c8cb68bffa84200f2230d7fb50",
+          "grammarSha256": "4e1ca95410650ce31cfab8c923fd6ff86c11ceade04548d8bf490600ce7514a5",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "invalidStructuralSampleRejected": true,
+          "status": "passed"
+        }
+      ],
+      "status": "passed"
+    }
+  ]
+}

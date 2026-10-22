@@ -2,6 +2,10 @@
 
 The website and report review interface run on Windows and Apple silicon Macs. Browser inference uses WebGPU in current Chrome or Edge. Apple silicon compatibility is supported by the runtimes; this project's measured trials use an RTX 5080, not a Mac. Intel Macs are outside this demo's target.
 
+The main sample follows the team's **Simulated Daily Reports CSV - Daily Reports.csv**: ten synthetic daily reports with the answer/completeness columns excluded from inference. **Use sample reports** and the downloadable CSV/JSON contain the same 18 blind source fields. You may upload the original annotated CSV as well; the app discards its annotation columns before processing. See the [upload guide](upload-guide.md) and [source provenance](source-update-20261022.md).
+
+After analysis, read the **Review question** before interpreting its suggested status. The app consolidates repeated candidates and retains their source timeline; separate acceptance, documentation, communication and testing concerns can have different states. Keep, Correct or Reject each finding. Download the readable TXT review for questions, dated quotations and reviewer notes; choose CSV for a spreadsheet or full JSON for inputs, original predictions and the audit record. TXT is an export, not a supported upload type.
+
 ## Browser option — no companion needed
 
 Open the [project demo](https://anthonyfald.github.io/capstone-grp2/demo-2/), use the included sample or upload daily construction reports, then select Analyze. Browser model choices are under Advanced settings. Qwen 3 4B is the lower-memory option; Qwen 3.5 9B is the browser quality option. Initial weights/library downloads need internet and several GB of storage. Available GPU/unified memory and browser allocation limits determine whether a model fits. Other GPU workloads compete for the same memory. If the larger browser model fails to load, close other GPU-heavy work and use 4B.

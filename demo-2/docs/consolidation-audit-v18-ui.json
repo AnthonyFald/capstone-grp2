@@ -1,0 +1,44 @@
+{
+  "version": "consolidation-audit-1",
+  "generatedAt": "2026-10-22T20:15:10.612Z",
+  "scope": "Mechanical evidence, identity, partition/accounting and TXT export checks only. No reference answers are read. Passing does not establish correct issue coverage, merge semantics, status interpretation or model accuracy.",
+  "ok": true,
+  "files": 1,
+  "passed": 1,
+  "failed": 0,
+  "skippedFailedInference": 0,
+  "results": [
+    {
+      "file": "final-v18-native27-a-ui.json",
+      "index": 0,
+      "runId": "a2b943a9-9699-4f95-8248-dc3d36958796",
+      "pipeline": "daily-reports-v18",
+      "promptVersion": "daily-review-18c-consolidated",
+      "datasetId": "reports-a",
+      "inputSha256": "9e38f32a4dc4f47ed8c30776ef50e1d9e930bd10ea4df0c467c399cf4b946dc8",
+      "status": "passed",
+      "ok": true,
+      "counts": {
+        "reports": 10,
+        "sourcePassages": 104,
+        "findings": 12,
+        "originalFindings": 12,
+        "renderedEvidenceQuotes": 63,
+        "originalEvidenceQuotes": 63,
+        "evidenceQuoteChecks": 126,
+        "concerns": 12,
+        "consolidationStages": 2,
+        "partitionCandidates": 36,
+        "partitionGroups": 24,
+        "preservedMemberPassages": 126,
+        "finalPreservedCandidatePassages": 63,
+        "materialityReviews": 12,
+        "explicitRemovals": 0,
+        "removedCandidates": 0,
+        "txtQuotedPassages": 63,
+        "txtCharacters": 12471
+      },
+      "errors": []
+    }
+  ]
+}

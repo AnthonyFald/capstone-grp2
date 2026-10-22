@@ -1,0 +1,84 @@
+{
+  "version": "browser-schema-compatibility-1",
+  "createdAt": "2026-10-22T21:51:49.355Z",
+  "status": "passed",
+  "scope": "Exact pinned WebXGrammar WASM schema parsing and synthetic structural acceptance only. No model was loaded, no GPU was used, and no inference, Mac execution, issue-coverage evaluation or accuracy claim is made.",
+  "engine": {
+    "promptVersion": "daily-review-18i-consolidated",
+    "sha256": "26780ccae32e4737bba9b31167827ad2ff1becc6ac6a84d047f2a1f79a131d64"
+  },
+  "runtime": {
+    "node": "v24.19.0",
+    "platform": "win32",
+    "arch": "x64",
+    "webllmVersion": "0.2.85",
+    "webXGrammarVersion": "0.1.27",
+    "api": "Grammar.fromJSONSchema(schema,true,undefined,undefined,true); Testings.isGrammarAcceptString",
+    "loader": "Unmodified published UMD bundle loaded through Node CommonJS Module._compile; embedded WASM instantiated on CPU.",
+    "bundleSha256": "803713906fb3e53483ab03f33244a64d8ed818820be9abe520e615754bfd3e24",
+    "typesSha256": "6970bae97eb8b95d93a6926e5059e3bbc6480fe734dd20e837092da9d69ccaf8",
+    "npmIntegrity": "sha512-0WJvW3mjotHA2NeAfaWFE2pQkOgXH9xC2U4IQOJNcioLac0k6VjSbj14jBRprt89frnPzxLo280riaEb+ZQqbg=="
+  },
+  "sources": [
+    {
+      "filename": "npm-version.json",
+      "url": "https://registry.npmjs.org/@mlc-ai%2fweb-xgrammar/0.1.27",
+      "bytes": 2454,
+      "sha256": "c5c769cd631b13cec5327f4180feec8cb80f86adb822ccf0a8fe40258a0ae9e4"
+    },
+    {
+      "filename": "webllm-package.json",
+      "url": "https://raw.githubusercontent.com/mlc-ai/web-llm/v0.2.85/package.json",
+      "bytes": 1840,
+      "sha256": "ee7bd864aa1f46dcc7bb1c65ef8d38ce0bd109bbad2df46f58aca5ab9300c73d"
+    },
+    {
+      "filename": "xgrammar-source.ts",
+      "url": "https://raw.githubusercontent.com/mlc-ai/xgrammar/v0.1.27/web/src/xgrammar.ts",
+      "bytes": 20258,
+      "sha256": "701e1bae9b7fd4bda13468caaaea4a8b59564b64b4a38a1183d1820f615429d3"
+    },
+    {
+      "filename": "web-xgrammar-0.1.27.tgz",
+      "url": "https://registry.npmjs.org/@mlc-ai/web-xgrammar/-/web-xgrammar-0.1.27.tgz",
+      "bytes": 804151,
+      "sha256": "ce4bab44c89d06c57600cefdfaf6c5c5f3a85ae55b13209a7d889aad47af8193"
+    }
+  ],
+  "results": [
+    {
+      "dataset": "A",
+      "sourceFile": "docs/development-v18f-native27-a-recovered.json",
+      "sourceSha256": "71f59bad513afabd7b2d2b361ca2c63690cdc033b9b24a8543434d89307d3233",
+      "checkingSources": 26,
+      "concerns": 12,
+      "schemaCharacters": 15196,
+      "schemaSha256": "397b4a357009785cc6b587d7e719690e27ac46b04d037d602c2bc5ba4ecc5764",
+      "grammarCharacters": 73346,
+      "grammarSha256": "5c15437a393f631dd57153f7114cc9307707f784e8a73ddd784626285b6f984d",
+      "strictMode": true,
+      "syntheticStructuralSampleAccepted": true,
+      "invalidRoutineTargetRejected": true,
+      "invalidEvidenceRoleRejected": true,
+      "elapsedMs": 277.627,
+      "status": "passed"
+    },
+    {
+      "dataset": "G",
+      "sourceFile": "docs/development-v18g-native27-g-staged.json",
+      "sourceSha256": "84412a9ca97110a664158518736c6495c063d3a4a153913ba9025b6655a07cef",
+      "checkingSources": 20,
+      "concerns": 5,
+      "schemaCharacters": 10040,
+      "schemaSha256": "d4fd5c2e3a3fbe1d071b3086830b6ae2009fa41f9c487ee375dfd12f3f34cbd8",
+      "grammarCharacters": 57367,
+      "grammarSha256": "badf2d90d554e1f9728ca314505a76c92f3ac21e59826b116d7dc0377cc9897b",
+      "strictMode": true,
+      "syntheticStructuralSampleAccepted": true,
+      "invalidRoutineTargetRejected": true,
+      "invalidEvidenceRoleRejected": true,
+      "elapsedMs": 120.18620000000004,
+      "status": "passed"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "dataset": "reports-g",
+  "annotation_status": "Authored by a separate Codex agent on 2026-10-22 with inherited project context; reference contents withheld from implementing agents until revision-18 freeze; independent human review pending",
+  "issues": [
+    {
+      "issue_id": "G-01",
+      "issue_definition": "Verbal passed bearing inspection preceded absent written bearing release, later explicitly closed",
+      "source_reports": "DR-G01;DR-G02;DR-G04",
+      "severity": "High",
+      "ground_truth_status": "Resolved by DR-G02",
+      "expected_interpretation": "Retain the September 1 verbal passed account and missing signed crew release, followed by BR-B17-0902 signed issue and foreperson acknowledgement. Bearing-only acceptance is closed; do not extend it to the separate torque witness, physical installation or grout-strength testing."
+    },
+    {
+      "issue_id": "G-02",
+      "issue_definition": "Separate anchor-torque acceptance remains unverified despite an attended witness and register ID",
+      "source_reports": "DR-G02;DR-G03;DR-G04",
+      "severity": "High",
+      "ground_truth_status": "Needs verification",
+      "expected_interpretation": "Distinguish bearing-release scope from anchor torque. The engineer attended and TW-B17-0903 is cited, but its signed acceptance/result sheet remains unavailable. Verification/record task remains open. Do not infer that the witness failed, never occurred or passed because the column was set."
+    },
+    {
+      "issue_id": "G-03",
+      "issue_definition": "Two-hour September 1 setting hold ended with September 3 physical completion",
+      "source_reports": "DR-G01;DR-G02;DR-G03",
+      "severity": "Medium",
+      "ground_truth_status": "Historical; physical work completed in DR-G03",
+      "expected_interpretation": "Preserve the 08:00-10:00 hold, handrail reassignment, missing release/layout context, and subsequent physical setting/grouting completion. Closure of bearing acceptance alone does not complete this reference. Do not infer a whole-shift or project completion-date delay, nor close independent closeout/test/receipt gaps."
+    },
+    {
+      "issue_id": "G-04",
+      "issue_definition": "Grout-strength test and protection requirement remain after physical installation",
+      "source_reports": "DR-G04",
+      "severity": "High",
+      "ground_truth_status": "Open scheduled prerequisite; not overdue or failed",
+      "expected_interpretation": "Retain explicitly unperformed September 5 10:00 strength testing and protection until the result is documented. Completed setting or delivery/material checks do not prove grout strength. Do not invent failed tests, an overdue condition or service entry."
+    },
+    {
+      "issue_id": "G-05",
+      "issue_definition": "Formal approved layout issue is established but steel-crew receipt remains unverified",
+      "source_reports": "DR-G01;DR-G02;DR-G04",
+      "severity": "Medium",
+      "ground_truth_status": "Needs verification / receipt-follow-up open",
+      "expected_interpretation": "Distinguish the signed approved revision-7 issue and replacement of revision 6 from absent linked crew receipt acknowledgement. Formal issue is not proof of receipt, while later use of revision 7 is not the requested documented acknowledgement. Do not claim that the technical layout remained unapproved or no instruction was issued. Keep the receipt task visible after installation completion."
+    }
+  ]
+}

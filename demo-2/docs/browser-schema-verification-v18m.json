@@ -1,0 +1,174 @@
+{
+  "version": "browser-schema-compatibility-4",
+  "createdAt": "2026-10-22T23:02:44.791Z",
+  "status": "passed",
+  "scope": "Pinned WASM grammar compatibility only. Retained K ledgers select schemas; synthetic strings test grammar structure and are not predictions. No model loading, GPU, inference, Mac execution, quality scoring or output repair occurred.",
+  "engine": {
+    "promptVersion": "daily-review-18m-consolidated",
+    "sha256": "b4eccb13891cb2652c97d329ccf13dd9908c1a747a6b49c5117b372a2c4f93a8"
+  },
+  "runtime": {
+    "node": "v24.19.0",
+    "platform": "win32",
+    "webllmVersion": "0.2.85",
+    "webXGrammarVersion": "0.1.27",
+    "bundleSha256": "803713906fb3e53483ab03f33244a64d8ed818820be9abe520e615754bfd3e24",
+    "npmIntegrity": "sha512-0WJvW3mjotHA2NeAfaWFE2pQkOgXH9xC2U4IQOJNcioLac0k6VjSbj14jBRprt89frnPzxLo280riaEb+ZQqbg=="
+  },
+  "sources": [
+    {
+      "filename": "npm-version.json",
+      "url": "https://registry.npmjs.org/@mlc-ai%2fweb-xgrammar/0.1.27",
+      "bytes": 2454,
+      "sha256": "c5c769cd631b13cec5327f4180feec8cb80f86adb822ccf0a8fe40258a0ae9e4"
+    },
+    {
+      "filename": "webllm-package.json",
+      "url": "https://raw.githubusercontent.com/mlc-ai/web-llm/v0.2.85/package.json",
+      "bytes": 1840,
+      "sha256": "ee7bd864aa1f46dcc7bb1c65ef8d38ce0bd109bbad2df46f58aca5ab9300c73d"
+    },
+    {
+      "filename": "xgrammar-source.ts",
+      "url": "https://raw.githubusercontent.com/mlc-ai/xgrammar/v0.1.27/web/src/xgrammar.ts",
+      "bytes": 20258,
+      "sha256": "701e1bae9b7fd4bda13468caaaea4a8b59564b64b4a38a1183d1820f615429d3"
+    },
+    {
+      "filename": "web-xgrammar-0.1.27.tgz",
+      "url": "https://registry.npmjs.org/@mlc-ai/web-xgrammar/-/web-xgrammar-0.1.27.tgz",
+      "bytes": 804151,
+      "sha256": "ce4bab44c89d06c57600cefdfaf6c5c5f3a85ae55b13209a7d889aad47af8193"
+    }
+  ],
+  "results": [
+    {
+      "dataset": "A",
+      "sourceFile": "docs/development-v18k-native27-a-staged.json",
+      "sourceSha256": "2c27a870df6ffe6dc816ca81b56c8b4c203373524e8be809baaf32ecafda36b9",
+      "novelSourceCases": 7,
+      "maxSchemaCharacters": 12407,
+      "checks": [
+        {
+          "kind": "single-novel-source-attachment-0",
+          "schemaCharacters": 12407,
+          "schemaSha256": "cb37fed0aa3c7085e1d2cf12760cbd1c49d06231755d487ad13a649cb50e1cb7",
+          "grammarSha256": "86b140171cfcda91e2d122b618c074e9e349133f419f34016e980d94cad32fcc",
+          "strictMode": true,
+          "syntheticNestedAdditionAccepted": true,
+          "emptyComponentArrayRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "single-novel-source-attachment-1",
+          "schemaCharacters": 12407,
+          "schemaSha256": "73c688ea8d88179913346a868e03f666d6a6d6963351f968d79f6576d7fada5e",
+          "grammarSha256": "fa26f9b1d65d78365ac0f600270cbd6e79aac417865c5424b147cc403b91a7a0",
+          "strictMode": true,
+          "syntheticNestedAdditionAccepted": true,
+          "emptyComponentArrayRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "single-novel-source-attachment-2",
+          "schemaCharacters": 12407,
+          "schemaSha256": "9d7cddeada1c9c60e21a274d568d1706637a8434577b34e046857e6d2f9c74b5",
+          "grammarSha256": "f4b6f692ade6a6874ed1fcea271078a59a3764c5f6abac85d6d17a0a72b671c6",
+          "strictMode": true,
+          "syntheticNestedAdditionAccepted": true,
+          "emptyComponentArrayRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "single-novel-source-attachment-3",
+          "schemaCharacters": 12267,
+          "schemaSha256": "3b6c6d4126c0f7f7bfbaec8598327cc022855e2902559e840ca33a6c561b879a",
+          "grammarSha256": "0b2925bd19ba732f8c97bc01074ea477c81d76253885421187d1018263ab2981",
+          "strictMode": true,
+          "syntheticNestedAdditionAccepted": true,
+          "emptyComponentArrayRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "single-novel-source-attachment-4",
+          "schemaCharacters": 12267,
+          "schemaSha256": "41a9978580685e6ec295e48c831b3f0e9f4ce45522408a5bc15506a21bec62cd",
+          "grammarSha256": "dcdd431e790a3f4337783310802c55347b9c9527b2a90844a1e409d7f54330c2",
+          "strictMode": true,
+          "syntheticNestedAdditionAccepted": true,
+          "emptyComponentArrayRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "single-novel-source-attachment-5",
+          "schemaCharacters": 12120,
+          "schemaSha256": "c551baedd829325c4549b3af7857d9fdaf519d0e85ad518de312c61664c80738",
+          "grammarSha256": "ef6296995efdfad0d35a91baf4ea9ee640c21639bb67bf8ce02faf55d0c095e0",
+          "strictMode": true,
+          "syntheticNestedAdditionAccepted": true,
+          "emptyComponentArrayRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "single-novel-source-attachment-6",
+          "schemaCharacters": 12120,
+          "schemaSha256": "88a98f7fd6da8960827fd663e8ebcc6991aba81710596144af1169059b934637",
+          "grammarSha256": "dace05540ef20a0ae3dfc18c6c1e6070fa328965f11a108bcd6c585b9b16a9f9",
+          "strictMode": true,
+          "syntheticNestedAdditionAccepted": true,
+          "emptyComponentArrayRejected": true,
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "dataset": "G",
+      "sourceFile": "docs/development-v18k-native27-g-staged.json",
+      "sourceSha256": "58ca1d8dbd955ada51b01142bf0ca9b73be10f7ca39592d97931672046478913",
+      "novelSourceCases": 4,
+      "maxSchemaCharacters": 7472,
+      "checks": [
+        {
+          "kind": "single-novel-source-attachment-0",
+          "schemaCharacters": 7472,
+          "schemaSha256": "27fce47dac0cc78c5af579fbea2807fe0036df55b3285a2993b198ce9d411c19",
+          "grammarSha256": "2f4fc65c5636199f28e99e5ccdb93f579a5e19b0edfe04353f2b9d348c7c8527",
+          "strictMode": true,
+          "syntheticNestedAdditionAccepted": true,
+          "emptyComponentArrayRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "single-novel-source-attachment-1",
+          "schemaCharacters": 7367,
+          "schemaSha256": "28ac2af7c365949566cd47d7c812774b9805fcbbd4523925660c7c78b3a0f73c",
+          "grammarSha256": "8ed2f07fc6c83fcc47537ac2e528f82d1aed662dd72890cc1c43213424c90de6",
+          "strictMode": true,
+          "syntheticNestedAdditionAccepted": true,
+          "emptyComponentArrayRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "single-novel-source-attachment-2",
+          "schemaCharacters": 7367,
+          "schemaSha256": "434eec57b7c570dc7e7fa1a13def0b4963982f3d03532276be484771869b478c",
+          "grammarSha256": "3d9c0b7205003acf6685289c809a5969784024d36fee480716892c36443aa9dc",
+          "strictMode": true,
+          "syntheticNestedAdditionAccepted": true,
+          "emptyComponentArrayRejected": true,
+          "status": "passed"
+        },
+        {
+          "kind": "single-novel-source-attachment-3",
+          "schemaCharacters": 7367,
+          "schemaSha256": "a40bb83292d19b5efedcf0d78dc5d1460dbaa09919e7dd56721e1cb322ff2da2",
+          "grammarSha256": "6b783a5d074b1b2d5a231116333b937ec4c005e419adf83de4588a8cf8d9f9db",
+          "strictMode": true,
+          "syntheticNestedAdditionAccepted": true,
+          "emptyComponentArrayRejected": true,
+          "status": "passed"
+        }
+      ]
+    }
+  ]
+}

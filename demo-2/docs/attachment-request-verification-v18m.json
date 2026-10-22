@@ -1,0 +1,458 @@
+{
+  "version": "attachment-request-audit-2",
+  "createdAt": "2026-10-22T23:04:00.609Z",
+  "promptVersion": "daily-review-18m-consolidated",
+  "engineFile": "engine-v18m-frozen.js",
+  "engineSha256": "b4eccb13891cb2652c97d329ccf13dd9908c1a747a6b49c5117b372a2c4f93a8",
+  "baselineEngineFile": "engine-v18k-frozen.js",
+  "baselineEngineSha256": "4d4e19a24a6d64505e96702cf0366a6bfb3178f0c50bf98e0a638cbb8df2d08c",
+  "coreSha256": "77a019738a8925b134a1f52aa39d7cd0b567da08b158c400a3d1d9c7f02e6d71",
+  "method": "Independent offline capture of actual request objects from the frozen M engine. Retained K responses advance the verified original prefix; new source gate responses are structural placeholders copying selected components, solely to exercise request construction. No model, GPU or network calls; no new quality predictions or latency measurements.",
+  "limitations": "Construction evidence only: every novel-source group is requested once with equal original scope evidence and no prior target/classification. This cannot prove source-task matching by a future model response. Already-cited labels remain unverified AI metadata. Actual run files do not store the full new request payloads.",
+  "ok": true,
+  "results": [
+    {
+      "datasetId": "a",
+      "sourceFile": "development-v18k-native27-a-staged.json",
+      "sourceArtifactSha256": "2c27a870df6ffe6dc816ca81b56c8b4c203373524e8be809baaf32ecafda36b9",
+      "sourceRunId": "5ecb4d12-185c-45f1-89e5-7c94d7291f6b",
+      "inputSha256": "9e38f32a4dc4f47ed8c30776ef50e1d9e930bd10ea4df0c467c399cf4b946dc8",
+      "sourcePromptVersion": "daily-review-18k-consolidated",
+      "method": "offline-request-construction-replay-with-structural-placeholder-responses",
+      "actualInferenceCalls": 0,
+      "latencyMeasurement": false,
+      "qualityPrediction": false,
+      "unchangedPrefixCount": 27,
+      "wholeRequestPrefixVerified": true,
+      "prefixRequestHashes": [
+        {
+          "stage": "Connecting concerns to exact report passages",
+          "requestSha256": "f6dcbb93e6c4167fc41f76a2862fc3496d1a62c2e1df6255d14d48b738ac6a68"
+        },
+        {
+          "stage": "Checking coverage and later resolutions",
+          "requestSha256": "0aba1bc828d3a08a1eee3eda8e9d62ceb78da46da6d157cfac4a1b5c562058fd"
+        },
+        {
+          "stage": "Checking uncited passages for missed concerns",
+          "requestSha256": "421ff0f2f4f58cdda0f46e32304842fa208b9b4c334ff9f983863a970f13264f"
+        },
+        {
+          "stage": "Checking explicitly remaining closeout tasks",
+          "requestSha256": "b65b5404c7a2b48b0d9ff0b5b37c7f652473da583023a0d4fd743030feb53770"
+        },
+        {
+          "stage": "Checking historical work and delivery changes",
+          "requestSha256": "8f1e1a47ec031c3091094fafcc827d566d2d8ebe811092391c83b72d4beb2bdc"
+        },
+        {
+          "stage": "Checking opposing release and inspection accounts",
+          "requestSha256": "5411a3278ced2c89511c74a1254cbbfc1d9fdb0299d2aabc18360038f91f13bd"
+        },
+        {
+          "stage": "Verifying relevance and full history 1–3",
+          "requestSha256": "8d45a0201c8ff803cbef3dae5d41ae2b059b28fd8633d5894832c777ff899a20"
+        },
+        {
+          "stage": "Verifying relevance and full history 4–6",
+          "requestSha256": "67f13a74b9c7e49a314c5ff1623015f8bfc463569101a418f5540b5f4d31dbe7"
+        },
+        {
+          "stage": "Verifying relevance and full history 7–9",
+          "requestSha256": "10f8a404becff638eebd8627713fd7edca6260e7d7e4a1ca789f8c16078fc112"
+        },
+        {
+          "stage": "Verifying relevance and full history 10–12",
+          "requestSha256": "e2f6835a61dd33d621a2a3beb1fefd91d58a62c11baf3ea5605f6558ac2f78aa"
+        },
+        {
+          "stage": "Verifying relevance and full history 13–15",
+          "requestSha256": "c5d5f953560df4a0de1960a381b5b2eb59f6008cabf5f96fd44084215e690949"
+        },
+        {
+          "stage": "Verifying relevance and full history 16–18",
+          "requestSha256": "239f409af3168b9641cd1b8c9e7c0f42e398e51f52de01efabd5a2a54e7253aa"
+        },
+        {
+          "stage": "Verifying relevance and full history 19–21",
+          "requestSha256": "a08eda7b485eab1229cf28c3af2f706a1fcaa451015c7d65e5e6c88b13461b38"
+        },
+        {
+          "stage": "Verifying relevance and full history 22–24",
+          "requestSha256": "b1239c8576bb600cc02f65ef76ad176b7e7d4e6fc3ad6f69e94e5f11016d3e9a"
+        },
+        {
+          "stage": "Independently rechecking proposed routine removals",
+          "requestSha256": "980bb6bbb78c372530da211f24c8b296ff088f64c58b2b985d6290632351ef6d"
+        },
+        {
+          "stage": "Checking final concern boundaries and status scopes · identify independent concerns",
+          "requestSha256": "09d6f6110a8825d237e1518f24215237017c788bc6a7ca57d014ce830d7d8d9e"
+        },
+        {
+          "stage": "Checking final concern boundaries and status scopes · independently audit concern boundaries",
+          "requestSha256": "c5a2d5205a98a4c1f4d0b7322d3d4a0eb9c7178633d371652882f54421a75b69"
+        },
+        {
+          "stage": "Checking final concern boundaries and status scopes · verify each concern state",
+          "requestSha256": "7899d60c105a06a2247b09457a93e3992dec0325bb74988754537e254019b380"
+        },
+        {
+          "stage": "Checking every remaining source obligation",
+          "requestSha256": "3f7ac94c3a9b454323e373c755b6c71d808b7803a11feb912d06b9aa325330e2"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "0f91f99f0f01f34563d56d77dbba6b871a7e95b428dec5810ad91482a73b750a"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "046c47f135414dea698cbfc486bb89b372f0fb67c80517dea8ada4b231b670c3"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "23bd59d028892ce1d2c0d4ad9afd34db50b9b2a61942bc09c83601f08a51b07f"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "973bf64c8f0dfca38105ccb8fcd17a28081cdb22cc7bea2eddee6b0d925d8195"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "c79be76d9bf8ba7b401945019f4c0ab0e75d0079cb06b4518cb4f6fbfb9a6cf3"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "fed03e81da39be47629d96ab1df3300d9c1f8a3095489df9049fb57cffd2f3a5"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "156da55421fe6266a03f666eb7cddd4c6d3a309c42a4cc00bc3127c6b27f0134"
+        },
+        {
+          "stage": "Repairing unlinked obligation additions",
+          "requestSha256": "1dacfd756a664bd7af82445ae77c21c2ae32425e004df57eeab40a77d5021a7f"
+        }
+      ],
+      "originalConcernCount": 12,
+      "resolvedOriginalConcernCount": 2,
+      "novelSourceCases": 7,
+      "attachmentSelection": "novel-original-evidence-only",
+      "batches": [
+        {
+          "index": 0,
+          "caseId": "L0",
+          "sourceFactId": "S029",
+          "selectedComponentIndices": [
+            0
+          ],
+          "requestSha256": "f46ed863ea20b16060aa20b5c8a6db9bd621db8cf2bdb51c440d670aae78a120",
+          "payloadSha256": "ac9a83a3fd8d79c089282eb41d609bda25450e4449997a3e1c82bda593a9c7bd",
+          "exactTopLevelFields": true,
+          "singleExactSource": true,
+          "allNovelLabelsOnce": true,
+          "preservedSiblingLabels": true,
+          "equalOriginalScopeEvidence": true,
+          "fullChronology": true,
+          "noPriorTargetOrClassification": true,
+          "oneCombinedSourceInstruction": true,
+          "singleReviewKey": true
+        },
+        {
+          "index": 1,
+          "caseId": "L1",
+          "sourceFactId": "S037",
+          "selectedComponentIndices": [
+            0
+          ],
+          "requestSha256": "080ee5934e30ba65a62c9918eb40c24546c5aacc57b9aaf252017ae6a93039d7",
+          "payloadSha256": "db7151d111b8a2a0038ff0edb2d8d1172799500b1246c6bf7a18eda7878fc386",
+          "exactTopLevelFields": true,
+          "singleExactSource": true,
+          "allNovelLabelsOnce": true,
+          "preservedSiblingLabels": true,
+          "equalOriginalScopeEvidence": true,
+          "fullChronology": true,
+          "noPriorTargetOrClassification": true,
+          "oneCombinedSourceInstruction": true,
+          "singleReviewKey": true
+        },
+        {
+          "index": 2,
+          "caseId": "L2",
+          "sourceFactId": "S039",
+          "selectedComponentIndices": [
+            0
+          ],
+          "requestSha256": "65fd2f20a4749aec7c395a2f9be69611a34fadacb105ba4f019079c6cf8cfe27",
+          "payloadSha256": "1d252bd4ce49668e38ccda84f63ee500667004338a3086eb1dbea3b3b9be7d7a",
+          "exactTopLevelFields": true,
+          "singleExactSource": true,
+          "allNovelLabelsOnce": true,
+          "preservedSiblingLabels": true,
+          "equalOriginalScopeEvidence": true,
+          "fullChronology": true,
+          "noPriorTargetOrClassification": true,
+          "oneCombinedSourceInstruction": true,
+          "singleReviewKey": true
+        },
+        {
+          "index": 3,
+          "caseId": "L3",
+          "sourceFactId": "S051",
+          "selectedComponentIndices": [
+            0,
+            1
+          ],
+          "requestSha256": "69247270d8ef2bc135f8a01c3ab724a27e6c25ed2156be0f747857e03f3fb907",
+          "payloadSha256": "edc9a3d78317d66d45b69d471789dc12d13257feb79411f58cc6f6bdf8d919e2",
+          "exactTopLevelFields": true,
+          "singleExactSource": true,
+          "allNovelLabelsOnce": true,
+          "preservedSiblingLabels": true,
+          "equalOriginalScopeEvidence": true,
+          "fullChronology": true,
+          "noPriorTargetOrClassification": true,
+          "oneCombinedSourceInstruction": true,
+          "singleReviewKey": true
+        },
+        {
+          "index": 4,
+          "caseId": "L4",
+          "sourceFactId": "S060",
+          "selectedComponentIndices": [
+            0,
+            1
+          ],
+          "requestSha256": "00ac732c77f292f6e37e4a1adcca6501ed243146659c6d439c1c7c295b23709e",
+          "payloadSha256": "bf472f8008b1837bc6cd00fe58b21f1122a3302af7598f594ed3582eeeed5854",
+          "exactTopLevelFields": true,
+          "singleExactSource": true,
+          "allNovelLabelsOnce": true,
+          "preservedSiblingLabels": true,
+          "equalOriginalScopeEvidence": true,
+          "fullChronology": true,
+          "noPriorTargetOrClassification": true,
+          "oneCombinedSourceInstruction": true,
+          "singleReviewKey": true
+        },
+        {
+          "index": 5,
+          "caseId": "L5",
+          "sourceFactId": "S070",
+          "selectedComponentIndices": [
+            0,
+            1
+          ],
+          "requestSha256": "e4560e1302a88908bd48caab25ddfcfd19e1190dfd97462a81461953efc4b46b",
+          "payloadSha256": "bb67ac4686b724422a577bd7d320d8547260ab343a7fb19b437ba47186427b71",
+          "exactTopLevelFields": true,
+          "singleExactSource": true,
+          "allNovelLabelsOnce": true,
+          "preservedSiblingLabels": true,
+          "equalOriginalScopeEvidence": true,
+          "fullChronology": true,
+          "noPriorTargetOrClassification": true,
+          "oneCombinedSourceInstruction": true,
+          "singleReviewKey": true
+        },
+        {
+          "index": 6,
+          "caseId": "L6",
+          "sourceFactId": "S081",
+          "selectedComponentIndices": [
+            0,
+            1
+          ],
+          "requestSha256": "e297d577b542878bfcb37ee1331f9cf32c1b7d1f94e09ed8370d3f7dd10c2f1d",
+          "payloadSha256": "507eb1879e984fa854da3e69695eb9208ae08bfed438c5067c352f73bdc620e2",
+          "exactTopLevelFields": true,
+          "singleExactSource": true,
+          "allNovelLabelsOnce": true,
+          "preservedSiblingLabels": true,
+          "equalOriginalScopeEvidence": true,
+          "fullChronology": true,
+          "noPriorTargetOrClassification": true,
+          "oneCombinedSourceInstruction": true,
+          "singleReviewKey": true
+        }
+      ],
+      "ok": true
+    },
+    {
+      "datasetId": "g",
+      "sourceFile": "development-v18k-native27-g-staged.json",
+      "sourceArtifactSha256": "58ca1d8dbd955ada51b01142bf0ca9b73be10f7ca39592d97931672046478913",
+      "sourceRunId": "251967e9-a75e-402b-b3e1-2bd09e2d5c46",
+      "inputSha256": "376ff8d2e2c282650a9462f775171dcb55bcdb584b8d5722813b7b116f0912f9",
+      "sourcePromptVersion": "daily-review-18k-consolidated",
+      "method": "offline-request-construction-replay-with-structural-placeholder-responses",
+      "actualInferenceCalls": 0,
+      "latencyMeasurement": false,
+      "qualityPrediction": false,
+      "unchangedPrefixCount": 19,
+      "wholeRequestPrefixVerified": true,
+      "prefixRequestHashes": [
+        {
+          "stage": "Connecting concerns to exact report passages",
+          "requestSha256": "9cc3413c03a6523a17228854ce84dbded98a0b3d69884e9d97b9350801c2c037"
+        },
+        {
+          "stage": "Checking coverage and later resolutions",
+          "requestSha256": "4c080c39cf3404756eb05e9198899dedbe261c68ebf733da0dd52d0c017f4b9d"
+        },
+        {
+          "stage": "Checking uncited passages for missed concerns",
+          "requestSha256": "5076ecbf2ab73cb26116b266a1d1b131bb3edf0d89326d7c2be08fd3916b788e"
+        },
+        {
+          "stage": "Checking explicitly remaining closeout tasks",
+          "requestSha256": "9c8c5c9d9cc420ac43459788b869205344e337eaff1b4d644d997ec52bfd1129"
+        },
+        {
+          "stage": "Checking historical work and delivery changes",
+          "requestSha256": "91d6655b2d8d390645a7a7f9093989e9081bb0f5caf3b08a7228691c0bca1905"
+        },
+        {
+          "stage": "Checking opposing release and inspection accounts",
+          "requestSha256": "9b8410c2b64f6f42dac779aaaa796bdb4c88fe8513d8db1631d4d7028143c065"
+        },
+        {
+          "stage": "Verifying relevance and full history 1–3",
+          "requestSha256": "38cbc98ee8b5c2b632dc840c37ba3be5f63f9a78e41d86d646052250d2fb0734"
+        },
+        {
+          "stage": "Verifying relevance and full history 4–6",
+          "requestSha256": "e49c2b3e69cc5859a70303bfdeb014175b084743d61023d124ecd6bd9323192d"
+        },
+        {
+          "stage": "Verifying relevance and full history 7–9",
+          "requestSha256": "39de6a9396c9bed4fdae6c1923ea8152a85d6813680807c6f3c6a87923e313ec"
+        },
+        {
+          "stage": "Verifying relevance and full history 10–11",
+          "requestSha256": "e49950257bbdfbe0ea364d308f17a204bd7f724c7d6df3efabf340bf89fbc0fe"
+        },
+        {
+          "stage": "Checking final concern boundaries and status scopes · identify independent concerns",
+          "requestSha256": "0ef0eecd4de1408d2006e33e65c23af956991b5737f91b5c054b5183466c69f4"
+        },
+        {
+          "stage": "Checking final concern boundaries and status scopes · independently audit concern boundaries",
+          "requestSha256": "5ed9e064217ea62c78bec9ddc27c11b65b8c0e9b95ec004d164bbdc6f08abdd3"
+        },
+        {
+          "stage": "Checking final concern boundaries and status scopes · verify each concern state",
+          "requestSha256": "15960104dc584461e7b45e00727b8262ca835549125106de7c3cd98cf19bdb69"
+        },
+        {
+          "stage": "Checking every remaining source obligation",
+          "requestSha256": "513bf629faebf8e0b0e1ee35e435e7e6f54e292c0682d2929a073b686f5b0fc0"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "cf217f857b232e720ada869bb03bef1fa971e0287815d26c46e3a8f29b82a3bb"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "5f992f874470842c9e17044b7c84941ed0a3707b1e8ab2ecaf2d68ea626b2ecc"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "6a3a733e748687ebb4626ce44f75bdd498f864c97c1c6be80e4a8301ac795f5a"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "52893897541ba077191b19a4fcd8cbab23791686a12fca75a77ef3dde5c3f71e"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "requestSha256": "7736da1276730b34b3fa6f2eebd23378aed6ae1e06e8b433d634d610e4e88c72"
+        }
+      ],
+      "originalConcernCount": 5,
+      "resolvedOriginalConcernCount": 2,
+      "novelSourceCases": 4,
+      "attachmentSelection": "novel-original-evidence-only",
+      "batches": [
+        {
+          "index": 0,
+          "caseId": "L0",
+          "sourceFactId": "S034",
+          "selectedComponentIndices": [
+            0
+          ],
+          "requestSha256": "182597a16bad03aa2f25a7cb3e9355fdd9ecae63257a3eee64371f23c9e31f0b",
+          "payloadSha256": "9a0c1aa532c3123595c77761e71a17293401a7bc6a6093ec8e47803c9a36885f",
+          "exactTopLevelFields": true,
+          "singleExactSource": true,
+          "allNovelLabelsOnce": true,
+          "preservedSiblingLabels": true,
+          "equalOriginalScopeEvidence": true,
+          "fullChronology": true,
+          "noPriorTargetOrClassification": true,
+          "oneCombinedSourceInstruction": true,
+          "singleReviewKey": true
+        },
+        {
+          "index": 1,
+          "caseId": "L1",
+          "sourceFactId": "S041",
+          "selectedComponentIndices": [
+            0
+          ],
+          "requestSha256": "f5754db02398e38f2af5368ba19d41ded3aaf6b65658fc408b58e39e0dca56e9",
+          "payloadSha256": "13b5810e5006108a0a32799250c049da1bebe885f96f566cd2dc614821c35a26",
+          "exactTopLevelFields": true,
+          "singleExactSource": true,
+          "allNovelLabelsOnce": true,
+          "preservedSiblingLabels": true,
+          "equalOriginalScopeEvidence": true,
+          "fullChronology": true,
+          "noPriorTargetOrClassification": true,
+          "oneCombinedSourceInstruction": true,
+          "singleReviewKey": true
+        },
+        {
+          "index": 2,
+          "caseId": "L2",
+          "sourceFactId": "S048",
+          "selectedComponentIndices": [
+            0
+          ],
+          "requestSha256": "c440f5ffc0458ccc632214c048d97ca624c518034cd2cc11bee5cfc648aaa95a",
+          "payloadSha256": "49b7fe0cfd2f11f936bec815962dd9d13201c84c2275fe458ff547ce2be8326a",
+          "exactTopLevelFields": true,
+          "singleExactSource": true,
+          "allNovelLabelsOnce": true,
+          "preservedSiblingLabels": true,
+          "equalOriginalScopeEvidence": true,
+          "fullChronology": true,
+          "noPriorTargetOrClassification": true,
+          "oneCombinedSourceInstruction": true,
+          "singleReviewKey": true
+        },
+        {
+          "index": 3,
+          "caseId": "L3",
+          "sourceFactId": "S050",
+          "selectedComponentIndices": [
+            0
+          ],
+          "requestSha256": "748c6e01ca49b5b17137479511f1c1f8d6019dc7780febe52535e6be58af7e8c",
+          "payloadSha256": "9cabf66079512c723a316e3fada2b5a9f012aa43fa74caab21b2355a358e06c5",
+          "exactTopLevelFields": true,
+          "singleExactSource": true,
+          "allNovelLabelsOnce": true,
+          "preservedSiblingLabels": true,
+          "equalOriginalScopeEvidence": true,
+          "fullChronology": true,
+          "noPriorTargetOrClassification": true,
+          "oneCombinedSourceInstruction": true,
+          "singleReviewKey": true
+        }
+      ],
+      "ok": true
+    }
+  ]
+}

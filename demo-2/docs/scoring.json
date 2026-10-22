@@ -76,7 +76,7 @@
         "F6": "supported",
         "F7": "supported"
       },
-      "notes": "Stale substrate-release alerts/actions in F1\u2013F3 are counted as unsupported under the latest-status rubric. Quotations are real historical excerpts; the problem is their unreconciled use as current alerts. This is a deliberately weak keyword baseline, not human-only review."
+      "notes": "Stale substrate-release alerts/actions in F1–F3 are counted as unsupported under the latest-status rubric. Quotations are real historical excerpts; the problem is their unreconciled use as current alerts. This is a deliberately weak keyword baseline, not human-only review."
     },
     {
       "runId": "11e0a586-07cc-4023-a929-10f25684a594",
@@ -275,7 +275,7 @@
         "ISS-12": {
           "rating": "partial",
           "findingId": "F5",
-          "note": "Notice gap identified but restriction duration/reassignment omitted, and Concrete Subcontractor ownership is borrowed from A09 rather than A10\u2019s notification assignment."
+          "note": "Notice gap identified but restriction duration/reassignment omitted, and Concrete Subcontractor ownership is borrowed from A09 rather than A10’s notification assignment."
         }
       },
       "assessments": {
@@ -1005,7 +1005,7 @@
       },
       "findingNotes": {
         "F1": "Unknown cause is correct, but proposed investigation before proceeding with replacement is stale after completed placement.",
-        "F2": "Invented approximately two-day delay (May 11\u201314) and exclusive inspection-record causation.",
+        "F2": "Invented approximately two-day delay (May 11–14) and exclusive inspection-record causation.",
         "F3": "Invented critical-path delay and unconditional closure based on internal note.",
         "F4": "Verification still needed but status resolved; reference does not close the record gap.",
         "F5": "Incorrectly says 4.2 m3 was delivered and placed; source only measures delivered volume.",
@@ -1186,7 +1186,7 @@
         "F1": "Supported chronology and signed acceptance; uncertainty No is terse but the reported closure is explicit.",
         "F2": "Until pour implies a transmission time not established by the reports.",
         "F3": "A09 is the GC superintendent report, not Concrete Subcontractor. Its selected supporting_evidence field does not contain RI-B104-0515.",
-        "F4": "Remained open in system through May 2026 is broader than the May 11\u201315 record and not established by A09. Conservative whole-finding judgment; independent adjudication may assess this wording differently.",
+        "F4": "Remained open in system through May 2026 is broader than the May 11–15 record and not established by A09. Conservative whole-finding judgment; independent adjudication may assess this wording differently.",
         "F5": "Completion after documentation-gap reconciliation is unsupported; the gap remains in A09.",
         "F6": "Supported delivered-versus-measured-installed distinction.",
         "F7": "Correct follow-up fact, but wrong cited field: needs A09 schedule_status, not issue_or_update.",
@@ -1663,6 +1663,2404 @@
         "F4": "Unsupported record/communication alert: the reports explicitly reference the signed daily acceptance checklist and state that no additional record is required. There is no missing evidence, unresolved linkage or historical documentation problem. This is a routine completed record, not a material review concern."
       },
       "notes": "Routine C negative control contains zero reference concerns. Browser 4B single-pass output produces four distinct unsupported review alerts, not four duplicate mentions of one alert. All passages are verbatim source text; the failure is semantic relevance and, in F2, unsupported open/conflict status. Do not describe citation validity as accuracy. Native 27B v17 returned zero findings on C/E in separately recorded runs. This provisional agent review is not independent human validation."
+    },
+    {
+      "runId": "ee6875c7-eaa6-4579-82bf-88d3ac87b02c",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Quotes the observed water damage and unconfirmed source with needs_verification and no invented cause."
+        },
+        "ISS-02": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves the initial missing formal acceptance/release and closes substrate acceptance using explicit acceptance and signed checklist QC-B104-0514."
+        },
+        "ISS-03": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves apparent readiness without inspection sign-off and missing workface release, followed by signed substrate acceptance. It does not treat apparent readiness as proof of acceptance."
+        },
+        "ISS-04": {
+          "rating": "found",
+          "findingIds": [
+            "F4",
+            "F5"
+          ],
+          "note": "Together the supported technical and communication findings preserve the earlier unanswered question, internal/informal direction, later reported RFI resolution, and missing formal response/revision. They do not assert that the technical decision is proven unresolved."
+        },
+        "ISS-05": {
+          "rating": "found",
+          "findingId": "F9",
+          "note": "Quotes actual pour postponement across earlier dates, partial-afternoon crew reassignment, the subsequent hold and later completed placement. Historical state correctly ends the work-progress concern without implying record gaps or prerequisites were independently verified closed."
+        },
+        "ISS-06": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves the GC inspection-passed account versus the missing written release and reconciles substrate acceptance through the later signed checklist."
+        },
+        "ISS-07": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Preserves original thickness versus revised detail, internal and informal instruction, missing drawing/revision, and the latest approved-detail claim without its linked formal response."
+        },
+        "ISS-08": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Preserves the internal response not formally transmitted, unconfirmed receipt, missing revision and latest missing formal response evidence."
+        },
+        "ISS-09": {
+          "rating": "found",
+          "findingIds": [
+            "F6",
+            "F11"
+          ],
+          "note": "F6 preserves the earlier requested-but-not-completed reinforcement inspection and later bare inspection reference with needs_verification. F11 separately preserves the explicit open task to attach the inspection record. No supported finding is used to establish that the bare reference proves inspection acceptance."
+        },
+        "ISS-10": {
+          "rating": "found",
+          "findingId": "F10",
+          "note": "Preserves the superintendent resolved label and explicit outstanding formal-response attachment task/missing-response evidence, with open record-task state."
+        },
+        "ISS-11": {
+          "rating": "partial",
+          "findingId": "F7",
+          "note": "Placed-quantity verification remains supported in F7, but no consolidated finding retains the explicitly unfinished strength-test follow-up. Partial counts as missed; consolidation cannot recover a concern omitted from the saved source candidates."
+        },
+        "ISS-12": {
+          "rating": "found",
+          "findingIds": [
+            "F8",
+            "F13"
+          ],
+          "note": "F8 preserves reported notice versus uncertainty about foreman advance notice. F16 separately preserves the ended 09:00-12:45 restriction, reassignment/resumption, three-hour-45-minute duration and no-full-shift statement. No critical-path impact is inferred."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "duplicate",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported",
+        "F9": "supported",
+        "F10": "supported",
+        "F11": "supported",
+        "F12": "duplicate",
+        "F13": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported unconfirmed water-damage cause, with no invented cause.",
+        "F2": "Supported substrate-only acceptance chronology, verbal/passed versus missing written release and explicit signed closure.",
+        "F3": "Duplicate/subset of F2: same historical missing substrate-release record and signed checklist closure. No separate outstanding substrate-record task is established.",
+        "F4": "Supported slab-detail/thickness/revision uncertainty, with latest reported approved detail lacking a linked revision/formal response.",
+        "F5": "Supported formal technical instruction issue/receipt verification, including reported resolved status versus missing attached formal response.",
+        "F6": "Supported separate reinforcement-inspection acceptance uncertainty; bare later ID does not prove passed inspection.",
+        "F7": "Supported delivered-versus-unverified placed quantity; no invented volume, waste or quality result.",
+        "F8": "Supported reported notification versus uncertain advance electrical-foreman receipt.",
+        "F9": "Supported consolidated historical pour hold and subsequent physical completion. Resolved applies to physical placement only; separate inspection/record concerns remain visible.",
+        "F10": "Supported open formal-RFI-response attachment task, separate from uncertain issue/receipt.",
+        "F11": "Supported open reinforcement-record attachment task, separate from uncertain physical inspection acceptance.",
+        "F12": "Duplicate of F4: same slab-detail/drawing-revision uncertainty and latest missing formal record. A separate issued_revision label does not establish a distinct concern here.",
+        "F13": "Supported bounded historical electrical trade restriction, reassignment/resumption, duration and no-full-shift limitation."
+      },
+      "mechanicalPreservation": {
+        "inputCandidates": 20,
+        "candidateIndicesMapped": 20,
+        "uniqueCandidateIndicesMapped": 20,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 76,
+        "nonMatchingPassages": []
+      },
+      "notes": "Revision-18b consolidation-only development run on unchanged saved revision-17 A candidates, not a full revised-pipeline/source evaluation. Preserves all eleven revision-17 fully-found reference IDs, remains 11/12 with ISS-11 partial, zero unsupported distinct findings and two semantic duplicates across thirteen outputs. Target of zero semantic duplicates is not met. All twenty candidate indices are mapped exactly once and all selected source facts are retained. Postprocessing timing is not full review latency. Reference definitions were not changed. Independent human review remains pending."
+    },
+    {
+      "runId": "c7b7c461-087b-4c64-b684-9fc19a7f8abc",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "note": "Quotes the observed water damage and unconfirmed source with needs_verification and no invented cause.",
+          "findingId": "F1"
+        },
+        "ISS-02": {
+          "rating": "found",
+          "note": "Preserves the initial missing formal acceptance/release and closes substrate acceptance using explicit acceptance and signed checklist QC-B104-0514.",
+          "findingId": "F2"
+        },
+        "ISS-03": {
+          "rating": "found",
+          "note": "Preserves apparent readiness without inspection sign-off and missing workface release, followed by signed substrate acceptance. It does not treat apparent readiness as proof of acceptance.",
+          "findingId": "F2"
+        },
+        "ISS-04": {
+          "rating": "found",
+          "note": "F3 retains the unresolved historical slab-detail question and latest missing formal revision/response; F4 separately preserves formal issue/receipt uncertainty and reported RFI resolution. Neither proves technical non-resolution.",
+          "findingIds": [
+            "F3",
+            "F4"
+          ]
+        },
+        "ISS-05": {
+          "rating": "found",
+          "note": "F8 preserves actual earlier postponement, partial-afternoon reassignment and later physical placement completion. Resolved applies to this physical work hold, not independent design/inspection/record acceptance.",
+          "findingId": "F8"
+        },
+        "ISS-06": {
+          "rating": "found",
+          "note": "Preserves the GC inspection-passed account versus the missing written release and reconciles substrate acceptance through the later signed checklist.",
+          "findingId": "F2"
+        },
+        "ISS-07": {
+          "rating": "found",
+          "note": "Preserves original thickness versus revised detail, internal and informal instruction, missing drawing/revision, and the latest approved-detail claim without its linked formal response.",
+          "findingId": "F3"
+        },
+        "ISS-08": {
+          "rating": "found",
+          "note": "Preserves the internal response not formally transmitted, unconfirmed receipt, missing revision and latest missing formal response evidence.",
+          "findingId": "F4"
+        },
+        "ISS-09": {
+          "rating": "found",
+          "note": "F5 keeps earlier incomplete reinforcement inspection and later bare reference with needs_verification; F10 keeps the separate explicit open attachment task. No inspection pass is inferred.",
+          "findingIds": [
+            "F5",
+            "F10"
+          ]
+        },
+        "ISS-10": {
+          "rating": "found",
+          "note": "Preserves the superintendent resolved label and explicit outstanding formal-response attachment task/missing-response evidence, with open record-task state.",
+          "findingId": "F9"
+        },
+        "ISS-11": {
+          "rating": "partial",
+          "note": "F6 preserves delivered-versus-unmeasured placed volume. No output retains explicitly unfinished strength-test follow-up. Partial counts as missed; this concern was already partial in the saved revision-17 candidate source.",
+          "findingId": "F6"
+        },
+        "ISS-12": {
+          "rating": "found",
+          "note": "F7 preserves reported notice versus unestablished foreman receipt; F11 preserves bounded historical restriction, reassignment/resumption, duration and no-full-shift statement. Count this reference once.",
+          "findingIds": [
+            "F7",
+            "F11"
+          ]
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported",
+        "F9": "supported",
+        "F10": "supported",
+        "F11": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported unconfirmed water-damage cause, no invented source.",
+        "F2": "Supported consolidated substrate-acceptance/written-release history, opposing accounts and later signed closure. No distinct unfinished substrate-record task remains.",
+        "F3": "Supported consolidated technical detail/revision uncertainty; latest approved-detail claim lacks linked formal revision/response. Historical awaiting-design context is retained.",
+        "F4": "Supported distinct uncertainty about formal technical response issue and crew receipt, with later reported resolution but absent formal response.",
+        "F5": "Supported separate reinforcement-acceptance uncertainty; bare inspection reference does not establish passed acceptance.",
+        "F6": "Supported delivered-versus-unmeasured placed volume; no invented actual quantity, waste or test result.",
+        "F7": "Supported reported advance notice versus unestablished electrical-foreman receipt.",
+        "F8": "Supported consolidated historical physical pour hold and later placement completion. The scope question and latest pointer constrain resolved to physical work, while separate acceptance/record findings remain open or uncertain.",
+        "F9": "Supported explicit open formal-RFI-response attachment task, distinct from formal issue/receipt uncertainty.",
+        "F10": "Supported explicit open reinforcement-record attachment task, distinct from physical inspection uncertainty.",
+        "F11": "Supported ended local electrical-trade restriction with bounded duration and reassignment/resumption, distinct from still-unverified notice receipt."
+      },
+      "mechanicalPreservation": {
+        "inputCandidates": 20,
+        "candidateIndicesMapped": 20,
+        "uniqueCandidateIndicesMapped": 20,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 65,
+        "nonMatchingPassages": []
+      },
+      "preservedPriorFullyFoundReferenceIds": [
+        "ISS-01",
+        "ISS-02",
+        "ISS-03",
+        "ISS-04",
+        "ISS-05",
+        "ISS-06",
+        "ISS-07",
+        "ISS-08",
+        "ISS-09",
+        "ISS-10",
+        "ISS-12"
+      ],
+      "notes": "Revision-18c consolidation-only development run on unchanged saved revision-17 A candidates. Eleven outputs, 11/12 fully found, ISS-11 partial, zero unsupported distinct findings and zero semantic duplicates. Every previously fully-found reference ID is retained; all twenty input candidates map exactly once and all selected evidence survives. This passes the matched consolidation acceptance checks on this one development observation; it does not establish full-pipeline revised-source coverage, human review-time improvement or general reliability. Postprocessing time is not full review latency. References unchanged. Independent human adjudication pending."
+    },
+    {
+      "runId": "a2b943a9-9699-4f95-8248-dc3d36958796",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "note": "Quotes the observed water damage and unconfirmed source with needs_verification and no invented cause.",
+          "findingId": "F1"
+        },
+        "ISS-02": {
+          "rating": "found",
+          "note": "Preserves the initial missing formal acceptance/release and closes substrate acceptance using explicit acceptance and signed checklist QC-B104-0514.",
+          "findingId": "F2"
+        },
+        "ISS-03": {
+          "rating": "found",
+          "note": "Preserves apparent readiness without inspection sign-off and missing workface release, followed by signed substrate acceptance. It does not treat apparent readiness as proof of acceptance.",
+          "findingId": "F2"
+        },
+        "ISS-04": {
+          "rating": "found",
+          "note": "Together the supported technical and communication findings preserve the earlier unanswered question, internal/informal direction, later reported RFI resolution, and missing formal response/revision. They do not assert that the technical decision is proven unresolved.",
+          "findingIds": [
+            "F3",
+            "F4"
+          ]
+        },
+        "ISS-05": {
+          "rating": "found",
+          "note": "Supported F3 explicitly retains the May13 actual second-shift postponement; F11 retains May14 no-placement/incomplete-inspection context and May15 physical completion. Together these cover actual delay and later completion. Additional first postponement remains in redundant F8; duplicated cards are not counted as extra reference credit. The chronology is fragmented and fails H5.",
+          "findingIds": [
+            "F3",
+            "F11"
+          ]
+        },
+        "ISS-06": {
+          "rating": "found",
+          "note": "Preserves the GC inspection-passed account versus the missing written release and reconciles substrate acceptance through the later signed checklist.",
+          "findingId": "F2"
+        },
+        "ISS-07": {
+          "rating": "found",
+          "note": "Preserves original thickness versus revised detail, internal and informal instruction, missing drawing/revision, and the latest approved-detail claim without its linked formal response.",
+          "findingId": "F3"
+        },
+        "ISS-08": {
+          "rating": "found",
+          "note": "Preserves the internal response not formally transmitted, unconfirmed receipt, missing revision and latest missing formal response evidence.",
+          "findingId": "F4"
+        },
+        "ISS-09": {
+          "rating": "found",
+          "note": "F5 asks whether reinforcement inspection is completed and formally recorded, retaining earlier incomplete inspection and a later bare reference with needs_verification. No passed inspection is claimed. The independent reinforcement-record attachment task is visible only inside RFI-scoped F9 and is flagged as an overmerge/scope defect.",
+          "findingId": "F5"
+        },
+        "ISS-10": {
+          "rating": "found",
+          "note": "F4 retains reported resolved RFI status versus missing formal response; F9 retains absent formal attachments and the explicit remaining attachment action. No completed formal response is inferred.",
+          "findingIds": [
+            "F4",
+            "F9"
+          ]
+        },
+        "ISS-11": {
+          "rating": "found",
+          "note": "F6 retains delivered versus separately unmeasured placed volume. F10 explicitly selects the latest statement that curing/protection and strength-test follow-up remain in progress, with open quality-follow-up state. No test failure, overdue status or completion is inferred.",
+          "findingIds": [
+            "F6",
+            "F10"
+          ]
+        },
+        "ISS-12": {
+          "rating": "found",
+          "note": "F7 retains reported notification versus uncertain advance foreman receipt; F12 retains bounded temporary restriction and reassignment/resumption, with no-full-shift statement. Count once.",
+          "findingIds": [
+            "F7",
+            "F12"
+          ]
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "duplicate",
+        "F9": "supported",
+        "F10": "supported",
+        "F11": "supported",
+        "F12": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported unconfirmed water-damage cause.",
+        "F2": "Supported substrate-only acceptance chronology, opposing verbal/passed versus missing-written-release accounts, and signed closure.",
+        "F3": "Supported technical slab-detail/revision uncertainty, reported RFI resolution without linked revision/response, and actual earlier postponement context.",
+        "F4": "Supported formal RFI-response issue/crew-receipt uncertainty.",
+        "F5": "Supported reinforcement inspection/record acceptance uncertainty; the bare later reference is not treated as a passed inspection.",
+        "F6": "Supported delivered versus unmeasured placed quantity.",
+        "F7": "Supported reported notice versus unestablished advance foreman receipt.",
+        "F8": "Semantic duplicate: prerequisite-specific work-hold fragment repeats F2 substrate-gate closure and the same actual pour chronology split across F3/F11. Its resolved label is accepted narrowly for the signed substrate prerequisite, not physical pour completion or other approvals. This is an H5 failure, not an additional useful alert.",
+        "F9": "Supported for its RFI-record question, but independently needed reinforcement-record submission was merged into this RFI-only scope. Exact source action contains both record tasks; the question does not preserve the second aspect. Recorded separately as an overmerge/scope failure rather than inventing a false factual assertion.",
+        "F10": "Supported explicit remaining curing/protection and strength-test follow-up, open. The actual strength requirement is verbatim in the displayed latest source passage.",
+        "F11": "Supported narrow physical work-hold/placement chronology, with no claim that the bare reinforcement reference proves passed acceptance.",
+        "F12": "Supported bounded ended electrical restriction and reassignment/resumption."
+      },
+      "mechanicalPreservation": {
+        "inputCandidates": 24,
+        "candidateIndicesMapped": 24,
+        "uniqueCandidateIndicesMapped": 24,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 63,
+        "nonMatchingPassages": [],
+        "materialityRemovals": []
+      },
+      "scopeFailures": [
+        {
+          "findingId": "F8",
+          "type": "fragmented_same_work_chronology",
+          "note": "Substrate-specific versus reinforcement-specific descriptions remain separate work-hold cards instead of one source-complete chronology; signed substrate closure repeats F2."
+        },
+        {
+          "findingId": "F9",
+          "type": "independent_record_task_hidden",
+          "note": "Reinforcement-record submission candidate merged under an RFI-response-only question; record task scope is not preserved."
+        }
+      ],
+      "notes": "Fresh complete revision-18c UI run on the new authoritative team CSV, input hash 9e38f32a4dc4f47ed8c30776ef50e1d9e930bd10ea4df0c467c399cf4b946dc8. Provisional reference coverage is 12/12, with zero unsupported distinct findings and one semantic duplicate across twelve cards. This DOES NOT pass H5: physical-hold chronology remains fragmented and an independently required reinforcement-record task is hidden under the RFI-only question. The new input differs from the older revision-17 A source, so the reference-count change is not a matched pipeline-only improvement. All original output retained; no reference edits. Full continuous processing 873.984 seconds, n=1. Independent human review pending."
+    },
+    {
+      "runId": "a7342c40-aed0-47ae-8e68-fdfe3bbfcb98",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "note": "Quotes the observed water damage and unconfirmed source with needs_verification and no invented cause.",
+          "findingId": "F1"
+        },
+        "ISS-02": {
+          "rating": "found",
+          "note": "Preserves the initial missing formal acceptance/release and closes substrate acceptance using explicit acceptance and signed checklist QC-B104-0514.",
+          "findingId": "F2"
+        },
+        "ISS-03": {
+          "rating": "found",
+          "note": "Preserves apparent readiness without inspection sign-off and missing workface release, followed by signed substrate acceptance. It does not treat apparent readiness as proof of acceptance.",
+          "findingId": "F2"
+        },
+        "ISS-04": {
+          "rating": "found",
+          "note": "Together the supported technical and communication findings preserve the earlier unanswered question, internal/informal direction, later reported RFI resolution, and missing formal response/revision. They do not assert that the technical decision is proven unresolved.",
+          "findingIds": [
+            "F3",
+            "F4"
+          ]
+        },
+        "ISS-05": {
+          "rating": "found",
+          "note": "F8 now contains the actual dated postponements, release/design/reinforcement prerequisites and later physical placement completion in ONE complete work-progress chronology. Resolved is limited to physical placement, not independent acceptance, record or testing requirements.",
+          "findingId": "F8"
+        },
+        "ISS-06": {
+          "rating": "found",
+          "note": "Preserves the GC inspection-passed account versus the missing written release and reconciles substrate acceptance through the later signed checklist.",
+          "findingId": "F2"
+        },
+        "ISS-07": {
+          "rating": "found",
+          "note": "Preserves original thickness versus revised detail, internal and informal instruction, missing drawing/revision, and the latest approved-detail claim without its linked formal response.",
+          "findingId": "F3"
+        },
+        "ISS-08": {
+          "rating": "found",
+          "note": "Preserves the internal response not formally transmitted, unconfirmed receipt, missing revision and latest missing formal response evidence.",
+          "findingId": "F4"
+        },
+        "ISS-09": {
+          "rating": "found",
+          "note": "F5 retains earlier requested/incomplete inspection and later bare RI reference with needs_verification. F10 separately retains the explicit attachment requirement. F5 wording emphasizes a formal pre-placement completion record and can be read awkwardly; scored as an interrogative verification gap, not an assertion that inspection passed or occurred. A signed acceptance could exist yet remain unlinked, so the two questions are independently answerable.",
+          "findingIds": [
+            "F5",
+            "F10"
+          ]
+        },
+        "ISS-10": {
+          "rating": "found",
+          "note": "F4 retains reported RFI resolution versus unverified formal issue/receipt; F9 independently retains the formal-response attachment gap. No completed formal response is inferred.",
+          "findingIds": [
+            "F4",
+            "F9"
+          ]
+        },
+        "ISS-11": {
+          "rating": "found",
+          "note": "F6 retains delivered versus unmeasured placed quantity. F11 explicitly selects the latest source stating curing/protection and strength-test follow-up remain in progress, with open quality-follow-up state. Source-only reconsideration restored this task after an incorrect initial routine verdict; full trace retained.",
+          "findingIds": [
+            "F6",
+            "F11"
+          ]
+        },
+        "ISS-12": {
+          "rating": "found",
+          "note": "F7 retains reported notice versus unestablished advance foreman receipt. F12 retains bounded historical restriction and reassignment/resumption. Count once; no full-shift or critical-path claim.",
+          "findingIds": [
+            "F7",
+            "F12"
+          ]
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported",
+        "F9": "supported",
+        "F10": "supported",
+        "F11": "supported",
+        "F12": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported unconfirmed cause, no invented source.",
+        "F2": "Supported substrate-only acceptance/release chronology and signed closure; written-record discrepancy is consolidated into that acceptance gate.",
+        "F3": "Supported approved slab-detail/revision uncertainty; does not prove technical non-resolution after reported RFI closure.",
+        "F4": "Supported separate formal-response issue/crew-receipt uncertainty.",
+        "F5": "Supported physical inspection/acceptance verification gap under interrogative reading. The question could more clearly ask whether inspection/acceptance occurred; its completed-before-placement modifier is a wording limitation, not accepted proof of completion. Visible earlier incomplete-inspection and later bare-reference quotations plus needs_verification preserve uncertainty.",
+        "F6": "Supported delivered-versus-unmeasured placed quantity, no invented actual volume or waste.",
+        "F7": "Supported advance-notice receipt uncertainty, independent of restored access.",
+        "F8": "Supported complete physical pour-hold chronology through completion. All prerequisite-specific fragments now consolidated; no separate residual hold card.",
+        "F9": "Supported formal-RFI-response document attachment/availability gap, independent of technical issue/receipt and the separately required reinforcement record.",
+        "F10": "Supported reinforcement-record attachment/availability requirement, independent of whether physical acceptance can be established. No RFI-only scope hides this task.",
+        "F11": "Supported explicit remaining curing/protection and strength-test follow-up, open; no failed, overdue or completed test inferred.",
+        "F12": "Supported ended bounded electrical-trade restriction and reassignment/resumption, independent of notice receipt."
+      },
+      "mechanicalPreservation": {
+        "inputCandidates": 24,
+        "candidateIndicesMapped": 24,
+        "uniqueCandidateIndicesMapped": 24,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 70,
+        "nonMatchingPassages": [],
+        "materialityRemovals": [],
+        "restoredMaterialityCandidateIndices": [
+          8,
+          15
+        ],
+        "pointerNormalizations": [
+          {
+            "stage": "Checking final concern boundaries and status scopes",
+            "groupId": "G5",
+            "field": "latest",
+            "original": [
+              "S090",
+              "S090"
+            ],
+            "normalized": [
+              "S090"
+            ],
+            "reason": "duplicate_source_pointer"
+          }
+        ],
+        "freshInferenceCallsInRecovery": 0
+      },
+      "wordingLimitations": [
+        {
+          "findingId": "F5",
+          "note": "The formal-record question can be phrased more clearly to avoid suggesting inspection completion. Scored as verification, not asserted completion, because status and visible opposing source chronology explicitly leave acceptance unestablished."
+        }
+      ],
+      "notes": "Selected revision-18f recovered quality observation on the new authoritative team CSV. Twelve consolidated outputs cover 12/12 references, zero unsupported distinct findings and zero semantic duplicates under the unchanged provisional rubric. Every candidate/source passage survives; both incorrect routine removals were independently reconsidered and restored. All 18 prior request/response pairs were reused only after exact request-hash verification. One repeated valid S090 latest pointer was deterministically deduplicated with raw response and normalization trace retained; no new semantic assertion or inference call was introduced by recovery. This is NOT a fresh continuous run or latency observation. New team-CSV source differs from prior17 A; matched older-A18f consolidation is recorded separately. F5 wording limitation remains explicit. Independent human review pending."
+    },
+    {
+      "runId": "07434f4e-25d3-4773-a9a7-009fbe28f5fc",
+      "reviewer": "Separate case-authoring Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "G-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Retains the verbal passed-bearing account versus absent signed release, then dated signed issue and foreperson acknowledgement; resolved applies to bearing release only."
+        },
+        "G-02": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Explicitly retains unavailable signed torque-witness result and the latest source statement that separate anchor-torque acceptance cannot be verified from the register ID alone. No failed or never-performed test is inferred; bearing release is independently closed in F1. The attended-witness detail is not quoted, a contextual omission, but the material acceptance/record distinction and latest uncertainty are preserved."
+        },
+        "G-03": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Retains September 1 08:00-10:00 hold, handrail reassignment, missing release/layout context, two-hour duration and September 3 physical setting/grouting completion in one chronology. Resolved is physical completion only; no project completion-date effect is inferred."
+        },
+        "G-04": {
+          "rating": "partial",
+          "findingId": "F5",
+          "note": "Explicitly retains scheduled September 5 10:00 strength testing, not-yet-performed status and absent result without claiming overdue/failure. It omits the source requirement to maintain grout protection until the strength result is documented (S050); no other finding quotes that task. The unchanged compound reference requires both testing and protection. Partial counts as missed; no half credit."
+        },
+        "G-05": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Retains formally issued layout/TR-119 versus missing linked steel-crew receipt acknowledgement and the still-open acknowledgement task after physical installation. It does not claim no formal instruction was issued."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported complete bearing-release discrepancy and explicit signed closure.",
+        "F2": "Supported formal layout issue versus unverified crew acknowledgement, still open.",
+        "F3": "Supported torque-acceptance result-sheet availability/verification gap; no false pass, failure or never-performed assertion.",
+        "F4": "Supported complete historical setting hold through later physical completion, distinct from open closeout/testing/receipt.",
+        "F5": "Supported scheduled but unperformed strength testing, open and not overdue. The separately required protection task is missing, so the combined G-04 reference remains partial."
+      },
+      "mechanicalPreservation": {
+        "inputCandidates": 11,
+        "candidateIndicesMapped": 11,
+        "uniqueCandidateIndicesMapped": 11,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 30,
+        "nonMatchingPassages": [],
+        "materialityRemovals": [],
+        "pointerNormalizations": []
+      },
+      "coverageOmissions": [
+        {
+          "sourceFactId": "S050",
+          "reportId": "DR-G04",
+          "field": "action_required",
+          "quote": "Maintain grout protection until the required strength result is documented.",
+          "referenceIssueId": "G-04",
+          "note": "Never selected into the output; evidence-union preservation cannot recover an unselected task."
+        }
+      ],
+      "notes": "First completed fresh selected 18f G run after the recorded freeze, using actual UI upload and original downloads. Five findings, four of five references fully found, one partial, zero unsupported distinct findings and zero semantic duplicates. The predeclared 5/5 G coverage target FAILS because the protection-until-strength task is omitted. Source/reference definitions unchanged. All eleven selected candidates map once and all selected quotations survive; this mechanical success does not cure the semantic coverage miss. Continuous processing 541.834 seconds, n=1; model load is separate and excludes prior installation/download. Author inherited project context and also performed this provisional review; neither reference withholding nor this score is independent human validation. Earlier G18c cancellation produced no completed prediction."
+    },
+    {
+      "runId": "67ac855a-8dba-4f67-91ae-59fde4dab447",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "note": "Quotes the observed water damage and unconfirmed source with needs_verification and no invented cause.",
+          "findingId": "F1"
+        },
+        "ISS-02": {
+          "rating": "found",
+          "note": "Preserves the initial missing formal acceptance/release and closes substrate acceptance using explicit acceptance and signed checklist QC-B104-0514.",
+          "findingId": "F2"
+        },
+        "ISS-03": {
+          "rating": "found",
+          "note": "Preserves apparent readiness without inspection sign-off and missing workface release, followed by signed substrate acceptance. It does not treat apparent readiness as proof of acceptance.",
+          "findingId": "F2"
+        },
+        "ISS-04": {
+          "rating": "found",
+          "note": "F3 retains the unresolved historical slab-detail question and latest missing formal revision/response; F4 separately preserves formal issue/receipt uncertainty and reported RFI resolution. Neither proves technical non-resolution.",
+          "findingIds": [
+            "F3",
+            "F4"
+          ]
+        },
+        "ISS-05": {
+          "rating": "found",
+          "note": "F8 retains actual original postponements, partial-afternoon crew reassignment, prerequisite-specific holds and later physical placement completion in one scope. No independent acceptance/record/quality closure is inferred.",
+          "findingId": "F8"
+        },
+        "ISS-06": {
+          "rating": "found",
+          "note": "Preserves the GC inspection-passed account versus the missing written release and reconciles substrate acceptance through the later signed checklist.",
+          "findingId": "F2"
+        },
+        "ISS-07": {
+          "rating": "found",
+          "note": "Preserves original thickness versus revised detail, internal and informal instruction, missing drawing/revision, and the latest approved-detail claim without its linked formal response.",
+          "findingId": "F3"
+        },
+        "ISS-08": {
+          "rating": "found",
+          "note": "Preserves the internal response not formally transmitted, unconfirmed receipt, missing revision and latest missing formal response evidence.",
+          "findingId": "F4"
+        },
+        "ISS-09": {
+          "rating": "found",
+          "note": "F5 neutrally asks whether a completed/recorded reinforcement inspection exists, with needs_verification and earlier incomplete versus bare later reference. F10 separately retains the explicit attachment task; no pass inferred.",
+          "findingIds": [
+            "F5",
+            "F10"
+          ]
+        },
+        "ISS-10": {
+          "rating": "found",
+          "note": "Preserves the superintendent resolved label and explicit outstanding formal-response attachment task/missing-response evidence, with open record-task state.",
+          "findingId": "F9"
+        },
+        "ISS-11": {
+          "rating": "partial",
+          "note": "F6 preserves delivered-versus-unmeasured placed volume. No output retains explicitly unfinished strength-test follow-up. Partial counts as missed; this concern was already partial in the saved revision-17 candidate source.",
+          "findingId": "F6"
+        },
+        "ISS-12": {
+          "rating": "found",
+          "note": "F7 preserves reported notice versus unestablished foreman receipt; F11 preserves bounded historical restriction, reassignment/resumption, duration and no-full-shift statement. Count this reference once.",
+          "findingIds": [
+            "F7",
+            "F11"
+          ]
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported",
+        "F9": "supported",
+        "F10": "supported",
+        "F11": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported unconfirmed water-damage cause, no invented source.",
+        "F2": "Supported consolidated substrate-acceptance/written-release history, opposing accounts and later signed closure. No distinct unfinished substrate-record task remains.",
+        "F3": "Supported consolidated technical detail/revision uncertainty; latest approved-detail claim lacks linked formal revision/response. Historical awaiting-design context is retained.",
+        "F4": "Supported distinct uncertainty about formal technical response issue and crew receipt, with later reported resolution but absent formal response.",
+        "F5": "Supported neutral verification question about inspection completion/recording; a bare reference is not treated as physical acceptance.",
+        "F6": "Supported delivered-versus-unmeasured placed volume; no invented actual quantity, waste or test result.",
+        "F7": "Supported reported advance notice versus unestablished electrical-foreman receipt.",
+        "F8": "Supported consolidated historical physical pour hold and later placement completion. The scope question and latest pointer constrain resolved to physical work, while separate acceptance/record findings remain open or uncertain.",
+        "F9": "Supported explicit open formal-RFI-response attachment task, distinct from formal issue/receipt uncertainty.",
+        "F10": "Supported explicit open reinforcement-record attachment task, distinct from physical inspection uncertainty.",
+        "F11": "Supported ended local electrical-trade restriction with bounded duration and reassignment/resumption, distinct from still-unverified notice receipt."
+      },
+      "mechanicalPreservation": {
+        "inputCandidates": 20,
+        "candidateIndicesMapped": 20,
+        "uniqueCandidateIndicesMapped": 20,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 67,
+        "nonMatchingPassages": [],
+        "sourceMaterialityRemovals": [],
+        "pointerNormalizations": []
+      },
+      "preservedPriorFullyFoundReferenceIds": [
+        "ISS-01",
+        "ISS-02",
+        "ISS-03",
+        "ISS-04",
+        "ISS-05",
+        "ISS-06",
+        "ISS-07",
+        "ISS-08",
+        "ISS-09",
+        "ISS-10",
+        "ISS-12"
+      ],
+      "notes": "Matched unchanged older-A accepted revision17 candidates, actual new revision18f consolidation inference. Eleven outputs, 11/12 fully found, ISS-11 partial, zero unsupported distinct findings and zero semantic duplicates. All eleven exact prior fully-found reference IDs survive. Strength-test follow-up was absent from these retained source selections and is not recovered by consolidation. Twenty accepted candidates are mapped exactly once with every selected passage preserved. Postprocessing610.514 seconds, n=1; elapsedMs remains null and this is not complete-review latency. Earlier and new team-CSV A hashes remain distinct. Source/references unchanged; independent human adjudication pending.",
+      "lostPriorFullyFoundReferenceIds": []
+    },
+    {
+      "runId": "2a32d534-916b-4c2c-9fb8-68986de8210d",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "B-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Quotes the initially required but missing moisture readings and later passed test with signed, acknowledged report MT-210."
+        },
+        "B-02": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Pairs the phone-call pass claim with absent technician/value/signed record, then closes the acceptance concern using the later signed report. It does not imply a failed test."
+        },
+        "B-03": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No output quotes the scheduled June 2 delivery, explicit move to June 4 or delivered completion. Installation hold/completion does not substitute for the separate delivery-change reference."
+        },
+        "B-04": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves Product M versus Product N conflict and the formal response selecting N."
+        },
+        "B-05": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves the open product question and later RFI response, revision 3 distribution and confirmed receipt, with resolved state."
+        },
+        "B-06": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Preserves both 20-pail and 18-pail counts, their unreconciled difference and the reported reconciliation task, with open state and no invented correct count."
+        },
+        "B-07": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Preserves the earlier actual installation hold and later completed installation of Product N, with historical state and no quantified project-delay claim."
+        },
+        "B-08": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Preserves the source requirement to maintain protection until June 6 at 12:00, with open remaining-task state. It does not call scheduled curing a delay, access failure or observed damage."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported"
+      },
+      "findingNotes": {
+        "F1": "Correct initial acceptance/evidence discrepancy and explicit later passed, signed, acknowledged test. No unsupported cure-completion, moisture-failure or downstream claim.",
+        "F2": "Correct product conflict and explicit formal response/revision/receipt closure. The acceptance-only limitation quote preserves separate prerequisites.",
+        "F3": "Correct open quantity discrepancy and source-attributed follow-up. No unsupported delivery cause, warranty effect or count inference.",
+        "F4": "Correct historical actual installation hold and later physical completion. It does not infer that unrelated records or quantity differences also closed.",
+        "F5": "Correct explicitly remaining protection requirement and exact June 6 noon deadline. No invented cure completion, access breach or delay."
+      },
+      "notes": "Matched unchanged B accepted revision17 candidates, actual new revision18f consolidation component inference. Five outputs,7/8 fully found, unchanged missed delivery-rescheduling reference B-03, zero unsupported distinct findings and zero semantic duplicates. All seven exact prior fully-found IDs survive. Ten accepted candidates map exactly once and all twenty-seven quotations remain exact. New postprocessing268.828 seconds,n=1; not complete review latency or a new source-discovery trial. Product instruction proof includes explicit formal response/revision and receipt, while installation history and ongoing cure protection remain distinct. Source/references unchanged; independent human review pending.",
+      "mechanicalPreservation": {
+        "inputCandidates": 10,
+        "candidateIndicesMapped": 10,
+        "uniqueCandidateIndicesMapped": 10,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 27,
+        "nonMatchingPassages": [],
+        "sourceMaterialityRemovals": [],
+        "pointerNormalizations": []
+      },
+      "preservedPriorFullyFoundReferenceIds": [
+        "B-01",
+        "B-02",
+        "B-04",
+        "B-05",
+        "B-06",
+        "B-07",
+        "B-08"
+      ],
+      "lostPriorFullyFoundReferenceIds": []
+    },
+    {
+      "runId": "b0d243a0-1b52-4f52-a77c-230785af45c1",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "F-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Preserves verbal/telephone isolation-proved accounts versus unavailable signed crew certificate, followed by signed ISO-V24-0820 issue, receipt and closed branch-isolation acceptance. Pressure-test acceptance remains separate."
+        },
+        "F-02": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves 0-10 V versus 4-20 mA conflict, unapproved internal draft and signed TQ-074/E-620 revision H specifying 4-20 mA. Resolved applies to the technical choice."
+        },
+        "F-03": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Retains the unapproved/unregistered draft and absent issued installer instruction, followed by signed formal issue and supersession. No output selects the explicit 10:25 acknowledgement by both supervisors. Formal issue alone does not fully cover the separate receipt-confirmation reference, so partial counts missed."
+        },
+        "F-04": {
+          "rating": "found",
+          "findingId": "F7",
+          "note": "Retains the actual August 19 08:00–11:20 hold, four-installer reassignment and 3-hour-20-minute duration, missing prerequisites, agreed next access window and later physical replacement completion. Resolved work-progress scope does not imply automatic-service acceptance or project-delay impact."
+        },
+        "F-05": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Preserves requested witness, later PT-V24-0822 entry, unlinked/unavailable signed sheet and required verification before insulation closeout. Open applies to the remaining record-linking/verification task, with no failed-or-never-performed test claim."
+        },
+        "F-06": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Preserves 360 L recovered versus 300 L signed transfer, unreconciled 60 L and collection/tank-balance reconciliation. No invented spill, unlawful disposal or cause."
+        },
+        "F-07": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Preserves completed local manual exercise versus unperformed remote command, feedback and fail-safe tests, August 24 booking and prerequisite before automatic service. No invented overdue or failed test."
+        },
+        "F-08": {
+          "rating": "found",
+          "findingIds": [
+            "F6",
+            "F8"
+          ],
+          "note": "Together preserve the 70-minute restriction, two installers reassigned and resumed corridor work, alongside reportedly sent email and unestablished receipt. Historical restriction and unresolved receipt follow-up are distinct scoped questions; counted once."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported written branch-isolation release/receipt closure, distinct from pressure-test acceptance.",
+        "F2": "Supported resolved technical choice and historical formal-issue context. Does not claim that both supervisors acknowledged receipt; that omission keeps F-03 partial.",
+        "F3": "Supported open pressure-test signed-record linkage/verification. Inherited compound candidate also carries quantity context; F4 separately exposes that distinct task, so the context overlap is not a duplicate concern or hidden task.",
+        "F4": "Supported open measured-versus-transfer quantity discrepancy and source-attributed reconciliation.",
+        "F5": "Supported outstanding remote functional acceptance despite local exercise completion.",
+        "F6": "Supported uncertain advance-email receipt. Historical access evidence provides context; F8 separately asks whether the restriction ended.",
+        "F7": "Supported one consolidated historical valve replacement hold through later physical completion. Release and design prerequisites do not stand in for completion; actual completion quote is retained.",
+        "F8": "Supported historical ceiling restriction/reassignment/resumption. Its question/status concern physical access, while F6 separately preserves unconfirmed notice receipt."
+      },
+      "notes": "Matched unchanged F accepted revision-17 candidates, with actual new frozen revision-18f consolidation component inference. Eight outputs: 7/8 fully found, unchanged partial F-03, zero unsupported distinct findings and zero semantic duplicate cards. All seven exact prior fully found IDs survive. All 17 accepted candidates map exactly once, preserving every selected passage. Revision 17 rendered 16 cards because one exact duplicate collapsed at rendering, not because a routine candidate was removed. New postprocessing took 490.704 seconds, n=1; this is not complete-review latency or new source discovery. Source/reference definitions are unchanged; independent human review is pending.",
+      "mechanicalPreservation": {
+        "inputCandidates": 17,
+        "candidateIndicesMapped": 17,
+        "uniqueCandidateIndicesMapped": 17,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 62,
+        "nonMatchingPassages": [],
+        "sourceMaterialityRemovals": [],
+        "pointerNormalizations": []
+      },
+      "preservedPriorFullyFoundReferenceIds": [
+        "F-01",
+        "F-02",
+        "F-04",
+        "F-05",
+        "F-06",
+        "F-07",
+        "F-08"
+      ],
+      "lostPriorFullyFoundReferenceIds": []
+    },
+    {
+      "runId": "7ae34c65-3da3-44f1-8bb4-a76828cc418d",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "D-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Retains recurring oily film, unknown origin and investigation before return to service without inventing a diagnosis or delay linkage."
+        },
+        "D-02": {
+          "rating": "found",
+          "findingIds": [
+            "F2",
+            "F8"
+          ],
+          "note": "Together retain verbal clearance/QC-passed telephone accounts versus absent signed crew release, followed by signed BF-P6-0910 receipt. Resolved applies only to bearing-face release."
+        },
+        "D-03": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Retains 6 mm versus 9 mm conflict, internal draft and later signed TQ-061/M-214 revision D selecting 9 mm, with resolved technical-choice scope."
+        },
+        "D-04": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Retains unissued internal draft and missing installer revision, followed by formal issue at 13:10 and actual chargehand receipt at 13:35; the historical communication gap is closed."
+        },
+        "D-05": {
+          "rating": "partial",
+          "findingId": "F8",
+          "note": "Retains September 9 and 10 actual deferrals, earlier release/revision context and closure of those gates. No output selects September 12 physical setting/grouting completion. Closing individual readiness gates cannot substitute for complete physical history; partial counts missed."
+        },
+        "D-06": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Retains bearing-face-only inspection scope, separate torque witness/acceptance requirement, later AT-P6-0912 reference and inaccessible/unlinked signed sheet. Needs verification does not claim a failed or never-performed inspection."
+        },
+        "D-07": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Retains 22 bags received, 19 issued, 2 returned and 1 unreconciled, with open store-transfer reconciliation and no invented theft or excess volume."
+        },
+        "D-08": {
+          "rating": "found",
+          "findingId": "F6",
+          "note": "Retains preliminary 0.18 mm versus 0.10 mm limit and final alignment after cure before start-up, with open state rather than failed final acceptance or overdue cure."
+        },
+        "D-09": {
+          "rating": "found",
+          "findingIds": [
+            "F7",
+            "F10"
+          ],
+          "note": "Together retain reportedly sent notice, unestablished receipt, 80-minute restriction, three technicians reassigned and restored rack access. Physical restriction and notice receipt remain separately scoped."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported",
+        "F9": "duplicate",
+        "F10": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported unconfirmed cause and source-attributed investigation.",
+        "F2": "Supported closed written bearing-face release/receipt; F8 preserves the complementary initial verbal/passed context.",
+        "F3": "Supported technical choice and actual formal issue/receipt closure. Its evidence covers both reference dimensions without claiming an independent second concern.",
+        "F4": "Supported full separate anchor-torque acceptance record gap and explicit remaining linkage task.",
+        "F5": "Supported open one-bag reconciliation.",
+        "F6": "Supported preliminary alignment discrepancy and remaining final alignment.",
+        "F7": "Supported uncertain advance-notice receipt, distinct from historical access resumption in F10.",
+        "F8": "Supported actual historical setting deferrals and closure of the named release/revision gates. Narrow question avoids asserting physical completion, which is missing from selected evidence.",
+        "F9": "Semantic duplicate of F4: same torque acceptance/witness uncertainty and unavailable signed sheet. The grouting dependency establishes a prerequisite, not a separately documented actual delay event. A work_progress aspect label cannot manufacture an independent concern. This matches the prior17 F12-versus-F16 duplicate judgment; all underlying evidence is already preserved in F4 except the dependency context.",
+        "F10": "Supported historical restriction/reassignment/resumption, distinct from uncertain notice receipt."
+      },
+      "notes": "Staged matched D consolidation after two exact request-hash-verified revision-18f responses, followed by actual bounded cross-aspect link repair and scope inference. The mechanical contract passes, but the semantic zero-redundancy gate fails: ten cards include one duplicate, F9 of F4. All eight exact prior fully found IDs remain. D-05 stays partial because selected candidates omit actual later physical completion. Zero unsupported distinct findings. All 16 candidates and 66 exact passages survive. The new segment took 117.241 seconds, n=1; it excludes reused inference and is not continuous review latency. Preserve this failure even if a later generic method succeeds.",
+      "mechanicalPreservation": {
+        "inputCandidates": 16,
+        "candidateIndicesMapped": 16,
+        "uniqueCandidateIndicesMapped": 16,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 66,
+        "nonMatchingPassages": [],
+        "sourceMaterialityRemovals": [],
+        "pointerNormalizations": []
+      },
+      "preservedPriorFullyFoundReferenceIds": [
+        "D-01",
+        "D-02",
+        "D-03",
+        "D-04",
+        "D-06",
+        "D-07",
+        "D-08",
+        "D-09"
+      ],
+      "lostPriorFullyFoundReferenceIds": [],
+      "consolidationGate": "failed_semantic_duplicate"
+    },
+    {
+      "runId": "60774ffc-fef0-4fc6-b1e2-a56f67746d6d",
+      "reviewer": "Separate case-authoring Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "G-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Retains the verbal passed-bearing account versus absent signed release, then dated signed issue and foreperson acknowledgement; resolved applies to bearing release only."
+        },
+        "G-02": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Explicitly retains unavailable signed torque-witness result and the latest source statement that separate anchor-torque acceptance cannot be verified from the register ID alone. No failed or never-performed test is inferred; bearing release is independently closed in F1. The attended-witness detail is not quoted, a contextual omission, but the material acceptance/record distinction and latest uncertainty are preserved."
+        },
+        "G-03": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Retains September 1 08:00-10:00 hold, handrail reassignment, missing release/layout context, two-hour duration and September 3 physical setting/grouting completion in one chronology. Resolved is physical completion only; no project completion-date effect is inferred."
+        },
+        "G-04": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Retains scheduled September 5 at 10:00 strength testing, not-yet-performed status, unavailable result and the explicit requirement to maintain grout protection until the strength result is documented. Both parts of the unchanged compound reference are visible under the open quality concern; no overdue/failure or premature release is inferred."
+        },
+        "G-05": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Retains formally issued layout/TR-119 versus missing linked steel-crew receipt acknowledgement and the still-open acknowledgement task after physical installation. It does not claim no formal instruction was issued."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported complete bearing-release discrepancy and explicit signed closure.",
+        "F2": "Supported formal layout issue versus unverified crew acknowledgement, still open.",
+        "F3": "Supported torque-acceptance result-sheet availability/verification gap; no false pass, failure or never-performed assertion.",
+        "F4": "Supported complete historical setting hold through later physical completion, distinct from open closeout/testing/receipt.",
+        "F5": "Supported scheduled but unperformed strength testing plus the explicit ongoing protection-until-documented-result condition. The requirement is visible in both exact source passages and coverageRequirements; no second redundant card is added."
+      },
+      "mechanicalPreservation": {
+        "inputCandidates": 11,
+        "candidateIndicesMapped": 11,
+        "uniqueCandidateIndicesMapped": 11,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 34,
+        "nonMatchingPassages": [],
+        "materialityRemovals": [],
+        "pointerNormalizations": []
+      },
+      "coverageOmissions": [],
+      "notes": "Development-informed staged revision-18j G review after the first fresh revision-18f observation failed the 5/5 target. Five actual new focused critic calls follow 14 whole-request-hash-verified prior responses. Final output: five of five unchanged references fully found, zero unsupported distinct findings, zero semantic duplicate cards. All 11 prior candidates map once; all 34 displayed quotations are exact. The missed protection condition is now explicit, and the compound torque-result/crew-receipt action is assigned to both separate existing scopes. The first fresh result remains 4/5; this later development correction is not an untouched holdout confirmation. New processing segment 390.713 seconds, n=1, excludes reused inference and is not full-review latency. Same case-authoring agent performs provisional scoring, with inherited project context; independent human adjudication remains pending. Internal audit classification defects are recorded separately and do not corrupt the retained final-card states in this case.",
+      "sourceObligationAuditReview": {
+        "checkedSources": 20,
+        "criticBatches": 5,
+        "freshInferenceCalls": 5,
+        "protectionRequirementVisible": true,
+        "compoundDocumentTaskSplit": true,
+        "classificationDefects": [
+          {
+            "sourceFactId": "S020",
+            "problem": "Future setting plan with explicit physical setting not complete today is labeled already_completed_state and cites itself. This is not source-entailing completion. The final work card independently retains later actual completion, so no final output concern is wrongly closed here."
+          },
+          {
+            "sourceFactId": "S044",
+            "problem": "The already-signed-and-acknowledged release reminder is labeled closed using unrelated S041 (check closeout folder and continue grout protection). This pointer does not establish bearing-release closure. The retained final release card independently cites correct signed issue/acknowledgement S014; final state remains supported."
+          }
+        ],
+        "interpretation": "Final-output reference/unsupported/duplicate scores do not validate every internal ledger classification. Preserve these errors; do not claim the audit independently verifies every obligation."
+      }
+    },
+    {
+      "runId": "1edbec48-72c4-4a9d-886a-2c129e1a7a68",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "D-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Retains recurring oily film, unknown origin and investigation before return to service without inventing a diagnosis or delay linkage."
+        },
+        "D-02": {
+          "rating": "found",
+          "findingIds": [
+            "F2",
+            "F8"
+          ],
+          "note": "Together retain verbal clearance/QC-passed telephone accounts versus absent signed crew release, followed by signed BF-P6-0910 receipt. Resolved applies only to bearing-face release."
+        },
+        "D-03": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Retains 6 mm versus 9 mm conflict, internal draft and later signed TQ-061/M-214 revision D selecting 9 mm, with resolved technical-choice scope."
+        },
+        "D-04": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Retains unissued internal draft and missing installer revision, followed by formal issue at 13:10 and actual chargehand receipt at 13:35; the historical communication gap is closed."
+        },
+        "D-05": {
+          "rating": "partial",
+          "findingId": "F8",
+          "note": "Retains September 9 and 10 actual deferrals, earlier release/revision context and closure of those gates. No output selects September 12 physical setting/grouting completion. Closing individual readiness gates cannot substitute for complete physical history; partial counts missed."
+        },
+        "D-06": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Retains bearing-face-only inspection scope, separate torque witness/acceptance requirement, later AT-P6-0912 reference and inaccessible/unlinked signed sheet. Needs verification does not claim a failed or never-performed inspection."
+        },
+        "D-07": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Retains 22 bags received, 19 issued, 2 returned and 1 unreconciled, with open store-transfer reconciliation and no invented theft or excess volume."
+        },
+        "D-08": {
+          "rating": "found",
+          "findingId": "F6",
+          "note": "Retains preliminary 0.18 mm versus 0.10 mm limit and final alignment after cure before start-up, with open state rather than failed final acceptance or overdue cure."
+        },
+        "D-09": {
+          "rating": "found",
+          "findingIds": [
+            "F7",
+            "F9"
+          ],
+          "note": "Together retain reportedly sent notice, unestablished receipt, 80-minute restriction, three technicians reassigned and restored rack access. Physical restriction and notice receipt remain separately scoped."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported",
+        "F9": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported unconfirmed cause and source-attributed investigation.",
+        "F2": "Supported closed written bearing-face release/receipt; F8 preserves the complementary initial verbal/passed context.",
+        "F3": "Supported technical choice and actual formal issue/receipt closure. Its evidence covers both reference dimensions without claiming an independent second concern.",
+        "F4": "Supported independent anchor-torque acceptance verification and signed-record linkage. The prerequisite/grouting-dependency candidate is correctly included as context here, with no extra delay card or implication that no inspection occurred.",
+        "F5": "Supported open one-bag reconciliation.",
+        "F6": "Supported preliminary alignment discrepancy and remaining final alignment.",
+        "F7": "Supported uncertain advance-notice receipt, distinct from historical access resumption in F10.",
+        "F8": "Supported actual historical setting deferrals and closure of the named release/revision gates. Narrow question avoids asserting physical completion, which is missing from selected evidence.",
+        "F9": "Supported historical instrumentation restriction, three-person reassignment, 80-minute duration and resumed rack access. It remains distinct from uncertain notice receipt in F7."
+      },
+      "notes": "Staged matched D consolidation: two whole-request-hash-verified original revision-18f responses plus two actual new revision-18j repair/scope calls. Nine cards, 8/9 fully found with unchanged partial D-05, zero unsupported distinct findings and zero semantic duplicate cards. All eight exact prior fully found IDs survive. The cross-aspect repair reclassifies the sole invalid candidate as supporting-record context and merges it with the anchor-acceptance record concern, preserving original evidence. The work-progress question narrowly concerns closure of named release/revision gates; it does not claim actual later physical setting/grouting completion, which was absent from saved candidates. New segment 283.575 seconds, n=1, excludes reused inference and is not complete-review latency. Prior rejected and semantic-failed D attempts remain retained; source/reference definitions are unchanged.",
+      "mechanicalPreservation": {
+        "inputCandidates": 16,
+        "candidateIndicesMapped": 16,
+        "uniqueCandidateIndicesMapped": 16,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 62,
+        "nonMatchingPassages": [],
+        "sourceMaterialityRemovals": [],
+        "pointerNormalizations": []
+      },
+      "preservedPriorFullyFoundReferenceIds": [
+        "D-01",
+        "D-02",
+        "D-03",
+        "D-04",
+        "D-06",
+        "D-07",
+        "D-08",
+        "D-09"
+      ],
+      "lostPriorFullyFoundReferenceIds": [],
+      "consolidationGate": "passed_final_output_preservation_and_zero_duplicate_checks"
+    },
+    {
+      "runId": "5ecb4d12-185c-45f1-89e5-7c94d7291f6b",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "note": "Quotes the observed water damage and unconfirmed source with needs_verification and no invented cause.",
+          "findingId": "F1"
+        },
+        "ISS-02": {
+          "rating": "found",
+          "note": "Preserves the initial missing formal acceptance/release and closes substrate acceptance using explicit acceptance and signed checklist QC-B104-0514.",
+          "findingId": "F2"
+        },
+        "ISS-03": {
+          "rating": "found",
+          "note": "Preserves apparent readiness without inspection sign-off and missing workface release, followed by signed substrate acceptance. It does not treat apparent readiness as proof of acceptance.",
+          "findingId": "F2"
+        },
+        "ISS-04": {
+          "rating": "found",
+          "findingIds": [
+            "F3",
+            "F4"
+          ],
+          "note": "Supported technical and communication cards retain earlier unanswered RFI, informal/internal direction, later reported resolution and the still-unverified formal response/revision. F4 exact compound source quotes legitimately include RFI status/response; its wrong internal inspection-release component label is not rendered as a product assertion."
+        },
+        "ISS-05": {
+          "rating": "found",
+          "note": "F8 now contains the actual dated postponements, release/design/reinforcement prerequisites and later physical placement completion in ONE complete work-progress chronology. Resolved is limited to physical placement, not independent acceptance, record or testing requirements.",
+          "findingId": "F8"
+        },
+        "ISS-06": {
+          "rating": "found",
+          "note": "Preserves the GC inspection-passed account versus the missing written release and reconciles substrate acceptance through the later signed checklist.",
+          "findingId": "F2"
+        },
+        "ISS-07": {
+          "rating": "found",
+          "note": "Preserves original thickness versus revised detail, internal and informal instruction, missing drawing/revision, and the latest approved-detail claim without its linked formal response.",
+          "findingId": "F3"
+        },
+        "ISS-08": {
+          "rating": "found",
+          "findingIds": [
+            "F3",
+            "F4",
+            "F9"
+          ],
+          "note": "Supported cards retain internal/informal instruction, unconfirmed formal transmission/receipt, unidentified revision and latest missing response record. Internal component-label errors are recorded separately from rendered factual support."
+        },
+        "ISS-09": {
+          "rating": "found",
+          "findingIds": [
+            "F8",
+            "F10"
+          ],
+          "note": "Supported work chronology retains the requested-but-not-completed reinforcement prerequisite and later bare inspection reference; the separate needs-verification record card requires the missing inspection record. No supported card treats physical completion or a bare ID as proven inspection acceptance. Unsupported F5 is excluded from reference credit."
+        },
+        "ISS-10": {
+          "rating": "found",
+          "note": "F4 retains reported RFI resolution versus unverified formal issue/receipt; F9 independently retains the formal-response attachment gap. No completed formal response is inferred.",
+          "findingIds": [
+            "F4",
+            "F9"
+          ]
+        },
+        "ISS-11": {
+          "rating": "found",
+          "note": "F6 retains delivered versus unmeasured placed quantity. F11 explicitly selects the latest source stating curing/protection and strength-test follow-up remain in progress, with open quality-follow-up state. Source-only reconsideration restored this task after an incorrect initial routine verdict; full trace retained.",
+          "findingIds": [
+            "F6",
+            "F11"
+          ]
+        },
+        "ISS-12": {
+          "rating": "found",
+          "note": "F7 retains reported notice versus unestablished advance foreman receipt. F12 retains bounded historical restriction and reassignment/resumption. Count once; no full-shift or critical-path claim.",
+          "findingIds": [
+            "F7",
+            "F12"
+          ]
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "unsupported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported",
+        "F9": "supported",
+        "F10": "supported",
+        "F11": "supported",
+        "F12": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported unconfirmed cause, no invented source.",
+        "F2": "Supported substrate-only acceptance/release chronology and signed closure; written-record discrepancy is consolidated into that acceptance gate.",
+        "F3": "Supported approved slab-detail/revision uncertainty; does not prove technical non-resolution after reported RFI closure.",
+        "F4": "Supported final card: its exact compound source quotations contain the RFI status/response clauses that match its question. The internal ledger wrongly labels the closed substrate inspection-release component as represented here, but that component label is not rendered; the full S051 quote was already present before the audit. This internal classification defect is not counted as a new unsupported product assertion.",
+        "F5": "Unsupported under the whole-finding subject-association rule: newly attached S037/S039 concern the earlier substrate inspection-passed versus missing-release discrepancy, closed separately by signed substrate acceptance. This card asks about reinforcement inspection and now presents those substrate passages as represented requirements for reinforcement. Generic inspection wording does not establish the same physical subject. Original valid reinforcement evidence remains, but cannot cure the added material conflation.",
+        "F6": "Supported delivered-versus-unmeasured placed quantity, no invented actual volume or waste.",
+        "F7": "Supported final card: reported electrical notification and uncertain advance receipt remain correctly scoped. The ledger internally maps safe-access release notification to advance receipt, a different temporal obligation. The component label is not rendered and S093 was already source context before the audit; record this internal defect without treating it as a newly invented product claim.",
+        "F8": "Supported complete physical pour-hold chronology through completion. All prerequisite-specific fragments now consolidated; no separate residual hold card.",
+        "F9": "Supported formal-RFI-response document attachment/availability gap, independent of technical issue/receipt and the separately required reinforcement record.",
+        "F10": "Supported reinforcement-record attachment/availability requirement, independent of whether physical acceptance can be established. No RFI-only scope hides this task.",
+        "F11": "Supported explicit remaining curing/protection and strength-test follow-up, open; no failed, overdue or completed test inferred.",
+        "F12": "Supported ended bounded electrical-trade restriction and reassignment/resumption, independent of notice receipt."
+      },
+      "mechanicalPreservation": {
+        "inputCandidates": 24,
+        "candidateIndicesMapped": 24,
+        "uniqueCandidateIndicesMapped": 24,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 81,
+        "nonMatchingPassages": [],
+        "materialityRemovals": [],
+        "pointerNormalizations": [
+          {
+            "stage": "Checking final concern boundaries and status scopes",
+            "groupId": "G5",
+            "field": "latest",
+            "original": [
+              "S090",
+              "S090"
+            ],
+            "normalized": [
+              "S090"
+            ],
+            "reason": "duplicate_source_pointer"
+          }
+        ]
+      },
+      "notes": "Accepted machine output but FAILED final-card subject-scope gate. Twelve reference concerns remain recoverable across supported cards, with one unsupported whole finding F5: the audit visibly adds substrate inspection passages under the reinforcement question. Zero semantic duplicate cards. Two repeated internal component entries are present, but UI/TXT deduplicate exact source passages; no visible duplicate requirement row is claimed. F4/F7 have internal task/temporal classification defects that do not introduce new product assertions, because component labels are not rendered and the compound source quotations already support their stated questions. All24original candidates and81exact source passages survive; mechanical preservation did not prevent wrong-subject attachment. Twenty-six whole-request-hash-verified prior responses plus six actual new calls; new segment283.962seconds is not continuous full-review latency. Raw ledgers/decisions retained; source/references unchanged.",
+      "consolidationGate": "failed_material_final_card_wrong_subject_attachment",
+      "attachmentScopeDefects": [
+        {
+          "findingId": "F4",
+          "sourceFactIds": [
+            "S029",
+            "S051"
+          ],
+          "type": "wrong_task_subject",
+          "note": "Closed substrate inspection-release task assigned to RFI communication question.",
+          "effect": "internal_metadata_classification_only"
+        },
+        {
+          "findingId": "F5",
+          "sourceFactIds": [
+            "S037",
+            "S039"
+          ],
+          "type": "wrong_physical_subject",
+          "note": "Substrate pass/release conflict assigned to reinforcement inspection question.",
+          "effect": "material_final_card_wrong_subject"
+        },
+        {
+          "findingId": "F7",
+          "sourceFactIds": [
+            "S093"
+          ],
+          "type": "different_temporal_obligation",
+          "note": "Safe-access release notification assigned to advance-notice receipt question.",
+          "effect": "internal_metadata_classification_only"
+        }
+      ],
+      "internalDuplicateRequirementEntries": [
+        {
+          "findingId": "F3",
+          "sourceFactId": "S051",
+          "componentLabel": "Provide written response to RFI-017",
+          "firstRequirementId": "O-S051-1",
+          "duplicateRequirementId": "O-S051-2",
+          "visibility": "Internal ledger metadata; rendered exact source passages are deduplicated."
+        },
+        {
+          "findingId": "F5",
+          "sourceFactId": "S081",
+          "componentLabel": "Action Required: Complete reinforcement inspection",
+          "firstRequirementId": "O-S081-1",
+          "duplicateRequirementId": "O-S081-2",
+          "visibility": "Internal ledger metadata; rendered exact source passages are deduplicated."
+        }
+      ]
+    },
+    {
+      "runId": "251967e9-a75e-402b-b3e1-2bd09e2d5c46",
+      "reviewer": "Separate case-authoring Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "G-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Retains the verbal passed-bearing account versus absent signed release, then dated signed issue and foreperson acknowledgement; resolved applies to bearing release only."
+        },
+        "G-02": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Explicitly retains unavailable signed torque-witness result and the latest source statement that separate anchor-torque acceptance cannot be verified from the register ID alone. No failed or never-performed test is inferred; bearing release is independently closed in F1. The attended-witness detail is not quoted, a contextual omission, but the material acceptance/record distinction and latest uncertainty are preserved."
+        },
+        "G-03": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Retains September 1 08:00-10:00 hold, handrail reassignment, missing release/layout context, two-hour duration and September 3 physical setting/grouting completion in one chronology. Resolved is physical completion only; no project completion-date effect is inferred."
+        },
+        "G-04": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Retains scheduled September 5 at 10:00 strength testing, not-yet-performed status, unavailable result and the explicit requirement to maintain grout protection until the strength result is documented. Both parts of the unchanged compound reference are visible under the open quality concern; no overdue/failure or premature release is inferred."
+        },
+        "G-05": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Retains formally issued layout/TR-119 versus missing linked steel-crew receipt acknowledgement and the still-open acknowledgement task after physical installation. It does not claim no formal instruction was issued."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported complete bearing-release discrepancy and explicit signed closure.",
+        "F2": "Supported formal layout issue versus unverified crew acknowledgement, still open.",
+        "F3": "Supported torque-acceptance result-sheet availability/verification gap; no false pass, failure or never-performed assertion.",
+        "F4": "Supported complete historical setting hold through later physical completion, distinct from open closeout/testing/receipt.",
+        "F5": "Supported scheduled but unperformed strength testing plus the explicit ongoing protection-until-documented-result condition. The requirement is visible in both exact source passages and coverageRequirements; no second redundant card is added."
+      },
+      "mechanicalPreservation": {
+        "inputCandidates": 11,
+        "candidateIndicesMapped": 11,
+        "uniqueCandidateIndicesMapped": 11,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 34,
+        "nonMatchingPassages": [],
+        "materialityRemovals": [],
+        "pointerNormalizations": []
+      },
+      "coverageOmissions": [],
+      "notes": "Development-informed staged revision-18k G output:5/5 unchanged reference concerns fully found, zero unsupported distinct findings and zero semantic duplicate cards. Nineteen whole-request-hash-verified earlier responses plus three actual new attachment-review calls. Protection-until-documented-strength-result remains explicit under the open testing/quality concern; formal layout issue/uncertain crew receipt, separate torque record and historical physical completion remain correctly scoped. All11original candidates and34exact quotations survive. New segment174.351seconds,n=1,is not complete-review latency. One duplicated internal crew-receipt component entry does not create a rendered duplicate source passage. Known earlier internal closure/completed-state labels remain wrong and do not mutate final-card states. First fresh18fG remains4/5; this is development correction, not an untouched holdout confirmation or independent human validation.",
+      "sourceObligationAuditReview": {
+        "checkedSources": 20,
+        "criticBatches": 5,
+        "freshInferenceCalls": 3,
+        "protectionRequirementVisible": true,
+        "compoundDocumentTaskSplit": true,
+        "classificationDefects": [
+          {
+            "sourceFactId": "S020",
+            "problem": "Future setting plan with explicit physical setting not complete today is labeled already_completed_state and cites itself. This is not source-entailing completion. The final work card independently retains later actual completion, so no final output concern is wrongly closed here."
+          },
+          {
+            "sourceFactId": "S044",
+            "problem": "The already-signed-and-acknowledged release reminder is labeled closed using unrelated S041 (check closeout folder and continue grout protection). This pointer does not establish bearing-release closure. The retained final release card independently cites correct signed issue/acknowledgement S014; final state remains supported."
+          }
+        ],
+        "interpretation": "Final-output reference/unsupported/duplicate scores do not validate every internal ledger classification. Preserve these errors; do not claim the audit independently verifies every obligation.",
+        "attachmentReviewBatches": 3,
+        "internalDuplicateComponentEntries": 1
+      }
+    },
+    {
+      "runId": "7d9295fd-efbb-4f23-bc25-5c2dd26f28ea",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "D-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Retains recurring oily film, unknown origin and investigation before return to service without inventing a diagnosis or delay linkage."
+        },
+        "D-02": {
+          "rating": "found",
+          "findingIds": [
+            "F2",
+            "F8"
+          ],
+          "note": "Together retain verbal clearance/QC-passed telephone accounts versus absent signed crew release, followed by signed BF-P6-0910 receipt. Resolved applies only to bearing-face release."
+        },
+        "D-03": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Retains 6 mm versus 9 mm conflict, internal draft and later signed TQ-061/M-214 revision D selecting 9 mm, with resolved technical-choice scope."
+        },
+        "D-04": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Retains unissued internal draft and missing installer revision, followed by formal issue at 13:10 and actual chargehand receipt at 13:35; the historical communication gap is closed."
+        },
+        "D-05": {
+          "rating": "partial",
+          "findingId": "F8",
+          "note": "Retains September 9 and 10 actual deferrals, earlier release/revision context and closure of those gates. No output selects September 12 physical setting/grouting completion. Closing individual readiness gates cannot substitute for complete physical history; partial counts missed."
+        },
+        "D-06": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Retains bearing-face-only inspection scope, separate torque witness/acceptance requirement, later AT-P6-0912 reference and inaccessible/unlinked signed sheet. Needs verification does not claim a failed or never-performed inspection."
+        },
+        "D-07": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Retains 22 bags received, 19 issued, 2 returned and 1 unreconciled, with open store-transfer reconciliation and no invented theft or excess volume."
+        },
+        "D-08": {
+          "rating": "found",
+          "findingId": "F6",
+          "note": "Retains preliminary 0.18 mm versus 0.10 mm limit and final alignment after cure before start-up, with open state rather than failed final acceptance or overdue cure."
+        },
+        "D-09": {
+          "rating": "found",
+          "findingIds": [
+            "F7",
+            "F9"
+          ],
+          "note": "Together retain reportedly sent notice, unestablished receipt, 80-minute restriction, three technicians reassigned and restored rack access. Physical restriction and notice receipt remain separately scoped."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported",
+        "F9": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported unconfirmed cause and source-attributed investigation.",
+        "F2": "Supported closed written bearing-face release/receipt; F8 preserves the complementary initial verbal/passed context.",
+        "F3": "Supported technical choice and actual formal issue/receipt closure. Its evidence covers both reference dimensions without claiming an independent second concern.",
+        "F4": "Supported independent anchor-torque acceptance verification and signed-record linkage. The prerequisite/grouting-dependency candidate is correctly included as context here, with no extra delay card or implication that no inspection occurred.",
+        "F5": "Supported open one-bag reconciliation.",
+        "F6": "Supported preliminary alignment discrepancy and remaining final alignment.",
+        "F7": "Supported uncertain advance-notice receipt, distinct from historical access resumption in F10.",
+        "F8": "Supported actual historical setting deferrals and closure of the named release/revision gates. Narrow question avoids asserting physical completion, which is missing from selected evidence.",
+        "F9": "Supported historical instrumentation restriction, three-person reassignment, 80-minute duration and resumed rack access. It remains distinct from uncertain notice receipt in F7."
+      },
+      "notes": "Verified deterministic recovery of accepted revision-18j matched D component responses under revision18k. All four whole request hashes verified; zero new inference calls. Final nine cards are semantically identical in questions/statuses/membership/source IDs/evidence to the scored J output:8/9 fully found, D05partial, zero unsupported distinct findings and zero semantic duplicate cards; all eight prior fully found IDs survive. All16candidates and62exact quotations remain. The tiny recovery processing interval is not model inference or complete-review latency. Original J actual two-new-call staged trace and earlier D failures remain retained. This is no additional independent trial and does not rerun source discovery.",
+      "mechanicalPreservation": {
+        "inputCandidates": 16,
+        "candidateIndicesMapped": 16,
+        "uniqueCandidateIndicesMapped": 16,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 62,
+        "nonMatchingPassages": [],
+        "sourceMaterialityRemovals": [],
+        "pointerNormalizations": []
+      },
+      "preservedPriorFullyFoundReferenceIds": [
+        "D-01",
+        "D-02",
+        "D-03",
+        "D-04",
+        "D-06",
+        "D-07",
+        "D-08",
+        "D-09"
+      ],
+      "lostPriorFullyFoundReferenceIds": [],
+      "consolidationGate": "passed_final_output_preservation_and_zero_duplicate_checks",
+      "recoveryVerification": {
+        "sourceRunId": "1edbec48-72c4-4a9d-886a-2c129e1a7a68",
+        "verifiedRequestHashes": 4,
+        "freshInferenceCalls": 0,
+        "semanticallyIdenticalFinalCards": true,
+        "independentNewObservation": false
+      }
+    },
+    {
+      "runId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {},
+      "assessments": {},
+      "findingNotes": {},
+      "notes": "Actual complete continuous revision-18k routine E review returns zero findings and zero false alarms. Zero reference concerns, so recall is undefined. Source review confirms accepted supports, issued/received instructions, completed cure and passed signed leakage acceptance, balanced quantities and acknowledged future controls handoff. Scheduled future handoff is an ordinary agreed plan, not an overdue or unconfirmed issue. The initially proposed handoff concern is removed only after independent source-only reconsideration, with raw verdict/reversal trace retained. Processing454.192seconds plus0.064seconds load,n=1. This is not current18l attachment-gate coverage; preserve its exact prompt/method. Independent human review pending.",
+      "timingInterpretation": "Continuous actual full local review; elapsedMs and totalMs retained. Setup/model download excluded; no repeated-trial or general-speed claim.",
+      "controlReview": {
+        "referenceConcerns": 0,
+        "falseAlarms": 0,
+        "recallDefined": false,
+        "routineCompletionAndAcknowledgedFuturePlanCorrectlySuppressed": true
+      }
+    },
+    {
+      "runId": "8e658eaf-3b66-44dd-9cad-aca59626762f",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "note": "Quotes the observed water damage and unconfirmed source with needs_verification and no invented cause.",
+          "findingId": "F1"
+        },
+        "ISS-02": {
+          "rating": "found",
+          "note": "Preserves the initial missing formal acceptance/release and closes substrate acceptance using explicit acceptance and signed checklist QC-B104-0514.",
+          "findingId": "F2"
+        },
+        "ISS-03": {
+          "rating": "found",
+          "note": "Preserves apparent readiness without inspection sign-off and missing workface release, followed by signed substrate acceptance. It does not treat apparent readiness as proof of acceptance.",
+          "findingId": "F2"
+        },
+        "ISS-04": {
+          "rating": "found",
+          "findingIds": [
+            "F3",
+            "F4"
+          ],
+          "note": "Supported technical and communication cards retain earlier unanswered RFI, informal/internal direction, later reported resolution and the still-unverified formal response/revision. F4 exact compound source quotes legitimately include RFI status/response; its wrong internal inspection-release component label is not rendered as a product assertion."
+        },
+        "ISS-05": {
+          "rating": "found",
+          "note": "F8 now contains the actual dated postponements, release/design/reinforcement prerequisites and later physical placement completion in ONE complete work-progress chronology. Resolved is limited to physical placement, not independent acceptance, record or testing requirements.",
+          "findingId": "F8"
+        },
+        "ISS-06": {
+          "rating": "found",
+          "note": "Preserves the GC inspection-passed account versus the missing written release and reconciles substrate acceptance through the later signed checklist.",
+          "findingId": "F2"
+        },
+        "ISS-07": {
+          "rating": "found",
+          "note": "Preserves original thickness versus revised detail, internal and informal instruction, missing drawing/revision, and the latest approved-detail claim without its linked formal response.",
+          "findingId": "F3"
+        },
+        "ISS-08": {
+          "rating": "found",
+          "findingIds": [
+            "F3",
+            "F4",
+            "F9"
+          ],
+          "note": "Supported cards retain internal/informal instruction, unconfirmed formal transmission/receipt, unidentified revision and latest missing response record. Internal component-label errors are recorded separately from rendered factual support."
+        },
+        "ISS-09": {
+          "rating": "found",
+          "findingIds": [
+            "F8",
+            "F10"
+          ],
+          "note": "Supported work chronology retains the requested-but-not-completed reinforcement prerequisite and later bare inspection reference; the separate needs-verification record card requires the missing inspection record. No supported card treats physical completion or a bare ID as proven inspection acceptance. Unsupported F5 is excluded from reference credit."
+        },
+        "ISS-10": {
+          "rating": "found",
+          "note": "F4 retains reported RFI resolution versus unverified formal issue/receipt; F9 independently retains the formal-response attachment gap. No completed formal response is inferred.",
+          "findingIds": [
+            "F4",
+            "F9"
+          ]
+        },
+        "ISS-11": {
+          "rating": "found",
+          "note": "F6 retains delivered versus unmeasured placed quantity. F11 explicitly selects the latest source stating curing/protection and strength-test follow-up remain in progress, with open quality-follow-up state. Source-only reconsideration restored this task after an incorrect initial routine verdict; full trace retained.",
+          "findingIds": [
+            "F6",
+            "F11"
+          ]
+        },
+        "ISS-12": {
+          "rating": "found",
+          "note": "F7 retains reported notice versus unestablished advance foreman receipt. F12 retains bounded historical restriction and reassignment/resumption. Count once; no full-shift or critical-path claim.",
+          "findingIds": [
+            "F7",
+            "F12"
+          ]
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "unsupported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported",
+        "F9": "supported",
+        "F10": "supported",
+        "F11": "supported",
+        "F12": "supported",
+        "F13": "unsupported",
+        "F14": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported unconfirmed cause, no invented source.",
+        "F2": "Supported substrate-only acceptance/release chronology and signed closure; written-record discrepancy is consolidated into that acceptance gate.",
+        "F3": "Supported approved slab-detail/revision uncertainty; does not prove technical non-resolution after reported RFI closure.",
+        "F4": "Supported final card: its exact compound source quotations contain the RFI status/response clauses that match its question. The internal ledger wrongly labels the closed substrate inspection-release component as represented here, but that component label is not rendered; the full S051 quote was already present before the audit. This internal classification defect is not counted as a new unsupported product assertion.",
+        "F5": "Unsupported wrong-subject augmentation remains: S039 from May12 has generic inspection reconciliation and signed release, with no reinforcement subject in that report. The gate newly attaches it to the narrow reinforcement question despite the separate earlier acceptance chronology. Source ambiguity cannot establish reinforcement acceptance context. Valid original reinforcement evidence does not cure this new material subject association.",
+        "F6": "Supported delivered-versus-unmeasured placed quantity, no invented actual volume or waste.",
+        "F7": "Supported final card: reported electrical notification and uncertain advance receipt remain correctly scoped. The ledger internally maps safe-access release notification to advance receipt, a different temporal obligation. The component label is not rendered and S093 was already source context before the audit; record this internal defect without treating it as a newly invented product claim.",
+        "F8": "Supported complete physical pour-hold chronology through completion. All prerequisite-specific fragments now consolidated; no separate residual hold card.",
+        "F9": "Supported formal-RFI-response document attachment/availability gap, independent of technical issue/receipt and the separately required reinforcement record.",
+        "F10": "Supported reinforcement-record attachment/availability requirement, independent of whether physical acceptance can be established. No RFI-only scope hides this task.",
+        "F11": "Supported explicit remaining curing/protection and strength-test follow-up, open; no failed, overdue or completed test inferred.",
+        "F12": "Supported ended bounded electrical-trade restriction and reassignment/resumption, independent of notice receipt.",
+        "F13": "Unsupported latest-state interpretation: the new needs-verification pour-conflict card cites only historical S037 and omits the later signed acceptance and physical placement already retained in F2/F8. It reopens the earlier pass-versus-hold conflict as a current unknown without source evidence of a separate remaining reconciliation task. This also repeats existing history, but is counted unsupported under the whole-finding rule rather than receiving duplicate-only treatment.",
+        "F14": "Supported independent drawing-revision identification/citation task. The technical slab-thickness question, formal RFI communication and attached response are separately answerable from identifying the actual approved drawing revision. Source S060/S081 explicitly requires that identification; no drawing number, issue time or completed state is invented. Overlapping context alone does not make this card duplicate."
+      },
+      "mechanicalPreservation": {
+        "inputCandidates": 24,
+        "addedAtomicCandidates": 3,
+        "candidateIndicesMapped": 27,
+        "uniqueCandidateIndicesMapped": 27,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 84,
+        "nonMatchingPassages": [],
+        "materialityRemovals": [],
+        "pointerNormalizations": [
+          {
+            "stage": "Checking final concern boundaries and status scopes",
+            "groupId": "G5",
+            "field": "latest",
+            "original": [
+              "S090",
+              "S090"
+            ],
+            "normalized": [
+              "S090"
+            ],
+            "reason": "duplicate_source_pointer"
+          }
+        ]
+      },
+      "notes": "Accepted machine output but FAILED final-output semantic gate. Fourteen cards retain12/12 reference concerns across supported alternatives, with two unsupported whole findings: F5 wrong-subject S039 augmentation and F13 stale reopened historical conflict. Zero duplicate-only cards; F13 also repeats previously covered history but material wrong state takes precedence. New F14 drawing-revision identification is a legitimate independent task, so card count14 alone is not a failure. All24prior candidate indices and three new atomic additions survive once, preserving all selected evidence. Twenty-seven whole-request-hash-verified earlier responses plus ten actual new calls (seven source-isolated attachment reviews and three consolidation calls);731.019-second new segment is not continuous full-review latency. Original source/reference definitions are unchanged; no clean-release claim.",
+      "consolidationGate": "failed_material_wrong_subject_and_stale_state",
+      "attachmentScopeDefects": [
+        {
+          "findingId": "F5",
+          "sourceFactIds": [
+            "S039"
+          ],
+          "type": "ambiguous_source_assigned_to_specific_physical_subject",
+          "effect": "material_final_card_wrong_subject"
+        },
+        {
+          "findingId": "F13",
+          "sourceFactIds": [
+            "S037"
+          ],
+          "type": "historical_conflict_reopened_without_latest_closure",
+          "effect": "material_final_card_wrong_state"
+        }
+      ],
+      "redundantUnsupportedContext": [
+        {
+          "findingId": "F13",
+          "alreadyCoveredBy": [
+            "F2",
+            "F8"
+          ],
+          "note": "Same prior pass/hold history; assessed unsupported because latest-state evidence is omitted, rather than double-counting as a duplicate-only card."
+        }
+      ]
+    },
+    {
+      "runId": "0a4d16d7-08b1-4a06-9d80-401c3f7829c4",
+      "reviewer": "Separate case-authoring Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "G-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Retains the verbal passed-bearing account versus absent signed release, then dated signed issue and foreperson acknowledgement; resolved applies to bearing release only."
+        },
+        "G-02": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Explicitly retains unavailable signed torque-witness result and the latest source statement that separate anchor-torque acceptance cannot be verified from the register ID alone. No failed or never-performed test is inferred; bearing release is independently closed in F1. The attended-witness detail is not quoted, a contextual omission, but the material acceptance/record distinction and latest uncertainty are preserved."
+        },
+        "G-03": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Retains September 1 08:00-10:00 hold, handrail reassignment, missing release/layout context, two-hour duration and September 3 physical setting/grouting completion in one chronology. Resolved is physical completion only; no project completion-date effect is inferred."
+        },
+        "G-04": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Retains scheduled September 5 at 10:00 strength testing, not-yet-performed status, unavailable result and the explicit requirement to maintain grout protection until the strength result is documented. Both parts of the unchanged compound reference are visible under the open quality concern; no overdue/failure or premature release is inferred."
+        },
+        "G-05": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Retains formally issued layout/TR-119 versus missing linked steel-crew receipt acknowledgement and the still-open acknowledgement task after physical installation. It does not claim no formal instruction was issued."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported complete bearing-release discrepancy and explicit signed closure.",
+        "F2": "Supported formal layout issue versus unverified crew acknowledgement, still open.",
+        "F3": "Supported torque-acceptance result-sheet availability/verification gap; no false pass, failure or never-performed assertion.",
+        "F4": "Supported complete historical setting hold through later physical completion, distinct from open closeout/testing/receipt.",
+        "F5": "Supported scheduled but unperformed strength testing plus the explicit ongoing protection-until-documented-result condition. The requirement is visible in both exact source passages and coverageRequirements; no second redundant card is added."
+      },
+      "mechanicalPreservation": {
+        "inputCandidates": 11,
+        "candidateIndicesMapped": 11,
+        "uniqueCandidateIndicesMapped": 11,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 33,
+        "nonMatchingPassages": [],
+        "materialityRemovals": [],
+        "pointerNormalizations": []
+      },
+      "coverageOmissions": [],
+      "notes": "Development-informed staged revision-18m G output:5/5 unchanged references fully found, zero unsupported distinct findings and zero semantic duplicate cards across five findings. Nineteen whole-request-hash-verified earlier responses plus four actual new one-source novel-quote checks. Protection-until-documented-strength-result remains explicit alongside scheduled testing; formal layout issue/unverified crew receipt, torque-result verification and completed physical hold stay distinct. All11original candidates and33exact quotations survive. The explicit not-overdue sentence is no longer newly appended, but no output calls the future test overdue or failed. New segment60.282seconds,n=1,is not complete-review latency. Known old internal closure/completed-state labels remain fallible and do not alter final-card evidence/state. First fresh18fG remains4/5; this later result is development-informed, case-author-scored and not independent human validation.",
+      "sourceObligationAuditReview": {
+        "checkedSources": 20,
+        "criticBatches": 5,
+        "freshInferenceCalls": 4,
+        "protectionRequirementVisible": true,
+        "compoundDocumentTaskSplit": true,
+        "classificationDefects": [
+          {
+            "sourceFactId": "S020",
+            "problem": "Future setting plan with explicit physical setting not complete today is labeled already_completed_state and cites itself. This is not source-entailing completion. The final work card independently retains later actual completion, so no final output concern is wrongly closed here."
+          },
+          {
+            "sourceFactId": "S044",
+            "problem": "The already-signed-and-acknowledged release reminder is labeled closed using unrelated S041 (check closeout folder and continue grout protection). This pointer does not establish bearing-release closure. The retained final release card independently cites correct signed issue/acknowledgement S014; final state remains supported."
+          }
+        ],
+        "interpretation": "Final-output reference/unsupported/duplicate scores do not validate every internal ledger classification. Preserve these errors; do not claim the audit independently verifies every obligation.",
+        "attachmentReviewBatches": 4
+      }
+    },
+    {
+      "runId": "0cc0ebed-8e49-43b6-a5f1-6fca1d56cdb4",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "D-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Retains recurring oily film, unknown origin and investigation before return to service without inventing a diagnosis or delay linkage."
+        },
+        "D-02": {
+          "rating": "found",
+          "findingIds": [
+            "F2",
+            "F8"
+          ],
+          "note": "Together retain verbal clearance/QC-passed telephone accounts versus absent signed crew release, followed by signed BF-P6-0910 receipt. Resolved applies only to bearing-face release."
+        },
+        "D-03": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Retains 6 mm versus 9 mm conflict, internal draft and later signed TQ-061/M-214 revision D selecting 9 mm, with resolved technical-choice scope."
+        },
+        "D-04": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Retains unissued internal draft and missing installer revision, followed by formal issue at 13:10 and actual chargehand receipt at 13:35; the historical communication gap is closed."
+        },
+        "D-05": {
+          "rating": "partial",
+          "findingId": "F8",
+          "note": "Retains September 9 and 10 actual deferrals, earlier release/revision context and closure of those gates. No output selects September 12 physical setting/grouting completion. Closing individual readiness gates cannot substitute for complete physical history; partial counts missed."
+        },
+        "D-06": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Retains bearing-face-only inspection scope, separate torque witness/acceptance requirement, later AT-P6-0912 reference and inaccessible/unlinked signed sheet. Needs verification does not claim a failed or never-performed inspection."
+        },
+        "D-07": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Retains 22 bags received, 19 issued, 2 returned and 1 unreconciled, with open store-transfer reconciliation and no invented theft or excess volume."
+        },
+        "D-08": {
+          "rating": "found",
+          "findingId": "F6",
+          "note": "Retains preliminary 0.18 mm versus 0.10 mm limit and final alignment after cure before start-up, with open state rather than failed final acceptance or overdue cure."
+        },
+        "D-09": {
+          "rating": "found",
+          "findingIds": [
+            "F7",
+            "F9"
+          ],
+          "note": "Together retain reportedly sent notice, unestablished receipt, 80-minute restriction, three technicians reassigned and restored rack access. Physical restriction and notice receipt remain separately scoped."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported",
+        "F9": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported unconfirmed cause and source-attributed investigation.",
+        "F2": "Supported closed written bearing-face release/receipt; F8 preserves the complementary initial verbal/passed context.",
+        "F3": "Supported technical choice and actual formal issue/receipt closure. Its evidence covers both reference dimensions without claiming an independent second concern.",
+        "F4": "Supported independent anchor-torque acceptance verification and signed-record linkage. The prerequisite/grouting-dependency candidate is correctly included as context here, with no extra delay card or implication that no inspection occurred.",
+        "F5": "Supported open one-bag reconciliation.",
+        "F6": "Supported preliminary alignment discrepancy and remaining final alignment.",
+        "F7": "Supported uncertain advance-notice receipt, distinct from historical access resumption in F10.",
+        "F8": "Supported actual historical setting deferrals and closure of the named release/revision gates. Narrow question avoids asserting physical completion, which is missing from selected evidence.",
+        "F9": "Supported historical instrumentation restriction, three-person reassignment, 80-minute duration and resumed rack access. It remains distinct from uncertain notice receipt in F7."
+      },
+      "notes": "Revision-18m compatibility recovery of accepted revision-18j matched D component responses. All four whole request hashes verified; zero new inference calls. Nine final cards are semantically identical to the scored J result:8/9 fully found, D05partial, zero unsupported and zero semantic duplicate cards; all eight prior fully found IDs and16saved candidates remain. This is retained-candidate consolidation, not a full source-discovery review. Recovery milliseconds are not inference/full-review latency, and this is not an additional independent quality trial. Original actual J two-new-call trace and failed D attempts remain retained.",
+      "mechanicalPreservation": {
+        "inputCandidates": 16,
+        "candidateIndicesMapped": 16,
+        "uniqueCandidateIndicesMapped": 16,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 62,
+        "nonMatchingPassages": [],
+        "sourceMaterialityRemovals": [],
+        "pointerNormalizations": []
+      },
+      "preservedPriorFullyFoundReferenceIds": [
+        "D-01",
+        "D-02",
+        "D-03",
+        "D-04",
+        "D-06",
+        "D-07",
+        "D-08",
+        "D-09"
+      ],
+      "lostPriorFullyFoundReferenceIds": [],
+      "consolidationGate": "passed_final_output_preservation_and_zero_duplicate_checks",
+      "recoveryVerification": {
+        "sourceRunId": "1edbec48-72c4-4a9d-886a-2c129e1a7a68",
+        "verifiedRequestHashes": 4,
+        "freshInferenceCalls": 0,
+        "semanticallyIdenticalFinalCards": true,
+        "independentNewObservation": false
+      }
+    },
+    {
+      "runId": "cceae16c-bdd5-48c7-b9a8-ba5e307fc245",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {},
+      "assessments": {},
+      "findingNotes": {},
+      "notes": "Revision-18m compatibility recovery of actual complete revision-18k routine E control: all13whole request hashes verified, zero new inference calls, zero findings/false alarms; recall undefined because there are no reference concerns. The original K review took454.192seconds plus0.064seconds load,n=1. No attachment cases exist, so the changed M attachment branch is not exercised. This is not a fresh continuous M run or a second independent trial, and recovery milliseconds are not model latency. Accepted work/cure, signed passed tests and confirmed future handoff remain correctly suppressed. Independent human review pending.",
+      "timingInterpretation": "Zero-new-inference compatibility recovery; no M continuous latency observation. Original K actual454.192-second continuous processing remains separate.",
+      "controlReview": {
+        "referenceConcerns": 0,
+        "falseAlarms": 0,
+        "recallDefined": false,
+        "routineCompletionAndAcknowledgedFuturePlanCorrectlySuppressed": true
+      },
+      "recoveryVerification": {
+        "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+        "verifiedRequestHashes": 13,
+        "freshInferenceCalls": 0,
+        "noAttachmentCases": true,
+        "independentNewObservation": false
+      }
+    },
+    {
+      "runId": "8f2d2b65-aea6-4432-9e56-7fe327df03ac",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "note": "Quotes the observed water damage and unconfirmed source with needs_verification and no invented cause.",
+          "findingId": "F1"
+        },
+        "ISS-02": {
+          "rating": "found",
+          "note": "Preserves the initial missing formal acceptance/release and closes substrate acceptance using explicit acceptance and signed checklist QC-B104-0514.",
+          "findingId": "F2"
+        },
+        "ISS-03": {
+          "rating": "found",
+          "note": "Preserves apparent readiness without inspection sign-off and missing workface release, followed by signed substrate acceptance. It does not treat apparent readiness as proof of acceptance.",
+          "findingId": "F2"
+        },
+        "ISS-04": {
+          "rating": "found",
+          "note": "Together the supported technical and communication findings preserve the earlier unanswered question, internal/informal direction, later reported RFI resolution, and missing formal response/revision. They do not assert that the technical decision is proven unresolved.",
+          "findingIds": [
+            "F3",
+            "F4"
+          ]
+        },
+        "ISS-05": {
+          "rating": "found",
+          "note": "F8 now contains the actual dated postponements, release/design/reinforcement prerequisites and later physical placement completion in ONE complete work-progress chronology. Resolved is limited to physical placement, not independent acceptance, record or testing requirements.",
+          "findingId": "F8"
+        },
+        "ISS-06": {
+          "rating": "found",
+          "note": "Preserves the GC inspection-passed account versus the missing written release and reconciles substrate acceptance through the later signed checklist.",
+          "findingId": "F2"
+        },
+        "ISS-07": {
+          "rating": "found",
+          "note": "Preserves original thickness versus revised detail, internal and informal instruction, missing drawing/revision, and the latest approved-detail claim without its linked formal response.",
+          "findingId": "F3"
+        },
+        "ISS-08": {
+          "rating": "found",
+          "note": "Preserves the internal response not formally transmitted, unconfirmed receipt, missing revision and latest missing formal response evidence.",
+          "findingId": "F4"
+        },
+        "ISS-09": {
+          "rating": "found",
+          "note": "F5 retains earlier requested/incomplete inspection and later bare RI reference with needs_verification. F10 separately retains the explicit attachment requirement. F5 wording emphasizes a formal pre-placement completion record and can be read awkwardly; scored as an interrogative verification gap, not an assertion that inspection passed or occurred. A signed acceptance could exist yet remain unlinked, so the two questions are independently answerable.",
+          "findingIds": [
+            "F5",
+            "F10"
+          ]
+        },
+        "ISS-10": {
+          "rating": "found",
+          "note": "F4 retains reported RFI resolution versus unverified formal issue/receipt; F9 independently retains the formal-response attachment gap. No completed formal response is inferred.",
+          "findingIds": [
+            "F4",
+            "F9"
+          ]
+        },
+        "ISS-11": {
+          "rating": "found",
+          "note": "F6 retains delivered versus unmeasured placed quantity. F11 explicitly selects the latest source stating curing/protection and strength-test follow-up remain in progress, with open quality-follow-up state. Source-only reconsideration restored this task after an incorrect initial routine verdict; full trace retained.",
+          "findingIds": [
+            "F6",
+            "F11"
+          ]
+        },
+        "ISS-12": {
+          "rating": "found",
+          "note": "F7 retains reported notice versus unestablished advance foreman receipt. F12 retains bounded historical restriction and reassignment/resumption. Count once; no full-shift or critical-path claim.",
+          "findingIds": [
+            "F7",
+            "F12"
+          ]
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported",
+        "F9": "supported",
+        "F10": "supported",
+        "F11": "supported",
+        "F12": "supported",
+        "F13": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported unconfirmed cause, no invented source.",
+        "F2": "Supported substrate-only acceptance/release chronology and signed closure; written-record discrepancy is consolidated into that acceptance gate.",
+        "F3": "Supported approved slab-detail/revision uncertainty; does not prove technical non-resolution after reported RFI closure.",
+        "F4": "Supported separate formal-response issue/crew-receipt uncertainty.",
+        "F5": "Supported reinforcement inspection verification, with explicitly requested/not-yet-completed inspection, later bare reference and no proven acceptance. Source S081 explicitly names reinforcement and matches this scope. The vague earlier S039 reconciliation is correctly withheld; the formal-record question remains awkwardly worded and is interpreted as a verification question, not a factual assertion that inspection occurred.",
+        "F6": "Supported delivered-versus-unmeasured placed quantity, no invented actual volume or waste.",
+        "F7": "Supported advance-notice receipt uncertainty, independent of restored access.",
+        "F8": "Supported complete physical pour-hold chronology through completion. All prerequisite-specific fragments now consolidated; no separate residual hold card.",
+        "F9": "Supported formal-RFI-response document attachment/availability gap, independent of technical issue/receipt and the separately required reinforcement record.",
+        "F10": "Supported reinforcement-record attachment/availability requirement, independent of whether physical acceptance can be established. No RFI-only scope hides this task.",
+        "F11": "Supported explicit remaining curing/protection and strength-test follow-up, open; no failed, overdue or completed test inferred.",
+        "F12": "Supported ended bounded electrical-trade restriction and reassignment/resumption, independent of notice receipt.",
+        "F13": "Supported independently answerable drawing-revision identification/citation requirement, distinct from choosing slab thickness, proving formal RFI communication or attaching the response. Both source actions explicitly require identifying/confirming the approved revision; no drawing identifier, issue date or closure is invented."
+      },
+      "mechanicalPreservation": {
+        "inputCandidates": 24,
+        "acceptedAddedAtomicCandidates": 2,
+        "abstainedAddedAtomicCandidateIndices": [
+          24
+        ],
+        "candidateIndicesMapped": 26,
+        "uniqueCandidateIndicesMapped": 26,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 75,
+        "nonMatchingPassages": [],
+        "materialityRemovals": [],
+        "pointerNormalizations": [
+          {
+            "stage": "Checking final concern boundaries and status scopes",
+            "groupId": "G5",
+            "field": "latest",
+            "original": [
+              "S090",
+              "S090"
+            ],
+            "normalized": [
+              "S090"
+            ],
+            "reason": "duplicate_source_pointer"
+          }
+        ]
+      },
+      "wordingLimitations": [
+        {
+          "findingId": "F5",
+          "note": "The formal-record question can be phrased more clearly to avoid suggesting inspection completion. Scored as verification, not asserted completion, because status and visible opposing source chronology explicitly leave acceptance unestablished."
+        }
+      ],
+      "notes": "Selected development-informed revision-18n team-CSV A output:13distinct cards,12/12 unchanged references fully found, zero unsupported distinct findings and zero semantic duplicate cards. Original24candidate indices and two accepted new revision-control atoms map exactly once with all selected evidence retained. Thirty-seven whole-request-hash-verified prior responses plus thirteen actual new final product-entailment reviews; new segment283.261seconds,n=1,is not continuous complete-review latency. Nine proposed changes abstain, including ambiguous physical-subject linkage and a stale historical conflict; rejected proposals remain in the audit trace, not silently corrected references. The source-bound guard overrides a raw model retain for vague S039→reinforcement because that subject is not explicit in the source report. A separate drawing-revision identification card remains valid. Known internal ledger labels remain fallible; final-output success does not establish exhaustive coverage or independent human validation.",
+      "consolidationGate": "passed_final_output_reference_scope_and_zero_duplicate_checks",
+      "finalProductEntailmentReview": {
+        "cases": 13,
+        "abstentions": 9,
+        "rejectedAddedAtomicCandidates": [
+          {
+            "coverageKey": "R-L1-0",
+            "memberCandidateIndices": [
+              24
+            ],
+            "sourceFactIds": [
+              "S037"
+            ],
+            "reasonCode": "unverified_product_change"
+          }
+        ],
+        "explicitSubjectGuardOverrides": [
+          {
+            "caseId": "P2",
+            "rawVerdict": "retain",
+            "effectiveVerdict": "abstain",
+            "reasonCode": "subject_scope_not_explicit",
+            "subjectSupport": {
+              "required": true,
+              "terms": [
+                "reinforcement"
+              ],
+              "matches": [],
+              "passed": false
+            }
+          }
+        ],
+        "interpretation": "Abstentions suppress only new unverified changes; all original concerns, questions, states and evidence remain preserved. Raw model verdicts and deterministic subject-support override are retained. No reference definitions changed."
+      }
+    },
+    {
+      "runId": "5f8089f2-11cd-44d0-bcad-c267f6bf9b88",
+      "reviewer": "Separate case-authoring Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "G-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Retains the verbal passed-bearing account versus absent signed release, then dated signed issue and foreperson acknowledgement; resolved applies to bearing release only."
+        },
+        "G-02": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Explicitly retains unavailable signed torque-witness result and the latest source statement that separate anchor-torque acceptance cannot be verified from the register ID alone. No failed or never-performed test is inferred; bearing release is independently closed in F1. The attended-witness detail is not quoted, a contextual omission, but the material acceptance/record distinction and latest uncertainty are preserved."
+        },
+        "G-03": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Retains September 1 08:00-10:00 hold, handrail reassignment, missing release/layout context, two-hour duration and September 3 physical setting/grouting completion in one chronology. Resolved is physical completion only; no project completion-date effect is inferred."
+        },
+        "G-04": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Retains scheduled September 5 at 10:00 strength testing, not-yet-performed status, unavailable result and the explicit requirement to maintain grout protection until the strength result is documented. Both parts of the unchanged compound reference are visible under the open quality concern; no overdue/failure or premature release is inferred."
+        },
+        "G-05": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Retains formally issued layout/TR-119 versus missing linked steel-crew receipt acknowledgement and the still-open acknowledgement task after physical installation. It does not claim no formal instruction was issued."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported complete bearing-release discrepancy and explicit signed closure.",
+        "F2": "Supported formal layout issue versus unverified crew acknowledgement, still open.",
+        "F3": "Supported torque-acceptance result-sheet availability/verification gap; no false pass, failure or never-performed assertion.",
+        "F4": "Supported complete historical setting hold through later physical completion, distinct from open closeout/testing/receipt.",
+        "F5": "Supported scheduled but unperformed strength testing plus the explicit ongoing protection-until-documented-result condition. The requirement is visible in both exact source passages and coverageRequirements; no second redundant card is added."
+      },
+      "mechanicalPreservation": {
+        "inputCandidates": 11,
+        "candidateIndicesMapped": 11,
+        "uniqueCandidateIndicesMapped": 11,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 33,
+        "nonMatchingPassages": [],
+        "materialityRemovals": [],
+        "pointerNormalizations": []
+      },
+      "coverageOmissions": [],
+      "notes": "Selected development-informed staged revision-18n G output:5/5 unchanged references fully found, zero unsupported distinct findings and zero semantic duplicate cards. Twenty-three whole-request-hash-verified prior responses plus three actual new final product-entailment reviews. Testing and explicit protection-until-documented-strength-result stay visible under one compatible open quality concern; signed bearing release, unverified crew receipt, torque-result verification and completed physical hold remain correctly scoped. All11original candidates and33exact quotations survive. New segment58.803seconds,n=1,is not complete-review latency. Final three new source changes are retained; no final-stage abstention is needed here. First fresh18f G remains4/5; this is a development correction, not an untouched holdout or independent human confirmation. Known inherited internal ledger-label errors remain separate from final-card support.",
+      "sourceObligationAuditReview": {
+        "checkedSources": 20,
+        "criticBatches": 5,
+        "freshInferenceCalls": 3,
+        "protectionRequirementVisible": true,
+        "compoundDocumentTaskSplit": true,
+        "classificationDefects": [
+          {
+            "sourceFactId": "S020",
+            "problem": "Future setting plan with explicit physical setting not complete today is labeled already_completed_state and cites itself. This is not source-entailing completion. The final work card independently retains later actual completion, so no final output concern is wrongly closed here."
+          },
+          {
+            "sourceFactId": "S044",
+            "problem": "The already-signed-and-acknowledged release reminder is labeled closed using unrelated S041 (check closeout folder and continue grout protection). This pointer does not establish bearing-release closure. The retained final release card independently cites correct signed issue/acknowledgement S014; final state remains supported."
+          }
+        ],
+        "interpretation": "Final-output reference/unsupported/duplicate scores do not validate every internal ledger classification. Preserve these errors; do not claim the audit independently verifies every obligation.",
+        "attachmentReviewBatches": 4
+      },
+      "finalProductEntailmentReview": {
+        "cases": 3,
+        "abstentions": 0,
+        "rejectedAddedAtomicCandidates": [],
+        "interpretation": "All three new source changes retain source/current-state support in provisional final-card review. This does not validate every inherited internal ledger label or establish exhaustive coverage."
+      }
+    },
+    {
+      "runId": "e95a3906-7bb8-4a5e-8678-04addec94227",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "D-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Retains recurring oily film, unknown origin and investigation before return to service without inventing a diagnosis or delay linkage."
+        },
+        "D-02": {
+          "rating": "found",
+          "findingIds": [
+            "F2",
+            "F8"
+          ],
+          "note": "Together retain verbal clearance/QC-passed telephone accounts versus absent signed crew release, followed by signed BF-P6-0910 receipt. Resolved applies only to bearing-face release."
+        },
+        "D-03": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Retains 6 mm versus 9 mm conflict, internal draft and later signed TQ-061/M-214 revision D selecting 9 mm, with resolved technical-choice scope."
+        },
+        "D-04": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Retains unissued internal draft and missing installer revision, followed by formal issue at 13:10 and actual chargehand receipt at 13:35; the historical communication gap is closed."
+        },
+        "D-05": {
+          "rating": "partial",
+          "findingId": "F8",
+          "note": "Retains September 9 and 10 actual deferrals, earlier release/revision context and closure of those gates. No output selects September 12 physical setting/grouting completion. Closing individual readiness gates cannot substitute for complete physical history; partial counts missed."
+        },
+        "D-06": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Retains bearing-face-only inspection scope, separate torque witness/acceptance requirement, later AT-P6-0912 reference and inaccessible/unlinked signed sheet. Needs verification does not claim a failed or never-performed inspection."
+        },
+        "D-07": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Retains 22 bags received, 19 issued, 2 returned and 1 unreconciled, with open store-transfer reconciliation and no invented theft or excess volume."
+        },
+        "D-08": {
+          "rating": "found",
+          "findingId": "F6",
+          "note": "Retains preliminary 0.18 mm versus 0.10 mm limit and final alignment after cure before start-up, with open state rather than failed final acceptance or overdue cure."
+        },
+        "D-09": {
+          "rating": "found",
+          "findingIds": [
+            "F7",
+            "F9"
+          ],
+          "note": "Together retain reportedly sent notice, unestablished receipt, 80-minute restriction, three technicians reassigned and restored rack access. Physical restriction and notice receipt remain separately scoped."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported",
+        "F9": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported unconfirmed cause and source-attributed investigation.",
+        "F2": "Supported closed written bearing-face release/receipt; F8 preserves the complementary initial verbal/passed context.",
+        "F3": "Supported technical choice and actual formal issue/receipt closure. Its evidence covers both reference dimensions without claiming an independent second concern.",
+        "F4": "Supported independent anchor-torque acceptance verification and signed-record linkage. The prerequisite/grouting-dependency candidate is correctly included as context here, with no extra delay card or implication that no inspection occurred.",
+        "F5": "Supported open one-bag reconciliation.",
+        "F6": "Supported preliminary alignment discrepancy and remaining final alignment.",
+        "F7": "Supported uncertain advance-notice receipt, distinct from historical access resumption in F10.",
+        "F8": "Supported actual historical setting deferrals and closure of the named release/revision gates. Narrow question avoids asserting physical completion, which is missing from selected evidence.",
+        "F9": "Supported historical instrumentation restriction, three-person reassignment, 80-minute duration and resumed rack access. It remains distinct from uncertain notice receipt in F7."
+      },
+      "notes": "Selected revision-18n compatibility recovery of accepted revision-18j retained-candidate D consolidation. Four whole request hashes verified; zero new inference calls. Nine cards remain semantically identical to J:8/9 fully found, D05partial, zero unsupported distinct findings and zero semantic duplicate cards, all eight prior fully found IDs preserved. Sixteen saved candidates and62exact quotations survive. This is a component comparison, not full current source discovery or an additional independent trial. No N model latency is measured; original J actual two-new-call segment283.575seconds is retained separately. Earlier D failures remain visible.",
+      "mechanicalPreservation": {
+        "inputCandidates": 16,
+        "candidateIndicesMapped": 16,
+        "uniqueCandidateIndicesMapped": 16,
+        "unmappedCandidateIndices": [],
+        "multiplyAssignedCandidateIndices": [],
+        "missingSelectedEvidence": [],
+        "exactEvidencePassagesChecked": 62,
+        "nonMatchingPassages": [],
+        "sourceMaterialityRemovals": [],
+        "pointerNormalizations": []
+      },
+      "preservedPriorFullyFoundReferenceIds": [
+        "D-01",
+        "D-02",
+        "D-03",
+        "D-04",
+        "D-06",
+        "D-07",
+        "D-08",
+        "D-09"
+      ],
+      "lostPriorFullyFoundReferenceIds": [],
+      "consolidationGate": "passed_final_output_preservation_and_zero_duplicate_checks",
+      "recoveryVerification": {
+        "sourceRunId": "1edbec48-72c4-4a9d-886a-2c129e1a7a68",
+        "verifiedRequestHashes": 4,
+        "freshInferenceCalls": 0,
+        "semanticallyIdenticalFinalCards": true,
+        "independentNewObservation": false
+      }
+    },
+    {
+      "runId": "15830727-7805-4698-ad43-acbb7fd4dad0",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {},
+      "assessments": {},
+      "findingNotes": {},
+      "notes": "Selected revision-18n compatibility recovery of the actual complete revision-18k routine E control. All13whole request hashes verify exactly; zero new inference calls and zero findings/false alarms. Recall is undefined for zero references. Accepted work/cure, linked passed tests and acknowledged future controls handoff remain correctly suppressed. No attachment/product-change cases exist, so the changed N branch is not exercised. This is not a fresh continuous N run or a second independent quality trial. The original K processing454.192seconds plus0.064seconds load remains the only continuous timing observation; recovery milliseconds are not inference latency. Independent human review pending.",
+      "timingInterpretation": "Zero-new-inference compatibility recovery; no N continuous latency observation. Original K actual454.192-second processing remains separate.",
+      "controlReview": {
+        "referenceConcerns": 0,
+        "falseAlarms": 0,
+        "recallDefined": false,
+        "routineCompletionAndAcknowledgedFuturePlanCorrectlySuppressed": true
+      },
+      "recoveryVerification": {
+        "sourceRunId": "eebdbd2e-43ac-4bb1-9810-05eaea00ae2d",
+        "verifiedRequestHashes": 13,
+        "freshInferenceCalls": 0,
+        "noAttachmentCases": true,
+        "independentNewObservation": false
+      }
+    },
+    {
+      "runId": "22e9943d-8016-4c54-b6b5-9eeb43ce90e6",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {},
+      "assessments": {},
+      "findingNotes": {},
+      "notes": "Actual complete revision-18n UI upload, analysis and original JSON/TXT/CSV downloads for routine C returns zero findings and zero false alarms. All three reports explicitly describe completed accepted corridor work, no unresolved questions/conflicts/delays and no outstanding follow-up or extra record requirement. Zero reference concerns, so recall is undefined. Processing208.982seconds plus0.051seconds load,n=1; prior model installation/download is excluded. Original UI export remains untouched, with research alias added only after exact input/model/policy checks. Actual export text/CSV matches app/Core output, independently checked by root. This narrow clean control does not establish general specificity or independent human validation.",
+      "timingInterpretation": "Fresh actual continuous UI analysis; elapsedMs208982.2216,totalMs209033.6108,loadMs51.3892. No staged replay or zero-call recovery; no human productivity claim.",
+      "controlReview": {
+        "referenceConcerns": 0,
+        "falseAlarms": 0,
+        "recallDefined": false,
+        "routineAcceptedWorkCorrectlySuppressed": true,
+        "actualUiUploadAndDownloads": true
+      }
     }
   ],
   "updatedAt": "2026-10-22T11:59:20.339006+00:00"

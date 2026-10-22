@@ -1,57 +1,84 @@
 # Demo 2 results and limitations
 
-Demo 2 reviews daily construction reports entirely on device. The accuracy revision uses core `daily-reports-v17` and prompt `daily-review-17-extractive`, with native Qwen 3.5 27B as the quality-focused default. The selected 27B profile meets the pre-set synthetic pilot gates in these observations, with important omissions and repeated suggestions still present. This is an assisted-review prototype; source selection, concern grouping and suggested status still require review.
+## Release evaluation
 
-See the [results page](../research.html), [comparison data](evaluation-summary.csv), [retained predictions](final-trials.json), [annotations](scoring.json) and [evaluation protocol](protocol.md). Semantic scores are provisional Codex-assisted judgments, not independent human validation.
+The release method uses core `daily-reports-v18`, prompt `daily-review-18n-consolidated`, native Qwen 3.5 27B and `native-sampling-3`. It prioritizes source coverage and review quality over inference speed. Selected development-informed A/G outputs retain all reference concerns with zero unsupported distinct findings and zero semantic duplicate cards in provisional review. They use staged request replay plus actual new reviews, not complete current-pipeline latency trials. The fresh current C UI control returns zero alerts. E compatibility recovery also returns zero alerts, with its original complete K control retained separately. These observations have different processing scopes and are not pooled into one accuracy or speed estimate.
 
-## Current measured results
+| Case / source | Method | Fully found | Unsupported distinct findings | Semantic duplicate cards | Timing scope |
+| --- | --- | ---: | ---: | ---: | --- |
+| Current team CSV A, 18n, 13 cards | 37 verified earlier requests + 13 actual new product reviews | 12/12 | 0 | 0 | Staged; no complete-review latency |
+| G, 18n, 5 cards, development-informed | 23 verified earlier requests + 3 actual new product reviews | 5/5 | 0 | 0 | Staged; no complete-review latency |
+| Routine C, 18n | Actual complete UI upload, analysis and exports | Undefined: zero refs | 0 | 0 | 209.0 s processing, n=1 |
+| Routine E, 18n compatibility recovery | 13 verified K requests, zero new inference | Undefined: zero refs | 0 | 0 | No N latency observation; K actual 454.2 s separate |
 
-| Profile / case | Runs | Fully found | Partial | Unsupported | Duplicates | Processing |
-| --- | ---: | ---: | ---: | ---: | ---: | --- |
-| Native 27B, uploaded sample A | 1 | 11/12 | 1 | 0 | 7 | 615.1 s |
-| Native 27B, B | 1 | 7/8 | 0 | 0 | 5 | 277.9 s |
-| Native 27B, routine C | 1 | Undefined: zero references | 0 | 0 | 0 | 13.1 s |
-| Native 27B, development D | 1 staged | 8/9 | 1 | 0 | 6 | Not a continuous latency observation |
-| Native 27B, routine E | 1 | Undefined: zero references | 0 | 0 | 0 | 34.4 s |
-| Native 27B, fresh F | 1 | 7/8 | 1 | 0 | 7 | 504.0 s |
-| Experimental browser 4B, routine C | 1 | Undefined: zero references | 0 | 4 | 0 | 14.3 s |
+Semantic scores are provisional Codex review, **not independent human validation**. Fully found requires the complete material concern, latest supported state and source entailment. A partial counts as missed. A useful finding with a material false claim or wrong subject association is unsupported under the whole-finding rule. Exact quotation does not establish a correct grouping or status. Recall counts reference concerns; output assessments count distinct findings, so their denominators differ. Zero-reference controls have undefined recall and report false alarms as raw counts.
 
-All rows use core-v17/prompt-v17; native rows use native-sampling-3, non-thinking, seed 42. A is an actual CSV upload, analysis and downloaded JSON through the app. Its original dataset ID remains custom; research alias A was added only after exact normalized-input/hash equality. The original UI export is retained separately.
+One reference can require several distinct cards; one card can support several reference concerns. Independent tasks may justify more cards than references. **Card count alone does not measure repetition.** The target is zero repeated semantic concerns. Exact passages can recur as provenance for genuinely different questions.
 
-The default still misses A's explicit strength-test follow-up, B's delivery rescheduling, part of D's postponement-to-physical-completion history, and F's explicit trade receipt acknowledgements. Duplicate suggestions impose real review work: A returns 18 cards including seven duplicates; F returns 16 including seven duplicates. Zero unsupported distinct native findings under the provisional rubric is **not 100% overall accuracy**. In particular, A's narrower progress-gate variants are treated as duplicate progress findings, not proof of separate reinforcement inspection acceptance; annotations explain that scope judgment.
+## Matched consolidation component checks
 
-The current 4B compatibility run completed, but failed the quality control by turning routine accepted work into four alerts. It is explicitly experimental and not recommended for accuracy. Do not combine that failure with the 27B controls or imply that all model choices pass.
+These observations reuse unchanged, accepted revision-17 candidates and run new consolidation steps. They test preservation and redundancy in that saved set, without rerunning source discovery or establishing full current-pipeline coverage on B/D/F.
 
-A single per-case observation is **n = 1**; it cannot establish a stable latency distribution, reliability rate or statistical significance. Seeded repetitions and repeated scoring of the same prediction do not create independent test cases.
+| Case / revision | Original cards | Final cards | Fully found | Exact prior fully found IDs retained | Unsupported | Duplicates | New processing segment |
+| --- | ---: | ---: | ---: | --- | ---: | ---: | --- |
+| Earlier-source A, 18f | 18 | 11 | 11/12 | All 11 | 0 | 0 | 610.5 s |
+| B, 18f | 10 | 5 | 7/8 | All 7 | 0 | 0 | 268.8 s |
+| D, 18j component / 18n verified recovery | 16 | 9 | 8/9 | All 8 | 0 | 0 | J new segment 283.6 s; N zero new inference |
+| F, 18f | 16 | 8 | 7/8 | All 7 | 0 | 0 | 490.7 s |
 
-The selected manifest in [evaluation-files.json](evaluation-files.json) determines which raw runs enter the derived table. Staged replays reuse earlier responses and perform new steps locally; they are development quality checks and are excluded from continuous latency summaries. Setup/model loading is recorded separately from inference, and earlier model downloads are not silently included as measured first-use time.
+These saved candidates still omit A's strength-test follow-up, B's separate delivery rescheduling, D's later physical setting/grouting completion and F's explicit acknowledgement by both installation supervisors. Consolidation cannot recover unselected source facts. Revision 17 retained 17 F candidates but rendered 16 cards through exact duplicate collapse; no routine candidate was discarded for this comparison. Across the four matched comparisons all 33 previously fully found reference IDs survive. This is preservation evidence, not a pooled accuracy estimate.
 
-## Why the earlier release failed
+Earlier-source A and current team-CSV A have different normalized hashes (`4ae8d9d3...b30e` and `9e38f32a...46dc8`). The revised CSV retains ten reports and twelve references but changes three due-time strings. Changed-input observations are not a controlled pipeline-only comparison. Answer/annotation columns are excluded from inference.
 
-The deployed core-v8/prompt-v8 native 9B condition fully found **4/12** A issues with **five unsupported findings**, and **3/8** B issues with **two unsupported findings**. It could cite a real report while adding an unsupported transmission time, delivery cause, document reconciliation or cure-completion claim. A citation to an existing field did not establish that the field supported the generated assertion.
+## What the fresh case revealed
 
-A separate validation bug accepted an omitted quote, filled it from the original field, then rejected that same short quote on a second validation pass. A seven-character RFI reference triggered a global rewrite that lost useful coverage. Short-citation idempotence now has a regression test. Later development also showed that repeated summarization and focused draft rewrites could discard earlier opposing accounts, historical delays or remaining closeout work even when every surviving quote was exact. All original errors and failed attempts remain visible in the [development log](development-log.json) and retained raw files.
+First completed fresh G, revision 18f after its recorded freeze, returns **4/5 fully found, one partial, zero unsupported distinct findings and zero semantic duplicates** across five cards in **541.8 seconds**, n=1. It retains scheduled strength testing but omits the explicit protection-until-documented-strength-result requirement. All eleven selected candidates and thirty quotations survive. **The predeclared fresh-G 5/5 coverage target fails:** preserving selected evidence cannot recover a task never selected from source.
 
-## What changed
+G then informs the generic source-obligation revision. Development-informed staged 18j G reaches **5/5, zero unsupported findings and zero duplicate cards** with protection visible alongside testing. Fourteen earlier responses are reused only after whole-request-hash verification; five focused critics are actual new inference. Its 390.7-second new segment is not full-review latency. The first fresh result remains 4/5; later development corrections are not untouched holdout confirmations. Reference definitions are unchanged.
 
-The revised method inventories original source sentences, including dates and report authors. The model names a narrow internal review question and selects source IDs. Coverage checks inspect uncited passages and explicit remaining tasks; separate source-only scans retrieve historical work/delivery changes and opposing inspection/release accounts. Materiality checks distinguish actual problems, historical disruptions and remaining tasks from routine completed events, while preserving existing source context for supported concerns. Conflicting exact duplicates receive bounded source-based adjudication; unresolved conflicts or invalid pointers reject the result.
+Two internal 18j G ledger labels remain wrong: a future setting plan is labeled already completed, and a signed-release reminder cites an unrelated protection/check-folder passage as closure. These labels do not alter prior cards; final release and physical-completion states independently retain valid evidence. **Final-output scores do not validate every ledger classification or prove exhaustive coverage.** The ledger is an AI interpretation, not proof of closure.
 
-Displayed factual text consists of original dated passages. The app does not generate new causes, downstream impacts, assignments or deadlines. **Exact quotation is a grounding safeguard, not proof of a correct review.** A wrong status, unrelated grouping, omitted resolution or routine-work alert still fails semantic scoring.
+The final 18n A product gate abstains from nine proposed changes, preserving the original findings while withholding ambiguous new assertions. A deterministic subject-support guard overrides a raw model decision to attach an unspecified earlier inspection to reinforcement. A proposed current pour-status conflict is recognized as already represented historical context. Both raw proposals and reasons remain in JSON. The final additional drawing-revision identification question is supported and independently actionable; thirteen cards for twelve reference units is not itself redundancy. The reinforcement formal-record question remains awkwardly worded and must be read as verification, not proof that inspection occurred.
 
-The native default is Qwen 3.5 27B, which uses system RAM as well as the RTX 5080's GPU memory. Lower-memory 9B and browser 9B/4B alternatives remain available. Model, runtime, prompt method and sampling configuration changed during development; improved results cannot be causally attributed to model size or any single change. Actual configuration, model digest, seed and per-pass usage/timing remain in exported JSON.
+## Retained failures and earlier revisions
 
-## Data and evaluation limits
+The [development log](development-log.json) preserves failed attempts, raw responses and corrections. Rejected attempts receive no final semantic accuracy score.
 
-The collection contains **40 synthetic reports and 37 reference concerns** across A–F. A, B and D informed development. C and E are narrow routine-work controls. F was authored by a separate agent with inherited project context and references withheld from the implementing agent before a recorded freeze. Its earlier canceled attempt produced no completed evaluation observation. That separation does not make F an independent human-authored or human-validated holdout. See [data review](data-review.md) and [case provenance](new-case-provenance.md).
+- Matched 18b A preserves eleven reference concerns but retains two duplicate cards. Matched 18c A removes those duplicates while retaining the same missing strength follow-up.
+- Complete 18c UI A finds 12/12 in 874.0 seconds, n=1, but fails consolidation: one redundant hold card and a reinforcement-record task hidden under an RFI-only question. Reference recall does not excuse scope defects.
+- Rejected 18d/18e attempts expose incorrect routine removals and invalid subject/pointer contracts. Source-only reconsideration restores two material tasks. Later 18f recovery verifies all eighteen prior request hashes and normalizes one repeated valid pointer. It scores 12/12, zero unsupported and zero duplicates with zero new inference at recovery and no continuous latency observation. Its reinforcement question remains awkwardly worded, scored as verification rather than proof inspection occurred.
+- Frozen 18f D fails a cross-aspect guard. Accepted staged 18i D preserves 8/9 references but retains one duplicate: a torque prerequisite relabeled as a grouting hold without a separately documented delay. Mechanical preservation is not a semantic pass.
+- Accepted machine output 18k A still fails final-card semantic review: newly attached substrate-inspection passages appear under a reinforcement-inspection question. Reference coverage remains 12/12 across other supported cards, but one whole finding is unsupported. Repeated internal component labels are metadata; exact source passages are deduplicated in the product. Rejected 18l A clones sibling tasks across sources and exceeds the component-list contract; it has no accepted final score.
+- Accepted 18m A still fails: a vague earlier inspection is attached to reinforcement, and a historical pass/hold conflict is reopened as a current unknown. Two whole findings are unsupported despite 12/12 reference coverage elsewhere. The 18n product gate withholds those changes, retaining raw failure evidence.
+- Rejected 18g/18i G fail closure-pointer guards. Rejected 18j A returns nine orphan additions. Its proposed ledger also links substrate inspection to reinforcement inspection and confuses safe-access notification with advance-notice receipt. These proposed links are diagnostic errors, not accepted predictions. The later gate checks subject, task and temporal fit before applying attachments.
 
-Score untouched original predictions before corrections. Fully found requires the material concern, correct latest supported state and supporting evidence; partials count as misses. A useful finding containing a material false claim is unsupported under the whole-finding rule. Duplicates are counted separately. Recall counts reference concerns, while precision counts distinct output findings, so their denominators differ. Zero-reference controls have undefined recall; report their false alarms as raw counts. Independent team adjudication remains outstanding.
+### Historical revision-17 observations
 
-The preset A gate remains at least 10/12 fully found with at most one unsupported finding; B requires at least 6/8, D at least 8/9, and C/E zero false alarms. The selected 27B profile meets those gates and F's pre-frozen 7/8 target in the recorded observations. The 4B control fails. These are small pilot acceptance criteria, not a general accuracy guarantee.
+| Native 27B case | Fully found | Partial | Unsupported | Duplicates | Processing |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Earlier-source A, actual UI upload | 11/12 | 1 | 0 | 7 | 615.1 s |
+| B | 7/8 | 0 | 0 | 5 | 277.9 s |
+| Routine C | Undefined: zero references | 0 | 0 | 0 | 13.1 s |
+| D, staged development review | 8/9 | 1 | 0 | 6 | Not continuous |
+| Routine E | Undefined: zero references | 0 | 0 | 0 | 34.4 s |
+| F, first completed fresh review | 7/8 | 1 | 0 | 7 | 504.0 s |
 
-No controlled human productivity study was conducted. **H1 remains untested:** the targets of 25% lower total assisted time, 20% fewer missed issues and no additional false alarms require actual human-only and assisted observations, including verification/correction time. Inference latency cannot substitute for those observations. H3's original four-subject comparison was superseded by this method; revised comparisons are descriptive. Earlier H4 browser timing observations do not establish the current workflow's relative speed or usefulness. Quality has no maximum-latency acceptance threshold.
+These are core-v17/prompt-v17 observations, not current full-pipeline results. Experimental browser 4B routine C produces four unsupported alerts and fails. Earlier core-v8/native-9B finds only 4/12 A concerns with five unsupported findings, and 3/8 B concerns with two unsupported findings. A real citation did not establish invented transmission time, delivery cause or cure completion. Earlier failures remain visible and are not pooled with later profiles.
 
-Measured inference uses the RTX 5080. Apple silicon browser/local-runtime compatibility is retained, but no Mac inference benchmark was conducted. The user's approximate Demo 1 times of 14 minutes on M1 Max and one minute on RTX 5080 are contextual observations, not a controlled hardware comparison. The [environment record](environment.json) preserves hardware and native model digests; earlier browser weight repository revisions were not captured, limiting exact reproduction.
+## Method and interpretation
 
-## Evidence for the later write-up
+The app inventories dated source sentences, selects source IDs and groups narrow review questions. Independent boundary review separates acceptance, issue/receipt, supporting records, actual holds, trade access, quantities and quality tasks. Original source unions and candidate membership are retained. Physical completion alone cannot establish inspection acceptance, document receipt or separate record closure.
 
-Use the retained original predictions, reference judgments, errors and failures together. Keep corrected findings and human timing separate. The [collection guide](collection-guide.md) and blank human-study template support a later independent review with calibrated unseen cases; unmeasured participant fields remain blank. [Verification](verification.json) records software-check scope. Unit tests exercise source validation, exports and workflow guards; actual retained model runs establish observed quality. Supplied documents and presentation slides have not been rewritten, and private source recordings/documents or model binaries are not republished.
+The obligation audit checks action/schedule clauses, compound sentences and already-cited passages. A further independent, one-source check reviews only new source quotations before they can be attached to a question. It uses the checking sentence to identify tasks and full context to establish subject or closure, with equal original evidence for alternative scopes. Existing quoted components retain their earlier fallible metadata. New requirements must match subject, task/document and temporal scope; independent tasks can become separate reviewed concerns. A final product-entailment review checks proposed new quotations and new concerns; unsupported or ambiguous changes can abstain with an explicit trace. A subject-support check for narrow inspection/record targets prevents an unspecified source subject from being treated as a named inspection. These are safeguards, not guarantees of semantic correctness. Suggested questions, grouping, status and ledger labels remain AI interpretations. TXT, CSV and JSON retain the same issue IDs and review state; untouched predictions remain separate from subsequent corrections.
+
+## Limits and later write-up
+
+A-G contain **44 synthetic reports and 42 reference concerns**. A/B/D inform development; C/E are narrow routine controls. F/G are agent-authored with inherited context and references withheld before their first completed frozen observations. This is procedural separation, not independent human validation. G's author also performs its provisional scoring. Later G results are development-informed. See [data review](data-review.md), [case provenance](new-case-provenance.md), [protocol](protocol.md) and [consolidation protocol](consolidation-protocol.md).
+
+Each actual case observation is **n=1**. Zero-call compatibility recoveries and repeated scoring do not create additional independent observations. No stable latency distribution, significance or general accuracy rate is established. Model size, runtime, prompts and sampling changed; no single change receives a causal accuracy claim. Staged replay, saved-candidate processing and zero-call recovery are excluded from continuous latency summaries. Loading is separate; prior downloads are not measured first-use time.
+
+**H1 remains untested:** human-time and missed-issue improvements require human-only and assisted observations including verification/correction time. Reduced repetition is not measured human productivity. Quality has no maximum-latency threshold. Independent team adjudication and broader unseen cases remain necessary.
+
+Inference is measured on RTX 5080. Apple silicon compatibility is retained without a Mac inference benchmark. Approximate Demo 1 M1 Max/RTX times are context, not controlled hardware evidence. The 27B quality profile uses system RAM as well as GPU memory; lower-memory options are distinguished. Configuration, digest, seed and timings are retained in JSON and the [environment record](environment.json).
+
+Use [selected runs](evaluation-files.json), [annotations](scoring.json), [comparison data](evaluation-summary.csv), [predictions](final-trials.json) and [software verification](verification.json) together. Software tests verify guards, workflow and exports, not model accuracy. Collection guides/templates support later human review. Project documents/slides are not rewritten; private recordings/documents and model binaries are not republished.

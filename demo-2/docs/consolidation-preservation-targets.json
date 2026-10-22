@@ -1,0 +1,107 @@
+{
+  "recordedAt": "2026-10-22T20:09:30.451Z",
+  "scope": "Exact previously fully-found reference IDs that matched retained-candidate consolidation must preserve. Derived from retained unchanged revision17 predictions and provisional annotations, never from revision18 output. A18 development check is already complete; B/D/F18 predictions have not begun. No reference definitions changed. The new team-CSV A full run has a distinct input hash and is scored separately.",
+  "baselines": [
+    {
+      "datasetId": "reports-a",
+      "sourceFile": "final-v17-native27-a-ui.json",
+      "sourceRunId": "768cc04c-0892-476d-809d-67e876ea4afc",
+      "pipeline": "daily-reports-v17",
+      "prompt": "daily-review-17-extractive",
+      "inputSha256": "4ae8d9d3b59811dcfe4284f650ba78c528303c646b643fcfa8243a8baee4b30e",
+      "candidates": 20,
+      "findings": 18,
+      "baselineDuplicates": 7,
+      "requiredPreservedReferenceIds": [
+        "ISS-01",
+        "ISS-02",
+        "ISS-03",
+        "ISS-04",
+        "ISS-05",
+        "ISS-06",
+        "ISS-07",
+        "ISS-08",
+        "ISS-09",
+        "ISS-10",
+        "ISS-12"
+      ],
+      "partialReferenceIds": [
+        "ISS-11"
+      ],
+      "missedReferenceIds": []
+    },
+    {
+      "datasetId": "reports-b",
+      "sourceFile": "final-v17-native27-b.json",
+      "sourceRunId": "96ba2a7c-c4ea-4355-baf6-0cd3f0b86ef4",
+      "pipeline": "daily-reports-v17",
+      "prompt": "daily-review-17-extractive",
+      "inputSha256": "2d7224c3864ff2005397ce01d476d482de6fd57d1d8896511ec4578819fa3102",
+      "candidates": 10,
+      "findings": 10,
+      "baselineDuplicates": 5,
+      "requiredPreservedReferenceIds": [
+        "B-01",
+        "B-02",
+        "B-04",
+        "B-05",
+        "B-06",
+        "B-07",
+        "B-08"
+      ],
+      "partialReferenceIds": [],
+      "missedReferenceIds": [
+        "B-03"
+      ]
+    },
+    {
+      "datasetId": "reports-d",
+      "sourceFile": "development-v17-native27-d-staged.json",
+      "sourceRunId": "fe0f1c56-9ee6-42f6-908e-64155e8fe184",
+      "pipeline": "daily-reports-v17",
+      "prompt": "daily-review-17-extractive",
+      "inputSha256": "b82eaabb9672786d8b231907908825a84d94886edbb21b609e81fb35c79d2034",
+      "candidates": 16,
+      "findings": 16,
+      "baselineDuplicates": 6,
+      "requiredPreservedReferenceIds": [
+        "D-01",
+        "D-02",
+        "D-03",
+        "D-04",
+        "D-06",
+        "D-07",
+        "D-08",
+        "D-09"
+      ],
+      "partialReferenceIds": [
+        "D-05"
+      ],
+      "missedReferenceIds": []
+    },
+    {
+      "datasetId": "reports-f",
+      "sourceFile": "final-v17-native27-f.json",
+      "sourceRunId": "c137b18a-d318-49bd-a258-c68847bfb00a",
+      "pipeline": "daily-reports-v17",
+      "prompt": "daily-review-17-extractive",
+      "inputSha256": "33485d16d10c1ca7396bebda4e0024dd07467c6e3fe1164cc6d7fdf502085829",
+      "candidates": 17,
+      "findings": 16,
+      "baselineDuplicates": 7,
+      "requiredPreservedReferenceIds": [
+        "F-01",
+        "F-02",
+        "F-04",
+        "F-05",
+        "F-06",
+        "F-07",
+        "F-08"
+      ],
+      "partialReferenceIds": [
+        "F-03"
+      ],
+      "missedReferenceIds": []
+    }
+  ]
+}

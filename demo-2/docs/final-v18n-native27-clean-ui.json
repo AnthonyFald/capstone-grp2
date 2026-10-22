@@ -1,0 +1,1816 @@
+{
+  "version": "daily-reports-v18",
+  "note": "Original UI JSON is retained unchanged in ui-upload-v18n-clean.json. Evaluation alias added only after exact normalized-report/hash equality. Actual continuous native27 UI processing and JSON/TXT/CSV downloads; no reviewer study observation.",
+  "runs": [
+    {
+      "runId": "22e9943d-8016-4c54-b6b5-9eeb43ce90e6",
+      "createdAt": "2026-10-22T23:36:05.877Z",
+      "pipeline": "daily-reports-v18",
+      "promptVersion": "daily-review-18n-consolidated",
+      "datasetId": "custom",
+      "inputSha256": "b0e0a1874339ed7ed42e7a3dc229fc61e8e3fec87a8275deca8f7d1f569fe235",
+      "profile": "native27",
+      "model": "qwen3.5:27b",
+      "backend": "ollama",
+      "reasoning": false,
+      "seed": 42,
+      "modelDigest": "64ae5b1d651fb2709d5928ccb8dcfb4bb2cc9c2c8001ac34497e36a6cf905b59",
+      "contextWindow": 32768,
+      "temperature": 0.7,
+      "thorough": true,
+      "sampling": {
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20,
+        "min_p": 0,
+        "presence_penalty": 1.5,
+        "repeat_penalty": 1
+      },
+      "nativePolicy": "native-sampling-3",
+      "device": {
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+        "gpu": {
+          "vendor": "nvidia",
+          "architecture": "blackwell",
+          "device": "",
+          "description": "",
+          "shaderF16": true
+        }
+      },
+      "loadMs": 51.3892,
+      "elapsedMs": 208982.22159999996,
+      "totalMs": 209033.61079999997,
+      "reports": [
+        {
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "work_area": "Corridor C",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Clean corridor and obtain supervisor acceptance.",
+          "work_completed": "Planned corridor cleaning completed. Quantity checked and accepted by supervisor.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported. All scheduled work and required checks complete.",
+          "schedule_status": "On schedule; no outstanding follow-up.",
+          "rfi_change_order_refs": "None applicable",
+          "action_required": "",
+          "responsible_party": "",
+          "due_date": "",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        },
+        {
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "work_area": "Corridor C",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Clean corridor and obtain supervisor acceptance.",
+          "work_completed": "Planned corridor cleaning completed. Quantity checked and accepted by supervisor.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported. All scheduled work and required checks complete.",
+          "schedule_status": "On schedule; no outstanding follow-up.",
+          "rfi_change_order_refs": "None applicable",
+          "action_required": "",
+          "responsible_party": "",
+          "due_date": "",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        },
+        {
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "work_area": "Corridor C",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Clean corridor and obtain supervisor acceptance.",
+          "work_completed": "Planned corridor cleaning completed. Quantity checked and accepted by supervisor.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported. All scheduled work and required checks complete.",
+          "schedule_status": "On schedule; no outstanding follow-up.",
+          "rfi_change_order_refs": "None applicable",
+          "action_required": "",
+          "responsible_party": "",
+          "due_date": "",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        }
+      ],
+      "originalFindings": [],
+      "findings": [],
+      "items": [],
+      "sourceObligationAudit": {
+        "version": "source-obligation-coverage-6",
+        "draftBatchSize": 30,
+        "criticBatchSize": 4,
+        "attachmentBatchSize": 1,
+        "attachmentSelection": "novel-original-evidence-only",
+        "attachmentReviewScope": "Only new source quotations are independently matched; already-cited component labels remain unverified AI metadata.",
+        "checkedSourceFactIds": [
+          "S005",
+          "S006",
+          "S009",
+          "S014",
+          "S015",
+          "S018",
+          "S023",
+          "S024",
+          "S027"
+        ],
+        "uncitedSourceFactIds": [
+          "S005",
+          "S006",
+          "S009",
+          "S014",
+          "S015",
+          "S018",
+          "S023",
+          "S024",
+          "S027"
+        ],
+        "entries": [
+          {
+            "sourceFactId": "S005",
+            "components": [
+              {
+                "componentLabel": "All scheduled work and required checks complete",
+                "aspect": "work_progress",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S005",
+                "componentIndex": 0,
+                "requirementId": "O-S005-0",
+                "sourceFactId": "S005",
+                "quote": "All scheduled work and required checks complete."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S006",
+            "components": [
+              {
+                "componentLabel": "Schedule status and follow-up",
+                "aspect": "work_progress",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S006",
+                "componentIndex": 0,
+                "requirementId": "O-S006-0",
+                "sourceFactId": "S006",
+                "quote": "On schedule; no outstanding follow-up."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S009",
+            "components": [
+              {
+                "componentLabel": "Signed daily acceptance checklist referenced",
+                "aspect": "supporting_record",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S009",
+                "componentIndex": 0,
+                "requirementId": "O-S009-0",
+                "sourceFactId": "S009",
+                "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S014",
+            "components": [
+              {
+                "componentLabel": "All scheduled work and required checks complete",
+                "aspect": "work_progress",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S014",
+                "componentIndex": 0,
+                "requirementId": "O-S014-0",
+                "sourceFactId": "S014",
+                "quote": "All scheduled work and required checks complete."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S015",
+            "components": [
+              {
+                "componentLabel": "Schedule status and follow-up",
+                "aspect": "work_progress",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S015",
+                "componentIndex": 0,
+                "requirementId": "O-S015-0",
+                "sourceFactId": "S015",
+                "quote": "On schedule; no outstanding follow-up."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S018",
+            "components": [
+              {
+                "componentLabel": "Supporting evidence sufficiency",
+                "aspect": "supporting_record",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S018",
+                "componentIndex": 0,
+                "requirementId": "O-S018-0",
+                "sourceFactId": "S018",
+                "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S023",
+            "components": [
+              {
+                "componentLabel": "Scheduled work completion statement",
+                "aspect": "work_progress",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S023",
+                "componentIndex": 0,
+                "requirementId": "O-S023-0",
+                "sourceFactId": "S023",
+                "quote": "All scheduled work and required checks complete."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S024",
+            "components": [
+              {
+                "componentLabel": "Schedule status and follow-up",
+                "aspect": "work_progress",
+                "disposition": "already_completed_state",
+                "reasonCode": "source_reports_completed_state",
+                "evidenceRole": "source_reports_existing_completion",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "S024",
+                "componentIndex": 0,
+                "requirementId": "O-S024-0",
+                "sourceFactId": "S024",
+                "quote": "On schedule; no outstanding follow-up."
+              }
+            ]
+          },
+          {
+            "sourceFactId": "S027",
+            "components": [
+              {
+                "componentLabel": "Signed daily acceptance checklist reference",
+                "aspect": "supporting_record",
+                "disposition": "routine",
+                "reasonCode": "ordinary_plan",
+                "evidenceRole": "ordinary_plan_or_context",
+                "targetConcernId": "none",
+                "additionKey": "none",
+                "closureSourceId": "none",
+                "componentIndex": 0,
+                "requirementId": "O-S027-0",
+                "sourceFactId": "S027",
+                "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+              }
+            ]
+          }
+        ],
+        "initialRawLedgers": [
+          {
+            "checkingSourceFactIds": [
+              "S005",
+              "S006",
+              "S009",
+              "S014",
+              "S015",
+              "S018",
+              "S023",
+              "S024",
+              "S027"
+            ],
+            "coverage": {
+              "S005": [
+                {
+                  "componentLabel": "Scheduled work completion statement",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S006": [
+                {
+                  "componentLabel": "Schedule status and follow-up",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S009": [
+                {
+                  "componentLabel": "Supporting evidence sufficiency",
+                  "aspect": "supporting_record",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S014": [
+                {
+                  "componentLabel": "Scheduled work completion statement",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S015": [
+                {
+                  "componentLabel": "Schedule status and follow-up",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S018": [
+                {
+                  "componentLabel": "Supporting evidence sufficiency",
+                  "aspect": "supporting_record",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S023": [
+                {
+                  "componentLabel": "Scheduled work completion statement",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S024": [
+                {
+                  "componentLabel": "Schedule status and follow-up",
+                  "aspect": "work_progress",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ],
+              "S027": [
+                {
+                  "componentLabel": "Supporting evidence sufficiency",
+                  "aspect": "supporting_record",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ]
+            },
+            "additions": []
+          }
+        ],
+        "rawLedgers": [
+          {
+            "checkingSourceFactIds": [
+              "S005",
+              "S006",
+              "S009",
+              "S014"
+            ],
+            "coverage": {
+              "S005": [
+                {
+                  "componentLabel": "All scheduled work and required checks complete",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S005"
+                }
+              ],
+              "S006": [
+                {
+                  "componentLabel": "Schedule status and follow-up",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S006"
+                }
+              ],
+              "S009": [
+                {
+                  "componentLabel": "Signed daily acceptance checklist referenced",
+                  "aspect": "supporting_record",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S009"
+                }
+              ],
+              "S014": [
+                {
+                  "componentLabel": "All scheduled work and required checks complete",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S014"
+                }
+              ]
+            },
+            "additions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S015",
+              "S018",
+              "S023",
+              "S024"
+            ],
+            "coverage": {
+              "S015": [
+                {
+                  "componentLabel": "Schedule status and follow-up",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S015"
+                }
+              ],
+              "S018": [
+                {
+                  "componentLabel": "Supporting evidence sufficiency",
+                  "aspect": "supporting_record",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S018"
+                }
+              ],
+              "S023": [
+                {
+                  "componentLabel": "Scheduled work completion statement",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S023"
+                }
+              ],
+              "S024": [
+                {
+                  "componentLabel": "Schedule status and follow-up",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S024"
+                }
+              ]
+            },
+            "additions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S027"
+            ],
+            "coverage": {
+              "S027": [
+                {
+                  "componentLabel": "Signed daily acceptance checklist reference",
+                  "aspect": "supporting_record",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "evidenceRole": "ordinary_plan_or_context",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ]
+            },
+            "additions": []
+          }
+        ],
+        "postOrphanLedgers": [
+          {
+            "checkingSourceFactIds": [
+              "S005",
+              "S006",
+              "S009",
+              "S014"
+            ],
+            "coverage": {
+              "S005": [
+                {
+                  "componentLabel": "All scheduled work and required checks complete",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S005"
+                }
+              ],
+              "S006": [
+                {
+                  "componentLabel": "Schedule status and follow-up",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S006"
+                }
+              ],
+              "S009": [
+                {
+                  "componentLabel": "Signed daily acceptance checklist referenced",
+                  "aspect": "supporting_record",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S009"
+                }
+              ],
+              "S014": [
+                {
+                  "componentLabel": "All scheduled work and required checks complete",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S014"
+                }
+              ]
+            },
+            "additions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S015",
+              "S018",
+              "S023",
+              "S024"
+            ],
+            "coverage": {
+              "S015": [
+                {
+                  "componentLabel": "Schedule status and follow-up",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S015"
+                }
+              ],
+              "S018": [
+                {
+                  "componentLabel": "Supporting evidence sufficiency",
+                  "aspect": "supporting_record",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S018"
+                }
+              ],
+              "S023": [
+                {
+                  "componentLabel": "Scheduled work completion statement",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S023"
+                }
+              ],
+              "S024": [
+                {
+                  "componentLabel": "Schedule status and follow-up",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S024"
+                }
+              ]
+            },
+            "additions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S027"
+            ],
+            "coverage": {
+              "S027": [
+                {
+                  "componentLabel": "Signed daily acceptance checklist reference",
+                  "aspect": "supporting_record",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "evidenceRole": "ordinary_plan_or_context",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ]
+            },
+            "additions": []
+          }
+        ],
+        "appliedLedgers": [
+          {
+            "checkingSourceFactIds": [
+              "S005",
+              "S006",
+              "S009",
+              "S014"
+            ],
+            "coverage": {
+              "S005": [
+                {
+                  "componentLabel": "All scheduled work and required checks complete",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S005"
+                }
+              ],
+              "S006": [
+                {
+                  "componentLabel": "Schedule status and follow-up",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S006"
+                }
+              ],
+              "S009": [
+                {
+                  "componentLabel": "Signed daily acceptance checklist referenced",
+                  "aspect": "supporting_record",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S009"
+                }
+              ],
+              "S014": [
+                {
+                  "componentLabel": "All scheduled work and required checks complete",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S014"
+                }
+              ]
+            },
+            "additions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S015",
+              "S018",
+              "S023",
+              "S024"
+            ],
+            "coverage": {
+              "S015": [
+                {
+                  "componentLabel": "Schedule status and follow-up",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S015"
+                }
+              ],
+              "S018": [
+                {
+                  "componentLabel": "Supporting evidence sufficiency",
+                  "aspect": "supporting_record",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S018"
+                }
+              ],
+              "S023": [
+                {
+                  "componentLabel": "Scheduled work completion statement",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S023"
+                }
+              ],
+              "S024": [
+                {
+                  "componentLabel": "Schedule status and follow-up",
+                  "aspect": "work_progress",
+                  "disposition": "already_completed_state",
+                  "reasonCode": "source_reports_completed_state",
+                  "evidenceRole": "source_reports_existing_completion",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "S024"
+                }
+              ]
+            },
+            "additions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S027"
+            ],
+            "coverage": {
+              "S027": [
+                {
+                  "componentLabel": "Signed daily acceptance checklist reference",
+                  "aspect": "supporting_record",
+                  "disposition": "routine",
+                  "reasonCode": "ordinary_plan",
+                  "evidenceRole": "ordinary_plan_or_context",
+                  "targetConcernId": "none",
+                  "additionKey": "none",
+                  "closureSourceId": "none"
+                }
+              ]
+            },
+            "additions": []
+          }
+        ],
+        "additionRepairs": [],
+        "attachmentCases": [],
+        "attachmentReviewBatches": [],
+        "attachmentDecisions": [],
+        "finalProductReview": {
+          "version": "product-change-entailment-1",
+          "stage": "Independently checking final product changes",
+          "batchSize": 1,
+          "preEntailmentConcerns": [],
+          "preEntailmentLedgers": [
+            {
+              "checkingSourceFactIds": [
+                "S005",
+                "S006",
+                "S009",
+                "S014"
+              ],
+              "coverage": {
+                "S005": [
+                  {
+                    "componentLabel": "All scheduled work and required checks complete",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S005"
+                  }
+                ],
+                "S006": [
+                  {
+                    "componentLabel": "Schedule status and follow-up",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S006"
+                  }
+                ],
+                "S009": [
+                  {
+                    "componentLabel": "Signed daily acceptance checklist referenced",
+                    "aspect": "supporting_record",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S009"
+                  }
+                ],
+                "S014": [
+                  {
+                    "componentLabel": "All scheduled work and required checks complete",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S014"
+                  }
+                ]
+              },
+              "additions": []
+            },
+            {
+              "checkingSourceFactIds": [
+                "S015",
+                "S018",
+                "S023",
+                "S024"
+              ],
+              "coverage": {
+                "S015": [
+                  {
+                    "componentLabel": "Schedule status and follow-up",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S015"
+                  }
+                ],
+                "S018": [
+                  {
+                    "componentLabel": "Supporting evidence sufficiency",
+                    "aspect": "supporting_record",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S018"
+                  }
+                ],
+                "S023": [
+                  {
+                    "componentLabel": "Scheduled work completion statement",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S023"
+                  }
+                ],
+                "S024": [
+                  {
+                    "componentLabel": "Schedule status and follow-up",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S024"
+                  }
+                ]
+              },
+              "additions": []
+            },
+            {
+              "checkingSourceFactIds": [
+                "S027"
+              ],
+              "coverage": {
+                "S027": [
+                  {
+                    "componentLabel": "Signed daily acceptance checklist reference",
+                    "aspect": "supporting_record",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "evidenceRole": "ordinary_plan_or_context",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ]
+              },
+              "additions": []
+            }
+          ],
+          "preEntailmentAddedCandidates": [],
+          "cases": [],
+          "rawReviews": [],
+          "decisions": [],
+          "abstentions": [],
+          "additionRemovals": []
+        },
+        "ledgerCorrections": [
+          {
+            "checkingSourceFactIds": [
+              "S005",
+              "S006",
+              "S009",
+              "S014"
+            ],
+            "draftLedgerIndices": [
+              0
+            ],
+            "sourceComponents": [
+              {
+                "sourceFactId": "S005",
+                "before": [
+                  {
+                    "componentLabel": "Scheduled work completion statement",
+                    "aspect": "work_progress",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "All scheduled work and required checks complete",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S005"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S006",
+                "before": [
+                  {
+                    "componentLabel": "Schedule status and follow-up",
+                    "aspect": "work_progress",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Schedule status and follow-up",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S006"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S009",
+                "before": [
+                  {
+                    "componentLabel": "Supporting evidence sufficiency",
+                    "aspect": "supporting_record",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Signed daily acceptance checklist referenced",
+                    "aspect": "supporting_record",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S009"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S014",
+                "before": [
+                  {
+                    "componentLabel": "Scheduled work completion statement",
+                    "aspect": "work_progress",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "All scheduled work and required checks complete",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S014"
+                  }
+                ]
+              }
+            ],
+            "beforeAdditions": [],
+            "afterAdditions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S015",
+              "S018",
+              "S023",
+              "S024"
+            ],
+            "draftLedgerIndices": [
+              0
+            ],
+            "sourceComponents": [
+              {
+                "sourceFactId": "S015",
+                "before": [
+                  {
+                    "componentLabel": "Schedule status and follow-up",
+                    "aspect": "work_progress",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Schedule status and follow-up",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S015"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S018",
+                "before": [
+                  {
+                    "componentLabel": "Supporting evidence sufficiency",
+                    "aspect": "supporting_record",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Supporting evidence sufficiency",
+                    "aspect": "supporting_record",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S018"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S023",
+                "before": [
+                  {
+                    "componentLabel": "Scheduled work completion statement",
+                    "aspect": "work_progress",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Scheduled work completion statement",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S023"
+                  }
+                ]
+              },
+              {
+                "sourceFactId": "S024",
+                "before": [
+                  {
+                    "componentLabel": "Schedule status and follow-up",
+                    "aspect": "work_progress",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Schedule status and follow-up",
+                    "aspect": "work_progress",
+                    "disposition": "already_completed_state",
+                    "reasonCode": "source_reports_completed_state",
+                    "evidenceRole": "source_reports_existing_completion",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "S024"
+                  }
+                ]
+              }
+            ],
+            "beforeAdditions": [],
+            "afterAdditions": []
+          },
+          {
+            "checkingSourceFactIds": [
+              "S027"
+            ],
+            "draftLedgerIndices": [
+              0
+            ],
+            "sourceComponents": [
+              {
+                "sourceFactId": "S027",
+                "before": [
+                  {
+                    "componentLabel": "Supporting evidence sufficiency",
+                    "aspect": "supporting_record",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ],
+                "after": [
+                  {
+                    "componentLabel": "Signed daily acceptance checklist reference",
+                    "aspect": "supporting_record",
+                    "disposition": "routine",
+                    "reasonCode": "ordinary_plan",
+                    "evidenceRole": "ordinary_plan_or_context",
+                    "targetConcernId": "none",
+                    "additionKey": "none",
+                    "closureSourceId": "none"
+                  }
+                ]
+              }
+            ],
+            "beforeAdditions": [],
+            "afterAdditions": []
+          }
+        ],
+        "beforeConcerns": [],
+        "afterConcerns": [],
+        "candidateStartIndex": 0,
+        "representedAdditions": [],
+        "latestPointerAdjustments": [],
+        "addedCandidateKeys": [],
+        "reconsolidated": false
+      },
+      "coverageAddedCandidates": [],
+      "materialityReviews": [],
+      "materialityRemovals": [],
+      "materialityReconsiderations": [],
+      "duplicateReviews": [],
+      "preConsolidationCandidates": [],
+      "candidateHistory": [
+        {
+          "stage": "Initial source selection",
+          "items": []
+        },
+        {
+          "stage": "Coverage audit",
+          "items": []
+        },
+        {
+          "stage": "Uncited-source coverage",
+          "items": []
+        },
+        {
+          "stage": "Remaining task coverage",
+          "items": []
+        },
+        {
+          "stage": "Checking historical work and delivery changes",
+          "items": []
+        },
+        {
+          "stage": "Checking opposing release and inspection accounts",
+          "items": []
+        }
+      ],
+      "consolidationHistory": [],
+      "pointerNormalizations": [],
+      "sourceInventory": [
+        {
+          "id": "S001",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "work_planned",
+          "quote": "Clean corridor and obtain supervisor acceptance."
+        },
+        {
+          "id": "S002",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Planned corridor cleaning completed."
+        },
+        {
+          "id": "S003",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Quantity checked and accepted by supervisor."
+        },
+        {
+          "id": "S004",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported."
+        },
+        {
+          "id": "S005",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "All scheduled work and required checks complete."
+        },
+        {
+          "id": "S006",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "schedule_status",
+          "quote": "On schedule; no outstanding follow-up."
+        },
+        {
+          "id": "S007",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "rfi_change_order_refs",
+          "quote": "None applicable"
+        },
+        {
+          "id": "S008",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "quantity_or_measurement",
+          "quote": "60 m2 work area"
+        },
+        {
+          "id": "S009",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "supporting_evidence",
+          "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        },
+        {
+          "id": "S010",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "work_planned",
+          "quote": "Clean corridor and obtain supervisor acceptance."
+        },
+        {
+          "id": "S011",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Planned corridor cleaning completed."
+        },
+        {
+          "id": "S012",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Quantity checked and accepted by supervisor."
+        },
+        {
+          "id": "S013",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported."
+        },
+        {
+          "id": "S014",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "All scheduled work and required checks complete."
+        },
+        {
+          "id": "S015",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "schedule_status",
+          "quote": "On schedule; no outstanding follow-up."
+        },
+        {
+          "id": "S016",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "rfi_change_order_refs",
+          "quote": "None applicable"
+        },
+        {
+          "id": "S017",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "quantity_or_measurement",
+          "quote": "60 m2 work area"
+        },
+        {
+          "id": "S018",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "supporting_evidence",
+          "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        },
+        {
+          "id": "S019",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "work_planned",
+          "quote": "Clean corridor and obtain supervisor acceptance."
+        },
+        {
+          "id": "S020",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Planned corridor cleaning completed."
+        },
+        {
+          "id": "S021",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Quantity checked and accepted by supervisor."
+        },
+        {
+          "id": "S022",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported."
+        },
+        {
+          "id": "S023",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "All scheduled work and required checks complete."
+        },
+        {
+          "id": "S024",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "schedule_status",
+          "quote": "On schedule; no outstanding follow-up."
+        },
+        {
+          "id": "S025",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "rfi_change_order_refs",
+          "quote": "None applicable"
+        },
+        {
+          "id": "S026",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "quantity_or_measurement",
+          "quote": "60 m2 work area"
+        },
+        {
+          "id": "S027",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "supporting_evidence",
+          "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        }
+      ],
+      "timings": [
+        {
+          "stage": "Connecting concerns to exact report passages",
+          "elapsedMs": 2318.956200000015,
+          "usage": {
+            "prompt_tokens": 1950,
+            "completion_tokens": 5,
+            "load_duration_ns": 3653800,
+            "prompt_eval_duration_ns": 1599792000,
+            "eval_duration_ns": 442774000,
+            "total_duration_ns": 2307016900,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking coverage and later resolutions",
+          "elapsedMs": 2780.300199999998,
+          "usage": {
+            "prompt_tokens": 2512,
+            "completion_tokens": 9,
+            "load_duration_ns": 5824500,
+            "prompt_eval_duration_ns": 1819948000,
+            "eval_duration_ns": 868109000,
+            "total_duration_ns": 2777291800,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking uncited passages for missed concerns",
+          "elapsedMs": 2235.722599999979,
+          "usage": {
+            "prompt_tokens": 2156,
+            "completion_tokens": 5,
+            "load_duration_ns": 4635300,
+            "prompt_eval_duration_ns": 1650399000,
+            "eval_duration_ns": 449310000,
+            "total_duration_ns": 2220187300,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking explicitly remaining closeout tasks",
+          "elapsedMs": 2172.0886000000173,
+          "usage": {
+            "prompt_tokens": 2096,
+            "completion_tokens": 5,
+            "load_duration_ns": 4372100,
+            "prompt_eval_duration_ns": 1619704000,
+            "eval_duration_ns": 444033000,
+            "total_duration_ns": 2155498100,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking historical work and delivery changes",
+          "elapsedMs": 1999.8356000000495,
+          "usage": {
+            "prompt_tokens": 1825,
+            "completion_tokens": 5,
+            "load_duration_ns": 5968400,
+            "prompt_eval_duration_ns": 1422748000,
+            "eval_duration_ns": 439509000,
+            "total_duration_ns": 1989053400,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking opposing release and inspection accounts",
+          "elapsedMs": 1942.8263000000152,
+          "usage": {
+            "prompt_tokens": 1833,
+            "completion_tokens": 5,
+            "load_duration_ns": 4688400,
+            "prompt_eval_duration_ns": 1423529000,
+            "eval_duration_ns": 433841000,
+            "total_duration_ns": 1940148700,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking every remaining source obligation",
+          "elapsedMs": 60558.40009999997,
+          "usage": {
+            "prompt_tokens": 6699,
+            "completion_tokens": 450,
+            "load_duration_ns": 5977400,
+            "prompt_eval_duration_ns": 4719358000,
+            "eval_duration_ns": 55692006000,
+            "total_duration_ns": 60547812000,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "elapsedMs": 59478.483600000036,
+          "usage": {
+            "prompt_tokens": 5368,
+            "completion_tokens": 461,
+            "load_duration_ns": 5242100,
+            "prompt_eval_duration_ns": 3720510000,
+            "eval_duration_ns": 55579352000,
+            "total_duration_ns": 59476456700,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "elapsedMs": 58826.13060000003,
+          "usage": {
+            "prompt_tokens": 5144,
+            "completion_tokens": 456,
+            "load_duration_ns": 5819100,
+            "prompt_eval_duration_ns": 3928022000,
+            "eval_duration_ns": 54759113000,
+            "total_duration_ns": 58824484300,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "elapsedMs": 16712.26760000002,
+          "usage": {
+            "prompt_tokens": 3483,
+            "completion_tokens": 123,
+            "load_duration_ns": 5208100,
+            "prompt_eval_duration_ns": 2476936000,
+            "eval_duration_ns": 14083886000,
+            "total_duration_ns": 16710047600,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        }
+      ],
+      "responses": [
+        {
+          "stage": "Connecting concerns to exact report passages",
+          "raw": "{\"items\":[]}"
+        },
+        {
+          "stage": "Checking coverage and later resolutions",
+          "raw": "{\"edits\":[],\"additional\":[]}"
+        },
+        {
+          "stage": "Checking uncited passages for missed concerns",
+          "raw": "{\"items\":[]}"
+        },
+        {
+          "stage": "Checking explicitly remaining closeout tasks",
+          "raw": "{\"items\":[]}"
+        },
+        {
+          "stage": "Checking historical work and delivery changes",
+          "raw": "{\"items\":[]}"
+        },
+        {
+          "stage": "Checking opposing release and inspection accounts",
+          "raw": "{\"items\":[]}"
+        },
+        {
+          "stage": "Checking every remaining source obligation",
+          "raw": "{\"coverage\":{\"S005\":[{\"componentLabel\":\"Scheduled work completion statement\",\"aspect\":\"work_progress\",\"disposition\":\"routine\",\"reasonCode\":\"ordinary_plan\",\"targetConcernId\":\"none\",\"additionKey\":\"none\",\"closureSourceId\":\"none\"}],\"S006\":[{\"componentLabel\":\"Schedule status and follow-up\",\"aspect\":\"work_progress\",\"disposition\":\"routine\",\"reasonCode\":\"ordinary_plan\",\"targetConcernId\":\"none\",\"additionKey\":\"none\",\"closureSourceId\":\"none\"}],\"S009\":[{\"componentLabel\":\"Supporting evidence sufficiency\",\"aspect\":\"supporting_record\",\"disposition\":\"routine\",\"reasonCode\":\"ordinary_plan\",\"targetConcernId\":\"none\",\"additionKey\":\"none\",\"closureSourceId\":\"none\"}],\"S014\":[{\"componentLabel\":\"Scheduled work completion statement\",\"aspect\":\"work_progress\",\"disposition\":\"routine\",\"reasonCode\":\"ordinary_plan\",\"targetConcernId\":\"none\",\"additionKey\":\"none\",\"closureSourceId\":\"none\"}],\"S015\":[{\"componentLabel\":\"Schedule status and follow-up\",\"aspect\":\"work_progress\",\"disposition\":\"routine\",\"reasonCode\":\"ordinary_plan\",\"targetConcernId\":\"none\",\"additionKey\":\"none\",\"closureSourceId\":\"none\"}],\"S018\":[{\"componentLabel\":\"Supporting evidence sufficiency\",\"aspect\":\"supporting_record\",\"disposition\":\"routine\",\"reasonCode\":\"ordinary_plan\",\"targetConcernId\":\"none\",\"additionKey\":\"none\",\"closureSourceId\":\"none\"}],\"S023\":[{\"componentLabel\":\"Scheduled work completion statement\",\"aspect\":\"work_progress\",\"disposition\":\"routine\",\"reasonCode\":\"ordinary_plan\",\"targetConcernId\":\"none\",\"additionKey\":\"none\",\"closureSourceId\":\"none\"}],\"S024\":[{\"componentLabel\":\"Schedule status and follow-up\",\"aspect\":\"work_progress\",\"disposition\":\"routine\",\"reasonCode\":\"ordinary_plan\",\"targetConcernId\":\"none\",\"additionKey\":\"none\",\"closureSourceId\":\"none\"}],\"S027\":[{\"componentLabel\":\"Supporting evidence sufficiency\",\"aspect\":\"supporting_record\",\"disposition\":\"routine\",\"reasonCode\":\"ordinary_plan\",\"targetConcernId\":\"none\",\"additionKey\":\"none\",\"closureSourceId\":\"none\"}]},\"additions\":[]}"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "raw": "{\n  \"coverage\": {\n    \"S005\": [\n      {\n        \"componentLabel\": \"All scheduled work and required checks complete\",\n        \"aspect\": \"work_progress\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S005\"\n      }\n    ],\n    \"S006\": [\n      {\n        \"componentLabel\": \"Schedule status and follow-up\",\n        \"aspect\": \"work_progress\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S006\"\n      }\n    ],\n    \"S009\": [\n      {\n        \"componentLabel\": \"Signed daily acceptance checklist referenced\",\n        \"aspect\": \"supporting_record\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S009\"\n      }\n    ],\n    \"S014\": [\n      {\n        \"componentLabel\": \"All scheduled work and required checks complete\",\n        \"aspect\": \"work_progress\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S014\"\n      }\n    ]\n  },\n  \"additions\": []\n}"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "raw": "{\n  \"coverage\": {\n    \"S015\": [\n      {\n        \"componentLabel\": \"Schedule status and follow-up\",\n        \"aspect\": \"work_progress\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S015\"\n      }\n    ],\n    \"S018\": [\n      {\n        \"componentLabel\": \"Supporting evidence sufficiency\",\n        \"aspect\": \"supporting_record\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S018\"\n      }\n    ],\n    \"S023\": [\n      {\n        \"componentLabel\": \"Scheduled work completion statement\",\n        \"aspect\": \"work_progress\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S023\"\n      }\n    ],\n    \"S024\": [\n      {\n        \"componentLabel\": \"Schedule status and follow-up\",\n        \"aspect\": \"work_progress\",\n        \"disposition\": \"already_completed_state\",\n        \"reasonCode\": \"source_reports_completed_state\",\n        \"evidenceRole\": \"source_reports_existing_completion\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"S024\"\n      }\n    ]\n  },\n  \"additions\": []\n}"
+        },
+        {
+          "stage": "Independently verifying source-obligation coverage",
+          "raw": "{\n  \"coverage\": {\n    \"S027\": [\n      {\n        \"componentLabel\": \"Signed daily acceptance checklist reference\",\n        \"aspect\": \"supporting_record\",\n        \"disposition\": \"routine\",\n        \"reasonCode\": \"ordinary_plan\",\n        \"evidenceRole\": \"ordinary_plan_or_context\",\n        \"targetConcernId\": \"none\",\n        \"additionKey\": \"none\",\n        \"closureSourceId\": \"none\"\n      }\n    ]\n  },\n  \"additions\": []\n}"
+        }
+      ],
+      "method": "source-inventory-shared-concern-consolidation",
+      "groupingRepairs": [],
+      "humanReview": {
+        "status": "not_measured"
+      },
+      "evaluation": {
+        "status": "not_scored"
+      },
+      "evaluationDatasetId": "reports-clean"
+    }
+  ]
+}

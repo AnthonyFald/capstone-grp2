@@ -22,11 +22,11 @@ const response=data=>({choices:[{message:{content:JSON.stringify(data)},finish_r
 const fakeEngine=responses=>({resetChat:async()=>{},chat:{completions:{create:async request=>{responses.calls.push(request);return response(responses.shift());}}}});
 test('source inventory preserves every field sentence, decimals and deterministic authors',()=>{const f=inventory.facts.find(f=>f.report_id==='DR-A09'&&f.field==='quantity_or_measurement');assert.match(f.quote,/4\.2 m3/);assert.equal(f.report_author,'General Contractor - Site Superintendent');for(const fact of inventory.facts)assert.ok(rows.find(r=>r.report_id===fact.report_id)[fact.field].includes(fact.quote));assert.ok(inventory.facts.some(f=>f.field==='schedule_status'&&/strength-test/.test(f.quote)));});
 test('source validation is idempotent for short exact reference IDs',()=>{const f={...finding,evidence:[{report_id:'DR-A04',field:'rfi_change_order_refs',quote:'RFI-017'}]},once=C.validate({findings:[f]},rows);assert.deepEqual(C.validate(once,rows),once);});
-test('generation selects IDs from blind sources and renders original passages without invented prose',async()=>{const queue=[{items:[{...selected,observation:'Invented cause'}]}];queue.calls=[];const out=await E.generate(fakeEngine(queue),rows,C,{thorough:false});assert.equal(out.findings.length,1);assert.equal(queue.calls.length,1);assert.ok(!JSON.stringify(queue.calls[0].messages).includes('ISS-'));assert.ok(!JSON.stringify(queue.calls[0].messages).includes('ground_truth'));assert.match(queue.calls[0].messages[0].content,/untrusted source data/);assert.ok(!JSON.stringify(out.findings).includes('Invented cause'));assert.match(out.findings[0].observation,/The source has not been confirmed/);assert.equal(out.findings[0].owner,null);});
-test('coverage audit applies targeted edits and additions without rewriting unchanged items',async()=>{const addition={kind:'closeout',status:'open',facts:[sourceId('DR-A09','schedule_status','curing')],latest:[sourceId('DR-A09','schedule_status','curing')]};const queue=[{items:[selected]},{edits:[],additional:[addition]},{items:[]},{items:[]},{items:[]},{items:[]},{reviews:[{index:0,verdict:'supported',...selected},{index:1,verdict:'supported',...addition}]}];queue.calls=[];const out=await E.generate(fakeEngine(queue),rows,C,{thorough:true});assert.equal(queue.calls.length,7);assert.equal(out.findings.length,2);assert.deepEqual(out.items[0],selected);for(const call of queue.calls)assert.equal(JSON.parse(call.messages[1].content).reports.length,10);});
-test('invalid pointers reject the result locally and retain diagnostics without a global rewrite',async()=>{const queue=[{items:[{...selected,latest:['S999999']}]}];queue.calls=[];await assert.rejects(()=>E.generate(fakeEngine(queue),rows,C,{thorough:false}),e=>/does not exist/.test(e.message)&&e.diagnostics.responses.length===1);assert.equal(queue.calls.length,1);});
+test('generation selects IDs from blind sources and renders original passages without invented prose',async()=>{const queue=[{items:[{...selected,observation:'Invented cause'}]}];queue.calls=[];const out=await E.generate(fakeEngine(queue),rows,C,{thorough:false,consolidate:false});assert.equal(out.findings.length,1);assert.equal(queue.calls.length,1);assert.ok(!JSON.stringify(queue.calls[0].messages).includes('ISS-'));assert.ok(!JSON.stringify(queue.calls[0].messages).includes('ground_truth'));assert.match(queue.calls[0].messages[0].content,/untrusted source data/);assert.ok(!JSON.stringify(out.findings).includes('Invented cause'));assert.match(out.findings[0].observation,/The source has not been confirmed/);assert.equal(out.findings[0].owner,null);});
+test('coverage audit applies targeted edits and additions without rewriting unchanged items',async()=>{const addition={kind:'closeout',status:'open',facts:[sourceId('DR-A09','schedule_status','curing')],latest:[sourceId('DR-A09','schedule_status','curing')]};const queue=[{items:[selected]},{edits:[],additional:[addition]},{items:[]},{items:[]},{items:[]},{items:[]},{reviews:[{index:0,verdict:'supported',...selected},{index:1,verdict:'supported',...addition}]}];queue.calls=[];const out=await E.generate(fakeEngine(queue),rows,C,{thorough:true,consolidate:false});assert.equal(queue.calls.length,7);assert.equal(out.findings.length,2);assert.deepEqual(out.items[0],selected);for(const call of queue.calls)assert.equal(JSON.parse(call.messages[1].content).reports.length,10);});
+test('invalid pointers reject the result locally and retain diagnostics without a global rewrite',async()=>{const queue=[{items:[{...selected,latest:['S999999']}]}];queue.calls=[];await assert.rejects(()=>E.generate(fakeEngine(queue),rows,C,{thorough:false,consolidate:false}),e=>/does not exist/.test(e.message)&&e.diagnostics.responses.length===1);assert.equal(queue.calls.length,1);});
 test('truncated model selection fails rather than becoming a partial result',async()=>{const fake={resetChat:async()=>{},chat:{completions:{create:async()=>({choices:[{message:{content:'{"items":[]}'},finish_reason:'length'}]})}}};await assert.rejects(()=>E.generate(fake,rows,C),/output space/);});
-test('empty control still receives coverage and remaining-task checks without forced findings',async()=>{const queue=[{items:[]},{edits:[],additional:[]},{items:[]},{items:[]},{items:[]},{items:[]}];queue.calls=[];const out=await E.generate(fakeEngine(queue),C.reports(data('reports-clean')),C,{thorough:true});assert.equal(queue.calls.length,6);assert.deepEqual(out.findings,[]);});
+test('empty control still receives coverage and remaining-task checks without forced findings',async()=>{const queue=[{items:[]},{edits:[],additional:[]},{items:[]},{items:[]},{items:[]},{items:[]}];queue.calls=[];const out=await E.generate(fakeEngine(queue),C.reports(data('reports-clean')),C,{thorough:true,consolidate:false});assert.equal(queue.calls.length,6);assert.deepEqual(out.findings,[]);});
 test('a later unrelated completion does not change selected factual text or overwrite its author',()=>{const out=E.render([selected],inventory.facts,rows,C);assert.match(out.findings[0].observation,/not been confirmed/);assert.ok(!out.findings[0].observation.includes('Concrete placement completed'));const changed=rows.map(r=>({...r,report_id:'X'+r.report_id,report_author:'Renamed '+r.report_author})),inv=E.inventory(changed),rendered=E.render([selected],inv.facts,changed,C);assert.ok(rendered.findings[0].evidence.every(e=>e.report_id.startsWith('X')));assert.equal(inv.facts[0].report_author,'Renamed '+rows[0].report_author);});
 
 test('a compound reference can link several supported findings but cannot hide an unsupported part',()=>{const issues=[{issue_id:'1'}],findings=[{id:'F1'},{id:'F2'}],judgments={'1':{rating:'found',findingIds:['F1','F2']}};assert.equal(C.score(issues,judgments,findings,{F1:'supported',F2:'supported'}).recall,1);assert.equal(C.score(issues,judgments,findings,{F1:'supported',F2:'unsupported'}).complete,false);});
@@ -43,7 +43,7 @@ test('materiality decisions must cover every candidate exactly once and preserve
     [[{index:0,verdict:'supported',...selected},{index:2,verdict:'supported',...closeoutSelection}],/Invalid materiality/]
   ]){
     const queue=materialityQueue([selected,closeoutSelection],reviews);
-    await assert.rejects(()=>E.generate(fakeEngine(queue),rows,C,{thorough:true}),error=>{
+    await assert.rejects(()=>E.generate(fakeEngine(queue),rows,C,{thorough:true,consolidate:false}),error=>{
       assert.match(error.message,message);
       assert.equal(error.diagnostics.responses.length,7);
       assert.match(error.diagnostics.responses.at(-1).stage,/Verifying relevance/);
@@ -57,7 +57,7 @@ test('materiality decisions must cover every candidate exactly once and preserve
 
 test('routine decisions discard their candidates without changing supported source passages',async()=>{
   const queue=materialityQueue([selected,closeoutSelection],[{index:0,verdict:'routine',...selected},{index:1,verdict:'supported',...closeoutSelection}]);
-  const out=await E.generate(fakeEngine(queue),rows,C,{thorough:true});
+  const out=await E.generate(fakeEngine(queue),rows,C,{thorough:true,consolidate:false});
   assert.equal(out.findings.length,1);
   assert.equal(out.findings[0].kind,'closeout');
   assert.deepEqual(out.items,[closeoutSelection]);
@@ -69,16 +69,16 @@ test('routine decisions discard their candidates without changing supported sour
 test('supported materiality decisions require complete and existing source pointers',async()=>{
   for(const altered of [{facts:null},{latest:[]},{facts:['S999999']}]){
     const queue=materialityQueue([selected],[{index:0,verdict:'supported',...selected,...altered}]);
-    await assert.rejects(()=>E.generate(fakeEngine(queue),rows,C,{thorough:true}),error=>/does not exist/.test(error.message)&&error.diagnostics.responses.length===7);
+    await assert.rejects(()=>E.generate(fakeEngine(queue),rows,C,{thorough:true,consolidate:false}),error=>/does not exist/.test(error.message)&&error.diagnostics.responses.length===7);
   }
 });
 
 test('a final audit cannot introduce a nonexistent pointer or display its internal topic as fact',async()=>{
   const invalid=materialityQueue([selected],[{index:0,verdict:'supported',...selected,latest:['S999999']}]);
-  await assert.rejects(()=>E.generate(fakeEngine(invalid),rows,C,{thorough:true}),error=>/does not exist/.test(error.message)&&error.diagnostics.responses.length===7);
+  await assert.rejects(()=>E.generate(fakeEngine(invalid),rows,C,{thorough:true,consolidate:false}),error=>/does not exist/.test(error.message)&&error.diagnostics.responses.length===7);
   const internal='Untrusted invented cause that must never appear in displayed findings';
   const valid=materialityQueue([selected],[{index:0,verdict:'supported',...selected,topic:internal}]);
-  const out=await E.generate(fakeEngine(valid),rows,C,{thorough:true});
+  const out=await E.generate(fakeEngine(valid),rows,C,{thorough:true,consolidate:false});
   assert.ok(!JSON.stringify(out.findings).includes(internal));
   assert.equal(out.items[0].topic,internal);
   assert.ok(out.findings[0].evidence.every(e=>rows.find(r=>r.report_id===e.report_id)[e.field].includes(e.quote)));
@@ -89,7 +89,7 @@ test('the remaining-task scan can recover a sole explicit task after every prior
   const taskFact=E.inventory(taskRows).facts.find(f=>f.field==='schedule_status');
   const task={kind:'closeout',status:'open',facts:[taskFact.id],latest:[taskFact.id]};
   const queue=[{items:[]},{edits:[],additional:[]},{items:[]},{items:[task]},{items:[]},{items:[]},{reviews:[{index:0,verdict:'supported',...task}]}];queue.calls=[];
-  const out=await E.generate(fakeEngine(queue),taskRows,C,{thorough:true});
+  const out=await E.generate(fakeEngine(queue),taskRows,C,{thorough:true,consolidate:false});
   assert.equal(queue.calls.length,7);
   assert.match(queue.calls[3].messages[0].content,/explicit end-of-record remaining/);
   assert.equal(out.findings.length,1);
@@ -101,7 +101,7 @@ test('the remaining-task scan can recover a sole explicit task after every prior
 test('conflicting duplicate selections trigger one source-based adjudication without rewriting another concern',async()=>{
   const conflicting={...selected,status:'resolved'};
   const queue=[{items:[conflicting,closeoutSelection,selected]},{items:[selected]}];queue.calls=[];
-  const out=await E.generate(fakeEngine(queue),rows,C,{thorough:false});
+  const out=await E.generate(fakeEngine(queue),rows,C,{thorough:false,consolidate:false});
   assert.equal(queue.calls.length,2);
   assert.equal(out.findings.length,2);
   assert.equal(out.findings[0].status,'needs_verification');
@@ -121,7 +121,7 @@ test('conflicting duplicate selections trigger one source-based adjudication wit
 
 test('identical duplicate interpretations collapse without spending another model request',async()=>{
   const queue=[{items:[selected,{...selected}]}];queue.calls=[];
-  const out=await E.generate(fakeEngine(queue),rows,C,{thorough:false});
+  const out=await E.generate(fakeEngine(queue),rows,C,{thorough:false,consolidate:false});
   assert.equal(queue.calls.length,1);
   assert.equal(out.findings.length,1);
   assert.deepEqual(out.duplicateReviews,[]);
@@ -131,7 +131,7 @@ test('invalid duplicate adjudication fails once and retains the disputed sources
   for(const [items,pattern] of [[[],/one concern/],[[selected,selected],/one concern/],[[{...selected,latest:['S999999']}],/does not exist/]]){
     const candidates=[{...selected,status:'resolved'},selected];
     const queue=[{items:candidates},{items}];queue.calls=[];
-    await assert.rejects(()=>E.generate(fakeEngine(queue),rows,C,{thorough:false}),error=>{
+    await assert.rejects(()=>E.generate(fakeEngine(queue),rows,C,{thorough:false,consolidate:false}),error=>{
       assert.match(error.message,pattern);
       assert.equal(error.diagnostics.responses.length,2);
       assert.match(error.diagnostics.responses.at(-1).stage,/Reconciling duplicate status/);
@@ -149,7 +149,7 @@ test('either independent chronology scan rejects nonexistent source pointers and
     const invalid={...selected,...altered};
     const focused=scan===0?[{items:[invalid]}]:[{items:[]},{items:[invalid]}];
     const queue=[{items:[selected]},{edits:[],additional:[]},{items:[]},{items:[]},...focused];queue.calls=[];
-    await assert.rejects(()=>E.generate(fakeEngine(queue),rows,C,{thorough:true}),error=>{
+    await assert.rejects(()=>E.generate(fakeEngine(queue),rows,C,{thorough:true,consolidate:false}),error=>{
       assert.match(error.message,/does not exist/);
       assert.equal(error.diagnostics.responses.length,5+scan);
       assert.match(error.diagnostics.responses.at(-1).stage,scan===0?/Checking historical work/:/Checking opposing release/);
@@ -164,7 +164,7 @@ test('either independent chronology scan rejects nonexistent source pointers and
 test('focused chronology retrieval sees sources without a draft and adds candidates without replacing prior concerns',async()=>{
   const history={kind:'progress',status:'historical',facts:[sourceId('DR-A05','schedule_status','Pour postponed')],latest:[sourceId('DR-A09','work_completed','Concrete placement completed')]};
   const queue=[{items:[selected,closeoutSelection]},{edits:[],additional:[]},{items:[]},{items:[]},{items:[history]},{items:[]},{reviews:[{index:0,verdict:'supported',...selected},{index:1,verdict:'supported',...closeoutSelection},{index:2,verdict:'supported',...history}]}];queue.calls=[];
-  const out=await E.generate(fakeEngine(queue),rows,C,{thorough:true});
+  const out=await E.generate(fakeEngine(queue),rows,C,{thorough:true,consolidate:false});
   assert.equal(queue.calls.length,7);
   assert.deepEqual(out.items,[selected,closeoutSelection,history]);
   assert.match(out.responses[4].stage,/Checking historical work/);
@@ -189,7 +189,7 @@ test('supported materiality corrections preserve prior context and latest passag
   const prior={kind:'release',status:'needs_verification',facts:[earlier,missing],latest:[passed]};
   const corrected={kind:'acceptance',status:'resolved',facts:[inspection],latest:[acceptance]};
   const queue=materialityQueue([prior],[{index:0,verdict:'supported',...corrected}]);
-  const out=await E.generate(fakeEngine(queue),rows,C,{thorough:true});
+  const out=await E.generate(fakeEngine(queue),rows,C,{thorough:true,consolidate:false});
   assert.deepEqual(out.items,[{...corrected,facts:[earlier,missing,passed,inspection]}]);
   assert.equal(out.findings[0].kind,'acceptance');
   assert.equal(out.findings[0].status,'resolved');
@@ -206,5 +206,5 @@ test('preserved chronology accepts twenty context passages and four latest citat
   assert.equal(out.findings[0].evidence.length,24);
   assert.doesNotThrow(()=>C.validate(out,rows));
   assert.throws(()=>E.validateItems([{...expanded,facts:inventory.facts.slice(0,21).map(f=>f.id)}],inventory.facts),/does not exist/);
-  assert.throws(()=>C.validate({findings:[{...out.findings[0],evidence:[...out.findings[0].evidence,out.findings[0].evidence[0]]}]},rows),/source evidence/);
+  assert.throws(()=>C.validate({findings:[{...out.findings[0],evidence:Array.from({length:513},()=>out.findings[0].evidence[0])}]},rows),/source evidence/);
 });

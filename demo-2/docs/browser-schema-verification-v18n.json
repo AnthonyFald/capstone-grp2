@@ -1,0 +1,241 @@
+{
+  "version": "browser-schema-compatibility-5",
+  "createdAt": "2026-10-22T23:24:27.115Z",
+  "status": "passed",
+  "scope": "Pinned WebLLM/WebXGrammar WASM grammar compatibility for every new final product-change schema constructed from retained M proposals. Synthetic strings test grammar structure only. No model loading, GPU/model inference, Mac execution, quality scoring or output repair.",
+  "engine": {
+    "promptVersion": "daily-review-18n-consolidated",
+    "sha256": "c9f01be55eebda0f3241759b6ecbd3b7c06826d7d33c05d96e3b4d681b7587aa"
+  },
+  "runtime": {
+    "node": "v24.19.0",
+    "platform": "win32",
+    "webllmVersion": "0.2.85",
+    "webXGrammarVersion": "0.1.27",
+    "bundleSha256": "803713906fb3e53483ab03f33244a64d8ed818820be9abe520e615754bfd3e24",
+    "npmIntegrity": "sha512-0WJvW3mjotHA2NeAfaWFE2pQkOgXH9xC2U4IQOJNcioLac0k6VjSbj14jBRprt89frnPzxLo280riaEb+ZQqbg=="
+  },
+  "sources": [
+    {
+      "filename": "npm-version.json",
+      "url": "https://registry.npmjs.org/@mlc-ai%2fweb-xgrammar/0.1.27",
+      "bytes": 2454,
+      "sha256": "c5c769cd631b13cec5327f4180feec8cb80f86adb822ccf0a8fe40258a0ae9e4"
+    },
+    {
+      "filename": "webllm-package.json",
+      "url": "https://raw.githubusercontent.com/mlc-ai/web-llm/v0.2.85/package.json",
+      "bytes": 1840,
+      "sha256": "ee7bd864aa1f46dcc7bb1c65ef8d38ce0bd109bbad2df46f58aca5ab9300c73d"
+    },
+    {
+      "filename": "xgrammar-source.ts",
+      "url": "https://raw.githubusercontent.com/mlc-ai/xgrammar/v0.1.27/web/src/xgrammar.ts",
+      "bytes": 20258,
+      "sha256": "701e1bae9b7fd4bda13468caaaea4a8b59564b64b4a38a1183d1820f615429d3"
+    },
+    {
+      "filename": "web-xgrammar-0.1.27.tgz",
+      "url": "https://registry.npmjs.org/@mlc-ai/web-xgrammar/-/web-xgrammar-0.1.27.tgz",
+      "bytes": 804151,
+      "sha256": "ce4bab44c89d06c57600cefdfaf6c5c5f3a85ae55b13209a7d889aad47af8193"
+    }
+  ],
+  "inheritedUnchangedAttachmentSchemas": "browser-schema-verification-v18m.json",
+  "results": [
+    {
+      "dataset": "A",
+      "sourceFile": "docs/development-v18m-native27-a-staged.json",
+      "sourceSha256": "28609552b90cae801863fc515a338f7ceb7c6d76fef31f5bab56b703a8774fab",
+      "finalProductCases": 13,
+      "maxSchemaCharacters": 4782,
+      "checks": [
+        {
+          "caseId": "P0",
+          "type": "attachment",
+          "schemaCharacters": 4731,
+          "schemaSha256": "b30bdc66faf753a7361bc6128f0cc9f884a4037fbe9b715309a32568438db081",
+          "grammarSha256": "6c25071a6cac52a00db338e3186ffb3f4c542e51d56baa8da1429ec49b81182f",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        },
+        {
+          "caseId": "P1",
+          "type": "attachment",
+          "schemaCharacters": 4759,
+          "schemaSha256": "4628d0f24fdeaeaf1692434daf2cb435c9514b2de7ad9a4012644ca0086da1ec",
+          "grammarSha256": "4270539a1da6e38490c1a6c1611f5a710110e573d804b433f827cc2a6382fdcd",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        },
+        {
+          "caseId": "P2",
+          "type": "attachment",
+          "schemaCharacters": 4717,
+          "schemaSha256": "5ef4ee7817a740de5331765c8f4467b1e7907f858bd9b338ba8b69fd2bdeb392",
+          "grammarSha256": "ccabf394553e9fcaba12cc8973cc2d579c5189cb8b287599c2e09bb1fd310577",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        },
+        {
+          "caseId": "P3",
+          "type": "attachment",
+          "schemaCharacters": 4759,
+          "schemaSha256": "c909414c5c157ac7c30c4f394e0cb0cf305819fb80607883cc0eacd03957af03",
+          "grammarSha256": "7b8f3fc21e4215f796409130c325cc7ff3de6e27024bac631ede75c79e975228",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        },
+        {
+          "caseId": "P4",
+          "type": "attachment",
+          "schemaCharacters": 4759,
+          "schemaSha256": "b1de6e0fb8529b5f8d4ff44f19fa4b98e49c0032f0d4983062bb27e3f70aea27",
+          "grammarSha256": "5e39b7f53127bb1529513e5003ee94a9e40cecf2c76d4e469d3c09efbeb1560e",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        },
+        {
+          "caseId": "P5",
+          "type": "attachment",
+          "schemaCharacters": 4773,
+          "schemaSha256": "755faf29f6acd82a1fb0802b722badc2b08d527b4adaba4672ab224d6c6978e6",
+          "grammarSha256": "f734f429e10449b81e5f479a22af3b0d63fd973dbf1d74e57b9a0f4982caf68a",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        },
+        {
+          "caseId": "P6",
+          "type": "attachment",
+          "schemaCharacters": 4745,
+          "schemaSha256": "fea17e4850487b8f8fc1a9990c3d4172e96b4886b608159f806e2fc32e1eb932",
+          "grammarSha256": "a07199e97de110fb4254ead8d94ba9257fae2f2609836ff5a5cac66221e72ba8",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        },
+        {
+          "caseId": "P7",
+          "type": "attachment",
+          "schemaCharacters": 4752,
+          "schemaSha256": "3bb4027a69611689d047491300e602bde2dd2abd1cae00beb0e75e10ade3284e",
+          "grammarSha256": "9cf0488eb0d368ad21283bb9678e2de376ce1adae4dac86f5c945fb5d1d57870",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        },
+        {
+          "caseId": "P8",
+          "type": "attachment",
+          "schemaCharacters": 4745,
+          "schemaSha256": "75135e8e23f95c46bc9a7698b89992ac3db89e48639e75ac0b82dfa8d31986bf",
+          "grammarSha256": "6d477396807784749ec5dd5f0b88ee3ea254da6e9872fbe2d237d04226d0d028",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        },
+        {
+          "caseId": "P9",
+          "type": "attachment",
+          "schemaCharacters": 4717,
+          "schemaSha256": "673a227895acca421a91c180d4862e75f746041f346e5a864204dedc53855335",
+          "grammarSha256": "9629d8023c107491b6a8ff662540ba1a933e479f9ec7baaa250cb243b4a18b24",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        },
+        {
+          "caseId": "P10",
+          "type": "attachment",
+          "schemaCharacters": 4726,
+          "schemaSha256": "07f74ba1b5263c841284882687c4f19d147329eb0706579ad85f1f952ea8a6ab",
+          "grammarSha256": "4aaf7860d580c075672faaaac20dc1fc8b16e1ecdddb910ee755a8d762385ae0",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        },
+        {
+          "caseId": "P11",
+          "type": "new_concern",
+          "schemaCharacters": 4705,
+          "schemaSha256": "7543873bb20e68d430e48285d23e255e16ba2bb37df30cc270804323e5587c6c",
+          "grammarSha256": "8d2ceb6699a23f4e40fa156a87602c81c7f3bd5594225a29233c3541a049c979",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        },
+        {
+          "caseId": "P12",
+          "type": "new_concern",
+          "schemaCharacters": 4782,
+          "schemaSha256": "367ecaeea7d5ce532e5170279d48d7a19f0bc6799ef884aaae61301ce178dbc8",
+          "grammarSha256": "e99b394584ed30e76a662650ce44342d8b9c66f9e16d4a8939d946752d00477e",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "dataset": "G",
+      "sourceFile": "docs/development-v18m-native27-g-staged.json",
+      "sourceSha256": "6ddb9b4b671c5b3be09694c84c5480bec55bc3706b13e9f124f8d3ba86faad94",
+      "finalProductCases": 3,
+      "maxSchemaCharacters": 3674,
+      "checks": [
+        {
+          "caseId": "P0",
+          "type": "attachment",
+          "schemaCharacters": 3674,
+          "schemaSha256": "a5bc2c80f263b528aa28fe765c97336c240451f18fabb6c82ea60f5585d52b41",
+          "grammarSha256": "1e23646f0d1d3a04567e985cd5380e660ae00ad9086a458c32cf7e4b817e3876",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        },
+        {
+          "caseId": "P1",
+          "type": "attachment",
+          "schemaCharacters": 3653,
+          "schemaSha256": "b1695594d738b5c60b76092a6c01fd33223ffbace0240376ddfe4454d93706fb",
+          "grammarSha256": "015489b6fb48628330d890dead8b01f4bbda116dae8d41bf7488d5fe0b633b41",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        },
+        {
+          "caseId": "P2",
+          "type": "attachment",
+          "schemaCharacters": 3653,
+          "schemaSha256": "7fa5c129d40fc75920b9bf5131ffbf7f45e77fc3f043a3baebdfc8302d065ef5",
+          "grammarSha256": "9f259f79ebced293cc4dbbc37672aa10e3e522ed8617de513e951155b88704f3",
+          "strictMode": true,
+          "syntheticAbstentionAccepted": true,
+          "emptyChronologyRejected": true,
+          "status": "passed"
+        }
+      ]
+    }
+  ]
+}

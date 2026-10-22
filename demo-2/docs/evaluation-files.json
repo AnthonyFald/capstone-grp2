@@ -13,7 +13,30 @@
     "development-v17-native27-d-staged.json",
     "final-v17-native27-e.json",
     "final-v17-native27-f.json",
-    "final-v17-browser4-control.json"
+    "final-v17-browser4-control.json",
+    "development-v18c-consolidated-a-attempt3.json",
+    "final-v18-native27-a-ui.json",
+    "development-v18f-native27-a-recovered.json",
+    "final-v18f-native27-g-ui.json",
+    "final-v18f-consolidated-a.json",
+    "final-v18f-consolidated-b.json",
+    "final-v18f-consolidated-f.json",
+    "development-v18i-consolidated-d-staged.json",
+    "development-v18j-native27-g-staged.json",
+    "development-v18j-consolidated-d-staged.json",
+    "development-v18k-native27-a-staged.json",
+    "development-v18k-native27-g-staged.json",
+    "development-v18k-consolidated-d-staged.json",
+    "final-v18k-native27-e.json",
+    "development-v18m-native27-a-staged.json",
+    "development-v18m-native27-g-staged.json",
+    "development-v18m-consolidated-d-staged.json",
+    "final-v18m-native27-e.json",
+    "development-v18n-native27-a-staged.json",
+    "development-v18n-native27-g-staged.json",
+    "development-v18n-consolidated-d-staged.json",
+    "final-v18n-native27-e.json",
+    "final-v18n-native27-clean-ui.json"
   ],
-  "note": "Selected current results use core daily-reports-v17, prompt daily-review-17-extractive and native-sampling-3, seed42, Qwen3.5:27b non-thinking. D is staged development quality evaluation and excluded from continuous latency. A is an actual blind sample CSV upload and full UI export; an evaluationDatasetId alias is added only after exact normalized-input hash equality to A, while originalDatasetId remains custom. Older baseline/core8/model-v3 comparisons remain historical. Other failed/development attempts and separate scoring files remain in docs and the development log."
+  "note": "Current selected method is core daily-reports-v18 / prompt daily-review-18n-consolidated, native-sampling-3, seed42, Qwen3.5:27b non-thinking. Team-CSV A/G use staged whole-request-hash-verified prefixes plus actual new final product reviews; no complete-review latency is claimed. D is zero-new-call compatibility recovery of J retained-candidate consolidation; E is zero-new-call13-request compatibility recovery of the actual K complete routine control. Original actual timings and prior failed/superseded observations remain selected separately. Compatibility recovery is not a second independent trial. C is an actual complete current UI upload/analysis/export observation with zero alerts and208.982-second processing,n=1. Its untouched original export is retained separately. Original selected historical15 files, full18cA scope/duplicate failure, firstfresh18fG4/5 and later K/M A semantic failures remain retained. Earlier/current A hashes stay separate. Final-output judgments are provisional; internal ledger labels are fallible and independent human review remains pending."
 }

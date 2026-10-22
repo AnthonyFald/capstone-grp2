@@ -1,0 +1,249 @@
+{
+  "version": "browser-schema-compatibility-2",
+  "createdAt": "2026-10-22T21:58:16.031Z",
+  "status": "passed",
+  "scope": "Pinned WebXGrammar WASM parsing and synthetic structural checks of every four-source A/G review schema. No model loading, GPU, inference, Mac execution or accuracy evaluation.",
+  "engine": {
+    "promptVersion": "daily-review-18j-consolidated",
+    "sha256": "939fd8f81e1b5ef30d4dc7edda39a2f2fe0721d1a57e87c2bc88cd515c408d8d"
+  },
+  "runtime": {
+    "node": "v24.19.0",
+    "platform": "win32",
+    "webllmVersion": "0.2.85",
+    "webXGrammarVersion": "0.1.27",
+    "api": "Grammar.fromJSONSchema(schema,true,undefined,undefined,true); Testings.isGrammarAcceptString",
+    "loader": "Unmodified published UMD bundle loaded through Node CommonJS Module._compile; embedded WASM on CPU.",
+    "bundleSha256": "803713906fb3e53483ab03f33244a64d8ed818820be9abe520e615754bfd3e24",
+    "npmIntegrity": "sha512-0WJvW3mjotHA2NeAfaWFE2pQkOgXH9xC2U4IQOJNcioLac0k6VjSbj14jBRprt89frnPzxLo280riaEb+ZQqbg=="
+  },
+  "sources": [
+    {
+      "filename": "npm-version.json",
+      "url": "https://registry.npmjs.org/@mlc-ai%2fweb-xgrammar/0.1.27",
+      "bytes": 2454,
+      "sha256": "c5c769cd631b13cec5327f4180feec8cb80f86adb822ccf0a8fe40258a0ae9e4"
+    },
+    {
+      "filename": "webllm-package.json",
+      "url": "https://raw.githubusercontent.com/mlc-ai/web-llm/v0.2.85/package.json",
+      "bytes": 1840,
+      "sha256": "ee7bd864aa1f46dcc7bb1c65ef8d38ce0bd109bbad2df46f58aca5ab9300c73d"
+    },
+    {
+      "filename": "xgrammar-source.ts",
+      "url": "https://raw.githubusercontent.com/mlc-ai/xgrammar/v0.1.27/web/src/xgrammar.ts",
+      "bytes": 20258,
+      "sha256": "701e1bae9b7fd4bda13468caaaea4a8b59564b64b4a38a1183d1820f615429d3"
+    },
+    {
+      "filename": "web-xgrammar-0.1.27.tgz",
+      "url": "https://registry.npmjs.org/@mlc-ai/web-xgrammar/-/web-xgrammar-0.1.27.tgz",
+      "bytes": 804151,
+      "sha256": "ce4bab44c89d06c57600cefdfaf6c5c5f3a85ae55b13209a7d889aad47af8193"
+    }
+  ],
+  "criticBatchSize": 4,
+  "results": [
+    {
+      "dataset": "A",
+      "sourceFile": "docs/development-v18f-native27-a-recovered.json",
+      "sourceSha256": "71f59bad513afabd7b2d2b361ca2c63690cdc033b9b24a8543434d89307d3233",
+      "checkingSources": 26,
+      "concerns": 12,
+      "batches": [
+        {
+          "checkingSourceFactIds": [
+            "S008",
+            "S010",
+            "S017",
+            "S019"
+          ],
+          "schemaCharacters": 22015,
+          "schemaSha256": "e37a9d017ca84d6acb40cfc9437e1282a54ac041f1f5393a63f4a8cfd8f32298",
+          "grammarSha256": "8a60af315092e7e77d9dd736c45d1f4e945a59032505761f0b0bc078ab64336b",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "closedSelfPointerRejected": true,
+          "status": "passed"
+        },
+        {
+          "checkingSourceFactIds": [
+            "S027",
+            "S029",
+            "S037",
+            "S039"
+          ],
+          "schemaCharacters": 21427,
+          "schemaSha256": "32eb1ff2539af3ece4a7f5ccfb03df4e1a845f78a9f5089c20b3a979c5e8ae6c",
+          "grammarSha256": "b6607bc5472dd76e7654ca060de5aac35c20346f0c5b3dca53c84e297a2a0549",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "closedSelfPointerRejected": true,
+          "status": "passed"
+        },
+        {
+          "checkingSourceFactIds": [
+            "S042",
+            "S048",
+            "S049",
+            "S051"
+          ],
+          "schemaCharacters": 20867,
+          "schemaSha256": "e14744fd87c8d2b874a312cf83c97c4a08504e6db2fce3752290431268ceadf6",
+          "grammarSha256": "2e85a7a0b07b2e26516f00424c566aaf8b6e3f4078f41660bf83c4fecae9ee99",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "closedSelfPointerRejected": true,
+          "status": "passed"
+        },
+        {
+          "checkingSourceFactIds": [
+            "S058",
+            "S060",
+            "S068",
+            "S070"
+          ],
+          "schemaCharacters": 20573,
+          "schemaSha256": "d37f2961eb5dd946b99d6a78954deb446068b798324b1e7b1726a07477819df8",
+          "grammarSha256": "1cf5a3176ec6d6d2ee30314342e0dad02ed1692d556ec246c1dc5f44386dbc24",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "closedSelfPointerRejected": true,
+          "status": "passed"
+        },
+        {
+          "checkingSourceFactIds": [
+            "S073",
+            "S076",
+            "S078",
+            "S079"
+          ],
+          "schemaCharacters": 20279,
+          "schemaSha256": "77bc31c5eb044f3eac322a6c59a41857d4a7aa1fcf82207bc72093df6470b46a",
+          "grammarSha256": "8606ad51ef2b0979d00ec4b5c5fe2a488c6888a01dbf602e9117465ebf5168e2",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "closedSelfPointerRejected": true,
+          "status": "passed"
+        },
+        {
+          "checkingSourceFactIds": [
+            "S081",
+            "S088",
+            "S091",
+            "S093"
+          ],
+          "schemaCharacters": 19838,
+          "schemaSha256": "7bcd3ae63cb5de8021322c77c7031eb8971c7844a8f6d6580f0b12be1219e110",
+          "grammarSha256": "4c88836b37c453c5bdcb39814af9812bf050c4efa2c4a832b5420b5b5d26f447",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "closedSelfPointerRejected": true,
+          "status": "passed"
+        },
+        {
+          "checkingSourceFactIds": [
+            "S100",
+            "S102"
+          ],
+          "schemaCharacters": 15041,
+          "schemaSha256": "134cb4805326ab704e11e3e59033a6bc7d3877b14eae36d7d2bdcd7f40c73fb2",
+          "grammarSha256": "7b8bcf4fc172000b978c4addcd57a0326c5b019591b994eff01a759395986dc3",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "closedSelfPointerRejected": true,
+          "status": "passed"
+        }
+      ],
+      "maxSchemaCharacters": 22015,
+      "status": "passed"
+    },
+    {
+      "dataset": "G",
+      "sourceFile": "docs/development-v18g-native27-g-staged.json",
+      "sourceSha256": "84412a9ca97110a664158518736c6495c063d3a4a153913ba9025b6655a07cef",
+      "checkingSources": 20,
+      "concerns": 5,
+      "batches": [
+        {
+          "checkingSourceFactIds": [
+            "S001",
+            "S007",
+            "S008",
+            "S010"
+          ],
+          "schemaCharacters": 15395,
+          "schemaSha256": "ef73f9117245b6b9133af63e1789b1af0c0a92ae56c3cbd39f0b947fd7d43d91",
+          "grammarSha256": "5a8bcae747d3621ca14c746fc176c67eabed5db4180d0a3f89d4ab76fa62bd95",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "closedSelfPointerRejected": true,
+          "status": "passed"
+        },
+        {
+          "checkingSourceFactIds": [
+            "S019",
+            "S020",
+            "S022",
+            "S025"
+          ],
+          "schemaCharacters": 15059,
+          "schemaSha256": "d91c8f365fefcf229ed24b3958ae7bfc43e3b8fc08b55558bcb791e557155dec",
+          "grammarSha256": "dfbeee3d5cbb8d139cdba632b03c2841c03b534716e91054ac6cb98052695e10",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "closedSelfPointerRejected": true,
+          "status": "passed"
+        },
+        {
+          "checkingSourceFactIds": [
+            "S033",
+            "S034",
+            "S036",
+            "S041"
+          ],
+          "schemaCharacters": 14590,
+          "schemaSha256": "65827a98fc993e827363a4ffd6caa4ab3071edbdb1643c7215beacfdc6a13e92",
+          "grammarSha256": "458c2d4f6af991ea87053fc5663a86b3e54568c67de7879a2990bb76b77a499c",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "closedSelfPointerRejected": true,
+          "status": "passed"
+        },
+        {
+          "checkingSourceFactIds": [
+            "S043",
+            "S044",
+            "S046",
+            "S047"
+          ],
+          "schemaCharacters": 14275,
+          "schemaSha256": "aa6bf8297bc1f730cbb57836ac2d236779f830f5ee3e393aa928323bbe844859",
+          "grammarSha256": "932ba5e587697483746b03599999b62839c991bdf428289430573e5602393b85",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "closedSelfPointerRejected": true,
+          "status": "passed"
+        },
+        {
+          "checkingSourceFactIds": [
+            "S048",
+            "S050",
+            "S051",
+            "S054"
+          ],
+          "schemaCharacters": 14275,
+          "schemaSha256": "48b0305b223486d308cf42d13a2723ca4106be78d580c15ba4a6e2c0d748f53f",
+          "grammarSha256": "2e945c2dc0b527bbe3a3383b530173f5d42005a0eff144278e42f0408984fbdb",
+          "strictMode": true,
+          "syntheticStructuralSampleAccepted": true,
+          "closedSelfPointerRejected": true,
+          "status": "passed"
+        }
+      ],
+      "maxSchemaCharacters": 15395,
+      "status": "passed"
+    }
+  ]
+}

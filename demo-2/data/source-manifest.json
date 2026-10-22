@@ -1,8 +1,29 @@
 {
-  "source": "Simulated Daily Reports CSV.xlsx",
-  "sha256": "4900721f9fadd5bae515ac59da9f53fd7a6f3a591c7c1490e2bb0d5696e65d99",
+  "source": "Simulated Daily Reports CSV - Daily Reports.csv",
+  "sha256": "816995d528766a419c61f4994ade392ec34519ed0f9137aee004b04fc91d2e4b",
+  "sourceVersion": "team-csv-20261022",
   "reports": 10,
   "reference_issues": 12,
+  "source_fields": [
+    "report_id",
+    "report_date",
+    "report_author",
+    "work_area",
+    "shift",
+    "weather",
+    "crew_count",
+    "work_planned",
+    "work_completed",
+    "materials_equipment",
+    "issue_or_update",
+    "schedule_status",
+    "rfi_change_order_refs",
+    "action_required",
+    "responsible_party",
+    "due_date",
+    "quantity_or_measurement",
+    "supporting_evidence"
+  ],
   "excluded_from_inference": [
     "report_completeness",
     "ground_truth_issue_ids",
@@ -12,10 +33,48 @@
     "DR-A06",
     "DR-A10"
   ],
+  "normalized_input_sha256": "9e38f32a4dc4f47ed8c30776ef50e1d9e930bd10ea4df0c467c399cf4b946dc8",
+  "normalized_hash_definition": "SHA-256 of UTF-8 JSON.stringify(DailyCore.reports(input)); excludes dataset metadata and source annotations.",
+  "reference": {
+    "file": "reference-a.json",
+    "sha256": "818a02638089401bd2601546855bb20b653c2e190780a1601dfdd20bdcb14879",
+    "sha256_definition": "Original Windows workspace bytes. Git transport uses UTF-8 without BOM and LF line endings; use canonical_utf8_lf_sha256 across platforms.",
+    "canonical_utf8_lf_sha256": "2f33621faf50f3fed9f09200bb22d890799644f91bf9e3a9ff19490a37e8a970",
+    "changed": false,
+    "alignment": "All 12 supplied issue IDs remain represented in the existing reference. Report narratives are unchanged; only three due-date formatting strings differ after normalization. Reference definitions were not changed to fit predictions."
+  },
+  "annotations_file": "../docs/source-annotations-20261022.json",
+  "previous_input": {
+    "normalized_input_sha256": "4ae8d9d3b59811dcfe4284f650ba78c528303c646b643fcfa8243a8baee4b30e",
+    "archive_directory": "../docs/input-history",
+    "archive_suffix": "-before-20261022-csv",
+    "normalized_field_changes": [
+      {
+        "report_id": "DR-A04",
+        "field": "due_date",
+        "previous": "2026-05-13 08:00",
+        "current": "2026-05-13 8:00"
+      },
+      {
+        "report_id": "DR-A06",
+        "field": "due_date",
+        "previous": "2026-05-14 09:00",
+        "current": "2026-05-14 9:00"
+      },
+      {
+        "report_id": "DR-A08",
+        "field": "due_date",
+        "previous": "2026-05-15 08:00",
+        "current": "2026-05-15 8:00"
+      }
+    ],
+    "notes": "Earlier evaluations retain their original input hashes and predictions. They must not be pooled as runs on the current source bytes."
+  },
   "notes": [
-    "Workbook contains 1000 formatted rows per sheet; only populated rows imported.",
-    "Empty weather cells preserved as missing; narrative DOCX says Not recorded.",
-    "ISS-04 reconciled with narrative evaluation plan to distinguish missing documentation from a proven unresolved technical issue.",
-    "Reference labels are never included in generation requests."
+    "Authoritative main demonstration input is the CSV supplied by the team on October 22, 2026.",
+    "Only the 18 daily-report source fields enter reports-a and sample downloads; the three supplied annotation columns are retained separately.",
+    "Blank weather cells are preserved as empty strings; they are not replaced by Not recorded.",
+    "Crew counts and due-date strings follow the supplied CSV exactly after the standard string/whitespace normalization.",
+    "The records are synthetic; independent team adjudication and real-project validation remain pending."
   ]
 }

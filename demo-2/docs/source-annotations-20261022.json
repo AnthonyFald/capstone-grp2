@@ -1,0 +1,72 @@
+{
+  "source": "Simulated Daily Reports CSV - Daily Reports.csv",
+  "sourceSha256": "816995d528766a419c61f4994ade392ec34519ed0f9137aee004b04fc91d2e4b",
+  "purpose": "Supplied source annotations retained separately for provenance and evaluation. Never supply these columns to inference. These row-level notes are not a replacement for the unchanged reference-a.json issue definitions.",
+  "annotationColumns": [
+    "report_completeness",
+    "ground_truth_issue_ids",
+    "ground_truth_notes"
+  ],
+  "reports": [
+    {
+      "report_id": "DR-A01",
+      "report_completeness": "Mostly complete",
+      "ground_truth_issue_ids": "ISS-01;ISS-02",
+      "ground_truth_notes": "ISS-01: water source unconfirmed. ISS-02: substrate inspection is a prerequisite and remains outstanding."
+    },
+    {
+      "report_id": "DR-A02",
+      "report_completeness": "Ambiguous",
+      "ground_truth_issue_ids": "ISS-02;ISS-03",
+      "ground_truth_notes": "ISS-02: inspection status unresolved. ISS-03: 'appeared ready' may conflict with the absence of documented acceptance; it is not proof of formal approval."
+    },
+    {
+      "report_id": "DR-A03",
+      "report_completeness": "Detailed but contains a coordination gap",
+      "ground_truth_issue_ids": "ISS-03;ISS-04;ISS-05",
+      "ground_truth_notes": "ISS-03: verbal clearance conflicts with missing written release. ISS-04: RFI-017 response status is unclear. ISS-05: planned pour delayed due to missing confirmation."
+    },
+    {
+      "report_id": "DR-A04",
+      "report_completeness": "Conflicting",
+      "ground_truth_issue_ids": "ISS-06;ISS-04",
+      "ground_truth_notes": "ISS-06: conflicting reports on whether inspection passed / written release was issued. ISS-04: RFI response status remains unclear."
+    },
+    {
+      "report_id": "DR-A05",
+      "report_completeness": "Detailed",
+      "ground_truth_issue_ids": "ISS-04;ISS-05;ISS-07",
+      "ground_truth_notes": "ISS-04: RFI unresolved. ISS-05: continued pour delay. ISS-07: slab thickness/detail conflict needs design clarification."
+    },
+    {
+      "report_id": "DR-A06",
+      "report_completeness": "Ambiguous",
+      "ground_truth_issue_ids": "ISS-04;ISS-07;ISS-08",
+      "ground_truth_notes": "ISS-04: RFI not formally closed. ISS-07: design detail remains unconfirmed for field execution. ISS-08: decision not formally communicated to the subcontractor."
+    },
+    {
+      "report_id": "DR-A07",
+      "report_completeness": "Complete for inspection status; one design issue remains open",
+      "ground_truth_issue_ids": "ISS-07;ISS-09",
+      "ground_truth_notes": "ISS-07: slab detail clarification remains unresolved. ISS-09: reinforcement verification is a remaining pre-pour dependency."
+    },
+    {
+      "report_id": "DR-A08",
+      "report_completeness": "Detailed with ambiguous instruction",
+      "ground_truth_issue_ids": "ISS-07;ISS-08;ISS-09;ISS-05",
+      "ground_truth_notes": "ISS-07: drawing/revision unresolved. ISS-08: informal instruction not linked to formal RFI response. ISS-09: reinforcement inspection pending. ISS-05: pour delay continues."
+    },
+    {
+      "report_id": "DR-A09",
+      "report_completeness": "Mostly complete, with record-linkage gap",
+      "ground_truth_issue_ids": "ISS-08;ISS-10;ISS-11",
+      "ground_truth_notes": "ISS-08: formal RFI response still not attached despite informal instruction. ISS-10: 'resolved' status is not supported by a linked formal response. ISS-11: placed quantity and quality/strength-test follow-up are not fully documented."
+    },
+    {
+      "report_id": "DR-A10",
+      "report_completeness": "Mostly complete",
+      "ground_truth_issue_ids": "ISS-12",
+      "ground_truth_notes": "ISS-12: adjacent trade experienced restricted access; coordination/advance notification is unclear. Do not infer a critical-path delay from this report alone."
+    }
+  ]
+}

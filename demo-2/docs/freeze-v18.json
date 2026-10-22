@@ -1,0 +1,87 @@
+{
+  "frozenAt": "2026-10-22T19:58:33.259Z",
+  "pipeline": "daily-reports-v18",
+  "prompt": "daily-review-18c-consolidated",
+  "nativePolicy": "native-sampling-3",
+  "model": "qwen3.5:27b",
+  "modelDigest": "64ae5b1d651fb2709d5928ccb8dcfb4bb2cc9c2c8001ac34497e36a6cf905b59",
+  "reasoning": false,
+  "seed": 42,
+  "contextWindow": 32768,
+  "method": "Source sentence discovery and focused audits; fixed candidate-to-concern mapping with grounded aspect roles, lossless evidence union, independently scoped status checks, canonical materiality verification and final concern boundary audit.",
+  "files": {
+    "demo-2/core.js": "b8680eadd431408fd3e332d7f53628b2fb018f349ea05a0ca345ecad2edf3e37",
+    "demo-2/engine.js": "c05b3fe31aa289b93741b8f691b4de4d9e92af8d1eab041b20331b83c3570a2c",
+    "demo-2/native-engine.cjs": "c5e04b4da05ead9bc8dc45d37c8946964201c6504ea922b7b12cc20b5400d6f2",
+    "demo-2/app.js": "2e47533b1ad8be88f4f791357fa5b30cdf534f24d7efef5a3655db9d732d33fc",
+    "demo-2/ai-worker.js": "7db2627c7a0d074d4c8badba3c2f69b75ddc0f9e067dd6ef63c55d3779d2717b",
+    "demo-2/index.html": "3ad4d9ff59774f2b1426572ce41e5f4bd77f1d28331214ec1accef8ef61475c8",
+    "demo-2/data/reports-a.json": "2127ebd9eaa04040022f17b31484592f39e840f93e56476ff5c515c6850fc5f8",
+    "demo-2/data/reference-a.json": "818a02638089401bd2601546855bb20b653c2e190780a1601dfdd20bdcb14879",
+    "demo-2/data/reports-b.json": "5473917371430dfffdd1d854f5bf6e7e0946e56b759966d0de2cb0094399c528",
+    "demo-2/data/reference-b.json": "3bd85b3759a276ee7b737556ff107df014bf1d690a0dd4db17c2867bbaf0fffa",
+    "demo-2/data/reports-clean.json": "8ac9d9155dec06118d27d7f3208ab45d52b7d835cb5fef4604ded12c91d2257a",
+    "demo-2/data/reference-clean.json": "c7d54b6db410a5121023d46bcabeeb7cb3b7c5cb381cddf23532784d306434e0",
+    "demo-2/data/reports-d.json": "184e7c143adb3943cb04be3e668892648845e10e9c4432851b45030f00c54a40",
+    "demo-2/data/reference-d.json": "affa94be3c844d9448f8ca6919419705f812a829e669a5e6e22a294668569df3",
+    "demo-2/data/reports-e.json": "9cf08fe0cbb881eeff5be5a82362968d7ff5de0234eb74da83f736c3bf8ee1a0",
+    "demo-2/data/reference-e.json": "3225db74ee70e4e7eaf8ab21601d98fe8cb40dca31a258efbd377c6e522b4181",
+    "demo-2/data/reports-f.json": "c2f4739a966d7b7340f83eeeee5e162dd73d01d09e2e5860996e46056a5cbe77",
+    "demo-2/data/reference-f.json": "4c21f8590c26ab39659ed006e7181c87ca00b603cfd810ee26b7d11177bd84ae",
+    "demo-2/data/reports-g.json": "aeaf1fe2994325eece001addf52b1cc9b1a505bfe667fec0ab42ba6269357984",
+    "demo-2/data/reference-g.json": "111e73ba4945b9b6eba7c6999faa4cba5b8c1f7be06d40a0a33dd8ad144a8163"
+  },
+  "canonicalUtf8LfFiles": {
+    "demo-2/core.js": "6387516974b114ee90b1e8c50299dfcc9d148f67355be93d75207b38bac93714",
+    "demo-2/engine.js": "c05b3fe31aa289b93741b8f691b4de4d9e92af8d1eab041b20331b83c3570a2c",
+    "demo-2/native-engine.cjs": "6e66b7e9468111c8367f484c53c316c350b0332f38b7e451b13a4e80242cee75",
+    "demo-2/app.js": "96ed23b07a4f3adc6c1282fd6262c08bafe2c0234ef58ee0e540e9e776e70dc9",
+    "demo-2/ai-worker.js": "22c1208ddd161d35db324987624665640109f78ced35fc28f510464a4f3f5aae",
+    "demo-2/index.html": "e9929e819f515c6a2b4138cb15ae531f59122f6a0629aa9e9f5c3513faa6ae9c",
+    "demo-2/data/reports-a.json": "2127ebd9eaa04040022f17b31484592f39e840f93e56476ff5c515c6850fc5f8",
+    "demo-2/data/reference-a.json": "2f33621faf50f3fed9f09200bb22d890799644f91bf9e3a9ff19490a37e8a970",
+    "demo-2/data/reports-b.json": "5473917371430dfffdd1d854f5bf6e7e0946e56b759966d0de2cb0094399c528",
+    "demo-2/data/reference-b.json": "3bd85b3759a276ee7b737556ff107df014bf1d690a0dd4db17c2867bbaf0fffa",
+    "demo-2/data/reports-clean.json": "8ac9d9155dec06118d27d7f3208ab45d52b7d835cb5fef4604ded12c91d2257a",
+    "demo-2/data/reference-clean.json": "c7d54b6db410a5121023d46bcabeeb7cb3b7c5cb381cddf23532784d306434e0",
+    "demo-2/data/reports-d.json": "74d73c4bd16ae759b165dc5a73f42093ba4a94af5f90d15da0e103a9db423fa2",
+    "demo-2/data/reference-d.json": "1c292beda47076d5fa018ac1c8c2311d918c2167c45a5ae9e0faa8ed58300ceb",
+    "demo-2/data/reports-e.json": "dd0158c60b1f115b64b4736f24416084ebbdf730e9cd058a0669c8e0cf7ec03e",
+    "demo-2/data/reference-e.json": "d6d029deab16e57419472af0a961faef4f0875fd9968b1e0a2137022ba711645",
+    "demo-2/data/reports-f.json": "e9e59179765dc4617b7b784de951acf1e3b9c1a7264cb156c7fb10789be8d3ad",
+    "demo-2/data/reference-f.json": "6c53b3a3b76a89a66fda08026ae36a9ea90b7bf967fea716765feb3f3c98104e",
+    "demo-2/data/reports-g.json": "16b53ec4d1790f3fe61ab31f6b2ca71a699f0a8ae1c64552efbc35126cce93d7",
+    "demo-2/data/reference-g.json": "730b7cddec7045d6e377810884a04749b062e18768d938d80d4bbb709270c2a8"
+  },
+  "normalizedInputHashes": {
+    "a": "9e38f32a4dc4f47ed8c30776ef50e1d9e930bd10ea4df0c467c399cf4b946dc8",
+    "b": "2d7224c3864ff2005397ce01d476d482de6fd57d1d8896511ec4578819fa3102",
+    "clean": "b0e0a1874339ed7ed42e7a3dc229fc61e8e3fec87a8275deca8f7d1f569fe235",
+    "d": "b82eaabb9672786d8b231907908825a84d94886edbb21b609e81fb35c79d2034",
+    "e": "3317059b5c048c8c83b44ab7cb22aa89d74e5a6b9146d13126a0f15485918f36",
+    "f": "33485d16d10c1ca7396bebda4e0024dd07467c6e3fe1164cc6d7fdf502085829",
+    "g": "376ff8d2e2c282650a9462f775171dcb55bcdb584b8d5722813b7b116f0912f9"
+  },
+  "targets": "Zero semantic duplicates; no lost previously fully found A/B/D/F reference IDs in matched retained-candidate consolidation; zero unsupported distinct findings; C/E zero alerts. Fresh G target 5/5, zero unsupported, zero duplicates. Partial counts missed.",
+  "timing": "Matched saved-candidate checks use actual new local inference but reuse discovery and have no end-to-end latency. Full fresh UI A and G/control runs timed continuously, n=1.",
+  "provenance": "G authored by a separate agent with inherited discussion; contents/references withheld from implementing agents until this freeze. This is procedural separation, not independent human validation. A/B/D/F development-informed. Current A is team-csv-20261022, distinct from retained v17 A source.",
+  "hashDefinition": "files hashes original workspace bytes; canonicalUtf8LfFiles hashes UTF-8 without BOM with LF line endings for Git transport; normalizedInputHashes hashes JSON.stringify(DailyCore.reports(input)).",
+  "presentationOnlyAmendments": [
+    {
+      "recordedAt": "2026-10-22T20:02:21.370Z",
+      "reason": "Clarify basic browser source-selection plus consolidation call count and label earlier quality observations accurately. Copy changes only; full UI A already uses unchanged native27 flow. Inference source/configuration and all data/reference hashes remain frozen.",
+      "files": {
+        "demo-2/app.js": "b54042714397fe1286781b5726d3dbe63f039b2dca1612ffeaf13611412e67cd",
+        "demo-2/index.html": "2f12b090114dea42978c76a2a8faed2a2f6e10690c03c0eeba6a345b7dded1a0"
+      }
+    }
+  ],
+  "evaluationProtocolSnapshot": {
+    "recordedAt": "2026-10-22T20:06:08.254Z",
+    "note": "Protocol hash supplement recorded before fresh G inference. A/B/D/F are development-informed. H5 targets were stated in the consolidation protocol before matched consolidation attempts; the later named H5 appendix documents the same criteria. This is exploratory development, not preregistration.",
+    "canonicalUtf8LfFiles": {
+      "demo-2/docs/consolidation-protocol.md": "f82b927d8c3b48787eea2bc547afb3ca7f93d6fb75fb0b38e59ebf26774163fc",
+      "demo-2/docs/protocol.md": "89d3d2f911eb947256fdb05025de01c5414d9a63049165b1f7526493dc399fce"
+    }
+  }
+}

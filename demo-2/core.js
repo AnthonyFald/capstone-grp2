@@ -1,6 +1,6 @@
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.DailyCore=api;})(typeof self==='object'?self:globalThis,()=>{
   'use strict';
-  const VERSION='daily-reports-v17';
+  const VERSION='daily-reports-v18';
   const FIELDS=['report_id','report_date','report_author','work_area','shift','weather','crew_count','work_planned','work_completed','materials_equipment','issue_or_update','schedule_status','rfi_change_order_refs','action_required','responsible_party','due_date','quantity_or_measurement','supporting_evidence'];
   const STATUSES=['open','resolved','historical','needs_verification'];
   const clean=v=>v==null?'':String(v).trim();
@@ -41,8 +41,8 @@
     if(!value||!Array.isArray(value.findings)||value.findings.length>24)throw Error('Model did not return a valid findings list.');
     const issues=value.findings.map((f,i)=>{
       if(!f||!STATUSES.includes(f.status)||!['delay','conflict','unresolved','communication','update'].includes(f.category))throw Error('Model returned an invalid status or category.');
-      for(const k of ['title','observation','consequence','action','uncertainty'])if(typeof f[k]!=='string'||f[k].length>(k==='observation'?20000:1600)||!f[k].trim())throw Error('Model returned an incomplete finding.');
-      if(!Array.isArray(f.evidence)||!f.evidence.length||f.evidence.length>24)throw Error('Every finding needs source evidence.');
+      for(const k of ['title','observation','consequence','action','uncertainty'])if(typeof f[k]!=='string'||f[k].length>(k==='observation'?100000:1600)||!f[k].trim())throw Error('Model returned an incomplete finding.');
+      if(!Array.isArray(f.evidence)||!f.evidence.length||f.evidence.length>512)throw Error('Every finding needs source evidence.');
       const evidence=f.evidence.map(e=>{
         const source=rows.find(r=>r.report_id===e.report_id);
         if(!source||!FIELDS.includes(e.field)||!source[e.field]||(e.quote!==undefined&&(typeof e.quote!=='string'||!e.quote.trim().length||!source[e.field].includes(e.quote))))throw Error('An evidence quote does not match its source. No unverified result was accepted.');
@@ -72,5 +72,45 @@
   }
   const reduction=(baseline,assisted)=>Number.isFinite(baseline)&&baseline>0&&Number.isFinite(assisted)&&assisted>=0?(baseline-assisted)/baseline:null;
   function csv(rows){if(!rows.length)return '';const keys=Object.keys(rows[0]);const cell=v=>{let text=String(v??'');if(/^\s*[=+@-]/.test(text))text="'"+text;return '"'+text.replace(/"/g,'""')+'"';};return [keys,...rows.map(r=>keys.map(k=>r[k]))].map(r=>r.map(cell).join(',')).join('\r\n');}
-  return {VERSION,FIELDS,STATUSES,reports,parseCSV,parseInput,validate,baseline,score,reduction,csv};
+  const reviewCaution=run=>Array.isArray(run?.sourceObligationAudit?.finalProductReview?.abstentions)&&run.sourceObligationAudit.finalProductReview.abstentions.length?'Some proposed additions could not be verified. Review the complete reports; details are in the full record.':'';
+  function textReport(run){
+    if(!run||!Array.isArray(run.findings))throw Error('Analyze reports before downloading a text review.');
+    const findings=run.findings,rows=Array.isArray(run.reports)?run.reports:[],byReport=new Map(rows.map(r=>[r.report_id,r]));
+    const inventory=new Map((run.sourceInventory||[]).map(p=>[p.id,p]));
+    const statuses={open:'Open',needs_verification:'Needs checking',resolved:'Resolved for this concern',historical:'Earlier issue; disruption ended'};
+    const decisions={pending:'Not reviewed',accepted:'Keep',corrected:'Corrected / see reviewer note',rejected:'Rejected'};
+    const lines=['DAILY REPORT REVIEW','===================',''];
+    if(rows.length){lines.push('Reports: '+rows.length);const dates=rows.map(r=>r.report_date).filter(Boolean).sort();if(dates.length)lines.push('Period: '+dates[0]+' to '+dates.at(-1));}
+    if(run.createdAt)lines.push('Review generated: '+run.createdAt);
+    lines.push('Findings: '+findings.length,'Not yet reviewed: '+findings.filter(f=>!f.review||f.review==='pending').length,'','Suggested status applies to the review question below. Read the cited source before deciding.','Reviewer notes are kept separate from original report text. Rejected findings remain labelled in this record.','');
+    if(reviewCaution(run))lines.push(reviewCaution(run),'');
+    if(!findings.length)lines.push('No review findings were returned. This does not establish that the reports contain no issues.','');
+    findings.forEach((f,index)=>{
+      const heading=clean(f.scopeTitle)||(clean(f.scopeQuestion)?'Review question: '+clean(f.scopeQuestion):'')||clean(f.title)||'Reported concern';
+      lines.push((index+1)+'. '+heading,'-'.repeat(Math.min(96,heading.length+3)),'Suggested status: '+(statuses[f.status]||clean(f.status)),'Your decision: '+(decisions[f.review||'pending']||clean(f.review)));
+      if(f.concernId||f.id)lines.push('Issue reference: '+(f.concernId||f.id));
+      if(f.owner)lines.push('Owner stated in the source: '+f.owner);
+      if(f.due)lines.push('Due stated in the source: '+f.due);
+      if(f.correction)lines.push('Reviewer note: '+f.correction);
+      lines.push('','Source timeline:');
+      let passages=(f.sourceFactIds||[]).map(id=>inventory.get(id)).filter(Boolean);
+      if(!passages.length||passages.length!==(f.sourceFactIds||[]).length)passages=(f.evidence||[]).map((e,index)=>({...e,id:(f.sourceFactIds||[]).length===f.evidence.length?f.sourceFactIds[index]:undefined,report_date:byReport.get(e.report_id)?.report_date||'',report_author:byReport.get(e.report_id)?.report_author||''}));
+      const latest=new Set(f.latestFactIds||[]),required=new Set((f.coverageRequirements||[]).map(p=>JSON.stringify([p.report_id,p.field,p.quote]))),seen=new Set();let priorReport=null;
+      for(const p of passages){
+        const key=JSON.stringify([p.report_id,p.field,p.quote]);if(seen.has(key))continue;seen.add(key);
+        if(priorReport!==p.report_id){if(priorReport!==null)lines.push('');lines.push([p.report_date,p.report_id,p.report_author].filter(Boolean).join(' / '));priorReport=p.report_id;}
+        lines.push('  '+(required.has(key)?'Reported requirement: ':latest.has(p.id)?'Latest cited update: ':'')+'"'+p.quote+'"');
+      }
+      if(!passages.length&&f.observation)lines.push(f.observation);
+      lines.push('','');
+    });
+    lines.push('RECORD DETAILS','--------------');
+    if(run.model)lines.push('Model: '+run.model);
+    if(run.pipeline)lines.push('Review version: '+run.pipeline);
+    if(Number.isFinite(run.elapsedMs))lines.push('Processing time: '+(run.elapsedMs/1000).toFixed(1)+' seconds');
+    if(run.runId)lines.push('Run reference: '+run.runId);
+    lines.push('Source quotations and reviewer notes are not independent verification of reported completion.','');
+    return lines.join('\r\n');
+  }
+  return {VERSION,FIELDS,STATUSES,reports,parseCSV,parseInput,validate,baseline,score,reduction,csv,textReport,reviewCaution};
 });
