@@ -1,0 +1,99 @@
+{
+  "runs": [
+    {
+      "runId": "fe0f1c56-9ee6-42f6-908e-64155e8fe184",
+      "reviewer": "Separate case-authoring Codex agent provisional review",
+      "independentReview": false,
+      "judgments": {
+        "D-01": {
+          "rating": "found",
+          "note": "Correctly captures recurring oily film of unestablished origin and investigation before return to service; no diagnosis or invented delay linkage.",
+          "findingId": "F1"
+        },
+        "D-02": {
+          "rating": "found",
+          "findingId": "F14",
+          "note": "Fully retains verbal clearance, QC-passed account, contemporaneous absence of the signed crew release, and later signed BF-P6-0910 issue/receipt with correct resolved status."
+        },
+        "D-03": {
+          "rating": "found",
+          "note": "Explicit 6 mm versus 9 mm conflict, internal draft, and later signed TQ-061 / M-214 revision D decision specifying 9 mm with closed status.",
+          "findingId": "F3"
+        },
+        "D-04": {
+          "rating": "found",
+          "note": "The same supported finding separately quotes the draft not issued through the register and lack of installer receipt, followed by formal issue at 13:10 and acknowledged receipt at 13:35. Counts this reference once despite sharing F3 with D-03.",
+          "findingId": "F3"
+        },
+        "D-05": {
+          "rating": "partial",
+          "findingIds": [
+            "F10",
+            "F11"
+          ],
+          "note": "The September 9 and September 10 documented setting deferrals, bearing-release/design context, and eventual closure of those individual gates are now retained. Neither finding nor any other selected item retains September 12 physical setting/grouting completion. Closing a readiness gate is not the same as demonstrating later physical work completion, so the complete historical work-delay reference remains partial."
+        },
+        "D-06": {
+          "rating": "found",
+          "findingId": "F16",
+          "note": "Explicitly distinguishes bearing-face inspection scope from separate anchor-torque witness/acceptance, tracks the earlier unentered acceptance and later AT-P6-0912 reference, and preserves the inaccessible/unlinked signed sheet with correct needs-verification status."
+        },
+        "D-07": {
+          "rating": "found",
+          "note": "Explicitly captures the one-bag reconciliation gap with 22 received, 19 issued, and two returned; later mixing of those 19 does not resolve the gap. No invented excess volume, theft, or quality defect.",
+          "findingId": "F5"
+        },
+        "D-08": {
+          "rating": "found",
+          "note": "Captures preliminary 0.18 mm vertical offset versus 0.10 mm limit and final alignment required after cure before start-up. Correct open status and no claim of failed final acceptance or current operation.",
+          "findingId": "F6"
+        },
+        "D-09": {
+          "rating": "found",
+          "findingIds": [
+            "F7",
+            "F13"
+          ],
+          "note": "Jointly retains the reported notice sending, uncertain chargehand receipt, 80-minute restriction, reassignment, and resumed rack access. Count this reference once; no full-shift loss or critical-path claim."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "duplicate",
+        "F3": "supported",
+        "F4": "duplicate",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "duplicate",
+        "F9": "duplicate",
+        "F10": "supported",
+        "F11": "supported",
+        "F12": "duplicate",
+        "F13": "supported",
+        "F14": "supported",
+        "F15": "duplicate",
+        "F16": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported unknown oily-film origin and required investigation before service; no invented diagnosis.",
+        "F2": "Duplicate/subset of the more complete F14: same historical absence and later receipt of the signed bearing-face release, with no material distinction beyond the complete release discrepancy in F14.",
+        "F3": "Supported technical dimensional conflict and unissued draft, followed by signed revision, receipt, and technical closure. Explicitly covers D-03 and D-04.",
+        "F4": "Duplicate of the more complete F16: same independent anchor-torque witness/acceptance history and unavailable signed-sheet verification gap, same latest state.",
+        "F5": "Supported one-bag reconciliation gap with accurate source quantities and open state.",
+        "F6": "Supported preliminary alignment result and final alignment requirement before start-up. No invented final-test failure.",
+        "F7": "Supported reportedly sent versus uncertain receipt of the advance access notice. Complements F13 disruption history.",
+        "F8": "Duplicate of F16 (also repeated in F4): identical AT-P6-0912 unavailable signed-sheet verification issue. The combined source action does not create a second record gap.",
+        "F9": "Duplicate of F7: same reported notice sending, uncertain receipt and follow-up route, with the same needs-verification status.",
+        "F10": "Supported narrow historical pump-setting hold attributable to the missing bearing-face release, followed by explicit closure of that particular release gate. The internal topic confines resolved to this gate; it does not establish physical setting completion or closure of the other gates. Partial D-05 contribution only.",
+        "F11": "Supported narrow historical pump-setting hold pending the issued shim revision, followed by formal technical issue and crew receipt. Complements the separately timed bearing-face gate in F10, but does not establish physical installation completion. Partial D-05 contribution only.",
+        "F12": "Duplicate of F16: repeats the separate torque-acceptance prerequisite and same later unavailable signed-sheet verification gap. A different generic progress/delay label does not make this a new independent concern; no distinct measured delay event is established.",
+        "F13": "Supported historical 80-minute access restriction, reassignment, resumed service-rack access and notice uncertainty. Complements F7 notice-sending/receipt distinction.",
+        "F14": "Supported full verbal-clearance/QC-passed versus missing written release discrepancy, with explicit signed release receipt and correct closure. Retained as the most complete release finding rather than counting F2 again.",
+        "F15": "Duplicate of F3: same 6 mm versus 9 mm conflict, absent issued revision, and later signed decision/receipt/closure. The added earlier awaiting-revision sentence does not create a distinct concern.",
+        "F16": "Supported full independent torque-acceptance record gap, including bearing-face-only scope, separate witness requirement, later inspection reference and unavailable sheet. Retained as the most complete anchor item rather than counting F4/F8/F12 again."
+      },
+      "timingInterpretation": "Staged replay for quality evaluation only: the first four prior completed responses were reused unchanged, then actual independent probes and verification were run. elapsedMs and totalMs are null. New-segment checks must not be presented as continuous end-to-end D latency."
+    }
+  ]
+}

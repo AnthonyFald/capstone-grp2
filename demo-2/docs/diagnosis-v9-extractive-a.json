@@ -1,0 +1,28 @@
+{
+  "runId": "f08fbf5b-35a4-4262-b6a7-a852c8d49e78",
+  "sourceFile": "development-v9-extractive-a-nonthinking.json",
+  "reviewer": "Separate Codex agent diagnostic review",
+  "independentReview": false,
+  "status": "development_failure_not_formally_scored",
+  "grounding": "The selected passages match original report sentences. Exact quotation prevents newly generated factual prose but does not guarantee correct grouping, category or latest state.",
+  "diagnosis": [
+    "All ten items select kind conflict, although the record includes causes, inspections, technical decisions, work progress, quantities and coordination.",
+    "Several selections group report fields by position across rows instead of by a coherent concern.",
+    "The JSON grammar supplies structural constraints, but the prompt does not explicitly explain the output keys and all kind values. A schema alone does not teach their intended semantic use."
+  ],
+  "materialFailures": {
+    "F1": "Mixes substrate acceptance with unresolved technical/formal-record issues and labels the group resolved using the superintendent's RFI status.",
+    "F2": "Includes the unconfirmed water source alongside inspection and RFI actions, then marks the group resolved. No source closes the water cause.",
+    "F3": "Labels formal communication and revision record gaps resolved even though its own latest-date context says the revision and formal response are not cited/attached.",
+    "F4": "Mixes the historically conflicting inspection accounts with separate design-record concerns, obscuring the substrate-only closure in DR-A07.",
+    "F7": "Groups missing water-damage photos, inspection forms and formal RFI responses, then uses a substrate checklist to close all of them.",
+    "F9": "Labels a group resolved while its latest selected passage says placed quantity was not separately measured and another selected passage says curing/protection and strength-test follow-up remain in progress."
+  },
+  "partiallyUsefulItems": {
+    "F5": "Contains historical postponement and completed placement, but combines independent prerequisites and uses the generic conflict type.",
+    "F6": "Preserves historical open RFI entries and later reported resolution, with needs_verification, but does not cleanly distinguish technical resolution from missing formal records.",
+    "F8": "Preserves the reinforcement inspection reference and explicit missing-record follow-up; it omits the earlier separate pre-pour dependency chronology.",
+    "F10": "Correctly preserves uncertainty about notice and the reported follow-up, without invented critical-path delay; it omits the documented restriction duration and reassignment."
+  },
+  "recommendedChange": "Explicitly describe the JSON keys and each kind in the model prompt. Add a short non-rendered semantic topic or stage concern identification separately from source selection/status. Retain exact-source rendering and evaluate grouping/status alongside quotation grounding. This run is a development failure and is not eligible as a final accepted evaluation."
+}

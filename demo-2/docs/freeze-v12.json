@@ -1,0 +1,21 @@
+{
+  "frozenAt": "2026-10-22T10:38:38.187Z",
+  "pipeline": "daily-reports-v12",
+  "prompt": "daily-review-12-extractive",
+  "nativePolicy": "native-sampling-3",
+  "model": "qwen3.5:27b",
+  "reasoning": false,
+  "seed": 42,
+  "passes": "source selection, targeted chronology/coverage audit, uncited-passage coverage check",
+  "files": {
+    "demo-2/core.js": "46d52d252f6ae234b5c02bf10ba821e92b10b6b0f12fff7836a2a5a34390d949",
+    "demo-2/engine.js": "1d069762d2d42ed792f6d9497252ac9fef4b9b895b207d09a9a163c38c83d33a",
+    "demo-2/native-engine.cjs": "c5e04b4da05ead9bc8dc45d37c8946964201c6504ea922b7b12cc20b5400d6f2",
+    "demo-2/data/reports-d.json": "184e7c143adb3943cb04be3e668892648845e10e9c4432851b45030f00c54a40",
+    "demo-2/data/reference-d.json": "affa94be3c844d9448f8ca6919419705f812a829e669a5e6e22a294668569df3",
+    "demo-2/data/reports-e.json": "9cf08fe0cbb881eeff5be5a82362968d7ff5de0234eb74da83f736c3bf8ee1a0",
+    "demo-2/data/reference-e.json": "3225db74ee70e4e7eaf8ab21601d98fe8cb40dca31a258efbd377c6e522b4181"
+  },
+  "newCaseStatus": "D/E source and reference contents were authored by a separate agent and not exposed to the implementing agent before this freeze. Author inherited project context. Not independent human validation.",
+  "targets": "A >=10/12; B >=6/8; D >=8/9; <=1 unsupported per nonzero case; C/E zero unsupported. Partial counts as missed."
+}

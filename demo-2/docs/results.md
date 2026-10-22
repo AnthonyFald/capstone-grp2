@@ -1,48 +1,57 @@
 # Demo 2 results and limitations
 
-The daily-report workflow runs locally on the RTX 5080. The final implementation uses core `daily-reports-v8` and prompt `daily-review-8`. The measured quality gate was **not met**. This is a working assisted-review prototype, not a validated autonomous reviewer.
+Demo 2 reviews daily construction reports entirely on device. The accuracy revision uses core `daily-reports-v17` and prompt `daily-review-17-extractive`, with native Qwen 3.5 27B as the quality-focused default. The selected 27B profile meets the pre-set synthetic pilot gates in these observations, with important omissions and repeated suggestions still present. This is an assisted-review prototype; source selection, concern grouping and suggested status still require review.
 
-See the [comparison table](evaluation-summary.csv), [results page](../research.html), [original predictions](final-trials.json) and [explicit annotations](scoring.json). Scores are provisional Codex-assisted judgments; independent team adjudication remains outstanding.
+See the [results page](../research.html), [comparison data](evaluation-summary.csv), [retained predictions](final-trials.json), [annotations](scoring.json) and [evaluation protocol](protocol.md). Semantic scores are provisional Codex-assisted judgments, not independent human validation.
 
-## Final matched-prompt measurements
+## Current measured results
 
-| Profile | Case | Trials | Fully found | Partial issues | Unsupported findings | Processing time |
-| --- | --- | ---: | ---: | ---: | ---: | --- |
-| Native Qwen 3.5 9B, thorough reasoning | A | 1 | 4/12 | 8 | 5 | 598.9 s |
-| Native Qwen 3.5 9B, thorough reasoning | B | 1 | 3/8 | 5 | 2 | 616.4 s |
-| Browser Qwen 3.5 9B, thorough | A | 1 | 4/12 | 7 | 7 | 277.3 s |
-| Browser Qwen 3.5 9B, one pass | A | 3 | 0–1/12 | See annotations | 5–6 | 72.4 s median; 69.4–76.0 s |
-| Browser Qwen 3 4B, one pass | A | 3 | 1/12 | See annotations | 4 | 63.9 s median; 63.2–68.3 s |
+| Profile / case | Runs | Fully found | Partial | Unsupported | Duplicates | Processing |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| Native 27B, uploaded sample A | 1 | 11/12 | 1 | 0 | 7 | 615.1 s |
+| Native 27B, B | 1 | 7/8 | 0 | 0 | 5 | 277.9 s |
+| Native 27B, routine C | 1 | Undefined: zero references | 0 | 0 | 0 | 13.1 s |
+| Native 27B, development D | 1 staged | 8/9 | 1 | 0 | 6 | Not a continuous latency observation |
+| Native 27B, routine E | 1 | Undefined: zero references | 0 | 0 | 0 | 34.4 s |
+| Native 27B, fresh F | 1 | 7/8 | 1 | 0 | 7 | 504.0 s |
+| Experimental browser 4B, routine C | 1 | Undefined: zero references | 0 | 4 | 0 | 14.3 s |
 
-Times exclude initial setup/download. Models also change quantization, runtime and reasoning; these are not controlled estimates of parameter-count effects. One observation has no meaningful variance estimate. Three repetitions describe only this small pilot.
+All rows use core-v17/prompt-v17; native rows use native-sampling-3, non-thinking, seed 42. A is an actual CSV upload, analysis and downloaded JSON through the app. Its original dataset ID remains custom; research alias A was added only after exact normalized-input/hash equality. The original UI export is retained separately.
 
-Thorough profiles covered more concerns but still introduced material errors. Native A included useful water-cause, acceptance and trade-notification findings; other findings overstated RFI status, implied unsupported document-transmission timing, or cited the wrong field. Native B correctly captured product resolution and the quantity discrepancy, but added unsupported cure-completion and delivery-cause claims. Original outputs preserve these errors.
+The default still misses A's explicit strength-test follow-up, B's delivery rescheduling, part of D's postponement-to-physical-completion history, and F's explicit trade receipt acknowledgements. Duplicate suggestions impose real review work: A returns 18 cards including seven duplicates; F returns 16 including seven duplicates. Zero unsupported distinct native findings under the provisional rubric is **not 100% overall accuracy**. In particular, A's narrower progress-gate variants are treated as duplicate progress findings, not proof of separate reinforcement inspection acceptance; annotations explain that scope judgment.
 
-Whole-finding scoring is conservative: a useful observation is still unsupported if it adds a material false assertion or cites the wrong field. Partial coverage counts as missed in strict recall, not half credit. Unsupported findings count output alerts; reference issues count concerns, so the units differ. Independent reviewers may adjudicate borderline wording differently; notes identify those judgments explicitly.
+The current 4B compatibility run completed, but failed the quality control by turning routine accepted work into four alerts. It is explicitly experimental and not recommended for accuracy. Do not combine that failure with the 27B controls or imply that all model choices pass.
 
-## Hypothesis outcomes
+A single per-case observation is **n = 1**; it cannot establish a stable latency distribution, reliability rate or statistical significance. Seeded repetitions and repeated scoring of the same prediction do not create independent test cases.
 
-- **H1: untested.** No controlled human participants or productivity observations were collected. The 25% lower total assisted review time, 20% fewer misses and no additional false alarms targets remain open. Human verification/correction time cannot be replaced by inference latency.
-- **H2: not met.** No final A condition reached at least 10 of 12 fully supported reference issues with at most one unsupported finding.
-- **H3: not met.** Thorough browser analysis improved strict issue coverage over one pass but increased unsupported findings.
-- **H4: descriptive support only.** The 4B one-pass median was about 12% shorter than the browser 9B one-pass median. This is a small timing observation, not evidence that the smaller model is more useful or statistically superior.
+The selected manifest in [evaluation-files.json](evaluation-files.json) determines which raw runs enter the derived table. Staged replays reuse earlier responses and perform new steps locally; they are development quality checks and are excluded from continuous latency summaries. Setup/model loading is recorded separately from inference, and earlier model downloads are not silently included as measured first-use time.
 
-## Development and controls
+## Why the earlier release failed
 
-The keyword baseline runs in under 0.1 seconds but fails to reconcile later resolutions. It is neither an AI condition nor a human-only baseline. It produced no alerts on routine C. An earlier native core-v7/prompt-v7 C run also produced no alerts in 105.4 seconds; C was not rerun with the final core/prompt, so that result is not pooled into the final comparison.
+The deployed core-v8/prompt-v8 native 9B condition fully found **4/12** A issues with **five unsupported findings**, and **3/8** B issues with **two unsupported findings**. It could cite a real report while adding an unsupported transmission time, delivery cause, document reconciliation or cure-completion claim. A citation to an existing field did not establish that the field supported the generated assertion.
 
-Native Qwen 3.5 27B one-pass reasoning completed A in 666.6 seconds using prompt v3, finding 3/12 issues with two unsupported findings. It remains an explicitly experimental higher-capacity option. Its earlier prompt makes it a developmental observation, not a matched model-size comparison or evidence that larger is better.
+A separate validation bug accepted an omitted quote, filled it from the original field, then rejected that same short quote on a second validation pass. A seven-character RFI reference triggered a global rewrite that lost useful coverage. Short-citation idempotence now has a regression test. Later development also showed that repeated summarization and focused draft rewrites could discard earlier opposing accounts, historical delays or remaining closeout work even when every surviving quote was exact. All original errors and failed attempts remain visible in the [development log](development-log.json) and retained raw files.
 
-The [development log](development-log.json) and older raw files retain superseded and failed attempts. Names beginning `final-v5`, `final-v6`, `final-v7` and `final-v8` are historical filenames, not acceptance labels. Failures included invalid quotations, a timeout fixed by streaming, context exhaustion, excessive repeated candidates and summaries discarding distinct concerns. The v5 resume is staged timing, not continuous latency. Final results are selected explicitly in [evaluation-files.json](evaluation-files.json). A separate [cancellation check](ui-cancellation-check.json) records a real canceled run; it is not a quality or latency observation.
+## What changed
 
-## Data and limits
+The revised method inventories original source sentences, including dates and report authors. The model names a narrow internal review question and selects source IDs. Coverage checks inspect uncited passages and explicit remaining tasks; separate source-only scans retrieve historical work/delivery changes and opposing inspection/release accounts. Materiality checks distinguish actual problems, historical disruptions and remaining tasks from routine completed events, while preserving existing source context for supported concerns. Conflicting exact duplicates receive bounded source-based adjudication; unresolved conflicts or invalid pointers reject the result.
 
-All cases are synthetic. A and B informed development; neither is held out. C is a narrow negative control. They are not calibrated human-study pairs. The [data review](data-review.md) records provenance, missing fields and reference corrections. The [environment record](environment.json) preserves hardware and native model digests. Early `gpu-telemetry.csv` samples whole-device utilization, not per-process memory or final-run peak usage.
+Displayed factual text consists of original dated passages. The app does not generate new causes, downstream impacts, assignments or deadlines. **Exact quotation is a grounding safeguard, not proof of a correct review.** A wrong status, unrelated grouping, omitted resolution or routine-work alert still fails semantic scoring.
 
-Apple silicon browser and local-runtime paths remain available, but no Mac inference benchmark was conducted. The user's approximate Demo 1 times of 14 minutes on M1 Max and one minute on RTX 5080 are contextual observations, not controlled evidence of a 14× hardware improvement. Original private archive documents, recordings and model binaries are not published.
+The native default is Qwen 3.5 27B, which uses system RAM as well as the RTX 5080's GPU memory. Lower-memory 9B and browser 9B/4B alternatives remain available. Model, runtime, prompt method and sampling configuration changed during development; improved results cannot be causally attributed to model size or any single change. Actual configuration, model digest, seed and per-pass usage/timing remain in exported JSON.
 
-## Verification and next study
+## Data and evaluation limits
 
-The app supports imports, local model choices, cancellation, source-text retrieval, original-output preservation, corrections, reference scoring, timers and JSON/CSV exports. Automated checks cover the website, Demo 1 regressions, packaging, local companion and scoring logic; [verification.json](verification.json) records scope. Actual browser and native inference were exercised on the RTX 5080.
+The collection contains **40 synthetic reports and 37 reference concerns** across A–F. A, B and D informed development. C and E are narrow routine-work controls. F was authored by a separate agent with inherited project context and references withheld from the implementing agent before a recorded freeze. Its earlier canceled attempt produced no completed evaluation observation. That separation does not make F an independent human-authored or human-validated holdout. See [data review](data-review.md) and [case provenance](new-case-provenance.md).
 
-Use the [collection guide](collection-guide.md) for independent reference review, comparable unseen cases and human-only/assisted observations. The blank human-study template is intentionally blank. Preserve original predictions, corrected findings and participant timing separately in the eventual write-up and presentation. Supplied documents and slide decks were not rewritten.
+Score untouched original predictions before corrections. Fully found requires the material concern, correct latest supported state and supporting evidence; partials count as misses. A useful finding containing a material false claim is unsupported under the whole-finding rule. Duplicates are counted separately. Recall counts reference concerns, while precision counts distinct output findings, so their denominators differ. Zero-reference controls have undefined recall; report their false alarms as raw counts. Independent team adjudication remains outstanding.
+
+The preset A gate remains at least 10/12 fully found with at most one unsupported finding; B requires at least 6/8, D at least 8/9, and C/E zero false alarms. The selected 27B profile meets those gates and F's pre-frozen 7/8 target in the recorded observations. The 4B control fails. These are small pilot acceptance criteria, not a general accuracy guarantee.
+
+No controlled human productivity study was conducted. **H1 remains untested:** the targets of 25% lower total assisted time, 20% fewer missed issues and no additional false alarms require actual human-only and assisted observations, including verification/correction time. Inference latency cannot substitute for those observations. H3's original four-subject comparison was superseded by this method; revised comparisons are descriptive. Earlier H4 browser timing observations do not establish the current workflow's relative speed or usefulness. Quality has no maximum-latency acceptance threshold.
+
+Measured inference uses the RTX 5080. Apple silicon browser/local-runtime compatibility is retained, but no Mac inference benchmark was conducted. The user's approximate Demo 1 times of 14 minutes on M1 Max and one minute on RTX 5080 are contextual observations, not a controlled hardware comparison. The [environment record](environment.json) preserves hardware and native model digests; earlier browser weight repository revisions were not captured, limiting exact reproduction.
+
+## Evidence for the later write-up
+
+Use the retained original predictions, reference judgments, errors and failures together. Keep corrected findings and human timing separate. The [collection guide](collection-guide.md) and blank human-study template support a later independent review with calibrated unseen cases; unmeasured participant fields remain blank. [Verification](verification.json) records software-check scope. Unit tests exercise source validation, exports and workflow guards; actual retained model runs establish observed quality. Supplied documents and presentation slides have not been rewritten, and private source recordings/documents or model binaries are not republished.

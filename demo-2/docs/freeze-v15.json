@@ -1,0 +1,20 @@
+{
+  "frozenAt": "2026-10-22T11:05:47.991Z",
+  "pipeline": "daily-reports-v15",
+  "prompt": "daily-review-15-extractive",
+  "nativePolicy": "native-sampling-3",
+  "model": "qwen3.5:27b",
+  "reasoning": false,
+  "seed": 42,
+  "method": "exact source selection; chronology and coverage audit; uncited passage check; remaining-task scan; materiality/full-history batches; bounded adjudication of conflicting duplicate interpretations",
+  "files": {
+    "demo-2/core.js": "cffa12c7dcd789b5ded1c471c2bba34141bb6f8d2a701cc51f2683733182e06e",
+    "demo-2/engine.js": "c8281883d7a6601c1d30cbcca321206e37a58976379ca0c94048ebb6308b2fb1",
+    "demo-2/native-engine.cjs": "c5e04b4da05ead9bc8dc45d37c8946964201c6504ea922b7b12cc20b5400d6f2",
+    "demo-2/data/reports-f.json": "c2f4739a966d7b7340f83eeeee5e162dd73d01d09e2e5860996e46056a5cbe77",
+    "demo-2/data/reference-f.json": "4c21f8590c26ab39659ed006e7181c87ca00b603cfd810ee26b7d11177bd84ae"
+  },
+  "newCaseStatus": "F source/reference contents remain unexposed to implementing agent before this freeze; authored by separate agent with inherited context. Independent human validation pending. A/B/D informed development.",
+  "targets": "A >=10/12; B >=6/8; D >=8/9; F >=7/8. <=1 unsupported per nonzero case; C/E zero. Partial counts as missed.",
+  "timing": "D staged recovery excluded from latency. Full fresh A/B/F and controls retained separately. Single observations have no latency variance estimate."
+}

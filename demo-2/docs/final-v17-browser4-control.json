@@ -1,0 +1,791 @@
+{
+  "version": "daily-reports-v17",
+  "note": "Actual current browser4B compatibility/quality-control UI run on RTX5080. Runs successfully but emits routine false alerts; not a successful quality profile or Mac inference benchmark.",
+  "runs": [
+    {
+      "runId": "28a9c761-7105-4efd-8f6f-b4bbe24b3e13",
+      "createdAt": "2026-10-22T11:55:36.372Z",
+      "pipeline": "daily-reports-v17",
+      "promptVersion": "daily-review-17-extractive",
+      "datasetId": "reports-clean",
+      "inputSha256": "b0e0a1874339ed7ed42e7a3dc229fc61e8e3fec87a8275deca8f7d1f569fe235",
+      "profile": "fast",
+      "model": "Qwen3-4B-q4f16_1-MLC",
+      "backend": "webllm",
+      "reasoning": false,
+      "seed": null,
+      "modelDigest": null,
+      "contextWindow": 16384,
+      "temperature": 0.7,
+      "thorough": false,
+      "sampling": {
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "presence_penalty": 1.5
+      },
+      "nativePolicy": null,
+      "device": {
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+        "gpu": {
+          "vendor": "nvidia",
+          "architecture": "blackwell",
+          "device": "",
+          "description": "",
+          "shaderF16": true
+        }
+      },
+      "loadMs": 6297.699999988079,
+      "elapsedMs": 14339.899999976158,
+      "totalMs": 20637.599999964237,
+      "reports": [
+        {
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "work_area": "Corridor C",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Clean corridor and obtain supervisor acceptance.",
+          "work_completed": "Planned corridor cleaning completed. Quantity checked and accepted by supervisor.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported. All scheduled work and required checks complete.",
+          "schedule_status": "On schedule; no outstanding follow-up.",
+          "rfi_change_order_refs": "None applicable",
+          "action_required": "",
+          "responsible_party": "",
+          "due_date": "",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        },
+        {
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "work_area": "Corridor C",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Clean corridor and obtain supervisor acceptance.",
+          "work_completed": "Planned corridor cleaning completed. Quantity checked and accepted by supervisor.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported. All scheduled work and required checks complete.",
+          "schedule_status": "On schedule; no outstanding follow-up.",
+          "rfi_change_order_refs": "None applicable",
+          "action_required": "",
+          "responsible_party": "",
+          "due_date": "",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        },
+        {
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "work_area": "Corridor C",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Clean corridor and obtain supervisor acceptance.",
+          "work_completed": "Planned corridor cleaning completed. Quantity checked and accepted by supervisor.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported. All scheduled work and required checks complete.",
+          "schedule_status": "On schedule; no outstanding follow-up.",
+          "rfi_change_order_refs": "None applicable",
+          "action_required": "",
+          "responsible_party": "",
+          "due_date": "",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        }
+      ],
+      "originalFindings": [
+        {
+          "id": "F1",
+          "title": "Inspection and acceptance",
+          "category": "unresolved",
+          "status": "resolved",
+          "observation": "Reported context · 2026-07-01 · DR-C01 · General contractor: “Clean corridor and obtain supervisor acceptance.”\nReported context · 2026-07-01 · DR-C01 · General contractor: “Quantity checked and accepted by supervisor.”\nReported context · 2026-07-02 · DR-C02 · General contractor: “Planned corridor cleaning completed.”\nReported context · 2026-07-02 · DR-C02 · General contractor: “Quantity checked and accepted by supervisor.”\nReported context · 2026-07-03 · DR-C03 · General contractor: “Clean corridor and obtain supervisor acceptance.”\nLatest cited update · 2026-07-03 · DR-C03 · General contractor: “Quantity checked and accepted by supervisor.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-C01",
+              "field": "work_planned",
+              "quote": "Clean corridor and obtain supervisor acceptance."
+            },
+            {
+              "report_id": "DR-C01",
+              "field": "work_completed",
+              "quote": "Quantity checked and accepted by supervisor."
+            },
+            {
+              "report_id": "DR-C02",
+              "field": "work_completed",
+              "quote": "Planned corridor cleaning completed."
+            },
+            {
+              "report_id": "DR-C02",
+              "field": "work_completed",
+              "quote": "Quantity checked and accepted by supervisor."
+            },
+            {
+              "report_id": "DR-C03",
+              "field": "work_planned",
+              "quote": "Clean corridor and obtain supervisor acceptance."
+            },
+            {
+              "report_id": "DR-C03",
+              "field": "work_completed",
+              "quote": "Quantity checked and accepted by supervisor."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S001",
+            "S003",
+            "S011",
+            "S012",
+            "S019",
+            "S021"
+          ],
+          "latestFactIds": [
+            "S021"
+          ],
+          "kind": "acceptance",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F2",
+          "title": "Quantity reconciliation",
+          "category": "conflict",
+          "status": "open",
+          "observation": "Reported context · 2026-07-01 · DR-C01 · General contractor: “60 m2 work area”\nReported context · 2026-07-02 · DR-C02 · General contractor: “60 m2 work area”\nLatest cited update · 2026-07-03 · DR-C03 · General contractor: “60 m2 work area”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-C01",
+              "field": "quantity_or_measurement",
+              "quote": "60 m2 work area"
+            },
+            {
+              "report_id": "DR-C02",
+              "field": "quantity_or_measurement",
+              "quote": "60 m2 work area"
+            },
+            {
+              "report_id": "DR-C03",
+              "field": "quantity_or_measurement",
+              "quote": "60 m2 work area"
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S008",
+            "S017",
+            "S026"
+          ],
+          "latestFactIds": [
+            "S026"
+          ],
+          "kind": "quantity",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F3",
+          "title": "Work sequence and postponement",
+          "category": "delay",
+          "status": "resolved",
+          "observation": "Reported context · 2026-07-01 · DR-C01 · General contractor: “On schedule; no outstanding follow-up.”\nReported context · 2026-07-02 · DR-C02 · General contractor: “On schedule; no outstanding follow-up.”\nLatest cited update · 2026-07-03 · DR-C03 · General contractor: “On schedule; no outstanding follow-up.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-C01",
+              "field": "schedule_status",
+              "quote": "On schedule; no outstanding follow-up."
+            },
+            {
+              "report_id": "DR-C02",
+              "field": "schedule_status",
+              "quote": "On schedule; no outstanding follow-up."
+            },
+            {
+              "report_id": "DR-C03",
+              "field": "schedule_status",
+              "quote": "On schedule; no outstanding follow-up."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S006",
+            "S015",
+            "S024"
+          ],
+          "latestFactIds": [
+            "S024"
+          ],
+          "kind": "progress",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F4",
+          "title": "Resolution and supporting record",
+          "category": "communication",
+          "status": "resolved",
+          "observation": "Reported context · 2026-07-01 · DR-C01 · General contractor: “Signed daily acceptance checklist referenced; no additional record is required by this scenario.”\nReported context · 2026-07-02 · DR-C02 · General contractor: “Signed daily acceptance checklist referenced; no additional record is required by this scenario.”\nLatest cited update · 2026-07-03 · DR-C03 · General contractor: “Signed daily acceptance checklist referenced; no additional record is required by this scenario.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-C01",
+              "field": "supporting_evidence",
+              "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+            },
+            {
+              "report_id": "DR-C02",
+              "field": "supporting_evidence",
+              "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+            },
+            {
+              "report_id": "DR-C03",
+              "field": "supporting_evidence",
+              "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S009",
+            "S018",
+            "S027"
+          ],
+          "latestFactIds": [
+            "S027"
+          ],
+          "kind": "record",
+          "rendering": "exact-source-passages"
+        }
+      ],
+      "findings": [
+        {
+          "id": "F1",
+          "title": "Inspection and acceptance",
+          "category": "unresolved",
+          "status": "resolved",
+          "observation": "Reported context · 2026-07-01 · DR-C01 · General contractor: “Clean corridor and obtain supervisor acceptance.”\nReported context · 2026-07-01 · DR-C01 · General contractor: “Quantity checked and accepted by supervisor.”\nReported context · 2026-07-02 · DR-C02 · General contractor: “Planned corridor cleaning completed.”\nReported context · 2026-07-02 · DR-C02 · General contractor: “Quantity checked and accepted by supervisor.”\nReported context · 2026-07-03 · DR-C03 · General contractor: “Clean corridor and obtain supervisor acceptance.”\nLatest cited update · 2026-07-03 · DR-C03 · General contractor: “Quantity checked and accepted by supervisor.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-C01",
+              "field": "work_planned",
+              "quote": "Clean corridor and obtain supervisor acceptance."
+            },
+            {
+              "report_id": "DR-C01",
+              "field": "work_completed",
+              "quote": "Quantity checked and accepted by supervisor."
+            },
+            {
+              "report_id": "DR-C02",
+              "field": "work_completed",
+              "quote": "Planned corridor cleaning completed."
+            },
+            {
+              "report_id": "DR-C02",
+              "field": "work_completed",
+              "quote": "Quantity checked and accepted by supervisor."
+            },
+            {
+              "report_id": "DR-C03",
+              "field": "work_planned",
+              "quote": "Clean corridor and obtain supervisor acceptance."
+            },
+            {
+              "report_id": "DR-C03",
+              "field": "work_completed",
+              "quote": "Quantity checked and accepted by supervisor."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S001",
+            "S003",
+            "S011",
+            "S012",
+            "S019",
+            "S021"
+          ],
+          "latestFactIds": [
+            "S021"
+          ],
+          "kind": "acceptance",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F2",
+          "title": "Quantity reconciliation",
+          "category": "conflict",
+          "status": "open",
+          "observation": "Reported context · 2026-07-01 · DR-C01 · General contractor: “60 m2 work area”\nReported context · 2026-07-02 · DR-C02 · General contractor: “60 m2 work area”\nLatest cited update · 2026-07-03 · DR-C03 · General contractor: “60 m2 work area”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-C01",
+              "field": "quantity_or_measurement",
+              "quote": "60 m2 work area"
+            },
+            {
+              "report_id": "DR-C02",
+              "field": "quantity_or_measurement",
+              "quote": "60 m2 work area"
+            },
+            {
+              "report_id": "DR-C03",
+              "field": "quantity_or_measurement",
+              "quote": "60 m2 work area"
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S008",
+            "S017",
+            "S026"
+          ],
+          "latestFactIds": [
+            "S026"
+          ],
+          "kind": "quantity",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F3",
+          "title": "Work sequence and postponement",
+          "category": "delay",
+          "status": "resolved",
+          "observation": "Reported context · 2026-07-01 · DR-C01 · General contractor: “On schedule; no outstanding follow-up.”\nReported context · 2026-07-02 · DR-C02 · General contractor: “On schedule; no outstanding follow-up.”\nLatest cited update · 2026-07-03 · DR-C03 · General contractor: “On schedule; no outstanding follow-up.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-C01",
+              "field": "schedule_status",
+              "quote": "On schedule; no outstanding follow-up."
+            },
+            {
+              "report_id": "DR-C02",
+              "field": "schedule_status",
+              "quote": "On schedule; no outstanding follow-up."
+            },
+            {
+              "report_id": "DR-C03",
+              "field": "schedule_status",
+              "quote": "On schedule; no outstanding follow-up."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S006",
+            "S015",
+            "S024"
+          ],
+          "latestFactIds": [
+            "S024"
+          ],
+          "kind": "progress",
+          "rendering": "exact-source-passages"
+        },
+        {
+          "id": "F4",
+          "title": "Resolution and supporting record",
+          "category": "communication",
+          "status": "resolved",
+          "observation": "Reported context · 2026-07-01 · DR-C01 · General contractor: “Signed daily acceptance checklist referenced; no additional record is required by this scenario.”\nReported context · 2026-07-02 · DR-C02 · General contractor: “Signed daily acceptance checklist referenced; no additional record is required by this scenario.”\nLatest cited update · 2026-07-03 · DR-C03 · General contractor: “Signed daily acceptance checklist referenced; no additional record is required by this scenario.”",
+          "consequence": "Not assessed. No downstream impact is inferred beyond the cited reports.",
+          "action": "Review the cited record and confirm any follow-up with the project team.",
+          "uncertainty": "The passages below are exact report text. Status is an AI interpretation of this concern and still needs review; reported completion is not independent verification.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-C01",
+              "field": "supporting_evidence",
+              "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+            },
+            {
+              "report_id": "DR-C02",
+              "field": "supporting_evidence",
+              "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+            },
+            {
+              "report_id": "DR-C03",
+              "field": "supporting_evidence",
+              "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+            }
+          ],
+          "review": "pending",
+          "correction": "",
+          "sourceFactIds": [
+            "S009",
+            "S018",
+            "S027"
+          ],
+          "latestFactIds": [
+            "S027"
+          ],
+          "kind": "record",
+          "rendering": "exact-source-passages"
+        }
+      ],
+      "items": [
+        {
+          "topic": "acceptance of corridor cleaning work",
+          "kind": "acceptance",
+          "status": "resolved",
+          "facts": [
+            "S001",
+            "S003",
+            "S011",
+            "S012",
+            "S019",
+            "S021"
+          ],
+          "latest": [
+            "S021"
+          ]
+        },
+        {
+          "topic": "quantity of corridor cleaning work",
+          "kind": "quantity",
+          "status": "open",
+          "facts": [
+            "S008",
+            "S017",
+            "S026"
+          ],
+          "latest": [
+            "S026"
+          ]
+        },
+        {
+          "topic": "schedule status of corridor cleaning work",
+          "kind": "progress",
+          "status": "resolved",
+          "facts": [
+            "S006",
+            "S015",
+            "S024"
+          ],
+          "latest": [
+            "S024"
+          ]
+        },
+        {
+          "topic": "supporting evidence for corridor cleaning work",
+          "kind": "record",
+          "status": "resolved",
+          "facts": [
+            "S009",
+            "S018",
+            "S027"
+          ],
+          "latest": [
+            "S027"
+          ]
+        }
+      ],
+      "materialityReviews": [],
+      "duplicateReviews": [],
+      "sourceInventory": [
+        {
+          "id": "S001",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "work_planned",
+          "quote": "Clean corridor and obtain supervisor acceptance."
+        },
+        {
+          "id": "S002",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Planned corridor cleaning completed."
+        },
+        {
+          "id": "S003",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Quantity checked and accepted by supervisor."
+        },
+        {
+          "id": "S004",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported."
+        },
+        {
+          "id": "S005",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "All scheduled work and required checks complete."
+        },
+        {
+          "id": "S006",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "schedule_status",
+          "quote": "On schedule; no outstanding follow-up."
+        },
+        {
+          "id": "S007",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "rfi_change_order_refs",
+          "quote": "None applicable"
+        },
+        {
+          "id": "S008",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "quantity_or_measurement",
+          "quote": "60 m2 work area"
+        },
+        {
+          "id": "S009",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "supporting_evidence",
+          "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        },
+        {
+          "id": "S010",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "work_planned",
+          "quote": "Clean corridor and obtain supervisor acceptance."
+        },
+        {
+          "id": "S011",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Planned corridor cleaning completed."
+        },
+        {
+          "id": "S012",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Quantity checked and accepted by supervisor."
+        },
+        {
+          "id": "S013",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported."
+        },
+        {
+          "id": "S014",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "All scheduled work and required checks complete."
+        },
+        {
+          "id": "S015",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "schedule_status",
+          "quote": "On schedule; no outstanding follow-up."
+        },
+        {
+          "id": "S016",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "rfi_change_order_refs",
+          "quote": "None applicable"
+        },
+        {
+          "id": "S017",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "quantity_or_measurement",
+          "quote": "60 m2 work area"
+        },
+        {
+          "id": "S018",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "supporting_evidence",
+          "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        },
+        {
+          "id": "S019",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "work_planned",
+          "quote": "Clean corridor and obtain supervisor acceptance."
+        },
+        {
+          "id": "S020",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Planned corridor cleaning completed."
+        },
+        {
+          "id": "S021",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Quantity checked and accepted by supervisor."
+        },
+        {
+          "id": "S022",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported."
+        },
+        {
+          "id": "S023",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "All scheduled work and required checks complete."
+        },
+        {
+          "id": "S024",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "schedule_status",
+          "quote": "On schedule; no outstanding follow-up."
+        },
+        {
+          "id": "S025",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "rfi_change_order_refs",
+          "quote": "None applicable"
+        },
+        {
+          "id": "S026",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "quantity_or_measurement",
+          "quote": "60 m2 work area"
+        },
+        {
+          "id": "S027",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "supporting_evidence",
+          "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        }
+      ],
+      "timings": [
+        {
+          "stage": "Connecting concerns to exact report passages",
+          "elapsedMs": 14336.899999976158,
+          "usage": {
+            "completion_tokens": 276,
+            "prompt_tokens": 1947,
+            "total_tokens": 2223,
+            "extra": {
+              "e2e_latency_s": 14.337,
+              "prefill_tokens_per_s": 266.2964685272966,
+              "decode_tokens_per_s": 39.442658089488,
+              "time_to_first_token_s": 7.311400000035762,
+              "time_per_output_token_s": 0.025353260871292888,
+              "grammar_init_s": 7.253800000011921,
+              "grammar_per_token_s": 0.00009166666778965285
+            }
+          }
+        }
+      ],
+      "responses": [
+        {
+          "stage": "Connecting concerns to exact report passages",
+          "raw": "<think>\n\n</think>\n\n{\n  \"items\": [\n    {\n      \"topic\": \"acceptance of corridor cleaning work\",\n      \"facts\": [\"S001\", \"S003\", \"S011\", \"S012\", \"S019\", \"S021\"],\n      \"latest\": [\"S021\"],\n      \"kind\": \"acceptance\",\n      \"status\": \"resolved\"\n    },\n    {\n      \"topic\": \"quantity of corridor cleaning work\",\n      \"facts\": [\"S008\", \"S017\", \"S026\"],\n      \"latest\": [\"S026\"],\n      \"kind\": \"quantity\",\n      \"status\": \"open\"\n    },\n    {\n      \"topic\": \"schedule status of corridor cleaning work\",\n      \"facts\": [\"S006\", \"S015\", \"S024\"],\n      \"latest\": [\"S024\"],\n      \"kind\": \"progress\",\n      \"status\": \"resolved\"\n    },\n    {\n      \"topic\": \"supporting evidence for corridor cleaning work\",\n      \"facts\": [\"S009\", \"S018\", \"S027\"],\n      \"latest\": [\"S027\"],\n      \"kind\": \"record\",\n      \"status\": \"resolved\"\n    }\n  ]\n}"
+        }
+      ],
+      "method": "source-inventory-and-id-selection",
+      "groupingRepairs": [],
+      "humanReview": {
+        "status": "not_measured"
+      },
+      "evaluation": {
+        "status": "not_scored"
+      }
+    }
+  ]
+}

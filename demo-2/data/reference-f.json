@@ -1,0 +1,70 @@
+{
+  "dataset": "reports-f",
+  "annotation_status": "Independently authored by a separate Codex agent on 2026-10-22; inherited project context; independent human review pending",
+  "issues": [
+    {
+      "issue_id": "F-01",
+      "issue_definition": "Verbal isolation-proved statements preceded unavailable written branch-isolation acceptance",
+      "source_reports": "DR-F02;DR-F03;DR-F04",
+      "severity": "High",
+      "ground_truth_status": "Resolved by DR-F04",
+      "expected_interpretation": "Capture both the verbal/telephone isolation-proved accounts and the installer's missing signed release, followed by signed ISO-V24-0820 issue and receipt on August 20. Branch-isolation acceptance is closed; do not leave it pending or conflate it with pressure-test acceptance."
+    },
+    {
+      "issue_id": "F-02",
+      "issue_definition": "Control signal conflict required a final technical decision",
+      "source_reports": "DR-F03;DR-F05",
+      "severity": "High",
+      "ground_truth_status": "Resolved by DR-F05",
+      "expected_interpretation": "Identify 0-10 V on the earlier drawing and draft versus 4-20 mA in the replacement submittal. Signed TQ-074 and E-620 revision H later specify 4-20 mA and close this technical choice."
+    },
+    {
+      "issue_id": "F-03",
+      "issue_definition": "Internal draft was not a formally issued and received interface instruction",
+      "source_reports": "DR-F03;DR-F05",
+      "severity": "High",
+      "ground_truth_status": "Resolved by DR-F05",
+      "expected_interpretation": "Distinguish the earlier unapproved/unregistered draft and absent installer instruction from the signed formal issue at 10:10 and both supervisor receipts at 10:25 on August 20. The communication and receipt gap is closed."
+    },
+    {
+      "issue_id": "F-04",
+      "issue_definition": "Valve replacement window was deferred with a documented 3-hour-20-minute hold before later physical completion",
+      "source_reports": "DR-F02;DR-F05;DR-F06",
+      "severity": "Medium",
+      "ground_truth_status": "Historical; physical fitting completed in DR-F06",
+      "expected_interpretation": "Retain the actual August 19 08:00-11:20 hold, reassignment and pending release/interface context, followed by fitting completion on August 21. Do not invent a full-shift loss, equate fitting completion with automatic-service acceptance, or claim a critical-path effect."
+    },
+    {
+      "issue_id": "F-05",
+      "issue_definition": "Separate pressure-test acceptance cannot be verified from the later register reference alone",
+      "source_reports": "DR-F04;DR-F06;DR-F07",
+      "severity": "High",
+      "ground_truth_status": "Needs verification",
+      "expected_interpretation": "Separate the closed branch-isolation release from pressure-test acceptance. PT-V24-0822 is present later, but the signed result sheet is unlinked/unavailable. Verify the record; do not assert the pressure test failed or never occurred."
+    },
+    {
+      "issue_id": "F-06",
+      "issue_definition": "Recovered-fluid measurement and signed transfer quantity differ by 60 L",
+      "source_reports": "DR-F06;DR-F07",
+      "severity": "Medium",
+      "ground_truth_status": "Open",
+      "expected_interpretation": "Reconcile 360 L measured as recovered versus 300 L on WT-884 and the unreconciled 60 L in collection/tank-balance records. Do not infer a spill, unlawful disposal, theft, or measurement cause."
+    },
+    {
+      "issue_id": "F-07",
+      "issue_definition": "Remote actuator command, feedback and fail-safe testing remains outstanding despite local stroke completion",
+      "source_reports": "DR-F08",
+      "severity": "High",
+      "ground_truth_status": "Open before automatic service",
+      "expected_interpretation": "Distinguish accepted wiring/local exercise from the explicitly unperformed remote functional tests scheduled August 24. Retain the remaining requirement before automatic service; do not label the scheduled test overdue or failed."
+    },
+    {
+      "issue_id": "F-08",
+      "issue_definition": "Ceiling access restriction was temporary and receipt of the advance email remains uncertain",
+      "source_reports": "DR-F09",
+      "severity": "Medium",
+      "ground_truth_status": "Historical restriction; notice-receipt follow-up open",
+      "expected_interpretation": "Capture the 70-minute restriction, two installers' reassignment and resumed corridor work, alongside reported email sending and unestablished receipt. Do not assert no notice was sent, a full-shift loss, or a continuing corridor closure."
+    }
+  ]
+}

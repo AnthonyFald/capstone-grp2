@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-10-22T10:11:15.175259+00:00",
+  "checkedAt": "2026-10-22T11:59:20.341006+00:00",
   "platform": "Windows x64 / RTX 5080",
-  "javascriptTests": 107,
-  "javascriptPassed": 107,
+  "javascriptTests": 125,
+  "javascriptPassed": 125,
   "pythonTests": 28,
   "pythonPassed": 28,
   "pythonScope": "Demo 1 regressions, local server and both-demo packaging allowlist. No fresh real-audio benchmark.",
@@ -17,9 +17,29 @@
     "Native progress streaming and JSON exports",
     "Repeated real browser-model inference with failures retained",
     "Native cancellation and immediate subsequent successful run",
-    "Final core-v8/prompt-v8 native A and B, browser 4B and 9B one-pass repetitions and 9B thorough inference"
+    "Final core-v8/prompt-v8 native A and B, browser 4B and 9B one-pass repetitions and 9B thorough inference",
+    "Prior source-based v12 real uploaded-sample 27B inference and JSON download; retained as superseded UI evidence"
   ],
-  "nativeLauncher": "Launch-Demo2.ps1 verified on existing local services",
+  "nativeLauncher": "Existing Windows launcher verified; reopening detects and replaces a stale local companion version.",
   "mac": "Not executed on Mac. Runtime-compatible setup and desktop build retained.",
-  "humanStudy": "No participants or productivity measurements; GUI smoke interactions are not study data."
+  "humanStudy": "No participants or productivity measurements; GUI smoke interactions are not study data.",
+  "pipeline": "daily-reports-v17",
+  "currentUiChecks": [
+    "CSV sample downloaded and uploaded as custom input; JSON sample imported successfully",
+    "Installed 27B automatically selected; optional model/device and research settings collapsed",
+    "Actual full v17 CSV-upload/native27 inference completed, 615.1s processing; original JSON downloaded",
+    "Downloaded UI input and hash verified exactly equal to blind A; original custom datasetId retained",
+    "Exact dated/author source timeline expanded and source link opened the original report",
+    "Findings CSV export downloaded successfully; all original predictions remain unmodified",
+    "Browser4B current runtime exercised on routine C; completed but failed quality with four false alerts, explicitly experimental"
+  ],
+  "currentNativeCases": [
+    "A actual uploaded-sample UI",
+    "B full fresh run",
+    "C/E full fresh routine controls",
+    "D staged development quality only, latency excluded",
+    "F full fresh run after freeze"
+  ],
+  "originalUiExport": "ui-upload-v17.json",
+  "browserModelScope": "Browser4B single-pass runtime/control verified on RTX5080; not a Mac benchmark and not a successful accuracy condition."
 }

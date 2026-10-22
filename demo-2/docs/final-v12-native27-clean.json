@@ -1,0 +1,401 @@
+{
+  "version": "daily-reports-v12",
+  "runs": [
+    {
+      "runId": "1510085b-d754-4392-9203-8880ab3a455b",
+      "createdAt": "2026-10-22T10:39:01.248Z",
+      "pipeline": "daily-reports-v12",
+      "backend": "ollama",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "modelDigest": "64ae5b1d651fb2709d5928ccb8dcfb4bb2cc9c2c8001ac34497e36a6cf905b59",
+      "reasoning": false,
+      "seed": 42,
+      "nativePolicy": "native-sampling-3",
+      "datasetId": "reports-clean",
+      "inputSha256": "b0e0a1874339ed7ed42e7a3dc229fc61e8e3fec87a8275deca8f7d1f569fe235",
+      "contextWindow": 32768,
+      "resumedFrom": null,
+      "priorPassElapsedMs": 0,
+      "newSegmentTotalMs": 7433.1189,
+      "temperature": 0.7,
+      "loadMs": 14.4634,
+      "totalMs": 7433.1189,
+      "elapsedMs": 7418.655500000001,
+      "reports": [
+        {
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "work_area": "Corridor C",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Clean corridor and obtain supervisor acceptance.",
+          "work_completed": "Planned corridor cleaning completed. Quantity checked and accepted by supervisor.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported. All scheduled work and required checks complete.",
+          "schedule_status": "On schedule; no outstanding follow-up.",
+          "rfi_change_order_refs": "None applicable",
+          "action_required": "",
+          "responsible_party": "",
+          "due_date": "",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        },
+        {
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "work_area": "Corridor C",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Clean corridor and obtain supervisor acceptance.",
+          "work_completed": "Planned corridor cleaning completed. Quantity checked and accepted by supervisor.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported. All scheduled work and required checks complete.",
+          "schedule_status": "On schedule; no outstanding follow-up.",
+          "rfi_change_order_refs": "None applicable",
+          "action_required": "",
+          "responsible_party": "",
+          "due_date": "",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        },
+        {
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "work_area": "Corridor C",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Clean corridor and obtain supervisor acceptance.",
+          "work_completed": "Planned corridor cleaning completed. Quantity checked and accepted by supervisor.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported. All scheduled work and required checks complete.",
+          "schedule_status": "On schedule; no outstanding follow-up.",
+          "rfi_change_order_refs": "None applicable",
+          "action_required": "",
+          "responsible_party": "",
+          "due_date": "",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        }
+      ],
+      "originalFindings": [],
+      "findings": [],
+      "items": [],
+      "sourceInventory": [
+        {
+          "id": "S001",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "work_planned",
+          "quote": "Clean corridor and obtain supervisor acceptance."
+        },
+        {
+          "id": "S002",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Planned corridor cleaning completed."
+        },
+        {
+          "id": "S003",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Quantity checked and accepted by supervisor."
+        },
+        {
+          "id": "S004",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported."
+        },
+        {
+          "id": "S005",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "All scheduled work and required checks complete."
+        },
+        {
+          "id": "S006",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "schedule_status",
+          "quote": "On schedule; no outstanding follow-up."
+        },
+        {
+          "id": "S007",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "rfi_change_order_refs",
+          "quote": "None applicable"
+        },
+        {
+          "id": "S008",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "quantity_or_measurement",
+          "quote": "60 m2 work area"
+        },
+        {
+          "id": "S009",
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "field": "supporting_evidence",
+          "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        },
+        {
+          "id": "S010",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "work_planned",
+          "quote": "Clean corridor and obtain supervisor acceptance."
+        },
+        {
+          "id": "S011",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Planned corridor cleaning completed."
+        },
+        {
+          "id": "S012",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Quantity checked and accepted by supervisor."
+        },
+        {
+          "id": "S013",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported."
+        },
+        {
+          "id": "S014",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "All scheduled work and required checks complete."
+        },
+        {
+          "id": "S015",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "schedule_status",
+          "quote": "On schedule; no outstanding follow-up."
+        },
+        {
+          "id": "S016",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "rfi_change_order_refs",
+          "quote": "None applicable"
+        },
+        {
+          "id": "S017",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "quantity_or_measurement",
+          "quote": "60 m2 work area"
+        },
+        {
+          "id": "S018",
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "field": "supporting_evidence",
+          "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        },
+        {
+          "id": "S019",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "work_planned",
+          "quote": "Clean corridor and obtain supervisor acceptance."
+        },
+        {
+          "id": "S020",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Planned corridor cleaning completed."
+        },
+        {
+          "id": "S021",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "work_completed",
+          "quote": "Quantity checked and accepted by supervisor."
+        },
+        {
+          "id": "S022",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported."
+        },
+        {
+          "id": "S023",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "issue_or_update",
+          "quote": "All scheduled work and required checks complete."
+        },
+        {
+          "id": "S024",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "schedule_status",
+          "quote": "On schedule; no outstanding follow-up."
+        },
+        {
+          "id": "S025",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "rfi_change_order_refs",
+          "quote": "None applicable"
+        },
+        {
+          "id": "S026",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "quantity_or_measurement",
+          "quote": "60 m2 work area"
+        },
+        {
+          "id": "S027",
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "field": "supporting_evidence",
+          "quote": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        }
+      ],
+      "timings": [
+        {
+          "stage": "Connecting concerns to exact report passages",
+          "elapsedMs": 2133.4802,
+          "usage": {
+            "prompt_tokens": 1950,
+            "completion_tokens": 5,
+            "load_duration_ns": 3623800,
+            "prompt_eval_duration_ns": 1546611000,
+            "eval_duration_ns": 443757000,
+            "total_duration_ns": 2128558900,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking coverage and later resolutions",
+          "elapsedMs": 2947.6096999999995,
+          "usage": {
+            "prompt_tokens": 2512,
+            "completion_tokens": 9,
+            "load_duration_ns": 5103000,
+            "prompt_eval_duration_ns": 1901444000,
+            "eval_duration_ns": 882400000,
+            "total_duration_ns": 2944948100,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking uncited passages for missed concerns",
+          "elapsedMs": 2347.6965999999993,
+          "usage": {
+            "prompt_tokens": 2156,
+            "completion_tokens": 5,
+            "load_duration_ns": 5736600,
+            "prompt_eval_duration_ns": 1729065000,
+            "eval_duration_ns": 438320000,
+            "total_duration_ns": 2334692600,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        }
+      ],
+      "responses": [
+        {
+          "stage": "Connecting concerns to exact report passages",
+          "raw": "{\"items\":[]}"
+        },
+        {
+          "stage": "Checking coverage and later resolutions",
+          "raw": "{\"edits\":[],\"additional\":[]}"
+        },
+        {
+          "stage": "Checking uncited passages for missed concerns",
+          "raw": "{\"items\":[]}"
+        }
+      ],
+      "promptVersion": "daily-review-12-extractive",
+      "method": "source-inventory-and-id-selection",
+      "groupingRepairs": [],
+      "humanReview": {
+        "status": "not_measured"
+      },
+      "evaluation": {
+        "status": "not_scored"
+      }
+    }
+  ]
+}

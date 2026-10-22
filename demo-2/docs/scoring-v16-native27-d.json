@@ -1,0 +1,81 @@
+{
+  "runs": [
+    {
+      "runId": "e853ab8d-4ea4-4770-bff9-1231a788783d",
+      "reviewer": "Separate case-authoring Codex agent provisional review",
+      "independentReview": false,
+      "judgments": {
+        "D-01": {
+          "rating": "found",
+          "note": "Correctly captures recurring oily film of unestablished origin and investigation before return to service; no diagnosis or invented delay linkage.",
+          "findingId": "F1"
+        },
+        "D-02": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Correct historical absence of the written release and its signed September 10 receipt/closure. The material opposing verbal-clearance / QC-passed accounts from D02 and D03 are not selected, so the specifically defined conflict is only partially identified."
+        },
+        "D-03": {
+          "rating": "found",
+          "note": "Explicit 6 mm versus 9 mm conflict, internal draft, and later signed TQ-061 / M-214 revision D decision specifying 9 mm with closed status.",
+          "findingId": "F3"
+        },
+        "D-04": {
+          "rating": "found",
+          "note": "The same supported finding separately quotes the draft not issued through the register and lack of installer receipt, followed by formal issue at 13:10 and acknowledged receipt at 13:35. Counts this reference once despite sharing F3 with D-03.",
+          "findingId": "F3"
+        },
+        "D-05": {
+          "rating": "missed",
+          "note": "No selected finding retains the documented September 9 and 10 pump-setting deferrals with later September 12 physical setting/grouting completion. F3 retains design-history passages but does not describe the actual work postponement or subsequent physical completion. The v12 partial physical-completion item is absent from this v15 output."
+        },
+        "D-06": {
+          "rating": "found",
+          "note": "Separately identifies anchor-torque witness acceptance, the later AT-P6-0912 reference, and the unlinked/unavailable signed sheet. Needs-verification status correctly avoids asserting inspection failure or non-occurrence.",
+          "findingId": "F4"
+        },
+        "D-07": {
+          "rating": "found",
+          "note": "Explicitly captures the one-bag reconciliation gap with 22 received, 19 issued, and two returned; later mixing of those 19 does not resolve the gap. No invented excess volume, theft, or quality defect.",
+          "findingId": "F5"
+        },
+        "D-08": {
+          "rating": "found",
+          "note": "Captures preliminary 0.18 mm vertical offset versus 0.10 mm limit and final alignment required after cure before start-up. Correct open status and no claim of failed final acceptance or current operation.",
+          "findingId": "F6"
+        },
+        "D-09": {
+          "rating": "partial",
+          "findingIds": [
+            "F7",
+            "F9"
+          ],
+          "note": "F9 correctly retains the 80-minute restriction, reassignment and resumed work, and F7 correctly quotes uncertain notice receipt. Neither item retains D08's explicit account that a notice was sent on September 11. The reference requires the reported-sending versus uncertain-receipt distinction; that opposing/contextual account was present in v15 F7 but is absent here."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported",
+        "F9": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported recurring oily-film cause still unknown, with investigation required before return to service and no invented diagnosis.",
+        "F2": "Supported historical missing written bearing-face release and correct explicit signed later closure. Partial D-02 coverage because the verbal clearance and QC-passed opposing claims remain absent.",
+        "F3": "Supported 6 mm versus 9 mm technical conflict and unissued internal draft, followed by formal signed revision, crew receipt, and closed technical question. Fully covers D-03 and D-04.",
+        "F4": "Supported separate anchor-torque record-verification gap: installer work done, later inspection reference present, signed acceptance sheet unlinked/unavailable. No claim of failed or never-conducted inspection.",
+        "F5": "Supported one-bag quantity gap with consistent source values and open reconciliation state.",
+        "F6": "Supported preliminary 0.18 mm alignment versus 0.10 mm limit and final alignment requirement before start-up.",
+        "F7": "Supported narrow notice-receipt uncertainty; no false assertion that notice was never sent. However, the selected evidence omits the Principal Contractor's reported sending account, so this plus F9 only partially covers the complete D-09 reference.",
+        "F8": "Supported additional remaining cure task under the established broader closeout rubric. Correct future release/proceeding-to-plan language and update category; no invented overdue, delay, or failure claim. No new reference issue is added.",
+        "F9": "Supported historical 80-minute restriction, technicians' reassignment, and resumed rack access. Complements F7 but does not restore the omitted reported-sending account."
+      },
+      "timingInterpretation": "Staged replay for quality evaluation only. Four identical prior completed responses were replayed and subsequent checks were obtained as actual new model responses. elapsedMs and totalMs are null. This artifact is not a continuous inference run and must not be used to claim continuous latency."
+    }
+  ]
+}

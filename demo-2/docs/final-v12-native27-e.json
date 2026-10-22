@@ -1,0 +1,457 @@
+{
+  "version": "daily-reports-v12",
+  "runs": [
+    {
+      "runId": "11dc8ac6-68dd-4475-865b-c0f00e1222f7",
+      "createdAt": "2026-10-22T10:42:45.163Z",
+      "pipeline": "daily-reports-v12",
+      "backend": "ollama",
+      "profile": "native-thorough",
+      "model": "qwen3.5:27b",
+      "modelDigest": "64ae5b1d651fb2709d5928ccb8dcfb4bb2cc9c2c8001ac34497e36a6cf905b59",
+      "reasoning": false,
+      "seed": 42,
+      "nativePolicy": "native-sampling-3",
+      "datasetId": "reports-e",
+      "inputSha256": "3317059b5c048c8c83b44ab7cb22aa89d74e5a6b9146d13126a0f15485918f36",
+      "contextWindow": 32768,
+      "resumedFrom": null,
+      "priorPassElapsedMs": 0,
+      "newSegmentTotalMs": 8917.806999999999,
+      "temperature": 0.7,
+      "loadMs": 14.837500000000002,
+      "totalMs": 8917.806999999999,
+      "elapsedMs": 8902.9695,
+      "reports": [
+        {
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "work_area": "East workshop, overhead corridor duct run",
+          "shift": "06:30-15:00",
+          "weather": "Indoor work; dry",
+          "crew_count": "4",
+          "work_planned": "Install four rectangular duct sections above the east workshop corridor.",
+          "work_completed": "Four duct sections installed on accepted supports; all joints inspected and sealed to approved detail V-208 revision F.",
+          "materials_equipment": "Rectangular duct sections, joint sealant, access platform, hand tools",
+          "issue_or_update": "Routine installation completed. Supports were accepted under signed inspection VS-1001 before loading. Approved instruction TQ-088 was received before this work began.",
+          "schedule_status": "Work remains on the agreed sequence. Joint-sealant cure is scheduled through 2026-10-02 12:00.",
+          "rfi_change_order_refs": "V-208 revision F; TQ-088 closed; VS-1001 accepted",
+          "action_required": "Maintain the posted cure barrier until the specified release time.",
+          "responsible_party": "Ventilation Installer",
+          "due_date": "2026-10-02 12:00",
+          "quantity_or_measurement": "Four duct sections received and four installed; two sealant cartridges issued and two consumed",
+          "supporting_evidence": "Signed support inspection VS-1001, approved drawing, instruction receipt, and material log filed"
+        },
+        {
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "work_area": "East workshop, overhead corridor duct run",
+          "shift": "06:30-15:00",
+          "weather": "Indoor work; dry",
+          "crew_count": "0",
+          "work_planned": "Inspect completed duct joints after the specified sealant cure.",
+          "work_completed": "Cure barrier removed at 12:15 after the specified 12:00 release. Joint inspection and leakage test passed at 13:20. Signed acceptance VQ-1002 recorded and linked in the work package.",
+          "materials_equipment": "Rectangular duct sections, joint sealant, access platform, hand tools",
+          "issue_or_update": "All tested joints met the approved leakage criterion. The installation and quality inspection are accepted; no corrective items were raised.",
+          "schedule_status": "Controls handoff remains scheduled for 2026-10-05 08:00. The controls supervisor acknowledged the handoff notice at 14:05 today.",
+          "rfi_change_order_refs": "VQ-1002 accepted; test LT-1002 passed",
+          "action_required": "Proceed with the agreed controls handoff on October 5.",
+          "responsible_party": "Controls Installer",
+          "due_date": "2026-10-05 08:00",
+          "quantity_or_measurement": "Four installed sections tested and accepted; measured leakage within the specified limit",
+          "supporting_evidence": "Signed acceptance VQ-1002, test sheet LT-1002, and acknowledged handoff notice HN-1002 filed"
+        },
+        {
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "work_area": "East workshop, corridor and controls cabinet zone",
+          "shift": "06:30-15:00",
+          "weather": "Indoor work; dry",
+          "crew_count": "0",
+          "work_planned": "Complete housekeeping and confirm next-week access.",
+          "work_completed": "Housekeeping completed and corridor returned to normal use. Controls equipment staged in the designated cabinet zone outside the duct work area.",
+          "materials_equipment": "Rectangular duct sections, joint sealant, access platform, hand tools",
+          "issue_or_update": "Work package reviewed: support inspection, approved detail, leakage-test result, and signed completion acceptance are all linked and complete. No outstanding corrective work or technical query is listed.",
+          "schedule_status": "Controls handoff remains booked for October 5 at 08:00. Both trade supervisors confirmed the plan and access route.",
+          "rfi_change_order_refs": "WP-V208 closed; handoff HN-1002 confirmed",
+          "action_required": "Follow the agreed October 5 handoff plan.",
+          "responsible_party": "Principal Contractor / Controls Installer",
+          "due_date": "2026-10-05 08:00",
+          "quantity_or_measurement": "Four duct sections installed and accepted; store and installation totals balanced",
+          "supporting_evidence": "Closed work-package checklist WC-1003 and coordination acknowledgement CA-1003 filed"
+        }
+      ],
+      "originalFindings": [],
+      "findings": [],
+      "items": [],
+      "sourceInventory": [
+        {
+          "id": "S001",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "work_planned",
+          "quote": "Install four rectangular duct sections above the east workshop corridor."
+        },
+        {
+          "id": "S002",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "work_completed",
+          "quote": "Four duct sections installed on accepted supports; all joints inspected and sealed to approved detail V-208 revision F."
+        },
+        {
+          "id": "S003",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "issue_or_update",
+          "quote": "Routine installation completed."
+        },
+        {
+          "id": "S004",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "issue_or_update",
+          "quote": "Supports were accepted under signed inspection VS-1001 before loading."
+        },
+        {
+          "id": "S005",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "issue_or_update",
+          "quote": "Approved instruction TQ-088 was received before this work began."
+        },
+        {
+          "id": "S006",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "schedule_status",
+          "quote": "Work remains on the agreed sequence."
+        },
+        {
+          "id": "S007",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "schedule_status",
+          "quote": "Joint-sealant cure is scheduled through 2026-10-02 12:00."
+        },
+        {
+          "id": "S008",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "rfi_change_order_refs",
+          "quote": "V-208 revision F; TQ-088 closed; VS-1001 accepted"
+        },
+        {
+          "id": "S009",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "action_required",
+          "quote": "Maintain the posted cure barrier until the specified release time."
+        },
+        {
+          "id": "S010",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "quantity_or_measurement",
+          "quote": "Four duct sections received and four installed; two sealant cartridges issued and two consumed"
+        },
+        {
+          "id": "S011",
+          "report_id": "DR-E01",
+          "report_date": "2026-10-01",
+          "report_author": "Ventilation Installer - Supervisor",
+          "field": "supporting_evidence",
+          "quote": "Signed support inspection VS-1001, approved drawing, instruction receipt, and material log filed"
+        },
+        {
+          "id": "S012",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "work_planned",
+          "quote": "Inspect completed duct joints after the specified sealant cure."
+        },
+        {
+          "id": "S013",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "work_completed",
+          "quote": "Cure barrier removed at 12:15 after the specified 12:00 release."
+        },
+        {
+          "id": "S014",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "work_completed",
+          "quote": "Joint inspection and leakage test passed at 13:20."
+        },
+        {
+          "id": "S015",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "work_completed",
+          "quote": "Signed acceptance VQ-1002 recorded and linked in the work package."
+        },
+        {
+          "id": "S016",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "issue_or_update",
+          "quote": "All tested joints met the approved leakage criterion."
+        },
+        {
+          "id": "S017",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "issue_or_update",
+          "quote": "The installation and quality inspection are accepted; no corrective items were raised."
+        },
+        {
+          "id": "S018",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "schedule_status",
+          "quote": "Controls handoff remains scheduled for 2026-10-05 08:00."
+        },
+        {
+          "id": "S019",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "schedule_status",
+          "quote": "The controls supervisor acknowledged the handoff notice at 14:05 today."
+        },
+        {
+          "id": "S020",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "rfi_change_order_refs",
+          "quote": "VQ-1002 accepted; test LT-1002 passed"
+        },
+        {
+          "id": "S021",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "action_required",
+          "quote": "Proceed with the agreed controls handoff on October 5."
+        },
+        {
+          "id": "S022",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "quantity_or_measurement",
+          "quote": "Four installed sections tested and accepted; measured leakage within the specified limit"
+        },
+        {
+          "id": "S023",
+          "report_id": "DR-E02",
+          "report_date": "2026-10-02",
+          "report_author": "Quality Inspector - Building Services",
+          "field": "supporting_evidence",
+          "quote": "Signed acceptance VQ-1002, test sheet LT-1002, and acknowledged handoff notice HN-1002 filed"
+        },
+        {
+          "id": "S024",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "work_planned",
+          "quote": "Complete housekeeping and confirm next-week access."
+        },
+        {
+          "id": "S025",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "work_completed",
+          "quote": "Housekeeping completed and corridor returned to normal use."
+        },
+        {
+          "id": "S026",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "work_completed",
+          "quote": "Controls equipment staged in the designated cabinet zone outside the duct work area."
+        },
+        {
+          "id": "S027",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "issue_or_update",
+          "quote": "Work package reviewed: support inspection, approved detail, leakage-test result, and signed completion acceptance are all linked and complete."
+        },
+        {
+          "id": "S028",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "issue_or_update",
+          "quote": "No outstanding corrective work or technical query is listed."
+        },
+        {
+          "id": "S029",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "schedule_status",
+          "quote": "Controls handoff remains booked for October 5 at 08:00."
+        },
+        {
+          "id": "S030",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "schedule_status",
+          "quote": "Both trade supervisors confirmed the plan and access route."
+        },
+        {
+          "id": "S031",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "rfi_change_order_refs",
+          "quote": "WP-V208 closed; handoff HN-1002 confirmed"
+        },
+        {
+          "id": "S032",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "action_required",
+          "quote": "Follow the agreed October 5 handoff plan."
+        },
+        {
+          "id": "S033",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "quantity_or_measurement",
+          "quote": "Four duct sections installed and accepted; store and installation totals balanced"
+        },
+        {
+          "id": "S034",
+          "report_id": "DR-E03",
+          "report_date": "2026-10-03",
+          "report_author": "Principal Contractor - Area Coordinator",
+          "field": "supporting_evidence",
+          "quote": "Closed work-package checklist WC-1003 and coordination acknowledgement CA-1003 filed"
+        }
+      ],
+      "timings": [
+        {
+          "stage": "Connecting concerns to exact report passages",
+          "elapsedMs": 2579.4276,
+          "usage": {
+            "prompt_tokens": 2455,
+            "completion_tokens": 5,
+            "load_duration_ns": 5301300,
+            "prompt_eval_duration_ns": 1873504000,
+            "eval_duration_ns": 443501000,
+            "total_duration_ns": 2576076200,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking coverage and later resolutions",
+          "elapsedMs": 3528.9961999999996,
+          "usage": {
+            "prompt_tokens": 3087,
+            "completion_tokens": 9,
+            "load_duration_ns": 5166300,
+            "prompt_eval_duration_ns": 2551704000,
+            "eval_duration_ns": 880961000,
+            "total_duration_ns": 3527716500,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Checking uncited passages for missed concerns",
+          "elapsedMs": 2805.1859999999997,
+          "usage": {
+            "prompt_tokens": 2696,
+            "completion_tokens": 5,
+            "load_duration_ns": 4369900,
+            "prompt_eval_duration_ns": 2106178000,
+            "eval_duration_ns": 446469000,
+            "total_duration_ns": 2791226000,
+            "sampling": {
+              "temperature": 0.7,
+              "top_p": 0.8,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-3",
+            "contextWindow": 32768
+          }
+        }
+      ],
+      "responses": [
+        {
+          "stage": "Connecting concerns to exact report passages",
+          "raw": "{\"items\":[]}"
+        },
+        {
+          "stage": "Checking coverage and later resolutions",
+          "raw": "{\"edits\":[],\"additional\":[]}"
+        },
+        {
+          "stage": "Checking uncited passages for missed concerns",
+          "raw": "{\"items\":[]}"
+        }
+      ],
+      "promptVersion": "daily-review-12-extractive",
+      "method": "source-inventory-and-id-selection",
+      "groupingRepairs": [],
+      "humanReview": {
+        "status": "not_measured"
+      },
+      "evaluation": {
+        "status": "not_scored"
+      }
+    }
+  ]
+}

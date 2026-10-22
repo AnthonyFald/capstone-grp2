@@ -1,0 +1,29 @@
+{
+  "frozenAt": "2026-10-22T11:23:55.077Z",
+  "pipeline": "daily-reports-v17",
+  "prompt": "daily-review-17-extractive",
+  "nativePolicy": "native-sampling-3",
+  "model": "qwen3.5:27b",
+  "reasoning": false,
+  "seed": 42,
+  "method": "Exact source selection, coverage/task audits, independent focused chronology retrieval, materiality checks preserving source context, bounded duplicate interpretation adjudication.",
+  "files": {
+    "demo-2/core.js": "398d99044b87be4dda7f7bc0be71667d9abf36541a1dbb4407befb8be0b2ba93",
+    "demo-2/engine.js": "a74b693f92c68e06b8f7cf405a3a065fab95bc6922e95f9ad0919c279b3d4f8c",
+    "demo-2/native-engine.cjs": "c5e04b4da05ead9bc8dc45d37c8946964201c6504ea922b7b12cc20b5400d6f2",
+    "demo-2/data/reports-f.json": "c2f4739a966d7b7340f83eeeee5e162dd73d01d09e2e5860996e46056a5cbe77",
+    "demo-2/data/reference-f.json": "4c21f8590c26ab39659ed006e7181c87ca00b603cfd810ee26b7d11177bd84ae"
+  },
+  "newCaseStatus": "F source and reference remain unexposed to implementing agent before freeze. Separate author inherited project context. Independent human validation pending. A/B/D are development-informed; C/E narrow controls. F15 attempt aborted before final predictions or reference exposure.",
+  "targets": "A >=10/12; B >=6/8; D >=8/9; F >=7/8. <=1 unsupported per nonzero case; C/E zero. Partial counts missed.",
+  "timing": "Staged recovery excluded from continuous latency. Actual fresh end-to-end runs reported separately, n=1 per case; no variance claim.",
+  "hashDefinition": "files records original Windows workspace bytes at freeze. canonicalUtf8LfFiles records the same verified unchanged content normalized to UTF-8 without BOM and LF line endings for Git transport.",
+  "canonicalHashSupplementedAt": "2026-10-22T11:45:30.433002+00:00",
+  "canonicalUtf8LfFiles": {
+    "demo-2/core.js": "cd6999df7a169268096904becfb34299634d0bcf513afd1be0579b9b426535a7",
+    "demo-2/engine.js": "34abd402082134b37af6fbedbe1048fbb69577302036d7896f4644ef77519317",
+    "demo-2/native-engine.cjs": "6e66b7e9468111c8367f484c53c316c350b0332f38b7e451b13a4e80242cee75",
+    "demo-2/data/reports-f.json": "e9e59179765dc4617b7b784de951acf1e3b9c1a7264cb156c7fb10789be8d3ad",
+    "demo-2/data/reference-f.json": "6c53b3a3b76a89a66fda08026ae36a9ea90b7bf967fea716765feb3f3c98104e"
+  }
+}

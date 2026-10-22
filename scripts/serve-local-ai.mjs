@@ -18,7 +18,7 @@ export async function handleRequest(req,res){
   if(origin){res.setHeader('Access-Control-Allow-Origin',origin);res.setHeader('Vary','Origin');}
   if(req.method==='OPTIONS'){res.setHeader('Access-Control-Allow-Methods','GET, POST, OPTIONS');res.setHeader('Access-Control-Allow-Headers','Content-Type, X-Evergreen-Token');res.setHeader('Access-Control-Allow-Private-Network','true');res.writeHead(204);res.end();return;}
   if(req.url==='/api/local/config'&&req.method==='GET'){
-    try{const response=await fetch(Native.BASE+'/api/tags',{signal:AbortSignal.timeout(3000)});if(!response.ok)throw Error();const data=await response.json();const models=data.models.filter(m=>Native.MODELS.includes(m.name)).map(m=>({name:m.name,digest:m.digest,size:m.size}));return json(res,200,{service:'evergreen-local-ai',version:1,token,models});}
+    try{const response=await fetch(Native.BASE+'/api/tags',{signal:AbortSignal.timeout(3000)});if(!response.ok)throw Error();const data=await response.json();const models=data.models.filter(m=>Native.MODELS.includes(m.name)).map(m=>({name:m.name,digest:m.digest,size:m.size}));return json(res,200,{service:'evergreen-local-ai',version:2,pipeline:Core.VERSION,modelPolicy:Native.POLICY,token,models});}
     catch{return json(res,503,{error:'Start the local Ollama runtime on 127.0.0.1:11435.'});}
   }
   if(!['/api/local/analyze','/api/local/unload'].includes(req.url)||req.method!=='POST')return json(res,404,{error:'Not found.'});

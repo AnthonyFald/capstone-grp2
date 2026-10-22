@@ -1,0 +1,95 @@
+{
+  "runs": [
+    {
+      "runId": "30a8eb11-3637-4dcf-a605-42a2a1ac9091",
+      "reviewer": "Separate case-authoring Codex agent provisional review",
+      "independentReview": false,
+      "judgments": {
+        "D-01": {
+          "rating": "found",
+          "note": "Correctly captures recurring oily film of unestablished origin and investigation before return to service; no diagnosis or invented delay linkage.",
+          "findingId": "F1"
+        },
+        "D-02": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Correct historical absence of the written release and its signed September 10 receipt/closure. The material opposing verbal-clearance / QC-passed accounts from D02 and D03 are not selected, so the specifically defined conflict is only partially identified."
+        },
+        "D-03": {
+          "rating": "found",
+          "note": "Explicit 6 mm versus 9 mm conflict, internal draft, and later signed TQ-061 / M-214 revision D decision specifying 9 mm with closed status.",
+          "findingId": "F3"
+        },
+        "D-04": {
+          "rating": "found",
+          "note": "The same supported finding separately quotes the draft not issued through the register and lack of installer receipt, followed by formal issue at 13:10 and acknowledged receipt at 13:35. Counts this reference once despite sharing F3 with D-03.",
+          "findingId": "F3"
+        },
+        "D-05": {
+          "rating": "partial",
+          "findingId": "F10",
+          "note": "Correctly quotes September 12 physical setting/grouting completion after earlier deferrals, with no commissioning or project-delay claim. It omits the September 9 and September 10 documented shift deferrals and their contemporaneous pending release/design context; the historical delay is mentioned generically rather than fully retained."
+        },
+        "D-06": {
+          "rating": "found",
+          "note": "Separately identifies anchor-torque witness acceptance, the later AT-P6-0912 reference, and the unlinked/unavailable signed sheet. Needs-verification status correctly avoids asserting inspection failure or non-occurrence.",
+          "findingId": "F4"
+        },
+        "D-07": {
+          "rating": "found",
+          "note": "Explicitly captures the one-bag reconciliation gap with 22 received, 19 issued, and two returned; later mixing of those 19 does not resolve the gap. No invented excess volume, theft, or quality defect.",
+          "findingId": "F5"
+        },
+        "D-08": {
+          "rating": "found",
+          "note": "Captures preliminary 0.18 mm vertical offset versus 0.10 mm limit and final alignment required after cure before start-up. Correct open status and no claim of failed final acceptance or current operation.",
+          "findingId": "F6"
+        },
+        "D-09": {
+          "rating": "found",
+          "note": "The supported findings jointly cover the reported sent notice versus unestablished receipt and the 80-minute restriction/reassignment with rack work resumed. This reference is counted once, not twice; no full-shift loss or critical-path impact is asserted.",
+          "findingIds": [
+            "F7",
+            "F12"
+          ]
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "unsupported",
+        "F9": "unsupported",
+        "F10": "supported",
+        "F11": "supported",
+        "F12": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported unknown-cause concern; source passages and open state align.",
+        "F2": "Supported historical release-distribution gap with explicit signed closure. Incomplete for D-02 because verbal clearance / QC-passed statements are absent, but its narrower claim is correct.",
+        "F3": "Supported technical conflict and historical formal-issue/receipt gap with explicit later closure. Correctly covers D-03 and D-04 without inflating the number of output findings.",
+        "F4": "Supported independent torque-acceptance record-verification gap, reconciled with the later inspection reference.",
+        "F5": "Supported one-bag discrepancy; all quoted quantities are consistent with the source.",
+        "F6": "Supported preliminary alignment closeout concern. The combined source action mentions anchor-torque linkage as well, but the selected quantitative concern is distinct and no material claim requires correction.",
+        "F7": "Supported uncertain notice-receipt concern; preserves reported sending and uncertain receipt rather than asserting notification failure. Complements F12 rather than duplicating its work-disruption aspect.",
+        "F8": "Unsupported as a material review alert: this is ordinary completed isolation/lifting/cleaning and continued isolation, with no selected prior postponement, failure, conflict, or unresolved cause. Its quotations are factually accurate; the error is routine-item overinclusion, not fabricated factual prose.",
+        "F9": "Unsupported as a material review alert: routine accepted delivery and a stores receipt do not establish a concern or an earlier record problem requiring resolution. These are accurate source facts overincluded as an alert, not invented facts.",
+        "F10": "Supported physical completion/update reconciled with an explicit source statement of earlier deferrals. Partial D-05 coverage because earlier shift-deferral evidence, dates, and pending release/design context are absent. No false current delay is asserted.",
+        "F11": "Supported additional remaining closeout task outside the nine issue references: this item is categorized as update/followup and correctly describes ongoing grout cure to its specified future release. It does not call cure overdue, delayed, or failed. The protocol and existing A/B references include explicit remaining curing/protection tasks. The case D reference list emphasizes material problems and omits routine cure, creating a scope ambiguity; applying the established broader closeout rubric consistently, this accurately stated remaining task is not penalized merely for being absent from D's reference list. No reference is added or rewritten and D recall remains out of nine.",
+        "F12": "Supported historical 80-minute restriction and crew reassignment with work resumed. Complements the notice uncertainty in F7; jointly maps to D-09 once."
+      }
+    },
+    {
+      "runId": "11dc8ac6-68dd-4475-865b-c0f00e1222f7",
+      "reviewer": "Separate case-authoring Codex agent provisional review",
+      "independentReview": false,
+      "judgments": {},
+      "assessments": {},
+      "findingNotes": {}
+    }
+  ]
+}

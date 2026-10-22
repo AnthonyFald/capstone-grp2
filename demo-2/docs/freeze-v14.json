@@ -1,0 +1,20 @@
+{
+  "frozenAt": "2026-10-22T11:01:00.764Z",
+  "pipeline": "daily-reports-v14",
+  "prompt": "daily-review-14-extractive",
+  "nativePolicy": "native-sampling-3",
+  "model": "qwen3.5:27b",
+  "reasoning": false,
+  "seed": 42,
+  "method": "exact source selection; chronology/coverage audit; uncited passage check; explicit remaining-task scan; materiality/full-history verification in batches of three",
+  "files": {
+    "demo-2/core.js": "8bb43340be0162a420403b907dfe05721b681682cef2c0f3e13a001ed1d05c88",
+    "demo-2/engine.js": "48969a4ede36519fb9dd7afb731fcaa38af459ec1cf2b70a2cce3b6afd4d007b",
+    "demo-2/native-engine.cjs": "c5e04b4da05ead9bc8dc45d37c8946964201c6504ea922b7b12cc20b5400d6f2",
+    "demo-2/data/reports-f.json": "c2f4739a966d7b7340f83eeeee5e162dd73d01d09e2e5860996e46056a5cbe77",
+    "demo-2/data/reference-f.json": "4c21f8590c26ab39659ed006e7181c87ca00b603cfd810ee26b7d11177bd84ae"
+  },
+  "newCaseStatus": "F was authored separately and its source/reference content has not been exposed to the implementing agent. The author inherited context; independent human validation is pending. D now informed development and is not untouched.",
+  "targets": "A >=10/12; B >=6/8; D >=8/9; F >=7/8. At most one unsupported finding per nonzero case; C/E zero. Partial counts as missed.",
+  "repetition": "Single runs by case plus actual UI upload verification. No stable latency distribution or statistical significance claimed."
+}

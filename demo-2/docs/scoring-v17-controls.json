@@ -1,0 +1,22 @@
+{
+  "runs": [
+    {
+      "runId": "a3ff8d9a-b670-46a5-94bf-e971b38733e1",
+      "reviewer": "Separate case-authoring Codex agent provisional review",
+      "independentReview": false,
+      "judgments": {},
+      "assessments": {},
+      "findingNotes": {},
+      "notes": "Correctly returns zero review findings on this routine no-issue chronology. No false alarms. Recall and precision are undefined for empty references and empty output; do not report 100% recall or precision. This is a small synthetic behavioral control with independent human review pending."
+    },
+    {
+      "runId": "5beba6f3-283e-465e-8369-25c92179fd67",
+      "reviewer": "Separate case-authoring Codex agent provisional review",
+      "independentReview": false,
+      "judgments": {},
+      "assessments": {},
+      "findingNotes": {},
+      "notes": "Correctly returns zero review findings on this routine no-issue chronology. No false alarms. Recall and precision are undefined for empty references and empty output; do not report 100% recall or precision. This is a small synthetic behavioral control with independent human review pending."
+    }
+  ]
+}

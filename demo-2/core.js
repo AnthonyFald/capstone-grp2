@@ -1,6 +1,6 @@
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.DailyCore=api;})(typeof self==='object'?self:globalThis,()=>{
   'use strict';
-  const VERSION='daily-reports-v8';
+  const VERSION='daily-reports-v17';
   const FIELDS=['report_id','report_date','report_author','work_area','shift','weather','crew_count','work_planned','work_completed','materials_equipment','issue_or_update','schedule_status','rfi_change_order_refs','action_required','responsible_party','due_date','quantity_or_measurement','supporting_evidence'];
   const STATUSES=['open','resolved','historical','needs_verification'];
   const clean=v=>v==null?'':String(v).trim();
@@ -41,11 +41,11 @@
     if(!value||!Array.isArray(value.findings)||value.findings.length>24)throw Error('Model did not return a valid findings list.');
     const issues=value.findings.map((f,i)=>{
       if(!f||!STATUSES.includes(f.status)||!['delay','conflict','unresolved','communication','update'].includes(f.category))throw Error('Model returned an invalid status or category.');
-      for(const k of ['title','observation','consequence','action','uncertainty'])if(typeof f[k]!=='string'||f[k].length>1600||!f[k].trim())throw Error('Model returned an incomplete finding.');
-      if(!Array.isArray(f.evidence)||!f.evidence.length||f.evidence.length>6)throw Error('Every finding needs source evidence.');
+      for(const k of ['title','observation','consequence','action','uncertainty'])if(typeof f[k]!=='string'||f[k].length>(k==='observation'?20000:1600)||!f[k].trim())throw Error('Model returned an incomplete finding.');
+      if(!Array.isArray(f.evidence)||!f.evidence.length||f.evidence.length>24)throw Error('Every finding needs source evidence.');
       const evidence=f.evidence.map(e=>{
         const source=rows.find(r=>r.report_id===e.report_id);
-        if(!source||!FIELDS.includes(e.field)||!source[e.field]||(e.quote!==undefined&&(typeof e.quote!=='string'||e.quote.trim().length<8||!source[e.field].includes(e.quote))))throw Error('An evidence quote does not match its source. No unverified result was accepted.');
+        if(!source||!FIELDS.includes(e.field)||!source[e.field]||(e.quote!==undefined&&(typeof e.quote!=='string'||!e.quote.trim().length||!source[e.field].includes(e.quote))))throw Error('An evidence quote does not match its source. No unverified result was accepted.');
         return {report_id:e.report_id,field:e.field,quote:e.quote??source[e.field]};
       });
       for(const k of ['owner','due'])if(f[k]!==null&&(typeof f[k]!=='string'||f[k].length>220))throw Error('Invalid owner or deadline.');

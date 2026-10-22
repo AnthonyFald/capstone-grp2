@@ -1,0 +1,122 @@
+{
+  "rubric": "Found requires a fully correct material concern and latest status. Partial counts as missed. A found issue must link only to supported findings. A material false closure makes the whole output finding unsupported even when its quotations are exact. Duplicate outputs do not count as unsupported findings. Independent human review remains pending.",
+  "runs": [
+    {
+      "runId": "768cc04c-0892-476d-809d-67e876ea4afc",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Quotes the observed water damage and unconfirmed source with needs_verification and no invented cause."
+        },
+        "ISS-02": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves the initial missing formal acceptance/release and closes substrate acceptance using explicit acceptance and signed checklist QC-B104-0514."
+        },
+        "ISS-03": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves apparent readiness without inspection sign-off and missing workface release, followed by signed substrate acceptance. It does not treat apparent readiness as proof of acceptance."
+        },
+        "ISS-04": {
+          "rating": "found",
+          "findingIds": [
+            "F4",
+            "F5"
+          ],
+          "note": "Together the supported technical and communication findings preserve the earlier unanswered question, internal/informal direction, later reported RFI resolution, and missing formal response/revision. They do not assert that the technical decision is proven unresolved."
+        },
+        "ISS-05": {
+          "rating": "found",
+          "findingId": "F9",
+          "note": "Quotes actual pour postponement across earlier dates, partial-afternoon crew reassignment, the subsequent hold and later completed placement. Historical state correctly ends the work-progress concern without implying record gaps or prerequisites were independently verified closed."
+        },
+        "ISS-06": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves the GC inspection-passed account versus the missing written release and reconciles substrate acceptance through the later signed checklist."
+        },
+        "ISS-07": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Preserves original thickness versus revised detail, internal and informal instruction, missing drawing/revision, and the latest approved-detail claim without its linked formal response."
+        },
+        "ISS-08": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Preserves the internal response not formally transmitted, unconfirmed receipt, missing revision and latest missing formal response evidence."
+        },
+        "ISS-09": {
+          "rating": "found",
+          "findingIds": [
+            "F6",
+            "F11"
+          ],
+          "note": "F6 preserves the earlier requested-but-not-completed reinforcement inspection and later bare inspection reference with needs_verification. F11 separately preserves the explicit open task to attach the inspection record. No supported finding is used to establish that the bare reference proves inspection acceptance."
+        },
+        "ISS-10": {
+          "rating": "found",
+          "findingId": "F10",
+          "note": "Preserves the superintendent resolved label and explicit outstanding formal-response attachment task/missing-response evidence, with open record-task state."
+        },
+        "ISS-11": {
+          "rating": "partial",
+          "findingId": "F7",
+          "note": "Delivered versus separately unmeasured placed volume is correctly captured. F10/F11 include the instruction to maintain curing/protection, but no output quotes the explicitly unfinished strength-test follow-up, so this combined quantity/quality closeout reference remains partial."
+        },
+        "ISS-12": {
+          "rating": "found",
+          "findingIds": [
+            "F8",
+            "F16"
+          ],
+          "note": "F8 preserves reported notice versus uncertainty about foreman advance notice. F16 separately preserves the ended 09:00-12:45 restriction, reassignment/resumption, three-hour-45-minute duration and no-full-shift statement. No critical-path impact is inferred."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "duplicate",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported",
+        "F9": "supported",
+        "F10": "supported",
+        "F11": "supported",
+        "F12": "duplicate",
+        "F13": "duplicate",
+        "F14": "duplicate",
+        "F15": "duplicate",
+        "F16": "supported",
+        "F17": "duplicate",
+        "F18": "duplicate"
+      },
+      "findingNotes": {
+        "F1": "Correct unconfirmed cause, no invented source of water damage.",
+        "F2": "Correct substrate acceptance and earlier readiness/passed-versus-missing-release evidence. Explicit conditional acceptance and signed checklist support substrate-only closure.",
+        "F3": "Duplicate of F2 for the same missing written substrate release and signed checklist closure; all selected evidence is a subset of F2.",
+        "F4": "Correct original-versus-revised slab question, informal/internal direction and latest missing formal response/revision. Needs_verification describes evidence limitations rather than proof that no technical answer existed.",
+        "F5": "Correct uncertain formal transmission/receipt, including reported RFI resolution and missing formal response. This is a communication-verification aspect, not a claim that work is still physically on hold.",
+        "F6": "Correct reinforcement inspection acceptance uncertainty: earlier incomplete inspection plus later bare reference, with no closure asserted.",
+        "F7": "Correct delivered-versus-unmeasured placed quantity; no fabricated placed volume, wastage or invalid unit comparison.",
+        "F8": "Correct uncertain notice/receipt coordination aspect. It does not assert that the GC gave no notice or that the restriction lasted a full shift.",
+        "F9": "Correct historical actual pour postponement and later completed placement, with no claim that document gaps were therefore closed.",
+        "F10": "Supported distinct open task to attach the formal RFI response. This concrete record-submission requirement differs from F5 uncertainty about whether a formal response was issued/received, although sources overlap.",
+        "F11": "Supported distinct open task to attach the reinforcement inspection record. It does not claim inspection acceptance; F6 separately keeps that physical acceptance uncertain.",
+        "F12": "Duplicate of F4 for the same slab-detail/drawing-revision uncertainty and latest missing formal record. Additional source context does not introduce another distinct concern.",
+        "F13": "Duplicate of the resolved substrate-release aspect already in F2, with overlapping historical delay context in F9. Resolved is interpreted narrowly as the written substrate gate, which the selected signed checklist supports. The same finding explicitly quotes other still-pending design/reinforcement gates; it is not accepted as proof that the whole pour was already completed on May 14.",
+        "F14": "Duplicate of F4/F5 for the same earlier technical-question/formal-response gap, with historical delay context already in F9. Needs_verification is read as the formal RFI evidence aspect, not an assertion that concrete placement remained postponed after completion.",
+        "F15": "Duplicate of F9 for an ended work-progress hold: it explicitly quotes Concrete placement completed. Resolved is accepted only for that physical progress aspect, not as inspection acceptance inferred from RI-B104-0515. F6 and F11 retain the separate acceptance/record uncertainty. The latest-pointer placement on the bare reference should not be treated as proof of passed inspection.",
+        "F16": "Supported distinct historical trade disruption with reassignment/resumption and bounded duration. Its physical work-sequence state ended; F8 separately retains uncertainty about notification.",
+        "F17": "Duplicate of F2 for the same verbal/passed-versus-written substrate release concern and later signed closure, with additional historical detail but no new outstanding aspect.",
+        "F18": "Duplicate of F5 for the same formal RFI transmission/receipt evidence gap and latest reported resolution without attached response."
+      },
+      "notes": "Actual uploaded-sample UI run, original datasetId custom preserved; evaluationDatasetId reports-a is a scoring alias justified by the exact normalized input hash. Provisional score: 11/12 fully found, one partial, no unsupported findings and seven duplicates across 18 original outputs. Eleven distinct outputs are supported under the duplicate-excluding precision rule. F13/F15 states are accepted narrowly for substrate-gate or physical-progress closure, never as unsupported proof of reinforcement acceptance; these scopes are explicitly noted because the generic progress heading can be ambiguous. F10/F11 open attachment tasks remain distinct from uncertain formal transmission or physical acceptance. Strength-test follow-up is omitted. A informed development. A separate Codex agent is not an independent human adjudicator."
+    }
+  ]
+}

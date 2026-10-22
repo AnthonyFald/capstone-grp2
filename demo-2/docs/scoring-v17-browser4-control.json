@@ -1,0 +1,23 @@
+{
+  "runs": [
+    {
+      "runId": "28a9c761-7105-4efd-8f6f-b4bbe24b3e13",
+      "reviewer": "Separate case-authoring Codex agent provisional review",
+      "independentReview": false,
+      "judgments": {},
+      "assessments": {
+        "F1": "unsupported",
+        "F2": "unsupported",
+        "F3": "unsupported",
+        "F4": "unsupported"
+      },
+      "findingNotes": {
+        "F1": "Unsupported material review alert: the passages describe ordinary planned/completed corridor cleaning and supervisor acceptance. There is no recorded failed, missing, conflicting, delayed or formerly problematic acceptance to resolve. The quotations are accurate but routine acceptance is overincluded as a concern.",
+        "F2": "Unsupported open quantity-reconciliation/conflict alert: all three reports state the same 60 m2 work area. No discrepancy or unfulfilled measurement/reconciliation requirement is present. Exact quote matching does not support the selected open/conflict interpretation.",
+        "F3": "Unsupported delay/progress alert: every selected passage explicitly states on schedule with no outstanding follow-up. No historical postponement or work-sequence concern is documented. A resolved label does not make an invented prior concern valid.",
+        "F4": "Unsupported record/communication alert: the reports explicitly reference the signed daily acceptance checklist and state that no additional record is required. There is no missing evidence, unresolved linkage or historical documentation problem. This is a routine completed record, not a material review concern."
+      },
+      "notes": "Routine C negative control contains zero reference concerns. Browser 4B single-pass output produces four distinct unsupported review alerts, not four duplicate mentions of one alert. All passages are verbatim source text; the failure is semantic relevance and, in F2, unsupported open/conflict status. Do not describe citation validity as accuracy. Native 27B v17 returned zero findings on C/E in separately recorded runs. This provisional agent review is not independent human validation."
+    }
+  ]
+}

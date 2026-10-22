@@ -1,6 +1,6 @@
 import '../demo-1/model-download.js';
-import './core.js';
-import './engine.js';
+import './core.js?v=extractive17';
+import './engine.js?v=extractive17';
 self.fetch=ModelDownload.resilientFetch(self.fetch.bind(self),{notify:text=>self.postMessage({type:'progress',text})});
 let engine,model;
 self.onmessage=async({data})=>{

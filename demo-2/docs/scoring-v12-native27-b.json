@@ -1,0 +1,67 @@
+{
+  "rubric": "Found requires a fully correct material concern and latest status. Partial counts as missed. A found issue must link only to supported findings. A material false closure makes the whole output finding unsupported even when its quotations are exact. Independent human review remains pending.",
+  "runs": [
+    {
+      "runId": "f1e83762-409e-4dae-afa3-ae031d8da68e",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "B-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Quotes the initially required but missing moisture readings and later passed test with signed, acknowledged report MT-210."
+        },
+        "B-02": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Pairs the phone-call pass claim with absent technician/value/signed record, then closes the acceptance concern using the later signed report. It does not imply a failed test."
+        },
+        "B-03": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Preserves unconfirmed June 2 delivery, explicit rescheduling to June 4 and delivered completion on June 4. No supplier cause or critical-path impact is inferred."
+        },
+        "B-04": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves Product M versus Product N conflict and the formal response selecting N."
+        },
+        "B-05": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves the open product question and later RFI response, revision 3 distribution and confirmed receipt, with resolved state."
+        },
+        "B-06": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Preserves both 20-pail and 18-pail counts, their unreconciled difference and the reported reconciliation task, with open state and no invented correct count."
+        },
+        "B-07": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Preserves the earlier actual installation hold and later completed installation of Product N, with historical state and no quantified project-delay claim."
+        },
+        "B-08": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No finding selects ongoing protection through June 6 noon, the completed notice/signage handoff or the scheduled curing requirement."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported"
+      },
+      "findingNotes": {
+        "F1": "Correct initial acceptance/evidence discrepancy and explicit later passed, signed, acknowledged test. No unsupported cure-completion, moisture-failure or downstream claim.",
+        "F2": "Correct product conflict and explicit formal response/revision/receipt closure. The acceptance-only limitation quote preserves separate prerequisites.",
+        "F3": "Correct open quantity discrepancy and source-attributed follow-up. No unsupported delivery cause, warranty effect or count inference.",
+        "F4": "Correct historical actual installation hold and later physical completion. It does not infer that unrelated records or quantity differences also closed.",
+        "F5": "Correct delivery date change and actual delivery completion, with resolved state. It does not invent a supplier failure, schedule consequence or project delay duration."
+      },
+      "notes": "Frozen-pipeline B provisional score: seven of eight fully found and one missed; five supported output findings, no unsupported findings and no duplicates. The coverage pass recovers delivery rescheduling and actual installation hold/completion, while the scheduled cure/protection handoff through June 6 noon remains omitted. B informed development and is not held out, even though this run occurred after the pipeline freeze. A separate agent is not an independent human adjudicator."
+    }
+  ]
+}

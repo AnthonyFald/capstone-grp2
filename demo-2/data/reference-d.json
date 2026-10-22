@@ -1,0 +1,78 @@
+{
+  "dataset": "reports-d",
+  "annotation_status": "Independently authored by a separate Codex agent on 2026-10-22; independent human review pending",
+  "issues": [
+    {
+      "issue_id": "D-01",
+      "issue_definition": "Origin of recurring oily residue is unconfirmed",
+      "source_reports": "DR-D01",
+      "severity": "Medium",
+      "ground_truth_status": "Open",
+      "expected_interpretation": "Record the unknown origin and investigation before return to service. Do not diagnose a seal failure or link the film to the setting delay without evidence."
+    },
+    {
+      "issue_id": "D-02",
+      "issue_definition": "Verbal QC clearance and claimed pass precede the signed bearing-face release",
+      "source_reports": "DR-D02;DR-D03;DR-D05",
+      "severity": "High",
+      "ground_truth_status": "Resolved by DR-D05",
+      "expected_interpretation": "Capture the historical discrepancy between verbal/telephone passed statements and absent crew release; signed BF-P6-0910 is received on September 10 and closes bearing-face acceptance only. Do not leave bearing-face acceptance open."
+    },
+    {
+      "issue_id": "D-03",
+      "issue_definition": "Conflicting shim-stack details require a formal technical decision",
+      "source_reports": "DR-D03;DR-D04;DR-D07",
+      "severity": "High",
+      "ground_truth_status": "Resolved by DR-D07",
+      "expected_interpretation": "Identify the earlier 6 mm versus 9 mm conflict. Signed TQ-061 and M-214 revision D specify 9 mm on September 11; treat the technical decision as closed."
+    },
+    {
+      "issue_id": "D-04",
+      "issue_definition": "Internal design draft was not an issued instruction or proof of crew receipt",
+      "source_reports": "DR-D04;DR-D06;DR-D07",
+      "severity": "High",
+      "ground_truth_status": "Resolved by DR-D07",
+      "expected_interpretation": "Identify the historical distribution gap independently of the dimensional conflict. Formal issue at 13:10 and crew receipt at 13:35 on September 11 close the gap. No current missing formal-response gap remains."
+    },
+    {
+      "issue_id": "D-05",
+      "issue_definition": "Pump setting was actually deferred before later physical completion",
+      "source_reports": "DR-D02;DR-D04;DR-D08",
+      "severity": "Medium",
+      "ground_truth_status": "Historical; physical setting completed in DR-D08",
+      "expected_interpretation": "Report the documented September 9 and 10 shift deferrals and September 12 setting/grouting completion. Do not equate setting completion with commissioning, claim a quantified project delay, or invent an approval-transmission time."
+    },
+    {
+      "issue_id": "D-06",
+      "issue_definition": "Separate anchor-torque acceptance remains a record-verification gap",
+      "source_reports": "DR-D05;DR-D06;DR-D08",
+      "severity": "High",
+      "ground_truth_status": "Needs verification",
+      "expected_interpretation": "Distinguish anchor-torque acceptance from closed bearing-face acceptance. AT-P6-0912 appears later, so do not assert that no inspection occurred; the signed sheet is unlinked and unavailable, so acceptance must be verified."
+    },
+    {
+      "issue_id": "D-07",
+      "issue_definition": "One grout bag remains unreconciled",
+      "source_reports": "DR-D07;DR-D08",
+      "severity": "Medium",
+      "ground_truth_status": "Open",
+      "expected_interpretation": "Reconcile 22 received less 19 mixed less 2 returned, leaving 1 bag. Do not infer excess installed grout, theft, a quality failure, or unmeasured installed volume from bag counts."
+    },
+    {
+      "issue_id": "D-08",
+      "issue_definition": "Preliminary alignment exceeds the stated tolerance and final acceptance remains pending",
+      "source_reports": "DR-D08",
+      "severity": "High",
+      "ground_truth_status": "Open before start-up",
+      "expected_interpretation": "Report 0.18 mm preliminary vertical offset against the 0.10 mm acceptance limit and the required final alignment after cure before start-up. Do not label a final inspection failed, say the pump is operating, or call the scheduled cure overdue."
+    },
+    {
+      "issue_id": "D-09",
+      "issue_definition": "Instrumentation access was temporarily restricted and notice receipt is uncertain",
+      "source_reports": "DR-D08;DR-D09",
+      "severity": "Medium",
+      "ground_truth_status": "Historical restriction; notice-receipt follow-up open",
+      "expected_interpretation": "Record the 80-minute restriction and reassignment. A notice was reportedly sent, while chargehand receipt is unestablished. Do not assert that no notice was sent, count a full-shift loss, infer a critical-path effect, or say the adjacent service rack remains closed."
+    }
+  ]
+}

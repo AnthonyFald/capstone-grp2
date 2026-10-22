@@ -1,0 +1,63 @@
+{
+  "rubric": "Found requires a fully correct material concern and latest status. Partial counts as missed. A found issue must link only to supported findings. A material false closure makes the whole output finding unsupported even when its quotations are exact. Independent human review remains pending.",
+  "runs": [
+    {
+      "runId": "c9a3b0d5-28cc-45f2-9991-aab857b76a29",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "B-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Quotes the initially required but missing moisture readings and later passed test with signed, acknowledged report MT-210."
+        },
+        "B-02": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Pairs the phone-call pass claim with absent technician/value/signed record, then closes the acceptance concern using the later signed report. It does not imply a failed test."
+        },
+        "B-03": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No finding selects the June 2 to June 4 delivery rescheduling or actual delivery completion."
+        },
+        "B-04": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves Product M versus Product N conflict and the formal response selecting N."
+        },
+        "B-05": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves the open product question and later RFI response, revision 3 distribution and confirmed receipt, with resolved state."
+        },
+        "B-06": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Preserves both 20-pail and 18-pail counts, their unreconciled difference and the reported reconciliation task, with open state and no invented correct count."
+        },
+        "B-07": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "The acceptance and technical findings do not select actual installation hold or subsequent completed installation. A closed prerequisite does not substitute for work-progress chronology."
+        },
+        "B-08": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No finding selects ongoing protection through June 6 noon, the completed notice/signage handoff or the scheduled curing requirement."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "supported"
+      },
+      "findingNotes": {
+        "F1": "Correct initial acceptance/evidence discrepancy and explicit later passed, signed, acknowledged test. No unsupported cure-completion, moisture-failure or downstream claim.",
+        "F2": "Correct product conflict and explicit formal response/revision/receipt closure. The acceptance-only limitation quote preserves separate prerequisites.",
+        "F3": "Correct open quantity discrepancy and source-attributed follow-up. No unsupported delivery cause, warranty effect or count inference."
+      },
+      "notes": "Development-case provisional score: five of eight fully found and three missed; three supported output findings, no unsupported findings, no duplicates. Precision is high but coverage omits all delivery/work-progress history and the planned cure/protection handoff. B informed development and is not a held-out evaluation. A separate agent is not an independent human adjudicator."
+    }
+  ]
+}

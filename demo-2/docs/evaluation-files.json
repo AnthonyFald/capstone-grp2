@@ -6,7 +6,14 @@
     "final-core8-browser9-single.json",
     "final-core8-browser9-thorough.json",
     "final-core8-native9-a.json",
-    "final-core8-native9-b.json"
+    "final-core8-native9-b.json",
+    "final-v17-native27-a-ui.json",
+    "final-v17-native27-b.json",
+    "final-v17-native27-clean.json",
+    "development-v17-native27-d-staged.json",
+    "final-v17-native27-e.json",
+    "final-v17-native27-f.json",
+    "final-v17-browser4-control.json"
   ],
-  "note": "Final matched results use core-v8 and prompt-v8. The 27B prompt-v3 result is explicitly developmental. Other older raw trials and failures remain in docs, with scoring retained where performed."
+  "note": "Selected current results use core daily-reports-v17, prompt daily-review-17-extractive and native-sampling-3, seed42, Qwen3.5:27b non-thinking. D is staged development quality evaluation and excluded from continuous latency. A is an actual blind sample CSV upload and full UI export; an evaluationDatasetId alias is added only after exact normalized-input hash equality to A, while originalDatasetId remains custom. Older baseline/core8/model-v3 comparisons remain historical. Other failed/development attempts and separate scoring files remain in docs and the development log."
 }

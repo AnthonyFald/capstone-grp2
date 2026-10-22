@@ -58,5 +58,177 @@
     "core": "daily-reports-v8",
     "prompt": "daily-review-8",
     "change": "Optional owner/deadline values are withheld and flagged unless tied to an exact cited source action. Invalid source IDs or quotations still reject output. Raw responses remain intact. Prior core-v7 repeated browser runs and their failures are retained as development data. Final matched comparisons use core-v8/prompt-v8."
+  },
+  {
+    "pipeline": "daily-reports-v9",
+    "prompt": "daily-review-9-extractive",
+    "artifacts": [
+      "development-v9-extractive-a.json",
+      "development-v9-extractive-a-nonthinking.json",
+      "diagnosis-v9-extractive-a.json"
+    ],
+    "result": "rejected_development",
+    "reason": "Reasoning exhausted its output budget. Non-thinking source selections were verbatim but grouped unrelated concerns and falsely resolved remaining issues. Exact grounding alone is insufficient."
+  },
+  {
+    "pipeline": "daily-reports-v10",
+    "prompt": "daily-review-10-extractive",
+    "artifact": "development-v10-native9-a.json",
+    "result": "rejected_development",
+    "reason": "Explicit kind descriptions improved categories but still produced false closures and mixed concerns. A informed the next revision."
+  },
+  {
+    "pipeline": "daily-reports-v10",
+    "prompt": "daily-review-10-extractive",
+    "artifact": "development-v10-native27-a.json",
+    "result": "development_quality_gate_met_with_one_false_closure",
+    "reason": "Separate agent scored11/12 with1unsupportedfrominspectionreferenceasclosure. Explicit narrow-review question and stricter closure rule added before new cases."
+  },
+  {
+    "pipeline": "daily-reports-v11",
+    "prompt": "daily-review-11-extractive",
+    "artifacts": [
+      "development-v11-native9-a.json",
+      "development-v11-native27-a.json",
+      "development-v11-native27-b.json"
+    ],
+    "result": "development_only",
+    "reason": "27B A10/12,0unsupported; B5/8,0unsupported. Coverage omitted progress and remaining tasks. 9Bsource-groundedbutpoorcoverage."
+  },
+  {
+    "pipeline": "daily-reports-v12",
+    "prompt": "daily-review-12-extractive",
+    "artifact": "development-v12-native27-a.json",
+    "result": "accepted_development_observation",
+    "reason": "Extrauncited-sourcecoveragecheck recovershistoricalprogress. SeparateagentscoreA11/12,0unsupported,1duplicate. Freeze recorded before D/E; residualplannedcloseoutomission remains disclosed."
+  },
+  {
+    "pipeline": "daily-reports-v12",
+    "prompt": "daily-review-12-extractive",
+    "artifacts": [
+      "final-v12-native27-d.json",
+      "final-v12-native27-e.json",
+      "scoring-v12-new-cases.json"
+    ],
+    "result": "new_case_quality_gate_failed",
+    "reason": "D7/9fullyfound with2routinefalsealerts,notfabricatedfacts. Ezeroalerts. D/Ewerewithhelduntilv12freeze. Dnowinformsdevelopment: finalsource-based relevancecheck requiresactualproblemorremainingtask andearliermaterialcontext. No reference/input corrections made."
+  },
+  {
+    "pipeline": "daily-reports-v13",
+    "prompt": "daily-review-13-extractive",
+    "artifact": "development-v13-native27-a.json",
+    "result": "rejected_materiality_format",
+    "reason": "A supported materiality decision returned a null replacement. Validation rejected the attempt before findings were accepted; raw diagnostics were retained. This is a format failure, not a completed quality observation.",
+    "change": "V14 flattens verdict, topic, source IDs, type and status into one decision object. Supported and routine decisions both require valid pointers; routine items are discarded."
+  },
+  {
+    "pipeline": "daily-reports-v14",
+    "prompt": "daily-review-14-extractive",
+    "artifact": "development-v14-native27-d.json",
+    "result": "rejected_conflicting_duplicate_interpretations",
+    "reason": "The D attempt completed materiality checks but identical source evidence received conflicting state interpretations. The final duplicate guard rejected the output rather than silently keeping the first state. Raw diagnostics were retained.",
+    "change": "V15 adds bounded source-based adjudication for conflicting exact-duplicate groups; unresolved conflicts still reject."
+  },
+  {
+    "pipeline": "daily-reports-v15",
+    "prompt": "daily-review-15-extractive",
+    "artifacts": [
+      "development-v15-native27-d-staged.json",
+      "scoring-v15-native27-d.json"
+    ],
+    "result": "staged_development_quality_gate_failed",
+    "fullyFound": 7,
+    "referenceIssues": 9,
+    "unsupportedFindings": 0,
+    "duplicates": 1,
+    "reason": "Provisional separate-agent review found remaining omissions despite removal of unsupported routine alerts. D is development-informed, and its 8/9 target was retained. The replay reused unchanged prefix responses and performed the new adjudication through actual local inference.",
+    "timingPolicy": "Staged replay is excluded from continuous latency summaries."
+  },
+  {
+    "pipeline": "daily-reports-v15",
+    "dataset": "reports-f",
+    "result": "canceled_before_completed_predictions",
+    "reason": "The F attempt was stopped before completed predictions and before reference exposure to the implementing agent. It is not a completed quality or latency trial. The separate case author inherited project context, so procedural separation does not establish independent human validation."
+  },
+  {
+    "pipeline": "daily-reports-v16",
+    "prompt": "daily-review-16-extractive",
+    "artifact": "development-v16-native27-d-staged.json",
+    "result": "staged_development_quality_gate_failed",
+    "change": "Adds focused historical work/delivery and opposing inspection/release retrieval before materiality checks. Probes can update context or add distinct missing concerns without changing source inputs, references or thresholds.",
+    "reason": "Independent provisional scoring found missing earlier delay and opposing-release context, plus loss of the previously selected notice-sending account during a focused draft rewrite. V16 is superseded, with original predictions and staged timing retained.",
+    "timingPolicy": "Staged replay is excluded from continuous latency summaries.",
+    "fullyFound": 6,
+    "referenceIssues": 9,
+    "partialIssues": 2,
+    "unsupportedFindings": 0,
+    "duplicates": 0,
+    "scoringArtifact": "scoring-v16-native27-d.json"
+  },
+  {
+    "pipeline": "daily-reports-v17",
+    "result": "selected_quality_profile_completed_synthetic_pilot_gates",
+    "change": "Independent source-only focused retrieval, with original selected context preserved through supported materiality corrections. Source/configuration/F input and reference hashes frozen before completed F inference.",
+    "evaluationPolicy": "Freeze the selected revision and source/config/input/reference hashes before the first completed F evaluation. A, B and D are development-informed; C/E are narrow controls. Do not reuse a completed F result for tuning while describing it as untouched.",
+    "freezeArtifact": "freeze-v17.json",
+    "developmentD": {
+      "fullyFound": 8,
+      "referenceIssues": 9,
+      "partialIssues": 1,
+      "unsupportedFindings": 0,
+      "duplicates": 6,
+      "timing": "staged; excluded from continuous latency"
+    },
+    "freshF": {
+      "fullyFound": 7,
+      "referenceIssues": 8,
+      "partialIssues": 1,
+      "unsupportedFindings": 0,
+      "duplicates": 7,
+      "elapsedSeconds": 504.0037736,
+      "n": 1
+    },
+    "limitation": "All positive cases retain a missed/partial concern and repeated suggestions. Provisional Codex-assisted judgments; no independent human validation or human productivity measurements. A/B/D development-informed; F separate author inherited project context. No F-based algorithm changes.",
+    "finalA": {
+      "fullyFound": 11,
+      "referenceIssues": 12,
+      "partialIssues": 1,
+      "unsupportedFindings": 0,
+      "duplicates": 7,
+      "elapsedSeconds": 615.121356,
+      "mode": "actual uploaded-sample UI and download"
+    },
+    "finalB": {
+      "fullyFound": 7,
+      "referenceIssues": 8,
+      "missedIssues": 1,
+      "unsupportedFindings": 0,
+      "duplicates": 5,
+      "elapsedSeconds": 277.8758213
+    },
+    "controls": {
+      "nativeC": {
+        "findings": 0,
+        "seconds": 13.1208651
+      },
+      "nativeE": {
+        "findings": 0,
+        "seconds": 34.41989
+      }
+    }
+  },
+  {
+    "pipeline": "daily-reports-v17",
+    "model": "Qwen3-4B-q4f16_1-MLC",
+    "dataset": "reports-clean",
+    "result": "runtime_success_quality_control_failed",
+    "fullyFound": null,
+    "referenceIssues": 0,
+    "unsupportedFindings": 4,
+    "duplicates": 0,
+    "elapsedSeconds": 14.3399,
+    "change": "UI labels browser4B experimental and not recommended for accuracy; no inference/prompt/reference change. Native27 remains preferred.",
+    "artifact": "final-v17-browser4-control.json",
+    "scoringArtifact": "scoring-v17-browser4-control.json"
   }
 ]

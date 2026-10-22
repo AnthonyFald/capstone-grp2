@@ -1,0 +1,94 @@
+{
+  "runs": [
+    {
+      "runId": "c137b18a-d318-49bd-a258-c68847bfb00a",
+      "reviewer": "Separate case-authoring Codex agent provisional review",
+      "independentReview": false,
+      "judgments": {
+        "F-01": {
+          "rating": "found",
+          "note": "Fully retains verbal isolation-proved accounts versus unavailable signed crew certificate, then explicit signed issue/receipt and closed written branch-isolation acceptance. Does not conflate this with replacement pressure-test acceptance.",
+          "findingId": "F1"
+        },
+        "F-02": {
+          "rating": "found",
+          "note": "Retains the 0-10 V versus 4-20 mA conflict, unapproved internal draft, and later signed TQ-074 / E-620 revision H decision specifying 4-20 mA. Correct resolved technical-choice status.",
+          "findingId": "F14"
+        },
+        "F-03": {
+          "rating": "partial",
+          "findingId": "F14",
+          "note": "Captures the earlier unapproved/unregistered draft and lack of an issued crew instruction, followed by formal signed issue and supersession. No selected finding retains the explicit August 20 10:25 acknowledgement by both installation supervisors. Formal issue alone does not fully cover the separately defined receipt-confirmation concern, so this reference remains partial."
+        },
+        "F-04": {
+          "rating": "found",
+          "note": "F7 retains the August 19 08:00-11:20 hold, reassignment, 3-hour-20-minute duration and August 21 physical fitting completion. F11 retains the missing release/interface prerequisites and subsequent gate closures. Together they cover the whole historical event once, without full-shift, commissioning-completion or critical-path claims.",
+          "findingIds": [
+            "F7",
+            "F11"
+          ]
+        },
+        "F-05": {
+          "rating": "found",
+          "note": "Captures requested pressure-test witness, later PT-V24-0822 register entry, unavailable/unlinked signed acceptance sheet, and record verification before insulation closeout. The open label applies to the explicit record-linking/verification task; it does not assert a failed or never-performed pressure test. Branch-isolation acceptance is correctly closed separately in F1.",
+          "findingId": "F3"
+        },
+        "F-06": {
+          "rating": "found",
+          "note": "Correctly retains the measured 360 L recovered versus 300 L transfer record, unreconciled 60 L and open collection/tank-balance reconciliation. No invented spill, disposal breach or cause.",
+          "findingId": "F4"
+        },
+        "F-07": {
+          "rating": "found",
+          "note": "Explicitly distinguishes completed local stroke exercise from unperformed remote command, feedback and fail-safe tests, and retains the remaining acceptance before automatic service. No invented failed or overdue test.",
+          "findingId": "F5"
+        },
+        "F-08": {
+          "rating": "found",
+          "note": "Jointly captures the 70-minute ceiling restriction, two installers reassigned and later resumed access, alongside reportedly sent advance email and unestablished crew receipt. Historical disruption and outstanding receipt follow-up are kept distinct and the reference is counted once.",
+          "findingIds": [
+            "F12",
+            "F16"
+          ]
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "duplicate",
+        "F3": "supported",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "duplicate",
+        "F7": "supported",
+        "F8": "duplicate",
+        "F9": "duplicate",
+        "F10": "duplicate",
+        "F11": "supported",
+        "F12": "supported",
+        "F13": "duplicate",
+        "F14": "supported",
+        "F15": "duplicate",
+        "F16": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported full verbal-versus-written isolation-release concern with explicit signed later closure and receipt. Most complete primary item for F-01.",
+        "F2": "Duplicate of F14: same conflicting control-signal detail, unapproved draft and later signed technical decision. F14 additionally retains the historical absence of an issued installer instruction, so it is retained as the more complete technical/communication item.",
+        "F3": "Supported pressure-test record verification gap. Open is interpreted as the known remaining record-linking task rather than a claim that the test failed or never occurred; selected passages expressly limit the uncertainty to verification of acceptance.",
+        "F4": "Supported measured-fluid versus signed-transfer quantity discrepancy, retaining both source measurements, amount and open reconciliation.",
+        "F5": "Supported outstanding remote functional acceptance despite completed local exercise, with explicit service condition and no overdue/failure claim.",
+        "F6": "Duplicate/subset of F16: same reportedly sent access email and unknown receipt. F16 retains that concern plus the now-restored access context; no distinct communication issue is added here.",
+        "F7": "Supported historical measured work-area hold, reassignment and later physical fitting completion. Complements F11 prerequisite/gate context; does not claim completion of automatic-service acceptance.",
+        "F8": "Duplicate/subset of F3: same unlinked/unavailable pressure-test acceptance sheet and remaining verification task, with no distinct new concern.",
+        "F9": "Duplicate of F4: same 360 L versus 300 L transfer discrepancy and unreconciled 60 L; the combined source action adds no separate quantity issue.",
+        "F10": "Duplicate/subset of F5: same outstanding remote tests and automatic-service condition. F5 additionally preserves the actual completed local exercise.",
+        "F11": "Supported historical prerequisite-gate hold and its later written-release/design-information closures. This complements F7 actual duration/reassignment/physical completion; resolved is confined to those stated prerequisites and is not treated as proof that fitting completed on August 20.",
+        "F12": "Supported historical trade restriction, two-person reassignment, 70-minute duration and resumed corridor access. Its selected reported email/unknown receipt context complements the separately open follow-up in F16.",
+        "F13": "Duplicate of F1: same verbal isolation-proved versus unavailable signed certificate and same later signed issue/receipt/closure. The added deferred-window sentence is already retained in F7/F11 and does not create an additional release concern.",
+        "F14": "Supported technical conflict and historical unapproved/unissued instruction gap, with explicit formal revision issue and technical closure. It does not retain the actual trade receipt acknowledgements, so communication-reference F-03 is partial despite technical-reference F-02 being fully found.",
+        "F15": "Duplicate combination of F3 and F4: repeats the pressure-test record-verification gap and fluid quantity discrepancy using the same latest passages. Both are true and remain open, but combining them adds no unique concern and is not extra precision or recall credit.",
+        "F16": "Supported reported email sending versus uncertain receipt with historical restriction and resumed-access context. Complements F12 historical disruption; F6 is excluded as the repeated subset."
+      },
+      "timingInterpretation": "Fresh continuous v17 F run after pipeline/source/prompt freeze. elapsedMs and totalMs are actual recorded inference/end-to-end timings, unlike the staged D development replay. This synthetic agent-authored case remains subject to independent human review."
+    }
+  ]
+}

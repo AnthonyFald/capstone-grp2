@@ -1,10 +1,12 @@
 # Evergreen — INFO 492 Team 2
 
-A static capstone website with functional Demo 1 and Demo 2 tabs. GitHub Pages serves the HTML, CSS, and JavaScript directly. Browser models need no install, build step, API key or paid inference service. Demo 2 also supports local native 9B and experimental 27B models through a companion.
+A static capstone website with functional Demo 1 and Demo 2 tabs. GitHub Pages serves the HTML, CSS, and JavaScript directly. Browser models need no install, build step, API key or paid inference service. Demo 2 also supports local native 9B and higher-capacity 27B models through a companion.
 
 ## Demo 2 on this device
 
-Open [Demo 2](https://anthonyfald.github.io/capstone-grp2/demo-2/) for daily-report analysis. It includes the supplied 10-report pilot, a transfer scenario, a negative control, CSV/JSON import, source-linked findings, human corrections, reference scoring, timers and research exports. Quality takes priority over speed. Choose native Qwen 3.5 9B thorough reasoning, experimental Qwen 3.5 27B reasoning in one full-source pass, browser Qwen 3.5 9B (thorough or one pass), lower-memory Qwen 3 4B, or an explicitly non-AI keyword baseline. Thorough review performs four separate subject reviews, each verified against the full source chronology. Current tests use an RTX 5080 with 16 GB VRAM; Apple silicon compatibility is retained, but Mac performance is not measured here. See [setup](demo-2/docs/local-setup.md), [protocol](demo-2/docs/protocol.md), and [results](demo-2/docs/results.md).
+Open [Demo 2](https://anthonyfald.github.io/capstone-grp2/demo-2/) to compare daily construction site updates across dates and trades. Start with the included example or upload a CSV/JSON spreadsheet export; [sample CSV](demo-2/data/sample-daily-reports.csv), [sample JSON](demo-2/data/sample-daily-reports.json) and an [upload guide](demo-2/docs/upload-guide.md) explain the format. Then analyze, check the source timeline, keep/correct/reject findings, and download the result. Model settings and research controls are optional collapsed sections.
+
+Quality takes priority over speed. The installed local Qwen 3.5 27B is preferred when available; 9B and browser 9B/4B are lower-memory alternatives. The revised pipeline selects exact report sentences, reconciles later status and checks uncited passages for missed concerns. It does not generate consequences, new causes or assignments. Grouping and status still require review. RTX 5080 measurements, earlier failures and remaining misses are published in the [results](demo-2/docs/results.md). Apple silicon runtime paths remain supported, but Mac inference was not benchmarked. See [setup](demo-2/docs/local-setup.md) and [protocol](demo-2/docs/protocol.md).
 
 ## Demo 1 on Mac and Windows
 

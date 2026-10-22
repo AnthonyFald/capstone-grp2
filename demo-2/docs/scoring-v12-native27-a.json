@@ -1,0 +1,98 @@
+{
+  "rubric": "Found requires a fully correct material concern and latest status. Partial counts as missed. A found issue must link only to supported findings. A material false closure makes the whole output finding unsupported even when its quotations are exact. Duplicate outputs do not count as unsupported findings. Independent human review remains pending.",
+  "runs": [
+    {
+      "runId": "a1d0f953-41e8-485f-93df-831701e63aa7",
+      "reviewer": "Separate Codex agent provisional adjudication",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Quotes the observed water damage and unconfirmed source with needs_verification and no invented cause."
+        },
+        "ISS-02": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves the initial missing formal acceptance/release and closes substrate acceptance using explicit acceptance and signed checklist QC-B104-0514."
+        },
+        "ISS-03": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves apparent readiness without inspection sign-off and missing workface release, followed by signed substrate acceptance. It does not treat apparent readiness as proof of acceptance."
+        },
+        "ISS-04": {
+          "rating": "found",
+          "findingIds": [
+            "F4",
+            "F5"
+          ],
+          "note": "Together the supported technical and communication findings preserve the earlier unanswered question, internal/informal direction, later reported RFI resolution, and missing formal response/revision. They do not assert that the technical decision is proven unresolved."
+        },
+        "ISS-05": {
+          "rating": "found",
+          "findingId": "F9",
+          "note": "Quotes actual pour postponement across earlier dates, partial-afternoon crew reassignment, the subsequent hold and later completed placement. Historical state correctly ends the work-progress concern without implying record gaps or prerequisites were independently verified closed."
+        },
+        "ISS-06": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Preserves the GC inspection-passed account versus the missing written release and reconciles substrate acceptance through the later signed checklist."
+        },
+        "ISS-07": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Preserves original thickness versus revised detail, internal and informal instruction, missing drawing/revision, and the latest approved-detail claim without its linked formal response."
+        },
+        "ISS-08": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Preserves the internal response not formally transmitted, unconfirmed receipt, missing revision and latest missing formal response evidence."
+        },
+        "ISS-09": {
+          "rating": "found",
+          "findingId": "F6",
+          "note": "Preserves the earlier requested-but-not-complete reinforcement inspection and later RI-B104-0515 reference. The needs_verification state correctly withholds closure rather than treating the reference as confirmed acceptance."
+        },
+        "ISS-10": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Includes both the superintendent's resolved status and the missing formal RFI response/drawing revision, with needs_verification."
+        },
+        "ISS-11": {
+          "rating": "partial",
+          "findingId": "F7",
+          "note": "Correctly distinguishes delivered volume from separately unmeasured placed quantity. Explicitly unfinished curing/protection and strength-test follow-up are omitted, so this combined closeout reference is not fully found."
+        },
+        "ISS-12": {
+          "rating": "found",
+          "findingId": "F8",
+          "note": "Preserves reported notification, the bounded 09:00-12:45 restriction and uncertainty about foreman advance notice, without claiming a full-shift or critical-path delay."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "supported",
+        "F3": "duplicate",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported",
+        "F8": "supported",
+        "F9": "supported"
+      },
+      "findingNotes": {
+        "F1": "Correct unknown cause and verification state; exact source quotations.",
+        "F2": "Correct historical acceptance/release discrepancy and later signed substrate acceptance. The conditional acceptance quote retains independent design/reinforcement limitations.",
+        "F3": "Duplicate of F2's missing-written-release concern and signed checklist closure. All four selected passages are already present in F2; this output adds no independently outstanding record issue or different closure state.",
+        "F4": "Correct technical-choice and approved-detail evidence limitations. Its needs_verification state is supported by the missing formal response/revision passage and is not a claim of failed or absent design approval.",
+        "F5": "Correct formal decision communication/record limitation and reported resolved RFI status. This is distinct from the original thickness/detail choice in F4, despite overlapping sources.",
+        "F6": "Correctly avoids treating a bare inspection reference as proven acceptance. The earlier incomplete inspection and later reference are retained for verification.",
+        "F7": "Correct delivery-versus-placed quantity distinction. It makes no invented measurement, quantity comparison or downstream claim.",
+        "F8": "Correct bounded trade access and notice uncertainty. Omits reassignment and no-full-shift wording but makes no contrary delay assertion.",
+        "F9": "Correct historical postponement and later physical completion, with bounded source quotations and no invented critical-path, approval or documentation-reconciliation assertion."
+      },
+      "notes": "Development-case provisional score: 11 of 12 fully found and one partial; eight supported output findings, no unsupported findings and one duplicate. The preset A gate of at least 10 fully found with at most one unsupported finding is met on this development observation. The added coverage pass recovers historical pour postponement. Explicitly unfinished curing/protection and strength-test follow-up remain omitted, so the combined quantity/quality closeout reference is partial. A informed development and is not held out. A separate agent is not an independent human adjudicator."
+    }
+  ]
+}
