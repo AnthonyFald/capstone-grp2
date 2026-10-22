@@ -1,0 +1,16 @@
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const Core=require('../core.js'),Native=require('../native-engine.cjs');
+const args=process.argv.slice(2),arg=(key,fallback)=>{const i=args.indexOf(key);return i<0?fallback:args[i+1];};
+const dataset=arg('--dataset','reports-a'),model=arg('--model','qwen3.5:27b'),count=Number(arg('--runs','1')),output=arg('--out',path.join(__dirname,'../docs/native-trials.json'));
+const thorough=args.includes('--thorough'),reasoning=args.includes('--reasoning');
+const rows=Core.reports(JSON.parse(fs.readFileSync(path.join(__dirname,'../data',dataset+'.json'),'utf8')));
+const inputSha256=crypto.createHash('sha256').update(JSON.stringify(rows)).digest('hex'),resumeFile=arg('--resume',null);
+let resume=null;
+if(resumeFile){const previous=JSON.parse(fs.readFileSync(resumeFile,'utf8')).runs.at(-1);if(previous.inputSha256!==inputSha256||previous.model!==model||previous.pipeline!==Core.VERSION)throw Error('Checkpoint input/model/pipeline mismatch.');resume={responses:previous.diagnostics.responses.filter(r=>r.stage.startsWith('Reviewing report ')),timings:previous.diagnostics.timings.filter(t=>t.stage.startsWith('Reviewing report '))};}
+const runs=[];
+(async()=>{for(let i=0;i<count;i++){
+  const begin=performance.now(),createdAt=new Date().toISOString();
+  try{const result=await Native.analyze(rows,{model,thorough,reasoning,resume,progress:text=>console.log('Trial '+(i+1)+': '+text)});const priorPassElapsedMs=resume?resume.timings.reduce((s,t)=>s+t.elapsedMs,0):0,newSegmentTotalMs=performance.now()-begin,totalMs=newSegmentTotalMs+priorPassElapsedMs,loadMs=result.timings.reduce((sum,t)=>sum+(t.usage?.load_duration_ns||0)/1e6,0);runs.push({runId:crypto.randomUUID(),createdAt,pipeline:Core.VERSION,backend:'ollama',profile:thorough?'native-thorough':'native',model,reasoning,seed:42,nativePolicy:Native.POLICY,datasetId:dataset,inputSha256,contextWindow:Native.CONTEXT,resumedFrom:resumeFile,priorPassElapsedMs,newSegmentTotalMs,temperature:result.timings[0]?.usage?.sampling?.temperature??0,loadMs,totalMs,elapsedMs:totalMs-loadMs,reports:rows,originalFindings:structuredClone(result.findings),...result,humanReview:{status:'not_measured'},evaluation:{status:'not_scored'}});console.log(JSON.stringify({trial:i+1,elapsedMs:runs.at(-1).elapsedMs,findings:result.findings.length}));}
+  catch(error){runs.push({createdAt,model,reasoning,nativePolicy:Native.POLICY,datasetId:dataset,inputSha256:crypto.createHash('sha256').update(JSON.stringify(rows)).digest('hex'),pipeline:Core.VERSION,status:'failed',error:error.message,diagnostics:error.diagnostics||null,elapsedMs:performance.now()-begin});console.error(error.message);}
+  fs.mkdirSync(path.dirname(output),{recursive:true});fs.writeFileSync(output,JSON.stringify({version:Core.VERSION,runs},null,2)+'\n');
+}})().catch(e=>{console.error(e);process.exitCode=1;});

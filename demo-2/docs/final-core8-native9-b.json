@@ -1,0 +1,626 @@
+{
+  "version": "daily-reports-v8",
+  "runs": [
+    {
+      "runId": "f1df974e-8f2e-40e7-9786-b926b54427d5",
+      "createdAt": "2026-10-22T10:05:08.997Z",
+      "pipeline": "daily-reports-v8",
+      "promptVersion": "daily-review-8",
+      "datasetId": "reports-b",
+      "inputSha256": "2d7224c3864ff2005397ce01d476d482de6fd57d1d8896511ec4578819fa3102",
+      "profile": "native",
+      "model": "qwen3.5:9b",
+      "backend": "ollama",
+      "reasoning": true,
+      "seed": 42,
+      "modelDigest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "contextWindow": 32768,
+      "temperature": 1,
+      "nativePolicy": "native-sampling-2",
+      "device": {
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+        "gpu": {
+          "vendor": "nvidia",
+          "architecture": "blackwell",
+          "device": "",
+          "description": "",
+          "shaderF16": true
+        }
+      },
+      "loadMs": 38.1199,
+      "elapsedMs": 616364.9533999998,
+      "totalMs": 616403.0732999998,
+      "reports": [
+        {
+          "report_id": "DR-B01",
+          "report_date": "2026-06-01",
+          "report_author": "Flooring subcontractor",
+          "work_area": "Library wing L210",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Prepare and install the library floor finish.",
+          "work_completed": "Removed old finish from 60 m2.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "Moisture readings are required before adhesive installation. No readings have been received. Adhesive delivery is scheduled for June 2, not confirmed.",
+          "schedule_status": "Installation on hold pending moisture acceptance.",
+          "rfi_change_order_refs": "RFI-042",
+          "action_required": "GC to arrange moisture test and confirm supplier delivery.",
+          "responsible_party": "General Contractor",
+          "due_date": "2026-06-02 09:00",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Records described in report; attachments are not included in this synthetic dataset."
+        },
+        {
+          "report_id": "DR-B02",
+          "report_date": "2026-06-02",
+          "report_author": "General contractor",
+          "work_area": "Library wing L210",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Prepare and install the library floor finish.",
+          "work_completed": "Called supplier; delivery booked for June 4 instead of June 2.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "Site diary says moisture passed, based on a phone call. No technician, measured value, or signed test report is identified.",
+          "schedule_status": "Adhesive delivery moved two days. No project critical-path analysis provided.",
+          "rfi_change_order_refs": "RFI-042",
+          "action_required": "Reconcile moisture status with flooring crew and obtain signed test report.",
+          "responsible_party": "General Contractor",
+          "due_date": "2026-06-03",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Records described in report; attachments are not included in this synthetic dataset."
+        },
+        {
+          "report_id": "DR-B03",
+          "report_date": "2026-06-02",
+          "report_author": "Flooring subcontractor",
+          "work_area": "Library wing L210",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Prepare and install the library floor finish.",
+          "work_completed": "Sanded edges; installed no adhesive.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "At 15:00 the crew still lacked the moisture test report. The instruction to install Product M differs from drawing F-12 revision 2 specifying Product N. RFI-042 asks which product applies.",
+          "schedule_status": "Installation remains on hold.",
+          "rfi_change_order_refs": "RFI-042",
+          "action_required": "Design Team to issue written product selection under RFI-042.",
+          "responsible_party": "Design Team",
+          "due_date": "2026-06-03",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Records described in report; attachments are not included in this synthetic dataset."
+        },
+        {
+          "report_id": "DR-B04",
+          "report_date": "2026-06-03",
+          "report_author": "Quality inspector",
+          "work_area": "Library wing L210",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Prepare and install the library floor finish.",
+          "work_completed": "Moisture test passed at 09:10. Signed report MT-210 was shared with the flooring supervisor, who acknowledged receipt.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "The signed test closes moisture acceptance only. It does not approve an adhesive product.",
+          "schedule_status": "Moisture hold closed; design question still open.",
+          "rfi_change_order_refs": "RFI-042",
+          "action_required": "Design Team to answer product question.",
+          "responsible_party": "Design Team",
+          "due_date": "2026-06-03",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Records described in report; attachments are not included in this synthetic dataset."
+        },
+        {
+          "report_id": "DR-B05",
+          "report_date": "2026-06-04",
+          "report_author": "General contractor",
+          "work_area": "Library wing L210",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Prepare and install the library floor finish.",
+          "work_completed": "Adhesive delivered. Formal RFI-042 response selects Product N and drawing F-12 revision 3; response and revision were sent to the flooring supervisor with receipt confirmed at 08:30.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "Delivery docket says 20 sealed pails. Flooring receiving log says 18 pails. The difference has not been reconciled.",
+          "schedule_status": "Flooring installation can proceed following documented release.",
+          "rfi_change_order_refs": "RFI-042",
+          "action_required": "Receiving lead to reconcile the two counts.",
+          "responsible_party": "Receiving lead",
+          "due_date": "2026-06-05",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Records described in report; attachments are not included in this synthetic dataset."
+        },
+        {
+          "report_id": "DR-B06",
+          "report_date": "2026-06-05",
+          "report_author": "Flooring subcontractor",
+          "work_area": "Library wing L210",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Prepare and install the library floor finish.",
+          "work_completed": "Installed Product N across 60 m2 following F-12 revision 3.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "Protection remains in place until the stated cure period ends on June 6 at 12:00. GC confirms signage and access notice sent to all adjacent trades. No access breach or damage was observed.",
+          "schedule_status": "Installation complete; scheduled cure is ongoing, not a reported delay.",
+          "rfi_change_order_refs": "RFI-042",
+          "action_required": "Maintain protection until June 6 at 12:00.",
+          "responsible_party": "Flooring subcontractor",
+          "due_date": "2026-06-06 12:00",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Records described in report; attachments are not included in this synthetic dataset."
+        }
+      ],
+      "originalFindings": [
+        {
+          "id": "F1",
+          "title": "Moisture Test Acceptance / Physical Readiness",
+          "category": "communication",
+          "status": "resolved",
+          "observation": "Initial hold pending moisture acceptance and subsequent uncertainty were resolved with signed test report sharing acknowledgment, establishing physical readiness for installation.",
+          "consequence": "Moisture hold closure in DR-B04 established physical readiness, allowing installation to proceed following product selection finalization.",
+          "action": "None required. Installation proceeded and completed following cure period maintenance.",
+          "uncertainty": "Initial moisture readings were missing but a signed report was subsequently provided.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-B01",
+              "field": "issue_or_update",
+              "quote": "Moisture readings are required before adhesive installation. No readings have been received. Adhesive delivery is scheduled for June 2, not confirmed."
+            },
+            {
+              "report_id": "DR-B02",
+              "field": "issue_or_update",
+              "quote": "Site diary says moisture passed, based on a phone call. No technician, measured value, or signed test report is identified."
+            },
+            {
+              "report_id": "DR-B04",
+              "field": "work_completed",
+              "quote": "Moisture test passed at 09:10. Signed report MT-210 was shared with the flooring supervisor, who acknowledged receipt."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F2",
+          "title": "Product Selection / Written Field Release",
+          "category": "communication",
+          "status": "resolved",
+          "observation": "Design discrepancy between instruction to install Product M and drawing F-12 revision 2 specifying Product N was resolved by a formal RFI response selecting Product N with revised drawing receipt confirmation.",
+          "consequence": "Written field release for Product N enabled adhesive delivery and installation per documentation in DR-B05.",
+          "action": "None required. Installation complete with protection maintained until cure period.",
+          "uncertainty": "Instruction versus Drawing conflict was open until DR-B05 resolution; quantities reconciliation noted but not tracked as a prerequisite finding per assignment scope.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-B03",
+              "field": "issue_or_update",
+              "quote": "At 15:00 the crew still lacked the moisture test report. The instruction to install Product M differs from drawing F-12 revision 2 specifying Product N. RFI-042 asks which product applies."
+            },
+            {
+              "report_id": "DR-B04",
+              "field": "issue_or_update",
+              "quote": "The signed test closes moisture acceptance only. It does not approve an adhesive product."
+            },
+            {
+              "report_id": "DR-B05",
+              "field": "work_completed",
+              "quote": "Adhesive delivered. Formal RFI-042 response selects Product N and drawing F-12 revision 3; response and revision were sent to the flooring supervisor with receipt confirmed at 08:30."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F3",
+          "title": "Adhesive Delivery Schedule and Completion",
+          "category": "delay",
+          "status": "resolved",
+          "observation": "Delivery was delayed from scheduled June 2 to booked June 4 due to supplier confirmation issues; installation completed on June 5 following documented release after moisture acceptance.",
+          "consequence": "Work area L210 flooring installation proceeded after delay; project schedule impact noted.",
+          "action": "None required.",
+          "uncertainty": "Delay resolved by completion of work and adhesive delivery.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-B01",
+              "field": "issue_or_update",
+              "quote": "Moisture readings are required before adhesive installation. No readings have been received. Adhesive delivery is scheduled for June 2, not confirmed."
+            },
+            {
+              "report_id": "DR-B02",
+              "field": "work_completed",
+              "quote": "Called supplier; delivery booked for June 4 instead of June 2."
+            },
+            {
+              "report_id": "DR-B06",
+              "field": "work_completed",
+              "quote": "Installed Product N across 60 m2 following F-12 revision 3."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F4",
+          "title": "Adhesive Delivery Quantity Discrepancy",
+          "category": "delay",
+          "status": "needs_verification",
+          "observation": "Delivery docket lists 20 sealed pails while receiving log records 18 pails; difference has not been reconciled despite installation completion.",
+          "consequence": "Pending reconciliation of material quantity may impact project records or warranty claims related to delivered adhesive.",
+          "action": "Receiving lead to reconcile delivery docket count with receiving log count and closeout documentation.",
+          "uncertainty": "Delivery receipt quantity mismatch remains unreconciled per DR-B05 records.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-B05",
+              "field": "issue_or_update",
+              "quote": "Delivery docket says 20 sealed pails. Flooring receiving log says 18 pails. The difference has not been reconciled."
+            },
+            {
+              "report_id": "DR-B06",
+              "field": "work_completed",
+              "quote": "Installed Product N across 60 m2 following F-12 revision 3."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        }
+      ],
+      "findings": [
+        {
+          "id": "F1",
+          "title": "Moisture Test Acceptance / Physical Readiness",
+          "category": "communication",
+          "status": "resolved",
+          "observation": "Initial hold pending moisture acceptance and subsequent uncertainty were resolved with signed test report sharing acknowledgment, establishing physical readiness for installation.",
+          "consequence": "Moisture hold closure in DR-B04 established physical readiness, allowing installation to proceed following product selection finalization.",
+          "action": "None required. Installation proceeded and completed following cure period maintenance.",
+          "uncertainty": "Initial moisture readings were missing but a signed report was subsequently provided.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-B01",
+              "field": "issue_or_update",
+              "quote": "Moisture readings are required before adhesive installation. No readings have been received. Adhesive delivery is scheduled for June 2, not confirmed."
+            },
+            {
+              "report_id": "DR-B02",
+              "field": "issue_or_update",
+              "quote": "Site diary says moisture passed, based on a phone call. No technician, measured value, or signed test report is identified."
+            },
+            {
+              "report_id": "DR-B04",
+              "field": "work_completed",
+              "quote": "Moisture test passed at 09:10. Signed report MT-210 was shared with the flooring supervisor, who acknowledged receipt."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F2",
+          "title": "Product Selection / Written Field Release",
+          "category": "communication",
+          "status": "resolved",
+          "observation": "Design discrepancy between instruction to install Product M and drawing F-12 revision 2 specifying Product N was resolved by a formal RFI response selecting Product N with revised drawing receipt confirmation.",
+          "consequence": "Written field release for Product N enabled adhesive delivery and installation per documentation in DR-B05.",
+          "action": "None required. Installation complete with protection maintained until cure period.",
+          "uncertainty": "Instruction versus Drawing conflict was open until DR-B05 resolution; quantities reconciliation noted but not tracked as a prerequisite finding per assignment scope.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-B03",
+              "field": "issue_or_update",
+              "quote": "At 15:00 the crew still lacked the moisture test report. The instruction to install Product M differs from drawing F-12 revision 2 specifying Product N. RFI-042 asks which product applies."
+            },
+            {
+              "report_id": "DR-B04",
+              "field": "issue_or_update",
+              "quote": "The signed test closes moisture acceptance only. It does not approve an adhesive product."
+            },
+            {
+              "report_id": "DR-B05",
+              "field": "work_completed",
+              "quote": "Adhesive delivered. Formal RFI-042 response selects Product N and drawing F-12 revision 3; response and revision were sent to the flooring supervisor with receipt confirmed at 08:30."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F3",
+          "title": "Adhesive Delivery Schedule and Completion",
+          "category": "delay",
+          "status": "resolved",
+          "observation": "Delivery was delayed from scheduled June 2 to booked June 4 due to supplier confirmation issues; installation completed on June 5 following documented release after moisture acceptance.",
+          "consequence": "Work area L210 flooring installation proceeded after delay; project schedule impact noted.",
+          "action": "None required.",
+          "uncertainty": "Delay resolved by completion of work and adhesive delivery.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-B01",
+              "field": "issue_or_update",
+              "quote": "Moisture readings are required before adhesive installation. No readings have been received. Adhesive delivery is scheduled for June 2, not confirmed."
+            },
+            {
+              "report_id": "DR-B02",
+              "field": "work_completed",
+              "quote": "Called supplier; delivery booked for June 4 instead of June 2."
+            },
+            {
+              "report_id": "DR-B06",
+              "field": "work_completed",
+              "quote": "Installed Product N across 60 m2 following F-12 revision 3."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F4",
+          "title": "Adhesive Delivery Quantity Discrepancy",
+          "category": "delay",
+          "status": "needs_verification",
+          "observation": "Delivery docket lists 20 sealed pails while receiving log records 18 pails; difference has not been reconciled despite installation completion.",
+          "consequence": "Pending reconciliation of material quantity may impact project records or warranty claims related to delivered adhesive.",
+          "action": "Receiving lead to reconcile delivery docket count with receiving log count and closeout documentation.",
+          "uncertainty": "Delivery receipt quantity mismatch remains unreconciled per DR-B05 records.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-B05",
+              "field": "issue_or_update",
+              "quote": "Delivery docket says 20 sealed pails. Flooring receiving log says 18 pails. The difference has not been reconciled."
+            },
+            {
+              "report_id": "DR-B06",
+              "field": "work_completed",
+              "quote": "Installed Product N across 60 m2 following F-12 revision 3."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        }
+      ],
+      "timings": [
+        {
+          "stage": "Reviewing readiness and prerequisites",
+          "elapsedMs": 68884.93030000012,
+          "usage": {
+            "prompt_tokens": 2022,
+            "completion_tokens": 7672,
+            "load_duration_ns": 4124800,
+            "prompt_eval_duration_ns": 39591000,
+            "eval_duration_ns": 68827839000,
+            "total_duration_ns": 68880939700,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Verifying readiness and prerequisites",
+          "elapsedMs": 82328.20860000001,
+          "usage": {
+            "prompt_tokens": 2482,
+            "completion_tokens": 9204,
+            "load_duration_ns": 4792400,
+            "prompt_eval_duration_ns": 382084000,
+            "eval_duration_ns": 81868255000,
+            "total_duration_ns": 82326842900,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Reviewing technical decisions and formal communication",
+          "elapsedMs": 76889.32629999984,
+          "usage": {
+            "prompt_tokens": 2026,
+            "completion_tokens": 8571,
+            "load_duration_ns": 4483700,
+            "prompt_eval_duration_ns": 318905000,
+            "eval_duration_ns": 76485373000,
+            "total_duration_ns": 76887472200,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Verifying technical decisions and formal communication",
+          "elapsedMs": 71692.19310000003,
+          "usage": {
+            "prompt_tokens": 2319,
+            "completion_tokens": 8053,
+            "load_duration_ns": 4725000,
+            "prompt_eval_duration_ns": 361310000,
+            "eval_duration_ns": 71235744000,
+            "total_duration_ns": 71690029900,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Reviewing progress and closeout",
+          "elapsedMs": 99018.61030000029,
+          "usage": {
+            "prompt_tokens": 2023,
+            "completion_tokens": 11016,
+            "load_duration_ns": 5568300,
+            "prompt_eval_duration_ns": 315911000,
+            "eval_duration_ns": 98617587000,
+            "total_duration_ns": 99017702800,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Verifying progress and closeout",
+          "elapsedMs": 97688.64980000025,
+          "usage": {
+            "prompt_tokens": 2290,
+            "completion_tokens": 10685,
+            "load_duration_ns": 4142000,
+            "prompt_eval_duration_ns": 359702000,
+            "eval_duration_ns": 97233936000,
+            "total_duration_ns": 97686823100,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Reviewing causes and trade coordination",
+          "elapsedMs": 47920.633400000166,
+          "usage": {
+            "prompt_tokens": 2019,
+            "completion_tokens": 5292,
+            "load_duration_ns": 4754200,
+            "prompt_eval_duration_ns": 315033000,
+            "eval_duration_ns": 47511173000,
+            "total_duration_ns": 47919078000,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Repairing invalid evidence references",
+          "elapsedMs": 71979.48459999962,
+          "usage": {
+            "prompt_tokens": 3428,
+            "completion_tokens": 7906,
+            "load_duration_ns": 5529500,
+            "prompt_eval_duration_ns": 514780000,
+            "eval_duration_ns": 71374684000,
+            "total_duration_ns": 71977626800,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        }
+      ],
+      "responses": [
+        {
+          "stage": "Reviewing readiness and prerequisites",
+          "raw": "{\n  \"findings\": [\n    {\n      \"title\": \"Moisture Test Acceptance / Physical Readiness\",\n      \"category\": \"communication\",\n      \"status\": \"resolved\",\n      \"observation\": \"Initial hold pending moisture acceptance (DR-B01) and subsequent uncertainty via phone call (DR-B02) were resolved with signed test report MT-210 sharing receipt acknowledgment (DR-B04), establishing physical readiness for installation.\",\n      \"consequence\": \"Moisture hold closed explicitly in DR-B04, allowing installation to proceed after product selection was finalized (DR-B05).\",\n      \"action\": \"None required. Installation proceeded and completed following cure period maintenance (DR-B06).\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"Initial moisture readings were missing (DR-B01) but a signed report was subsequently provided (DR-B04).\",\"evidence\": [\n        {\"report_id\": \"DR-B01\", \"field\": \"issue_or_update\"},\n        {\"report_id\": \"DR-B02\", \"field\": \"issue_or_update\"},\n        {\"report_id\": \"DR-B03\", \"field\": \"schedule_status\"},\n        {\"report_id\": \"DR-B04\", \"field\": \"work_completed\"}\n      ]\n    },\n    {\n      \"title\": \"Product Selection / Written Field Release\",\n      \"category\": \"communication\",\n      \"status\": \"resolved\",\n      \"observation\": \"Design discrepancy between instruction to install Product M and drawing F-12 revision 2 specifying Product N (DR-B03) was resolved by a formal RFI-042 response selecting Product N and issuing drawing revision 3 with receipt confirmation (DR-B05).\",\n      \"consequence\": \"Adhesive delivery and installation proceeded following the documented release in DR-B05, satisfying written field release prerequisites.\",\n      \"action\": \"None required. Installation complete with protection in place per schedule (DR-B06).\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"Instruction vs Drawing conflict was open until DR-B05 resolution; quantities reconciliation noted but not tracked as a prerequisite finding per assignment scope.\",\n      \"evidence\": [\n        {\"report_id\": \"DR-B03\", \"field\": \"issue_or_update\"},\n        {\"report_id\": \"DR-B04\", \"field\": \"issue_or_update\"},\n        {\"report_id\": \"DR-B05\", \"field\": \"work_completed\"}\n      ]\n    }\n  ]\n}"
+        },
+        {
+          "stage": "Verifying readiness and prerequisites",
+          "raw": "{\"findings\":[{\"title\":\"Moisture Test Acceptance / Physical Readiness\",\"category\":\"communication\",\"status\":\"resolved\",\"observation\":\"Initial hold pending moisture acceptance and subsequent uncertainty via phone call were resolved with signed test report sharing acknowledgment, establishing physical readiness for installation.\",\"consequence\":\"Moisture hold closure in DR-B04 established physical readiness, allowing installation to proceed following product selection finalization.\",\"action\":\"None required. Installation proceeded and completed following cure period maintenance.\",\"owner\":null,\"due\":null,\"uncertainty\":\"Initial moisture readings were missing but a signed report was subsequently provided.\",\"evidence\":[{\"report_id\":\"DR-B01\",\"field\":\"issue_or_update\"},{\"report_id\":\"DR-B02\",\"field\":\"issue_or_update\"},{\"report_id\":\"DR-B03\",\"field\":\"schedule_status\"},{\"report_id\":\"DR-B04\",\"field\":\"work_completed\"}]},{\"title\":\"Product Selection / Written Field Release\",\"category\":\"communication\",\"status\":\"resolved\",\"observation\":\"Design discrepancy between instruction to install Product M and drawing F-12 revision 2 specifying Product N was resolved by a formal RFI response selecting Product N with revised drawing receipt confirmation.\",\"consequence\":\"Written field release for Product N enabled adhesive delivery and installation per documentation in DR-B05.\",\"action\":\"None required. Installation complete with protection maintained until cure period.\",\"owner\":null,\"due\":null,\"uncertainty\":\n\"Instruction versus Drawing conflict was open until DR-B05 resolution; quantities reconciliation noted but not tracked as a prerequisite finding per assignment scope.\",\"evidence\":[{\"report_id\":\"DR-B03\",\"field\":\"issue_or_update\"},{\"report_id\":\"DR-B04\",\"field\":\"issue_or_update\"},{\"report_id\":\"DR-B05\",\"field\":\"work_completed\"}]}]\n}"
+        },
+        {
+          "stage": "Reviewing technical decisions and formal communication",
+          "raw": "{\n\"findings\": [\n  {\n    \"title\": \"RFI-042 Product Selection Conflict (Product M vs. Product N)\",\n    \"category\": \"conflict\",\n    \"status\": \"resolved\",\n    \"observation\": \"Instruction to install Product M differed from Drawing F-12 Revision 2 which specified Product N, creating a design conflict until formally resolved via RFI-042 response selecting Product N and issuing Drawing F-12 Revision 3.\",\n    \"consequence\": \"Flooring installation was on hold pending moisture acceptance (inspection excluded per scope) and clarification of adhesive product selection due to conflicting instructions and drawing revisions. Adhesive delivery was delayed by two days while awaiting RFI resolution.\",\n    \"action\": \"RFI response received and revised drawing transmitted with confirmed receipt; design team to archive resolved decision record.\",\n    \"owner\": \"Design Team\",\n    \"due\": \"2026-06-03\",\n    \"uncertainty\": \"None; formal response documented with confirmed receipt.\",\n    \"evidence\": [\n      { \"report_id\": \"DR-B01\", \"field\": \"rfi_change_order_refs\" },\n      { \"report_id\": \"DR-B03\", \"field\": \"issue_or_update\" },\n      { \"report_id\": \"DR-B04\", \"field\": \"issue_or_update\" },\n      { \"report_id\": \"DR-B05\", \"field\": \"materials_equipment\" },\n      { \"report_id\": \"DR-B05\", \"field\": \"rfi_change_order_refs\" }\n    ]\n  }\n]}"
+        },
+        {
+          "stage": "Verifying technical decisions and formal communication",
+          "raw": "{\n\"findings\": [\n{\n\"title\": \"RFI-042 Product Selection Conflict (Product M vs. Product N)\",\n\"category\": \"conflict\",\n\"status\": \"resolved\",\n\"observation\": \"Instruction to install Product M differed from Drawing F-12 Revision 2 which specified Product N, creating a design conflict until formally resolved via RFI-042 response selecting Product N and issuing Drawing F-12 Revision 3.\",\n\"consequence\": \"Schedule held pending RFI resolution. Adhesive delivery confirmed for June 4 after delivery date adjustment in DR-B02.\",\n\"action\": \"RFI response received and revised drawing transmitted with confirmed receipt; design team to archive resolved decision record.\",\n\"owner\": \"Design Team\",\n\"due\": \"2026-06-03\",\n\"uncertainty\": \"None; formal response documented with confirmed receipt.\",\n\"evidence\": [\n{\"report_id\": \"DR-B01\", \"field\": \"rfi_change_order_refs\"},\n{\"report_id\": \"DR-B03\", \"field\": \"issue_or_update\"},\n{\"report_id\": \"DR-B04\", \"field\": \"issue_or_update\"},\n{\"report_id\": \"DR-B05\", \"field\": \"issue_or_update\"}\n]\n}\n]}"
+        },
+        {
+          "stage": "Reviewing progress and closeout",
+          "raw": "{\n  \"findings\": [\n    {\n      \"title\": \"Adhesive Delivery Reschedule and Quantity Discrepancy\",\n      \"category\": \"delay\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"Adhesive delivery was delayed from June 2 to June 4 due to supplier confirmation issues, with installation completed on June 5 following documented release, though a discrepancy exists between delivery docket (20 pails) and receiving log (18 pails) requiring reconciliation.\",\n      \"consequence\": \"Work area L210 flooring installation proceeded after delay; pending reconciliation of material quantity may impact project records or warranty claims related to delivered adhesive.\",\n      \"action\": \"Receiving lead to reconcile delivery docket count with receiving log count and closeout documentation.\",\n      \"owner\": \"Receiving lead\",\n      \"due\": \"2026-06-05\",\n      \"uncertainty\": \"Delivery receipt quantity mismatch remains unreconciled per DR-B05 records.\",\n      \"evidence\": [\n        {\n          \"report_id\": \"DR-B01\",\n          \"field\": \"issue_or_update\"\n        },\n        {\n          \"report_id\": \"DR-B02\",\n          \"field\": \"issue_or_update\"\n        },\n        {\n          \"report_id\": \"DR-B05\",\n          \"field\": \"issue_or_update\"\n        },\n        {\n          \"report_id\": \"DR-B06\",\n          \"field\": \"work_completed\"\n        }\n      ]\n    }\n  ]\n}"
+        },
+        {
+          "stage": "Verifying progress and closeout",
+          "raw": "{\n\"findings\": [\n{\n\"title\": \"Adhesive Delivery Reschedule and Completion\",\n\"category\": \"delay\",\n\"status\": \"resolved\",\n\"observation\": \"Delivery was delayed from scheduled June 2 to booked June 4 due to supplier confirmation issues; installation completed on June 5 following documented release after moisture acceptance.\",\n\"consequence\": \"Work area L210 flooring installation proceeded after delay; project schedule impact noted.\",\n\"action\": \"None required.\",\n\"owner\": null,\n\"due\": null,\n\"uncertainty\": \"Delay resolved by completion of work and adhesive delivery.\",\n\"evidence\": [\n{\"report_id\":\"DR-B01\",\"field\":\"issue_or_update\"},\n{\"report_id\":\"DR-B02\",\"field\":\"issue_or_update\"},\n{\"report_id\":\"DR-B06\",\"field\":\"work_completed\"}\n]\n},\n{\n\"title\": \"Adhesive Delivery Quantity Discrepancy\",\n\"category\": \"delay\",\n\"status\": \"needs_verification\",\n\"observation\": \"Delivery docket lists 20 sealed pails while receiving log records 18 pails; difference has not been reconciled despite installation completion.\",\n\"consequence\": \"Pending reconciliation of material quantity may impact project records or warranty claims related to delivered adhesive.\",\n\"action\": \"Receiving lead to reconcile delivery docket count with receiving log count and closeout documentation.\",\n\"owner\": \"Receiving lead\",\n\"due\": \"2026-06-05\",\n\"uncertainty\": \"Delivery receipt quantity mismatch remains unreconciled per DR-B05 records.\",\n\"evidence\": [\n{\"report_id\":\"DR-B05\",\"field\":\"issue_or_update\"},\n{\"report_id\":\"DR-B06\",\"field\":\"work_completed\"}\n]\n}\n]}"
+        },
+        {
+          "stage": "Reviewing causes and trade coordination",
+          "raw": "{\"findings\": []}"
+        },
+        {
+          "stage": "Repairing invalid evidence references",
+          "raw": "{\n  \"findings\": [\n    {\n      \"title\": \"Moisture Test Acceptance / Physical Readiness\",\n      \"category\": \"communication\",\n      \"status\": \"resolved\",\n      \"observation\": \"Initial hold pending moisture acceptance and subsequent uncertainty were resolved with signed test report sharing acknowledgment, establishing physical readiness for installation.\",\n      \"consequence\": \"Moisture hold closure in DR-B04 established physical readiness, allowing installation to proceed following product selection finalization.\",\n      \"action\": \"None required. Installation proceeded and completed following cure period maintenance.\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"Initial moisture readings were missing but a signed report was subsequently provided.\",\n      \"evidence\": [\n        {\n          \"report_id\": \"DR-B01\",\n          \"field\": \"issue_or_update\"\n        },\n        {\n          \"report_id\": \"DR-B02\",\n          \"field\": \"issue_or_update\"\n        },\n        {\n          \"report_id\": \"DR-B04\",\n          \"field\": \"work_completed\"\n        }\n      ]\n    },\n    {\n      \"title\": \"Product Selection / Written Field Release\",\n      \"category\": \"communication\",\n      \"status\": \"resolved\",\n      \"observation\": \"Design discrepancy between instruction to install Product M and drawing F-12 revision 2 specifying Product N was resolved by a formal RFI response selecting Product N with revised drawing receipt confirmation.\",\n      \"consequence\": \"Written field release for Product N enabled adhesive delivery and installation per documentation in DR-B05.\",\n      \"action\": \"None required. Installation complete with protection maintained until cure period.\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"Instruction versus Drawing conflict was open until DR-B05 resolution; quantities reconciliation noted but not tracked as a prerequisite finding per assignment scope.\",\n      \"evidence\": [\n        {\n          \"report_id\": \"DR-B03\",\n          \"field\": \"issue_or_update\"\n        },\n        {\n          \"report_id\": \"DR-B04\",\n          \"field\": \"issue_or_update\"\n        },\n        {\n          \"report_id\": \"DR-B05\",\n          \"field\": \"work_completed\"\n        }\n      ]\n    },\n    {\n      \"title\": \"Adhesive Delivery Schedule and Completion\",\n      \"category\": \"delay\",\n      \"status\": \"resolved\",\n      \"observation\": \"Delivery was delayed from scheduled June 2 to booked June 4 due to supplier confirmation issues; installation completed on June 5 following documented release after moisture acceptance.\",\n      \"consequence\": \"Work area L210 flooring installation proceeded after delay; project schedule impact noted.\",\n      \"action\": \"None required.\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"Delay resolved by completion of work and adhesive delivery.\",\n      \"evidence\": [\n        {\n          \"report_id\": \"DR-B01\",\n          \"field\": \"issue_or_update\"\n        },\n        {\n          \"report_id\": \"DR-B02\",\n          \"field\": \"work_completed\"\n        },\n        {\n          \"report_id\": \"DR-B06\",\n          \"field\": \"work_completed\"\n        }\n      ]\n    },\n    {\n      \"title\": \"Adhesive Delivery Quantity Discrepancy\",\n      \"category\": \"delay\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"Delivery docket lists 20 sealed pails while receiving log records 18 pails; difference has not been reconciled despite installation completion.\",\n      \"consequence\": \"Pending reconciliation of material quantity may impact project records or warranty claims related to delivered adhesive.\",\n      \"action\": \"Receiving lead to reconcile delivery docket count with receiving log count and closeout documentation.\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"Delivery receipt quantity mismatch remains unreconciled per DR-B05 records.\",\n      \"evidence\": [\n        {\n          \"report_id\": \"DR-B05\",\n          \"field\": \"issue_or_update\"\n        },\n        {\n          \"report_id\": \"DR-B06\",\n          \"field\": \"work_completed\"\n        }\n      ]\n    }\n  ]\n}"
+        }
+      ],
+      "groupingRepairs": [],
+      "humanReview": {
+        "status": "not_measured"
+      },
+      "evaluation": {
+        "status": "not_scored"
+      }
+    }
+  ]
+}

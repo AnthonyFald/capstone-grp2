@@ -1,0 +1,5 @@
+{
+  "dataset": "reports-clean",
+  "annotation_status": "Codex-authored negative control; independent validation pending. Expected issue count is zero; recall is undefined.",
+  "issues": []
+}

@@ -1,12 +1,16 @@
 # Evergreen — INFO 492 Team 2
 
-A static capstone website with a functional Demo 1 tab. GitHub Pages serves the HTML, CSS, and JavaScript directly; no install, build step, API key, or paid inference service is required.
+A static capstone website with functional Demo 1 and Demo 2 tabs. GitHub Pages serves the HTML, CSS, and JavaScript directly. Browser models need no install, build step, API key or paid inference service. Demo 2 also supports local native 9B and experimental 27B models through a companion.
+
+## Demo 2 on this device
+
+Open [Demo 2](https://anthonyfald.github.io/capstone-grp2/demo-2/) for daily-report analysis. It includes the supplied 10-report pilot, a transfer scenario, a negative control, CSV/JSON import, source-linked findings, human corrections, reference scoring, timers and research exports. Quality takes priority over speed. Choose native Qwen 3.5 9B thorough reasoning, experimental Qwen 3.5 27B reasoning in one full-source pass, browser Qwen 3.5 9B (thorough or one pass), lower-memory Qwen 3 4B, or an explicitly non-AI keyword baseline. Thorough review performs four separate subject reviews, each verified against the full source chronology. Current tests use an RTX 5080 with 16 GB VRAM; Apple silicon compatibility is retained, but Mac performance is not measured here. See [setup](demo-2/docs/local-setup.md), [protocol](demo-2/docs/protocol.md), and [results](demo-2/docs/results.md).
 
 ## Demo 1 on Mac and Windows
 
 Open **Demo 1** in the website sidebar. The same page works on Mac and Windows in Chrome or Edge with WebGPU and sufficient GPU memory. No download of this repository, terminal, or local launcher is required for the hosted website.
 
-Click **Load free AI model**, wait for the initial model download (about 5 GB), then generate meeting notes. The app runs the real **Qwen 3 8B** model locally in the visitor's browser through WebLLM. It extracts decisions, action items, owners, deadlines, and unresolved questions. Notes include source lines, editing, human review, reference comparisons, and exports. A separately labeled rule-based mode is available as a baseline, not as evidence of AI performance.
+Click **Load free AI model**, wait for the initial model download (about 6 GB), then generate meeting notes. The app runs the real **Qwen 3.5 9B** model locally in the visitor's browser through WebLLM. It extracts decisions, action items, owners, deadlines, and unresolved questions. Notes include source lines, editing, human review, reference comparisons, and exports. A separately labeled rule-based mode is available as a baseline, not as evidence of AI performance.
 
 The model download is external; transcript processing stays on the device. No OpenAI account or paid API tokens power this app. Hardware, browser support, download access, and available memory determine whether local AI can run. Do not assume every Mac or PC is compatible.
 
@@ -31,7 +35,7 @@ All site paths are relative so they work under the `/capstone-grp2/` GitHub Page
 Run the checks with Node.js:
 
 ```sh
-node --test demo-1/tests/*.test.cjs tests/*.test.cjs
+node --test demo-2/tests/*.test.cjs demo-1/tests/*.test.cjs tests/*.test.cjs
 ```
 
 For a local preview of the entire site on Mac or Windows, run `node scripts/serve.mjs` and open the printed address. No package install is needed. The server only listens on your computer.

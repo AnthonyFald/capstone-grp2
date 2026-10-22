@@ -6,3 +6,4 @@ __pycache__/
 .audio-temp/
 audio-results/
 desktop-build/
+.test-deps/

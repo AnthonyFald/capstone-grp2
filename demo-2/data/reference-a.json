@@ -1,0 +1,102 @@
+{
+  "dataset": "reports-a",
+  "annotation_status": "Team-provided, reconciliation by Codex; independent review pending",
+  "issues": [
+    {
+      "issue_id": "ISS-01",
+      "issue_definition": "Water source / cause not confirmed",
+      "source_reports": "DR-A01",
+      "severity": "Medium",
+      "ground_truth_status": "Unresolved",
+      "expected_interpretation": "Confirm source and document mitigation; do not assume cause from this report alone."
+    },
+    {
+      "issue_id": "ISS-02",
+      "issue_definition": "Substrate inspection remains outstanding / status not documented",
+      "source_reports": "DR-A01;DR-A02;DR-A07",
+      "severity": "High",
+      "ground_truth_status": "Resolved by DR-A07",
+      "expected_interpretation": "Inspection prerequisite is not documented as complete until signed checklist QC-B104-0514."
+    },
+    {
+      "issue_id": "ISS-03",
+      "issue_definition": "Informal statement that area is ready conflicts with missing formal acceptance",
+      "source_reports": "DR-A02;DR-A03;DR-A07",
+      "severity": "High",
+      "ground_truth_status": "Resolved by DR-A07 for substrate only",
+      "expected_interpretation": "Treat 'appeared ready' and verbal clearance as insufficient proof of formal acceptance."
+    },
+    {
+      "issue_id": "ISS-04",
+      "issue_definition": "RFI-017 response status unclear or unresolved",
+      "source_reports": "DR-A03;DR-A04;DR-A05;DR-A06;DR-A07;DR-A08;DR-A09",
+      "severity": "High",
+      "ground_truth_status": "Historically open; reported resolved in DR-A09, formal response unverified",
+      "expected_interpretation": "Track RFI-017 through the earlier unanswered reports. DR-A09 reports resolution but lacks a linked formal response; distinguish a traceability gap from proven technical non-resolution."
+    },
+    {
+      "issue_id": "ISS-05",
+      "issue_definition": "Concrete pour delayed while approvals/clarifications are pending",
+      "source_reports": "DR-A03;DR-A05;DR-A08;DR-A09",
+      "severity": "High",
+      "ground_truth_status": "Resolved by DR-A09 for placement; downstream impacts not fully assessed",
+      "expected_interpretation": "Identify actual delay evidence; do not count every report mention as a separate delay event."
+    },
+    {
+      "issue_id": "ISS-06",
+      "issue_definition": "Conflicting accounts of whether inspection passed / release was issued",
+      "source_reports": "DR-A03;DR-A04;DR-A07",
+      "severity": "High",
+      "ground_truth_status": "Resolved by DR-A07 for substrate inspection",
+      "expected_interpretation": "The GC note says passed, while subcontractor says written release not received."
+    },
+    {
+      "issue_id": "ISS-07",
+      "issue_definition": "Slab thickness / approved detail and drawing revision unclear",
+      "source_reports": "DR-A05;DR-A06;DR-A07;DR-A08",
+      "severity": "High",
+      "ground_truth_status": "Not formally resolved in linked records",
+      "expected_interpretation": "Internal note and informal message are not formal design clarification."
+    },
+    {
+      "issue_id": "ISS-08",
+      "issue_definition": "Design decision/instruction not formally communicated or linked to RFI",
+      "source_reports": "DR-A06;DR-A08;DR-A09",
+      "severity": "High",
+      "ground_truth_status": "Unresolved record-linkage gap",
+      "expected_interpretation": "The field may have proceeded based on informal instruction; verify formal response and revision."
+    },
+    {
+      "issue_id": "ISS-09",
+      "issue_definition": "Reinforcement inspection is a pre-pour dependency",
+      "source_reports": "DR-A07;DR-A08;DR-A09",
+      "severity": "High",
+      "ground_truth_status": "Inspection reference appears in DR-A09 but record not attached",
+      "expected_interpretation": "Confirm inspection record and acceptance before treating dependency as closed."
+    },
+    {
+      "issue_id": "ISS-10",
+      "issue_definition": "RFI marked resolved without supporting formal response",
+      "source_reports": "DR-A09",
+      "severity": "High",
+      "ground_truth_status": "Unresolved record-linkage gap",
+      "expected_interpretation": "Compare status field with the linked RFI system record."
+    },
+    {
+      "issue_id": "ISS-11",
+      "issue_definition": "Concrete quantity / quality testing closeout incomplete",
+      "source_reports": "DR-A09",
+      "severity": "Medium",
+      "ground_truth_status": "Open",
+      "expected_interpretation": "Delivery volume is documented, but actual placed quantity and test/strength follow-up are incomplete."
+    },
+    {
+      "issue_id": "ISS-12",
+      "issue_definition": "Adjacent electrical trade access restriction and notification unclear",
+      "source_reports": "DR-A10",
+      "severity": "Medium",
+      "ground_truth_status": "Follow-up required",
+      "expected_interpretation": "Record coordination process; don't infer critical-path delay without schedule evidence."
+    }
+  ]
+}

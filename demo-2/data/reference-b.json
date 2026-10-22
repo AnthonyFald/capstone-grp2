@@ -1,0 +1,62 @@
+{
+  "dataset": "reports-b",
+  "annotation_status": "Codex-authored transfer test; independent validation pending. Different size and difficulty from A, so not an equated human-study pair.",
+  "issues": [
+    {
+      "issue_id": "B-01",
+      "issue_definition": "Moisture acceptance initially missing",
+      "source_reports": "DR-B01;DR-B03;DR-B04",
+      "ground_truth_status": "Resolved June 3",
+      "expected_interpretation": "Recognize the initial hold and the signed, acknowledged moisture test in B04."
+    },
+    {
+      "issue_id": "B-02",
+      "issue_definition": "Phone-call pass versus missing field record",
+      "source_reports": "DR-B02;DR-B03;DR-B04",
+      "ground_truth_status": "Historical; resolved by signed test",
+      "expected_interpretation": "Flag the mismatch in documented evidence without assuming the actual moisture test failed."
+    },
+    {
+      "issue_id": "B-03",
+      "issue_definition": "Adhesive delivery moved by two days",
+      "source_reports": "DR-B01;DR-B02;DR-B05",
+      "ground_truth_status": "Delivery complete June 4",
+      "expected_interpretation": "Identify the delivery change without inferring a two-day critical-path delay."
+    },
+    {
+      "issue_id": "B-04",
+      "issue_definition": "Product M versus Product N instruction",
+      "source_reports": "DR-B03;DR-B05",
+      "ground_truth_status": "Resolved by formal response",
+      "expected_interpretation": "The contradictory product instruction is resolved by the issued response selecting N."
+    },
+    {
+      "issue_id": "B-05",
+      "issue_definition": "RFI-042 formal answer and drawing distribution",
+      "source_reports": "DR-B03;DR-B04;DR-B05",
+      "ground_truth_status": "Resolved with confirmed receipt",
+      "expected_interpretation": "Acknowledge response, revision 3 and receipt; do not call this question still open."
+    },
+    {
+      "issue_id": "B-06",
+      "issue_definition": "Delivery docket and receiving quantity disagree",
+      "source_reports": "DR-B05",
+      "ground_truth_status": "Open",
+      "expected_interpretation": "Flag 20 versus 18 pails without deciding which count is correct."
+    },
+    {
+      "issue_id": "B-07",
+      "issue_definition": "Installation hold while prerequisites missing",
+      "source_reports": "DR-B01;DR-B03;DR-B06",
+      "ground_truth_status": "Historical; installation complete",
+      "expected_interpretation": "Recognize the earlier hold and later completed installation; no quantified project delay."
+    },
+    {
+      "issue_id": "B-08",
+      "issue_definition": "Protection and cure handoff to adjacent trades",
+      "source_reports": "DR-B06",
+      "ground_truth_status": "Documented ongoing requirement",
+      "expected_interpretation": "Track protection until June 6 noon as a planned remaining task, not an access failure or delay."
+    }
+  ]
+}

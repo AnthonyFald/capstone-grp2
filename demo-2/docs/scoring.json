@@ -1,0 +1,1257 @@
+{
+  "rubric": "Found requires a fully correct material concern and latest status. Partial counts as missed. A found issue must link to a supported finding; mixed findings requiring correction are conservatively unsupported. Duplicates are separate. Independent team review is pending.",
+  "runs": [
+    {
+      "runId": "01078adf-3835-44d1-8f1d-d4a63d04e401",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Unknown water source absent."
+        },
+        "ISS-02": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Initial gap only; no later substrate closure."
+        },
+        "ISS-03": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Verbal clearance captured, later closure omitted."
+        },
+        "ISS-04": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Earlier unanswered RFI captured without latest reported resolution."
+        },
+        "ISS-05": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Postponement appears in action, no reconciled completion."
+        },
+        "ISS-06": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No paired GC inspection-passed account."
+        },
+        "ISS-07": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Technical alternatives appear, latest evidence not reconciled."
+        },
+        "ISS-08": {
+          "rating": "partial",
+          "findingId": "F4",
+          "note": "Internal transmission gap appears, no latest-state review."
+        },
+        "ISS-09": {
+          "rating": "partial",
+          "findingId": "F6",
+          "note": "Inspection reference and follow-up appear without separate prerequisite history."
+        },
+        "ISS-10": {
+          "rating": "partial",
+          "findingId": "F6",
+          "note": "Missing response captured without explicit reported resolved status."
+        },
+        "ISS-11": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Quantity and test closeout missing."
+        },
+        "ISS-12": {
+          "rating": "found",
+          "findingId": "F7",
+          "note": "Restricted access and uncertain notice with verification follow-up; no critical-path claim."
+        }
+      },
+      "assessments": {
+        "F1": "unsupported",
+        "F2": "unsupported",
+        "F3": "unsupported",
+        "F4": "supported",
+        "F5": "supported",
+        "F6": "supported",
+        "F7": "supported"
+      },
+      "notes": "Stale substrate-release alerts/actions in F1–F3 are counted as unsupported under the latest-status rubric. Quotations are real historical excerpts; the problem is their unreconciled use as current alerts. This is a deliberately weak keyword baseline, not human-only review."
+    },
+    {
+      "runId": "11e0a586-07cc-4023-a929-10f25684a594",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "B-01": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Initial missing readings, no later signed acceptance."
+        },
+        "B-02": {
+          "rating": "missed",
+          "findingId": null,
+          "note": ""
+        },
+        "B-03": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Initial delivery date only; later move and delivery missing."
+        },
+        "B-04": {
+          "rating": "missed",
+          "findingId": null,
+          "note": ""
+        },
+        "B-05": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Earlier open product question without subsequent response and receipt."
+        },
+        "B-06": {
+          "rating": "missed",
+          "findingId": null,
+          "note": ""
+        },
+        "B-07": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Earlier hold without completed installation."
+        },
+        "B-08": {
+          "rating": "missed",
+          "findingId": null,
+          "note": ""
+        }
+      },
+      "assessments": {
+        "F1": "unsupported",
+        "F2": "unsupported"
+      },
+      "notes": "Both alerts request follow-up for prerequisites that later records explicitly close. Quantity mismatch and planned cure handoff are absent."
+    },
+    {
+      "runId": "10fa6972-f5ae-43e6-afab-ea1df51eeafd",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {},
+      "assessments": {},
+      "notes": "Correctly returns zero alerts on the synthetic routine control. Recall and precision remain undefined."
+    },
+    {
+      "runId": "01c93a57-a4f2-4a6a-b501-3957076d9537",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Unknown cause remains unknown; no borrowed investigation owner/date."
+        },
+        "ISS-02": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Signed QC-B104-0514 closes substrate acceptance on May 14."
+        },
+        "ISS-03": {
+          "rating": "found",
+          "findingId": "F3",
+          "note": "Earlier verbal clearance contrasted with later signed documentation."
+        },
+        "ISS-04": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Core RFI gap captured, but temporal progression is called contradictory and the follow-up retains an earlier issue deadline."
+        },
+        "ISS-05": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Earlier hold mentioned, but actual later May 15 placement not stated."
+        },
+        "ISS-06": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "No explicit comparison with the GC inspection-passed claim."
+        },
+        "ISS-07": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Technical alternatives appear in citation, with flawed combined interpretation."
+        },
+        "ISS-08": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Formal transmission concern captured in a mixed finding requiring correction."
+        },
+        "ISS-09": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Separate reinforcement prerequisite missing."
+        },
+        "ISS-10": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Reported resolved versus missing response appears in a mixed finding requiring correction."
+        },
+        "ISS-11": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Delivered versus placed quantity and strength/quality closeout missing."
+        },
+        "ISS-12": {
+          "rating": "partial",
+          "findingId": "F4",
+          "note": "Duration is present, but unplanned restriction/lack of notice is asserted beyond the evidence."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "unsupported",
+        "F3": "supported",
+        "F4": "unsupported"
+      },
+      "notes": "Strict whole-finding scoring: F2 needs correction because earlier open and later reportedly resolved states are framed as contradictory, and the stated deadline is drawn from an earlier issue task. F4 calls the restriction unplanned and assumes lack of notice; the source establishes uncertain advance receipt, and A09 reports notification. These provisional judgments need independent adjudication. This is the v3 one-pass 27B comparison, not the final thorough pipeline."
+    },
+    {
+      "runId": "3badfadc-611e-4bd6-86db-d779dcbaefbf",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "Unknown water source explicitly preserved without inventing a cause."
+        },
+        "ISS-02": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No substrate prerequisite or signed closure finding."
+        },
+        "ISS-03": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No distinction between apparent readiness, verbal clearance and formal release."
+        },
+        "ISS-04": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Formal-record gap identified, but the original finding calls the absent record a contradiction of resolved status; the key requires distinguishing unverified record from proven non-resolution."
+        },
+        "ISS-05": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No historical pour postponement reconciled with later placement."
+        },
+        "ISS-06": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No paired subcontractor/GC inspection accounts."
+        },
+        "ISS-07": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Original detail mentioned but original-versus-revised choice and missing drawing revision not fully stated."
+        },
+        "ISS-08": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Transmission gap present, but mixed finding requires correction of the claimed contradiction."
+        },
+        "ISS-09": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Separate reinforcement prerequisite and later inspection reference omitted."
+        },
+        "ISS-10": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Resolved label and missing formal record captured with overstatement noted above."
+        },
+        "ISS-11": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Quantity fact is correct but its cited field lacks the quantity statement. Quality follow-up is in F2, which adds an unconfirmed-plan assertion and says uncertainty is None."
+        },
+        "ISS-12": {
+          "rating": "partial",
+          "findingId": "F5",
+          "note": "Notice gap identified but restriction duration/reassignment omitted, and Concrete Subcontractor ownership is borrowed from A09 rather than A10’s notification assignment."
+        }
+      },
+      "assessments": {
+        "F1": "unsupported",
+        "F2": "unsupported",
+        "F3": "unsupported",
+        "F4": "supported",
+        "F5": "unsupported"
+      },
+      "findingNotes": {
+        "F1": "Needs correction: absent formal evidence is not proof that the reported technical resolution is contradictory.",
+        "F2": "Needs correction: source says follow-up in progress, not that no confirmed plan exists; uncertainty None is unwarranted.",
+        "F3": "Accurate quantity statement but wrong evidence field; cite A09 quantity_or_measurement.",
+        "F4": "Supported.",
+        "F5": "Notice inquiry belongs to GC in A10; added Concrete Subcontractor owner is not assigned to that action. Needs duration and reassignment context for complete issue coverage."
+      }
+    },
+    {
+      "runId": "5e1bc56d-a632-4c26-879b-30e63e7faa2c",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "B-01": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Not present in the only returned finding."
+        },
+        "B-02": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Not present in the only returned finding."
+        },
+        "B-03": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Not present in the only returned finding."
+        },
+        "B-04": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Not present in the only returned finding."
+        },
+        "B-05": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Not present in the only returned finding."
+        },
+        "B-06": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "20 versus 18 pails remains unreconciled; owner and deadline correctly copied."
+        },
+        "B-07": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Not present in the only returned finding."
+        },
+        "B-08": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Not present in the only returned finding."
+        }
+      },
+      "assessments": {
+        "F1": "supported"
+      },
+      "findingNotes": {
+        "F1": "Core inventory concern supported. Category delay is imprecise and theft detection is a speculative consequence, not an asserted event; neither changes the stated quantity discrepancy. Review wording before use."
+      }
+    },
+    {
+      "runId": "cd304385-300b-4952-abd6-7b8ed55af11a",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {},
+      "assessments": {},
+      "findingNotes": {
+        "note": "No findings on the zero-issue control; recall and precision undefined."
+      }
+    },
+    {
+      "runId": "824ce044-4d9c-4169-b190-a79551744e81",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Cause is correctly unknown, but deadline May 12 is for boundary/inspection coordination, not source investigation."
+        },
+        "ISS-02": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Signed acceptance recognized, but May 14 noon deadline is for the separate remaining prerequisites; causal assertion that inspection itself was not missing is not established."
+        },
+        "ISS-03": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Initial verbal clearance appears in quoted evidence; narrative and deadline need correction."
+        },
+        "ISS-04": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Says open throughout despite A09 reported resolution."
+        },
+        "ISS-05": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Invents multi-day critical-path delay."
+        },
+        "ISS-06": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Does not explicitly reconcile GC passed versus subcontractor lacking release."
+        },
+        "ISS-07": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Technical choice is present but mixed with incorrect latest state and invented critical-path impact."
+        },
+        "ISS-08": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Informal transmission present in a materially unsupported finding."
+        },
+        "ISS-09": {
+          "rating": "partial",
+          "findingId": "F4",
+          "note": "Calls inspection resolved but also asserts work proceeded without completed inspection; record reference does not establish either claim."
+        },
+        "ISS-10": {
+          "rating": "partial",
+          "findingId": "F5",
+          "note": "Missing formal response is correctly stated but finding status incorrectly resolved."
+        },
+        "ISS-11": {
+          "rating": "partial",
+          "findingId": "F5",
+          "note": "Delivered amount cited; no measured-placed or strength-follow-up distinction in the narrative."
+        },
+        "ISS-12": {
+          "rating": "partial",
+          "findingId": "F6",
+          "note": "Correct duration, but it asserts an unplanned delay without prior coordination instead of uncertain notice; reassignment omitted."
+        }
+      },
+      "assessments": {
+        "F1": "unsupported",
+        "F2": "unsupported",
+        "F3": "unsupported",
+        "F4": "unsupported",
+        "F5": "unsupported",
+        "F6": "unsupported"
+      },
+      "findingNotes": {
+        "F1": "Borrowed deadline.",
+        "F2": "Borrowed deadline and unsupported causal distinction.",
+        "F3": "Invented critical-path delay and wrong RFI latest status.",
+        "F4": "Unverified inspection treated both resolved and unperformed.",
+        "F5": "Documentation gap mislabeled resolved.",
+        "F6": "Uncertain notice becomes a proven lack of coordination."
+      }
+    },
+    {
+      "runId": "945bdb36-71d5-41d1-91a0-1ee1ca8c3cbc",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Unknown cause correct but May 12 deadline is borrowed from boundary/inspection task."
+        },
+        "ISS-02": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No explicit complete finding for this reference concern."
+        },
+        "ISS-03": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No explicit complete finding for this reference concern."
+        },
+        "ISS-04": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Reported resolution and formal-record gap stated; earlier unanswered sequence omitted."
+        },
+        "ISS-05": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No explicit complete finding for this reference concern."
+        },
+        "ISS-06": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No explicit complete finding for this reference concern."
+        },
+        "ISS-07": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Slab thickness mentioned without original-versus-revised choice or missing revision."
+        },
+        "ISS-08": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Internal note/formal transmission gap explicitly identified; latest reported resolution distinguished."
+        },
+        "ISS-09": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No explicit complete finding for this reference concern."
+        },
+        "ISS-10": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Resolved label versus missing formal attachment correctly framed as needs verification."
+        },
+        "ISS-11": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No explicit complete finding for this reference concern."
+        },
+        "ISS-12": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No explicit complete finding for this reference concern."
+        }
+      },
+      "assessments": {
+        "F1": "unsupported",
+        "F2": "supported"
+      },
+      "findingNotes": {
+        "F1": "Borrowed deadline makes this finding require correction.",
+        "F2": "Supported traceability concern. The same design/GC parties and record-completion due date are present in the cited RFI chronology. It does not assert a failed technical resolution."
+      }
+    },
+    {
+      "runId": "4ddae27d-5672-4b9e-bc0c-596a901e0fab",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Concern is not explicitly represented."
+        },
+        "ISS-02": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Earlier inspection/release concern identified but latest signed substrate acceptance not correctly resolved."
+        },
+        "ISS-03": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Earlier inspection/release concern identified but latest signed substrate acceptance not correctly resolved."
+        },
+        "ISS-04": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Earlier technical/formal-transmission concern identified; A09 reported resolution versus missing formal record not reconciled."
+        },
+        "ISS-05": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Earlier hold described without correctly closing it after placement."
+        },
+        "ISS-06": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Earlier inspection/release concern identified but latest signed substrate acceptance not correctly resolved."
+        },
+        "ISS-07": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Earlier technical/formal-transmission concern identified; A09 reported resolution versus missing formal record not reconciled."
+        },
+        "ISS-08": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Earlier technical/formal-transmission concern identified; A09 reported resolution versus missing formal record not reconciled."
+        },
+        "ISS-09": {
+          "rating": "partial",
+          "findingId": "F4",
+          "note": "Inspection reference appears, but follow-up still requests pre-placement inspection rather than checking the existing record after completed placement."
+        },
+        "ISS-10": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Concern is not explicitly represented."
+        },
+        "ISS-11": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Concern is not explicitly represented."
+        },
+        "ISS-12": {
+          "rating": "found",
+          "findingId": "F6",
+          "note": "Temporary access restriction and uncertain notice accurately identified; GC follow-up copied, no critical-path/full-shift claim."
+        }
+      },
+      "assessments": {
+        "F1": "unsupported",
+        "F2": "unsupported",
+        "F3": "unsupported",
+        "F4": "unsupported",
+        "F6": "supported",
+        "F5": "duplicate"
+      },
+      "findingNotes": {
+        "F1": "Stale current inspection state despite signed later acceptance; trial 3 additionally treats separate RFI status as a discrepancy with substrate acceptance.",
+        "F2": "Technical question remains open in output without the final reported resolution/record-gap distinction.",
+        "F3": "Earlier release task repeated as current, after completed placement.",
+        "F4": "Requested inspection is treated as outstanding rather than checking the referenced inspection record.",
+        "F6": "Supported notice/coordination inquiry.",
+        "F5": "Repeats F2 formal-response concern and same follow-up; not an additional distinct finding."
+      }
+    },
+    {
+      "runId": "72840b9d-7a0e-4dda-9aa3-779d91dcc204",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Concern is not explicitly represented."
+        },
+        "ISS-02": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Earlier inspection/release concern identified but latest signed substrate acceptance not correctly resolved."
+        },
+        "ISS-03": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Earlier inspection/release concern identified but latest signed substrate acceptance not correctly resolved."
+        },
+        "ISS-04": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Earlier technical/formal-transmission concern identified; A09 reported resolution versus missing formal record not reconciled."
+        },
+        "ISS-05": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Earlier hold described without correctly closing it after placement."
+        },
+        "ISS-06": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Earlier inspection/release concern identified but latest signed substrate acceptance not correctly resolved."
+        },
+        "ISS-07": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Earlier technical/formal-transmission concern identified; A09 reported resolution versus missing formal record not reconciled."
+        },
+        "ISS-08": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Earlier technical/formal-transmission concern identified; A09 reported resolution versus missing formal record not reconciled."
+        },
+        "ISS-09": {
+          "rating": "partial",
+          "findingId": "F4",
+          "note": "Inspection reference appears, but follow-up still requests pre-placement inspection rather than checking the existing record after completed placement."
+        },
+        "ISS-10": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Concern is not explicitly represented."
+        },
+        "ISS-11": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Concern is not explicitly represented."
+        },
+        "ISS-12": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Temporary access restriction and uncertain notice accurately identified; GC follow-up copied, no critical-path/full-shift claim."
+        }
+      },
+      "assessments": {
+        "F1": "unsupported",
+        "F2": "unsupported",
+        "F3": "unsupported",
+        "F4": "unsupported",
+        "F5": "supported",
+        "F6": "duplicate"
+      },
+      "findingNotes": {
+        "F1": "Stale current inspection state despite signed later acceptance; trial 3 additionally treats separate RFI status as a discrepancy with substrate acceptance.",
+        "F2": "Technical question remains open in output without the final reported resolution/record-gap distinction.",
+        "F3": "Earlier release task repeated as current, after completed placement.",
+        "F4": "Requested inspection is treated as outstanding rather than checking the referenced inspection record.",
+        "F5": "Supported notice/coordination inquiry.",
+        "F6": "Repeats F2 formal-response concern and same follow-up; not an additional distinct finding."
+      }
+    },
+    {
+      "runId": "a9b1cd35-d7ee-43dd-917e-9f59204c541f",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Concern is not explicitly represented."
+        },
+        "ISS-02": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Earlier inspection/release concern identified but latest signed substrate acceptance not correctly resolved."
+        },
+        "ISS-03": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Earlier inspection/release concern identified but latest signed substrate acceptance not correctly resolved."
+        },
+        "ISS-04": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Earlier technical/formal-transmission concern identified; A09 reported resolution versus missing formal record not reconciled."
+        },
+        "ISS-05": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Earlier hold described without correctly closing it after placement."
+        },
+        "ISS-06": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Earlier inspection/release concern identified but latest signed substrate acceptance not correctly resolved."
+        },
+        "ISS-07": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Earlier technical/formal-transmission concern identified; A09 reported resolution versus missing formal record not reconciled."
+        },
+        "ISS-08": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Earlier technical/formal-transmission concern identified; A09 reported resolution versus missing formal record not reconciled."
+        },
+        "ISS-09": {
+          "rating": "partial",
+          "findingId": "F4",
+          "note": "Inspection reference appears, but follow-up still requests pre-placement inspection rather than checking the existing record after completed placement."
+        },
+        "ISS-10": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Concern is not explicitly represented."
+        },
+        "ISS-11": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "Concern is not explicitly represented."
+        },
+        "ISS-12": {
+          "rating": "found",
+          "findingId": "F5",
+          "note": "Temporary access restriction and uncertain notice accurately identified; GC follow-up copied, no critical-path/full-shift claim."
+        }
+      },
+      "assessments": {
+        "F1": "unsupported",
+        "F2": "unsupported",
+        "F3": "unsupported",
+        "F4": "unsupported",
+        "F5": "supported"
+      },
+      "findingNotes": {
+        "F1": "Stale current inspection state despite signed later acceptance; trial 3 additionally treats separate RFI status as a discrepancy with substrate acceptance.",
+        "F2": "Technical question remains open in output without the final reported resolution/record-gap distinction.",
+        "F3": "Earlier release task repeated as current, after completed placement.",
+        "F4": "Requested inspection is treated as outstanding rather than checking the referenced inspection record.",
+        "F5": "Supported notice/coordination inquiry."
+      }
+    },
+    {
+      "runId": "3fc6cd13-a5aa-47d5-bc79-462f098924d8",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Supported unknown cause; optional borrowed assignments withheld."
+        },
+        "ISS-02": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Later acceptance recognized but the whole finding includes unsupported causation or quantified delay."
+        },
+        "ISS-03": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Later acceptance recognized but the whole finding includes unsupported causation or quantified delay."
+        },
+        "ISS-04": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Treats internal May 13 note as technical resolution despite later unresolved reports; invents wasted crew time."
+        },
+        "ISS-05": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Treats internal May 13 note as technical resolution despite later unresolved reports; invents wasted crew time."
+        },
+        "ISS-06": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Later acceptance recognized but the whole finding includes unsupported causation or quantified delay."
+        },
+        "ISS-07": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Treats internal May 13 note as technical resolution despite later unresolved reports; invents wasted crew time."
+        },
+        "ISS-08": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Treats internal May 13 note as technical resolution despite later unresolved reports; invents wasted crew time."
+        },
+        "ISS-09": {
+          "rating": "partial",
+          "findingId": "F5",
+          "note": "Invents inspection documentation generated after placement and calls the uncertain prerequisite resolved."
+        },
+        "ISS-10": {
+          "rating": "partial",
+          "findingId": "F4",
+          "note": "Reported resolution/formal gap not correctly distinguished as a current documentation task."
+        },
+        "ISS-11": {
+          "rating": "partial",
+          "findingId": "F6",
+          "note": "Quantity/quality closeout is incomplete or misstated; no fully supported combined coverage."
+        },
+        "ISS-12": {
+          "rating": "partial",
+          "findingId": "F7",
+          "note": "Uncertain notice becomes reactive/unplanned coordination; ongoing follow-up is wrongly closed."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "unsupported",
+        "F3": "unsupported",
+        "F4": "unsupported",
+        "F5": "unsupported",
+        "F6": "unsupported",
+        "F7": "unsupported"
+      },
+      "findingNotes": {
+        "F1": "Supported unknown cause; optional borrowed assignments withheld.",
+        "F2": "Attributes approximately three days of delay to missing inspection documentation without sufficient schedule evidence; initial verbal clearance also incorrectly called missing.",
+        "F3": "Treats internal May 13 note as technical resolution despite later unresolved reports; invents wasted crew time.",
+        "F4": "Labels outstanding documentation resolved and says no action required; invents an internal formal response.",
+        "F5": "Invents inspection documentation generated after placement and calls the uncertain prerequisite resolved.",
+        "F6": "Correct unmeasured volume but wrongly labels it resolved and says no action required.",
+        "F7": "Uncertain notice becomes reactive/unplanned coordination; ongoing follow-up is wrongly closed."
+      }
+    },
+    {
+      "runId": "938f4136-fbb3-4ad3-889d-7d03ec15d89d",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Supported unknown cause; assignments withheld."
+        },
+        "ISS-02": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Later acceptance recognized but the whole finding includes unsupported causation or quantified delay."
+        },
+        "ISS-03": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Later acceptance recognized but the whole finding includes unsupported causation or quantified delay."
+        },
+        "ISS-04": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Invented critical-path delay; RFI incorrectly open throughout."
+        },
+        "ISS-05": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Invented critical-path delay; RFI incorrectly open throughout."
+        },
+        "ISS-06": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Later acceptance recognized but the whole finding includes unsupported causation or quantified delay."
+        },
+        "ISS-07": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Invented critical-path delay; RFI incorrectly open throughout."
+        },
+        "ISS-08": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Invented critical-path delay; RFI incorrectly open throughout."
+        },
+        "ISS-09": {
+          "rating": "partial",
+          "findingId": "F4",
+          "note": "Invents a post-placement/retroactive inspection from a reference alone."
+        },
+        "ISS-10": {
+          "rating": "partial",
+          "findingId": "F5",
+          "note": "Reported resolution/formal gap not correctly distinguished as a current documentation task."
+        },
+        "ISS-11": {
+          "rating": "partial",
+          "findingId": "F5",
+          "note": "Quantity/quality closeout is incomplete or misstated; no fully supported combined coverage."
+        },
+        "ISS-12": {
+          "rating": "partial",
+          "findingId": "F6",
+          "note": "Invents an adjacent-trade notification and a foreman claim of no notice; source only says notice is unknown."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "unsupported",
+        "F3": "unsupported",
+        "F4": "unsupported",
+        "F5": "unsupported",
+        "F6": "unsupported"
+      },
+      "findingNotes": {
+        "F1": "Supported unknown cause; assignments withheld.",
+        "F2": "Signed acceptance is correctly closed, but claims the earlier delay was not due to an absent inspection, which the record does not establish.",
+        "F3": "Invented critical-path delay; RFI incorrectly open throughout.",
+        "F4": "Invents a post-placement/retroactive inspection from a reference alone.",
+        "F5": "Documentation gap incorrectly resolved despite its own requested follow-up.",
+        "F6": "Invents an adjacent-trade notification and a foreman claim of no notice; source only says notice is unknown."
+      }
+    },
+    {
+      "runId": "3820e99d-47d2-40dc-b3e6-bc0f3082654d",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Unknown cause is correct, but proposed investigation before proceeding with replacement is stale after completed placement."
+        },
+        "ISS-02": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Later acceptance recognized but the whole finding includes unsupported causation or quantified delay."
+        },
+        "ISS-03": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Later acceptance recognized but the whole finding includes unsupported causation or quantified delay."
+        },
+        "ISS-04": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Invented critical-path delay and unconditional closure based on internal note."
+        },
+        "ISS-05": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Invented critical-path delay and unconditional closure based on internal note."
+        },
+        "ISS-06": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Later acceptance recognized but the whole finding includes unsupported causation or quantified delay."
+        },
+        "ISS-07": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Invented critical-path delay and unconditional closure based on internal note."
+        },
+        "ISS-08": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Invented critical-path delay and unconditional closure based on internal note."
+        },
+        "ISS-09": {
+          "rating": "partial",
+          "findingId": "F4",
+          "note": "Verification still needed but status resolved; reference does not close the record gap."
+        },
+        "ISS-10": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Reported resolution/formal gap not correctly distinguished as a current documentation task."
+        },
+        "ISS-11": {
+          "rating": "partial",
+          "findingId": "F5",
+          "note": "Quantity/quality closeout is incomplete or misstated; no fully supported combined coverage."
+        },
+        "ISS-12": {
+          "rating": "partial",
+          "findingId": "F6",
+          "note": "Invented no-notice claim, remobilization cost and compensation entitlement."
+        }
+      },
+      "assessments": {
+        "F1": "unsupported",
+        "F2": "unsupported",
+        "F3": "unsupported",
+        "F4": "unsupported",
+        "F5": "unsupported",
+        "F6": "unsupported"
+      },
+      "findingNotes": {
+        "F1": "Unknown cause is correct, but proposed investigation before proceeding with replacement is stale after completed placement.",
+        "F2": "Invented approximately two-day delay (May 11–14) and exclusive inspection-record causation.",
+        "F3": "Invented critical-path delay and unconditional closure based on internal note.",
+        "F4": "Verification still needed but status resolved; reference does not close the record gap.",
+        "F5": "Incorrectly says 4.2 m3 was delivered and placed; source only measures delivered volume.",
+        "F6": "Invented no-notice claim, remobilization cost and compensation entitlement."
+      }
+    },
+    {
+      "runId": "f31b5dfb-ed94-4336-966d-3db6f6dc0cc9",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "findingId": "F10",
+          "note": "Unknown cause accurately preserved."
+        },
+        "ISS-02": {
+          "rating": "partial",
+          "findingId": "F4",
+          "note": "Signed acceptance correctly described but initial missing acceptance not reconstructed."
+        },
+        "ISS-03": {
+          "rating": "partial",
+          "findingId": "F6",
+          "note": "Verbal/formal distinction appears in a finding with unsupported contradictory-cause assertion."
+        },
+        "ISS-04": {
+          "rating": "partial",
+          "findingId": "F8",
+          "note": "Latest reported resolution and formal-record gap correct; earlier unanswered history omitted."
+        },
+        "ISS-05": {
+          "rating": "partial",
+          "findingId": "F6",
+          "note": "Correct postponement/completion dates; inspection-versus-RFI causes incorrectly described as contradictory."
+        },
+        "ISS-06": {
+          "rating": "missed",
+          "findingId": null,
+          "note": "No correct explicit pairing of GC passed versus subcontractor missing release and later acceptance."
+        },
+        "ISS-07": {
+          "rating": "partial",
+          "findingId": "F4",
+          "note": "Technical alternatives at inspection described; final missing drawing revision not fully addressed."
+        },
+        "ISS-08": {
+          "rating": "found",
+          "findingId": "F8",
+          "note": "Formal evidence gap distinguished from the superintendent closure claim."
+        },
+        "ISS-09": {
+          "rating": "partial",
+          "findingId": "F9",
+          "note": "Record-check need recognized, but installed dates and retrospective inspection alternative unsupported."
+        },
+        "ISS-10": {
+          "rating": "found",
+          "findingId": "F8",
+          "note": "Resolved claim versus missing response captured as an open documentation task."
+        },
+        "ISS-11": {
+          "rating": "partial",
+          "findingId": "F7",
+          "note": "Title falsely says delivered exceeds installed; volume/area discrepancy invented; strength follow-up absent."
+        },
+        "ISS-12": {
+          "rating": "found",
+          "findingId": "F11",
+          "note": "Correct interval, reassignment, uncertain notice and follow-up; no critical-path claim."
+        }
+      },
+      "assessments": {
+        "F1": "unsupported",
+        "F2": "unsupported",
+        "F3": "unsupported",
+        "F4": "supported",
+        "F5": "unsupported",
+        "F6": "unsupported",
+        "F7": "unsupported",
+        "F8": "supported",
+        "F9": "unsupported",
+        "F10": "supported",
+        "F11": "supported"
+      },
+      "findingNotes": {
+        "F1": "Asserts formal response not issued instead of unavailable in provided record; pre-placement action stale.",
+        "F2": "Says no inspection reference exists while quoting RI-B104-0515; requests inspection before completed pour.",
+        "F3": "Invents formal transmission after placement commenced; wrongly closes documentation concern.",
+        "F4": "Supported separation of signed substrate acceptance and then-open design question; possible technical risk qualified.",
+        "F5": "Documentation gap incorrectly resolved.",
+        "F6": "Real hold/completion, but inspection and RFI are separate prerequisites, not contradictory causes.",
+        "F7": "Unknown installed volume cannot be said lower than delivered; area and volume do not establish a discrepancy.",
+        "F8": "Supported formal-record inquiry.",
+        "F9": "Invents installation dates and suggests retrospective inspection not established by reports.",
+        "F10": "Supported unknown source.",
+        "F11": "Supported access interval, relocation and notice uncertainty; unquantified local productivity effect, no project delay."
+      }
+    },
+    {
+      "runId": "8b79968d-7d88-4089-90f4-88aa87f98ff2",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "ISS-01": {
+          "rating": "found",
+          "findingId": "F8",
+          "note": "Unknown water cause preserved; possible leak locations are hypotheses, not asserted causes."
+        },
+        "ISS-02": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Earlier undocumented acceptance and later signed QC-B104-0514 closure reconciled."
+        },
+        "ISS-03": {
+          "rating": "found",
+          "findingId": "F1",
+          "note": "Readiness/verbal direction distinguished from written acceptance and later signed closure."
+        },
+        "ISS-04": {
+          "rating": "partial",
+          "findingId": "F4",
+          "note": "Prior open query and final resolution claim identified, but open-through-May system status is broader than supplied evidence."
+        },
+        "ISS-05": {
+          "rating": "partial",
+          "findingId": "F5",
+          "note": "Hold/completion dates identified, but says documentation gap was reconciled before completion despite remaining record gaps."
+        },
+        "ISS-06": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "GC readiness and subcontractor missing release identified; specific GC claim that inspection passed is not explicitly compared."
+        },
+        "ISS-07": {
+          "rating": "partial",
+          "findingId": "F4",
+          "note": "Slab-detail and missing revision concern recognized, but whole finding overstates latest system status."
+        },
+        "ISS-08": {
+          "rating": "partial",
+          "findingId": "F4",
+          "note": "Transmission gap identified but latest status assertion needs correction."
+        },
+        "ISS-09": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Inspection reference/record gap identified, but report author is misattributed and selected A09 field does not show the inspection reference."
+        },
+        "ISS-10": {
+          "rating": "partial",
+          "findingId": "F4",
+          "note": "Reported resolution and missing formal record identified, with overbroad open-through-May assertion."
+        },
+        "ISS-11": {
+          "rating": "partial",
+          "findingId": "F6",
+          "note": "Quantity is correctly distinguished. Strength follow-up appears in F7 but its sole cited field does not support that statement."
+        },
+        "ISS-12": {
+          "rating": "found",
+          "findingId": "F9",
+          "note": "Temporary adjacent-trade effect and uncertainty about notice correctly framed; no full-shift or critical-path claim."
+        }
+      },
+      "assessments": {
+        "F1": "supported",
+        "F2": "unsupported",
+        "F3": "unsupported",
+        "F4": "unsupported",
+        "F5": "unsupported",
+        "F6": "supported",
+        "F7": "unsupported",
+        "F8": "supported",
+        "F9": "supported"
+      },
+      "findingNotes": {
+        "F1": "Supported chronology and signed acceptance; uncertainty No is terse but the reported closure is explicit.",
+        "F2": "Until pour implies a transmission time not established by the reports.",
+        "F3": "A09 is the GC superintendent report, not Concrete Subcontractor. Its selected supporting_evidence field does not contain RI-B104-0515.",
+        "F4": "Remained open in system through May 2026 is broader than the May 11–15 record and not established by A09. Conservative whole-finding judgment; independent adjudication may assess this wording differently.",
+        "F5": "Completion after documentation-gap reconciliation is unsupported; the gap remains in A09.",
+        "F6": "Supported delivered-versus-measured-installed distinction.",
+        "F7": "Correct follow-up fact, but wrong cited field: needs A09 schedule_status, not issue_or_update.",
+        "F8": "Supported unknown cause and proposed investigation; potential leak sources are explicitly possible.",
+        "F9": "Supported temporary restriction/uncertain notification inquiry. Duration/reassignment not elaborated, but no larger delay is asserted."
+      }
+    },
+    {
+      "runId": "f1df974e-8f2e-40e7-9786-b926b54427d5",
+      "reviewer": "Codex-assisted provisional review",
+      "independentReview": false,
+      "judgments": {
+        "B-01": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Initial missing acceptance and signed closure identified, but action incorrectly implies installation completed after cure period."
+        },
+        "B-02": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Phone-call documentation mismatch supported in evidence; whole finding has incorrect cure-completion assertion."
+        },
+        "B-03": {
+          "rating": "partial",
+          "findingId": "F3",
+          "note": "Two-day delivery change identified; supplier confirmation cause and project schedule impact are not established."
+        },
+        "B-04": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Product M/N conflict resolved by formal selection of N."
+        },
+        "B-05": {
+          "rating": "found",
+          "findingId": "F2",
+          "note": "Formal response, revised drawing and receipt confirmation recognized."
+        },
+        "B-06": {
+          "rating": "found",
+          "findingId": "F4",
+          "note": "20 versus 18 pails correctly left unreconciled."
+        },
+        "B-07": {
+          "rating": "partial",
+          "findingId": "F1",
+          "note": "Earlier hold and later installation recognized but cure-completion assertion is wrong."
+        },
+        "B-08": {
+          "rating": "partial",
+          "findingId": "F2",
+          "note": "Mentions protection but omits June 6 noon requirement; F1 incorrectly implies cure already complete."
+        }
+      },
+      "assessments": {
+        "F1": "unsupported",
+        "F2": "supported",
+        "F3": "unsupported",
+        "F4": "supported"
+      },
+      "findingNotes": {
+        "F1": "Installation complete June 5, cure/protection remains through June 6 noon; action implies cure completed first. Initial acceptance chronology otherwise useful.",
+        "F2": "Correct formal product resolution; general protection note does not fully cover dated handoff.",
+        "F3": "Delay dates correct, but cause attributed to supplier confirmation without evidence; project schedule impact not established.",
+        "F4": "Supported quantity discrepancy; warranty effect framed as a possibility."
+      }
+    }
+  ]
+}

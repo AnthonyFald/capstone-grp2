@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-22T10:11:15.175259+00:00",
+  "platform": "Windows x64 / RTX 5080",
+  "javascriptTests": 107,
+  "javascriptPassed": 107,
+  "pythonTests": 28,
+  "pythonPassed": 28,
+  "pythonScope": "Demo 1 regressions, local server and both-demo packaging allowlist. No fresh real-audio benchmark.",
+  "browserChecks": [
+    "CSV import and custom-data separation",
+    "Invalid empty input rejected",
+    "Negative-control keyword output",
+    "Evidence links expand original reports",
+    "Accept/correct/reject and correction export preserve originals",
+    "Status filtering",
+    "Zero-denominator human measurements remain undefined",
+    "Native progress streaming and JSON exports",
+    "Repeated real browser-model inference with failures retained",
+    "Native cancellation and immediate subsequent successful run",
+    "Final core-v8/prompt-v8 native A and B, browser 4B and 9B one-pass repetitions and 9B thorough inference"
+  ],
+  "nativeLauncher": "Launch-Demo2.ps1 verified on existing local services",
+  "mac": "Not executed on Mac. Runtime-compatible setup and desktop build retained.",
+  "humanStudy": "No participants or productivity measurements; GUI smoke interactions are not study data."
+}

@@ -36,6 +36,8 @@ class LocalServerTests(unittest.TestCase):
 
     def test_static_ui_and_config(self):
         self.assertEqual(self.request('/demo-1/')[0], 200)
+        for path in ['/demo-2/', '/demo-2/engine.js', '/demo-2/data/reports-a.csv', '/demo-2/research.html']:
+            self.assertEqual(self.request(path)[0], 200, path)
         code, raw = self.request('/api/audio/config')
         self.assertEqual(code, 200)
         self.assertTrue(json.loads(raw)['localAudio'])

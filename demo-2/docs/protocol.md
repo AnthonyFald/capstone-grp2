@@ -1,0 +1,49 @@
+# Demo 2 evaluation protocol
+
+This pilot tests daily-report review, not reduction in real construction RFIs. All reports are synthetic. Freeze this protocol, dataset hashes, prompt version and scoring rules before measured trials. Development runs and repairs must remain visible in the log.
+
+## Hypotheses and development history
+
+This is an exploratory pilot, not a preregistered confirmatory study. H2 thresholds were written after initial v1/v2 exploration and before v3 predictions; the numerical targets were retained. The final matched browser trials began after core-v8/prompt-v8 was frozen. Both A and B informed development.
+
+H1: Human review with AI takes at least 25% less total time than human-only review, with at least 20% fewer missed reference issues and no increase in unsupported alerts. Assisted time includes inference plus human verification/correction. Record setup/download separately and include it in a separate first-use comparison. H1 is untested until actual human-only and assisted observations exist.
+
+H2 (quality gate): The final quality profile fully identifies at least 10 of A's 12 reference issues, with no more than one unsupported distinct finding and no invented inspection failure, design approval or critical-path delay. On the transfer smoke test it identifies at least six of eight issues; the no-issue control produces zero false alarms. These thresholds were recorded before inspecting v3 predictions and retained through prompt v8 development. This is a small pilot acceptance criterion, not a general accuracy guarantee.
+
+H3: Four subject reviews with full-chronology verification improves issue recall by at least one of A's 12 issues versus single-pass browser 9B without more unsupported findings. This within-model comparison tests the pipeline. Compare native reasoning profiles separately: those change runtime, quantization and reasoning, so differences cannot isolate parameter count as the cause. Native Qwen 3.5 9B is the quality profile; native 27B one-pass reasoning is an experimental higher-capacity comparison. Preserve earlier 14B and prompt v1–v6 attempts. H3’s pipeline implementation was revised during development; its numerical success criterion was unchanged.
+
+H4 (secondary): The lower-memory 4B option runs faster than single-pass 9B, with quality assessed separately. Processing time, setup and memory are descriptive resource measurements. There is no maximum latency gate: the user prioritizes quality over speed. Report individual values, median and range when there are repeated trials; three repetitions are not a powered statistical test.
+
+## Data and leakage controls
+
+- A: supplied workbook, 10 reports, 12 reference issues, five dates. Development/pilot set; no claim of held-out generalization.
+- B: six new library-wing reports, eight reference issues. Includes later formal resolution, conflicting quantities, and routine curing. Transfer smoke test, not an equally difficult replacement for A.
+- C: three routine reports, zero reference issues. Negative control checks false alarms and negation.
+- `core.js` projects every import onto 18 allowed source fields, dropping ground-truth IDs, annotation notes and completeness labels. Reference files are fetched only for scoring and never passed to inference. Prompts do not include expected counts, issue IDs or the answer key.
+- Preserve exact input, SHA-256, timestamp, model ID, prompt version, context, profile, browser/GPU, raw responses, per-pass token/timing metadata, original findings, corrections and review judgments in exported JSON.
+
+## Design and timing
+
+Run three single-pass browser 9B and three lower-memory 4B trials on A, serially on the same machine. Inspect the final native 9B quality profile on A, B and C and the thorough browser on A. The slow 27B option is a developmental A-only comparison; it has not passed B/C. Repeated large-model trials are desirable but not required for the quality gate; clearly disclose the observed sample size. Do not infer a stable latency distribution from a single run. Avoid concurrent inference workloads. The first load may download weights and compile shaders; later setup may use cache. Do not call a model load a cold download unless verified. Do not mix setup into warm inference latency. Browser setup may include download, cache retrieval and shader/model loading. Native loadMs measures Ollama model loading only: it excludes installing Ollama/Node and the earlier model pull, which must be measured separately for a first-use study. Record runtime failures and quote repairs rather than discarding them.
+
+Use B and C for separate behavioral checks after freezing the pipeline. Once B informs a code/prompt change it becomes development data. Record that fact; obtain new independently authored cases for a later holdout study. Prompt v8 uses four subject reviews, each followed by full-source verification. It removes global summarization and model grouping after v2–v6 trials lost distinct concerns, overgenerated candidates, or exhausted context. The four subjects are readiness/prerequisites, technical decisions/formal communication, progress/closeout, and causes/trade coordination. The reference answer key and expected issue count are never supplied. Core schema version and prompt version are separate metadata fields. Prompt v8 explicitly preserves historical issues and later resolutions after v7 A/B runs omitted resolved concerns. B therefore became development data too; it cannot support a held-out generalization claim. This remains a development-selected pilot, not an untouched confirmation set.
+
+For H1 recruit actual reviewers. Use anonymized IDs, alternate condition order, and use comparable independently reviewed report sets. Do not show the answer key before a task. A and B are unequal and require calibration before treating their times as paired evidence. Record task start, finish, final submitted findings, assistance condition, setup and correction time. Do not substitute model latency or Codex scoring time for a human-only baseline.
+
+## Scoring rules
+
+Score original validated pipeline output before human corrections. Core v8 conservatively withholds model-suggested owner/deadline values unless the proposed action exactly matches a cited source action and its assignment metadata. These withheld fields are visibly flagged; raw model text is retained unchanged. This can withhold correct paraphrased assignments too. Older core-v7 runs rejected invalid optional metadata and are kept as developmental comparisons. For each reference issue mark found, partial or missed and link the matching finding. Found requires the issue's material distinction, latest supported status, and evidence that supports the claim; merely citing the right report is insufficient. Partial counts as missed (no retrospective half-credit). A single finding can cover multiple reference issues only when it explicitly states each distinct concern. Several supported findings may jointly cover one reference issue; record all linked IDs and count the issue once. Multiple mentions of one issue count once for recall.
+
+Recall = fully found reference issues / all reference issues. FN includes partial and missed. Precision = supported distinct output findings / (supported distinct output findings + unsupported distinct output findings). These units differ deliberately: grouped model findings can cover multiple reference issues. Record duplicates separately and exclude duplicate alerts from precision's denominator. Classify a mixed finding that needs a material correction (for example a borrowed owner, unsupported assertion or wrong evidence field) as unsupported; retain a written explanation. This conservative whole-finding rule can give low scores even when part of a finding is useful. Report a valid additional concern as supported even when absent from the reference list. Never treat citation validity as semantic accuracy.
+
+Require a second independent team reviewer for final adjudication. Save disagreements, resolutions and reviewer identities/codes. Automated checks only test schema, source-ID validity and verbatim quote matching. Codex-assisted semantic scoring is provisional and not independent validation.
+
+Time reduction = (human-only time − assisted total time) / human-only time. Miss reduction uses the same formula for missed-issue counts; a zero baseline makes it undefined. For zero-reference controls recall is undefined, not 100%; report false alarms as raw counts. If no findings are returned precision is undefined.
+
+## Interpretation limits
+
+The reported Demo 1 comparison (about 14 minutes on M1 Max versus about 1 minute on RTX 5080) comes from the user, not a controlled hardware benchmark. The supplied Demo 1 exports name Qwen 3.5 9B. Browser, model revision, pipeline, caching and input must match before attributing a speedup exclusively to hardware. These observations motivate this experiment; they do not prove H1 or an RFI reduction.
+
+This prototype supports review. It does not issue formal project approvals, establish that work is safe, close RFIs, or replace source documents. A larger/longer-running model is not presumed more accurate.
+
+Reproducibility limit: native model digests are recorded in environment.json and browser exports retain the MLC model identifier plus pinned WebLLM version. The browser weight repository commit/checksum was not captured. Upstream weight changes and GPU numerical differences may prevent bit-for-bit reproduction; do not describe these browser trials as immutable-weight experiments.

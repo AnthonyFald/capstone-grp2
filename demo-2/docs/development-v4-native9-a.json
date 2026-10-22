@@ -1,0 +1,124 @@
+{
+  "version": "daily-reports-v4",
+  "runs": [
+    {
+      "createdAt": "2026-10-22T07:31:33.943Z",
+      "model": "qwen3.5:9b",
+      "reasoning": true,
+      "nativePolicy": "native-sampling-2",
+      "datasetId": "reports-a",
+      "inputSha256": "4ae8d9d3b59811dcfe4284f650ba78c528303c646b643fcfa8243a8baee4b30e",
+      "pipeline": "daily-reports-v4",
+      "status": "failed",
+      "error": "The model omitted or duplicated a candidate during grouping. No incomplete review was accepted. Retry or split the report batch.",
+      "diagnostics": {
+        "promptVersion": "daily-review-4",
+        "timings": [
+          {
+            "stage": "Reviewing delays, work progress and closeout",
+            "elapsedMs": 99446.0917,
+            "usage": {
+              "prompt_tokens": 3293,
+              "completion_tokens": 9048,
+              "load_duration_ns": 7412500500,
+              "prompt_eval_duration_ns": 10826190000,
+              "eval_duration_ns": 81168604000,
+              "total_duration_ns": 99420954000,
+              "sampling": {
+                "temperature": 1,
+                "top_p": 0.95,
+                "top_k": 20,
+                "min_p": 0,
+                "presence_penalty": 1.5,
+                "repeat_penalty": 1
+              },
+              "policy": "native-sampling-2"
+            }
+          },
+          {
+            "stage": "Reviewing decisions and separate prerequisites",
+            "elapsedMs": 75513.1174,
+            "usage": {
+              "prompt_tokens": 3287,
+              "completion_tokens": 8358,
+              "load_duration_ns": 4495700,
+              "prompt_eval_duration_ns": 493903000,
+              "eval_duration_ns": 74922627000,
+              "total_duration_ns": 75509822500,
+              "sampling": {
+                "temperature": 1,
+                "top_p": 0.95,
+                "top_k": 20,
+                "min_p": 0,
+                "presence_penalty": 1.5,
+                "repeat_penalty": 1
+              },
+              "policy": "native-sampling-2"
+            }
+          },
+          {
+            "stage": "Reviewing conflicting accounts and communication",
+            "elapsedMs": 74553.60080000001,
+            "usage": {
+              "prompt_tokens": 3288,
+              "completion_tokens": 8260,
+              "load_duration_ns": 5159700,
+              "prompt_eval_duration_ns": 505340000,
+              "eval_duration_ns": 73960633000,
+              "total_duration_ns": 74551267600,
+              "sampling": {
+                "temperature": 1,
+                "top_p": 0.95,
+                "top_k": 20,
+                "min_p": 0,
+                "presence_penalty": 1.5,
+                "repeat_penalty": 1
+              },
+              "policy": "native-sampling-2"
+            }
+          },
+          {
+            "stage": "Grouping repeated mentions without dropping concerns",
+            "elapsedMs": 67698.46919999999,
+            "usage": {
+              "prompt_tokens": 5317,
+              "completion_tokens": 7396,
+              "load_duration_ns": 5282500,
+              "prompt_eval_duration_ns": 788638000,
+              "eval_duration_ns": 66783750000,
+              "total_duration_ns": 67696227400,
+              "sampling": {
+                "temperature": 1,
+                "top_p": 0.95,
+                "top_k": 20,
+                "min_p": 0,
+                "presence_penalty": 1.5,
+                "repeat_penalty": 1
+              },
+              "policy": "native-sampling-2"
+            }
+          }
+        ],
+        "responses": [
+          {
+            "stage": "Reviewing delays, work progress and closeout",
+            "raw": "{\n  \"findings\": [\n    {\n      \"title\": \"Substrate inspection status discrepancy reconciled by quality checklist\",\n      \"category\": \"communication\",\n      \"status\": \"resolved\",\n      \"observation\": \"Superintendent claimed inspection passed on May 12 while subcontractor reported no written release until Quality Inspector issued signed checklist on May 14.\",\n      \"consequence\": \"Pour was delayed pending formal acceptance despite verbal instructions.\",\n      \"action\": \"Quality Checklist QC-B104-0514 confirms acceptance and closes inspection prerequisite.\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"Verbal instructions did not equate to formal acceptance until checklist recorded.\",\n      \"evidence\": [\n        {\"report_id\": \"DR-A03\", \"field\": \"issue_or_update\"},\n        {\"report_id\": \"DR-A04\", \"field\": \"issue_or_update\"},\n        {\"report_id\": \"DR-A07\", \"field\": \"issue_or_update\"}\n      ]\n    },\n    {\n      \"title\": \"RFI-017 slab thickness detail ambiguity lacks formal response documentation\",\n      \"category\": \"unresolved\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"Internal note instructed to use original detail but formal transmission and system closure of RFI-017 remained unverified despite superintendent claim.\",\n      \"consequence\": \"Pour proceeded without attaching formal RFI response or drawing revision number in final record.\",\n      \"action\": \"Retrieve attached RFI response or confirm formal issuance date from Design Team records.\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"Evidence limits restrict confidence to superintendent claim rather than transmitted design change notice.\",\n      \"evidence\": [\n        {\"report_id\": \"DR-A05\", \"field\": \"issue_or_update\"},\n        {\"report_id\": \"DR-A06\", \"field\": \"issue_or_update\"},\n        {\"report_id\": \"DR-A08\", \"field\": \"issue_or_update\"}\n      ]\n    },\n    {\n      \"title\": \"Adjacent electrical trade access restriction ended without verified notice procedure\",\n      \"category\": \"delay\",\n      \"status\": \"historical\",\n      \"observation\": \"Electrical foreman recorded 3 hours 45 minutes of restricted access during concrete pour with no identified formal notice or advance communication documented.\",\n      \"consequence\": \"Work sequence change caused temporary stoppage; schedule impact quantified but not formally closed out as delay.\",\n      \"action\": \"GC to confirm access notification procedure for adjacent trades and record any verified schedule impact.\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"Report states no advance notice received rather than documenting a formal delay claim process.\",\n      \"evidence\": [\n        {\"report_id\": \"DR-A09\", \"field\": \"work_completed\"},\n        {\"report_id\": \"DR-A10\", \"field\": \"issue_or_update\"}\n      ]\n    },\n    {\n      \"title\": \"Replacement concrete quantity recorded as delivered volume without separate placement measurement\",\n      \"category\": \"unresolved\",\n      \"status\": \"open\",\n      \"observation\": \"Report states 4.2 m3 delivered but explicitly notes placed quantity was not separately measured from the delivery ticket records.\",\n      \"consequence\": \"Final project quantities rely on unverified field estimates rather than verified placement logs.\",\n      \"action\": \"Verify final pour log against delivery tickets to reconcile delivered versus placed volume.\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"Evidence limits prevent inferring quantity placed from delivery volume as per record constraints.\",\n      \"evidence\": [\n        {\"report_id\": \"DR-A09\", \"field\": \"work_completed\"}\n      ]\n    },\n    {\n      \"title\": \"Original water damage source remains unconfirmed in field records\",\n      \"category\": \"unresolved\",\n      \"status\": \"open\",\n      \"observation\": \"Field supervisor noted water damage near east wall on May 11 but the specific source of leakage or infiltration was never confirmed in subsequent reports.\",\n      \"consequence\": \"Continued monitoring required to ensure structural integrity or warranty obligations related to moisture ingress.\",\n      \"action\": \"GC to confirm removal boundary and arrange substrate inspection before pour preparation per initial scope.\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"Records do not establish the cause of water damage beyond observation without confirmation.\",\n      \"evidence\": [\n        {\"report_id\": \"DR-A01\", \"field\": \"issue_or_update\"}\n      ]\n    }\n  ]\n}"
+          },
+          {
+            "stage": "Reviewing decisions and separate prerequisites",
+            "raw": "{\n  \"findings\": [\n    {\n      \"title\": \"Substrate Acceptance Documentation Gap\",\n      \"category\": \"communication\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"General Contractor reported inspection passed while Subcontractor noted release was still outstanding without attached acceptance record.\",\n      \"consequence\": \"Pour delayed pending formal written confirmation despite verbal clearance and later substrate acceptance report.\",\n      \"action\": \"Verify signed inspection checklist QC-B104-0514 against RFI requirements and distribute to all stakeholders.\",\n      \"owner\": \"null\",\n      \"due\": \"null\",\"uncertainty\": \"Reports contradict on acceptance status; A07 confirms checklist but A09 notes missing formal response attachment.\",\"evidence\": [\n        { \"report_id\": \"DR-A03\", \"field\": \"issue_or_update\" },\n        { \"report_id\": \"DR-A04\", \"field\": \"issue_or_update\" },\n        { \"report_id\": \"DR-A09\", \"field\": \"supporting_evidence\" }\n      ]\n    },\n    {\n      \"title\": \"RFI-017 Design Clarification\",\n      \"category\": \"unresolved\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"Design Team internally decided on 'original detail' but formal RFI response was not transmitted or referenced.\",\n      \"consequence\": \"Crew relied on verbal instructions; lack of drawing revision number creates ambiguity for future work or rework.\",\n      \"action\": \"Obtain Design Team formal response and confirm receipt with Subcontractor before any further pour operations.\",\n      \"owner\": \"null\",\n      \"due\": \"null\",\"uncertainty\": \"Internal note exists (A06) but system shows Open; formal transmission not confirmed in reports.\",\"evidence\": [\n        { \"report_id\": \"DR-A05\", \"field\": \"issue_or_update\" },\n        { \"report_id\": \"DR-A06\", \"field\": \"issue_or_update\" },\n        { \"report_id\": \"DR-A08\", \"field\": \"issue_or_update\" }\n      ]\n    },\n    {\n      \"title\": \"Adjacent Trade Coordination Delay\",\n      \"category\": \"delay\",\n      \"status\": \"historical\",\n      \"observation\": \"Electrical Subcontractor work was restricted for 3 hours and 45 minutes due to concrete placement activities.\",\n      \"consequence\": \"Local work sequence changed, access temporarily denied without formal notice procedure identified.\",\n      \"action\": \"Review notice procedures between trades to prevent future unexpected access restrictions.\",\n      \"owner\": \"null\",\n      \"due\": \"null\",\"uncertainty\": \"Impact recorded in A10 but responsibility for notification unclear.\",\"evidence\": [\n        { \"report_id\": \"DR-A10\", \"field\": \"issue_or_update\" }\n      ]\n    },\n    {\n      \"title\": \"Water Damage Source Uncertainty\",\n      \"category\": \"unresolved\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"Initial report noted water damage near east wall but source was not confirmed; no follow-up investigation records found.\",\n      \"consequence\": \"Potential recurrence of moisture if source is not identified or remediated before concrete placement.\",\n      \"action\": \"Perform final walk-through to verify dry conditions and source status before closing out the room.\",\n      \"owner\": \"null\",\n      \"due\": \"null\",\"uncertainty\": \"Source confirmed as unconfirmed in A01; no later report explicitly closes this specific concern.\",\"evidence\": [\n        { \"report_id\": \"DR-A01\", \"field\": \"issue_or_update\" }\n      ]\n    }\n  ]\n}"
+          },
+          {
+            "stage": "Reviewing conflicting accounts and communication",
+            "raw": "{\n  \"findings\": [\n    {\n      \"title\": \"Substrate Inspection Coordination\",\n      \"category\": \"communication\",\n      \"status\": \"resolved\",\n      \"observation\": \"Substrate inspection status was contradicted by verbal clearance and missing written records until acceptance in report DR-A07.\",\n      \"consequence\": \"Pour delay due to authorization gaps between shifts and teams.\",\n      \"action\": \"Ensure formal sign-off documentation accompanies all substrate inspections before concrete placement.\",\n      \"owner\": \"General Contractor / Quality Inspector\",\n      \"due\": \"2026-05-12\",\n      \"uncertainty\": \"Report records indicate acceptance in DR-A07 but initial verification was verbally transmitted without formal checklists attached.\",\n      \"evidence\": [\n        { \"report_id\": \"DR-A03\", \"field\": \"issue_or_update\" },\n        { \"report_id\": \"DR-A05\", \"field\": \"schedule_status\" },\n        { \"report_id\": \"DR-A07\", \"field\": \"issue_or_update\" }\n      ]\n    },\n    {\n      \"title\": \"RFI-017 Design Clarification\",\n      \"category\": \"unresolved\",\n      \"status\": \"resolved\",\n      \"observation\": \"Internal design decision regarding slab detail was not transmitted formally until report DR-A09 listed RFI-017 as resolved.\",\n      \"consequence\": \"Risk of ambiguity during construction without formal response attachment in initial reports.\",\n      \"action\": \"Attach formal design response and confirm receipt by subcontractor for all RFI closures.\",\n      \"owner\": \"Design Team / General Contractor\",\n      \"due\": \"2026-05-14\",\n      \"uncertainty\": \"System status marked resolved but supporting formal document attachment was not explicitly verified in report text.\",\n      \"evidence\": [\n        { \"report_id\": \"DR-A06\", \"field\": \"issue_or_update\" },\n        { \"report_id\": \"DR-A08\", \"field\": \"rfi_change_order_refs\" },\n        { \"report_id\": \"DR-A09\", \"field\": \"schedule_status\" }\n      ]\n    },\n    {\n      \"title\": \"Adjacent Trade Access Coordination\",\n      \"category\": \"communication\",\n      \"status\": \"open\",\n      \"observation\": \"Adjacent electrical trade reported temporary access restriction without identifying formal notice procedure or advance notice receipt in report DR-A10.\",\n      \"consequence\": \"Schedule impact for adjacent trade is uncertain due to lack of documented notice log.\",\n      \"action\": \"Establish standardized notice procedure for concrete placement interruptions affecting adjacent trades.\",\n      \"owner\": \"General Contractor\",\n      \"due\": \"2026-05-16\",\n      \"uncertainty\": \"Report states restriction occurred but does not identify who issued the restriction or whether advance notice was given.\",\n      \"evidence\": [\n        { \"report_id\": \"DR-A10\", \"field\": \"issue_or_update\" },\n        { \"report_id\": \"DR-A10\", \"field\": \"schedule_status\" }\n      ]\n    },\n    {\n      \"title\": \"Concrete Placement Measurement\",\n      \"category\": \"unresolved\",\n      \"status\": \"open\",\n      \"observation\": \"Pour completion report cited delivery tickets but omitted separately measured quantity of concrete placed in field quantity_or_measurement.\",\n      \"consequence\": \"As-built documentation lacks specific volume record for placed material.\",\n      \"action\": \"Update as-built logs to separately record placed quantities versus delivered tickets per contract requirements.\",\n      \"owner\": \"General Contractor / Concrete Subcontractor\",\n      \"due\": \"2026-05-16\",\n      \"uncertainty\": \"Delivery tickets exist but the specific field for separate measurement of placed quantity remained empty in the final report.\",\n      \"evidence\": [\n        { \"report_id\": \"DR-A09\", \"field\": \"quantity_or_measurement\" }\n      ]\n    }\n  ]\n}"
+          },
+          {
+            "stage": "Grouping repeated mentions without dropping concerns",
+            "raw": "{\"groups\":[{\"candidate_ids\":[\"C1\",\"C6\",\"C10\"]},{\"candidate_ids\":[\"C2\",\"C7\",\"C11\"]},{\"candidate_ids\":[\"C3\",\"C8\",\"C12\"]},{\"candidate_ids\":[\"C4\",\"C13\"]}]}"
+          }
+        ]
+      },
+      "elapsedMs": 317214.4335
+    }
+  ]
+}

@@ -1,0 +1,996 @@
+{
+  "version": "daily-reports-v8",
+  "runs": [
+    {
+      "runId": "8b79968d-7d88-4089-90f4-88aa87f98ff2",
+      "createdAt": "2026-10-22T09:50:34.123Z",
+      "pipeline": "daily-reports-v8",
+      "promptVersion": "daily-review-8",
+      "datasetId": "reports-a",
+      "inputSha256": "4ae8d9d3b59811dcfe4284f650ba78c528303c646b643fcfa8243a8baee4b30e",
+      "profile": "native",
+      "model": "qwen3.5:9b",
+      "backend": "ollama",
+      "reasoning": true,
+      "seed": 42,
+      "modelDigest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "contextWindow": 32768,
+      "temperature": 1,
+      "nativePolicy": "native-sampling-2",
+      "device": {
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+        "gpu": {
+          "vendor": "nvidia",
+          "architecture": "blackwell",
+          "device": "",
+          "description": "",
+          "shaderF16": true
+        }
+      },
+      "loadMs": 2642.0862,
+      "elapsedMs": 598889.8265,
+      "totalMs": 601531.9127,
+      "reports": [
+        {
+          "report_id": "DR-A01",
+          "report_date": "2026-05-11",
+          "report_author": "Concrete Subcontractor - Field Supervisor",
+          "work_area": "Room B104, Grid B3-B5",
+          "shift": "07:00-15:30",
+          "weather": "Light rain outside; interior work area dry at start",
+          "crew_count": "5",
+          "work_planned": "Remove water-damaged concrete flooring and prepare substrate for replacement.",
+          "work_completed": "Removed approximately 18 m2 of flooring in Room B104. Debris placed in designated container. Exposed substrate photographed.",
+          "materials_equipment": "Concrete saw, breaker, dust extraction, debris cart",
+          "issue_or_update": "Water damage was observed near the east wall. The source has not been confirmed. No standing water remained at the start of the shift.",
+          "schedule_status": "Removal is progressing; substrate inspection required before replacement pour.",
+          "rfi_change_order_refs": "CO-01 referenced; no RFI number listed",
+          "action_required": "GC to confirm removal boundary and arrange substrate inspection before pour preparation.",
+          "responsible_party": "General Contractor",
+          "due_date": "2026-05-12",
+          "quantity_or_measurement": "18 m2 removed (subcontractor estimate)",
+          "supporting_evidence": "Photos B104-0511-01 to B104-0511-04 listed; not attached in this synthetic record"
+        },
+        {
+          "report_id": "DR-A02",
+          "report_date": "2026-05-11",
+          "report_author": "General Contractor - Site Superintendent",
+          "work_area": "Room B104",
+          "shift": "07:00-16:00",
+          "weather": "Not recorded",
+          "crew_count": "0",
+          "work_planned": "Coordinate repair scope and confirm area ready for replacement concrete.",
+          "work_completed": "Daily coordination walk completed. Superintendent noted that the flooring removal area appeared ready for base preparation.",
+          "materials_equipment": "Not applicable",
+          "issue_or_update": "The report says the area is ready for base preparation, but does not record a substrate inspection, acceptance, or sign-off.",
+          "schedule_status": "Base preparation may proceed, subject to confirmation of inspection requirements.",
+          "rfi_change_order_refs": "CO-01",
+          "action_required": "Confirm whether the substrate inspection has occurred and record acceptance before the pour.",
+          "responsible_party": "General Contractor / Quality Inspector",
+          "due_date": "2026-05-12",
+          "quantity_or_measurement": "Area quantity not recorded",
+          "supporting_evidence": "No inspection checklist attached"
+        },
+        {
+          "report_id": "DR-A03",
+          "report_date": "2026-05-12",
+          "report_author": "Concrete Subcontractor - Field Supervisor",
+          "work_area": "Room B104, Grid B3-B5",
+          "shift": "07:00-15:30",
+          "weather": "Dry",
+          "crew_count": "5",
+          "work_planned": "Complete base preparation and place replacement concrete if area is released.",
+          "work_completed": "Base preparation completed over approximately 18 m2. No concrete placed.",
+          "materials_equipment": "Compactor, screed rails, hand tools",
+          "issue_or_update": "Crew was told verbally at 07:20 that the area was cleared to proceed. No written release or inspection record was available at the workface.",
+          "schedule_status": "Pour postponed pending written confirmation of substrate acceptance and approved placement details.",
+          "rfi_change_order_refs": "CO-01; RFI-017 status not shown",
+          "action_required": "GC/Quality Inspector to issue written release and confirm RFI-017 response status.",
+          "responsible_party": "General Contractor / Quality Inspector / Design Team",
+          "due_date": "2026-05-12 14:00",
+          "quantity_or_measurement": "18 m2 base preparation; 0 m3 concrete placed",
+          "supporting_evidence": "Crew foreman notes verbal instruction; no signed inspection form attached"
+        },
+        {
+          "report_id": "DR-A04",
+          "report_date": "2026-05-12",
+          "report_author": "General Contractor - Site Superintendent",
+          "work_area": "Room B104",
+          "shift": "07:00-16:00",
+          "weather": "Dry",
+          "crew_count": "0",
+          "work_planned": "Resolve inspection status and coordinate concrete placement.",
+          "work_completed": "Coordination call held with concrete subcontractor. Superintendent's notes state: 'Inspection passed this morning.'",
+          "materials_equipment": "Not applicable",
+          "issue_or_update": "No inspector name, inspection time, checklist, or written acceptance is referenced. The subcontractor's report for the same day states that written release was still outstanding at 15:30.",
+          "schedule_status": "Report indicates inspection passed; subcontractor records indicate pour remains on hold.",
+          "rfi_change_order_refs": "CO-01; RFI-017",
+          "action_required": "Reconcile inspection status with the inspector and subcontractor; circulate the signed release and confirm whether RFI-017 is answered.",
+          "responsible_party": "General Contractor / Quality Inspector",
+          "due_date": "2026-05-13 08:00",
+          "quantity_or_measurement": "Not recorded",
+          "supporting_evidence": "Call notes only; no inspection record attached"
+        },
+        {
+          "report_id": "DR-A05",
+          "report_date": "2026-05-13",
+          "report_author": "Concrete Subcontractor - Field Supervisor",
+          "work_area": "Room B104, Grid B3-B5",
+          "shift": "07:00-15:30",
+          "weather": "Dry",
+          "crew_count": "6",
+          "work_planned": "Place replacement concrete after receipt of approved release and mix details.",
+          "work_completed": "No concrete placed. Crew completed edge cleaning and staged reinforcement materials outside the work area.",
+          "materials_equipment": "Reinforcement materials staged; concrete pump not mobilized",
+          "issue_or_update": "At 10:15, foreman checked with the GC. Written inspection release had not been received. RFI-017 asks whether the replacement slab should match the original thickness or revised detail; no response was available to the crew.",
+          "schedule_status": "Pour postponed for a second shift. Crew reassigned for part of the afternoon.",
+          "rfi_change_order_refs": "CO-01; RFI-017 open",
+          "action_required": "Issue inspection release and provide written response to RFI-017 before rescheduling the pour.",
+          "responsible_party": "General Contractor / Quality Inspector / Design Team",
+          "due_date": "2026-05-13 16:00",
+          "quantity_or_measurement": "0 m3 concrete placed",
+          "supporting_evidence": "Foreman log; no formal response attached"
+        },
+        {
+          "report_id": "DR-A06",
+          "report_date": "2026-05-13",
+          "report_author": "General Contractor - Project Engineer",
+          "work_area": "Room B104",
+          "shift": "08:00-16:30",
+          "weather": "",
+          "crew_count": "0",
+          "work_planned": "Review RFI and confirm repair scope.",
+          "work_completed": "RFI-017 reviewed internally. Engineer's note says 'use original detail' but the response was not transmitted through the formal RFI system.",
+          "materials_equipment": "Not applicable",
+          "issue_or_update": "Internal note may be interpreted as a decision, but there is no formally issued response or confirmation that the subcontractor received it.",
+          "schedule_status": "Subcontractor may remain on hold until formal response is distributed.",
+          "rfi_change_order_refs": "CO-01; RFI-017",
+          "action_required": "Issue the formal RFI response, confirm receipt, and identify the applicable drawing revision.",
+          "responsible_party": "Design Team / General Contractor",
+          "due_date": "2026-05-14 09:00",
+          "quantity_or_measurement": "Not applicable",
+          "supporting_evidence": "Internal engineering note; formal response not attached"
+        },
+        {
+          "report_id": "DR-A07",
+          "report_date": "2026-05-14",
+          "report_author": "General Contractor - Quality Inspector",
+          "work_area": "Room B104, Grid B3-B5",
+          "shift": "07:30-15:30",
+          "weather": "Dry",
+          "crew_count": "0",
+          "work_planned": "Verify substrate and pre-pour readiness.",
+          "work_completed": "Inspection completed at 08:10. Substrate accepted for placement subject to using the approved slab detail and documenting reinforcement placement. Signed checklist recorded as QC-B104-0514.",
+          "materials_equipment": "Inspection tools",
+          "issue_or_update": "The signed checklist confirms substrate acceptance, but does not resolve the slab thickness question in RFI-017.",
+          "schedule_status": "Substrate inspection closed; pour still depends on design clarification and reinforcement verification.",
+          "rfi_change_order_refs": "CO-01; RFI-017 open; QC-B104-0514",
+          "action_required": "Design Team to issue formal slab detail; subcontractor to request reinforcement inspection before placement.",
+          "responsible_party": "Design Team / Concrete Subcontractor",
+          "due_date": "2026-05-14 12:00",
+          "quantity_or_measurement": "Inspection covers approximately 18 m2",
+          "supporting_evidence": "Signed checklist QC-B104-0514 referenced"
+        },
+        {
+          "report_id": "DR-A08",
+          "report_date": "2026-05-14",
+          "report_author": "Concrete Subcontractor - Field Supervisor",
+          "work_area": "Room B104, Grid B3-B5",
+          "shift": "07:00-15:30",
+          "weather": "Dry",
+          "crew_count": "6",
+          "work_planned": "Place replacement concrete after design and inspection release.",
+          "work_completed": "Reinforcement placed over the prepared area. No concrete placed.",
+          "materials_equipment": "Reinforcement, chairs, tying tools",
+          "issue_or_update": "Crew received a message from the GC saying 'detail should be the same as before.' The message did not identify a drawing number or revision, and RFI-017 still appeared open in the system.",
+          "schedule_status": "Pour not started. Reinforcement inspection requested but not yet completed.",
+          "rfi_change_order_refs": "CO-01; RFI-017 shown open",
+          "action_required": "Confirm approved drawing revision and complete reinforcement inspection before placement.",
+          "responsible_party": "General Contractor / Design Team / Quality Inspector",
+          "due_date": "2026-05-15 08:00",
+          "quantity_or_measurement": "Reinforcement installed; concrete placed 0 m3",
+          "supporting_evidence": "Message referenced but not attached; no reinforcement inspection record"
+        },
+        {
+          "report_id": "DR-A09",
+          "report_date": "2026-05-15",
+          "report_author": "General Contractor - Site Superintendent",
+          "work_area": "Room B104, Grid B3-B5",
+          "shift": "06:30-16:00",
+          "weather": "Dry",
+          "crew_count": "0",
+          "work_planned": "Coordinate concrete placement and adjacent trade access.",
+          "work_completed": "Concrete placement completed. Delivery tickets list 4.2 m3 supplied. Pour began at 09:05 and finishing was completed by 12:40. Adjacent electrical subcontractor was notified to avoid the area until protection was removed.",
+          "materials_equipment": "Concrete pump; delivery tickets CT-771 and CT-772",
+          "issue_or_update": "Report states the pour used the approved detail, but does not cite the drawing revision or attach the formal RFI-017 response. Reinforcement inspection reference is listed as RI-B104-0515.",
+          "schedule_status": "Placement completed; curing/protection and strength-test follow-up remain in progress.",
+          "rfi_change_order_refs": "CO-01; RFI-017 listed as 'resolved' by superintendent; RI-B104-0515",
+          "action_required": "Attach formal RFI response and reinforcement inspection record; maintain curing/protection; notify adjacent trades when access is safe.",
+          "responsible_party": "General Contractor / Concrete Subcontractor",
+          "due_date": "2026-05-16",
+          "quantity_or_measurement": "4.2 m3 delivered; placed quantity not separately measured",
+          "supporting_evidence": "Delivery tickets referenced; RFI response not attached"
+        },
+        {
+          "report_id": "DR-A10",
+          "report_date": "2026-05-15",
+          "report_author": "Electrical Subcontractor - Foreman",
+          "work_area": "Corridor adjacent to Room B104",
+          "shift": "07:00-15:00",
+          "weather": "",
+          "crew_count": "3",
+          "work_planned": "Complete electrical rough-in in corridor adjacent to concrete repair area.",
+          "work_completed": "Crew stopped work near Room B104 from 09:00 to 12:45 while concrete placement and finishing activities restricted access. Crew moved to another corridor and resumed work there.",
+          "materials_equipment": "Electrical hand tools",
+          "issue_or_update": "The report records a temporary access restriction but does not identify who issued the restriction or whether the electrical foreman received advance notice.",
+          "schedule_status": "No full-shift delay reported; local work sequence changed.",
+          "rfi_change_order_refs": "No RFI or change order referenced",
+          "action_required": "GC to confirm access notification procedure for adjacent trades and record any verified schedule impact.",
+          "responsible_party": "General Contractor",
+          "due_date": "2026-05-16",
+          "quantity_or_measurement": "Approximately 3 hours 45 minutes of restricted access",
+          "supporting_evidence": "Electrical foreman daily log"
+        }
+      ],
+      "originalFindings": [
+        {
+          "id": "F1",
+          "title": "Substrate Inspection Documentation Discrepancy and Resolution",
+          "category": "unresolved",
+          "status": "resolved",
+          "observation": "GC Superintendent reported substrate area ready for base preparation without formal inspection sign-off (DR-A02, DR-A04), while Subcontractor recorded lack of written release (DR-A03, DR-A05); resolution achieved via signed checklist QC-B104-0514 referenced in Quality Inspector report (DR-A07).",
+          "consequence": "Work progress was contingent on formal acceptance despite verbal instructions; historical discrepancy noted for retrospective audit.",
+          "action": "Retrospective confirmation that substrate inspection QC-B104-0514 matches work records to validate closeout documentation.",
+          "uncertainty": "No",
+          "owner": null,
+          "due": null,
+          "withheldFields": [
+            "owner",
+            "due"
+          ],
+          "evidence": [
+            {
+              "report_id": "DR-A02",
+              "field": "issue_or_update",
+              "quote": "The report says the area is ready for base preparation, but does not record a substrate inspection, acceptance, or sign-off."
+            },
+            {
+              "report_id": "DR-A03",
+              "field": "action_required",
+              "quote": "GC/Quality Inspector to issue written release and confirm RFI-017 response status."
+            },
+            {
+              "report_id": "DR-A07",
+              "field": "supporting_evidence",
+              "quote": "Signed checklist QC-B104-0514 referenced"
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F2",
+          "title": "RFI-017 Design Detail Formal Response Missing",
+          "category": "unresolved",
+          "status": "needs_verification",
+          "observation": "Design Team internal note indicated use of original detail (DR-A06), but formal response was not transmitted to Subcontractor until pour, and DR-A09 final report claims RFI-017 resolved without attaching the formal response document.",
+          "consequence": "Concrete placement proceeded based on unverified design authorization in the closeout file record.",
+          "action": "Design Team to locate and attach formal RFI-017 response to project archive; verify subcontractor receipt of approved drawing revision prior to placement.",
+          "uncertainty": "Yes",
+          "owner": null,
+          "due": null,
+          "withheldFields": [
+            "owner",
+            "due"
+          ],
+          "evidence": [
+            {
+              "report_id": "DR-A06",
+              "field": "issue_or_update",
+              "quote": "Internal note may be interpreted as a decision, but there is no formally issued response or confirmation that the subcontractor received it."
+            },
+            {
+              "report_id": "DR-A08",
+              "field": "supporting_evidence",
+              "quote": "Message referenced but not attached; no reinforcement inspection record"
+            },
+            {
+              "report_id": "DR-A09",
+              "field": "rfi_change_order_refs",
+              "quote": "CO-01; RFI-017 listed as 'resolved' by superintendent; RI-B104-0515"
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F3",
+          "title": "Reinforcement Inspection Record Omitted from Closeout Documentation",
+          "category": "unresolved",
+          "status": "needs_verification",
+          "observation": "Reinforcement inspection reference RI-B104-0515 was listed in Concrete Subcontractor final report (DR-A09) but the signed checklist or photo evidence was not attached to the file, preventing verification of physical readiness compliance.",
+          "consequence": "Record incompleteness prevents audit confirmation that reinforcement placement met quality requirements prior to pour completion.",
+          "action": "Request QC records for RI-B104-0515 inspection; confirm reinforcement installation details match approved design revision before final sign-off.",
+          "uncertainty": "Yes",
+          "owner": null,
+          "due": null,
+          "withheldFields": [
+            "owner"
+          ],
+          "evidence": [
+            {
+              "report_id": "DR-A07",
+              "field": "schedule_status",
+              "quote": "Substrate inspection closed; pour still depends on design clarification and reinforcement verification."
+            },
+            {
+              "report_id": "DR-A08",
+              "field": "supporting_evidence",
+              "quote": "Message referenced but not attached; no reinforcement inspection record"
+            },
+            {
+              "report_id": "DR-A09",
+              "field": "supporting_evidence",
+              "quote": "Delivery tickets referenced; RFI response not attached"
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F4",
+          "title": "RFI-017 Design Decision Transmission and Slab Detail Clarification",
+          "category": "unresolved",
+          "status": "needs_verification",
+          "observation": "The replacement slab thickness and detail design query for RFI-017 remained open in the system through May 2026, though a Superintendent noted resolution on the final pour without attaching the formal RFI response or drawing revision.",
+          "consequence": "Lack of a formally transmitted design decision and attached record prevents audit closure and relies on internal notes rather than approved shop drawings for the replacement slab detail.",
+          "action": "Attach formal RFI response to verify the approved slab detail and resolve the technical query before closing out the concern.",
+          "uncertainty": "Confidence is limited by missing attachment of the formal RFI-017 response despite claims of resolution in daily reports.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [
+            "owner"
+          ],
+          "evidence": [
+            {
+              "report_id": "DR-A05",
+              "field": "issue_or_update",
+              "quote": "At 10:15, foreman checked with the GC. Written inspection release had not been received. RFI-017 asks whether the replacement slab should match the original thickness or revised detail; no response was available to the crew."
+            },
+            {
+              "report_id": "DR-A06",
+              "field": "work_completed",
+              "quote": "RFI-017 reviewed internally. Engineer's note says 'use original detail' but the response was not transmitted through the formal RFI system."
+            },
+            {
+              "report_id": "DR-A08",
+              "field": "issue_or_update",
+              "quote": "Crew received a message from the GC saying 'detail should be the same as before.' The message did not identify a drawing number or revision, and RFI-017 still appeared open in the system."
+            },
+            {
+              "report_id": "DR-A09",
+              "field": "action_required",
+              "quote": "Attach formal RFI response and reinforcement inspection record; maintain curing/protection; notify adjacent trades when access is safe."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F5",
+          "title": "Concrete Pour Postponement and Completion",
+          "category": "delay",
+          "status": "resolved",
+          "observation": "Concrete work for replacement in Room B104 was postponed from May 12 to May 15 due to missing written inspection release and RFI-017 status conflicts, then completed after verification on May 15.",
+          "consequence": "Work schedule impacted by administrative hold; physical completion achieved after documentation gap reconciliation.",
+          "action": "Verify delay duration impact against project baseline if required for claims history.",
+          "uncertainty": "RFI-017 response attached status uncertain in A09 despite claim of resolution; internal note in A06 suggests decision made but formal system response missing.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-A03",
+              "field": "schedule_status",
+              "quote": "Pour postponed pending written confirmation of substrate acceptance and approved placement details."
+            },
+            {
+              "report_id": "DR-A05",
+              "field": "schedule_status",
+              "quote": "Pour postponed for a second shift. Crew reassigned for part of the afternoon."
+            },
+            {
+              "report_id": "DR-A09",
+              "field": "work_completed",
+              "quote": "Concrete placement completed. Delivery tickets list 4.2 m3 supplied. Pour began at 09:05 and finishing was completed by 12:40. Adjacent electrical subcontractor was notified to avoid the area until protection was removed."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F6",
+          "title": "Concrete Delivery versus Installed Quantity",
+          "category": "delay",
+          "status": "needs_verification",
+          "observation": "Delivery tickets recorded 4.2 m3 supplied on May 15, but the daily report did not separately measure the installed quantity.",
+          "consequence": "Installed quantity cannot be definitively distinguished from delivery waste or return material without separate measurement record.",
+          "action": "Obtain weigh-off records or pour logs to reconcile delivered versus placed volume.",
+          "uncertainty": "Placed quantity not separately measured per A09; waste or return untracked.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-A09",
+              "field": "quantity_or_measurement",
+              "quote": "4.2 m3 delivered; placed quantity not separately measured"
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F7",
+          "title": "Curing Protection and Strength Test Follow-up",
+          "category": "delay",
+          "status": "open",
+          "observation": "Curing/protection and strength-test follow-up were explicitly noted as remaining in progress after concrete placement on May 15.",
+          "consequence": "Structural readiness or testing completion not documented until these tasks are finished.",
+          "action": "Track curing schedule completion and test report issuance for closeout file.",
+          "uncertainty": "No later report confirms completion of curing or strength tests within the provided data.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-A09",
+              "field": "issue_or_update",
+              "quote": "Report states the pour used the approved detail, but does not cite the drawing revision or attach the formal RFI-017 response. Reinforcement inspection reference is listed as RI-B104-0515."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F8",
+          "title": "Unknown Cause of Observed Water Damage",
+          "category": "delay",
+          "status": "needs_verification",
+          "observation": "Water damage observed in Room B104 near the east wall with source unconfirmed after substrate removal.",
+          "consequence": "Source uncertainty may affect remediation scope and moisture history assessment before repair.",
+          "action": "Investigate potential leak sources or roof/wall penetration points to confirm water entry point.",
+          "uncertainty": "The source of the water damage has not been confirmed in the daily records.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-A01",
+              "field": "issue_or_update",
+              "quote": "Water damage was observed near the east wall. The source has not been confirmed. No standing water remained at the start of the shift."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F9",
+          "title": "Uncertain Access Coordination for Adjacent Electrical Trade",
+          "category": "delay",
+          "status": "needs_verification",
+          "observation": "Electrical subcontractor work stopped in adjacent corridor during concrete pour activities with uncertainty about notification procedure.",
+          "consequence": "Electrical progress affected by temporary access restriction without confirmed advance notice documentation.",
+          "action": "Verify the notification method and timing of access restrictions for adjacent trade schedules.",
+          "uncertainty": "The daily reports do not identify who issued the restriction or confirm receipt of notice by the electrical foreman.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-A09",
+              "field": "issue_or_update",
+              "quote": "Report states the pour used the approved detail, but does not cite the drawing revision or attach the formal RFI-017 response. Reinforcement inspection reference is listed as RI-B104-0515."
+            },
+            {
+              "report_id": "DR-A10",
+              "field": "issue_or_update",
+              "quote": "The report records a temporary access restriction but does not identify who issued the restriction or whether the electrical foreman received advance notice."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        }
+      ],
+      "findings": [
+        {
+          "id": "F1",
+          "title": "Substrate Inspection Documentation Discrepancy and Resolution",
+          "category": "unresolved",
+          "status": "resolved",
+          "observation": "GC Superintendent reported substrate area ready for base preparation without formal inspection sign-off (DR-A02, DR-A04), while Subcontractor recorded lack of written release (DR-A03, DR-A05); resolution achieved via signed checklist QC-B104-0514 referenced in Quality Inspector report (DR-A07).",
+          "consequence": "Work progress was contingent on formal acceptance despite verbal instructions; historical discrepancy noted for retrospective audit.",
+          "action": "Retrospective confirmation that substrate inspection QC-B104-0514 matches work records to validate closeout documentation.",
+          "uncertainty": "No",
+          "owner": null,
+          "due": null,
+          "withheldFields": [
+            "owner",
+            "due"
+          ],
+          "evidence": [
+            {
+              "report_id": "DR-A02",
+              "field": "issue_or_update",
+              "quote": "The report says the area is ready for base preparation, but does not record a substrate inspection, acceptance, or sign-off."
+            },
+            {
+              "report_id": "DR-A03",
+              "field": "action_required",
+              "quote": "GC/Quality Inspector to issue written release and confirm RFI-017 response status."
+            },
+            {
+              "report_id": "DR-A07",
+              "field": "supporting_evidence",
+              "quote": "Signed checklist QC-B104-0514 referenced"
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F2",
+          "title": "RFI-017 Design Detail Formal Response Missing",
+          "category": "unresolved",
+          "status": "needs_verification",
+          "observation": "Design Team internal note indicated use of original detail (DR-A06), but formal response was not transmitted to Subcontractor until pour, and DR-A09 final report claims RFI-017 resolved without attaching the formal response document.",
+          "consequence": "Concrete placement proceeded based on unverified design authorization in the closeout file record.",
+          "action": "Design Team to locate and attach formal RFI-017 response to project archive; verify subcontractor receipt of approved drawing revision prior to placement.",
+          "uncertainty": "Yes",
+          "owner": null,
+          "due": null,
+          "withheldFields": [
+            "owner",
+            "due"
+          ],
+          "evidence": [
+            {
+              "report_id": "DR-A06",
+              "field": "issue_or_update",
+              "quote": "Internal note may be interpreted as a decision, but there is no formally issued response or confirmation that the subcontractor received it."
+            },
+            {
+              "report_id": "DR-A08",
+              "field": "supporting_evidence",
+              "quote": "Message referenced but not attached; no reinforcement inspection record"
+            },
+            {
+              "report_id": "DR-A09",
+              "field": "rfi_change_order_refs",
+              "quote": "CO-01; RFI-017 listed as 'resolved' by superintendent; RI-B104-0515"
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F3",
+          "title": "Reinforcement Inspection Record Omitted from Closeout Documentation",
+          "category": "unresolved",
+          "status": "needs_verification",
+          "observation": "Reinforcement inspection reference RI-B104-0515 was listed in Concrete Subcontractor final report (DR-A09) but the signed checklist or photo evidence was not attached to the file, preventing verification of physical readiness compliance.",
+          "consequence": "Record incompleteness prevents audit confirmation that reinforcement placement met quality requirements prior to pour completion.",
+          "action": "Request QC records for RI-B104-0515 inspection; confirm reinforcement installation details match approved design revision before final sign-off.",
+          "uncertainty": "Yes",
+          "owner": null,
+          "due": null,
+          "withheldFields": [
+            "owner"
+          ],
+          "evidence": [
+            {
+              "report_id": "DR-A07",
+              "field": "schedule_status",
+              "quote": "Substrate inspection closed; pour still depends on design clarification and reinforcement verification."
+            },
+            {
+              "report_id": "DR-A08",
+              "field": "supporting_evidence",
+              "quote": "Message referenced but not attached; no reinforcement inspection record"
+            },
+            {
+              "report_id": "DR-A09",
+              "field": "supporting_evidence",
+              "quote": "Delivery tickets referenced; RFI response not attached"
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F4",
+          "title": "RFI-017 Design Decision Transmission and Slab Detail Clarification",
+          "category": "unresolved",
+          "status": "needs_verification",
+          "observation": "The replacement slab thickness and detail design query for RFI-017 remained open in the system through May 2026, though a Superintendent noted resolution on the final pour without attaching the formal RFI response or drawing revision.",
+          "consequence": "Lack of a formally transmitted design decision and attached record prevents audit closure and relies on internal notes rather than approved shop drawings for the replacement slab detail.",
+          "action": "Attach formal RFI response to verify the approved slab detail and resolve the technical query before closing out the concern.",
+          "uncertainty": "Confidence is limited by missing attachment of the formal RFI-017 response despite claims of resolution in daily reports.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [
+            "owner"
+          ],
+          "evidence": [
+            {
+              "report_id": "DR-A05",
+              "field": "issue_or_update",
+              "quote": "At 10:15, foreman checked with the GC. Written inspection release had not been received. RFI-017 asks whether the replacement slab should match the original thickness or revised detail; no response was available to the crew."
+            },
+            {
+              "report_id": "DR-A06",
+              "field": "work_completed",
+              "quote": "RFI-017 reviewed internally. Engineer's note says 'use original detail' but the response was not transmitted through the formal RFI system."
+            },
+            {
+              "report_id": "DR-A08",
+              "field": "issue_or_update",
+              "quote": "Crew received a message from the GC saying 'detail should be the same as before.' The message did not identify a drawing number or revision, and RFI-017 still appeared open in the system."
+            },
+            {
+              "report_id": "DR-A09",
+              "field": "action_required",
+              "quote": "Attach formal RFI response and reinforcement inspection record; maintain curing/protection; notify adjacent trades when access is safe."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F5",
+          "title": "Concrete Pour Postponement and Completion",
+          "category": "delay",
+          "status": "resolved",
+          "observation": "Concrete work for replacement in Room B104 was postponed from May 12 to May 15 due to missing written inspection release and RFI-017 status conflicts, then completed after verification on May 15.",
+          "consequence": "Work schedule impacted by administrative hold; physical completion achieved after documentation gap reconciliation.",
+          "action": "Verify delay duration impact against project baseline if required for claims history.",
+          "uncertainty": "RFI-017 response attached status uncertain in A09 despite claim of resolution; internal note in A06 suggests decision made but formal system response missing.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-A03",
+              "field": "schedule_status",
+              "quote": "Pour postponed pending written confirmation of substrate acceptance and approved placement details."
+            },
+            {
+              "report_id": "DR-A05",
+              "field": "schedule_status",
+              "quote": "Pour postponed for a second shift. Crew reassigned for part of the afternoon."
+            },
+            {
+              "report_id": "DR-A09",
+              "field": "work_completed",
+              "quote": "Concrete placement completed. Delivery tickets list 4.2 m3 supplied. Pour began at 09:05 and finishing was completed by 12:40. Adjacent electrical subcontractor was notified to avoid the area until protection was removed."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F6",
+          "title": "Concrete Delivery versus Installed Quantity",
+          "category": "delay",
+          "status": "needs_verification",
+          "observation": "Delivery tickets recorded 4.2 m3 supplied on May 15, but the daily report did not separately measure the installed quantity.",
+          "consequence": "Installed quantity cannot be definitively distinguished from delivery waste or return material without separate measurement record.",
+          "action": "Obtain weigh-off records or pour logs to reconcile delivered versus placed volume.",
+          "uncertainty": "Placed quantity not separately measured per A09; waste or return untracked.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-A09",
+              "field": "quantity_or_measurement",
+              "quote": "4.2 m3 delivered; placed quantity not separately measured"
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F7",
+          "title": "Curing Protection and Strength Test Follow-up",
+          "category": "delay",
+          "status": "open",
+          "observation": "Curing/protection and strength-test follow-up were explicitly noted as remaining in progress after concrete placement on May 15.",
+          "consequence": "Structural readiness or testing completion not documented until these tasks are finished.",
+          "action": "Track curing schedule completion and test report issuance for closeout file.",
+          "uncertainty": "No later report confirms completion of curing or strength tests within the provided data.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-A09",
+              "field": "issue_or_update",
+              "quote": "Report states the pour used the approved detail, but does not cite the drawing revision or attach the formal RFI-017 response. Reinforcement inspection reference is listed as RI-B104-0515."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F8",
+          "title": "Unknown Cause of Observed Water Damage",
+          "category": "delay",
+          "status": "needs_verification",
+          "observation": "Water damage observed in Room B104 near the east wall with source unconfirmed after substrate removal.",
+          "consequence": "Source uncertainty may affect remediation scope and moisture history assessment before repair.",
+          "action": "Investigate potential leak sources or roof/wall penetration points to confirm water entry point.",
+          "uncertainty": "The source of the water damage has not been confirmed in the daily records.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-A01",
+              "field": "issue_or_update",
+              "quote": "Water damage was observed near the east wall. The source has not been confirmed. No standing water remained at the start of the shift."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        },
+        {
+          "id": "F9",
+          "title": "Uncertain Access Coordination for Adjacent Electrical Trade",
+          "category": "delay",
+          "status": "needs_verification",
+          "observation": "Electrical subcontractor work stopped in adjacent corridor during concrete pour activities with uncertainty about notification procedure.",
+          "consequence": "Electrical progress affected by temporary access restriction without confirmed advance notice documentation.",
+          "action": "Verify the notification method and timing of access restrictions for adjacent trade schedules.",
+          "uncertainty": "The daily reports do not identify who issued the restriction or confirm receipt of notice by the electrical foreman.",
+          "owner": null,
+          "due": null,
+          "withheldFields": [],
+          "evidence": [
+            {
+              "report_id": "DR-A09",
+              "field": "issue_or_update",
+              "quote": "Report states the pour used the approved detail, but does not cite the drawing revision or attach the formal RFI-017 response. Reinforcement inspection reference is listed as RI-B104-0515."
+            },
+            {
+              "report_id": "DR-A10",
+              "field": "issue_or_update",
+              "quote": "The report records a temporary access restriction but does not identify who issued the restriction or whether the electrical foreman received advance notice."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        }
+      ],
+      "timings": [
+        {
+          "stage": "Reviewing readiness and prerequisites",
+          "elapsedMs": 80517.03690000006,
+          "usage": {
+            "prompt_tokens": 3394,
+            "completion_tokens": 8552,
+            "load_duration_ns": 2607331800,
+            "prompt_eval_duration_ns": 531308000,
+            "eval_duration_ns": 77353532000,
+            "total_duration_ns": 80505275200,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Verifying readiness and prerequisites",
+          "elapsedMs": 74732.28509999998,
+          "usage": {
+            "prompt_tokens": 4048,
+            "completion_tokens": 8193,
+            "load_duration_ns": 4386700,
+            "prompt_eval_duration_ns": 602200000,
+            "eval_duration_ns": 74041519000,
+            "total_duration_ns": 74730402000,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Reviewing technical decisions and formal communication",
+          "elapsedMs": 82124.14749999996,
+          "usage": {
+            "prompt_tokens": 3398,
+            "completion_tokens": 8946,
+            "load_duration_ns": 5175800,
+            "prompt_eval_duration_ns": 511343000,
+            "eval_duration_ns": 81502781000,
+            "total_duration_ns": 82122499600,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Verifying technical decisions and formal communication",
+          "elapsedMs": 92293.71789999981,
+          "usage": {
+            "prompt_tokens": 3673,
+            "completion_tokens": 10039,
+            "load_duration_ns": 4860900,
+            "prompt_eval_duration_ns": 549106000,
+            "eval_duration_ns": 91652866000,
+            "total_duration_ns": 92292088400,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Reviewing progress and closeout",
+          "elapsedMs": 86773.68299999996,
+          "usage": {
+            "prompt_tokens": 3395,
+            "completion_tokens": 9475,
+            "load_duration_ns": 4316800,
+            "prompt_eval_duration_ns": 508940000,
+            "eval_duration_ns": 86162828000,
+            "total_duration_ns": 86772350800,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Verifying progress and closeout",
+          "elapsedMs": 44447.902100000065,
+          "usage": {
+            "prompt_tokens": 4059,
+            "completion_tokens": 4863,
+            "load_duration_ns": 5125000,
+            "prompt_eval_duration_ns": 601995000,
+            "eval_duration_ns": 43734851000,
+            "total_duration_ns": 44446547000,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Reviewing causes and trade coordination",
+          "elapsedMs": 67019.46409999998,
+          "usage": {
+            "prompt_tokens": 3391,
+            "completion_tokens": 7242,
+            "load_duration_ns": 4106900,
+            "prompt_eval_duration_ns": 507286000,
+            "eval_duration_ns": 66437761000,
+            "total_duration_ns": 67017557000,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Verifying causes and trade coordination",
+          "elapsedMs": 73621.58880000003,
+          "usage": {
+            "prompt_tokens": 3697,
+            "completion_tokens": 8065,
+            "load_duration_ns": 6782300,
+            "prompt_eval_duration_ns": 549906000,
+            "eval_duration_ns": 72980030000,
+            "total_duration_ns": 73619856600,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        }
+      ],
+      "responses": [
+        {
+          "stage": "Reviewing readiness and prerequisites",
+          "raw": "{\n  \"findings\": [\n    {\n      \"title\": \"Substrate Inspection Documentation Discrepancy and Resolution\",\n      \"category\": \"unresolved\",\n      \"status\": \"resolved\",\n      \"observation\": \"GC Superintendent reported substrate area ready for base preparation without formal inspection sign-off (DR-A02, DR-A04), while Subcontractor recorded lack of written release (DR-A03, DR-A05); resolution achieved via signed checklist QC-B104-0514 referenced in Quality Inspector report (DR-A07).\",\n      \"consequence\": \"Work progress was contingent on formal acceptance despite verbal instructions; historical discrepancy noted for retrospective audit.\",\n      \"action\": \"Retrospective confirmation that substrate inspection QC-B104-0514 matches work records to validate closeout documentation.\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"No\",\n      \"evidence\": [\n        { \"report_id\": \"DR-A02\", \"field\": \"issue_or_update\" },\n        { \"report_id\": \"DR-A03\", \"field\": \"action_required\" },\n        { \"report_id\": \"DR-A07\", \"field\": \"supporting_evidence\" }\n      ]\n    },\n    {\n      \"title\": \"RFI-017 Design Detail Formal Response Missing\",\n      \"category\": \"unresolved\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"Design Team internal note indicated use of original detail (DR-A06), but formal response was not transmitted to Subcontractor until pour, and DR-A09 final report claims RFI-017 resolved without attaching the formal response document.\",\n      \"consequence\": \"Concrete placement proceeded based on unverified design authorization in the closeout file record.\",\n      \"action\": \"Design Team to locate and attach formal RFI-017 response to project archive; verify subcontractor receipt of approved drawing revision prior to placement.\",\n      \"owner\": \"Design Team / General Contractor\",\n      \"due\": \"2026-05-14 09:00\",\n      \"uncertainty\": \"Yes\",\n      \"evidence\": [\n        { \"report_id\": \"DR-A06\", \"field\": \"issue_or_update\" },\n        { \"report_id\": \"DR-A08\", \"field\": \"supporting_evidence\" },\n        { \"report_id\": \"DR-A09\", \"field\": \"rfi_change_order_refs\" }\n      ]\n    },\n    {\n      \"title\": \"Reinforcement Inspection Record Omitted from Closeout Documentation\",\n      \"category\": \"unresolved\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"Reinforcement inspection reference RI-B104-0515 was listed in Concrete Subcontractor final report (DR-A09) but the signed checklist or photo evidence was not attached to the file, preventing verification of physical readiness compliance.\",\n      \"consequence\": \"Record incompleteness prevents audit confirmation that reinforcement placement met quality requirements prior to pour completion.\",\n      \"action\": \"Request QC records for RI-B104-0515 inspection; confirm reinforcement installation details match approved design revision before final sign-off.\",\n      \"owner\": \"General Contractor / Quality Inspector\",\n      \"due\": \"2026-05-16\",\n      \"uncertainty\": \"Yes\",\n      \"evidence\": [\n        { \"report_id\": \"DR-A07\", \"field\": \"schedule_status\" },\n        { \"report_id\": \"DR-A08\", \"field\": \"supporting_evidence\" },\n        { \"report_id\": \"DR-A09\", \"field\": \"supporting_evidence\" }\n      ]\n    }\n  ]\n}"
+        },
+        {
+          "stage": "Verifying readiness and prerequisites",
+          "raw": "{\n  \"findings\": [\n    {\n      \"title\": \"Substrate Inspection Documentation Discrepancy and Resolution\",\n      \"category\": \"unresolved\",\n      \"status\": \"resolved\",\n      \"observation\": \"GC Superintendent reported substrate area ready for base preparation without formal inspection sign-off (DR-A02, DR-A04), while Subcontractor recorded lack of written release (DR-A03, DR-A05); resolution achieved via signed checklist QC-B104-0514 referenced in Quality Inspector report (DR-A07).\",\n      \"consequence\": \"Work progress was contingent on formal acceptance despite verbal instructions; historical discrepancy noted for retrospective audit.\",\n      \"action\": \"Retrospective confirmation that substrate inspection QC-B104-0514 matches work records to validate closeout documentation.\",\n      \"owner\": \"Design Team / Concrete Subcontractor\",\n      \"due\": \"2026-05-14 12:00\",\n      \"uncertainty\": \"No\",\n      \"evidence\": [\n        {\"report_id\": \"DR-A02\", \"field\": \"issue_or_update\"},\n        {\"report_id\": \"DR-A03\", \"field\": \"action_required\"},\n        {\"report_id\": \"DR-A07\", \"field\": \"supporting_evidence\"}\n      ]\n    },\n    {\n      \"title\": \"RFI-017 Design Detail Formal Response Missing\",\n      \"category\": \"unresolved\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"Design Team internal note indicated use of original detail (DR-A06), but formal response was not transmitted to Subcontractor until pour, and DR-A09 final report claims RFI-017 resolved without attaching the formal response document.\",\n      \"consequence\": \"Concrete placement proceeded based on unverified design authorization in the closeout file record.\",\n      \"action\": \"Design Team to locate and attach formal RFI-017 response to project archive; verify subcontractor receipt of approved drawing revision prior to placement.\",\n      \"owner\": \"Design Team / General Contractor\",\n      \"due\": \"2026-05-14 09:00\",\n      \"uncertainty\": \"Yes\",\n      \"evidence\": [\n        {\"report_id\": \"DR-A06\", \"field\": \"issue_or_update\"},\n        {\"report_id\": \"DR-A08\", \"field\": \"supporting_evidence\"},\n        {\"report_id\": \"DR-A09\", \"field\": \"rfi_change_order_refs\"}\n      ]\n    },\n    {\n      \"title\": \"Reinforcement Inspection Record Omitted from Closeout Documentation\",\n      \"category\": \"unresolved\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"Reinforcement inspection reference RI-B104-0515 was listed in Concrete Subcontractor final report (DR-A09) but the signed checklist or photo evidence was not attached to the file, preventing verification of physical readiness compliance.\",\n      \"consequence\": \"Record incompleteness prevents audit confirmation that reinforcement placement met quality requirements prior to pour completion.\",\n      \"action\": \"Request QC records for RI-B104-0515 inspection; confirm reinforcement installation details match approved design revision before final sign-off.\",\n      \"owner\": \"General Contractor / Quality Inspector\",\n      \"due\": null,\n      \"uncertainty\": \"Yes\",\n      \"evidence\": [\n        {\"report_id\": \"DR-A07\", \"field\": \"schedule_status\"},\n        {\"report_id\": \"DR-A08\", \"field\": \"supporting_evidence\"},\n        {\"report_id\": \"DR-A09\", \"field\": \"supporting_evidence\"}\n      ]\n    }\n  ]\n}"
+        },
+        {
+          "stage": "Reviewing technical decisions and formal communication",
+          "raw": "{\n  \"findings\": [\n    {\n      \"title\": \"RFI-017 Design Decision Transmission and Slab Detail Clarification\",\n      \"category\": \"unresolved\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"The replacement slab thickness and detail design query for RFI-017 remained open in the system through May 2026, though a Superintendent noted resolution on the final pour without attaching the formal RFI response or drawing revision.\",\n      \"consequence\": \"Lack of a formally transmitted design decision and attached record prevents audit closure and relies on internal notes rather than approved shop drawings for the replacement slab detail.\",\n      \"action\": \"Attach formal RFI response and reinforcement inspection record to verify the approved slab detail and resolve the technical query before closing out the concern.\",\"owner\": \"Design Team / General Contractor\",\n      \"due\": null,\n      \"uncertainty\": \"Confidence is limited by missing attachment of the formal RFI-017 response despite claims of resolution in daily reports.\",\n      \"evidence\": [\n        {\n          \"report_id\": \"DR-A05\",\n          \"field\": \"issue_or_update\"\n        },\n        {\n          \"report_id\": \"DR-A06\",\n          \"field\": \"work_completed\"\n        },\n        {\n          \"report_id\": \"DR-A08\",\n          \"field\": \"issue_or_update\"\n        },\n        {\n          \"report_id\": \"DR-A09\",\n          \"field\": \"action_required\"\n        }\n      ]\n    }\n  ]\n}"
+        },
+        {
+          "stage": "Verifying technical decisions and formal communication",
+          "raw": "{\n  \"findings\": [\n    {\n      \"title\": \"RFI-017 Design Decision Transmission and Slab Detail Clarification\",\n      \"category\": \"unresolved\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"The replacement slab thickness and detail design query for RFI-017 remained open in the system through May 2026, though a Superintendent noted resolution on the final pour without attaching the formal RFI response or drawing revision.\",\n      \"consequence\": \"Lack of a formally transmitted design decision and attached record prevents audit closure and relies on internal notes rather than approved shop drawings for the replacement slab detail.\",\n      \"action\": \"Attach formal RFI response to verify the approved slab detail and resolve the technical query before closing out the concern.\",\n      \"owner\": \"Design Team / General Contractor\",\n      \"due\": null,\n      \"uncertainty\": \"Confidence is limited by missing attachment of the formal RFI-017 response despite claims of resolution in daily reports.\",\n      \"evidence\": [\n        {\n          \"report_id\": \"DR-A05\",\n          \"field\": \"issue_or_update\"\n        },\n        {\n          \"report_id\": \"DR-A06\",\n          \"field\": \"work_completed\"\n        },\n        {\n          \"report_id\": \"DR-A08\",\n          \"field\": \"issue_or_update\"\n        },\n        {\n          \"report_id\": \"DR-A09\",\n          \"field\": \"action_required\"\n        }\n      ]\n    }\n  ]\n}"
+        },
+        {
+          "stage": "Reviewing progress and closeout",
+          "raw": "{\n  \"findings\": [\n    {\n      \"title\": \"Concrete Pour Postponement and Completion\",\n      \"category\": \"delay\",\n      \"status\": \"resolved\",\n      \"observation\": \"Concrete work for replacement in Room B104 was postponed from May 12 to May 15 due to missing written inspection release and RFI-017 status conflicts, then completed after verification on May 15.\",\n      \"consequence\": \"Work schedule impacted by administrative hold; physical completion achieved after documentation gap reconciliation.\",\n      \"action\": \"Verify delay duration impact against project baseline if required for claims history.\",\"owner\": null,\"due\": null,\"uncertainty\": \"Source of initial water damage not confirmed in A01; RFI-017 response attached status uncertain in A09 despite claim of resolution.\",\n      \"evidence\": [\n        {\"report_id\": \"DR-A03\", \"field\": \"schedule_status\"},\n        {\"report_id\": \"DR-A05\", \"field\": \"schedule_status\"},\n        {\"report_id\": \"DR-A09\", \"field\": \"work_completed\"}\n      ]\n    },\n    {\n      \"title\": \"Concrete Delivery versus Installed Quantity\",\n      \"category\": \"delay\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"Delivery tickets recorded 4.2 m3 supplied on May 15, but the daily report did not separately measure the installed quantity.\",\n      \"consequence\": \"Installed quantity cannot be definitively distinguished from delivery waste or return material without separate measurement record.\",\n      \"action\": \"Obtain weigh-off records or pour logs to reconcile delivered versus placed volume.\",\n      \"owner\": null,\"due\": null,\"uncertainty\": \"Placed quantity not separately measured per A09; waste or return untracked.\",\n      \"evidence\": [\n        {\"report_id\": \"DR-A09\", \"field\": \"quantity_or_measurement\"},\n        {\"report_id\": \"DR-A09\", \"field\": \"supporting_evidence\"}\n      ]\n    },\n    {\n      \"title\": \"Curing Protection and Strength Test Follow-up\",\n      \"category\": \"delay\",\n      \"status\": \"open\",\n      \"observation\": \"Curing/protection and strength-test follow-up were explicitly noted as remaining in progress after concrete placement on May 15.\",\n      \"consequence\": \"Structural readiness or testing completion not documented until these tasks are finished.\",\n      \"action\": \"Track curing schedule completion and test report issuance for closeout file.\",\n      \"owner\": null,\"due\": null,\"uncertainty\": \"No later report confirms completion of curing or strength tests within the provided data.\",\n      \"evidence\": [\n        {\"report_id\": \"DR-A09\", \"field\": \"issue_or_update\"}\n      ]\n    },\n    {\n      \"title\": \"RFI-017 Design Detail Documentation Closure\",\n      \"category\": \"delay\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"Superintendent listed RFI-017 as resolved on May 15, but no formal response was attached to the daily report record.\",\n      \"consequence\": \"Project file lacks evidence of design approval for the replacement slab detail.\",\n      \"action\": \"Request copy of signed RFI-017 response or transmittal log showing delivery to subcontractor.\",\n      \"owner\": null,\"due\": null,\"uncertainty\": \"Internal note in A06 suggests decision made, but formal system response missing in A09; reliance on claim of resolution without attachment creates verification gap.\",\n      \"evidence\": [\n        {\"report_id\": \"DR-A06\", \"field\": \"issue_or_update\"},\n        {\"report_id\": \"DR-A09\", \"field\": \"rfi_change_order_refs\"}\n      ]\n    }\n  ]\n}"
+        },
+        {
+          "stage": "Verifying progress and closeout",
+          "raw": "{\n  \"findings\": [\n    {\n      \"title\": \"Concrete Pour Postponement and Completion\",\n      \"category\": \"delay\",\n      \"status\": \"resolved\",\n      \"observation\": \"Concrete work for replacement in Room B104 was postponed from May 12 to May 15 due to missing written inspection release and RFI-017 status conflicts, then completed after verification on May 15.\",\n      \"consequence\": \"Work schedule impacted by administrative hold; physical completion achieved after documentation gap reconciliation.\",\n      \"action\": \"Verify delay duration impact against project baseline if required for claims history.\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"RFI-017 response attached status uncertain in A09 despite claim of resolution; internal note in A06 suggests decision made but formal system response missing.\",\n      \"evidence\": [\n        {\"report_id\": \"DR-A03\", \"field\": \"schedule_status\"},\n        {\"report_id\": \"DR-A05\", \"field\": \"schedule_status\"},\n        {\"report_id\": \"DR-A09\", \"field\": \"work_completed\"}\n      ]\n    },\n    {\n      \"title\": \"Concrete Delivery versus Installed Quantity\",\n      \"category\": \"delay\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"Delivery tickets recorded 4.2 m3 supplied on May 15, but the daily report did not separately measure the installed quantity.\",\n      \"consequence\": \"Installed quantity cannot be definitively distinguished from delivery waste or return material without separate measurement record.\",\n      \"action\": \"Obtain weigh-off records or pour logs to reconcile delivered versus placed volume.\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"Placed quantity not separately measured per A09; waste or return untracked.\",\n      \"evidence\": [\n        {\"report_id\": \"DR-A09\", \"field\": \"quantity_or_measurement\"}\n      ]\n    },\n    {\n      \"title\": \"Curing Protection and Strength Test Follow-up\",\n      \"category\": \"delay\",\n      \"status\": \"open\",\n      \"observation\": \"Curing/protection and strength-test follow-up were explicitly noted as remaining in progress after concrete placement on May 15.\",\n      \"consequence\": \"Structural readiness or testing completion not documented until these tasks are finished.\",\n      \"action\": \"Track curing schedule completion and test report issuance for closeout file.\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"No later report confirms completion of curing or strength tests within the provided data.\",\n      \"evidence\": [\n        {\"report_id\": \"DR-A09\", \"field\": \"issue_or_update\"}\n      ]\n    }\n  ]\n}"
+        },
+        {
+          "stage": "Reviewing causes and trade coordination",
+          "raw": "{\n  \"findings\": [\n    {\n      \"title\": \"Unknown Cause of Observed Water Damage\",\n      \"category\": \"delay\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"Water damage observed in Room B104 near the east wall with source unconfirmed after substrate removal.\",\n      \"consequence\": \"Source uncertainty may affect remediation scope and moisture history assessment before repair.\",\n      \"action\": \"Investigate potential leak sources or roof/wall penetration points to confirm water entry point.\",\n      \"owner\": null,\n      \"due\": null,\n      \"uncertainty\": \"The source of the water damage has not been confirmed in the daily records.\",\"evidence\": [\n        {\n          \"report_id\": \"DR-A01\",\n          \"field\": \"issue_or_update\"\n        }\n      ]\n    },\n    {\n      \"title\": \"Uncertain Access Coordination for Adjacent Electrical Trade\",\n      \"category\": \"delay\",\n      \"status\": \"needs_verification\",\n      \"observation\": \"Electrical subcontractor work stopped in adjacent corridor during concrete pour activities.\",\n      \"consequence\": \"Electrical progress affected by temporary access restriction without confirmed advance notice documentation.\",\n      \"action\": \"Verify the notification method and timing of access restrictions for adjacent trade schedules.\",\n      \"owner\": \"General Contractor\",\n      \"due\": \"2026-05-16\",\n      \"uncertainty\": \"The daily reports do not identify who issued the restriction or confirm receipt of notice by the electrical foreman.\",\n      \"evidence\": [\n        {\n          \"report_id\": \"DR-A09\",\n          \"field\": \"issue_or_update\"\n        },\n        {\n          \"report_id\": \"DR-A10\",\n          \"field\": \"issue_or_update\"\n        }\n      ]\n    }\n  ]\n}"
+        },
+        {
+          "stage": "Verifying causes and trade coordination",
+          "raw": "{\"findings\":[{\"title\":\"Unknown Cause of Observed Water Damage\",\"category\":\"delay\",\"status\":\"needs_verification\",\"observation\":\"Water damage observed in Room B104 near the east wall with source unconfirmed after substrate removal.\",\"consequence\":\"Source uncertainty may affect remediation scope and moisture history assessment before repair.\",\"action\":\"Investigate potential leak sources or roof/wall penetration points to confirm water entry point.\",\"owner\":null,\"due\":null,\"uncertainty\":\"The source of the water damage has not been confirmed in the daily records.\",\"evidence\":[{\"report_id\":\"DR-A01\",\"field\":\"issue_or_update\"}]},{\"title\":\"Uncertain Access Coordination for Adjacent Electrical Trade\",\"category\":\"delay\",\"status\":\"needs_verification\",\"observation\":\"Electrical subcontractor work stopped in adjacent corridor during concrete pour activities with uncertainty about notification procedure.\",\"consequence\":\"Electrical progress affected by temporary access restriction without confirmed advance notice documentation.\",\"action\":\"Verify the notification method and timing of access restrictions for adjacent trade schedules.\",\"owner\":null,\"due\":null,\"uncertainty\":\"The daily reports do not identify who issued the restriction or confirm receipt of notice by the electrical foreman.\",\"evidence\":[{\"report_id\":\"DR-A09\",\"field\":\"issue_or_update\"},{\"report_id\":\"DR-A10\",\"field\":\"issue_or_update\"}]}] }"
+        }
+      ],
+      "groupingRepairs": [],
+      "humanReview": {
+        "status": "not_measured"
+      },
+      "evaluation": {
+        "status": "not_scored"
+      }
+    }
+  ]
+}

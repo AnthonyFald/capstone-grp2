@@ -1,0 +1,344 @@
+{
+  "version": "daily-reports-v7",
+  "runs": [
+    {
+      "runId": "5e1bc56d-a632-4c26-879b-30e63e7faa2c",
+      "createdAt": "2026-10-22T08:32:30.459Z",
+      "pipeline": "daily-reports-v7",
+      "promptVersion": "daily-review-7",
+      "datasetId": "reports-b",
+      "inputSha256": "2d7224c3864ff2005397ce01d476d482de6fd57d1d8896511ec4578819fa3102",
+      "profile": "native",
+      "model": "qwen3.5:9b",
+      "backend": "ollama",
+      "reasoning": true,
+      "seed": 42,
+      "modelDigest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "contextWindow": 32768,
+      "temperature": 1,
+      "nativePolicy": "native-sampling-2",
+      "device": {
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+        "gpu": {
+          "vendor": "nvidia",
+          "architecture": "blackwell",
+          "device": "",
+          "description": "",
+          "shaderF16": true
+        }
+      },
+      "loadMs": 26.2072,
+      "elapsedMs": 297704.00260000007,
+      "totalMs": 297730.20980000007,
+      "reports": [
+        {
+          "report_id": "DR-B01",
+          "report_date": "2026-06-01",
+          "report_author": "Flooring subcontractor",
+          "work_area": "Library wing L210",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Prepare and install the library floor finish.",
+          "work_completed": "Removed old finish from 60 m2.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "Moisture readings are required before adhesive installation. No readings have been received. Adhesive delivery is scheduled for June 2, not confirmed.",
+          "schedule_status": "Installation on hold pending moisture acceptance.",
+          "rfi_change_order_refs": "RFI-042",
+          "action_required": "GC to arrange moisture test and confirm supplier delivery.",
+          "responsible_party": "General Contractor",
+          "due_date": "2026-06-02 09:00",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Records described in report; attachments are not included in this synthetic dataset."
+        },
+        {
+          "report_id": "DR-B02",
+          "report_date": "2026-06-02",
+          "report_author": "General contractor",
+          "work_area": "Library wing L210",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Prepare and install the library floor finish.",
+          "work_completed": "Called supplier; delivery booked for June 4 instead of June 2.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "Site diary says moisture passed, based on a phone call. No technician, measured value, or signed test report is identified.",
+          "schedule_status": "Adhesive delivery moved two days. No project critical-path analysis provided.",
+          "rfi_change_order_refs": "RFI-042",
+          "action_required": "Reconcile moisture status with flooring crew and obtain signed test report.",
+          "responsible_party": "General Contractor",
+          "due_date": "2026-06-03",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Records described in report; attachments are not included in this synthetic dataset."
+        },
+        {
+          "report_id": "DR-B03",
+          "report_date": "2026-06-02",
+          "report_author": "Flooring subcontractor",
+          "work_area": "Library wing L210",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Prepare and install the library floor finish.",
+          "work_completed": "Sanded edges; installed no adhesive.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "At 15:00 the crew still lacked the moisture test report. The instruction to install Product M differs from drawing F-12 revision 2 specifying Product N. RFI-042 asks which product applies.",
+          "schedule_status": "Installation remains on hold.",
+          "rfi_change_order_refs": "RFI-042",
+          "action_required": "Design Team to issue written product selection under RFI-042.",
+          "responsible_party": "Design Team",
+          "due_date": "2026-06-03",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Records described in report; attachments are not included in this synthetic dataset."
+        },
+        {
+          "report_id": "DR-B04",
+          "report_date": "2026-06-03",
+          "report_author": "Quality inspector",
+          "work_area": "Library wing L210",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Prepare and install the library floor finish.",
+          "work_completed": "Moisture test passed at 09:10. Signed report MT-210 was shared with the flooring supervisor, who acknowledged receipt.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "The signed test closes moisture acceptance only. It does not approve an adhesive product.",
+          "schedule_status": "Moisture hold closed; design question still open.",
+          "rfi_change_order_refs": "RFI-042",
+          "action_required": "Design Team to answer product question.",
+          "responsible_party": "Design Team",
+          "due_date": "2026-06-03",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Records described in report; attachments are not included in this synthetic dataset."
+        },
+        {
+          "report_id": "DR-B05",
+          "report_date": "2026-06-04",
+          "report_author": "General contractor",
+          "work_area": "Library wing L210",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Prepare and install the library floor finish.",
+          "work_completed": "Adhesive delivered. Formal RFI-042 response selects Product N and drawing F-12 revision 3; response and revision were sent to the flooring supervisor with receipt confirmed at 08:30.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "Delivery docket says 20 sealed pails. Flooring receiving log says 18 pails. The difference has not been reconciled.",
+          "schedule_status": "Flooring installation can proceed following documented release.",
+          "rfi_change_order_refs": "RFI-042",
+          "action_required": "Receiving lead to reconcile the two counts.",
+          "responsible_party": "Receiving lead",
+          "due_date": "2026-06-05",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Records described in report; attachments are not included in this synthetic dataset."
+        },
+        {
+          "report_id": "DR-B06",
+          "report_date": "2026-06-05",
+          "report_author": "Flooring subcontractor",
+          "work_area": "Library wing L210",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Prepare and install the library floor finish.",
+          "work_completed": "Installed Product N across 60 m2 following F-12 revision 3.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "Protection remains in place until the stated cure period ends on June 6 at 12:00. GC confirms signage and access notice sent to all adjacent trades. No access breach or damage was observed.",
+          "schedule_status": "Installation complete; scheduled cure is ongoing, not a reported delay.",
+          "rfi_change_order_refs": "RFI-042",
+          "action_required": "Maintain protection until June 6 at 12:00.",
+          "responsible_party": "Flooring subcontractor",
+          "due_date": "2026-06-06 12:00",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Records described in report; attachments are not included in this synthetic dataset."
+        }
+      ],
+      "originalFindings": [
+        {
+          "id": "F1",
+          "title": "Adhesive Inventory Reconciliation Discrepancy",
+          "category": "delay",
+          "status": "open",
+          "observation": "Delivery docket indicates 20 sealed pails delivered, but receiving log records only 18 pails received. The quantity difference has not been reconciled in the latest report.",
+          "consequence": "Inventory records are inconsistent with delivery receipts, potentially affecting material cost reconciliation or theft detection until verified.",
+          "action": "Receiving lead to reconcile the discrepancy between docket and log counts.",
+          "owner": "Receiving lead",
+          "due": "2026-06-05",
+          "uncertainty": "None, quantities stated in report records.",
+          "evidence": [
+            {
+              "report_id": "DR-B05",
+              "field": "issue_or_update",
+              "quote": "Delivery docket says 20 sealed pails. Flooring receiving log says 18 pails. The difference has not been reconciled."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        }
+      ],
+      "findings": [
+        {
+          "id": "F1",
+          "title": "Adhesive Inventory Reconciliation Discrepancy",
+          "category": "delay",
+          "status": "open",
+          "observation": "Delivery docket indicates 20 sealed pails delivered, but receiving log records only 18 pails received. The quantity difference has not been reconciled in the latest report.",
+          "consequence": "Inventory records are inconsistent with delivery receipts, potentially affecting material cost reconciliation or theft detection until verified.",
+          "action": "Receiving lead to reconcile the discrepancy between docket and log counts.",
+          "owner": "Receiving lead",
+          "due": "2026-06-05",
+          "uncertainty": "None, quantities stated in report records.",
+          "evidence": [
+            {
+              "report_id": "DR-B05",
+              "field": "issue_or_update",
+              "quote": "Delivery docket says 20 sealed pails. Flooring receiving log says 18 pails. The difference has not been reconciled."
+            }
+          ],
+          "review": "pending",
+          "correction": ""
+        }
+      ],
+      "timings": [
+        {
+          "stage": "Reviewing readiness and prerequisites",
+          "elapsedMs": 63408.527,
+          "usage": {
+            "prompt_tokens": 1953,
+            "completion_tokens": 7485,
+            "load_duration_ns": 5733900,
+            "prompt_eval_duration_ns": 406955000,
+            "eval_duration_ns": 62742950000,
+            "total_duration_ns": 63391152200,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Reviewing technical decisions and formal communication",
+          "elapsedMs": 50824.94419999997,
+          "usage": {
+            "prompt_tokens": 1957,
+            "completion_tokens": 6031,
+            "load_duration_ns": 5860500,
+            "prompt_eval_duration_ns": 308442000,
+            "eval_duration_ns": 50415867000,
+            "total_duration_ns": 50822529600,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Reviewing progress and closeout",
+          "elapsedMs": 66233.33860000002,
+          "usage": {
+            "prompt_tokens": 1954,
+            "completion_tokens": 7832,
+            "load_duration_ns": 4741300,
+            "prompt_eval_duration_ns": 293456000,
+            "eval_duration_ns": 65839452999,
+            "total_duration_ns": 66231257800,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Verifying progress and closeout",
+          "elapsedMs": 64800.76999999996,
+          "usage": {
+            "prompt_tokens": 2137,
+            "completion_tokens": 7700,
+            "load_duration_ns": 5222100,
+            "prompt_eval_duration_ns": 326088000,
+            "eval_duration_ns": 64394743000,
+            "total_duration_ns": 64798635200,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Reviewing causes and trade coordination",
+          "elapsedMs": 52460.85759999999,
+          "usage": {
+            "prompt_tokens": 1950,
+            "completion_tokens": 6247,
+            "load_duration_ns": 4649400,
+            "prompt_eval_duration_ns": 300563000,
+            "eval_duration_ns": 52073395000,
+            "total_duration_ns": 52459146600,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        }
+      ],
+      "responses": [
+        {
+          "stage": "Reviewing readiness and prerequisites",
+          "raw": "{\"findings\": []}"
+        },
+        {
+          "stage": "Reviewing technical decisions and formal communication",
+          "raw": "{\"findings\": []}"
+        },
+        {
+          "stage": "Reviewing progress and closeout",
+          "raw": "{\n  \"findings\": [\n    {\n      \"title\": \"Adhesive Inventory Reconciliation Discrepancy\",\n      \"category\": \"delay\",\n      \"status\": \"open\",\n      \"observation\": \"Delivery docket indicates 20 sealed pails delivered, but receiving log records only 18 pails received. The quantity difference has not been reconciled in the latest report.\",\n      \"consequence\": \"Inventory records are inconsistent with delivery receipts, potentially affecting material cost reconciliation or theft detection until verified.\",\n      \"action\": \"Receiving lead to reconcile the discrepancy between docket and log counts.\",\n      \"owner\": \"Receiving lead\",\n      \"due\": \"2026-06-05\",\n      \"uncertainty\": \"None, quantities stated in report records.\",\n      \"evidence\": [\n        {\n          \"report_id\": \"DR-B05\",\n          \"field\": \"issue_or_update\"\n        }\n      ]\n    }\n  ]\n}"
+        },
+        {
+          "stage": "Verifying progress and closeout",
+          "raw": "{\n  \"findings\": [\n    {\n      \"title\": \"Adhesive Inventory Reconciliation Discrepancy\",\n      \"category\": \"delay\",\n      \"status\": \"open\",\n      \"observation\": \"Delivery docket indicates 20 sealed pails delivered, but receiving log records only 18 pails received. The quantity difference has not been reconciled in the latest report.\",\n      \"consequence\": \"Inventory records are inconsistent with delivery receipts, potentially affecting material cost reconciliation or theft detection until verified.\",\n      \"action\": \"Receiving lead to reconcile the discrepancy between docket and log counts.\",\n      \"owner\": \"Receiving lead\",\n      \"due\": \"2026-06-05\",\n      \"uncertainty\": \"None, quantities stated in report records.\",\n      \"evidence\": [\n        {\n          \"report_id\": \"DR-B05\",\n          \"field\": \"issue_or_update\"\n        }\n      ]\n    }\n  ]\n}"
+        },
+        {
+          "stage": "Reviewing causes and trade coordination",
+          "raw": "{\n  \"findings\": []\n}"
+        }
+      ],
+      "groupingRepairs": [],
+      "humanReview": {
+        "status": "not_measured"
+      },
+      "evaluation": {
+        "status": "not_scored"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+participant_code,case_id,condition,order,started_at,finished_at,setup_seconds,inference_seconds,review_and_correction_seconds,total_seconds,reference_issue_count,fully_found,partial,missed,false_alarms,duplicates,final_findings_file,original_prediction_file,reviewer_1,reviewer_2,adjudication_notes

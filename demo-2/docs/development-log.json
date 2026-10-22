@@ -1,0 +1,62 @@
+[
+  {
+    "pipeline": "daily-reports-v1",
+    "prompt": "daily-review-1",
+    "dataset": "reports-a",
+    "model": "Qwen3.5-9B-q4f16_1-MLC",
+    "hardware": "RTX 5080, WebGPU blackwell, shader-f16",
+    "operationElapsedSeconds": 191.6,
+    "result": "rejected",
+    "reason": "Model-generated evidence quotations did not exactly match cited fields, including after one repair pass.",
+    "raw_response_retained": false,
+    "change": "Version 2 requests source report/field references and retrieves original text directly. Interpretation still requires semantic review. This failed development attempt is excluded from version 2 speed estimates and retained here."
+  },
+  {
+    "pipeline": "daily-reports-v3",
+    "model": "qwen3.5:27b",
+    "startedAt": "2026-10-22T07:07:48Z",
+    "endedAt": "2026-10-22T07:16:18.9240908Z",
+    "result": "aborted_configuration",
+    "reason": "Stopped the temperature-zero reasoning experiment after checking the official Qwen 3.5 sampling recommendations. No complete result was accepted. Native sampling policy 2 uses the vendor general-thinking settings.",
+    "raw_response_retained": false,
+    "source": "https://huggingface.co/Qwen/Qwen3.5-27B"
+  },
+  {
+    "prompt": "daily-review-4",
+    "artifact": "development-v4-native9-a.json",
+    "result": "rejected_grouping_omission",
+    "change": "Candidate omissions restored in the next version."
+  },
+  {
+    "prompt": "daily-review-5",
+    "artifacts": [
+      "final-v5-native9-a.json",
+      "final-v5-native9-a-resumed.json"
+    ],
+    "result": "development_only",
+    "reason": "Initial grouping exhausted 16k context. A staged 32k resume grouped all candidates together and lost smaller concerns. The filenames do not imply final acceptance. Resumed elapsed time is a sum of valid stages, not a continuous trial."
+  },
+  {
+    "prompt": "daily-review-6",
+    "artifact": "final-v6-native9-a.json",
+    "result": "rejected_candidate_overflow",
+    "reason": "Non-thinking per-report extraction generated more than 60 repeated/speculative candidates. Raw responses retained. No valid result accepted."
+  },
+  {
+    "prompt": "daily-review-7",
+    "core": "daily-reports-v7",
+    "result": "development_trial_completed",
+    "change": "Four distinct subject reviews, each with full-source verification; remove candidate grouping and global compression. Schema/core and prompt version are v7. A informed this development; B/C have not informed this prompt."
+  },
+  {
+    "prompt": "daily-review-8",
+    "core": "daily-reports-v7",
+    "result": "final_candidate",
+    "change": "Explicit retrospective-audit instruction requires preserving materially important historical issues and their later resolutions. v7 treated the audit too much like a current open-items list. Both A and B informed this revision; B is now also development data, not a held-out transfer claim."
+  },
+  {
+    "core": "daily-reports-v8",
+    "prompt": "daily-review-8",
+    "change": "Optional owner/deadline values are withheld and flagged unless tied to an exact cited source action. Invalid source IDs or quotations still reject output. Raw responses remain intact. Prior core-v7 repeated browser runs and their failures are retained as development data. Final matched comparisons use core-v8/prompt-v8."
+  }
+]

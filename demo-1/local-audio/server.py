@@ -130,7 +130,7 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_error(404)
             return None
         resolved = (ROOT / path).resolve()
-        if not resolved.is_relative_to(ROOT) or (resolved.is_file() and resolved.suffix not in ('.html', '.css', '.js', '.json', '.md', '.txt', '.png', '.svg', '.ico', '.docx', '.pptx')):
+        if not resolved.is_relative_to(ROOT) or (resolved.is_file() and resolved.suffix not in ('.html', '.css', '.js', '.json', '.csv', '.md', '.txt', '.png', '.svg', '.ico', '.docx', '.pptx')):
             self.send_error(404)
             return None
         return super().send_head()

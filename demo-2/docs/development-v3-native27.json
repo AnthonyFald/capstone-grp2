@@ -1,0 +1,14 @@
+{
+  "version": "daily-reports-v3",
+  "runs": [
+    {
+      "createdAt": "2026-10-22T07:00:37.862Z",
+      "model": "qwen3.5:27b",
+      "datasetId": "reports-a",
+      "pipeline": "daily-reports-v3",
+      "status": "failed",
+      "error": "fetch failed",
+      "elapsedMs": 301853.80580000003
+    }
+  ]
+}

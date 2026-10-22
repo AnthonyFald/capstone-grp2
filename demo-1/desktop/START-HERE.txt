@@ -21,6 +21,15 @@ free audio models. Review the transcript, generate notes, and export them.
 Recordings and inference stay on this computer. No paid AI account or key.
 Note generation needs Chrome or Edge with WebGPU. Model setup needs internet.
 
+DEMO 2 - DAILY REPORTS
+The sidebar now opens Demo 2 locally. Choose reports, run a browser model,
+review the original evidence, and export your findings and evaluation data.
+The 4B option uses less memory; the thorough 9B option performs more review.
+Both support Apple silicon through WebGPU. Only RTX 5080 performance has
+been measured for this project. Model quality still needs human review.
+Native 9B reasoning and experimental 27B require the separate Ollama/Node
+companion described in Demo 2's Windows & Apple silicon setup link.
+
 This is an unsigned student demo. Windows or macOS may ask for approval on
 first opening. Download only from the project's own GitHub release. A Mac
 may require System Settings > Privacy & Security > Open Anyway for this app.

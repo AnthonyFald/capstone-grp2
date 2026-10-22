@@ -14,6 +14,16 @@ ROOT = Path(__file__).resolve().parents[2]
 NAME = 'Evergreen Meeting Demo'
 
 
+def public_site_files():
+    """Bundle both demos' public UI without local runtimes or uploaded records."""
+    files = [ROOT / name for name in ['index.html', 'styles.css', 'app.js', 'assets/evergreen-rendering.png']]
+    for pattern in ['*.html', '*.css', '*.js', 'data/*.js', 'data/*.txt', 'data/synthetic-introduction.wav']:
+        files.extend((ROOT / 'demo-1').glob(pattern))
+    for pattern in ['*.html', '*.css', '*.js', 'data/*.json', 'data/*.csv', 'docs/*.md', 'docs/*.json', 'docs/*.csv']:
+        files.extend((ROOT / 'demo-2').glob(pattern))
+    return set(files)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--audio-test', action='store_true')
@@ -28,10 +38,7 @@ def main():
     site = build / 'site'
     site.mkdir(parents=True, exist_ok=True)
     # Explicit public-file allowlist: never bundle environments, caches or recordings.
-    files = [ROOT / name for name in ['index.html', 'styles.css', 'app.js', 'assets/evergreen-rendering.png']]
-    for pattern in ['*.html', '*.css', '*.js', 'data/*.js', 'data/*.txt', 'data/synthetic-introduction.wav']:
-        files.extend((ROOT / 'demo-1').glob(pattern))
-    for source in set(files):
+    for source in public_site_files():
         dest = site / source.relative_to(ROOT)
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, dest)

@@ -1,0 +1,214 @@
+{
+  "version": "daily-reports-v7",
+  "runs": [
+    {
+      "runId": "cd304385-300b-4952-abd6-7b8ed55af11a",
+      "createdAt": "2026-10-22T09:06:28.529Z",
+      "pipeline": "daily-reports-v7",
+      "promptVersion": "daily-review-7",
+      "datasetId": "reports-clean",
+      "inputSha256": "b0e0a1874339ed7ed42e7a3dc229fc61e8e3fec87a8275deca8f7d1f569fe235",
+      "profile": "native",
+      "model": "qwen3.5:9b",
+      "backend": "ollama",
+      "reasoning": true,
+      "seed": 42,
+      "modelDigest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "contextWindow": 32768,
+      "temperature": 1,
+      "nativePolicy": "native-sampling-2",
+      "device": {
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+        "gpu": {
+          "vendor": "nvidia",
+          "architecture": "blackwell",
+          "device": "",
+          "description": "",
+          "shaderF16": true
+        }
+      },
+      "loadMs": 3137.2272000000003,
+      "elapsedMs": 105447.31639999998,
+      "totalMs": 108584.54359999998,
+      "reports": [
+        {
+          "report_id": "DR-C01",
+          "report_date": "2026-07-01",
+          "report_author": "General contractor",
+          "work_area": "Corridor C",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Clean corridor and obtain supervisor acceptance.",
+          "work_completed": "Planned corridor cleaning completed. Quantity checked and accepted by supervisor.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported. All scheduled work and required checks complete.",
+          "schedule_status": "On schedule; no outstanding follow-up.",
+          "rfi_change_order_refs": "None applicable",
+          "action_required": "",
+          "responsible_party": "",
+          "due_date": "",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        },
+        {
+          "report_id": "DR-C02",
+          "report_date": "2026-07-02",
+          "report_author": "General contractor",
+          "work_area": "Corridor C",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Clean corridor and obtain supervisor acceptance.",
+          "work_completed": "Planned corridor cleaning completed. Quantity checked and accepted by supervisor.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported. All scheduled work and required checks complete.",
+          "schedule_status": "On schedule; no outstanding follow-up.",
+          "rfi_change_order_refs": "None applicable",
+          "action_required": "",
+          "responsible_party": "",
+          "due_date": "",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        },
+        {
+          "report_id": "DR-C03",
+          "report_date": "2026-07-03",
+          "report_author": "General contractor",
+          "work_area": "Corridor C",
+          "shift": "07:00-15:00",
+          "weather": "Dry indoors",
+          "crew_count": "4",
+          "work_planned": "Clean corridor and obtain supervisor acceptance.",
+          "work_completed": "Planned corridor cleaning completed. Quantity checked and accepted by supervisor.",
+          "materials_equipment": "Floor preparation tools",
+          "issue_or_update": "No delays, unresolved questions, conflicts, incidents, or missed notifications reported. All scheduled work and required checks complete.",
+          "schedule_status": "On schedule; no outstanding follow-up.",
+          "rfi_change_order_refs": "None applicable",
+          "action_required": "",
+          "responsible_party": "",
+          "due_date": "",
+          "quantity_or_measurement": "60 m2 work area",
+          "supporting_evidence": "Signed daily acceptance checklist referenced; no additional record is required by this scenario."
+        }
+      ],
+      "originalFindings": [],
+      "findings": [],
+      "timings": [
+        {
+          "stage": "Reviewing readiness and prerequisites",
+          "elapsedMs": 40773.57420000015,
+          "usage": {
+            "prompt_tokens": 1077,
+            "completion_tokens": 4162,
+            "load_duration_ns": 3119625800,
+            "prompt_eval_duration_ns": 233760000,
+            "eval_duration_ns": 37409807000,
+            "total_duration_ns": 40770904600,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Reviewing technical decisions and formal communication",
+          "elapsedMs": 26119.48359999992,
+          "usage": {
+            "prompt_tokens": 1081,
+            "completion_tokens": 2925,
+            "load_duration_ns": 5740600,
+            "prompt_eval_duration_ns": 211152000,
+            "eval_duration_ns": 25846856000,
+            "total_duration_ns": 26117577800,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Reviewing progress and closeout",
+          "elapsedMs": 19714.559800000396,
+          "usage": {
+            "prompt_tokens": 1078,
+            "completion_tokens": 2205,
+            "load_duration_ns": 6262000,
+            "prompt_eval_duration_ns": 182640000,
+            "eval_duration_ns": 19466330000,
+            "total_duration_ns": 19713039800,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        },
+        {
+          "stage": "Reviewing causes and trade coordination",
+          "elapsedMs": 21976.55700000003,
+          "usage": {
+            "prompt_tokens": 1074,
+            "completion_tokens": 2464,
+            "load_duration_ns": 5598800,
+            "prompt_eval_duration_ns": 177589000,
+            "eval_duration_ns": 21745300000,
+            "total_duration_ns": 21974610500,
+            "sampling": {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 20,
+              "min_p": 0,
+              "presence_penalty": 1.5,
+              "repeat_penalty": 1
+            },
+            "policy": "native-sampling-2",
+            "contextWindow": 32768
+          }
+        }
+      ],
+      "responses": [
+        {
+          "stage": "Reviewing readiness and prerequisites",
+          "raw": "{\n  \"findings\": []\n}"
+        },
+        {
+          "stage": "Reviewing technical decisions and formal communication",
+          "raw": "{\"findings\": []}"
+        },
+        {
+          "stage": "Reviewing progress and closeout",
+          "raw": "{\n  \"findings\": []\n}"
+        },
+        {
+          "stage": "Reviewing causes and trade coordination",
+          "raw": "{\n  \"findings\": []\n}"
+        }
+      ],
+      "groupingRepairs": [],
+      "humanReview": {
+        "status": "not_measured"
+      },
+      "evaluation": {
+        "status": "not_scored"
+      }
+    }
+  ]
+}

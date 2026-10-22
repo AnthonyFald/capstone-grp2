@@ -1,0 +1,21 @@
+{
+  "source": "Simulated Daily Reports CSV.xlsx",
+  "sha256": "4900721f9fadd5bae515ac59da9f53fd7a6f3a591c7c1490e2bb0d5696e65d99",
+  "reports": 10,
+  "reference_issues": 12,
+  "excluded_from_inference": [
+    "report_completeness",
+    "ground_truth_issue_ids",
+    "ground_truth_notes"
+  ],
+  "source_empty_weather": [
+    "DR-A06",
+    "DR-A10"
+  ],
+  "notes": [
+    "Workbook contains 1000 formatted rows per sheet; only populated rows imported.",
+    "Empty weather cells preserved as missing; narrative DOCX says Not recorded.",
+    "ISS-04 reconciled with narrative evaluation plan to distinguish missing documentation from a proven unresolved technical issue.",
+    "Reference labels are never included in generation requests."
+  ]
+}

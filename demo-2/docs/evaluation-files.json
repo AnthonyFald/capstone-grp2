@@ -1,0 +1,12 @@
+{
+  "files": [
+    "final-baseline.json",
+    "development-v3-native27-single.json",
+    "final-core8-browser4.json",
+    "final-core8-browser9-single.json",
+    "final-core8-browser9-thorough.json",
+    "final-core8-native9-a.json",
+    "final-core8-native9-b.json"
+  ],
+  "note": "Final matched results use core-v8 and prompt-v8. The 27B prompt-v3 result is explicitly developmental. Other older raw trials and failures remain in docs, with scoring retained where performed."
+}

@@ -1,0 +1,19 @@
+{
+  "version": "daily-reports-v8",
+  "runs": [
+    {
+      "runId": "e8a11df7-520f-49a9-9a26-c24a0764da6e",
+      "createdAt": "2026-10-22T09:52:20.022Z",
+      "status": "failed",
+      "error": "Processing canceled.",
+      "cancelled": true,
+      "diagnostics": null,
+      "profile": "native",
+      "model": "qwen3.5:9b",
+      "datasetId": "reports-b",
+      "inputSha256": "2d7224c3864ff2005397ce01d476d482de6fd57d1d8896511ec4578819fa3102",
+      "pipeline": "daily-reports-v8",
+      "elapsedMs": 5870.199999988079
+    }
+  ]
+}
