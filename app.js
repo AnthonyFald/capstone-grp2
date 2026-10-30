@@ -1,9 +1,10 @@
 const demos = [...document.querySelectorAll('.demo')];
 const expandButton = document.querySelector('.expand-all');
 function updateExpandButton() {
+  if (!expandButton) return;
   expandButton.textContent = demos.every(demo => demo.open) ? 'Collapse all' : 'Expand all';
 }
-expandButton.addEventListener('click', () => {
+expandButton?.addEventListener('click', () => {
   const shouldOpen = !demos.every(demo => demo.open);
   demos.forEach(demo => { demo.open = shouldOpen; });
   updateExpandButton();
@@ -13,6 +14,7 @@ const sections = [...document.querySelectorAll('main > section')];
 const navigationLinks = [...document.querySelectorAll('nav a')];
 let scheduled = false;
 function updateNavigation() {
+  if (!sections.length) return;
   const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 5;
   let active = sections[0];
   for (const section of sections) {
@@ -20,7 +22,7 @@ function updateNavigation() {
   }
   if (nearBottom) active = sections[sections.length - 1];
   for (const link of navigationLinks) {
-    if (link.hash === '#' + active.id) link.setAttribute('aria-current', 'location');
+    if (link.pathname === window.location.pathname && link.hash === '#' + active.id) link.setAttribute('aria-current', 'location');
     else link.removeAttribute('aria-current');
   }
   scheduled = false;

@@ -2,6 +2,38 @@
 
 A static capstone website with functional Demo 1 and Demo 2 tabs. GitHub Pages serves the HTML, CSS, and JavaScript directly. Browser models need no install, build step, API key or paid inference service. Demo 2 also supports local native 9B and higher-capacity 27B models through a companion.
 
+## Mid-quarter analysis
+
+**[Read the mid-quarter analysis →](https://anthonyfald.github.io/capstone-grp2/mid-quarter/)**
+
+The completed 28 October 2026 analysis brings together the first two demo comparisons, our interview with Cornerstone project engineer Trent McMorrow, class feedback, personal reflection, and the revised plan for Demos 3 and 4. We are University of Washington Information School students working under **Professor Frank Martinez**.
+
+The demos support narrower information-retrieval and review tasks; they do **not** validate our original 30% RFI-reduction target. Demo 1 reduced preparation time before verification, but did not match manual accuracy. Demo 2’s ten-report comparison showed promising issue coverage; its claimed time reduction remains unverified. Our revised hypothesis tests avoidable RFI submissions and total review time while preserving questions needing formal clarification.
+
+Read in this order:
+
+1. [Where we stand and demo findings](https://anthonyfald.github.io/capstone-grp2/mid-quarter/#findings)
+2. [Stakeholder insights](https://anthonyfald.github.io/capstone-grp2/mid-quarter/#interview) and [full interview transcript](https://anthonyfald.github.io/capstone-grp2/mid-quarter/transcript.html) ([TXT](mid-quarter/transcript.txt))
+3. [Class feedback and personal reflection](https://anthonyfald.github.io/capstone-grp2/mid-quarter/#reflection), including an [AI-assisted feedback summary](mid-quarter/feedback-summary.md)
+4. [Changes to our thesis and workflow](https://anthonyfald.github.io/capstone-grp2/mid-quarter/#adjustments)
+5. [Next experiments and evaluation rules](https://anthonyfald.github.io/capstone-grp2/mid-quarter/#next-steps)
+6. [Sources and documented contributions](https://anthonyfald.github.io/capstone-grp2/mid-quarter/#resources)
+
+Full artifacts: [completed paper with Appendix A (DOCX)](mid-quarter/mid-quarter-analysis.docx), [live paper](https://docs.google.com/document/d/1Eqvt3zFc2_1ebm7PxlRq8MhTS4HF9y4bMdoyByjlu64/edit), and [presentation with speaker notes](https://docs.google.com/presentation/d/1TkNwcUMK5-fYrf6V7gZWsYC_h88qdyQXfYHnDY0pEQU/edit).
+
+## Project contents
+
+| Material | Demo 1: meeting notes | Demo 2: daily reports |
+| --- | --- | --- |
+| Working demo | [Open Demo 1](https://anthonyfald.github.io/capstone-grp2/demo-1/) | [Open Demo 2](https://anthonyfald.github.io/capstone-grp2/demo-2/) |
+| Code and overview | [README](demo-1/README.md), [app](demo-1/app.js), [note engine](demo-1/note-engine.js) | [README](demo-2/README.md), [app](demo-2/app.js), [engine](demo-2/engine.js) |
+| Synthetic data and references | [Input data](demo-1/data/), [reference notes](demo-1/data/reference-notes.json) | [Input data and reference files](demo-2/data/), [data review](demo-2/docs/data-review.md) |
+| LLM prompts | [Note-generation prompts](demo-1/note-engine.js) | [Review and verification prompts](demo-2/engine.js) |
+| Dependencies and setup | [Dependencies](demo-1/docs/dependencies.txt), [audio setup](demo-1/audio-setup.html) | [Runtime dependencies](demo-2/README.md), [local setup](demo-2/docs/local-setup.md) |
+| Evaluation evidence | [Notes evaluation](demo-1/docs/note-quality.txt), [experiment log](demo-1/docs/experiment-log.csv) | [Results](demo-2/docs/results.md), [protocol](demo-2/docs/protocol.md), [retained run files](demo-2/docs/) |
+
+Project-level material: [original thesis](documents/team-2-thesis.docx), [proposal slides](documents/team-2-proposal.pptx), [mid-quarter analysis](mid-quarter/), [stakeholder transcript](mid-quarter/transcript.txt), and [class-feedback summary](mid-quarter/feedback-summary.md).
+
 ## Demo 2 on this device
 
 Open [Demo 2](https://anthonyfald.github.io/capstone-grp2/demo-2/) to compare daily construction site updates across dates and trades. The main sample follows the team's supplied **Simulated Daily Reports CSV - Daily Reports.csv**: ten synthetic Room B104 reports. The [sample CSV](demo-2/data/sample-daily-reports.csv) and [sample JSON](demo-2/data/sample-daily-reports.json) contain its 18 report fields; the supplied answer annotations are kept separately and excluded from model inputs. Start with the sample or upload another CSV/JSON export using the [upload guide](demo-2/docs/upload-guide.md).
@@ -33,6 +65,7 @@ AI note generation reads discussions in context, writes concise notes with suppo
 - `index.html`, `styles.css`, `app.js`: the existing documentation website.
 - `demo-1/`: the self-contained demo and matching project sidebar.
 - `assets/`, `documents/`: existing project rendering and original source documents.
+- `mid-quarter/`: completed analysis, full interview transcript, feedback summary, and paper download.
 
 All site paths are relative so they work under the `/capstone-grp2/` GitHub Pages project path. Keep the folder structure intact. Existing Pages settings should continue serving the repository root; no backend or new hosting is needed.
 
@@ -48,4 +81,4 @@ See the [demo README](demo-1/README.md) for requirements and experiment instruct
 
 ## Evaluation boundary
 
-This project is a hypothesis to test. Synthetic records are not actual Evergreen correspondence. Demo 1 tests meeting documentation; it does not establish a reduction in real RFIs. The reference annotations were authored with Codex assistance and need independent team review. No performance results are assumed. See the demo README for current verification limits.
+This project is a hypothesis to test. Synthetic records are not actual Evergreen correspondence. Neither completed demo establishes a reduction in real RFIs. The stakeholder interview is evidence about practice, not a controlled evaluation of our tool. Reference annotations authored with Codex assistance need independent team review. The mid-quarter analysis distinguishes the team’s small human comparisons from the broader software-development runs; results and limitations should be read together. See the analysis and demo READMEs for the relevant scope.

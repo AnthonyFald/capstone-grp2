@@ -1,0 +1,533 @@
+Appendix A Stakeholder interview transcript
+Our project's basically figuring out how AI can help within the construction process and specifically kind of we, we had to look at, um, like RFIs. Um, And so they wanted us to reach out to a stakeholder to basically get your guys' like, um, experience like with RFIs and like the transition of information between you guys like a GC to like the subcontractors. Um, and we chose for our specific lens, like the Evergreen High School. Um, and that construction project. Um, and we kind of had created, we're creating like, um, a couple ways that like, AI can intervene or could help, um, throughout that to like, our specific hypothesis was we were hoping that we'd be able to reduce, um, uh, reduce unnecessary RFIs, um, specifically by like helping with uh, meeting notes and then, um, like daily reports and kind of synthesizing those. And so I guess one question would be like, do you guys, um, Do you guys use any AI currently, um, or anything like that in your guys' process, or did you use any during, when you guys were working on Evergreen? And. 
+Participant
+Yeah, so. Um. The main AI usage would probably be, I created a AI agent specifically for the specs, which helps come through it, searches faster, can punch you in the right direction. 
+You
+Yep. 
+Participant
+So that's been super helpful. As far as like meetings and stuff, AI note taking, our owner had no interest in having our meetings recorded and Made it a point that there should be no AI 
+You
+Okay. 
+Participant
+note taking in our meetings. So, Different owners will have different perspectives, but having every meeting recording recorded. Not everyone's on board with. 
+You
+Yep. 
+Participant
+Um, and then you were looking at specifically 
+You
+Yeah, 
+Participant
+RFIs. 
+You
+we kind of, uh, we also looked uh, at like, um, daily reports and stuff. Um, that's kind of this is kind of like our midway, um, midway through the project. We're supposed to find like a stakeholder, so we haven't, we're, we've done like the daily reports and the meeting notes, and then later on we're kind of gonna work on, um, scheduling, um, and that sort of thing, and then like ultimately, hopefully like, concluding, oh, hey, could this actually reduce like unnecessary RFIs and that sort of thing? Um, but I'd also love to hear on the, like, was the no recording of meeting, was that kind of, um, from just like a privacy standpoint or like litigation or? I don't know if that's something that you can answer or know or 
+Participant
+I 
+You
+if 
+Participant
+didn't 
+You
+not. 
+Participant
+make the decision, so it would only 
+You
+Yeah. 
+Participant
+be speculation as to the reasoning. So I don't have a good answer on that 
+You
+No worries. 
+Participant
+one. Um, I did know that we have a couple of superintendents. Trying like testing it out, seeing how it works with like creating schedules, things like that. An initial feedback has been. Fairly positive. Obviously, none of our superintendents are like, yeah, I'm going to trust its schedule 
+You
+Yep. 
+Participant
+and but they're like, as building a general framework. It's a super quick starting point. And then, As far as unnecessary RFIs, I, We haven't found that AI's been able to... 
+You
+Yeah. 
+Participant
+Reduce, but it's definitely been able to help. Identify and ask them earlier. 
+You
+Okay. 
+Participant
+So that's that's the big game there and there's definitely a lot of value when you can find inconsistencies within drawings and spec earlier because the earlier you find it earlier, you can address it 
+You
+Yep. 
+Participant
+and. 
+You
+So that's kind of where you guys have been using AI, like, um, the one that you mentioned where, um, it, like, comes in. It's looking, it has, it's like looking through the specs and looking through that and is able to see where like things might go wrong or where there's conflicts and that sort of thing. 
+Participant
+Yeah, there's been a couple companies that have reached out with like specially made construction AI agents and they've been able to do like submittal review, drawing analysis, spec analysis, shoot, I wish you could remember the name of the company. One of them had a really 
+You
+Okay. 
+Participant
+impressive demo where it would basically identify every inconsistent or conflicting thing within the 
+You
+Yeah. 
+Participant
+spec, um, which if you can do that right off at the beginning of a project before you even send out, um, sections for bid. 
+You
+Yep. 
+Participant
+That's great to get those hammered out. And then. For the AI in terms of like daily reports, Open space is a program where prototyping, which has a daily walk, it listens to your conversations, and you can be like, oh, that doesn't look right, and it point your camera at something, and it'll say, whoever needs to do this, and it'll kind of create little action items and reports for you just by, Where you are standing in the building and what you're saying. So Aubrey, our superintendent. At Cedarcrest, that's the next job I'm on. 
+You
+Okay. 
+Participant
+He hasn't been in, doing that and I've been leading the drone program on open space. So definitely something we're going to explore more, but I don't have a ton of experience or good data to share with you on that one. 
+You
+Yeah. Um, yeah, that's definitely super helpful. Um, I guess the. Another question I had, um, I don't know, I don't know if you would have had exposure to this. Like one thing, um, that we were looking at was like the, a vandal, like the vandalism with the, that had, 
+Participant
+Got to keep 
+You
+um, 
+Participant
+moving. 
+You
+that had occurred with, um, like the, with the water damage at the construction site. Um, yeah, 
+Participant
+Hang on, sorry, sorry. 
+You
+no worries, 
+Participant
+Can you 
+You
+no 
+Participant
+back 
+You
+worries. 
+Participant
+up? 
+You
+Yeah. 
+Participant
+Start at the beginning of the question 
+You
+Um, 
+Participant
+again. 
+You
+no 
+Participant
+I'm talking, Aubrey. 
+You
+worries. Um, so one thing that we are looking at, um, at the, like with the construction work was that we saw that there was like vandalism and like the water damage, um, that occurred from that. Um, and I was just wondering, like, if you're able to give any, like, insight on your guys' response and whether that, like, whether, I don't know if you remember this, but, like, whether it created RFIs and how, like, how that kind of process went. No worries if, if not, but that was just one thing we were looking at within our lens. 
+Participant
+Yeah, um, the float was definitely a problem. Yeah, so walking into your building that you have finished paint on and water's coming through the ceiling and all the classrooms definitely was nobody's really sure the next step. 
+You
+Yep. 
+Participant
+Obviously, besides turn off the water. Um, So. Working through what the remediation process was going to look like and what to do was definitely a challenge. I don't think there was a whole lot of AI 
+You
+Yeah. 
+Participant
+going on with that. It was. 
+You
+Was was 
+Participant
+It was an 
+You
+that's. 
+Participant
+insurance claim just because, 
+You
+Oh 
+Participant
+oh, go ahead. 
+You
+no, I was, I was just gonna, you can definitely keep going. Um, but I was just going to ask, was that like something that involved kind of a lot of subcontractors with that as well or was that kind of more on you guys to figure everything out or was it kind of like a figuring out whose whose scope was what? 
+Participant
+Yeah, so because it was such a massive cost and setback, insurance companies got involved. Um, builder's risk that type of 
+You
+Yep. 
+Participant
+thing. So. Most subcontractors were not excited to go repair their work, especially when there was no guarantees they were going to get paid. 
+You
+Yeah. 
+Participant
+When it 1st happened. So a lot of it was people waiting for official direction. 
+You
+Yeah. 
+Participant
+Because we knew it needed to get repaired, but that process and how it's going to get repaired and who's paying for it and in what capacity. took some time to figure out. Um, and we had to engage every single contractor. Um, Because in the stage we were at in the building, we had, Well, I mean, we were pretty close to being done in some spaces. So we had final paint on the walls in some areas, flooring, and so. The hope was, oh, we'll just dry it out. And it'll be good. And then it's like, how do you confirm you got all the water, so then there was testing, Surf Pro got out there. Then we're like, all right, spot test it. pulled up sections of the floor, did core drilling, uh, I did a lot of sampling. of water content in the CLT. Obviously, you want to make sure your CLT is not saturated. So created maps of like, okay, here's the moisture level in this area on this day and tracking it as we were trying to pull moisture out of the building. And... It kind of became its own little mini project within the greater project because we had to create a new schedule. And then as the plan for remediation changed. That had a bunch of other impacts. And one of the unique challenges of schools, when you bulldoze the other building, because the kids are coming back at the beginning of school 
+You
+Yeah. 
+Participant
+next year, regardless. There's, there's no delaying the opening. You need to provide a space for them. So. There was a lot of discussions of, okay, do we work 2nd and 3rd shift? Like, how can we make this go faster? And. Like, getting walls to dry, like, issue drywall, mud, tape, paint. You can't really make stuff dry faster. 
+You
+Yep. 
+Participant
+Um, but on all the other activities where you can move faster. How can we stack everyone in there to be as efficient as possible? And. As the process of how we're going to fix it change. So originally it was drying out and then it got to the point where we ended up tearing out the entire floor. 
+You
+Mm-hmm. 
+Participant
+As that changed, that dramatically impacted the schedule and the scope of each contractor. So when the entire floor got, Pulled up, we had saw cutters in there, obviously the flooring guy has to redo 100% of his work because the floors are gone. 
+You
+Yep. 
+Participant
+And then the framer trying to save their walls. So you remove the support underneath their walls and a little bit of sheet rock, and then pouring in Gyp Creek. Um, is how we refinish the floors instead of concrete. So there were some design revisions in there as well. There was a lot happening with that one. And then, of course, submitting to insurance, insurance. Not liking the price. back and forth, and then when there's delays and payments, subs aren't super eager to keep going. If they performed a bunch of work and insurance hasn't cut those checks to them yet. 
+You
+Yeah. 
+Participant
+Um. So, yeah, I was there a specific challenge in that one you're fishing for because there's a lot on 
+You
+Yeah, 
+Participant
+that. 
+You
+no, they're definitely. Um, I think we, we, we specifically like, because we kind of had a, we kind of had a, this is, this is very like uh, running gun, like, project for the school work, so we had to like kind of go on everything quick with a lot of like assumptions. Um, so I think we definitely sort of like focused on kind of like the like, um, like the issues that would arise from like communication and like kind of like the conversations between like you guys and the subs when that kind of event happened. Um, and like, our, like, our goal was like, oh, how could we like, create something that could, like, be helpful in that scenario where that could, like, kind of increase, like, coordination during that time that would make it faster? I don't know. Do, like, maybe that's something you could clarify as like the interaction between, um, like the, you guys and the subs, like, is, is that very much like a, oh, Hey, you guys are kind of like. Ling numb what to do, and then they're kind of like saying, oh, hey, like, we're waiting on this, or is it like, is it very much like you guys are collaborating together to like figure out how to solve it, or is it very much like you guys kind of have to take that role to, um, Figure that out. 
+Participant
+There's a, There's layers there. I mean, obviously when it 1st happened, every single sub's coming to us and be like, What do you want me to do? You want me to keep going or, And as GC, we kind of had to say like, all right, hey, we got an issue here. Keep working and building A, like, 
+You
+Yeah. 
+Participant
+don't sun guys home. keep everybody moving. Just avoid the flood area. And then, the discussions of how best to resolve the issue or like what we can do, how do we investigate, what do we propose? Um, that was very collaborative. Everyone was involved, kind of thrown out like, hey, I can do this or I'm willing to try this, but we don't know how it'll work. Uh, but getting official direction. That was kind of a challenge because. Nobody wants to be responsible if it's wrong. 
+You
+Yep. 
+Participant
+So, oh, as always, right? So, There was a lot of discussions about like, okay, we think we're going to do this. And making sure that as those discussions happened, people weren't interpreting the discussion as direction. So, there was kind of a tiered system of, hey, this is formal direction, go do that, and that would be written in. I think. Well. As far as like a better method of communicating that, we're doing that through CCDs, RFI is kind of, Providing that there, so like the RFI was going to be a dish, or contract language providing direction. So we use some of that. To help reassure the subs of like, okay, this is the direction we're going, do this until, until told otherwise. 
+You
+Yeah. 
+Participant
+Yeah, I think I kind of wandered on 
+You
+No, 
+Participant
+that answer, but 
+You
+no, that 
+Participant
+I 
+You
+that 
+Participant
+hope that 
+You
+definitely. 
+Participant
+was close. 
+You
+Yeah, no, that makes sense. I just, one other question I don't, I don't want to like keep you, keep you too long time wise. Um, um, a question I had like, for that, where a lot of like the meetings you guys had between subs and GCs, is that kind of like, is that happening on the work site? Is that like over teams or zoom or something? Is it like just through like RFIs? Is it like emails, texts, like, just like what kind of communication are you guys using most frequently or something like that? Make sense? 
+Participant
+Yeah, so all the subs are on site. They were still working on other parts of the building. Um, so we had our regular trade meetings and huddles every day and weekly. Um, so we would communicate with the subs in that fashion there. And then with the owner, we had our weekly check in and then uh, like our weekly OAC meeting. 
+You
+Yep. 
+Participant
+And then there was a, there was a standing insurance owner contract meeting. I think every 2 weeks to provide updates, monitoring progress. Identifying, you know, costs, plan, trying to get prior approval of what the insurance companies going to cover, what they want, 
+You
+Yeah. 
+Participant
+best strategies. Um, cause the insurance company. I can't remember exactly. So don't hold me to it, but there are certain languages in the policy of where they don't cover aspects such as. Uh, acceleration or delay. Um, but they'll cover repairs, but only if it's. Due to a certain type of damage. 
+You
+Yeah. 
+Participant
+Um, so. 
+You
+I guess, uh, if you follow a 
+Participant
+Yeah. 
+You
+question to that, um, for going kind of like a little bit back, but when you mentioned like, um, that like most of it's happening in like huddles and that like on the work site, do you guys, um, at least our, our professor's kind of been hammering on us that there's like, always, always wearing for like litigation and stuff like that. Do you guys have to, like, do any, like, written, like, um, needy notes or anything like that during, like, informal huddles or like, during, like, meetings on site or the kind of just, like, um, just communication. It's like, oh, hey, like we talked about this kind of thing. And then obviously there's 
+Participant
+Yeah, 
+You
+probably like. 
+Participant
+um, maybe I should clarify, um, the in-person huddles was all like the contractors on site, and then it was usually standing meetings, like on teams 
+You
+Okay. 
+Participant
+for insurance, owner architects, and for the owner architect meetings. There's official meeting minutes that's documented on Evergreen, the architect, uh, handled the, or distributed and wrote the minutes, and then on a lot of other projects, the GC will write the 
+You
+Yep. 
+Participant
+minutes. It's it's preferable to be writing the minutes. Um, So. On the huddles, no, there's not formal documentation. on the weekly trade meeting, there is formal documentation through meeting minutes. So that's kind of the more formal conversation we have with the subs. 
+You
+Yep. Oh, um, I guess like how, um, What are you guys able to do like during those kind of like huddles or the informal ones? Is there like a certain like limit, like or at least maybe even typical that you see from like subcontractors where they're like, okay, hey, we're willing to do this based off conversation, but like anything further. We need like, um, like a written request or like an R5 or something, or like something like that to like set in stone the, like, who's doing what? 
+Participant
+Are you asking if I would ever direct a sub to do anything that's not explicitly in their contract? 
+You
+No, uh, I 
+Participant
+Um, 
+You
+guess like, um, I guess, 
+Participant
+no, no, 
+You
+yeah, 
+Participant
+I 
+You
+that 
+Participant
+get you. 
+You
+makes sense. 
+Participant
+So, um, which we would never do 
+You
+Yeah. 
+Participant
+that. But, it really depends on the person, like, uh, Some foremen are more willing to help out than others 
+You
+Yeah. 
+Participant
+because there's a bunch of people out here. It's, it takes a team to build something. So. I don't know if there's a. Good answer 
+You
+Yeah, 
+Participant
+or 
+You
+that makes that 
+Participant
+consistent 
+You
+makes sense, 
+Participant
+answer. 
+You
+yeah. 
+Participant
+Um, most people are willing to do what takes to help move project forward. Now, if it's anything that's like, a dramatic change from the drawings, obviously, we're going to need to get that 
+You
+Yeah. 
+Participant
+documented and, approval and all that. But as far as like, I don't know, small stuff. Hey, you're you're cruising away, get out of my way type stuff or like, hey, your pipes here, put it over there so I can do my thing first. Most people are willing to play ball with that, so you kind of just talk about it. So in those daily huddles, you talk about where you're working, you know. potential issues, conflicts, and like coordination with, hey, I need to go 1st in this area or when you get to this point. Grab this guy so he can place his piece type thing. So, yeah, as those daily things, they're, nitty gritty, high detail. Type things. 
+You
+Yeah. That definitely makes sense. Um, yeah. Um, if I think five, any other questions? Um... I think. I think that's pretty much all the questions that I had, um, perhaps. I think if there's any other ones with just like, I guess, um, do you guys, like, see, I know you talked about at the beginning, like, um, that you guys have been using AI and, like, to check in for schedule, like, scheduling all that stuff and looking through? Is there anywhere that you see like in the future that it has an opportunity in your, like, whether like for you guys, um, to use or anywhere that's kind of like, okay, it's not quite there yet, but you could see it doing this part of the job down a lot or, you know, I mean, like or a certain area? 
+Participant
+I really like my uh, like spec AI agent. I've made just because it, it helps speed up the process of finding information because everything is in the specs and drawings, right? 100% 
+You
+Yep. 
+Participant
+of it should be there. But there's a lot of pages. 
+You
+Yeah. 
+Participant
+So when I can ask a question to my agent, it's like, oh, here's the 3 pages you should start looking at. I can go to those, so it just, it speeds up the process. I would like to see, um, like the agent I was talking about earlier, the films through the specs, identifies inconsistencies and the drawings and specs. 
+You
+Yep. 
+Participant
+Um, I think that would just be nice to have as a review beginning of the project. Because you'll you'll find them. Um, but the earlier you can find them the 
+You
+Yeah. 
+Participant
+better. So. 
+You
+Do you 
+Participant
+Is 
+You
+uh? 
+Participant
+AI going to take my job? Probably not, 
+You
+Yeah. 
+Participant
+but it can help speed up different 
+You
+Yeah. 
+Participant
+aspects. 
+You
+Yeah, 
+Participant
+So. 
+You
+that definitely, definitely makes sense. I think I had, I had one more, one more like uh, aspect to that, but I blanked on it. Um, Let's see, um, give me like 12nd. I was like thinking about it and then it like just vanished. Um, It was. With, um, like, with, did you guys like, do you, I, when we were like, when we were starting this project, our professor like talked, like, gave us a bunch of like stats on our 5s and like, oh, their typical time and like, oh, how many go like unanswered or like how many are like unnecessary or things like that. Do you guys kind of view that as like an issue that you experience or like or like, are you guys kind of seeing that average number of, um, like R 5s or like does it vary from project to project, whether you're kind of having to fix a lot versus not having to fix? I don't know if that's that kind of makes sense. Okay. 
+Participant
+It varies. Um, and especially if you get, A set of drawings that weren't fully 
+You
+Mm-hmm. 
+Participant
+baked. Um, So if you're on a project that probably went to bid before the design team completed, you're going to run into a lot of R of I's, now as far as like, unnecessary, I think that kind of depends. So, like, my job as a PE is to read through the RFI and confirm whether it's 
+You
+Yeah. 
+Participant
+valid, just because the sub will send in an RFI and be like, oh, I don't know what size this needs to be. And I was like, well, Check the specs, look at the drawing. Like, if I can do that, I can eliminate an unnecessary RFI, but just being like, all right, here's your answer or here's where you go to find it. 
+You
+Yeah. 
+Participant
+So. 
+You
+That's something 
+Participant
+Now, 
+You
+kind of almost 
+Participant
+PEs 
+You
+more 
+Participant
+are... 
+You
+on like the sub end, like if they kind of had had a tool that they, like if they were looking through the specs or they like had somebody look through the specs of the drawing that could then answer that beforehand kind of thing, so it doesn't end up getting to you guys, or is that something that 
+Participant
+Yeah. 
+You
+like they don't have, I assume they probably have access to all that. It's more just like, unsure of where 
+Participant
+I 
+You
+to 
+Participant
+mean, 
+You
+look kind 
+Participant
+they, 
+You
+of thing or. 
+Participant
+They should have access to the answers on like using that one as an 
+You
+Yep. 
+Participant
+example. Like, you should have access to the answers, but if, you look in the wrong spot or you don't see it, like, sometimes, you know, we stare at a 
+You
+Yeah. 
+Participant
+drawing, it's in front of you, and 
+You
+Yeah. 
+Participant
+you still can't see it, like, oh, you know, that, that's on you, but, some of those are unnecessary. You can get rid of those and that's just a attention to detail type issue. 
+You
+Yeah. 
+Participant
+And as far as RFI is not getting answered. I don't think that. Ever happens because you just keep poking the architect until they answer 
+You
+Yep. 
+Participant
+you. Uh, Sometimes they take longer than others and it depends. On the group. So, some design teams, they want to have an email, a phone call, a conversation before you submit an RFI. So they, and they use RFIs as like a confirming method of direction, whereas other ones want the question to be documented in the RFI, and then you work through the solution and they provide an answer there. 
+You
+Yep. 
+Participant
+So it can be used different ways and I think it's super dependent on your team and how that project's going to go. 
+You
+Good. That definitely makes sense. Um, 11 last question, so I don't don't hold you any longer. Um, for the for the AI agent that you were talking about that you created, do you kind of update, I don't know if like use a corpus or what? Like, do you update the information that it has when there's changes or stuff like that or do you kind of have it like, um, like fixed kind of like from like when you 1st upload all like the scope and all those documents? Do you kind of date it with, um, different, like, oh, there's, if there's a change in the process or change the documents or something like that? Um, do you update it and I don't know if that's something that you're able 
+Participant
+So, 
+You
+to share? 
+Participant
+yeah, yeah. Obviously, the correct answer is is always updated all the time. 
+You
+Yep. 
+Participant
+Um, the reality is our specs don't change that much. 
+You
+Yep. 
+Participant
+Um, now I have it benchmarked and being like, all right, here's the date of which I was last 
+You
+Yep. 
+Participant
+updated, and I only use it 
+You
+Mm-hmm 
+Participant
+as a search engine. So it's, I mean, never take AI's answers is 
+You
+Yeah. 
+Participant
+truth. But... I try to update it if there's a big spec change. But if it's a, oh, we added this one product to this one section, I'm like, okay, that's not worth my time to go revise my entire agent 
+You
+Yeah. 
+Participant
+for. A question I probably won't ask it. 
+You
+Yep. 
+Participant
+So, but now if there's a whole bit package change, then obviously, yeah, there'd be an update there. 
+You
+Yeah. Okay. I think I think that's all the questions I have. Um, thank you. Thank you so much for taking the time, time of your day to answer them and everything. Um, But I get, 
+Participant
+Yeah, what 
+You
+I realize. 
+Participant
+project are you 
+You
+Yeah, 
+Participant
+guys putting together? Is it like 
+You
+so, 
+Participant
+a 
+You
+um, 
+Participant
+presentation? 
+You
+it's, we're we're kind of, it's kind of a 2 thing. So this is, um, it's a class on basically like, um, I'm a information science student at University of Washington. So it's a project um, for a, It's kind of, it's kind of like a capstone, but we're basically, um, we were basically told to look at some, um, try and find a lens, like a project, which is, you know, with Evergreen. Um, and then we're trying to figure out how AI can, um, how could have could have affected the, for some reason it's focused on RFI specifically was what our instructor wanted us to focus on. Um, and so how we could improve either like the number of R 5s or improve like the frequent, like speed that people are able to respond using AI. And then we're basically creating a presentation and then trying to also create like a working agent alongside that. Um, so we're kind of like halfway through, I'd say. Um, and so, yeah, we were just kind of getting better, better information from you guys to like understand where the, where the issue is and everything like that. Yeah. Um, 
+Participant
+All 
+You
+I'm 
+Participant
+right. 
+You
+trying to think. 
+Participant
+Yeah. 
+You
+Yeah, um, could I, could I just get your full name so I could write, write that down? Um, 
+Participant
+Yeah. 
+You
+for thing who I interviewed? 
+Participant
+Yeah. 
+You
+That's that's okay. 
+Participant
+Trent McMorrow. 
+You
+All right, thank you so much. Um, did you have any other questions about the about the project or anything? I realized this kind of, um, like quick. Run 
+Participant
+No, 
+You
+there. 
+Participant
+um, 
+You
+Yeah, 
+Participant
+I don't really. But 
+You
+okay. 
+Participant
+yeah, if anything else comes up, 
+You
+Yeah. 
+Participant
+uh, shoot me a text and 
+You
+All right, 
+Participant
+hope 
+You
+thank 
+Participant
+to 
+You
+you. 
+Participant
+help you guys out. 
+You
+Thank you so much. 
+Participant
+Yeah, 
+You
+Have 
+Participant
+you're welcome. 
+You
+a great day. 
+Participant
+Bye. 
+End of interview transcript.
