@@ -1,0 +1,118 @@
+Final publication selection — generated, deployed and browser-verified
+
+All selected fresh V12 runs, AI-agent semantic reviews and cloud-contract
+checks are complete. The local report and allowlisted public aggregate have
+been generated and deployed to the existing isolated Free Capstone account.
+The public health check passed and browser verification confirmed all five
+rows, separate grouping measures, limitations, and the intact task board.
+Detailed deployment evidence remains separate under app/.capstone-local/.
+
+Generated public selection, in this order (five rows):
+All directories below are under app/desktop-build/demo3/.
+1. consolidation-v1-dev
+   Label: Initial development baseline (V1)
+   Phase: Synthetic development baseline
+   Original result: 15/18 checks; 5/6 usable cases. Preserve failed attempt.
+2. consolidation-v12-dev
+   Label: Final development regression (V12)
+   Phase: Synthetic development regression
+   18/18 requirement checks; 2/2 shared groups; 8/8 separation;
+   6/6 fully passing cases; 792.4 seconds total model workflow.
+3. consolidation-v6-holdout
+   Label: Original separate evaluation (V6)
+   Phase: Original held-out synthetic evaluation
+   Original result: 17/18 checks. This was untouched when generated.
+4. consolidation-v12-informed-regression
+   Label: Final informed regression (V12)
+   Phase: Informed development (former holdout)
+   18/18 requirements; 2/2 shared groups; 8/8 separation; 6/6 cases;
+   751.5 seconds total. This is informed development, not untouched evaluation.
+5. consolidation-v12-transfer
+   Label: Separate transfer evaluation (V12)
+   Phase: Additional synthetic transfer
+   12/12 requirements; 7/7 separation; 4/4 fully passing cases;
+   488.7 seconds total. Shared groups: not assessed (0/0). This set was
+   reserved until the selected engine was frozen; its results did not tune V12.
+
+All five selections passed publication validation, with matching completion,
+engine provenance and AI-agent semantic-review coverage. Independent human
+validation is not established. The local report includes preserved history
+from 26 run directories that passed metadata consistency review.
+
+Do not include aborted V3 as a completed run. Other completed rejected or
+targeted development attempts remain preserved locally; small targeted and
+closure-boundary checks are not substitutes for full selected-set results.
+
+Runner versus publication labels
+- run.cjs --label writes the run's descriptive label; --split identifies the
+  frozen fixture bundle. Keep holdout as the fixture split for regression.
+- publish-results.cjs --label and --phase apply to the immediately preceding
+  --run. Use the informed phase explicitly for former-holdout reruns.
+- The publisher now also detects informed review/manifest metadata and
+  refuses an untouched/unseen evaluation label for those consumed cases.
+- All selected runs need complete manifests, internally consistent scores,
+  matching source/model provenance, and completed AI-agent reviews covering
+  their exact selected case IDs and engine version. Missing or partial
+  reviews and unfinished runs are rejected.
+
+Final public limitations retained in the generated report:
+- Original inputs sometimes state scope relationships explicitly. The smaller
+  reserved transfer set uses terser wording and fewer hints; all are synthetic.
+- Original V6 evaluation had a closure-policy mismatch and an unsupported
+  supersession warning. It remains visible as the original separate evaluation.
+- V12 informed review retained ambiguous absolute-elevation wording and a
+  conflict citation list without the linked original task quotation. That
+  original source remains accessible through the task.
+- Transfer prose calls different drawing identities different revisions in
+  one reason, and uses 'by 15:00' in one title instead of 'before 15:00'. The
+  full requirement and original source preserve the correct information.
+  Transfer has no separate shared-group checks; 0/0 means not assessed.
+
+Core publisher limitations already explain synthetic agent-authored labels,
+AI review limits, no independent human validation, all-attempt timing,
+unsupported-prose review, and no proven field RFI reduction or automatic
+learning. Do not duplicate or weaken those statements.
+
+Timing interpretation
+The first selected run is the comparison baseline. Controlled comparisons
+use matched successful cases with the same frozen inputs, model digest,
+runtime, hardware/driver, model settings, and lesson set. Failed attempts
+remain in each workload total but are excluded from paired-success timing.
+Report cold-load and load-adjusted times separately. Comparing different
+scenario sets does not produce a speedup claim. All timing excludes human
+checking/correction; do not present it as completed human-reviewed workflow.
+
+Final local artifacts:
+- Workspace root: Demo 3 - consolidation benchmark results.txt
+- Public aggregate: app/demo-3/public/benchmark-results.json
+- Quick start: Demo 3 - quick start.txt
+
+Matched successful development timing: V1 to V12 has five comparable cases,
+with 49.1% lower workflow time excluding recorded model loading (1258.4s to
+640.8s). The failed baseline case remains in quality and all-attempt totals,
+but is excluded from this paired-success comparison. Model and hardware are
+the same. This timing excludes human checking and correction.
+
+V12 is frozen as rfi-consolidation-12. Its group-link correction is structural
+normalization; the model prompt and response schema were unchanged from V11.
+All 945 software tests passed, with no failures or skips. The native app is
+Off and closed after final cleanup, with zero owned helpers/listening service
+ports in app/desktop-build/demo3/final-cleanup-check.json. This does not replace
+separate remote deployment verification.
+
+Preserve the intermediate evidence in the local report/history:
+- V8 informed regression: 16/18 requirement checks.
+- V9 informed regression: 17/18 requirement checks.
+- V10 informed regression: 17/18 requirement checks, 1/2 shared-group checks,
+  4/6 fully passing cases.
+- V11 fresh informed regression: 18/18 requirement checks, 2/2 shared-group
+  checks, 6/6 fully passing cases.
+- V11 fresh development: 18/18 requirement checks, 1/2 shared-group checks,
+  5/6 fully passing cases. A reference to an earlier grouped item omitted
+  groupId and the proposed group was lost; this motivated V12.
+
+These familiar/informed runs are development evidence, not unseen validation.
+Requirement, shared-group, separation, and whole-case scores are distinct
+measurements. The generated aggregate reports them separately; unassessed
+values remain unassessed. No independent human validation, field RFI reduction,
+or learning gain from retained lessons is established by these results.

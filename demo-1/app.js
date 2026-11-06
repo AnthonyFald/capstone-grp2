@@ -3,6 +3,7 @@
   const $=id=>document.getElementById(id), core=MeetingCore, scenarios=DEMO_SCENARIOS;
   let result=null,worker=null,ready=false,busy=false,timeout=null,runStart=0,runTranscript='',modelName='',referenceId=null,loadTicket=0,runAudioMs=0,generationTicker=null;
   let scores={},measurements={manual:'',review:''},retryTimer=null,loading=false,generateAfterLoad=false,queuedNoteStart=null,runTotalStart=0;
+  let nativeConfig=null,nativeAbort=null,runNative=null;
   const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function status(text,error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
   function updateGenerationElapsed(){const seconds=Math.max(0,Math.floor((performance.now()-runStart)/1000));$('generation-elapsed').textContent='Note generation elapsed: '+Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');}
@@ -12,15 +13,22 @@
   function setBusy(value){busy=value;for(const id of ['generate','load-model','mode','scenario','upload-button','transcript'])$(id).disabled=value;$('cancel').hidden=!value;if(value)$('generation-elapsed').hidden=true;else{clearTimeout(timeout);stopGenerationClock();}}
   function resetResult(){$('generation-elapsed').hidden=true;result=null;scores={};measurements={manual:'',review:''};$('empty').hidden=false;$('results').hidden=true;$('run-label').textContent='Ready when you are';renderEvaluation();}
   function loadScenario(){if($('transcript').dataset)delete $('transcript').dataset.audioProcessingMs;const s=scenarios[$('scenario').value];$('transcript').value=s?s.transcript:'';resetResult();updateCount();status(s?'Synthetic meeting loaded. Choose a processing method.':'Paste a transcript or upload a plain text file.');}
-  function setMode(){const ai=$('mode').value==='ai';$('ai-info').hidden=!ai;$('rules-info').hidden=ai;$('generate').textContent=ai?(ready?'Generate AI meeting notes →':'Load AI & generate notes →'):'Extract notes with rules →';status(ai?(ready?'Free local AI is ready.':'Click Load AI & generate notes to start.'):'Basic extraction works instantly and offline. It is not AI.');}
+  function setMode(){const native=$('mode').value==='native27',ai=$('mode').value!=='rules';$('ai-info').hidden=!ai;$('rules-info').hidden=ai;$('native-help').hidden=!native;$('browser-help').hidden=native;$('generate').textContent=ai?(native?'Generate with Qwen 3.5 27B →':ready?'Generate AI meeting notes →':'Load AI & generate notes →'):'Extract notes with rules →';$('load-model').textContent=native?'Check local 27B connection':ready?'AI model ready':'Load free AI model';$('load-model').disabled=!native&&ready;$('model-status').textContent=native?(nativeConfig?'Qwen 3.5 27B is available locally.':'Start the local companion, then check the connection.'):ready?'Browser 9B model ready.':'Browser model not loaded.';status(ai?(native?'27B meeting notes selected. Processing stays on this computer.':ready?'Free local AI is ready.':'Click Load AI & generate notes to start.'):'Basic extraction works instantly and offline. It is not AI.');}
   function tabs(view){$('notes-view').hidden=view!=='notes';$('evaluation-view').hidden=view!=='evaluation';for(const name of ['notes','evaluation']){const active=name===view;$(name+'-tab').classList.toggle('active',active);$(name+'-tab').setAttribute('aria-selected',String(active));}}
   function stopWorker(message,error=false){
+    nativeAbort?.abort();nativeAbort=null;
     loadTicket++;clearTimeout(retryTimer);if(worker)worker.terminate();worker=null;ready=false;loading=false;generateAfterLoad=false;queuedNoteStart=null;
     clearTimeout(timeout);setBusy(false);$('load-model').textContent=error?'Retry AI model download':'Load free AI model';$('load-model').disabled=false;
-    $('model-progress').hidden=true;$('model-status').textContent=error?message:'Model not loaded.';setMode();status(message,error);
+    $('model-progress').hidden=true;setMode();if(error){$('model-status').textContent=message;$('load-model').textContent=$('mode').value==='native27'?'Retry local connection':'Retry AI model download';}status(message,error);
   }
   async function loadModel(options={}){
     if(busy)return;
+    if($('mode').value==='native27'){
+      const ticket=++loadTicket;setBusy(true);nativeAbort=new AbortController();
+      try{const config=await NativeNotes.connect(nativeAbort.signal);if(ticket!==loadTicket)return;nativeConfig=config;$('model-status').textContent='Qwen 3.5 27B is installed and ready for local inference.';status('Local 27B connection ready. Generate notes to begin.');}
+      catch(error){if(ticket===loadTicket){nativeConfig=null;status('Could not connect to local 27B. Start Open Demo 1.cmd, or see local setup. '+error.message,true);}}
+      finally{if(ticket===loadTicket){nativeAbort=null;setBusy(false);}}return;
+    }
     if(ready){if(options.generateAfterLoad)generate();else status('The local AI model is already loaded.');return;}
     if(location.protocol==='file:'){status('For local AI, open Start Demo.cmd from the project folder. Direct file opening supports only Basic extraction.',true);return;}
     if(!window.isSecureContext||!navigator.gpu){status('This browser does not offer WebGPU. Open the local demo in current Chrome or Edge with hardware acceleration, or use Basic extraction.',true);return;}
@@ -62,6 +70,9 @@
       current.postMessage({type:'load',model:modelName});
     }
     try{
+      if(typeof NativeNotes!=='undefined'&&!nativeConfig){try{nativeConfig=await NativeNotes.connect();}catch{}}
+      if(ticket!==loadTicket)return;
+      if(nativeConfig){await NativeNotes.release(nativeConfig);nativeConfig=null;if(ticket!==loadTicket)return;}
       const adapter=await navigator.gpu.requestAdapter({powerPreference:'high-performance'});if(ticket!==loadTicket)return;
       if(!adapter)throw new Error('No compatible graphics adapter was found. Try Chrome or Edge with hardware acceleration, or use Basic extraction.');
       modelName=adapter.features.has('shader-f16')?'Qwen3.5-9B-q4f16_1-MLC':'Qwen3.5-9B-q4f32_1-MLC';
@@ -71,6 +82,7 @@
   function finish(data){
     const completed=performance.now();
     result={...data,audioProcessingMs:runAudioMs,combinedProcessingMs:runAudioMs+completed-runStart,elapsedMs:completed-runStart,totalElapsedMs:completed-runTotalStart,modelLoadMs:Math.max(0,runStart-runTotalStart),createdAt:new Date().toISOString(),transcript:runTranscript,scenarioId:referenceId,originalItems:JSON.parse(JSON.stringify(data.items))};
+    if(runNative){const {result:ignored,type,...audit}=runNative;Object.assign(result,{nativeAudit:audit,backend:'ollama',modelDigest:audit.modelDigest,modelLoadMs:audit.loadMs,elapsedMs:audit.elapsedMs,totalElapsedMs:completed-runTotalStart,combinedProcessingMs:runAudioMs+audit.elapsedMs});}
     scores={};measurements={manual:'',review:''};$('empty').hidden=true;$('results').hidden=false;$('run-label').textContent=data.mode==='ai'?'LOCAL AI':'RULES · NOT AI';$('summary').textContent=data.summary;$('elapsed').textContent='Notes completed in '+core.formatDuration(result.totalElapsedMs)+(result.modelLoadMs>100?' (model setup: '+core.formatDuration(result.modelLoadMs)+'; processing: '+core.formatDuration(result.elapsedMs)+')':'');
     if(result.audioProcessingMs>0)$('elapsed').textContent+=' · Audio + notes processing: '+core.formatDuration(result.combinedProcessingMs);
     renderNotes();renderEvaluation();tabs('notes');status(data.items.length?'Notes generated. Review the source for each item.'+(data.rejected?' '+data.rejected+' invalid model items were rejected.':''):'No items extracted. Review the transcript manually; this does not mean there are no action items.');
@@ -81,10 +93,21 @@
       const text=core.validateTranscript($('transcript').value);
       runAudioMs=Math.max(0,Number($('transcript').dataset?.audioProcessingMs)||0);
       if($('mode').value==='ai'&&!ready){await loadModel({generateAfterLoad:true});return;}
-      runTranscript=text;referenceId=Object.keys(scenarios).find(id=>scenarios[id].transcript===text)||null;runTotalStart=queuedNoteStart??performance.now();queuedNoteStart=null;runStart=performance.now();setBusy(true);
+      runNative=null;runTranscript=text;referenceId=Object.keys(scenarios).find(id=>scenarios[id].transcript===text)||null;runTotalStart=queuedNoteStart??performance.now();queuedNoteStart=null;runStart=performance.now();setBusy(true);
       if($('mode').value==='rules'){finish(core.extractBasic(text));setBusy(false);return;}
       status('Local AI is checking the meeting and writing your notes. Keep this tab open.');
       startGenerationClock();
+      if($('mode').value==='native27'){
+        const ticket=++loadTicket;nativeAbort=new AbortController();
+        // A browser worker would compete with the native model for GPU memory.
+        if(worker){worker.terminate();worker=null;ready=false;}
+        try{
+          nativeConfig=await NativeNotes.connect(nativeAbort.signal);if(ticket!==loadTicket)return;
+          const payload=await NativeNotes.generate(text,nativeConfig,{signal:nativeAbort.signal,progress:stage=>{if(ticket===loadTicket)status(stage);}});
+          if(ticket!==loadTicket)return;runNative=payload;finish(payload.result);
+        }catch(error){if(ticket===loadTicket)status(error.message+' Your transcript is preserved; no incomplete notes were accepted.',true);}
+        finally{if(ticket===loadTicket){nativeAbort=null;setBusy(false);}}return;
+      }
       worker.postMessage({type:'generate',transcript:text.split(/\r?\n/).map((line,i)=>'['+(i+1)+'] '+line).join('\n')});
     }catch(e){setBusy(false);status(e.message,true);}
   }
@@ -110,7 +133,7 @@
   }
   function updateTiming(){if(!$('timing-result'))return;const measured=measurements.manual!==''&&measurements.review!==''?core.timing(Number(measurements.manual),Number(measurements.review),result.elapsedMs):null;$('timing-result').textContent=measured?'Assisted preparation: '+measured.assisted.toFixed(1)+' seconds. '+Math.abs(measured.savings).toFixed(1)+'% '+(measured.savings>=0?'less':'more')+' time than your manual measurement.':'Enter both measured times to calculate a comparison.';}
   function download(name,content,type){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);}
-  $('scenario').onchange=loadScenario;$('mode').onchange=setMode;$('load-model').onclick=loadModel;$('generate').onclick=generate;$('cancel').onclick=()=>stopWorker('Processing canceled. Reload the model to run AI again.');
+  $('scenario').onchange=loadScenario;$('mode').onchange=setMode;$('load-model').onclick=loadModel;$('generate').onclick=generate;$('cancel').onclick=()=>stopWorker('Processing canceled. Your transcript is preserved. Generate again when ready.');
   $('transcript').oninput=()=>{if($('transcript').dataset)delete $('transcript').dataset.audioProcessingMs;$('scenario').value='custom';resetResult();updateCount();status('Transcript changed. Generate a new set of notes.');};
   $('upload-button').onclick=()=>$('upload').click();$('upload').onchange=async()=>{const file=$('upload').files[0];if(!file)return;try{if(!/\.txt$/i.test(file.name)||file.size>100000)throw new Error('Choose a plain .txt file smaller than 100 KB.');const text=await file.text();core.validateTranscript(text);$('transcript').value=text;if($('transcript').dataset)delete $('transcript').dataset.audioProcessingMs;$('scenario').value='custom';resetResult();updateCount();status('Transcript uploaded locally.');}catch(e){status(e.message,true);}finally{$('upload').value='';}};
   $('notes-tab').onclick=()=>tabs('notes');$('evaluation-tab').onclick=()=>{renderEvaluation();tabs('evaluation');};

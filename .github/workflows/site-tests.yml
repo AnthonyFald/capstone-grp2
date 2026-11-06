@@ -1,4 +1,4 @@
-name: Website and daily-report checks
+name: Website and demo checks
 on:
   push:
     branches: [main]
@@ -8,6 +8,8 @@ permissions:
   contents: read
 jobs:
   checks:
+    # Standard runner only; the project must not consume paid runner capacity.
+    if: github.event.repository.private == false
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
@@ -16,5 +18,7 @@ jobs:
         with:
           node-version: '22'
       - run: node --test tests/*.test.cjs demo-1/tests/*.test.cjs demo-2/tests/*.test.cjs
+      - name: Check Demo 3 consolidation, review, manual controls and benchmarks
+        run: node --test demo-3/cloud/tests/*.test.mjs demo-3/engine/*.test.cjs demo-3/runner/*.test.mjs demo-3/public/*.test.mjs demo-3/consolidation-bench/*.test.cjs
       - run: node demo-2/scripts/build-summary.cjs
       - run: git diff --exit-code -- demo-2/docs/evaluation-summary.csv

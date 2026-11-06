@@ -1,6 +1,14 @@
 # Evergreen — INFO 492 Team 2
 
-A static capstone website with functional Demo 1 and Demo 2 tabs. GitHub Pages serves the HTML, CSS, and JavaScript directly. Browser models need no install, build step, API key or paid inference service. Demo 2 also supports local native 9B and higher-capacity 27B models through a companion.
+A static capstone website with functional Demo 1 and Demo 2 tabs. GitHub Pages serves the HTML, CSS, and JavaScript directly. Browser models need no install, build step, API key or paid inference service. Both demos now support the local Qwen 3.5 27B model through a shared companion; browser alternatives remain available.
+
+## Demo 3: document consolidation and task review
+
+[Demo 3](https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/) uses a separate, free Capstone Cloudflare account. Incoming RFI/request documents become proposed tasks, shared groups, duplicate links, evidence-backed answers, or open conflicts. A reviewer approves changes to a persistent board; original text and change history remain available. [Operation and evaluation notes](demo-3/README.md) describe the workflow and its limits.
+
+Open the **Capstone Demo 3** desktop shortcut, or `Open Demo 3.cmd` at the repository root, then select **Turn ON** to process the website queue with local Qwen 3.5 27B. The app opens **Off**. Turning it Off or closing it stops its model and helpers. The website remains available while queued work waits. No paid cloud inference, automatic startup, or permanently running PC process is part of this demo. A new clone requires the [Windows runtime setup](demo-3/docs/setup.txt) and its own pairing; no credentials or model weights are included.
+
+See the [Demo 3 quick start](demo-3/docs/quick-start.txt) and sanitized [consolidation benchmark report](demo-3/docs/consolidation-results.txt) for operation, final V12 synthetic results, limitations, and preserved failures. Benchmark completion is separate from remote deployment verification and does not establish human superiority, RFI reduction, or a learning gain.
 
 ## Mid-quarter analysis
 
@@ -44,9 +52,9 @@ Quality takes priority over speed. The installed local Qwen 3.5 27B is preferred
 
 ## Demo 1 on Mac and Windows
 
-Open **Demo 1** in the website sidebar. The same page works on Mac and Windows in Chrome or Edge with WebGPU and sufficient GPU memory. No download of this repository, terminal, or local launcher is required for the hosted website.
+Demo 1 now prefers **Qwen 3.5 27B**, using the same local companion as Demo 2. Start the companion and open **http://127.0.0.1:4177/demo-1/**, or use `Open Demo 1.cmd` in the current Windows workspace. It extracts decisions, action items, owners, deadlines, schedules and unresolved questions with sources, editing, human review, reference comparisons and exports. The original browser Qwen 3.5 9B model remains an explicit alternative requiring Chrome/Edge with WebGPU. See [setup and comparison protocol](demo-1/local-setup.html).
 
-Click **Load free AI model**, wait for the initial model download (about 6 GB), then generate meeting notes. The app runs the real **Qwen 3.5 9B** model locally in the visitor's browser through WebLLM. It extracts decisions, action items, owners, deadlines, and unresolved questions. Notes include source lines, editing, human review, reference comparisons, and exports. A separately labeled rule-based mode is available as a baseline, not as evidence of AI performance.
+The selected local notes workflow is v27, with separate scope/cost extraction, source-checked timelines and holds, and question/terminology review. The two-meeting development rescore is 96.7% accuracy and 95.2% completeness under the reconstructed checklist; this is not independent field validation. See [the comparison](demo-1/docs/demo3-rerun.txt) and [tuning record](demo-1/docs/demo3-tuning-round2.txt) for timing, remaining errors and all evaluation limits.
 
 The model download is external; transcript processing stays on the device. No OpenAI account or paid API tokens power this app. Hardware, browser support, download access, and available memory determine whether local AI can run. Do not assume every Mac or PC is compatible.
 
@@ -73,6 +81,7 @@ Run the checks with Node.js:
 
 ```sh
 node --test demo-2/tests/*.test.cjs demo-1/tests/*.test.cjs tests/*.test.cjs
+node --test demo-3/cloud/tests/*.test.mjs demo-3/engine/*.test.cjs demo-3/runner/*.test.mjs demo-3/public/*.test.mjs demo-3/consolidation-bench/*.test.cjs
 ```
 
 For a local preview of the entire site on Mac or Windows, run `node scripts/serve.mjs` and open the printed address. No package install is needed. The server only listens on your computer.

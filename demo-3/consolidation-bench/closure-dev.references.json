@@ -1,0 +1,37 @@
+{
+  "version": "consolidation-closure-development-1",
+  "split": "closure-dev",
+  "synthetic": true,
+  "independentHumanValidation": false,
+  "labelOrigin": "Explicit development boundary check authored after original holdout review. This is not an untouched evaluation or independent human validation.",
+  "cases": [
+    {
+      "id": "CLOSURE-DEV-01",
+      "items": [
+        {
+          "id": "closure-permission-denied",
+          "sourceDocumentId": "CD-R1",
+          "actions": ["already_answered"],
+          "requiredFacts": [{"name":"guardrail identity","patterns":["G-22"]}],
+          "requiredCitationDocumentIds": ["CD-REJECTION"],
+          "answerFacts": [
+            {"name":"definitive denial","patterns":["not permitted","reject","not allowed","cannot","may not","must not","\\bno\\b"]},
+            {"name":"retained specified grade","patterns":["316"]}
+          ],
+          "expectedDescription": "A scoped current approved final rejection answers the substitution-permission question negatively. Do not reopen solely because the permitted alternative is denied. This does not claim physical guardrail work is complete."
+        },
+        {
+          "id": "closure-pure-specification",
+          "sourceDocumentId": "CD-R2",
+          "actions": ["already_answered"],
+          "requiredFacts": [{"name":"hatch identity","patterns":["MH-42"]}],
+          "requiredCitationDocumentIds": ["CD-HATCH-SCHEDULE"],
+          "answerFacts": [{"name":"specified clear width","patterns":["850\\s*mm","0[.]85\\s*m"]}],
+          "expectedDescription": "The request asks only the specified width, which the current approved schedule settles. Pending inspection/acceptance of the installation does not prevent answering that pure specification question. Do not claim installation acceptance or create an unrequested inspection-status requirement."
+        }
+      ],
+      "groupSets": [],
+      "differentTasks": [["closure-permission-denied","closure-pure-specification"]]
+    }
+  ]
+}

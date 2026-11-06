@@ -1,0 +1,259 @@
+Demo 3 — Demo 1 migration and evaluation
+Local development record, November 1, 2026 (America/Los_Angeles)
+
+Updated November 2: v27 is now selected locally. The final appended section
+records 96.7% accuracy / 95.2% completeness and the qualified fresh-run timing.
+Earlier selection and verification statements below are dated historical entries.
+
+Purpose
+Rerun meeting notes on the current RTX 5080/Qwen 3.5 27B setup before changing
+the workflow. Compare later changes to this preserved baseline. Quality comes
+first. "Better than human" is a target, not a conclusion from model size.
+
+Method
+The two saved audio-to-text transcripts were extracted from the supplied
+Transcript Demo #1 Word archive, without silently repairing transcription
+errors. The original v4.1 source and normalizer were copied before tuning.
+Original raw transcript JSON and item-level historical scoring worksheets have
+not been located. This is an archive-based rerun, not a claim of byte-identical
+reproduction of the historical inputs or accuracy percentages.
+
+All inference uses the installed qwen3.5:27b, Q4_K_M, 26.9B nominal parameters,
+on the RTX 5080. The model digest is recorded in each result. Some layers use
+system RAM. Baseline settings: no thinking, seed 42, context 16384, temperature
+0.1, top_p 0.8, presence penalty 0, repeat penalty 1, top_k 0, min_p 0. The
+original browser pipeline's explicitly specified sampling parameters are
+preserved; native runtime/tokenizer/quantization behavior is not identical to
+WebLLM. This comparison changes the model/runtime/hardware bundle, not only
+hardware. Later tuned runs use the same installed model and computer.
+
+Baseline, unchanged v4.1 workflow
+Trial 1: 175.85 seconds total native generation, 14 notes.
+Trial 2: 130.88 seconds total native generation, 12 notes.
+Model load time and per-call timing are stored separately in the JSON.
+These are one observation per input. They exclude a fresh transcription and
+human review. They do not demonstrate a general latency distribution.
+
+Observed baseline limitations
+Trial 1 still presents "topping flaps" and "Gym Flooring Core" confidently.
+Its Area C completion note includes unrelated electrical-finish context.
+Trial 2 separates the roster update and schedule email correctly, with no
+borrowed date for the roster. However, it still uses "Area C reporting",
+attaches irrelevant context to milestones, omits the stocked/special-order
+question, and omits the doubled material-cost detail.
+
+Rejected candidate: context-notes-27b-v1 / meeting-native-quality-1
+Whole-meeting draft plus a second audit, 32768 context, vendor non-thinking
+sampling (temperature 0.7, top_p 0.8, top_k 20, presence penalty 1.5).
+Trial 1: 244.53 seconds. Trial 2: 208.25 seconds.
+The first trial flags one garbled term but invents calendar deadlines that the
+source validator removes, loses the purchasing hold and unresolved question,
+and marks conditional schedules active. The second merges roster preparation
+and schedule delivery, transferring the deadline to both. Rejected; preserved
+in the local evidence. Fewer model calls did not produce a better result.
+
+Rejected candidate: context-notes-27b-v2 / meeting-native-quality-2
+Retain section extraction and per-claim checking. Use the baseline's 16384
+context and sampling to retain more layers on the GPU. Add a targeted final
+audit for uncertain terms, milestone relationships and missing non-action
+facts. Actions are preserved by this final audit. Milestone quotations use
+only explicitly selected prerequisite lines, while retaining all citations.
+Trial 1: 283.43 seconds. Trial 2: 220.31 seconds. The first adds administrative
+actions as schedules and still retains garbled terms. Some second-meeting
+improvements do not justify the first-meeting regression and added latency.
+
+Rejected staged trial: v3 reasoning audit
+Reused a previous extraction to test an additional reasoning audit. The first
+audit exhausted its 7000-token limit after about 11 minutes; nothing was
+accepted. The second was canceled. This was an audit-only experiment, not a
+measured end-to-end run, and its time is not compared with full generation.
+
+Rejected candidate: context-notes-27b-v4
+Explicit question coverage recovered both distinct material questions in a
+focused probe. Full Trial 1 completed in 157.63 seconds, but full Trial 2 failed:
+the subsequent generic claim reviewer tried to remove the recovered question,
+producing an oversized, invalid replacement. Validation blocked publication.
+That failure motivated replacing the generic question review with the specific
+resolution/coverage review, rather than stacking conflicting reviewers.
+
+Selected: context-notes-27b-v5 / meeting-native-quality-5
+Retains the original action, decision and schedule extraction/checks. Questions
+receive an explicit resolution review across the whole transcript: answered,
+open, or rhetorical. A related fact or promise to investigate is not an answer.
+Each open candidate must appear in exactly one question group; distinct issues
+remain separate. Answered candidates require real answer-line references.
+Implicit unresolved issues can also be included. Structure and coverage are
+validated in code; semantic correctness still requires human review.
+
+This is a prompt/workflow change, not model-weight training. It uses the same
+model, hardware, seed, 16384 context and sampling as the preserved baseline.
+The local application now selects this version by default. Browser 9B remains
+an explicit alternative with its existing workflow.
+
+Timing, seconds (one observation per meeting/version)
+                         Baseline total / load / processing    v5 total / load / processing
+Trial 1                  175.85 / 24.72 / 151.13                 150.59 / 0.05 / 150.54
+Trial 2                  130.88 /  0.05 / 130.83                 144.36 / 0.05 / 144.31
+
+The apparent Trial 1 total-time gain is almost entirely model loading. Trial 2
+is slower with v5. Do not claim that tuning improved generation speed overall.
+Neither comparison includes fresh audio transcription or human correction.
+The historical 9B drafts took 837.60 and 813.37 seconds, but comparison with
+those runs changes model/runtime/hardware and cannot isolate workflow benefit.
+
+Observed quality change on the original meetings
+Trial 1: 14 notes; non-question notes match the baseline exactly, including
+action owners/deadlines. The unresolved cost-coverage question remains present.
+Trial 2: 13 notes versus baseline 12. It recovers whether material is stocked or
+special order and keeps cost coverage as a separate unanswered question. The
+decisions and schedules match the baseline; actions retain their owners and
+dates (one wording change clarifies "epoxy cost" to "epoxy primer cost").
+These were qualitative observations during tuning. A later retrospective
+checklist rescore is summarized below; it is not independent human validation.
+
+Six additional development checks
+All six completed under both versions. v5 total times:
+exhibition 48.02s; software-release 40.36s; workshop-materials 52.28s;
+document-nouns 36.96s; confirmed-work-and-real-cancellation 36.92s;
+inspection-request-not-approval 27.84s.
+
+Observed behavior: separate contact/follow-up tasks retain their distinct dates;
+the reassigned rollback email uses the final owner and Thursday deadline; an
+email-template document does not become an invented messaging task; material
+coverage remains unresolved; canceling an existing lift booking stays an action;
+and an inspection request does not become a passed inspection. The pour stays
+on hold until written inspection passage, with no invented pour date.
+
+Remaining limitations seen in these checks: the fire-door schedule still quotes
+an approval prerequisite as tentative despite later written approval. Some
+important facts occur only in evidence, including the unconfirmed Friday
+certification forecast, confirmed inspection-labor budget and tentative Sunday
+delivery. The requested Tuesday inspection date is only in evidence, not a
+schedule note. Some follow-up recipients are implicit rather than explicit.
+The original meetings still contain garbled technical terms, irrelevant
+milestone context and omitted cost detail. This is not a complete quality fix.
+The new question review also omits generic unspecified roster/pour-date questions
+that the baseline listed; these were not treated as actionable questions merely
+because a date field was blank. There is no claim of perfect recall.
+
+Verification
+290 automated tests pass across both demos and shared site behavior. They check
+streaming, cancellation, source/coverage validation, separation of baseline and
+tuned policies, and the shared inference lock. These test counts are software
+checks, not measurements of model accuracy. Real model results are retained
+separately. Browser verification covers connection, generation and cancellation.
+The final browser run on the built-in fictional repair meeting completed in
+106.32 seconds with 17 candidate notes. Its JSON confirms v5, quality-5, and the
+same 27B digest; saved at desktop-build/note-evaluation/demo3-browser-smoke.json.
+This verifies the application path, not a new accuracy score. That sample also
+shows duplicate action/schedule content and overly tentative administrative
+milestones, which remain quality work for a subsequent version.
+
+Interpretation
+The professor's verdict is "partly supported." The historical 54.1% saving
+was draft generation only; the archived report explicitly excludes review and
+correction. Note accuracy, completeness and review time are intermediate
+outcomes, not a measured 30% reduction in unnecessary RFIs. The migration cannot
+attribute its speed difference to our workflow alone. Human review remains
+necessary before a draft becomes an approved project record.
+
+Provenance and reproduction
+Private results and immutable source snapshots are under the ignored local
+desktop-build/note-evaluation/ directory. Each result retains inputs, hashes,
+model digest, runtime/hardware, settings, raw calls, traces and failures.
+Reference criteria are never sent to inference. Reuse the same input files and
+frozen source snapshot for an exact local rerun; choose a new output directory.
+Commands run from the app repository:
+
+node demo-1/scripts/evaluate-native.cjs --policy baseline --snapshot desktop-build/note-evaluation/demo3-baseline-27b/source --fixtures desktop-build/note-evaluation/demo3-inputs/saved-audio.json --output desktop-build/note-evaluation/baseline-repeat
+node demo-1/scripts/evaluate-native.cjs --policy quality --snapshot desktop-build/note-evaluation/demo3-quality-27b-v5/source --fixtures desktop-build/note-evaluation/demo3-inputs/saved-audio.json --output desktop-build/note-evaluation/quality-repeat
+node demo-1/scripts/evaluate-native.cjs --policy quality --snapshot desktop-build/note-evaluation/demo3-quality-27b-v5-transfer/source --fixtures demo-1/tests/fixtures/demo3-transfer.json --output desktop-build/note-evaluation/transfer-repeat
+
+The transfer fixtures are development checks, not independent ground truth or
+a general-accuracy benchmark. Independent scoring, repeated runs, new meetings
+and measured human review time remain necessary for a stronger claim.
+
+Next Demo 3 evaluation work
+Create independent item-level reference checklists before additional tuning;
+score factual errors, omissions and review effort separately. Re-run original
+audio through transcription if making an end-to-end claim. Preserve matched
+warm/cold run conditions and repeat timings. Define realistic GC/reviewer/AI
+roles and a task stream before implementing the multi-day feedback experiment.
+Require a versioned retained change and separate later evaluation before calling
+the system's accumulated experience "learning." The current upgrade does not
+implement that loop or demonstrate the thesis's RFI outcome.
+
+Runtime references
+https://docs.ollama.com/api/chat
+https://huggingface.co/Qwen/Qwen3.5-27B
+
+Subsequent rescore requested by the user
+The original item-level scoring sheets remain unavailable. A new 62-fact
+checklist was reconstructed from the clean scripts and applied consistently to
+the archived human/9B notes and both frozen 27B outputs. Personal-name variants
+(Mark Vance / Mark Zans) are excluded, as explicitly requested. Technical work
+labels, incorrect task/deadline assignments, and misleading dependencies remain
+in scope. Source-appendix-only facts do not earn completeness credit.
+
+Pooled checklist accuracy / completeness:
+Human: 94.0% / 75.8% (47 correct facts; 3 additional errors).
+Archived 9B: 73.8% / 77.4% (48 correct; 17 scored errors).
+27B baseline: 89.1% / 79.0% (49 correct; 6 scored errors).
+27B tuned v5: 89.3% / 80.6% (50 correct; 6 scored errors).
+
+Accuracy = correct / (correct + incorrect + additional errors).
+Completeness = correctly captured facts / 62. This retrospective assistant
+adjudication is a development check, not an independently validated accuracy
+estimate. Do not mix it with the historical 88%/92% scores: their original rubric
+is unavailable. The new checklist's stronger treatment of misleading timing
+context and task substitutions changes the old 9B score substantially.
+The original historical results are preserved.
+
+The tuned system is faster than the archived 9B runs and more complete under
+this rubric, while the human notes retain higher accuracy. Its gain over the
+untuned 27B workflow is one recovered question, not six corrected errors.
+Full evidence, judgments, hashes and reproducible arithmetic are in
+desktop-build/note-evaluation/demo3-rescore-2026-11-01/. A readable comparison is
+saved as Demo 3 - rescored comparison.txt in the Capstone workspace.
+
+
+November 2 — final selected v27, superseding v5 locally
+The user requested sustained quality tuning. See demo3-tuning-round2.txt for
+all attempts. The same frozen 62-fact rubric gives 59 correct, 2 incorrect,
+1 missing and no extra errors: 96.7% accuracy / 95.2% completeness, versus
+v5 89.3% / 80.6% and baseline 89.1% / 79.0%. Personal-name variants excluded.
+Meeting 1 is 30C/1I/0M; meeting 2 is 29C/1I/1M. Technical garbles still count.
+Remaining failures: effective topping wording, repour milestone mislabeled as
+demo/drying, and omitted explicit insufficiency of standard vapor retarder.
+
+Fresh v26 originals took 398.470s and 480.706s. v27 only adds deterministic
+postprocessing guards after inference; replay verified all 30 requests exactly
+identical. Final scores use those fresh responses through v27, not selected
+responses from other attempts. Replay timing stays null; the parent fresh times
+are used with that qualification. The prior v25 development peak 98.4% / 96.8%
+is not substituted for the conservative fresh-response result.
+
+Across 12 separate development meetings, 111 of 116 criteria passed, with
+3 omissions, 2 criterion errors and 1 additional unsupported relationship.
+Mixed exact-request reuse and fresh changed requests are documented per call;
+these are neither independent field validation nor fresh latency runs.
+309 software checks pass. Local companion now serves protocol 4, pipeline 27,
+quality policy 27. Model digest and sampling remain the same as the 27B baseline.
+The broader thesis remains partly supported; no unnecessary-RFI reduction or
+general human-superiority conclusion follows from these two familiar meetings.
+Full comparison: Capstone/Demo 3 - tuning results.txt.
+
+
+Final browser verification, November 2
+Actual browser generation and JSON export completed on the fictional 216-word
+repair sample: 22 candidate notes, 300.415s browser total. Export confirms
+context-notes-27b-v27, meeting-native-quality-27, the installed 27B digest, and
+all four inference source hashes exactly matching the scored final snapshot.
+Saved: app/desktop-build/note-evaluation/demo3-v27-browser-smoke.json;
+verification metadata: demo3-v27-verification.json in the same directory.
+Screenshot: Capstone/Demo 3 - validated notes.png.
+This is a functional check, not a new accuracy score. It still shows duplicate
+clearance notes, action/schedule overlap, test-result delivery labeled testing,
+and a schedule paraphrasing a designer inquiry as confirmation itself. The
+actual action row retains the inquiry. These remain visible review issues;
+no output was manually corrected or marked approved for the screenshot.

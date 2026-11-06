@@ -1,0 +1,56 @@
+{
+  "version": "consolidation-closure-development-1",
+  "split": "closure-dev",
+  "synthetic": true,
+  "cases": [
+    {
+      "id": "CLOSURE-DEV-01",
+      "payload": {
+        "mode": "consolidation",
+        "documents": [
+          {
+            "id": "CD-R1",
+            "title": "Promenade guardrail substitution question",
+            "kind": "request",
+            "revision": "1",
+            "issuedAt": "2026-11-02",
+            "approval": "draft",
+            "current": true,
+            "text": "May stainless-steel grade 304 replace the specified grade 316 for external guardrail G-22 at promenade P-7?"
+          },
+          {
+            "id": "CD-R2",
+            "title": "Plantroom maintenance hatch clear width",
+            "kind": "request",
+            "revision": "1",
+            "issuedAt": "2026-11-02",
+            "approval": "draft",
+            "current": true,
+            "text": "What minimum clear opening width is specified for maintenance hatch MH-42 in plantroom L-5?"
+          },
+          {
+            "id": "CD-REJECTION",
+            "title": "Approved engineer response to substitution SR-88",
+            "kind": "reference",
+            "revision": "1",
+            "issuedAt": "2026-11-01",
+            "approval": "approved",
+            "current": true,
+            "text": "Substitution SR-88 for external guardrail G-22 at promenade P-7 is rejected. Stainless-steel grade 304 is not permitted for this guardrail; retain the specified grade 316. This is the final design decision for SR-88."
+          },
+          {
+            "id": "CD-HATCH-SCHEDULE",
+            "title": "Approved plantroom hatch schedule",
+            "kind": "reference",
+            "revision": "C",
+            "issuedAt": "2026-11-01",
+            "approval": "approved",
+            "current": true,
+            "text": "Maintenance hatch MH-42 in plantroom L-5 requires a minimum clear opening width of 850 mm. The installed hatch has not yet been inspected, and installation acceptance is not recorded."
+          }
+        ],
+        "board": { "version": 0, "tasks": [], "documents": [] }
+      }
+    }
+  ]
+}

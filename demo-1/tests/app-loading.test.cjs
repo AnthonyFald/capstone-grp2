@@ -1,10 +1,10 @@
 const test=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
 const core=require('../core.js'),download=require('../model-download.js');require('../data/scenarios.js');
-function app(){
+function app(options={}){
   const elements=new Map(),workers=[],timers=new Map(),intervals=new Map();let nextTimer=0,clock=1;
-  const element=id=>{if(!elements.has(id))elements.set(id,{value:id==='mode'?'ai':id==='scenario'?'repair':'',textContent:'',hidden:false,disabled:false,classList:{toggle(){}},setAttribute(){},removeAttribute(){}});return elements.get(id);};
+  const element=id=>{if(!elements.has(id))elements.set(id,{value:id==='mode'?(options.mode||'ai'):id==='scenario'?'repair':'',textContent:'',hidden:false,disabled:false,classList:{toggle(){}},setAttribute(){},removeAttribute(){}});return elements.get(id);};
   class Worker{constructor(){workers.push(this);this.messages=[];}postMessage(message){this.messages.push(message);}terminate(){this.terminated=true;}emit(data){this.onmessage({data});}}
-  const context={document:{getElementById:element},MeetingCore:core,DEMO_SCENARIOS,ModelDownload:download,Worker,
+  const context={document:{getElementById:element},MeetingCore:core,DEMO_SCENARIOS,ModelDownload:download,Worker,NativeNotes:options.native,AbortController,
     navigator:{gpu:{requestAdapter:async()=>({features:new Set(['shader-f16'])})}},window:{isSecureContext:true},location:{protocol:'http:'},
     console:{warn(){}},performance:{now:()=>clock},setTimeout(fn,ms){const id=++nextTimer;timers.set(id,{fn,ms});return id;},clearTimeout(id){timers.delete(id);},setInterval(fn,ms){const id=++nextTimer;intervals.set(id,{fn,ms});return id;},clearInterval(id){intervals.delete(id);}};
   vm.runInNewContext(fs.readFileSync(require.resolve('../app.js'),'utf8'),context);
@@ -15,6 +15,16 @@ test('Generate loads AI once and continues with the preserved transcript',async(
   assert.equal(a.workers.length,1);assert.equal(a.workers[0].messages[0].type,'load');
   a.workers[0].emit({type:'ready'});assert.equal(a.workers[0].messages[1].type,'generate');
   assert.equal(a.element('transcript').value,before);assert.equal(a.element('generate').disabled,true);
+});
+
+test('27B generation uses the companion, retains measured setup time, and needs no browser GPU',async()=>{
+ let seen;const a=app({mode:'native27',native:{connect:async()=>({token:'local'}),generate:async(text,config,options)=>{seen={text,config,options};return {result:{mode:'ai',model:'qwen3.5:27b',summary:'No notes',items:[]},elapsedMs:2000,loadMs:1000,totalMs:3000,modelDigest:'digest'};}}});
+ a.setTime(1000);await a.generate();assert.ok(seen.text);assert.equal(a.workers.length,0);assert.equal(seen.config.token,'local');assert.equal(a.element('generate').disabled,false);assert.match(a.element('elapsed').textContent,/model setup: 1.0s; processing: 2.0s/);
+});
+
+test('canceling 27B invalidates delayed connection results and preserves the transcript',async()=>{
+ let release,signal,generated=false;const a=app({mode:'native27',native:{connect:s=>{signal=s;return new Promise(resolve=>release=resolve);},generate:async()=>{generated=true;}}}),text=a.element('transcript').value;
+ const running=a.generate();a.element('cancel').onclick();assert.equal(signal.aborted,true);release({token:'local'});await running;assert.equal(generated,false);assert.equal(a.element('transcript').value,text);assert.equal(a.element('generate').disabled,false);assert.match(a.element('status').textContent,/canceled/);
 });
 test('interrupted model loads retry at most three times, preserve text, and remain retryable',async()=>{
   const a=app(),before=a.element('transcript').value;await a.generate();

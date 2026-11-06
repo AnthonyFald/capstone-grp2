@@ -1,0 +1,445 @@
+DEMO 3 — CONSOLIDATION BENCHMARK RESULTS
+Generated: 2026-11-03T06:38:46.878Z
+Repository copy: local absolute paths removed; raw run artifacts remain private.
+
+MODEL: qwen3.5:27b
+HARDWARE: NVIDIA GeForce RTX 5080
+
+Initial development baseline (V1) [rfi-consolidation-1; Synthetic development baseline]
+  Requirements passing all labeled checks: 15/18 (83.3%).
+  Correct action and target: 15/18. Retained detail complete: 15/18.
+  Fully passing cases: 5/6. Usable cases: 5/6. Incorrect merges observed: 0. Incorrectly answered requests observed: 0.
+  All-attempt workflow: 1432s; median attempt: 246.4s; recorded model loading: 26.1s.
+  Grouping checks: 2/2; separation checks: 6/8.
+  Semantic review: completed by an AI agent, not independent human validation; consult the review artifact for findings.
+  Local source run (not committed): desktop-build\demo3\consolidation-v1-dev
+
+Final development regression (V12) [rfi-consolidation-12; Synthetic development regression]
+  Requirements passing all labeled checks: 18/18 (100.0%).
+  Correct action and target: 18/18. Retained detail complete: 18/18.
+  Fully passing cases: 6/6. Usable cases: 6/6. Incorrect merges observed: 0. Incorrectly answered requests observed: 0.
+  All-attempt workflow: 792.4s; median attempt: 143.9s; recorded model loading: 6s.
+  Grouping checks: 2/2; separation checks: 8/8.
+  Semantic review: completed by an AI agent, not independent human validation; consult the review artifact for findings.
+  Local source run (not committed): desktop-build\demo3\consolidation-v12-dev
+
+Original separate evaluation (V6) [rfi-consolidation-6; Original held-out synthetic evaluation]
+  Requirements passing all labeled checks: 17/18 (94.4%).
+  Correct action and target: 17/18. Retained detail complete: 18/18.
+  Fully passing cases: 5/6. Usable cases: 6/6. Incorrect merges observed: 0. Incorrectly answered requests observed: 1.
+  All-attempt workflow: 888s; median attempt: 152.8s; recorded model loading: 0.1s.
+  Grouping checks: 2/2; separation checks: 8/8.
+  Semantic review: completed by an AI agent, not independent human validation; consult the review artifact for findings.
+  Local source run (not committed): desktop-build\demo3\consolidation-v6-holdout
+
+Final informed regression (V12) [rfi-consolidation-12; Informed development (former holdout)]
+  Requirements passing all labeled checks: 18/18 (100.0%).
+  Correct action and target: 18/18. Retained detail complete: 18/18.
+  Fully passing cases: 6/6. Usable cases: 6/6. Incorrect merges observed: 0. Incorrectly answered requests observed: 0.
+  All-attempt workflow: 751.5s; median attempt: 133.4s; recorded model loading: 0.1s.
+  Grouping checks: 2/2; separation checks: 8/8.
+  Semantic review: completed by an AI agent, not independent human validation; consult the review artifact for findings.
+  Local source run (not committed): desktop-build\demo3\consolidation-v12-informed-regression
+
+Separate transfer evaluation (V12) [rfi-consolidation-12; Additional synthetic transfer]
+  Requirements passing all labeled checks: 12/12 (100.0%).
+  Correct action and target: 12/12. Retained detail complete: 12/12.
+  Fully passing cases: 4/4. Usable cases: 4/4. Incorrect merges observed: 0. Incorrectly answered requests observed: 0.
+  All-attempt workflow: 488.7s; median attempt: 120.5s; recorded model loading: 0.1s.
+  Grouping checks: 0/0; separation checks: 7/7.
+  Semantic review: completed by an AI agent, not independent human validation; consult the review artifact for findings.
+  Local source run (not committed): desktop-build\demo3\consolidation-v12-transfer
+
+MATCHED SUCCESSFUL-CASE TIMING (first listed run is the comparison baseline)
+  Initial development baseline (V1) -> Final development regression (V12): 5 matched successful cases (DEV-01, DEV-03, DEV-04, DEV-05, DEV-06).
+    Including loading: 1284.4s -> 646.7s (-49.6%).
+    Excluding recorded model loading: 1258.4s -> 640.8s (-49.1%).
+    Failed cases: baseline 1, candidate 0; failures excluded from this paired comparison but included in each run's workload total.
+  Initial development baseline (V1) -> Original separate evaluation (V6): no controlled timing comparison (different scenario set; no matched successful cases).
+  Initial development baseline (V1) -> Final informed regression (V12): no controlled timing comparison (different scenario set; no matched successful cases).
+  Initial development baseline (V1) -> Separate transfer evaluation (V12): no controlled timing comparison (different scenario set; different frozen inputs; no matched successful cases).
+
+LIMITATIONS
+  - Synthetic scenarios with agent-authored labels. These are development/evaluation checks, not independently human-validated field results.
+  - Requirement-level action, target, retained-detail and exact-source checks are separate from whole-case, grouping and separation checks. A full requirement score does not mean every grouping passed. Software tests are not model-quality scores.
+  - Unanticipated unsupported assertions require semantic review; the automated benchmark does not fully score every possible factual error.
+  - These scenarios use supplied document text and frozen board snapshots. They do not measure scanned-document OCR accuracy or a multi-day field deployment.
+  - Failed runs remain in quality denominators and all-attempt timing. No incorrect merge observed in returned proposals does not establish a universal zero-error rate.
+  - Workflow times include model processing and recorded loading, but exclude human checking/correction. Cold/warm loading and incomplete runs affect direct speed comparisons.
+  - Comparing pipeline versions measures development changes. It does not by itself establish automatic learning or gains from retained reviewer lessons.
+  - Grouping cards is not a measured reduction in unnecessary RFIs. No matched human baseline, actual RFI-submission reduction, or human review-time improvement is established.
+  - Some original scenarios state scope relationships explicitly. The smaller reserved transfer set uses terser wording and fewer hints; all are synthetic, agent-authored cases.
+  - The original V6 separate evaluation had one closure-policy mismatch: a supported negative answer did not preserve unresolved inspection-status work. Review also found an unsupported supersession warning. Original failures remain preserved.
+  - Final V12 informed review found one ambiguously compressed absolute-elevation phrase and one conflict citation list that did not repeat its linked original task-source quotation. That original source remains accessible through the task. Passing the labeled checks does not mean every explanation or evidence display is perfect.
+  - Transfer review found two wording errors outside the labeled routing/detail checks: one reason calls different drawing identities different revisions although both carry revision D; one title says 'by 15:00' where the source says 'before 15:00'. Exact source text and full requirements preserve the correct information. The transfer set has no separate shared-group checks.
+
+The public JSON contains only allowlisted aggregate measurements. Source documents, expected labels, item text, model calls, diagnostics, credentials and local run paths are excluded.
+
+FINAL BUILD AND LIVE SOFTWARE ACCEPTANCE
+Frozen engine: rfi-consolidation-12; SHA256 86fd962ed48c45abe97ae07d402659a0b0ff0f4468bc11c34b8dde456be601e2.
+Software suite: 945 tests passed, zero failures or skips. These tests are separate from model-quality measurements.
+The real Worker/D1 integration test passed. Every selected final model output also received cloud-contract validation during AI-agent review.
+Live fictional workflow: the initial V9 batch and incremental V10 batch were reviewed and applied through the website. The saved board contains 3 distinct tasks in 1 group from 5 unchanged original source documents, including 2 duplicate links and both submitted deadlines.
+This was AI-agent software acceptance testing, not independent human accuracy, time, learning-gain or RFI-reduction evidence. Optional human outcome measurements were left unassessed.
+Later V12 evaluation uses the unchanged cloud result contract; final runtime and shutdown evidence are recorded separately in the work-status and cleanup artifacts.
+
+PRESERVED DEVELOPMENT HISTORY
+DEMO 3 — SANITIZED CONSOLIDATION RUN HISTORY
+Generated: 2026-11-03T06:38:41.145Z
+
+Scope: retained local consolidation-v* runs. This publication contains a sanitized metadata summary; original artifacts remain local and are not committed.
+Synthetic, agent-authored development/evaluation records. Semantic review is by AI agents, not independent human validation.
+Requirement checks, group/separation checks, and fully passing cases are different measures. Targeted runs are not full-suite results.
+Times below include every recorded model attempt, including failures, when call-log existence supports that scope. Human review/correction is excluded.
+Partial runs cover only their recorded attempts; preflight failures and replays receive no model latency. No human-superiority, field RFI reduction, or learning gain is established.
+No source input/reference files, model-call bodies, generated outputs, source snapshots, credentials, or connection files were read.
+
+consolidation-v1-dev
+  Version: rfi-consolidation-1 | model run | Synthetic development
+  Status: Completed selected run with failed attempts
+  Selected cases: 6; recorded: 6; usable: 5; recorded failed attempts: 1.
+  Selected IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Recorded IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Requirements: 15/18 all labeled checks; 15/18 correct action/target; 15/18 full retained detail.
+  Grouping: 2/2; separation: 6/8; fully passing cases: 5/6.
+  All-attempt model workflow: 1432.010 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 6.
+  Recorded exposure: Synthetic development
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v2-dev
+  Version: rfi-consolidation-2 | model run | Synthetic development
+  Status: Completed selected run with failed attempts
+  Selected cases: 6; recorded: 6; usable: 4; recorded failed attempts: 2.
+  Selected IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Recorded IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Requirements: 10/18 all labeled checks; 10/18 correct action/target; 10/18 full retained detail.
+  Grouping: 0/2; separation: 3/8; fully passing cases: 4/6.
+  All-attempt model workflow: 885.734 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 6.
+  Recorded exposure: Synthetic development
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v3-dev
+  Version: rfi-consolidation-3 | model run | Synthetic development
+  Status: Stopped partial run
+  Selected cases: 6; recorded: 1; usable: 1; recorded failed attempts: 0.
+  Selected IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Recorded IDs: DEV-01
+  Requirements: unscored all labeled checks; unscored correct action/target; unscored full retained detail.
+  Grouping: unscored; separation: unscored; fully passing cases: unscored.
+  All-attempt model workflow: 213.857 s. Scope: Recorded completed attempts only.
+  Semantic review: not recorded; not recorded; reviewed cases: not recorded.
+  Note: Any available time/counts cover recorded attempts only; unattempted selected cases have no invented results.
+  Note: A stopped-run marker is retained.
+  Note: No saved aggregate score; requirement/group/separation counts remain unscored.
+  Metadata: manifest.json, stopped-run.json
+
+consolidation-v4-dev
+  Version: rfi-consolidation-4 | model run | Synthetic development
+  Status: Completed selected run
+  Selected cases: 6; recorded: 6; usable: 6; recorded failed attempts: 0.
+  Selected IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Recorded IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Requirements: 18/18 all labeled checks; 18/18 correct action/target; 18/18 full retained detail.
+  Grouping: 2/2; separation: 8/8; fully passing cases: 6/6.
+  All-attempt model workflow: 806.926 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 6.
+  Recorded exposure: Synthetic development
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v5-targeted
+  Version: rfi-consolidation-5 | targeted model run | Targeted development
+  Status: Completed selected run with failed attempts
+  Selected cases: 1; recorded: 1; usable: 0; recorded failed attempts: 1.
+  Selected IDs: DEV-06
+  Recorded IDs: DEV-06
+  Requirements: 0/3 all labeled checks; 0/3 correct action/target; 0/3 full retained detail.
+  Grouping: 0/0; separation: 0/1; fully passing cases: 0/1.
+  All-attempt model workflow: 130.103 s. Scope: All selected completed attempts, including failures.
+  Semantic review: not recorded; not recorded; reviewed cases: not recorded.
+  Metadata: manifest.json, score.json
+
+consolidation-v6-dev
+  Version: rfi-consolidation-6 | model run | Synthetic development
+  Status: Completed selected run
+  Selected cases: 6; recorded: 6; usable: 6; recorded failed attempts: 0.
+  Selected IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Recorded IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Requirements: 18/18 all labeled checks; 18/18 correct action/target; 18/18 full retained detail.
+  Grouping: 2/2; separation: 8/8; fully passing cases: 6/6.
+  All-attempt model workflow: 785.124 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 6.
+  Recorded exposure: Synthetic development
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v6-holdout
+  Version: rfi-consolidation-6 | model run | Historical holdout at generation; later consumed during tuning
+  Status: Completed selected run
+  Selected cases: 6; recorded: 6; usable: 6; recorded failed attempts: 0.
+  Selected IDs: HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-05, HOLD-06
+  Recorded IDs: HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-05, HOLD-06
+  Requirements: 17/18 all labeled checks; 17/18 correct action/target; 18/18 full retained detail.
+  Grouping: 2/2; separation: 8/8; fully passing cases: 5/6.
+  All-attempt model workflow: 888.015 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 6.
+  Recorded exposure: Separate untouched synthetic evaluation
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v6-targeted
+  Version: rfi-consolidation-6 | targeted model run | Targeted development
+  Status: Completed selected run
+  Selected cases: 1; recorded: 1; usable: 1; recorded failed attempts: 0.
+  Selected IDs: DEV-06
+  Recorded IDs: DEV-06
+  Requirements: 3/3 all labeled checks; 3/3 correct action/target; 3/3 full retained detail.
+  Grouping: 0/0; separation: 1/1; fully passing cases: 1/1.
+  All-attempt model workflow: 130.644 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 1.
+  Recorded exposure: Synthetic development
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v7-closure-dev
+  Version: rfi-consolidation-7 | targeted model run | Targeted development boundary
+  Status: Completed selected run
+  Selected cases: 1; recorded: 1; usable: 1; recorded failed attempts: 0.
+  Selected IDs: CLOSURE-DEV-01
+  Recorded IDs: CLOSURE-DEV-01
+  Requirements: 2/2 all labeled checks; 2/2 correct action/target; 2/2 full retained detail.
+  Grouping: 0/0; separation: 1/1; fully passing cases: 1/1.
+  All-attempt model workflow: 79.390 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 1.
+  Recorded exposure: Development boundary check; not a held-out evaluation
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v7-dev
+  Version: rfi-consolidation-7 | model run | Synthetic development
+  Status: Completed selected run
+  Selected cases: 6; recorded: 6; usable: 6; recorded failed attempts: 0.
+  Selected IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Recorded IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Requirements: 17/18 all labeled checks; 18/18 correct action/target; 18/18 full retained detail.
+  Grouping: 2/2; separation: 8/8; fully passing cases: 5/6.
+  All-attempt model workflow: 672.196 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 6.
+  Recorded exposure: Development regression after original holdout-informed changes
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v7-informed-targeted
+  Version: rfi-consolidation-7 | targeted model run | Informed development (former holdout)
+  Status: Completed selected run
+  Selected cases: 2; recorded: 2; usable: 2; recorded failed attempts: 0.
+  Selected IDs: HOLD-03, HOLD-04
+  Recorded IDs: HOLD-03, HOLD-04
+  Requirements: 4/4 all labeled checks; 4/4 correct action/target; 4/4 full retained detail.
+  Grouping: 0/0; separation: 0/0; fully passing cases: 2/2.
+  All-attempt model workflow: 231.714 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 2.
+  Recorded exposure: Informed development after original holdout findings were used for tuning
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v8-dev
+  Version: rfi-consolidation-8 | model run | Synthetic development
+  Status: Completed selected run
+  Selected cases: 6; recorded: 6; usable: 6; recorded failed attempts: 0.
+  Selected IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Recorded IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Requirements: 18/18 all labeled checks; 18/18 correct action/target; 18/18 full retained detail.
+  Grouping: 2/2; separation: 8/8; fully passing cases: 6/6.
+  All-attempt model workflow: 869.805 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 6.
+  Recorded exposure: Development regression after original holdout-informed changes
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v8-informed-regression
+  Version: rfi-consolidation-8 | model run | Informed development (former holdout)
+  Status: Completed selected run
+  Selected cases: 6; recorded: 6; usable: 6; recorded failed attempts: 0.
+  Selected IDs: HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-05, HOLD-06
+  Recorded IDs: HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-05, HOLD-06
+  Requirements: 16/18 all labeled checks; 16/18 correct action/target; 18/18 full retained detail.
+  Grouping: 2/2; separation: 8/8; fully passing cases: 4/6.
+  All-attempt model workflow: 862.908 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 6.
+  Recorded exposure: Informed development (former holdout); prior outcomes used for tuning
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v8-targeted
+  Version: unrecorded (directory label v8) | preflight only | Synthetic development
+  Status: Preflight failed; no model generation
+  Selected cases: unrecorded; recorded: 0; usable: not applicable; recorded failed attempts: not applicable.
+  Selected IDs: not recorded
+  Recorded IDs: none
+  Requirements: unscored all labeled checks; unscored correct action/target; unscored full retained detail.
+  Grouping: unscored; separation: unscored; fully passing cases: unscored.
+  All-attempt model workflow: not applicable / not established. Scope: Not applicable: no model generation.
+  Semantic review: not recorded; not recorded; reviewed cases: not recorded.
+  Note: No model score or elapsed model-workflow time is assigned to this preflight failure.
+  Note: No saved aggregate score; requirement/group/separation counts remain unscored.
+  Metadata: preflight-failure.json
+
+consolidation-v8-targeted-local
+  Version: rfi-consolidation-8 | targeted model run | Targeted development
+  Status: Completed selected run
+  Selected cases: 1; recorded: 1; usable: 1; recorded failed attempts: 0.
+  Selected IDs: DEV-04
+  Recorded IDs: DEV-04
+  Requirements: 2/2 all labeled checks; 2/2 correct action/target; 2/2 full retained detail.
+  Grouping: 0/0; separation: 0/0; fully passing cases: 1/1.
+  All-attempt model workflow: 141.816 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 1.
+  Recorded exposure: Targeted synthetic development regression
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v8-targeted-ready
+  Version: unrecorded (directory label v8) | preflight only | Synthetic development
+  Status: Preflight failed; no model generation
+  Selected cases: unrecorded; recorded: 0; usable: not applicable; recorded failed attempts: not applicable.
+  Selected IDs: not recorded
+  Recorded IDs: none
+  Requirements: unscored all labeled checks; unscored correct action/target; unscored full retained detail.
+  Grouping: unscored; separation: unscored; fully passing cases: unscored.
+  All-attempt model workflow: not applicable / not established. Scope: Not applicable: no model generation.
+  Semantic review: not recorded; not recorded; reviewed cases: not recorded.
+  Note: No model score or elapsed model-workflow time is assigned to this preflight failure.
+  Note: No saved aggregate score; requirement/group/separation counts remain unscored.
+  Metadata: preflight-failure.json
+
+consolidation-v9-informed-regression
+  Version: rfi-consolidation-9 | model run | Informed development (former holdout)
+  Status: Completed selected run
+  Selected cases: 6; recorded: 6; usable: 6; recorded failed attempts: 0.
+  Selected IDs: HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-05, HOLD-06
+  Recorded IDs: HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-05, HOLD-06
+  Requirements: 17/18 all labeled checks; 17/18 correct action/target; 18/18 full retained detail.
+  Grouping: 2/2; separation: 8/8; fully passing cases: 5/6.
+  All-attempt model workflow: 848.775 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 6.
+  Recorded exposure: Informed development (former holdout); not final selected engine
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v9-replay-audit
+  Version: rfi-consolidation-9 | nonfresh replay | Saved-response replay; no fresh model generation
+  Status: Saved-response replay complete
+  Selected cases: 12; recorded: 12; usable: 12; recorded failed attempts: not applicable.
+  Selected IDs: consolidation-v8-dev--DEV-01, consolidation-v8-dev--DEV-02, consolidation-v8-dev--DEV-03, consolidation-v8-dev--DEV-04, consolidation-v8-dev--DEV-05, consolidation-v8-dev--DEV-06, consolidation-v8-informed-regression--HOLD-01, consolidation-v8-informed-regression--HOLD-02, consolidation-v8-informed-regression--HOLD-03, consolidation-v8-informed-regression--HOLD-04, consolidation-v8-informed-regression--HOLD-05, consolidation-v8-informed-regression--HOLD-06
+  Recorded IDs: consolidation-v8-dev--DEV-01, consolidation-v8-dev--DEV-02, consolidation-v8-dev--DEV-03, consolidation-v8-dev--DEV-04, consolidation-v8-dev--DEV-05, consolidation-v8-dev--DEV-06, consolidation-v8-informed-regression--HOLD-01, consolidation-v8-informed-regression--HOLD-02, consolidation-v8-informed-regression--HOLD-03, consolidation-v8-informed-regression--HOLD-04, consolidation-v8-informed-regression--HOLD-05, consolidation-v8-informed-regression--HOLD-06
+  Requirements: 36/36 all labeled checks; 36/36 correct action/target; 36/36 full retained detail.
+  Grouping: 4/4; separation: 16/16; fully passing cases: 12/12.
+  All-attempt model workflow: not applicable / not established. Scope: Not applicable: saved responses.
+  Semantic review: complete; AI agent; reviewed cases: 12.
+  Note: Counts check saved responses through candidate code; zero fresh model calls. Replay wall time is not inference latency.
+  Metadata: replay-manifest.json, replay-score.json, replay-semantic-review.json
+
+consolidation-v10-closure-dev
+  Version: rfi-consolidation-10 | targeted model run | Targeted development boundary
+  Status: Completed selected run
+  Selected cases: 1; recorded: 1; usable: 1; recorded failed attempts: 0.
+  Selected IDs: CLOSURE-DEV-01
+  Recorded IDs: CLOSURE-DEV-01
+  Requirements: 2/2 all labeled checks; 2/2 correct action/target; 2/2 full retained detail.
+  Grouping: 0/0; separation: 1/1; fully passing cases: 1/1.
+  All-attempt model workflow: 91.873 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 1.
+  Recorded exposure: Fresh generation on explicit development closure boundary
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v10-informed-regression
+  Version: rfi-consolidation-10 | model run | Informed development (former holdout)
+  Status: Completed selected run
+  Selected cases: 6; recorded: 6; usable: 6; recorded failed attempts: 0.
+  Selected IDs: HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-05, HOLD-06
+  Recorded IDs: HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-05, HOLD-06
+  Requirements: 17/18 all labeled checks; 17/18 correct action/target; 18/18 full retained detail.
+  Grouping: 1/2; separation: 8/8; fully passing cases: 4/6.
+  All-attempt model workflow: 796.377 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 6.
+  Recorded exposure: Informed development (former holdout); not final selected engine
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v10-replay-audit
+  Version: rfi-consolidation-10 | nonfresh replay | Saved-response replay; no fresh model generation
+  Status: Saved-response replay complete
+  Selected cases: 12; recorded: 12; usable: 12; recorded failed attempts: not applicable.
+  Selected IDs: consolidation-v8-dev--DEV-01, consolidation-v8-dev--DEV-02, consolidation-v8-dev--DEV-03, consolidation-v8-dev--DEV-04, consolidation-v8-dev--DEV-05, consolidation-v8-dev--DEV-06, consolidation-v9-informed-regression--HOLD-01, consolidation-v9-informed-regression--HOLD-02, consolidation-v9-informed-regression--HOLD-03, consolidation-v9-informed-regression--HOLD-04, consolidation-v9-informed-regression--HOLD-05, consolidation-v9-informed-regression--HOLD-06
+  Recorded IDs: consolidation-v8-dev--DEV-01, consolidation-v8-dev--DEV-02, consolidation-v8-dev--DEV-03, consolidation-v8-dev--DEV-04, consolidation-v8-dev--DEV-05, consolidation-v8-dev--DEV-06, consolidation-v9-informed-regression--HOLD-01, consolidation-v9-informed-regression--HOLD-02, consolidation-v9-informed-regression--HOLD-03, consolidation-v9-informed-regression--HOLD-04, consolidation-v9-informed-regression--HOLD-05, consolidation-v9-informed-regression--HOLD-06
+  Requirements: 36/36 all labeled checks; 36/36 correct action/target; 36/36 full retained detail.
+  Grouping: 4/4; separation: 16/16; fully passing cases: 12/12.
+  All-attempt model workflow: not applicable / not established. Scope: Not applicable: saved responses.
+  Semantic review: complete; AI agent; reviewed cases: 12.
+  Note: Counts check saved responses through candidate code; zero fresh model calls. Replay wall time is not inference latency.
+  Metadata: replay-manifest.json, replay-score.json, replay-semantic-review.json
+
+consolidation-v11-dev
+  Version: rfi-consolidation-11 | model run | Synthetic development
+  Status: Completed selected run
+  Selected cases: 6; recorded: 6; usable: 6; recorded failed attempts: 0.
+  Selected IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Recorded IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Requirements: 18/18 all labeled checks; 18/18 correct action/target; 18/18 full retained detail.
+  Grouping: 1/2; separation: 8/8; fully passing cases: 5/6.
+  All-attempt model workflow: 841.599 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 6.
+  Recorded exposure: Development; not final selected engine
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v11-informed-regression
+  Version: rfi-consolidation-11 | model run | Informed development (former holdout)
+  Status: Completed selected run
+  Selected cases: 6; recorded: 6; usable: 6; recorded failed attempts: 0.
+  Selected IDs: HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-05, HOLD-06
+  Recorded IDs: HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-05, HOLD-06
+  Requirements: 18/18 all labeled checks; 18/18 correct action/target; 18/18 full retained detail.
+  Grouping: 2/2; separation: 8/8; fully passing cases: 6/6.
+  All-attempt model workflow: 907.222 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 6.
+  Recorded exposure: Informed development (former holdout)
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v12-dev
+  Version: rfi-consolidation-12 | model run | Synthetic development
+  Status: Completed selected run
+  Selected cases: 6; recorded: 6; usable: 6; recorded failed attempts: 0.
+  Selected IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Recorded IDs: DEV-01, DEV-02, DEV-03, DEV-04, DEV-05, DEV-06
+  Requirements: 18/18 all labeled checks; 18/18 correct action/target; 18/18 full retained detail.
+  Grouping: 2/2; separation: 8/8; fully passing cases: 6/6.
+  All-attempt model workflow: 792.359 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 6.
+  Recorded exposure: Development
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v12-informed-regression
+  Version: rfi-consolidation-12 | model run | Informed development (former holdout)
+  Status: Completed selected run
+  Selected cases: 6; recorded: 6; usable: 6; recorded failed attempts: 0.
+  Selected IDs: HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-05, HOLD-06
+  Recorded IDs: HOLD-01, HOLD-02, HOLD-03, HOLD-04, HOLD-05, HOLD-06
+  Requirements: 18/18 all labeled checks; 18/18 correct action/target; 18/18 full retained detail.
+  Grouping: 2/2; separation: 8/8; fully passing cases: 6/6.
+  All-attempt model workflow: 751.460 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 6.
+  Recorded exposure: Informed development (former holdout)
+  Metadata: manifest.json, score.json, semantic-review.json
+
+consolidation-v12-transfer
+  Version: rfi-consolidation-12 | model run | Synthetic transfer; retain the recorded exposure statement
+  Status: Completed selected run
+  Selected cases: 4; recorded: 4; usable: 4; recorded failed attempts: 0.
+  Selected IDs: TRANSFER-01, TRANSFER-02, TRANSFER-03, TRANSFER-04
+  Recorded IDs: TRANSFER-01, TRANSFER-02, TRANSFER-03, TRANSFER-04
+  Requirements: 12/12 all labeled checks; 12/12 correct action/target; 12/12 full retained detail.
+  Grouping: 0/0; separation: 7/7; fully passing cases: 4/4.
+  All-attempt model workflow: 488.674 s. Scope: All selected completed attempts, including failures.
+  Semantic review: complete; AI agent; reviewed cases: 4.
+  Recorded exposure: Separate synthetic transfer evaluation; untouched at generation
+  Metadata: manifest.json, score.json, semantic-review.json
+
+SELF-CONSISTENCY
+  Directories indexed: 26. Source metadata files checked: 72.
+  Result: PASS.
+  Checks: available score counts recomputed; recorded/selected/scored identities and success counts compared; review coverage/version checked where supplied; metadata hashes unchanged during generation.
+
+The original local audit workspace can regenerate this history with its
+private helper (not shipped with a clone or needed to run the application):
+  node desktop-build/demo3/build-consolidation-history.cjs

@@ -1,0 +1,65 @@
+DEMO 3 — PROPOSED EVALUATION CHECKLIST
+Future protocol; not a completed experiment or measured improvement.
+
+[ ] 1. Freeze the experiment before collecting results.
+Keep the RTX 5080 PC, Qwen 3.5 27B model/digest, quantization, runtime, sampling,
+engine/prompts and timing boundaries fixed. Record case count, dates, rubric
+and acceptance rules. Give both arms identical starting board snapshots and
+inputs; neither inherits the other's changes. Preserve hashes and IDs.
+
+[ ] 2. Obtain independent human labels and keep them hidden.
+Have someone who did not tune the system label new permitted/synthetic cases
+before seeing outputs; use a second person to resolve ambiguity. Label every
+requirement, duplicate, distinct scope, escalation, answerability decision and
+applicable approved/current source. Hide frozen labels from inference, lessons
+and participants. Include changed deadlines, different locations, conflicting
+records and obsolete approvals. Previously tuned cases are not untouched tests.
+
+[ ] 3. Run a matched manual-versus-assisted comparison.
+Balance participants and case order; avoid one person solving a case twice.
+Both arms preserve requirements and make final simulated submit/do-not-submit
+RFI decisions from equivalent records. Assisted users review every proposal
+and record corrections. A separate scorer assesses anonymized outputs against
+the frozen labels. Retain failures and unsuccessful attempts.
+
+[ ] 4. Measure actual decisions, quality and complete workflow time.
+Define one submission consistently. Count avoidable RFIs: questions already
+answerable from authorized records available at that scenario time. Calculate:
+  100 x (manual avoidable RFIs - assisted avoidable RFIs) / manual avoidable RFIs
+Report raw counts and case denominators; zero manual avoidable RFIs makes the
+percentage undefined. Thesis target: at least 30% reduction. Duplicate links
+and shared groups are separate workflow counts, not avoided RFI submissions.
+Score unsupported answers, incorrect closures, suppressed necessary RFIs,
+merges, omissions, missed duplicates, retained qualifiers and exact citations.
+Require zero incorrect closures/suppressed necessary RFIs and answer accuracy
+at least equal to manual review; speed cannot offset these failures.
+Time preparation, search, processing/waiting, checking and correction through
+the final decision. Separate active human effort, end-to-end elapsed time and
+model/load time. Website reviewSeconds/manualSeconds alone are incomplete.
+Record assessed quality and raw manual/assisted unnecessary-RFI counts in the
+review metrics; unassessed is not zero. Targets of 25% less total time and 20%
+fewer missed issues, without more false alarms, are provisional team targets.
+
+[ ] 5. Test retained lessons as a separate controlled comparison.
+Propose a general lesson from reviewed development failures; a human approves
+and publishes it. Compare the previous release (or none) with the candidate on
+new hidden-label cases. Freeze code, prompts, model, inputs, board and rubric;
+vary only lessons. Save release ID/version, approval and text hash. Exclude
+answer keys and case-specific facts. Accept only a preselected improvement
+without quality regressions; otherwise reject and retain the failed result.
+Retire evaluation cases from untouched use once they inform tuning. Saved
+corrections alone are not learning; model weights are not retrained.
+
+[ ] 6. Demonstrate persistence through meaningful sessions over several days.
+Proposed schedule: three actual days of new batches, revisions and corrections;
+log dates, workload and outcomes. Exact instructor duration is unconfirmed.
+Manually open the PC app and press On; press Off and close it afterward. No
+automatic startup/unattended processing. Verify work queues while Off and
+sources, tasks, decisions, lesson versions and history persist on reopening.
+Uptime and repeated known examples do not demonstrate improvement.
+
+Until these tests occur, make no independent-validation, learning-gain or
+better-than-human claim. Synthetic evaluation is not field validation; the
+thesis remains partly supported pending the direct RFI comparison.
+Basis: November 2 source review and current consolidation workflow/metrics.
+This is a proposed protocol, not an official rubric or completed result.

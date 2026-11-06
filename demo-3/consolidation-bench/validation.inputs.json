@@ -1,0 +1,152 @@
+{
+  "version": "consolidation-bench-1",
+  "cases": [
+    {
+      "id": "VALID-REPLAY",
+      "description": "Identical document IDs and content are reusable, not silently replaced.",
+      "payload": {
+        "mode": "consolidation",
+        "documents": [
+          {
+            "id": "REPLAY-REQ",
+            "title": "Room 12 opening",
+            "kind": "request",
+            "revision": "1",
+            "issuedAt": "2026-11-01",
+            "approval": "draft",
+            "current": true,
+            "text": "For Room 12 opening O-2, confirm the required lintel bearing length."
+          }
+        ],
+        "board": {
+          "version": 2,
+          "tasks": [
+            {
+              "id": "TASK-REPLAY",
+              "type": "task",
+              "title": "Room 12 lintel bearing",
+              "requirement": "For Room 12 opening O-2, confirm the required lintel bearing length.",
+              "location": "",
+              "discipline": "",
+              "revision": "1",
+              "parentId": null,
+              "status": "open",
+              "sources": [
+                {
+                  "jobId": "historical-batch",
+                  "itemId": "REPLAY-REQ-item",
+                  "documentId": "REPLAY-REQ",
+                  "quote": "For Room 12 opening O-2, confirm the required lintel bearing length.",
+                  "relationship": "origin"
+                }
+              ],
+              "answer": "",
+              "resolutionCitations": [],
+              "createdAt": "2026-11-01T12:00:00Z",
+              "updatedAt": "2026-11-01T12:00:00Z"
+            }
+          ],
+          "documents": [
+            {
+              "id": "REPLAY-REQ",
+              "title": "Room 12 opening",
+              "kind": "request",
+              "revision": "1",
+              "issuedAt": "2026-11-01",
+              "approval": "draft",
+              "current": true,
+              "text": "For Room 12 opening O-2, confirm the required lintel bearing length."
+            }
+          ]
+        }
+      },
+      "expect": "accept"
+    },
+    {
+      "id": "VALID-ID-COLLISION",
+      "description": "An existing document ID cannot carry changed text.",
+      "payload": {
+        "mode": "consolidation",
+        "documents": [
+          {
+            "id": "REPLAY-REQ",
+            "title": "Room 12 opening",
+            "kind": "request",
+            "revision": "1",
+            "issuedAt": "2026-11-01",
+            "approval": "draft",
+            "current": true,
+            "text": "For Room 12 opening O-2, confirm a changed steel section instead."
+          }
+        ],
+        "board": {
+          "version": 2,
+          "tasks": [
+            {
+              "id": "TASK-REPLAY",
+              "type": "task",
+              "title": "Room 12 lintel bearing",
+              "requirement": "For Room 12 opening O-2, confirm the required lintel bearing length.",
+              "location": "",
+              "discipline": "",
+              "revision": "1",
+              "parentId": null,
+              "status": "open",
+              "sources": [
+                {
+                  "jobId": "historical-batch",
+                  "itemId": "REPLAY-REQ-item",
+                  "documentId": "REPLAY-REQ",
+                  "quote": "For Room 12 opening O-2, confirm the required lintel bearing length.",
+                  "relationship": "origin"
+                }
+              ],
+              "answer": "",
+              "resolutionCitations": [],
+              "createdAt": "2026-11-01T12:00:00Z",
+              "updatedAt": "2026-11-01T12:00:00Z"
+            }
+          ],
+          "documents": [
+            {
+              "id": "REPLAY-REQ",
+              "title": "Room 12 opening",
+              "kind": "request",
+              "revision": "1",
+              "issuedAt": "2026-11-01",
+              "approval": "draft",
+              "current": true,
+              "text": "For Room 12 opening O-2, confirm the required lintel bearing length."
+            }
+          ]
+        }
+      },
+      "expect": "reject"
+    },
+    {
+      "id": "VALID-MISSING-REQUEST",
+      "description": "Reference-only input has no request to consolidate.",
+      "payload": {
+        "mode": "consolidation",
+        "documents": [
+          {
+            "id": "ONLY-REF",
+            "title": "Reference",
+            "kind": "reference",
+            "revision": "1",
+            "issuedAt": "2026-11-01",
+            "approval": "approved",
+            "current": true,
+            "text": "Approved detail: the sill is 900 mm above finished floor."
+          }
+        ],
+        "board": {
+          "version": 0,
+          "tasks": [],
+          "documents": []
+        }
+      },
+      "expect": "reject"
+    }
+  ]
+}

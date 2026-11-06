@@ -1,0 +1,66 @@
+DEMO 3 — QUICK START
+INFO 492 · Team 2 · RFI consolidation and task coordination
+
+Website:
+https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/
+
+Measured results and limitations: consolidation-results.txt in this directory.
+New clone/PC setup: setup.txt in this directory.
+That report preserves intermediate failures and distinguishes synthetic scores
+from independent human validation. It does not certify a remote deployment.
+
+1. Open the desktop app when you want to process work
+Use the Demo 3 desktop shortcut, or Open Demo 3.cmd at the repository root.
+Each launch starts Off. Select Turn ON to
+start local model processing and collect queued batches. Select Turn OFF when
+finished, or close the app; it does not continue as a hidden background runner.
+Check the app itself for the current On/Off state. The website can only show
+the PC's last check-in, which may remain visible briefly after it turns Off.
+
+The website, queue, reviewed task board, and history remain online while the
+PC app is Off. Authorized users can add work; model processing waits for On.
+Opening the website does not switch on your PC or start the model.
+
+2. Add and check the source documents
+On the website, connect with your project access key if requested, then select
+Add documents. Upload text-based PDF, DOCX, or TXT files, paste text, or import
+a prepared JSON batch. Preview the extracted text before submitting. Scanned
+or image-only PDFs need text extraction elsewhere; this demo does not do OCR.
+
+Verify each document's request/reference role, date, revision, approval, and
+current status. Imported files start unverified; a filename cannot establish
+approval. Confirm the extraction review when requested, then queue the batch.
+The fictional example and synthetic demo records are examples, not approved
+project instructions. Use real project records only when authorized to do so.
+
+3. Review the proposed changes, then apply them
+Open the completed batch in Processing & review. Check every requirement,
+source passage, suggested grouping, duplicate link, answer, and explanation.
+Accept each suggestion or correct/reject it with a reason. Apply reviewed
+changes when the review is complete. Proposals alone never update the board.
+
+Later batches are compared with the existing reviewed work. Related but
+distinct requirements remain separate; essential duplicates retain their
+original sources and added details. Already tracked does not mean answered.
+An answer needs exact evidence from a current approved reference record.
+
+4. Keep the record correct
+Open a task to inspect sources, move it, split out a requirement, or review its
+answer. Source records retain original text and allow reviewed status changes.
+Removing authority from answer evidence reopens affected work. Change history
+explains recorded changes. Undo is available for the latest eligible change;
+it restores the prior arrangement without erasing originals or history.
+
+5. Retain useful corrections deliberately
+A saved human review updates the project record. To reuse a general lesson,
+select Propose a lesson from this review. Saving that proposal is a separate
+step from the owner's Publish selected lessons action in Reviewed lessons.
+Eligible later runs receive the published guidance; baseline runs use none.
+This adds instructions, not model-weight training or passive learning from
+visits. No measured learning gain has been established yet.
+
+Cost and scope
+This is the separate Capstone project. It uses local PC inference and the
+configured free Cloudflare services, with no paid inference or paid fallback.
+A free-service limit pauses work instead of authorizing an upgrade. It does
+not use other projects. Nothing here submits or closes an official RFI.

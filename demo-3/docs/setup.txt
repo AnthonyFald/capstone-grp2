@@ -1,0 +1,64 @@
+DEMO 3 — CLONE AND WINDOWS APP SETUP
+
+The online website is already deployed. Cloning this repository does not
+create cloud resources, copy access keys, pair a PC, or start model processing.
+The Windows app and its source are separate from the older audio-only desktop
+release. Demo 3 currently requires Windows x64; no Demo 3 Mac app is supplied.
+
+Prerequisites
+- Node.js 22 or later available as node.exe on PATH. The repository launcher
+  uses this installation; the original workspace launcher remains supported.
+- Windows' built-in .NET Framework desktop compiler and Windows Forms.
+- An intentionally installed, standalone Ollama Windows runtime and a local
+  qwen3.5:27b model. They are large local prerequisites, not Git contents.
+  The measured setup used Ollama 0.40.8, Q4_K_M, RTX 5080 16 GB with partial
+  CPU offload; changing runtime/model/hardware changes the comparison setup.
+- A one-time pairing code from the owner of the Capstone website. Each PC
+  stores its own scoped runner credential locally; never share owner keys.
+
+Directory layout (the clone may have any folder name)
+  chosen-parent/
+    capstone-grp2/                 repository clone
+      Open Demo 3.cmd
+      Launch-Demo3.ps1
+      demo-3/
+    .runtime/
+      ollama/ollama.exe            standalone runtime with its dependencies
+      models/                     Ollama model storage containing qwen3.5:27b
+
+The host currently uses this sibling .runtime location. It does not use a
+machine-wide Ollama service or adopt an existing listener. Populate it from
+an authorized local runtime/model installation before pressing On. No runtime
+or model download is initiated by the launcher. Do not configure a startup
+service to make this app work. Free local model processing needs sufficient
+RAM, storage and compatible hardware; the 27B model is not a small download.
+
+Open Open Demo 3.cmd from the repository root. It builds the app from source
+when needed into ignored desktop-build/demo3/, protects .capstone-local/ for
+the Windows user, and opens the visible app Off. Opening it uses no model/GPU
+inference and does not poll the queue. It never launches at sign-in.
+
+For a new PC, create a one-time code in the website's Connection & access
+section. Enter the Capstone website and code in the app, then Save pairing.
+Pairing is an explicit network action and leaves the app Off. Select Turn ON
+only for an intended demo session; Turn OFF or closing stops owned helpers.
+If another local demo occupies the required ports, this app refuses to start
+until that session is deliberately closed. It does not terminate other apps.
+
+Keep .capstone-local/, desktop-build/, runtime/model files, connection exports,
+access keys, uploaded private documents and local run evidence out of Git.
+Use the synthetic fixtures for public examples. A clone needs new pairing,
+not a copied connection.json. Do not reuse another project's cloud account.
+
+Tests and reproducibility
+The README lists software checks that do not start a model. The Windows path
+test compiles a console harness and verifies legacy/new launcher paths without
+opening the app. Model-quality reruns are separate, explicit local operations
+described in consolidation-bench/README.txt. Reference labels never go into
+inference. Generated raw run evidence stays local; public results and the
+sanitized historical summary are in this docs directory.
+
+Cloud deployment requires separately authorized Capstone-only credentials.
+This setup guide does not enable paid services or deploy anything. Read the
+cloud README before a deliberately authorized deployment; existing account
+isolation and verified-Free checks remain in effect.

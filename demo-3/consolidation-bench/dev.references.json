@@ -1,0 +1,479 @@
+{
+  "version": "consolidation-bench-1",
+  "split": "dev",
+  "synthetic": true,
+  "independentHumanValidation": false,
+  "labelOrigin": "Agent-authored synthetic intended outcomes, frozen before inference. Holdout cases are separate scenarios and wording, not independently human-labeled field data.",
+  "cases": [
+    {
+      "id": "DEV-01",
+      "items": [
+        {
+          "id": "d01-duct",
+          "sourceDocumentId": "D01-R1",
+          "actions": [
+            "create_task",
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "location",
+              "patterns": [
+                "grid C5",
+                "C5"
+              ]
+            },
+            {
+              "name": "clearance",
+              "patterns": [
+                "220\\s*(?:mm|millimet)"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        },
+        {
+          "id": "d01-repeat",
+          "sourceDocumentId": "D01-R2",
+          "actions": [
+            "link_duplicate"
+          ],
+          "requiredFacts": [
+            {
+              "name": "new deadline",
+              "patterns": [
+                "November 6",
+                "6 November",
+                "2026-11-06",
+                "Nov[.]? 6"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "duplicateOf": "d01-duct"
+        },
+        {
+          "id": "d01-panel",
+          "sourceDocumentId": "D01-R3",
+          "actions": [
+            "create_task",
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "maintenance access",
+              "patterns": [
+                "maintenance",
+                "access.zone"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        },
+        {
+          "id": "d01-paint",
+          "sourceDocumentId": "D01-R4",
+          "actions": [
+            "create_task"
+          ],
+          "requiredFacts": [
+            {
+              "name": "wall identity",
+              "patterns": [
+                "SY-2"
+              ]
+            },
+            {
+              "name": "finish",
+              "patterns": [
+                "paint",
+                "finish"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        }
+      ],
+      "groupSets": [
+        [
+          "d01-duct",
+          "d01-panel"
+        ]
+      ],
+      "differentTasks": [
+        [
+          "d01-duct",
+          "d01-panel"
+        ],
+        [
+          "d01-duct",
+          "d01-paint"
+        ]
+      ]
+    },
+    {
+      "id": "DEV-02",
+      "items": [
+        {
+          "id": "d02-inspect",
+          "sourceDocumentId": "D02-R1",
+          "actions": [
+            "link_duplicate"
+          ],
+          "requiredFacts": [
+            {
+              "name": "still unresolved",
+              "patterns": [
+                "inspection",
+                "release"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "targetTaskId": "TASK-N4-INSPECTION"
+        },
+        {
+          "id": "d02-south",
+          "sourceDocumentId": "D02-R2",
+          "actions": [
+            "create_task"
+          ],
+          "requiredFacts": [
+            {
+              "name": "different location",
+              "patterns": [
+                "South Bay S4",
+                "South Bay",
+                "S4"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        },
+        {
+          "id": "d02-moisture",
+          "sourceDocumentId": "D02-R3",
+          "actions": [
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "test method",
+              "patterns": [
+                "moisture.test",
+                "test.*method"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "targetTaskId": "GROUP-N4"
+        }
+      ],
+      "groupSets": [],
+      "differentTasks": [
+        [
+          "d02-inspect",
+          "d02-south"
+        ],
+        [
+          "d02-inspect",
+          "d02-moisture"
+        ]
+      ]
+    },
+    {
+      "id": "DEV-03",
+      "items": [
+        {
+          "id": "d03-curing",
+          "sourceDocumentId": "D03-R1",
+          "actions": [
+            "already_answered"
+          ],
+          "requiredFacts": [],
+          "requiredCitationDocumentIds": [
+            "D03-SPEC-CURRENT"
+          ],
+          "answerFacts": [
+            {
+              "name": "seven days",
+              "patterns": [
+                "7 days",
+                "seven days"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "d03-release",
+          "sourceDocumentId": "D03-R2",
+          "actions": [
+            "create_task"
+          ],
+          "requiredFacts": [
+            {
+              "name": "release authority",
+              "patterns": [
+                "authoriz",
+                "release"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        }
+      ],
+      "groupSets": [],
+      "differentTasks": []
+    },
+    {
+      "id": "DEV-04",
+      "items": [
+        {
+          "id": "d04-gate",
+          "sourceDocumentId": "D04-R1",
+          "actions": [
+            "flag_conflict"
+          ],
+          "requiredFacts": [
+            {
+              "name": "opening time conflict",
+              "patterns": [
+                "time",
+                "08:00",
+                "09:00"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [
+            "D04-ACCESS-A",
+            "D04-ACCESS-B"
+          ],
+          "targetTaskId": "TASK-WEST-GATE"
+        },
+        {
+          "id": "d04-mix",
+          "sourceDocumentId": "D04-R2",
+          "actions": [
+            "create_task"
+          ],
+          "requiredFacts": [
+            {
+              "name": "mix substitution",
+              "patterns": [
+                "30",
+                "40",
+                "substitut"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        }
+      ],
+      "groupSets": [],
+      "differentTasks": []
+    },
+    {
+      "id": "DEV-05",
+      "items": [
+        {
+          "id": "d05-anchor",
+          "sourceDocumentId": "D05-R1",
+          "actions": [
+            "create_task",
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "embedment",
+              "patterns": [
+                "anchor",
+                "embedment"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "sourceAnchor": "anchor embedment depth"
+        },
+        {
+          "id": "d05-invert",
+          "sourceDocumentId": "D05-R1",
+          "actions": [
+            "create_task",
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "invert",
+              "patterns": [
+                "invert",
+                "drain"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "sourceAnchor": "drain invert elevation"
+        },
+        {
+          "id": "d05-certificate",
+          "sourceDocumentId": "D05-R1",
+          "actions": [
+            "create_task",
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "certificate",
+              "patterns": [
+                "certificate"
+              ]
+            },
+            {
+              "name": "assignment",
+              "patterns": [
+                "owner",
+                "responsib"
+              ]
+            },
+            {
+              "name": "deadline requested",
+              "patterns": [
+                "due date",
+                "deadline"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "sourceAnchor": "owner and due date"
+        },
+        {
+          "id": "d05-door",
+          "sourceDocumentId": "D05-R2",
+          "actions": [
+            "create_task"
+          ],
+          "requiredFacts": [
+            {
+              "name": "door identity",
+              "patterns": [
+                "LD-3"
+              ]
+            },
+            {
+              "name": "clear width",
+              "patterns": [
+                "width",
+                "clear opening"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "forbiddenAnswerPatterns": [
+            "1000",
+            "1,000"
+          ]
+        }
+      ],
+      "groupSets": [
+        [
+          "d05-anchor",
+          "d05-invert",
+          "d05-certificate"
+        ]
+      ],
+      "differentTasks": [
+        [
+          "d05-anchor",
+          "d05-invert"
+        ],
+        [
+          "d05-anchor",
+          "d05-certificate"
+        ],
+        [
+          "d05-invert",
+          "d05-certificate"
+        ]
+      ]
+    },
+    {
+      "id": "DEV-06",
+      "items": [
+        {
+          "id": "d06-ambiguous",
+          "sourceDocumentId": "D06-R1",
+          "actions": [
+            "needs_review"
+          ],
+          "requiredFacts": [
+            {
+              "name": "missing identity",
+              "patterns": [
+                "wing",
+                "location",
+                "joint",
+                "identify"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        },
+        {
+          "id": "d06-east",
+          "sourceDocumentId": "D06-R2",
+          "actions": [
+            "link_duplicate"
+          ],
+          "requiredFacts": [
+            {
+              "name": "deadline",
+              "patterns": [
+                "November 9",
+                "9 November",
+                "2026-11-09",
+                "Nov[.]? 9"
+              ]
+            },
+            {
+              "name": "platform impact",
+              "patterns": [
+                "platform"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "targetTaskId": "TASK-EJ1"
+        },
+        {
+          "id": "d06-west",
+          "sourceDocumentId": "D06-R3",
+          "actions": [
+            "create_task"
+          ],
+          "requiredFacts": [
+            {
+              "name": "wing",
+              "patterns": [
+                "West Wing"
+              ]
+            },
+            {
+              "name": "level",
+              "patterns": [
+                "level 2",
+                "second level"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        }
+      ],
+      "groupSets": [],
+      "differentTasks": [
+        [
+          "d06-east",
+          "d06-west"
+        ]
+      ]
+    }
+  ]
+}

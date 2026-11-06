@@ -1,0 +1,178 @@
+CAPSTONE TEAM 2 — DEMO 3 API CONTRACT v1
+All paths below start /api/capstone/v1. JSON requests/responses. Errors are
+{error:{code,message}} with an appropriate HTTP status. All timestamps are ISO UTC.
+Auth: Authorization: Bearer <project-scoped token>. Never put tokens in URLs.
+Only GET /health and POST /runner/pair are unauthenticated. Tokens are returned
+once when issued; D1 stores only SHA-256 token hashes. No paid cloud services.
+
+GET /health -> {service:'capstone-team2-demo3',protocol:1,project:'INFO 492 Team 2 Capstone',
+  status:'ready'|'setup_required',costPolicy:{mode:'free-only',accountVerifiedFree:boolean,
+  cloudInference:false,paidFallback:false},limits:{...}}
+GET /session -> {principal:{id,label,role},capabilities:{submit,review,manageAccess,publishLessons,run},project}
+Roles: owner may do all human operations; operator submits/cancels; reviewer
+reviews and proposes lessons; runner only claims/heartbeats/completes/fails.
+All human roles can read jobs, reviews, lessons and metrics.
+
+GET /jobs?limit=50&before=<ISO> -> {jobs:[job summaries],runners:[{id,label,lastSeenAt,status}]}
+GET /jobs/:id -> {job:full job,reviews:[review],attempts:[attempt]}
+Job: {id,kind,title,status:'queued'|'running'|'completed'|'failed'|'canceled',
+ cohort:'baseline'|'learning'|'holdout',createdAt,notBefore,startedAt,completedAt,
+ attemptCount,stage,reviewState:'pending'|'reviewed',lessonReleaseId,lessonVersion,
+ payload:{question,documents:[{id,title,revision,issuedAt,approval:'approved'|'draft'|'superseded',current:boolean,text}]},
+ result:null|RfiResult,provenance:null|object,timings:null|object,error:null|string}
+RfiResult: {outcome:'answer_from_records'|'formal_clarification'|'needs_review',
+ draftAnswer,rationale,uncertainties:[string],citations:[{documentId,quote}],humanDecision:'pending'}
+The immutable result remains humanDecision:'pending'; reviewed decisions are separate.
+Meeting and daily payloads/results are also supported for the existing local engines.
+
+POST /jobs -> {job} (201, or 200 for idempotent duplicate)
+ body: {kind:'rfi'|'meeting'|'daily',title,payload,dataClassification?:'synthetic'|'authorized',notBefore?:ISO,cohort?:'learning',
+ clientRequestId:string,lessonReleaseId?:string|null,evaluation?:object}
+RFI limits: question 2,000 chars, document title 160 chars, 12 documents,
+30,000 combined question/document-text characters. Superseded cannot be current.
+Meeting payload {transcript}: 24,000 chars. Daily payload {reports}: 1–30 rows,
+42,000 normalized JSON chars. A clientRequestId cannot be reused with changed input.
+Baseline always snapshots no lessons. Explicit lessonReleaseId selects a fixed
+release; null means no lessons. Learning without that field snapshots latest approved
+release on FIRST claim. Holdout without it freezes current release when queued.
+evaluation contains hidden reference labels and is NEVER included in runner claims.
+POST /jobs/:id/cancel body:{reason?:string} -> {job}
+
+POST /jobs/:id/reviews -> {review,job} (201)
+ body:{decision:'answer_from_records'|'formal_clarification'|'needs_review',
+ correctedAnswer?:string,notes:string,citations?:[{documentId,quote}],
+ metrics?:{requiredFacts?,correctFacts?,incorrectFacts?,missingFacts?,extraErrors?,
+ reviewSeconds?,manualSeconds?,incorrectClosure?:boolean,unnecessaryRfiAvoided?:boolean,
+ missedIssue?:boolean,falseAlert?:boolean}}
+Metrics not supplied remain unassessed, not zero. For answer_from_records, a
+nonempty final answer and valid citations to current APPROVED documents are required.
+Omitted citations use the model's citations. Supplied citations override them.
+Review is immutable and preserves original model output; later reviews append.
+
+GET /lessons -> {proposals:[proposal],releases:[release],activeRelease:release|null}
+POST /lessons -> {proposal} (201), reviewer/owner only
+ body:{reviewId,title,text,appliesTo?:['rfi']}
+POST /lesson-releases -> {release} (201), owner only
+ body:{label,proposalIds:[id]} max8 proposals, max4000 total text characters.
+Empty proposalIds is allowed as an explicit release with no active lessons.
+Release {id,version,label,createdAt,approvedBy,digest,items:[lesson]}; immutable.
+Lesson {id,version,text,approved:true,approvedBy,approvedAt,appliesTo:[kind],reviewId,title}
+
+GET /metrics -> {jobs:{total,queued,running,completed,failed,canceled},
+ reviewedJobs,unreviewedCompletedJobs,incorrectClosures:{assessed,count},
+ unnecessaryRfisAvoided:{assessed,count},quality:{correctFacts,incorrectFacts,
+ missingFacts,extraErrors,requiredFacts,accuracy:null|number,completeness:null|number},
+ timing:{generationSeconds,reviewSeconds,manualSeconds,reviewSamples,manualSamples},
+ byCohort:[{cohort,...}],notice}
+Metrics use only each job's latest human review; historical reviews stay in audit.
+No general learning/RFI-reduction claim is inferred from raw completion counts.
+
+GET /principals -> {principals:[{id,label,role,createdAt,revokedAt,lastSeenAt}]}, owner
+POST /principals body:{label,role:'operator'|'reviewer'} -> {principal,token}, owner
+POST /principals/:id/revoke body:{} -> {principal}, owner; cannot revoke bootstrap owner.
+POST /runner/pair-codes body:{label} -> {code,expiresAt}, owner only.
+POST /runner/pair body:{code,runnerName} -> {token,principal,project,protocol:1}
+Codes are random, one-use, expire after10min. Runner stores its token locally.
+
+POST /runner/claim body:{runnerId?:string,capabilities?:['rfi','meeting','daily']}
+ -> {job:null,pollAfterMs:15000} OR {job:{id,kind,title,payload,cohort,dataClassification,attempt,
+ inputSha256},leaseToken,leaseExpiresAt,lessons:{releaseId,version,items},pollAfterMs:15000}
+Runner identity comes from token, not body. No reference labels/reviews in this payload.
+POST /runner/jobs/:id/heartbeat body:{leaseToken,stage?:string}
+ -> {leaseExpiresAt,cancelRequested:false}; canceled/stale claim returns409.
+POST /runner/jobs/:id/complete body:{leaseToken,completionId,result,provenance,timings}
+ -> {jobId,status:'completed',idempotent:boolean}; repeats must match completionId/hash.
+POST /runner/jobs/:id/fail body:{leaseToken,error,retryable?:boolean}
+ -> {jobId,status:'queued'|'failed'}; max3 attempts. Stale leases cannot publish results.
+Lease5min; heartbeat30sec. Persist local output before uploading. Cloud receives
+compact result/provenance only; full raw model calls remain local.
+provenance.jobInputSha256, when supplied, must equal the claimed inputSha256.
+Native engine audit.inputSha256 may use a different source serialization and
+is retained separately. quality.accuracy/completeness are percentages (0–100).
+
+Free-only deployment: no account ID or D1 ID is guessed. Deployment tooling must
+require explicitly supplied verified-free Capstone account/database identifiers.
+CAPSTONE_OWNER_TOKEN is a Worker secret. CAPSTONE_FREE_ACCOUNT_VERIFIED must be
+true only after the owner has independently verified the selected account plan.
+
+LIVING TASK BOARD — additive contract, November 2, 2026
+New consolidation jobs retain kind='rfi', with payload:
+ {mode:'consolidation',documents:[{id,title,kind:'request'|'reference',revision,
+ issuedAt,approval:'approved'|'draft'|'informal',current:boolean,text}]}
+At least one request; up to12 documents and30,000 incoming text characters.
+Original source content is immutable. Reusing an existing ID with different
+text/title/kind/revision/issuedAt fails409. Existing board approval/current
+status overrides stale flags on a newly submitted copy of the same source.
+Source-status corrections require the separate explicit human endpoint below.
+
+GET /board -> {board:{version,tasks,documents},appliedJobIds:[jobId],events:[event]}
+All human roles can read it. Engine/runner roles cannot edit the board.
+Task and proposal shapes are defined in ../consolidation-contract.txt.
+Claims include job.board, frozen on first claim; retries use the same snapshot.
+Model completion stores a proposal; it does not apply changes to the board.
+GET /jobs/:id adds boardSnapshot,boardReview,consolidationEvents for this mode.
+boardReview:{id,eventId,jobId,createdAt,reviewerId,decisions,metrics,applied}.
+Undo returns the proposal to pending in list and detail views; the original
+review and model result remain immutable. Reanalysis uses a new queued job.
+
+POST /jobs/:id/apply (owner/reviewer)
+ {expectedVersion,clientMutationId,decisions:[{itemId,action,targetTaskId?,
+ duplicateOfItemId?,groupId?,notes?,answer?,citations?}],notes,metrics?}
+Every extracted item requires one decision. reject needs notes and retains the
+source. Corrected actions/targets/groupings also require notes. Model-derived
+requirement text and source quotations cannot be changed here. An explicitly
+reviewed answer/citations correction is permitted for already_answered, requires
+notes and is validated against exact current-approved reference evidence. The
+original model answer remains immutable; the review stores corrected evidence.
+An answered decision needs nonempty answer text and exact current-approved
+reference evidence. An open task or resolved status alone is not authority.
+A duplicate links one open individual task or an earlier unresolved requirement;
+shared groups retain distinct tasks rather than counting them as duplicates.
+A conflict creates an open subtask and reopens the affected existing task.
+The response is {board,event,review,idempotent}. Retry the identical request
+with its existing clientMutationId after a lost response. Reusing the ID for
+changed work fails409. Stale board versions and already-applied work fail409.
+The SQL batch atomically versions the board, writes an event and review receipt,
+and records audit evidence. Race losers cannot insert partial tasks/reviews.
+
+POST /board/tasks/:id/change (owner/reviewer)
+ Common fields: expectedVersion,clientMutationId,notes.
+ operation:'move',parentId:null|taskId — no cycles; open child reopens parent.
+ operation:'split',title,requirement — new open task copies original sources;
+   original task and requirement remain intact and the split is audited.
+ operation:'resolve',answer,citations:[{documentId,quote}] — current approved
+   reference evidence required; groups cannot be resolved; no open subtasks.
+ operation:'reopen' — preserves prior answer/evidence for historical context.
+
+POST /board/documents/:id/change (owner/reviewer)
+ {expectedVersion,clientMutationId,notes,current:boolean,approval?}
+ notes must explain the human source-state correction. Source text, ID, title,
+ revision, kind and issuedAt cannot be changed. Marking supporting evidence
+ noncurrent or unapproved reopens dependent resolved tasks and records their IDs.
+ The original submitted metadata remains in its job and event before-image.
+
+POST /board/undo (owner/reviewer)
+ {expectedVersion,eventId,clientMutationId,notes}
+ Only the latest applicable event can be undone before intervening board work.
+ A new event/version restores earlier task organization; all original documents,
+ old reviews and event history remain. Undo is not deletion or a hidden rewrite.
+
+GET /metrics .consolidation reports workflow counts separately from measured
+quality. Counts: reviewedBatches,duplicateLinks,answeredRequests,
+groupedRequirements,createdTasks,conflicts,rejectedRequirements,correctedDecisions.
+measured fields each contain {value,samples}; omitted fields stay unknown.
+Optional reviewer integer assessments: requiredRequirements,preservedRequirements,
+omittedRequirements,correctDecisions,incorrectDecisions,incorrectMerges,
+missedDuplicates,unnecessaryRfisAvoided,necessaryRfisSuppressed,
+manualUnnecessaryRfis,assistedUnnecessaryRfis.
+Optional durations: reviewSeconds,manualSeconds. requiredRequirements must equal
+preservedRequirements+omittedRequirements when all three are assessed.
+No RFI reduction percentage is inferred from task/group counts. Results are
+also separated by baseline/learning/holdout; undone applies are excluded.
+
+Bounded demonstration capacity:24 extracted items/12 proposed groups per batch;
+120 stored tasks,120 source documents,120,000 source text characters total;
+12,000 preserved requirement characters per task. Capacity failure drops no data.
+The local engine separately enforces its model context size without truncation.
+Re-running schema.sql is an additive migration; old jobs, reviews and access
+keys remain. New tables: board_state,board_snapshots,board_events,board_reviews.

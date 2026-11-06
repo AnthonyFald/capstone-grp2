@@ -1,0 +1,5 @@
+**/*.test.mjs
+**/*.test.cjs
+fetch-document-vendors.mjs
+extraction-fixtures/**
+README.txt

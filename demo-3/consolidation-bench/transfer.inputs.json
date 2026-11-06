@@ -1,0 +1,359 @@
+{
+  "version": "consolidation-transfer-1",
+  "split": "transfer",
+  "synthetic": true,
+  "cases": [
+    {
+      "id": "TRANSFER-01",
+      "payload": {
+        "mode": "consolidation",
+        "documents": [
+          {
+            "id": "TR1-R1",
+            "title": "P3 morning field query",
+            "kind": "request",
+            "revision": "1",
+            "issuedAt": "2026-11-05",
+            "approval": "draft",
+            "current": true,
+            "text": "P3 / P-312 / V-312 — open or shut for hydrotest? P-301 D. Test booked 07:00 November 6; need the line-up confirmed by 14:00 November 5."
+          },
+          {
+            "id": "TR1-R2",
+            "title": "P-313 line-up",
+            "kind": "request",
+            "revision": "1",
+            "issuedAt": "2026-11-05",
+            "approval": "draft",
+            "current": true,
+            "text": "P3 / P-313 / V-313 — required valve position for hydrotest on P-302 D?"
+          },
+          {
+            "id": "TR1-R3",
+            "title": "P-312 witness",
+            "kind": "request",
+            "revision": "1",
+            "issuedAt": "2026-11-05",
+            "approval": "draft",
+            "current": true,
+            "text": "P3 / P-312: who is attending the hydrotest as witness, and what is their contact number?"
+          }
+        ],
+        "board": {
+          "version": 5,
+          "tasks": [
+            {
+              "id": "GRP-P3-COMMISSION",
+              "type": "group",
+              "title": "Plant room P3 commissioning",
+              "requirement": "Coordinate test setup, witnessing and completion records for the pumps in plant room P3.",
+              "location": "plant room P3",
+              "discipline": "",
+              "revision": "1",
+              "parentId": null,
+              "status": "open",
+              "sources": [],
+              "answer": "",
+              "resolutionCitations": [],
+              "createdAt": "2026-11-04T09:00:00Z",
+              "updatedAt": "2026-11-04T09:00:00Z"
+            },
+            {
+              "id": "TASK-P312-VALVE",
+              "type": "task",
+              "title": "P-312 hydrotest valve position",
+              "requirement": "P3: P-312 isolation valve V-312 position for the hydrotest is not shown on P-301 revision D. Confirm the required position.",
+              "location": "plant room P3 / P-312 / V-312",
+              "discipline": "",
+              "revision": "1",
+              "parentId": "GRP-P3-COMMISSION",
+              "status": "open",
+              "sources": [
+                {
+                  "jobId": "prior-intake",
+                  "itemId": "TR1-OLD-entry",
+                  "documentId": "TR1-OLD",
+                  "quote": "P3: P-312 isolation valve V-312 position for the hydrotest is not shown on P-301 revision D. Confirm the required position.",
+                  "relationship": "origin"
+                }
+              ],
+              "answer": "",
+              "resolutionCitations": [],
+              "createdAt": "2026-11-04T09:00:00Z",
+              "updatedAt": "2026-11-04T09:00:00Z"
+            }
+          ],
+          "documents": [
+            {
+              "id": "TR1-OLD",
+              "title": "P-312 test line-up",
+              "kind": "request",
+              "revision": "1",
+              "issuedAt": "2026-11-03",
+              "approval": "draft",
+              "current": true,
+              "text": "P3: P-312 isolation valve V-312 position for the hydrotest is not shown on P-301 revision D. Confirm the required position."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "TRANSFER-02",
+      "payload": {
+        "mode": "consolidation",
+        "documents": [
+          {
+            "id": "TR2-R1",
+            "title": "D-14 opening after hardware change",
+            "kind": "request",
+            "revision": "1",
+            "issuedAt": "2026-11-05",
+            "approval": "draft",
+            "current": true,
+            "text": "L4 / D-14: schedule now says H-19. Does the 900 mm clear opening still apply?"
+          },
+          {
+            "id": "TR2-R2",
+            "title": "D-15 opening",
+            "kind": "request",
+            "revision": "1",
+            "issuedAt": "2026-11-05",
+            "approval": "draft",
+            "current": true,
+            "text": "L4 / D-15 with hardware H-19: required clear opening?"
+          },
+          {
+            "id": "TR2-R3",
+            "title": "Opening follow-up",
+            "kind": "request",
+            "revision": "1",
+            "issuedAt": "2026-11-05",
+            "approval": "draft",
+            "current": true,
+            "text": "Can somebody confirm the opening width?"
+          },
+          {
+            "id": "TR2-A3",
+            "title": "Approved laboratory door schedule",
+            "kind": "reference",
+            "revision": "3",
+            "issuedAt": "2026-11-04",
+            "approval": "approved",
+            "current": true,
+            "text": "D-14, Laboratory L4: hardware set H-19 replaces H-12. Clear opening remains 900 mm. D-15, Laboratory L4: hardware set H-19; clear-opening dimension is awaiting the access consultant response."
+          }
+        ],
+        "board": {
+          "version": 8,
+          "tasks": [
+            {
+              "id": "TASK-D14-CLEARANCE",
+              "type": "task",
+              "title": "Laboratory L4 D-14 clear opening",
+              "requirement": "Confirm the required clear opening for Laboratory L4 door D-14.",
+              "location": "Laboratory L4 / D-14",
+              "discipline": "",
+              "revision": "1",
+              "parentId": null,
+              "status": "resolved",
+              "sources": [],
+              "answer": "D-14 requires a 900 mm clear opening.",
+              "resolutionCitations": [
+                {
+                  "documentId": "TR2-A2",
+                  "quote": "Door D-14 at Laboratory L4: provide a 900 mm clear opening with hardware set H-12."
+                }
+              ],
+              "createdAt": "2026-11-04T09:00:00Z",
+              "updatedAt": "2026-11-04T09:00:00Z"
+            }
+          ],
+          "documents": [
+            {
+              "id": "TR2-A2",
+              "title": "Door D-14 approved access detail",
+              "kind": "reference",
+              "revision": "2",
+              "issuedAt": "2026-10-27",
+              "approval": "approved",
+              "current": true,
+              "text": "Door D-14 at Laboratory L4: provide a 900 mm clear opening with hardware set H-12."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "TRANSFER-03",
+      "payload": {
+        "mode": "consolidation",
+        "documents": [
+          {
+            "id": "TR3-R1",
+            "title": "Roof RH-2 field email",
+            "kind": "request",
+            "revision": "1",
+            "issuedAt": "2026-11-05",
+            "approval": "draft",
+            "current": true,
+            "text": "RH-2: overflow scupper invert? We also need the curb-flashing termination detail at hatch H-9. Please get the signed roof flood-test sheet to the GC before 15:00 Friday."
+          },
+          {
+            "id": "TR3-REPORT",
+            "title": "Approved RH-2 daily report",
+            "kind": "reference",
+            "revision": "1",
+            "issuedAt": "2026-11-04",
+            "approval": "approved",
+            "current": true,
+            "text": "Roof RH-2 flood test completed on November 4, 2026. No leakage was observed."
+          }
+        ],
+        "board": {
+          "version": 6,
+          "tasks": [
+            {
+              "id": "GRP-RH2",
+              "type": "group",
+              "title": "Roof RH-2 coordination",
+              "requirement": "Coordinate RH-2 roof drainage, envelope interfaces and inspection records.",
+              "location": "Roof RH-2",
+              "discipline": "",
+              "revision": "1",
+              "parentId": null,
+              "status": "open",
+              "sources": [],
+              "answer": "",
+              "resolutionCitations": [],
+              "createdAt": "2026-11-04T09:00:00Z",
+              "updatedAt": "2026-11-04T09:00:00Z"
+            },
+            {
+              "id": "TASK-RH2-SCUPPER",
+              "type": "task",
+              "title": "RH-2 overflow scupper invert",
+              "requirement": "Roof RH-2: confirm the overflow scupper invert elevation.",
+              "location": "Roof RH-2",
+              "discipline": "",
+              "revision": "1",
+              "parentId": "GRP-RH2",
+              "status": "open",
+              "sources": [
+                {
+                  "jobId": "prior-intake",
+                  "itemId": "TR3-OLD-entry",
+                  "documentId": "TR3-OLD",
+                  "quote": "Roof RH-2: confirm the overflow scupper invert elevation.",
+                  "relationship": "origin"
+                }
+              ],
+              "answer": "",
+              "resolutionCitations": [],
+              "createdAt": "2026-11-04T09:00:00Z",
+              "updatedAt": "2026-11-04T09:00:00Z"
+            }
+          ],
+          "documents": [
+            {
+              "id": "TR3-OLD",
+              "title": "RH-2 overflow outlet",
+              "kind": "request",
+              "revision": "1",
+              "issuedAt": "2026-11-02",
+              "approval": "draft",
+              "current": true,
+              "text": "Roof RH-2: confirm the overflow scupper invert elevation."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "TRANSFER-04",
+      "payload": {
+        "mode": "consolidation",
+        "documents": [
+          {
+            "id": "TR4-R1",
+            "title": "EC-2 rail fixing",
+            "kind": "request",
+            "revision": "1",
+            "issuedAt": "2026-11-05",
+            "approval": "draft",
+            "current": true,
+            "text": "EC-2 rails: the signed response gives 250 centres; the installation pack has 300. Which do we follow?"
+          },
+          {
+            "id": "TR4-R2",
+            "title": "EC-3 rail screws",
+            "kind": "request",
+            "revision": "1",
+            "issuedAt": "2026-11-05",
+            "approval": "draft",
+            "current": true,
+            "text": "EC-3 rail screw centres?"
+          },
+          {
+            "id": "TR4-R3",
+            "title": "EC-3 field reminder",
+            "kind": "request",
+            "revision": "1",
+            "issuedAt": "2026-11-05",
+            "approval": "draft",
+            "current": true,
+            "text": "Need the EC-3 rail fastener pitch confirmed by 09:00 November 9 so the setting-out crew can proceed."
+          },
+          {
+            "id": "TR4-RESPONSE",
+            "title": "Signed design response for EC-2",
+            "kind": "reference",
+            "revision": "1",
+            "issuedAt": "2026-11-05",
+            "approval": "approved",
+            "current": true,
+            "text": "Cladding zone EC-2: rail screws at 250 mm centres. This response does not list any superseded document."
+          }
+        ],
+        "board": {
+          "version": 10,
+          "tasks": [
+            {
+              "id": "TASK-EC2-PITCH",
+              "type": "task",
+              "title": "EC-2 rail screw centres",
+              "requirement": "Confirm the rail screw centres in cladding zone EC-2.",
+              "location": "cladding zone EC-2",
+              "discipline": "",
+              "revision": "1",
+              "parentId": null,
+              "status": "resolved",
+              "sources": [],
+              "answer": "EC-2 rail screws at 300 mm centres.",
+              "resolutionCitations": [
+                {
+                  "documentId": "TR4-DETAIL",
+                  "quote": "Cladding zone EC-2: rail screws at 300 mm centres."
+                }
+              ],
+              "createdAt": "2026-11-04T09:00:00Z",
+              "updatedAt": "2026-11-04T09:00:00Z"
+            }
+          ],
+          "documents": [
+            {
+              "id": "TR4-DETAIL",
+              "title": "Approved EC-2 rail installation detail",
+              "kind": "reference",
+              "revision": "2",
+              "issuedAt": "2026-10-28",
+              "approval": "approved",
+              "current": true,
+              "text": "Cladding zone EC-2: rail screws at 300 mm centres."
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

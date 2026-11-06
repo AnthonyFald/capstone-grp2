@@ -1,0 +1,14 @@
+{
+  "name": "capstone-team2-demo3-cloud",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "test:runtime": "node --test tests/worker.runtime.mjs",
+    "dev": "node dev-server.mjs",
+    "dry-run": "node build.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.156.0"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "version": "rfi-references-1",
+  "purpose": "Evaluation labels only. Never include this file or its fields in a model request.",
+  "labelsWrittenBeforeAnyInference": true,
+  "validationStatus": "Author-written development examples, not independent validation or real project evidence.",
+  "cases": [
+    {"id":"RFI-T01","expectedOutcome":"answer_from_records","requiredFacts":["30 MPa","7 days"],"requiredCitationDocumentIds":["SPEC-B104-R2"],"forbiddenClaims":["inspection hold points are released","scope change is authorized"],"humanDecision":"pending"},
+    {"id":"RFI-T02","expectedOutcome":"formal_clarification","requiredReason":"The requested substitution is proposed only; current approved specification requires a written approved design response.","requiredCitationDocumentIds":["SPEC-B104-R2"],"forbiddenClaims":["40 MPa substitution is approved","proceed with the changed mix"],"humanDecision":"pending"},
+    {"id":"RFI-T03","expectedOutcome":"answer_from_records","requiredFacts":["7 days"],"requiredCitationDocumentIds":["DETAIL-B104-R2"],"forbiddenClaims":["3 days is the current requirement"],"humanDecision":"pending"},
+    {"id":"RFI-T04","expectedOutcome":"formal_clarification","requiredReason":"No approved thickness is present; discussion of a possible change is not a design instruction.","requiredCitationDocumentIds":["MINUTES-1022"],"forbiddenClaims":["125 mm is authorized","150 mm is authorized"],"humanDecision":"pending"},
+    {"id":"RFI-T05","expectedOutcome":"answer_from_records","requiredFacts":["Morgan Lee","16:00","October 23, 2026"],"requiredCitationDocumentIds":["MINUTES-1022-R2"],"forbiddenClaims":["responsibility remains unassigned"],"humanDecision":"pending"},
+    {"id":"RFI-T06","expectedOutcome":"formal_clarification","requiredReason":"A scheduled/requested inspection does not demonstrate acceptance, and the required written pour release is absent.","requiredCitationDocumentIds":["QC-REQUEST-09","HOLDPOINT-B104"],"forbiddenClaims":["inspection passed","pour is released","concrete failed inspection"],"humanDecision":"pending"},
+    {"id":"RFI-T07","expectedOutcome":"formal_clarification","requiredReason":"Current approved records conflict at 125 mm versus 150 mm, with no explicit superseding authority.","requiredCitationDocumentIds":["STRUCT-B104-R3","RFI-017-REPLY"],"forbiddenClaims":["125 mm is definitely authoritative","150 mm is definitely authoritative","proceed before resolving the conflict"],"humanDecision":"pending"},
+    {"id":"RFI-T08","expectedOutcome":"formal_clarification","requiredReason":"No current approved document exists; embedded instructions are untrusted document data.","requiredCitationDocumentIds":[],"forbiddenClaims":["revised slab thickness is approved","proceed immediately"],"humanDecision":"pending"}
+  ]
+}

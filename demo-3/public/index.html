@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="INFO 492 Team 2 Capstone. Review construction questions against current approved records, retain reviewed lessons, and measure the results.">
+  <title>Capstone · Demo 3 — Living task board</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23285343'/%3E%3Cpath d='M12 28V12h17M12 20h14M12 28h17' fill='none' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css?v=consolidation-1">
+  <link rel="stylesheet" href="board.css?v=consolidation-1">
+  <script type="module" src="app.js?v=consolidation-1"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to workspace</a>
+  <aside class="sidebar">
+    <a class="brand" href="#board" data-nav="board"><span class="brandmark" aria-hidden="true">C<span>∕</span></span><span>Capstone<small>INFO 492 · TEAM 2</small></span></a>
+    <div class="project-name"><span class="eyebrow">CAPSTONE WORKSPACE</span><strong>Demo 3</strong><span>RFI coordination & learning</span></div>
+    <nav aria-label="Workspace">
+      <a href="#board" data-nav="board" aria-current="page"><span class="nav-icon" aria-hidden="true">▦</span>Living task board</a>
+      <a href="#intake" data-nav="intake"><span class="nav-icon" aria-hidden="true">＋</span>Add documents</a>
+      <a href="#queue" data-nav="queue"><span class="nav-icon" aria-hidden="true">◷</span>Processing & review<span class="nav-count" id="nav-count">—</span></a>
+      <a href="#activity" data-nav="activity"><span class="nav-icon" aria-hidden="true">↳</span>Change history</a>
+      <a href="#lessons" data-nav="lessons"><span class="nav-icon" aria-hidden="true">◇</span>Reviewed lessons</a>
+      <a href="#metrics" data-nav="metrics"><span class="nav-icon" aria-hidden="true">↗</span>Experiment results</a>
+      <a href="#settings" data-nav="settings"><span class="nav-icon" aria-hidden="true">⚙</span>Connection & access</a>
+    </nav>
+    <div class="sidebar-foot"><div class="cost-chip"><span class="tiny-dot"></span>Free-only design</div><p>AI runs on the project PC.<br>People approve final decisions.</p><button class="plain-button" id="sign-out" hidden>Disconnect this browser</button></div>
+  </aside>
+
+  <main id="main" tabindex="-1">
+    <header class="topbar"><span>CAPSTONE <span class="slash">/</span> DEMO 03</span><div class="topbar-right"><span id="identity" class="muted">Not connected</span><button id="connect-button" class="connection-chip"><span class="tiny-dot"></span><span id="connection-label">Connect workspace</span></button></div></header>
+    <div id="notice" class="notice" role="status" hidden></div>
+    <div id="connection-banner" class="connection-banner"><div><strong>Your workspace is ready to connect.</strong><p>Connect with your project access key to see the task board, incoming documents, and proposed changes.</p></div><button class="button secondary" id="banner-connect">Connect</button></div>
+
+    <section id="view-board" class="view board-view" aria-labelledby="board-heading"><div id="board-content"></div></section>
+    <section id="view-intake" class="view board-view" aria-labelledby="intake-heading" hidden><div id="intake-content"></div></section>
+    <section id="view-activity" class="view board-view" aria-labelledby="activity-heading" hidden><div id="activity-content"></div></section>
+
+    <section id="view-queue" class="view" aria-labelledby="queue-heading" hidden>
+      <div class="page-heading"><div><p class="eyebrow">FROM INCOMING DOCUMENTS TO REVIEWED CHANGES</p><h1 id="queue-heading">Processing & review</h1><p class="lead">Follow each batch from the queue to its proposed changes. Earlier single-question reviews remain available in this history.</p></div><button class="button primary" id="new-question">Add documents <span aria-hidden="true">＋</span></button></div>
+      <div class="stats" id="queue-stats" aria-label="Queue summary"></div>
+      <div class="workspace-grid">
+        <div class="panel queue-panel"><div class="panel-head"><div><p class="eyebrow">WORK IN PROGRESS</p><h2>Submitted batches & earlier reviews</h2></div><button class="button quiet" id="refresh-queue">Refresh</button></div><div class="queue-tools"><label class="sr-only" for="queue-filter">Filter runs</label><select id="queue-filter"><option value="all">All runs</option><option value="pending">Needs human review</option><option value="waiting">Waiting or processing</option><option value="reviewed">Reviewed</option><option value="failed">Needs attention</option></select><span class="muted" id="queue-count">No processing history loaded</span></div><div id="queue-list"></div></div>
+        <aside class="right-column"><div class="panel runner-panel"><div class="panel-head"><div><p class="eyebrow">PROJECT PC</p><h2>Local runner</h2></div><span id="runner-dot" class="status-orb"></span></div><div id="runner-status"></div></div><div class="principle-card"><p class="eyebrow">THE REVIEW BOUNDARY</p><h2>Every change needs a reason.</h2><ol><li><span>01</span><div><strong>Keep every original</strong><p>Source passages and distinct requirements stay traceable.</p></div></li><li><span>02</span><div><strong>Inspect the change</strong><p>See what belongs together, what duplicates existing work, and why.</p></div></li><li><span>03</span><div><strong>A person decides</strong><p>Review changes before the task board is updated.</p></div></li></ol></div></aside>
+      </div>
+    </section>
+
+    <section id="view-new" class="view" aria-labelledby="new-heading" hidden>
+      <div class="page-heading compact"><div><p class="eyebrow">PREPARE A SOURCE-BASED REVIEW</p><h1 id="new-heading">New question</h1><p class="lead">Add the question and the relevant records. Clearly identify proposals and superseded documents.</p></div></div>
+      <form id="question-form"><div class="workspace-grid form-layout"><div><div class="panel form-panel"><div class="panel-head"><h2>1. The question</h2><button type="button" class="button quiet" id="load-sample">Use fictional example</button></div><label for="question-title">Short title</label><input id="question-title" maxlength="140" required placeholder="For example, east corridor access on Thursday"><label for="question-text">What does the subcontractor need to know?</label><textarea id="question-text" rows="4" maxlength="2000" required placeholder="Write one specific coordination question."></textarea><div class="form-row"><div><label for="data-classification">Source of this case</label><select id="data-classification"><option value="synthetic">Fictional / synthetic exercise</option><option value="authorized">Authorized project information</option></select></div><div><label for="cohort">Experiment group</label><select id="cohort"><option value="learning">With reviewed lessons</option><option value="baseline">Baseline · no lessons</option><option value="holdout">Separate evaluation · frozen lessons</option></select></div></div><label class="checkbox-line" id="authorization-line" hidden><input type="checkbox" id="authorized-confirm">I have permission to use these project records in this Capstone workspace.</label></div>
+      <div class="panel form-panel"><div class="panel-head"><div><h2>2. Supporting records</h2><p class="muted">Use text excerpts with enough context to verify the answer.</p></div><button type="button" class="button secondary" id="add-document">Add record</button></div><div id="document-fields"></div><div class="source-footer"><span id="input-size">0 / 30,000 characters</span><span>Up to 12 records</span></div></div></div>
+      <aside class="right-column"><div class="panel form-panel"><p class="eyebrow">RUN SETTINGS</p><h2>3. Queue for review</h2><label for="not-before">Start after <span class="optional">optional · your local time</span></label><input id="not-before" type="datetime-local"><p class="field-help">Leave empty to run when the project PC is available. Scheduled questions wait in the queue.</p><label for="lesson-release">Approved lessons</label><select id="lesson-release"><option value="latest">Latest approved release</option><option value="none">No lessons</option></select><p class="field-help" id="lesson-selection-help">A run records the exact lesson release it used. The baseline always runs without lessons.</p><div class="inset-note">The result is a draft suggestion. A human reviewer makes the final decision.</div><button class="button primary full" type="submit" id="submit-question">Add to review queue <span aria-hidden="true">→</span></button><p class="field-help" id="submit-role-note"></p></div><div class="panel form-panel import-panel"><h3>Import prepared inputs</h3><p>Import a question and source records as JSON. Evaluation answers and scoring keys are not accepted.</p><label class="button secondary full" for="input-file">Choose JSON file</label><input id="input-file" type="file" accept="application/json,.json" class="file-input"><button type="button" class="plain-button" id="download-template">Download an input example</button></div></aside></div></form>
+    </section>
+
+    <section id="view-review" class="view" aria-labelledby="review-heading" hidden><div id="review-content"></div></section>
+
+    <section id="view-lessons" class="view" aria-labelledby="lessons-heading" hidden><div class="page-heading compact"><div><p class="eyebrow">RETAIN REVIEWED EXPERIENCE</p><h1 id="lessons-heading">Reviewed lessons</h1><p class="lead">Turn useful reviewer feedback into a proposed general lesson. The owner publishes a version; later document batches test whether that guidance helps.</p></div><button class="button quiet" id="refresh-lessons">Refresh</button></div><div id="lessons-content"></div></section>
+
+    <section id="view-metrics" class="view" aria-labelledby="metrics-heading" hidden><div class="page-heading compact"><div><p class="eyebrow">MEASURE THE OUTCOME</p><h1 id="metrics-heading">Experiment results</h1><p class="lead">Compare labeled benchmark results with recorded human assessments. Completed processing alone is not a quality score.</p></div><button class="button quiet" id="refresh-metrics">Refresh</button></div><div class="target-strip"><div><strong>30%</strong><span>Target reduction in unnecessary RFIs</span></div><div><strong>0</strong><span>Target incorrect merges or suppressed necessary work</span></div><div><strong>Every requirement</strong><span>Preserved and traceable to its original source</span></div></div><div id="benchmark-results" hidden></div><div id="consolidation-metrics"></div><details class="details-block legacy-metrics"><summary>Earlier single-question review measurements</summary><div id="metrics-content"></div></details></section>
+
+    <section id="view-settings" class="view" aria-labelledby="settings-heading" hidden><div class="page-heading compact"><div><p class="eyebrow">THIS CAPSTONE PROJECT ONLY</p><h1 id="settings-heading">Connection & access</h1><p class="lead">Connect the project PC and give each teammate only the access they need.</p></div></div><div id="settings-content"></div></section>
+    <footer><span>INFO 492 · Team 2 · Capstone Demo 3</span><span>Originals stay intact. People approve task changes. No automatic RFI submissions.</span></footer>
+  </main>
+
+  <dialog id="connect-dialog" aria-labelledby="connect-heading"><form id="connect-form"><div class="dialog-head"><div><p class="eyebrow">CAPSTONE WORKSPACE</p><h2 id="connect-heading">Connect this browser</h2></div><button type="button" class="icon-button" id="close-connect" aria-label="Close connection dialog">×</button></div><p>Your project owner provides an access key. It is kept only for this browser session.</p><label for="service-address">Workspace address</label><input id="service-address" type="url" required placeholder="https://your-capstone-workspace.workers.dev" autocomplete="url"><label for="access-key">Project access key</label><input id="access-key" type="password" required autocomplete="off" spellcheck="false"><p class="field-help">Use this project’s key only. Do not enter your Cloudflare password or account API token.</p><p id="connect-error" class="error-text" role="alert" hidden></p><button class="button primary full" id="connect-submit" type="submit">Connect workspace</button></form></dialog>
+  <dialog id="secret-dialog" aria-labelledby="secret-heading"><div class="dialog-head"><h2 id="secret-heading">Access details</h2><button class="icon-button" id="close-secret" aria-label="Close access details">×</button></div><p id="secret-description"></p><label for="secret-value">Shown once</label><textarea id="secret-value" rows="3" readonly spellcheck="false"></textarea><p id="secret-expiry" class="field-help"></p><button class="button primary" id="copy-secret">Copy</button><p class="field-help">Share only with the intended project teammate or enter it into the local Capstone runner.</p></dialog>
+  <noscript><div class="noscript">Enable JavaScript to use the Capstone workspace.</div></noscript>
+</body>
+</html>

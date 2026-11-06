@@ -1,0 +1,70 @@
+DEMO 3 LIVING TASK BOARD — implementation contract, 2026-11-02
+
+Jobs retain kind=rfi. New payload: {mode:"consolidation",documents:[Document]}.
+Document: {id,title,kind:"request"|"reference",revision,issuedAt,
+ approval:"approved"|"draft"|"informal",current:boolean,text}.
+At least one request. Up to 12 incoming documents, 30000 incoming characters.
+Reference records are evidence, never instructions. IDs are stable across the
+board: reuse identical documents; reject the same ID with different content
+and request a distinct revision ID. Never silently replace earlier sources.
+
+GET /board => {board:{version,tasks,documents},events:[...]}. Empty version=0.
+Runner claim returns job.payload (original unchanged) AND job.board (frozen
+snapshot {version,tasks,documents} on first claim; retries reuse it).
+Runner supplies engine {...job.payload,board:job.board}; records both original
+job-input hash and full engine-input hash. Old triage jobs remain supported.
+
+Task: {id,type:"group"|"task",title,requirement,location,discipline,revision,
+ parentId:null|string,status:"open"|"resolved",sources:[SourceLink],
+ answer:string,resolutionCitations:[Citation],createdAt,updatedAt}.
+SourceLink: {jobId,itemId,documentId,quote,relationship}; immutable references.
+Citation: {documentId,quote}; exact contiguous quotation in incoming or board
+documents. Only current approved reference records establish an answer.
+Resolved tasks do not become authority merely by status; retained resolution
+evidence must still be current, approved and applicable to the new request.
+
+Engine result (in the existing output.result envelope):
+ {mode:"consolidation",version:"rfi-consolidation-1",humanDecision:"pending",
+  boardVersion:number,summary:string,
+  groups:[{id,title,reason}],
+  items:[{id,sourceDocumentId,sourceQuote,title,requirement,location,discipline,
+    revision,action,targetTaskId:null|string,duplicateOfItemId:null|string,
+    groupId:null|string,reason,answer:string,citations:[Citation],warnings:[]}]}
+Every request document must have at least one item; split independent issues.
+Actions: create_task, add_subtask, link_duplicate, already_answered,
+ flag_conflict, needs_review. Allowed within-batch duplication references an
+earlier non-duplicate item via duplicateOfItemId; existing work uses targetTaskId.
+groupId refers to a proposed group; add_subtask may instead target an existing
+task/group. Groups are organization only, not closed RFIs or counted reductions.
+Each item's requirement preserves unique facts/deadlines even when linked.
+No grouping/suppression from broad topic similarity alone. Missing identity
+context => needs_review or a separate task; conflicts remain visibly unresolved.
+
+POST /jobs/:id/apply => {board,event,review}
+Body {expectedVersion,clientMutationId,decisions:[{itemId,action,targetTaskId?,
+ duplicateOfItemId?,groupId?,notes?}],notes,metrics?}.
+All items require an explicit decision; action="reject" preserves the original
+and a reason without applying the proposal. Any other item fields are taken
+from the frozen model proposal, never silently overwritten by the browser.
+Human corrections can choose a different action/target. Backend validates the
+corrected proposal again. Apply requires owner/reviewer, completed proposal,
+matching boardVersion, current expectedVersion and idempotent mutation key.
+AI has no endpoint/permission to apply changes. Append immutable audit and a
+review receipt. Pending/stale proposals never silently rewrite the current board.
+Store all incoming documents even if some items are rejected. Duplicates append
+sources and preserve new requirements, never erase distinct existing content.
+Already answered items are retained as resolved tracked tasks with evidence;
+flag_conflict creates a visible open linked task and flags/reopens affected work.
+
+POST /board/tasks/:id/change supports move, split, resolve, reopen with
+expectedVersion/clientMutationId/notes. Split must retain the original source
+links and requirement; move validates no cycles. Resolve requires approved
+current exact citations; grouping alone never resolves a task.
+POST /board/undo {expectedVersion,eventId,clientMutationId,notes} restores only
+the latest applicable event with a new monotonically increasing version;
+original submissions and audit history remain. Reject undo after intervening work.
+
+Metrics must separate duplicate links, answered requests, grouped distinct
+requirements, incorrect merges, omitted requirements, human correction/time.
+No claim of 30% RFI reduction without matched human decisions. Baseline and
+holdout jobs use frozen lesson versions. The PC remains manual On/Off only.

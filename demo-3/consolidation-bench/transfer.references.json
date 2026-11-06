@@ -1,0 +1,389 @@
+{
+  "version": "consolidation-transfer-1",
+  "split": "transfer",
+  "synthetic": true,
+  "independentHumanValidation": false,
+  "labelOrigin": "Separate assistant-authored transfer scenarios, frozen before first inference; fewer explicit relationship hints. No field or independent human validation.",
+  "cases": [
+    {
+      "id": "TRANSFER-01",
+      "items": [
+        {
+          "id": "tr1-valve",
+          "sourceDocumentId": "TR1-R1",
+          "actions": [
+            "link_duplicate"
+          ],
+          "requiredFacts": [
+            {
+              "name": "response deadline time",
+              "patterns": [
+                "14:00",
+                "2[:.]?00\\s*p"
+              ]
+            },
+            {
+              "name": "response deadline date",
+              "patterns": [
+                "November 5",
+                "5 November",
+                "2026-11-05",
+                "Nov[.]? 5"
+              ]
+            },
+            {
+              "name": "test appointment",
+              "patterns": [
+                "07:00",
+                "7[:.]?00\\s*a"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "targetTaskId": "TASK-P312-VALVE"
+        },
+        {
+          "id": "tr1-p313",
+          "sourceDocumentId": "TR1-R2",
+          "actions": [
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "pump identity",
+              "patterns": [
+                "P-313"
+              ]
+            },
+            {
+              "name": "valve identity",
+              "patterns": [
+                "V-313"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "targetTaskId": "GRP-P3-COMMISSION"
+        },
+        {
+          "id": "tr1-witness",
+          "sourceDocumentId": "TR1-R3",
+          "actions": [
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "witness",
+              "patterns": [
+                "witness"
+              ]
+            },
+            {
+              "name": "contact",
+              "patterns": [
+                "contact",
+                "phone",
+                "number"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "targetTaskId": "GRP-P3-COMMISSION"
+        }
+      ],
+      "groupSets": [],
+      "differentTasks": [
+        [
+          "tr1-valve",
+          "tr1-p313"
+        ],
+        [
+          "tr1-valve",
+          "tr1-witness"
+        ]
+      ]
+    },
+    {
+      "id": "TRANSFER-02",
+      "items": [
+        {
+          "id": "tr2-d14",
+          "sourceDocumentId": "TR2-R1",
+          "actions": [
+            "already_answered"
+          ],
+          "requiredFacts": [],
+          "requiredCitationDocumentIds": [
+            "TR2-A3"
+          ],
+          "answerFacts": [
+            {
+              "name": "900 mm opening",
+              "patterns": [
+                "900\\s*mm",
+                "900 millimet"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tr2-d15",
+          "sourceDocumentId": "TR2-R2",
+          "actions": [
+            "create_task"
+          ],
+          "requiredFacts": [
+            {
+              "name": "D-15 identity",
+              "patterns": [
+                "D-15"
+              ]
+            },
+            {
+              "name": "clear opening",
+              "patterns": [
+                "clear.opening",
+                "clearance",
+                "opening"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        },
+        {
+          "id": "tr2-unknown",
+          "sourceDocumentId": "TR2-R3",
+          "actions": [
+            "needs_review"
+          ],
+          "requiredFacts": [
+            {
+              "name": "opening width",
+              "patterns": [
+                "width",
+                "opening"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        }
+      ],
+      "groupSets": [],
+      "differentTasks": [
+        [
+          "tr2-d14",
+          "tr2-d15"
+        ]
+      ]
+    },
+    {
+      "id": "TRANSFER-03",
+      "items": [
+        {
+          "id": "tr3-scupper",
+          "sourceDocumentId": "TR3-R1",
+          "actions": [
+            "link_duplicate"
+          ],
+          "requiredFacts": [
+            {
+              "name": "scupper invert",
+              "patterns": [
+                "scupper",
+                "invert"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "sourceAnchor": "overflow scupper invert",
+          "targetTaskId": "TASK-RH2-SCUPPER"
+        },
+        {
+          "id": "tr3-flashing",
+          "sourceDocumentId": "TR3-R1",
+          "actions": [
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "termination detail",
+              "patterns": [
+                "termination",
+                "flashing"
+              ]
+            },
+            {
+              "name": "hatch identity",
+              "patterns": [
+                "H-9"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "sourceAnchor": "curb-flashing termination",
+          "targetTaskId": "GRP-RH2"
+        },
+        {
+          "id": "tr3-sheet",
+          "sourceDocumentId": "TR3-R1",
+          "actions": [
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "signed record",
+              "patterns": [
+                "signed"
+              ]
+            },
+            {
+              "name": "recipient",
+              "patterns": [
+                "GC",
+                "general contractor"
+              ]
+            },
+            {
+              "name": "deadline time",
+              "patterns": [
+                "15:00",
+                "3[:.]?00\\s*p"
+              ]
+            },
+            {
+              "name": "deadline day",
+              "patterns": [
+                "Friday",
+                "November 6",
+                "6 November",
+                "2026-11-06"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "sourceAnchor": "signed roof flood-test sheet",
+          "targetTaskId": "GRP-RH2"
+        }
+      ],
+      "groupSets": [],
+      "differentTasks": [
+        [
+          "tr3-scupper",
+          "tr3-flashing"
+        ],
+        [
+          "tr3-flashing",
+          "tr3-sheet"
+        ],
+        [
+          "tr3-scupper",
+          "tr3-sheet"
+        ]
+      ]
+    },
+    {
+      "id": "TRANSFER-04",
+      "items": [
+        {
+          "id": "tr4-ec2",
+          "sourceDocumentId": "TR4-R1",
+          "actions": [
+            "flag_conflict"
+          ],
+          "requiredFacts": [
+            {
+              "name": "zone identity",
+              "patterns": [
+                "EC-2"
+              ]
+            },
+            {
+              "name": "different dimensions",
+              "patterns": [
+                "250"
+              ]
+            },
+            {
+              "name": "other dimension",
+              "patterns": [
+                "300"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [
+            "TR4-DETAIL",
+            "TR4-RESPONSE"
+          ],
+          "targetTaskId": "TASK-EC2-PITCH"
+        },
+        {
+          "id": "tr4-ec3",
+          "sourceDocumentId": "TR4-R2",
+          "actions": [
+            "create_task",
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "zone identity",
+              "patterns": [
+                "EC-3"
+              ]
+            },
+            {
+              "name": "spacing",
+              "patterns": [
+                "centres",
+                "centers",
+                "spacing",
+                "pitch"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        },
+        {
+          "id": "tr4-repeat",
+          "sourceDocumentId": "TR4-R3",
+          "actions": [
+            "link_duplicate"
+          ],
+          "requiredFacts": [
+            {
+              "name": "deadline time",
+              "patterns": [
+                "09:00",
+                "9[:.]?00\\s*a"
+              ]
+            },
+            {
+              "name": "deadline date",
+              "patterns": [
+                "November 9",
+                "9 November",
+                "2026-11-09",
+                "Nov[.]? 9"
+              ]
+            },
+            {
+              "name": "work impact",
+              "patterns": [
+                "setting.out",
+                "crew"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "duplicateOf": "tr4-ec3"
+        }
+      ],
+      "groupSets": [],
+      "differentTasks": [
+        [
+          "tr4-ec2",
+          "tr4-ec3"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  // Deliberately invalid deployment IDs. Use prepare-deployment.mjs only after
+  // independently verifying a separate CAPSTONE account has Workers FREE.
+  "name": "capstone-team2-demo3",
+  "main": "entry.mjs",
+  "account_id": "CAPSTONE_VERIFIED_FREE_ACCOUNT_REQUIRED",
+  "compatibility_date": "2026-10-23",
+  "workers_dev": true,
+  "observability": { "enabled": false },
+  "assets": { "directory": "../public", "binding": "ASSETS", "run_worker_first": ["/api/*"] },
+  "d1_databases": [{
+    "binding": "CAPSTONE_DB",
+    "database_name": "capstone-team2-demo3",
+    "database_id": "CAPSTONE_DATABASE_ID_REQUIRED"
+  }],
+  "vars": { "CAPSTONE_FREE_ACCOUNT_VERIFIED": "false" }
+}

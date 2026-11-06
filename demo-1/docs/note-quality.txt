@@ -1,3 +1,11 @@
+Demo 3 migration: native Qwen 3.5 27B is now available and preferred.
+November 2 selected workflow: context-notes-27b-v27 / meeting-native-quality-27.
+Frozen-checklist development rescore: 96.7% accuracy / 95.2% completeness;
+59 correct, 2 incorrect, 1 missing. Personal-name spelling variants excluded.
+See demo3-tuning-round2.txt for fresh-inference lineage and remaining failures.
+The text below documents the preserved v4.1 baseline/browser alternative.
+See demo3-rerun.txt for native measurements, tuning and limitations.
+
 Contextual meeting notes v4.1 — development and evaluation
 
 The model remains Qwen3.5 9B, quantized for local WebGPU. No fine-tuning, model

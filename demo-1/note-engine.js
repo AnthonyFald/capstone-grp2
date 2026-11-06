@@ -167,7 +167,8 @@
     const final={actions:[],decisions:[],schedules:[],questions:[]};
     const names={actions:'tasks, owners and deadlines',decisions:'work scope and decisions',schedules:'milestones and every prerequisite',questions:'questions still awaiting answers'};
     const wireNames={actions:'actions',decisions:'work_scope_and_restrictions',schedules:'milestones',questions:'unanswered_questions'};
-    for(const section of Object.keys(final)){
+    for(const section of options.sections||Object.keys(final)){
+      if(!Object.hasOwn(final,section))throw new Error('Unsupported meeting-notes section.');
       const wire=wireNames[section],candidates=section==='actions'?actionCandidates(inputRows):[];
       progress('Extracting '+names[section]+'…');
       if(engine.resetChat)await engine.resetChat();
@@ -218,7 +219,7 @@
       });
       validateItems(flatten({actions:[],decisions:[],schedules:[],questions:[],[section]:entries}),inputRows);
       final[section]=entries.filter(item=>!(/^(?:none|n\/a)\.?$/i.test(item.text.trim()))).map(item=>({...item,lines:[...new Set(item.lines.map(line=>inputRows.find(row=>row.line===line).sourceLine))]}));
-      if(section!=='schedules')final[section]=await reviewClaims(engine,section,final[section],rows,progress,options);
+      if(section!=='schedules'&&!(section==='questions'&&options.questionCoverageReviewed))final[section]=await reviewClaims(engine,section,final[section],rows,progress,options);
       validateItems(flatten(final),rows);
       options.trace?.(section,final[section]);
     }

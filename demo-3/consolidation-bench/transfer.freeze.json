@@ -1,0 +1,14 @@
+{
+  "version": "consolidation-transfer-1",
+  "frozenAt": "2026-11-03T02:24:08.734Z",
+  "synthetic": true,
+  "independentHumanValidation": false,
+  "counts": {
+    "transferCases": 4,
+    "transferRequirements": 12
+  },
+  "sha256": {
+    "transfer.inputs.json": "3a115b99c3d1ac0d6354613e7c31b4a27c061241fce1a92241818414c28e4e61",
+    "transfer.references.json": "53b548c67d76b6300250d6109f04d8145452578e995ae1c3e7469ac44c5cc532"
+  }
+}

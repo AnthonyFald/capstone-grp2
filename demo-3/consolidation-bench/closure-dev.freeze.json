@@ -1,0 +1,15 @@
+{
+  "version": "consolidation-closure-development-1",
+  "frozenAt": "2026-11-03T03:15:24.859Z",
+  "synthetic": true,
+  "independentHumanValidation": false,
+  "purpose": "Explicit development boundary authored after original holdout review",
+  "counts": {
+    "developmentCases": 1,
+    "developmentRequirements": 2
+  },
+  "sha256": {
+    "closure-dev.inputs.json": "21311eb805ed4787ae519fbe7dcd8892f4f41b6bcf15039e34983e17ac3109b3",
+    "closure-dev.references.json": "bded6a35c798a5aa7ee7677f50f0d0181c3f7d980d00b92ca8010e7b47edd0ff"
+  }
+}

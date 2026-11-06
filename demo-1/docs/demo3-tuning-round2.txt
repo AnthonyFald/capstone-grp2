@@ -1,0 +1,333 @@
+Demo 3 — continued quality tuning (working record)
+
+User instruction: keep improving quality and spend time running real tests.
+Evaluation remains the same 62-fact checklist; personal-name variants remain
+excluded. No reference answers or clean-script replacements enter inference.
+The existing local page continues to serve the last selected v5 build while
+new source snapshots are evaluated separately. No publication is requested.
+
+Fixed setup
+Qwen 3.5 27B Q4_K_M, same installed digest and RTX 5080. Seed 42, temperature
+0.1, top_p 0.8, context 16384, no model-weight training. Each candidate's source,
+inputs, model identity, raw calls, diagnostics and timings are retained under
+desktop-build/note-evaluation/. Tests use the same saved ASR inputs, not silently
+corrected transcripts. Timing includes each complete candidate's own work.
+
+v6 — rejected
+Separated a scope/cost inventory from explicit structured milestone fields,
+while preserving the existing action and question machinery. Both original
+meetings completed: 323.70s and 284.43s. The inventory recovered known coverage,
+but added unnecessary metadata and inferred holds. The milestone audit largely
+copied the draft, preserving unsupported funding prerequisites and adding a
+calculated calendar date. These outputs are retained, not selected.
+
+v7 — rejected
+Required quoted evidence for restrictions and extracted prerequisite links
+separately from the milestone draft. The first meeting failed source-quotation
+validation because a real quote crossed adjacent ASR entries. The second
+completed in 126.20s but omitted an electrical dependency and incorrectly marked
+the stock/special-order question answered by supplier information.
+
+v8 — further development required
+Accepted exact quotations across adjacent cited entries, with no paraphrase or
+uncited gaps, and added examples of correctly targeted dependencies. Both
+original meetings completed. Meeting 1 had the extra-crew prerequisite on Area C
+and electrical prerequisite on gym work; known cost coverage was recovered.
+Meeting 2 still attached material-order approval to gym work and could drop the
+stock question. Technical ASR terms persisted. This is not the selected release.
+
+v9 — rejected due to validation failures
+Added surgical terminology checking and a requested-attribute/answered-attribute
+review before closing questions. Both original runs stopped in terminology
+validation, before publishing any result. The reviewer proposed unnecessary
+case changes and tried to replace a coherent work term with a garbled source
+phrase. Failures and raw proposals are preserved.
+
+v10 — rejected after review
+Independently verifies which operation each quoted condition actually controls.
+Unsupported terminology edits are rejected individually and logged, preserving
+the otherwise complete draft. Broadening an unclear same-source term receives
+an explicit confirmation notice. A rejected edit never silently changes a date,
+approval, owner or technical requirement. Closed-question verification remains.
+Both meetings completed (approximately 219s and 254s), but a future crew
+condition was incorrectly marked satisfied. A batch answer audit also retained
+an incorrect stock-question closure. Successful execution was not accepted as
+successful note quality.
+
+v11 — rejected after review
+Added a completion-evidence guard and date-candidate coverage. Completed in
+286.31s and 356.05s. The general date classifier still omitted an expected
+electrical finish, and the broad answer audit still lost the stock question.
+Some scope statements also turned a conditional crew into a firm commitment.
+
+v12 — development result, not selected
+Added focused checks for omitted work dates, one-question-at-a-time answer
+verification, and examples preserving conditional resources and the person who
+actually releases a purchase hold. Both original ASR meetings completed in
+297.3s and 361s. The previously lost stock-versus-special-order question was
+recovered. Important remaining errors: an expected electrical finish was shown
+as firm, a combined demo/drying duration was attributed to drying alone, an
+inquiry deadline was borrowed for an order, and known change-order coverage was
+omitted in meeting 2. Technical wording edits that tried to replace a coherent
+term with a garbled source phrase were rejected and logged.
+
+v13 — rejected: both meetings failed the added quotation check
+Adds a focused recovery pass for uncited settled cost/supply statements and
+reviews the work/time pairing and certainty of every physical milestone. The
+same check distinguishes the date of an inquiry from the date of an order and
+combined durations from individual-phase durations. Internal M-number labels
+are removed from displayed dependencies unless those labels are in the source.
+Completion evidence is checked by clause so "signed; no pending approval
+remains" does not become a pending approval, while a later revocation wins.
+The added cost pass incorrectly returned a broad meeting summary and composed
+nonverbatim quotes; both full trials stopped. No successful score is reported.
+
+v14 — rejected on separate cases; evaluation intentionally stopped
+Changed cost recovery to a per-source-entry ledger with explicit null for
+questions/promises and omitted facts only. On the first separate clinic case,
+the timing-validity check incorrectly removed useful conditional milestones.
+The second, core-drilling case failed because a valid restriction used an
+editorial bracket inside the model's proposed quote. The drainage case was
+canceled; remaining cases were not run. Full and partial records are preserved.
+
+Next investigation
+Test explicit schema grounding and a focused reasoning alternative. Ollama's
+official structured-output documentation recommends also passing the JSON
+schema in the prompt; the native adapter had previously supplied it only via
+the constrained-output format field. This is a hypothesis to test, not yet a
+quality improvement claim. Baseline remains unchanged.
+https://docs.ollama.com/capabilities/structured-outputs
+Official model sampling reference:
+https://huggingface.co/Qwen/Qwen3.5-27B
+
+Isolated timeline probes (not end-to-end scores)
+On the same eight-line clinic source, ordinary generation with the schema only
+in the format field produced four milestones, including an invented Friday
+start and an unrelated purchase-approval dependency, while omitting the
+pharmacy inspection. Exposing the identical schema in the prompt produced
+three appropriate milestones: Tuesday demolition, Friday ceiling completion,
+and Wednesday pharmacy inspection. This held in the two isolated settings
+tested (0.1/0.8/0 and manufacturer 0.7/0.8/20 sampling); resource arrival dates
+were still abbreviated. Timings were 47.64s without schema grounding, 30.05s
+with grounding at the existing sampling, and 29.41s with vendor sampling.
+These are single small probes, not general performance statistics.
+An ungrounded thinking-mode probe failed at the non-streaming client's five-
+minute header timeout; no answer quality is inferred from that failed call.
+
+v15 — rejected after the clinic case; remaining evaluation stopped
+Adds explicit schema grounding in the native adapter for the quality policy
+only. The source requests are cloned; frozen baseline messages are unchanged.
+All other v14 behavior and low-temperature sampling are preserved to isolate
+this change. A regression test checks that the exposed and enforced schemas
+match and that the baseline request is not mutated.
+The full old timeline stage still merged start and finish, and its later
+validity gate discarded that combined event. Explicit schema grounding helped
+the focused probe, but did not by itself fix the original timeline design.
+
+v16 — separate-case development evaluation completed, not selected
+Replaced date-ledger/milestone/prerequisite passes with typed physical events
+and a focused dependency/certainty check. Starts and finishes remain separate;
+conditional forecasts are kept instead of discarded. Adds one bounded retry
+when a restriction's proposed quote is nonverbatim, preserving exact evidence.
+Five of six separate cases completed; the revoked-permit case failed because
+the lexical prohibition check did not recognize the valid phrase "only after".
+The clinic case retained all 14 predefined checks. Further review found known
+permission/fee answers left open, a team task assigned to its speaker, and a
+return-to-service forecast relabeled as repair completion. These are reasons
+to reject this candidate, not to change the test criteria.
+
+v17 — rejected after original meeting 1 failed; later groups not started
+Recognizes explicit "only after/if/when" restrictions. Reviews every nonrhetorical
+question, including initially open questions, so false closures and false open
+issues can both be corrected. Negative present-state answers remain answers;
+pending future requests are distinct. Action extraction distinguishes personal
+preparation/delivery commitments from a third-person crew work plan. Timeline
+review checks the dated event label and explicitly assigned performer as well
+as certainty; return to service has its own event type. Schema grounding and
+the same installed 27B model/sampling remain unchanged.
+Queue: two original saved-ASR meetings, six round-two development cases, six
+earlier separate cases, then a repeat of both originals. All groups use the
+source snapshot frozen by the first group. The script stops the queue after
+an incomplete group; no incomplete group receives a passing score.
+Meeting 1 stopped on a real quote whose first word was in the immediately
+preceding ASR entry, omitted from the proposed citation. Meeting 2 completed
+in 408.2s and retained known cost/supplier details and both material questions,
+but still used "reporting" and narrowed the dated Area C scope to demo/drying.
+No aggregate success score is assigned to this incomplete group.
+
+v18 — frozen validation queue in progress
+Extends a citation to an immediately adjacent ASR entry only when the actual
+combined source words exactly match the proposed quote. Invented words and
+skipped intervening text still fail. Dependency review explicitly separates
+the condition from the outcome depending on it, and checks for omitted linked
+work sequences. Timing review retains stated bounds such as "at earliest" and
+dayparts. Terminology examples require a supported broader label when a precise
+term cannot be recovered; uncertain wording remains visible. Same four-group
+validation queue and immutable evidence convention as above.
+
+Separate challenge cases
+demo-1/tests/fixtures/demo3-transfer-round2.json contains six cases written before
+candidate inference: explicit demolition clearance, legitimate core drilling
+and progress reporting, partial answers and known budget facts, revoked approval
+with task handoff, an explicit funding gate, and clear versus unknown part names.
+They are development checks, not independent field validation. Their facts are
+stored only for review and are never sent to the model.
+
+Selection requires inspecting real outputs, not just successful completion or
+passing software tests. Keep rejected attempts, do not change the rubric to
+inflate the score, and repeat the selected workflow before making a reliability
+claim. Human review remains required for approved project records.
+
+
+v18 final outcome — rejected
+Both original meetings completed (371.8s and 445.5s). Five of six new challenge
+meetings completed; the core-drilling case failed on a work-sequence quote
+misclassified as a hold. Review also found an optional purchasing prerequisite
+attached to construction, a canceled lift retained as current, and an undated
+repair assigned a photograph deadline. These findings prevent selection even
+where benchmark recall improved. Raw model calls and all failures are retained.
+
+v19 — deterministic wording guard experiment
+Prevents a later garbled recap from overwriting coherent earlier terminology.
+Precise corrections need actual clearer source wording; unsupported precise
+proposals visibly flag the original uncertainty instead of inserting a guess.
+An exact-request replay of v18 originals verified all 30 model requests remained
+identical. This replay is NOT fresh inference or a new latency measurement.
+
+v20 — deterministic dependency/date experiment, not promoted
+Preserves a source-stated displaced date when review omits it. Optional added
+relationships need exact evidence for the claimed outcome as well as the quote.
+No independent inference result or passing score is assigned to this version.
+
+v21 — interrupted development attempt, not promoted
+A proposed restriction with no actual prohibition is rejected individually and
+logged, rather than failing an otherwise useful meeting. The original-meeting
+queue was canceled after broader v18 review exposed the remaining schedule
+errors. Completed calls remain saved; the incomplete attempt receives no score.
+
+v22 — frozen validation in progress
+The event review now explicitly distinguishes a supported date/work pair,
+an explicitly canceled event, and a date belonging to a different activity.
+Conditional and requested dates remain valid tentative events. Added dependency
+quotes must themselves contain the linked outcome; a nearby unrelated sentence
+is insufficient. Cosmetic event-label shortening cannot create a false technical
+uncertainty warning. New challenge meetings run first, followed by originals,
+earlier separate meetings and original repeats, all from one frozen snapshot.
+Selection still depends on the actual resulting notes and fixed-criteria review.
+
+
+v22 final outcome — rejected
+Five of six challenge meetings completed. The core-drilling meeting failed on
+two real but separated source excerpts joined by an ellipsis. Canceled and
+undated events improved, but event review still sometimes borrowed a work-start
+date as a displaced completion date or assigned crew work to the speaker.
+
+v23 — completed challenge regression, original benchmark interrupted
+Adds exact separated-excerpt verification, actual approval-completion evidence,
+crew/performer grounding and explicit rescheduling-language checks. The six-case
+development regression reused 35 exactly identical model requests and ran 17
+changed/new requests locally. It is not an end-to-end timing measurement.
+Review still found a permission hold released merely by asking, an undated repair
+assigned today, and one condition incorrectly made dependent on a sibling
+condition. The subsequent original-meeting benchmark was canceled; its partial
+calls remain saved and receive no passing score.
+
+v24 — frozen candidate under final validation
+Adds direct source guards for those failures. A work date needs its weekday or
+relative-date anchor in the cited work evidence. Two clauses on the condition
+side of one IF statement cannot become dependencies of each other. A hold cannot
+acquire an unquoted release condition from a promise to inquire. Physical-work
+responsibility must be supported by the actual work evidence, not a name in an
+unrelated later call or cancellation. No benchmark names or dates are hardcoded.
+The six-case regression verified 49 exact recorded model requests and ran three
+changed terminology requests locally. Every reused payload is deep-compared and
+the installed model digest must match. Cache lineage is retained per model call;
+latency fields are null, not presented as a fast fresh model run.
+Assistant review: 69 of 71 predefined criteria satisfied, one omission (email
+recipient), one event-type error (lab-result availability labeled testing), no
+additional unsupported claims beyond that scored criterion. These are development
+checks, not independent validation. Full reasoning and output IDs are saved in
+its adjudication.json and reviewed-transfer.json.
+Fresh original meetings, earlier separate cases and original repeats follow
+from the same frozen v24 snapshot. No final original-meeting score yet.
+
+
+v24 original benchmark completed; follow-on queue stopped for v25
+Both original meetings completed with fresh inference: 391.815s and 445.481s.
+Frozen-checklist development score: 57 correct, 1 incorrect, 4 missing, no extra
+errors; 98.3% accuracy and 91.9% completeness. Its stronger evidence checks
+unnecessarily lost an assigned contractor split over two ASR entries, a prior
+date framed as keeping the existing schedule, and a hold release stated in the
+adjacent acknowledgment. Those are recorded misses, not silently excused.
+
+v25 — frozen selected candidate under final validation
+Restores only supported adjacent context: a company name genuinely spanning
+adjacent entries, an existing schedule explicitly being kept, and an adjacent
+acknowledgment with both the same hold topic and an explicit release condition.
+Unrelated neighboring names and promises to inquire still do not supply proof.
+The six-case challenge regression reused 52 exactly matching requests and produced
+identical reviewed note text/status/owners/deadlines: the 69/71 result is retained.
+The original-meeting regression reused 28 requests and freshly ran both changed
+terminology checks. Its score is 60 correct, 1 incorrect, 1 missing, no extra
+errors: 98.4% accuracy, 96.8% completeness. Meeting 1 is 31/31 correct; meeting 2
+is 29 correct, one incorrect and one missing. This is not a fresh latency run.
+The remaining original issues are the Area C repouring phase mislabeled as
+demo/drying (the ASR word reporting is visibly flagged) and omitted explicit
+insufficiency of the standard vapor retarder. Those still count against quality.
+An implicit email recipient is scored consistently with the frozen original
+rubric; the separate challenge checklist explicitly requires the recipient and
+is intentionally reported as a different set of criteria.
+Fresh inference on the six earlier separate cases and both original meetings
+is in progress using the same frozen v25 snapshot. Final scoring/promotion
+await those outputs. No claim of general human superiority or RFI reduction.
+
+
+v25 validation outcome — not promoted
+Three earlier separate meetings failed because an empty explicit-question list
+allowed the model to invent a dummy candidate ID. All failures and partial calls
+are preserved. The original fresh queue did not run under v25.
+
+v26 — completed regression and fresh original inference
+Empty-question schemas now prohibit candidate IDs when there are no candidates;
+implicit open issues receive the same actual-answer verification. Final technical
+wording review covers actions and questions as well as scope/timeline items.
+All twelve separate meetings and two original regressions completed. A complete
+fresh original run then finished in 398.470s and 480.706s. Semantic review found
+a terminology edit duplicating surrounding words and another trying to rewrite
+a question's unresolved status; these prompted deterministic final guards.
+
+v27 — selected locally
+Terminology edits cannot rewrite whether/unresolved logic, and an overlapping
+replacement prefix is removed when already present before the edited phrase.
+No upstream model request changes. Exact-request replays verified 132 requests
+across twelve separate cases and the original regression, then all 30 requests
+from the complete fresh original run. Final conservative score: 59C/2I/1M,
+no extra errors, 96.7% accuracy and 95.2% completeness. This is below the v25
+preliminary development peak because the fresh response still says effective
+polished concrete topping. The flagged technical error loses full credit.
+
+Separate checks: earlier six 42pass/2miss/1error/1extra across45 criteria;
+newer six 69pass/1miss/1error/0extra across71. All six newer item arrays are
+deep-equal to the previously adjudicated v25 outputs. Original checklist scores
+and separate criteria are not mixed. Manual rationales and cited output IDs are
+saved beside each immutable run. Replays and partial cached regressions have
+null latency, never treated as newly measured inference speed.
+
+309 automated checks passed, launcher syntax and git diff whitespace checks
+passed, and the local companion was restarted to meeting-native-4 with pipeline
+27 and quality policy27. Browser application verification follows separately.
+
+
+Final browser verification, November 2
+Actual browser generation and JSON export completed on the fictional 216-word
+repair sample: 22 candidate notes, 300.415s browser total. Export confirms
+context-notes-27b-v27, meeting-native-quality-27, the installed 27B digest, and
+all four inference source hashes exactly matching the scored final snapshot.
+Saved: app/desktop-build/note-evaluation/demo3-v27-browser-smoke.json;
+verification metadata: demo3-v27-verification.json in the same directory.
+Screenshot: Capstone/Demo 3 - validated notes.png.
+This is a functional check, not a new accuracy score. It still shows duplicate
+clearance notes, action/schedule overlap, test-result delivery labeled testing,
+and a schedule paraphrasing a designer inquiry as confirmation itself. The
+actual action row retains the inquiry. These remain visible review issues;
+no output was manually corrected or marked approved for the screenshot.

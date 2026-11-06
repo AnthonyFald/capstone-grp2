@@ -1,0 +1,19 @@
+{
+  "version": "consolidation-bench-1",
+  "frozenAt": "2026-11-03T01:13:44.994Z",
+  "synthetic": true,
+  "independentHumanValidation": false,
+  "counts": {
+    "developmentCases": 6,
+    "developmentRequirements": 18,
+    "holdoutCases": 6,
+    "holdoutRequirements": 18
+  },
+  "sha256": {
+    "dev.inputs.json": "159f061ce9868b9ddfd4fefaa28c922bafd17b3a31478b61f2584baed2f239ca",
+    "dev.references.json": "31b5f3beed79d9f03c1a0f666048d00689d7a1f97fab4b230415f15de88f01af",
+    "holdout.inputs.json": "6f0dc590a4fcc2007839c8f4b5b82c08c0ae1336b916c8e2c685371bba6074ca",
+    "holdout.references.json": "cd82d23d95aefc08af112dae24f9d34a1bdd166ee8d20bf7a33412b357c75b65",
+    "validation.inputs.json": "9b756fb6d2a0930ce894140cbe24e1930668b50e8659cb976c3f20fd0695a365"
+  }
+}

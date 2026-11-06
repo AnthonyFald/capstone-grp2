@@ -1,0 +1,24 @@
+Capstone local document readers
+
+Retrieved from the official npm registry on 2026-11-02. The SHA-512 package
+integrity values were checked before extracting an explicit file allowlist.
+Exact versions, package locations, file sizes, and SHA-256 hashes are recorded
+in manifest.json. No code is fetched from a third-party CDN at runtime.
+
+PDF.js / pdfjs-dist 6.5.438 — Apache-2.0
+Official project: https://github.com/mozilla/pdf.js
+API: https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html
+Files: PDF module, PDF worker, CMaps and standard font data; bundled license
+notices are retained alongside their respective assets.
+
+Mammoth 1.13.0 — BSD-2-Clause
+Official project: https://github.com/mwilliamson/mammoth.js
+API: extractRawText({arrayBuffer}) from the standalone browser bundle.
+Files: mammoth.browser.min.js, LICENSE and upstream README.md.
+
+Only raw text is extracted. Rich HTML from documents is never inserted into
+the page. Imported files stay in the browser; submitting a reviewed intake
+uploads the displayed text and metadata, not the original binary file.
+Readers run in temporary workers and terminate after extraction or timeout.
+Scanned/image-only documents, OCR, encrypted documents and arbitrary embedded
+code are not supported. The user must check text extraction and metadata.

@@ -1,0 +1,503 @@
+{
+  "version": "consolidation-bench-1",
+  "split": "holdout",
+  "synthetic": true,
+  "independentHumanValidation": false,
+  "labelOrigin": "Agent-authored synthetic intended outcomes, frozen before inference. Holdout cases are separate scenarios and wording, not independently human-labeled field data.",
+  "cases": [
+    {
+      "id": "HOLD-01",
+      "items": [
+        {
+          "id": "h01-invert",
+          "sourceDocumentId": "H01-R1",
+          "actions": [
+            "create_task",
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "inlet identity",
+              "patterns": [
+                "CI-4"
+              ]
+            },
+            {
+              "name": "elevation",
+              "patterns": [
+                "12[.]450",
+                "12[.]45"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        },
+        {
+          "id": "h01-repeat",
+          "sourceDocumentId": "H01-R2",
+          "actions": [
+            "link_duplicate"
+          ],
+          "requiredFacts": [
+            {
+              "name": "deadline",
+              "patterns": [
+                "November 12",
+                "12 November",
+                "2026-11-12",
+                "Nov[.]? 12"
+              ]
+            },
+            {
+              "name": "backfill impact",
+              "patterns": [
+                "backfill"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "duplicateOf": "h01-invert"
+        },
+        {
+          "id": "h01-envelope",
+          "sourceDocumentId": "H01-R3",
+          "actions": [
+            "create_task",
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "waterproofing",
+              "patterns": [
+                "waterproof"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        },
+        {
+          "id": "h01-color",
+          "sourceDocumentId": "H01-R4",
+          "actions": [
+            "create_task"
+          ],
+          "requiredFacts": [
+            {
+              "name": "shelter",
+              "patterns": [
+                "BS-1"
+              ]
+            },
+            {
+              "name": "color",
+              "patterns": [
+                "color",
+                "colour"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        }
+      ],
+      "groupSets": [
+        [
+          "h01-invert",
+          "h01-envelope"
+        ]
+      ],
+      "differentTasks": [
+        [
+          "h01-invert",
+          "h01-envelope"
+        ],
+        [
+          "h01-invert",
+          "h01-color"
+        ]
+      ]
+    },
+    {
+      "id": "HOLD-02",
+      "items": [
+        {
+          "id": "h02-north",
+          "sourceDocumentId": "H02-R1",
+          "actions": [
+            "link_duplicate"
+          ],
+          "requiredFacts": [],
+          "requiredCitationDocumentIds": [],
+          "targetTaskId": "TASK-NP6-SEQUENCE"
+        },
+        {
+          "id": "h02-south",
+          "sourceDocumentId": "H02-R2",
+          "actions": [
+            "create_task"
+          ],
+          "requiredFacts": [
+            {
+              "name": "south identity",
+              "patterns": [
+                "south approach"
+              ]
+            },
+            {
+              "name": "crane",
+              "patterns": [
+                "crane"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        },
+        {
+          "id": "h02-bolts",
+          "sourceDocumentId": "H02-R3",
+          "actions": [
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "bracing bolts",
+              "patterns": [
+                "bolt"
+              ]
+            },
+            {
+              "name": "bracing",
+              "patterns": [
+                "bracing"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "targetTaskId": "GROUP-NORTH-BRIDGE"
+        }
+      ],
+      "groupSets": [],
+      "differentTasks": [
+        [
+          "h02-north",
+          "h02-south"
+        ],
+        [
+          "h02-north",
+          "h02-bolts"
+        ]
+      ]
+    },
+    {
+      "id": "HOLD-03",
+      "items": [
+        {
+          "id": "h03-rating",
+          "sourceDocumentId": "H03-R1",
+          "actions": [
+            "already_answered"
+          ],
+          "requiredFacts": [],
+          "requiredCitationDocumentIds": [
+            "H03-DETAIL-NEW"
+          ],
+          "answerFacts": [
+            {
+              "name": "120 minutes",
+              "patterns": [
+                "120.minute",
+                "120 minute",
+                "two.hour",
+                "2.hour"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "h03-inspect",
+          "sourceDocumentId": "H03-R2",
+          "actions": [
+            "create_task"
+          ],
+          "requiredFacts": [
+            {
+              "name": "inspection acceptance",
+              "patterns": [
+                "inspection"
+              ]
+            },
+            {
+              "name": "concealment",
+              "patterns": [
+                "conceal"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        }
+      ],
+      "groupSets": [],
+      "differentTasks": []
+    },
+    {
+      "id": "HOLD-04",
+      "items": [
+        {
+          "id": "h04-route",
+          "sourceDocumentId": "H04-R1",
+          "actions": [
+            "flag_conflict"
+          ],
+          "requiredFacts": [
+            {
+              "name": "route conflict",
+              "patterns": [
+                "route",
+                "opening"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [
+            "H04-PLAN-A",
+            "H04-PLAN-B"
+          ],
+          "targetTaskId": "TASK-GR5-ACCESS"
+        },
+        {
+          "id": "h04-bolts",
+          "sourceDocumentId": "H04-R2",
+          "actions": [
+            "create_task"
+          ],
+          "requiredFacts": [
+            {
+              "name": "bolt sizes",
+              "patterns": [
+                "M20"
+              ]
+            },
+            {
+              "name": "original bolt size",
+              "patterns": [
+                "M24"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        }
+      ],
+      "groupSets": [],
+      "differentTasks": []
+    },
+    {
+      "id": "HOLD-05",
+      "items": [
+        {
+          "id": "h05-fan",
+          "sourceDocumentId": "H05-R1",
+          "actions": [
+            "create_task",
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "fan duty",
+              "patterns": [
+                "fan",
+                "duty point"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "sourceAnchor": "exhaust fan duty point"
+        },
+        {
+          "id": "h05-finish",
+          "sourceDocumentId": "H05-R1",
+          "actions": [
+            "create_task",
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "chemical resistance",
+              "patterns": [
+                "chemical"
+              ]
+            },
+            {
+              "name": "finish",
+              "patterns": [
+                "finish"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "sourceAnchor": "chemical-resistant floor finish"
+        },
+        {
+          "id": "h05-report",
+          "sourceDocumentId": "H05-R1",
+          "actions": [
+            "create_task",
+            "add_subtask"
+          ],
+          "requiredFacts": [
+            {
+              "name": "report",
+              "patterns": [
+                "pressure.test"
+              ]
+            },
+            {
+              "name": "owner",
+              "patterns": [
+                "who",
+                "owner",
+                "responsib"
+              ]
+            },
+            {
+              "name": "deadline",
+              "patterns": [
+                "date",
+                "deadline",
+                "due"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "sourceAnchor": "pressure-test report"
+        },
+        {
+          "id": "h05-drain",
+          "sourceDocumentId": "H05-R2",
+          "actions": [
+            "create_task"
+          ],
+          "requiredFacts": [
+            {
+              "name": "ramp identity",
+              "patterns": [
+                "LR-2"
+              ]
+            },
+            {
+              "name": "diameter",
+              "patterns": [
+                "diameter"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "forbiddenAnswerPatterns": [
+            "250"
+          ]
+        }
+      ],
+      "groupSets": [
+        [
+          "h05-fan",
+          "h05-finish",
+          "h05-report"
+        ]
+      ],
+      "differentTasks": [
+        [
+          "h05-fan",
+          "h05-finish"
+        ],
+        [
+          "h05-fan",
+          "h05-report"
+        ],
+        [
+          "h05-finish",
+          "h05-report"
+        ]
+      ]
+    },
+    {
+      "id": "HOLD-06",
+      "items": [
+        {
+          "id": "h06-ambiguous",
+          "sourceDocumentId": "H06-R1",
+          "actions": [
+            "needs_review"
+          ],
+          "requiredFacts": [
+            {
+              "name": "identity gap",
+              "patterns": [
+                "building",
+                "drawing",
+                "identity"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": []
+        },
+        {
+          "id": "h06-b",
+          "sourceDocumentId": "H06-R2",
+          "actions": [
+            "link_duplicate"
+          ],
+          "requiredFacts": [
+            {
+              "name": "deadline",
+              "patterns": [
+                "November 16",
+                "16 November",
+                "2026-11-16",
+                "Nov[.]? 16"
+              ]
+            },
+            {
+              "name": "permit impact",
+              "patterns": [
+                "permit"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "targetTaskId": "TASK-B-RC8"
+        },
+        {
+          "id": "h06-revision",
+          "sourceDocumentId": "H06-R3",
+          "actions": [
+            "add_subtask",
+            "flag_conflict"
+          ],
+          "requiredFacts": [
+            {
+              "name": "new revision",
+              "patterns": [
+                "revision 3",
+                "rev[.]? 3"
+              ]
+            },
+            {
+              "name": "changed geometry",
+              "patterns": [
+                "rais",
+                "chang",
+                "geometr"
+              ]
+            }
+          ],
+          "requiredCitationDocumentIds": [],
+          "targetTaskId": "TASK-A-RC8"
+        }
+      ],
+      "groupSets": [],
+      "differentTasks": [
+        [
+          "h06-b",
+          "h06-revision"
+        ]
+      ]
+    }
+  ]
+}

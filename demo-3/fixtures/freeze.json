@@ -1,0 +1,10 @@
+{
+  "version": "rfi-fixtures-frozen-1",
+  "frozenAt": "2026-11-02T20:36:22.538Z",
+  "inferencePerformed": false,
+  "scope": "Development cases and labels frozen before any local model inference. Unit tests use stub responses only.",
+  "sha256": {
+    "inputs.json": "54b41fc007145cc33059f52dccbce638fbaa9905d5711dc55496afe7366ad1de",
+    "references.json": "ed8bebd664bb6ec62d820cde579ab27f347d013c79e79fdf5597317c5bf9df01"
+  }
+}
