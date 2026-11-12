@@ -4,12 +4,13 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
+import {derivePasswordProof} from '../../public/client/auth.mjs';
 
 const require=createRequire(import.meta.url);
 const {Miniflare,convertV4MiniflareOptions}=require(require.resolve('miniflare',{paths:[require.resolve('wrangler/package.json')]}));
 test('real local Workers/D1 runtime stores claims, immutable completion, review and lesson release',async t=>{
   const owner='capstone_runtime_test_'+'x'.repeat(40);
-  const mf=new Miniflare(convertV4MiniflareOptions({name:'capstone-local-test',modules:[{type:'ESModule',path:fileURLToPath(new URL('../entry.mjs',import.meta.url))},{type:'ESModule',path:fileURLToPath(new URL('../worker.mjs',import.meta.url))},{type:'ESModule',path:fileURLToPath(new URL('../consolidation.mjs',import.meta.url))},{type:'ESModule',path:fileURLToPath(new URL('../board-api.mjs',import.meta.url))}],modulesRoot:fileURLToPath(new URL('..',import.meta.url)),compatibilityDate:'2026-10-23',bindings:{CAPSTONE_OWNER_TOKEN:owner,CAPSTONE_FREE_ACCOUNT_VERIFIED:'false'},d1Databases:['CAPSTONE_DB'],host:'127.0.0.1',port:0}));
+  const mf=new Miniflare(convertV4MiniflareOptions({name:'capstone-local-test',modules:[{type:'ESModule',path:fileURLToPath(new URL('../entry.mjs',import.meta.url))},{type:'ESModule',path:fileURLToPath(new URL('../worker.mjs',import.meta.url))},{type:'ESModule',path:fileURLToPath(new URL('../consolidation.mjs',import.meta.url))},{type:'ESModule',path:fileURLToPath(new URL('../board-api.mjs',import.meta.url))},{type:'ESModule',path:fileURLToPath(new URL('../client-api.mjs',import.meta.url))}],modulesRoot:fileURLToPath(new URL('..',import.meta.url)),compatibilityDate:'2026-10-23',bindings:{CAPSTONE_OWNER_TOKEN:owner,CAPSTONE_FREE_ACCOUNT_VERIFIED:'false'},d1Databases:['CAPSTONE_DB'],host:'127.0.0.1',port:0}));
   t.after(()=>mf.dispose());
   const db=await mf.getD1Database('CAPSTONE_DB');
   const schema=await readFile(new URL('../schema.sql',import.meta.url),'utf8');
@@ -40,5 +41,33 @@ test('real local Workers/D1 runtime stores claims, immutable completion, review 
   const undone=await api('/board/undo',{expectedVersion:1,eventId:applied.event.id,clientMutationId:'runtime-board-undo',notes:'Recheck classification.'});assert.equal(undone.board.version,2);assert.equal(undone.board.tasks.length,0);assert.equal(undone.board.documents[0].text,request.text);
   assert.equal((await api('/jobs/'+batch.job.id)).boardReview.applied,false);
   assert.equal((await api('/metrics')).consolidation.reviewedBatches,0);
+
+  const clientEmail='runtime-client@example.test';
+  const created=await mf.dispatchFetch('https://capstone.example/api/capstone/v1/client/signup',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name:'Runtime fictional client',email:clientEmail,passwordProof:await derivePasswordProof(clientEmail,'runtime test passphrase'),role:'gc',projectName:'Fictional runtime project'})
+  });
+  assert.equal(created.status,201,await created.clone().text());
+  const cookie=created.headers.get('Set-Cookie').split(';')[0];
+  async function client(route,body){
+    const response=await mf.dispatchFetch('https://capstone.example/api/capstone/v1/client'+route,{
+      method:body?'POST':'GET',headers:{Cookie:cookie,...(body?{'Content-Type':'application/json'}:{})},
+      ...(body?{body:JSON.stringify(body)}:{})
+    });
+    const data=await response.json();
+    assert.ok(response.ok,JSON.stringify(data));
+    return data;
+  }
+  const clientBatch=await client('/runs',{kind:'rfi',title:'Client sleeve request',dataClassification:'synthetic',clientRequestId:'runtime-client-run',payload:{mode:'consolidation',documents:[request]}});
+  const isolated=await api('/runner/claim',{capabilities:['rfi']},runner.token);
+  assert.equal(isolated.job.id,clientBatch.run.id);
+  assert.deepEqual(isolated.job.board,{version:0,tasks:[],documents:[]});
+  assert.deepEqual(isolated.lessons.items,[]);
+  await api('/runner/jobs/'+isolated.job.id+'/complete',{leaseToken:isolated.leaseToken,completionId:'runtime-client-complete',result:boardResult,provenance:{jobInputSha256:isolated.job.inputSha256},timings:{totalMs:300}},runner.token);
+  await client('/runs/'+isolated.job.id+'/review',{decision:'accept',notes:'Checked the fictional request.',metrics:{reviewSeconds:3}});
+  const clientDashboard=await client('/dashboard');
+  assert.equal(clientDashboard.board.tasks.length,1);
+  assert.equal(clientDashboard.evaluation.reviewedRuns,1);
+  assert.equal((await api('/jobs')).jobs.some(job=>job.id===isolated.job.id),false);
 
 });

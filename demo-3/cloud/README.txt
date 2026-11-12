@@ -49,16 +49,14 @@ baseline and independent human assessment. Full model call audits stay local.
 
 See api-contract.txt for endpoint and payload details.
 
-Approved one-time deployment helper
-Run from app only AFTER the scoped short-lived token has been approved:
+Capstone-only deployment helper
+From app, verify Workers Free on the separate Capstone account and place the
+new short-lived account-owned key in .capstone-local/cloudflare-deploy-token:
   node demo-3/cloud/deploy-capstone.mjs --execute
 Without --execute it prints instructions and makes no cloud calls.
-The helper reads .capstone-local/cloudflare-deploy-token. It requires an active
-token expiring no later than the exact approved November 9 Pacific deadline,
-2026-11-10T07:59:59Z. Cloudflare's seven-day UI choice rounds to that calendar
-day's end; this guard is a fixed approved deadline, not a rolling eight-day limit.
-The token must still be unexpired at execution and must have been
-created under the approved Capstone account
+The helper requires an active token with at most eight days remaining, to
+accommodate Cloudflare's seven-day option rounding to the end of the last day.
+The token must be created under the Capstone account
 14b0eb074438a736ff74584493df40b7 (Capstone - INFO 492 Team 2). The existing paid
 account is forbidden. The separately verified Workers Free screenshot at
 desktop-build/demo3/capstone-free-plan.png is hashed into deployment evidence.
@@ -70,8 +68,9 @@ already verified dashboard. It does not request account-listing, account-detail,
 or user-token access or expand the approved permissions. Missing registration is
 a clear stop, not an automatic name choice. It lists/creates only the database
 capstone-team2-demo3, verifies its UUID, applies schema.sql remotely to that exact
-binding, creates/reuses .capstone-local/cloud-owner-token, sends the owner secret
-to Wrangler on stdin, and deploys only this Worker and its static assets.
+binding, creates/reuses the local cloud-owner-token and client-auth-pepper,
+sends each secret to Wrangler on stdin, and deploys this Worker and its assets.
+Keep the client authentication pepper stable so existing accounts can sign in.
 The first secret upload can create a placeholder Worker under this same name.
 All inherited Cloudflare credentials/endpoint overrides are removed. Wrangler
 state is isolated under .capstone-local/cloudflare-deployment, telemetry and raw

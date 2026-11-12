@@ -10,8 +10,8 @@ import {verifiedConfig,CAPSTONE_ACCOUNT_ID} from './prepare-deployment.mjs';
 export const ACCOUNT_ID=CAPSTONE_ACCOUNT_ID;
 export const ACCOUNT_NAME='Capstone - INFO 492 Team 2';
 export const RESOURCE_NAME='capstone-team2-demo3';
-// Exact deadline displayed by Cloudflare's approved November 9 Pacific expiry.
-export const APPROVED_TOKEN_EXPIRES_ON='2026-11-10T07:59:59Z';
+// Cloudflare's seven-day expiry can round up to the end of the last day.
+export const MAX_TOKEN_REMAINING_MS=8*24*60*60*1000;
 const API='https://api.cloudflare.com/client/v4';
 const DIRECTORY=path.dirname(fileURLToPath(import.meta.url));
 const APP_ROOT=path.resolve(DIRECTORY,'../..');
@@ -21,7 +21,7 @@ const digest=value=>createHash('sha256').update(value).digest('hex');
 export function assertTokenLifetime(verified,at=Date.now()){
   if(verified?.status!=='active')throw Error('The Capstone API token is not active.');
   const expiry=Date.parse(verified.expires_on);
-  if(!Number.isFinite(expiry)||expiry<=at||expiry>Date.parse(APPROVED_TOKEN_EXPIRES_ON))throw Error('Use the approved Capstone deployment token expiring no later than November 9 Pacific (2026-11-10T07:59:59Z).');
+  if(!Number.isFinite(expiry)||expiry<=at||expiry-at>MAX_TOKEN_REMAINING_MS)throw Error('Use an active Capstone account-owned deployment token with a short expiry (at most eight days remaining).');
 }
 
 export function assertSubdomain(value){
@@ -89,7 +89,7 @@ export async function deployCapstone({execute=false,fetchImpl=fetch,wrangler=run
   if(execute!==true)throw Error('Prepared only. Invoke with --execute after the scoped deployment token has been approved.');
   const privateRoot=path.join(appRoot,'.capstone-local'),stateRoot=path.join(privateRoot,'cloudflare-deployment');
   await mkdir(path.join(stateRoot,'logs'),{recursive:true});
-  const tokenPath=path.join(privateRoot,'cloudflare-deploy-token'),ownerPath=path.join(privateRoot,'cloud-owner-token');
+  const tokenPath=path.join(privateRoot,'cloudflare-deploy-token'),ownerPath=path.join(privateRoot,'cloud-owner-token'),pepperPath=path.join(privateRoot,'client-auth-pepper');
   if((await lstat(tokenPath)).isSymbolicLink())throw Error('The Capstone deployment token must be a regular local file.');
   const token=(await readFile(tokenPath,'utf8')).trim();
   if(!/^[A-Za-z0-9._-]{20,4096}$/.test(token))throw Error('The local Capstone deployment token file is invalid.');
@@ -113,7 +113,6 @@ export async function deployCapstone({execute=false,fetchImpl=fetch,wrangler=run
     onProgress('Checking the scoped token and separate Capstone account.');
     const verified=(await api('/accounts/'+ACCOUNT_ID+'/tokens/verify')).result;
     assertTokenLifetime(verified);
-    evidence.approvedTokenExpiresOn=APPROVED_TOKEN_EXPIRES_ON;
     evidence.tokenExpiresOn=verified.expires_on;
     evidence.tokenKind='account-owned';
     evidence.scopeVerification='Active token verified against the fixed Capstone account endpoint; account identity independently verified in dashboard';
@@ -141,11 +140,17 @@ export async function deployCapstone({execute=false,fetchImpl=fetch,wrangler=run
     try{if((await lstat(ownerPath)).isSymbolicLink())throw Error('The cloud owner key must be a regular local file.');owner=(await readFile(ownerPath,'utf8')).trim();}
     catch(error){if(error.code!=='ENOENT')throw error;owner='capstone_owner_'+randomBytes(32).toString('hex');await writeFile(ownerPath,owner+'\n',{flag:'wx',mode:0o600});}
     if(!/^capstone_owner_[a-f0-9]{64}$/.test(owner))throw Error('The existing cloud owner key is invalid; it was not replaced.');
+    let pepper;
+    try{if((await lstat(pepperPath)).isSymbolicLink())throw Error('The client authentication pepper must be a regular local file.');pepper=(await readFile(pepperPath,'utf8')).trim();}
+    catch(error){if(error.code!=='ENOENT')throw error;pepper=randomBytes(32).toString('hex');await writeFile(pepperPath,pepper+'\n',{flag:'wx',mode:0o600});}
+    if(!/^[a-f0-9]{64}$/.test(pepper))throw Error('The existing client authentication pepper is invalid; it was not replaced.');
     onProgress('Setting the Capstone owner secret privately.');
     await wrangler({args:['secret','put','CAPSTONE_OWNER_TOKEN','--name',RESOURCE_NAME,'--config',configPath],input:owner+'\n',env,cwd:stateRoot,logFile:path.join(stateRoot,'logs/secret.log'),secrets:[token,owner]});
     evidence.steps.push('owner-secret-set');await save();
+    await wrangler({args:['secret','put','CAPSTONE_CLIENT_AUTH_PEPPER','--name',RESOURCE_NAME,'--config',configPath],input:pepper+'\n',env,cwd:stateRoot,logFile:path.join(stateRoot,'logs/client-auth.log'),secrets:[token,owner,pepper]});
+    evidence.steps.push('client-auth-secret-set');await save();
     onProgress('Publishing the Capstone Worker and its static website.');
-    await wrangler({args:['deploy','--name',RESOURCE_NAME,'--config',configPath],env,cwd:stateRoot,logFile:path.join(stateRoot,'logs/deploy.log'),secrets:[token,owner]});
+    await wrangler({args:['deploy','--name',RESOURCE_NAME,'--config',configPath],env,cwd:stateRoot,logFile:path.join(stateRoot,'logs/deploy.log'),secrets:[token,owner,pepper]});
     evidence.steps.push('worker-and-assets-deployed');await save();
     evidence.healthVerification=await verifyPublicHealth(evidence.url,{fetchImpl});
     evidence.status='deployed-and-health-verified';evidence.completedAt=new Date().toISOString();evidence.steps.push('public-health-verified');await save();

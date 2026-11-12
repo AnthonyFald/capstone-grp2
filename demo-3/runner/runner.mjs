@@ -2,8 +2,10 @@ import {readFile,writeFile,mkdir,rename,unlink,readdir} from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 
-export const SERVICE='capstone-team2-demo3',VERSION='capstone-runner-2-manual';
+export const SERVICE='capstone-team2-demo3',VERSION='capstone-runner-3-manual';
 export const API='/api/capstone/v1';
+const workflowKinds=['rfi','meeting','daily'];
+const localModel='qwen3.5:27b';
 export function normalizeUrl(value,{allowLocal=false}={}){
   const u=new URL(value);
   const local=allowLocal&&u.protocol==='http:'&&['127.0.0.1','localhost'].includes(u.hostname);
@@ -15,7 +17,10 @@ export function approvedLessons(claim){
   return (claim.lessons?.items||[]).filter(x=>!x.appliesTo||x.appliesTo.includes('rfi')).map(({id,version,text,approved,approvedBy,approvedAt})=>({id,version,text,approved,approvedBy,approvedAt}));
 }
 export function compactResult(output,claim){
-  const {result,model,modelDigest,backend,policy,contextWindow,sampling,seed,reasoning,sourceHashes,inputSha256,documentHashes,totalMs,loadMs,elapsedMs}=output;
+  const {result:original,model,modelDigest,backend,policy,contextWindow,sampling,seed,reasoning,sourceHashes,inputSha256,documentHashes,totalMs,loadMs,elapsedMs}=output;
+  let result=original;
+  if(claim.job.kind==='meeting'&&Array.isArray(original?.items))result={summary:original.summary,items:original.items,humanDecision:'pending'};
+  if(claim.job.kind==='daily'&&Array.isArray(original?.findings))result={findings:original.findings,humanDecision:'pending'};
   if(!result||result.humanDecision!=='pending')throw Error('The local model did not return a reviewable proposal.');
   return {result,provenance:{runnerVersion:VERSION,engineVersion:output.engineVersion,model,modelDigest,backend,policy,contextWindow,sampling,seed,reasoning,sourceHashes,inputSha256,documentHashes,jobInputSha256:claim.job.inputSha256,lessonReleaseId:claim.lessons?.releaseId||null,lessonVersion:claim.lessons?.version||null},timings:{totalMs,loadMs,elapsedMs}};
 }
@@ -24,7 +29,7 @@ export class CapstoneRunner{
   constructor({stateDir,fetchImpl=fetch,allowLocal=false,companion='http://127.0.0.1:4177',pollMs=15000,heartbeatMs=30000}={}){
     this.dir=stateDir;this.fetch=fetchImpl;this.allowLocal=allowLocal;this.companion=companion;this.pollMs=pollMs;this.heartbeatMs=heartbeatMs;
     this.config=null;this.running=false;this.busy=false;this.timer=null;this.abort=null;this.failures=0;
-    this.epoch=0;this.control=null;this.pairAbort=null;this.operations=new Set();this.stopping=false;this.stopOperation=null;
+    this.epoch=0;this.control=null;this.pairAbort=null;this.operations=new Set();this.stopping=false;this.stopOperation=null;this.clientWorkflows=false;
     this.state={version:VERSION,paired:false,running:false,stage:'Off',currentJob:null,lastCompletedAt:null,lastError:null,completed:0,cloudUrl:null};
   }
   async init(){
@@ -60,7 +65,7 @@ export class CapstoneRunner{
     return this.snapshot();
     }finally{this.pairing=false;if(this.pairAbort===controller)this.pairAbort=null;if(!succeeded&&wasRunning&&pairingEpoch===this.epoch&&!signal.aborted&&!this.stopping)this.start();}
   }
-  start(){if(this.pairing)throw Error('Wait for pairing to finish.');if(this.stopping||this.busy&&!this.running)throw Error('Wait for the current shutdown to finish.');if(!this.config)throw Error('Pair this PC with the Capstone website first.');if(this.running)return this.snapshot();this.epoch++;this.control=new AbortController();this.running=true;this.state.lastError=null;this.schedule(0);return this.snapshot();}
+  start(){if(this.pairing)throw Error('Wait for pairing to finish.');if(this.stopping||this.busy&&!this.running)throw Error('Wait for the current shutdown to finish.');if(!this.config)throw Error('Pair this PC with the Capstone website first.');if(this.running)return this.snapshot();this.epoch++;this.control=new AbortController();this.running=true;this.clientWorkflows=false;this.state.lastError=null;this.schedule(0);return this.snapshot();}
   pause(){this.epoch++;this.running=false;clearTimeout(this.timer);this.timer=null;if(!this.busy)this.state.stage='Off';return this.snapshot();}
   stop({timeoutMs=4000}={}){
     if(this.stopOperation)return this.stopOperation;
@@ -80,8 +85,10 @@ export class CapstoneRunner{
       // A saved result is delivered before another claim; transient failures never trigger duplicate inference.
       if(await this.flushOutbox(signal)||!current())return;
       this.state.stage='Waiting for queued work';
-      const claim=await this.request('/runner/claim',{capabilities:['rfi']},{signal});
+      const claimOptions=this.clientWorkflows?{capabilities:workflowKinds,clientExtendedOnly:true}:{capabilities:['rfi']};
+      const claim=await this.request('/runner/claim',claimOptions,{signal});
       if(!current()){if(claim.job)await this.releaseClaim(claim);return;}
+      this.clientWorkflows=Array.isArray(claim.clientWorkflows)&&workflowKinds.every(kind=>claim.clientWorkflows.includes(kind));
       if(claim.job){await this.process(claim,{signal});this.failures=0;}else this.failures=0;
     }catch(error){if(!current())return;this.failures++;this.state.lastError=error.status===401?'Connection revoked. Pair this PC again.':error.status===429?'The free service limit was reached. Waiting before retrying.':error.status===503?'The website is temporarily unavailable. Questions remain queued.':'Connection interrupted. Waiting before retrying.';this.state.stage='Waiting to reconnect';if([401,403].includes(error.status))this.pause();}
     finally{this.busy=false;if(current())this.schedule(Math.min(300000,this.pollMs*2**Math.min(this.failures,5)));else this.state.stage='Off';}
@@ -90,19 +97,34 @@ export class CapstoneRunner{
   async infer(claim,signal){
     const config=await this.fetch(this.companion+'/api/local/config',{signal:AbortSignal.any([signal,AbortSignal.timeout(5000)]),redirect:'error'}).then(async r=>{if(!r.ok)throw Error('Start the local model companion.');return r.json();});
     if(config.service!=='evergreen-local-ai'||config.capstone?.protocol!==1)throw Error('The local companion needs the Demo 3 update.');
-    const payload=claim.job.payload?.mode==='consolidation'?{...claim.job.payload,board:claim.job.board}:claim.job.payload;
-    if(payload.mode==='consolidation'&&!payload.board)throw Error('The website did not provide a frozen task-board snapshot.');
-    if(payload.mode==='consolidation'&&!config.capstone.consolidationVersion)throw Error('Turn the Capstone app Off and On to load the task-board update.');
-    const response=await this.fetch(this.companion+'/api/local/capstone',{method:'POST',headers:{'Content-Type':'application/json','X-Evergreen-Token':config.token,Accept:'application/x-ndjson'},body:JSON.stringify({payload,lessons:approvedLessons(claim)}),signal:AbortSignal.any([signal,AbortSignal.timeout(30*60*1000)]),redirect:'error'});
-    if(!response.ok){const body=await response.json().catch(()=>({})),error=Error(body.error||'The local model is unavailable.');error.status=response.status;error.code=body.code;if(typeof body.retryable==='boolean')error.retryable=body.retryable;throw error;}
+    const {kind,payload:originalPayload}=claim.job;
+    let endpoint,body;
+    if(kind==='rfi'){
+      const consolidation=originalPayload?.mode==='consolidation';
+      if(consolidation&&!claim.job.board)throw Error('The website did not provide a frozen task-board snapshot.');
+      if(consolidation&&!config.capstone.consolidationVersion)throw Error('Turn the Capstone app Off and On to load the task-board update.');
+      endpoint='capstone';
+      body={payload:consolidation?{...originalPayload,board:claim.job.board}:originalPayload,lessons:approvedLessons(claim)};
+    }else if(kind==='meeting'){
+      endpoint='notes';
+      body={transcript:originalPayload.transcript};
+    }else if(kind==='daily'){
+      endpoint='analyze';
+      body={reports:originalPayload.reports,model:localModel,thorough:true,reasoning:false};
+    }else throw Error('Unsupported local workflow.');
+    const response=await this.fetch(this.companion+'/api/local/'+endpoint,{method:'POST',headers:{'Content-Type':'application/json','X-Evergreen-Token':config.token,Accept:'application/x-ndjson'},body:JSON.stringify(body),signal:AbortSignal.any([signal,AbortSignal.timeout(30*60*1000)]),redirect:'error'});
+    if(!response.ok){const details=await response.json().catch(()=>({})),error=Error(details.error||'The local model is unavailable.');error.status=response.status;error.code=details.code;if(typeof details.retryable==='boolean')error.retryable=details.retryable;throw error;}
     const decoder=new TextDecoder();let buffer='',bytes=0,output;
     const consume=line=>{if(!line.trim())return;const item=JSON.parse(line);if(item.type==='error'){const error=Error(item.error||'Local processing failed.');error.code=item.code;if(Number.isInteger(item.status))error.status=item.status;if(typeof item.retryable==='boolean')error.retryable=item.retryable;throw error;}if(item.type==='progress')this.state.stage=String(item.stage?.message||item.stage).slice(0,180);if(item.type==='result')output=item;};
     for await(const chunk of response.body){bytes+=chunk.length;if(bytes>12e6)throw Error('The local response exceeded its size limit.');buffer+=decoder.decode(chunk,{stream:true});let at;while((at=buffer.indexOf('\n'))>=0){consume(buffer.slice(0,at));buffer=buffer.slice(at+1);}}
-    consume(buffer+decoder.decode());if(!output)throw Error('The local response ended before the result arrived.');return output;
+    consume(buffer+decoder.decode());if(!output)throw Error('The local response ended before the result arrived.');
+    if(kind==='meeting')return {...output,engineVersion:config.notes?.pipeline};
+    if(kind==='daily')return {...output,engineVersion:config.pipeline,backend:'ollama',policy:config.modelPolicy,modelDigest:config.models?.find(model=>model.name===localModel)?.digest};
+    return output;
   }
   process(claim,options={}){return this.track(this.performProcess(claim,options));}
   async performProcess(claim,{signal:parentSignal}={}){
-    if(claim.job.kind!=='rfi')throw Error('This runner accepts RFI questions only.');
+    if(!workflowKinds.includes(claim.job.kind))throw Error('Unsupported local workflow.');
     const id=claim.job.id;if(!/^[a-zA-Z0-9_-]+$/.test(id))throw Error('Invalid question identifier.');
     const controller=new AbortController();this.abort=controller;let lost=false,heartbeatBusy=false,expires=Date.parse(claim.leaseExpiresAt);const signal=parentSignal?AbortSignal.any([controller.signal,parentSignal]):controller.signal;
     const beat=async()=>{

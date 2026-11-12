@@ -1,0 +1,64 @@
+EVERGREEN CLIENT SITE
+
+The client site is served at /client/ on the Capstone Worker. Account and
+project operations use /api/capstone/v1/client. The older Team 2 experiment
+keeps its separate keys, board, lessons and metrics. Client signup does not
+grant experiment access. The existing Capstone processing host claims client
+work through the same lease protocol and returns a draft to the client site.
+
+Accounts and projects
+
+- POST /signup: name, email, passwordProof, role (gc or sub), and either a
+  projectName or a subcontractor inviteCode. A new project always has its
+  own ID. Matching the name of an existing project does not join it.
+- POST /login: email and passwordProof. POST /logout expires the session.
+- Use public/client/auth.mjs to derive the password proof in the browser.
+  Submit it only to this same-origin API. Treat it as a password and keep
+  it out of logs, local storage, and screenshots. The Worker stores a
+  salted keyed verifier. The browser keeps a 12-hour HttpOnly session.
+- CAPSTONE_CLIENT_AUTH_PEPPER is the recommended dedicated Worker secret.
+  Set it before creating accounts and retain it across deployments.
+  Without it the current Capstone owner secret supplies the key. Changing
+  that secret or adding a pepper later will invalidate existing verifiers.
+- CAPSTONE_CLIENT_SIGNUPS=closed disables new accounts. Existing accounts
+  can still sign in. There is no account-recovery email service.
+- POST /invites: the project's GC supplies email and optional trade.
+  Returns a one-use code and expiry. It binds the email, project, trade
+  and subcontractor role. Give the code only to the intended teammate.
+- GET /dashboard shows the account, project, visible run history, runner
+  check-in and review totals. GCs see their own runs and Sub runs shared
+  with their project. Subcontractors see their own runs.
+
+Jobs and evaluation
+
+- POST /runs: kind, title, clientRequestId, dataClassification, payload and
+  optional shared=true for an invited subcontractor. The request ID makes
+  retries idempotent. Choose synthetic or authorized data. Every queued
+  batch is sent to the project processing host during an enabled session.
+- Payload for rfi is {mode:"consolidation",documents:[...]}. The document
+  requirements match the experiment consolidation API. Meeting uses
+  {transcript:"..."} and daily uses {reports:[...]}.
+- GET /runs/:id returns status, input, draft, review, timings and a small
+  provenance record. Access is checked by the Worker for every request.
+- POST /runs/:id/share can retract or restore sharing on a Sub run that
+  was shared when queued. Private project history and shared history use
+  separate task boards. A run generated against private history cannot be
+  switched to shared.
+- POST /runs/:id/review records decision (accept or revise), notes, and
+  optional metrics. An owner accepting their RFI batch also applies its
+  recommendations to their appropriate board. A GC reviewing a shared
+  Sub result records a review without modifying either board. An obsolete
+  board snapshot must be rerun before it can be accepted.
+- Metrics can include correctFacts, incorrectFacts, missingFacts,
+  extraErrors, reviewSeconds and manualSeconds. Completeness and accuracy
+  use explicitly scored results. An assisted/manual time comparison needs
+  generation, review and manual time for the same run. No result alone
+  estimates RFI reductions.
+
+The Worker uses existing free D1, bounded account/queue capacity and no
+cloud inference. The runner must be started for work to leave the queue.
+Client runs never retrieve experiment lessons or experiment board history.
+The claim response advertises clientWorkflows. Current runners use
+clientExtendedOnly=true when claiming meeting/daily work so old experiment
+jobs remain untouched. See tests/client.test.mjs for role, queue, sharing
+and evaluation examples.

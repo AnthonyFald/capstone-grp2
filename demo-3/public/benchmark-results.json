@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-03T06:38:46.878Z",
+  "generatedAt": "2026-11-12T01:54:00.124Z",
   "model": "qwen3.5:27b",
   "hardware": "NVIDIA GeForce RTX 5080",
   "limitations": [
@@ -14,7 +14,8 @@
     "Some original scenarios state scope relationships explicitly. The smaller reserved transfer set uses terser wording and fewer hints; all are synthetic, agent-authored cases.",
     "The original V6 separate evaluation had one closure-policy mismatch: a supported negative answer did not preserve unresolved inspection-status work. Review also found an unsupported supersession warning. Original failures remain preserved.",
     "Final V12 informed review found one ambiguously compressed absolute-elevation phrase and one conflict citation list that did not repeat its linked original task-source quotation. That original source remains accessible through the task. Passing the labeled checks does not mean every explanation or evidence display is perfect.",
-    "Transfer review found two wording errors outside the labeled routing/detail checks: one reason calls different drawing identities different revisions although both carry revision D; one title says 'by 15:00' where the source says 'before 15:00'. Exact source text and full requirements preserve the correct information. The transfer set has no separate shared-group checks."
+    "Transfer review found two wording errors outside the labeled routing/detail checks: one reason calls different drawing identities different revisions although both carry revision D; one title says 'by 15:00' where the source says 'before 15:00'. Exact source text and full requirements preserve the correct information. The transfer set has no separate shared-group checks.",
+    "The November 11 re-test repeats the known transfer cases. The roof-sheet title and reason say by 15:00 where the source requires before 15:00. The full requirement preserves before 15:00. The flood-test completion is supported by a report that the displayed item citations omit."
   ],
   "runs": [
     {
@@ -131,6 +132,29 @@
       "medianSeconds": 120.5,
       "totalSeconds": 488.7,
       "note": "4/4 cases returned usable proposals; 0 failed. Requirement checks include failed cases in the denominator. Total and median workflow time include failed attempts. Recorded model loading: 0.1 seconds. Incorrect-merge/answer counts describe returned proposals. Unavailable requirements from failed runs are included in the omitted/unreturned count."
+    },
+    {
+      "label": "November 11 transfer re-test (V12)",
+      "phase": "Repeat of known synthetic transfer cases",
+      "pipelineVersion": "rfi-consolidation-12",
+      "cases": 4,
+      "fullyPassingCases": 4,
+      "groupingChecksPassed": 0,
+      "groupingChecks": 0,
+      "separationChecksPassed": 7,
+      "separationChecks": 7,
+      "checksPassed": 12,
+      "checksTotal": 12,
+      "routeCorrect": 12,
+      "routeTotal": 12,
+      "completeRequirements": 12,
+      "requirements": 12,
+      "incorrectMerges": 0,
+      "omittedRequirements": 0,
+      "incorrectAnsweredRequests": 0,
+      "medianSeconds": 126.7,
+      "totalSeconds": 520.4,
+      "note": "4/4 cases returned usable proposals; 0 failed. Requirement checks include failed cases in the denominator. Total and median workflow time include failed attempts. Recorded model loading: 9.7 seconds. Incorrect-merge/answer counts describe returned proposals. Unavailable requirements from failed runs are included in the omitted/unreturned count."
     }
   ]
 }

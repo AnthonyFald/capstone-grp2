@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {mkdtemp,mkdir,writeFile,readFile,rm,access} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {ACCOUNT_ID,ACCOUNT_NAME,RESOURCE_NAME,APPROVED_TOKEN_EXPIRES_ON,assertTokenLifetime,assertSubdomain,verifyPublicHealth,deploymentEnvironment,deployCapstone} from '../deploy-capstone.mjs';
+import {ACCOUNT_ID,ACCOUNT_NAME,RESOURCE_NAME,MAX_TOKEN_REMAINING_MS,assertTokenLifetime,assertSubdomain,verifyPublicHealth,deploymentEnvironment,deployCapstone} from '../deploy-capstone.mjs';
 const root=fileURLToPath(new URL('../../../desktop-build/demo3/.private/deploy-tests/',import.meta.url));
 const databaseId='11111111-2222-3333-4444-555555555555';
 const token='mock_capstone_deployment_token_only';
@@ -18,16 +18,15 @@ test('deployment cannot execute implicitly and does not guess a personal subdoma
   assert.equal(assertSubdomain('capstone-info-492-team-2'),'capstone-info-492-team-2');
 });
 
-test('token expiry honors the exact approved November 9 Pacific deadline without a rolling extension',()=>{
-  const at=Date.parse('2026-11-02T20:00:00.000Z');
+test('deployment requires an active token with a bounded, unexpired lifetime',()=>{
+  const at=Date.parse('2026-11-12T01:00:00.000Z');
   const credential=offset=>({status:'active',expires_on:new Date(at+offset).toISOString()});
   assert.doesNotThrow(()=>assertTokenLifetime(credential(7*86400000),at));
-  const deadline=Date.parse(APPROVED_TOKEN_EXPIRES_ON);
-  assert.doesNotThrow(()=>assertTokenLifetime({status:'active',expires_on:APPROVED_TOKEN_EXPIRES_ON},at));
-  assert.throws(()=>assertTokenLifetime(credential(deadline-at+1),at),/November 9 Pacific/);
-  assert.throws(()=>assertTokenLifetime(credential(0),at),/November 9 Pacific/);
-  assert.throws(()=>assertTokenLifetime({status:'active'},at),/November 9 Pacific/);
-  assert.throws(()=>assertTokenLifetime({status:'active',expires_on:APPROVED_TOKEN_EXPIRES_ON},deadline),/November 9 Pacific/);
+  assert.doesNotThrow(()=>assertTokenLifetime(credential(MAX_TOKEN_REMAINING_MS),at));
+  assert.throws(()=>assertTokenLifetime(credential(MAX_TOKEN_REMAINING_MS+1),at),/short expiry/);
+  assert.throws(()=>assertTokenLifetime(credential(0),at),/short expiry/);
+  assert.throws(()=>assertTokenLifetime({status:'active'},at),/short expiry/);
+  assert.throws(()=>assertTokenLifetime({status:'expired',expires_on:'2026-11-10T07:59:59Z'},at),/not active/);
   assert.throws(()=>assertTokenLifetime({...credential(86400000),status:'disabled'},at),/not active/);
 });
 
@@ -57,10 +56,11 @@ test('approved deployment targets only Capstone, sends the owner secret by stdin
   assert.equal(evidence.status,'deployed-and-health-verified');assert.equal(evidence.databaseId,databaseId);
   assert.equal(evidence.url,'https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev');
   assert.equal(m.calls.filter(c=>c.method==='POST').length,1);assert.deepEqual(JSON.parse(m.calls.find(c=>c.method==='POST').body),{name:RESOURCE_NAME,read_replication:{mode:'disabled'}});
-  assert.equal(m.runs.length,3);assert.deepEqual(m.runs.map(r=>r.args[0]),['d1','secret','deploy']);
+  assert.equal(m.runs.length,4);assert.deepEqual(m.runs.map(r=>r.args[0]),['d1','secret','secret','deploy']);
   const config=JSON.parse(await readFile(path.join(appRoot,'.capstone-local/cloudflare-deployment/wrangler.json'),'utf8'));assert.equal(config.account_id,ACCOUNT_ID);assert.equal(config.d1_databases[0].database_id,databaseId);assert.equal(config.d1_databases[0].binding,'CAPSTONE_DB');assert.equal(config.name,RESOURCE_NAME);assert.equal(config.preview_urls,false);
   const owner=(await readFile(path.join(appRoot,'.capstone-local/cloud-owner-token'),'utf8')).trim();assert.equal(m.runs[1].input,owner+'\n');assert.equal(m.runs.some(r=>r.args.some(a=>a.includes(owner))),false);
-  const saved=await readFile(path.join(appRoot,'.capstone-local/cloudflare-deployment/deployment-evidence.json'),'utf8');assert.equal(saved.includes(token),false);assert.equal(saved.includes(owner),false);
+  const pepper=(await readFile(path.join(appRoot,'.capstone-local/client-auth-pepper'),'utf8')).trim();assert.equal(m.runs[2].input,pepper+'\n');assert.equal(m.runs.some(r=>r.args.some(a=>a.includes(pepper))),false);
+  const saved=await readFile(path.join(appRoot,'.capstone-local/cloudflare-deployment/deployment-evidence.json'),'utf8');assert.equal(saved.includes(token),false);assert.equal(saved.includes(owner),false);assert.equal(saved.includes(pepper),false);
   await assert.rejects(access(path.join(appRoot,'.capstone-local/cloudflare-deployment/deployment.lock')));
 });
 

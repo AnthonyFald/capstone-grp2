@@ -60,6 +60,44 @@ test('consolidation inference receives the frozen board and readable progress',a
   await assert.rejects(r.infer({...claim,job:{...claim.job,payload:{mode:'consolidation',documents:[]}}},new AbortController().signal),/frozen task-board/);
 });
 
+test('the desktop runner requests new workflow kinds only after the worker advertises them',async()=>{
+  const claims=[];
+  const r=await runner(async(url,options)=>{
+    assert.ok(url.endsWith('/claim'));
+    claims.push(JSON.parse(options.body));
+    return response({job:null,clientWorkflows:['rfi','meeting','daily']});
+  });
+  r.running=true;
+  r.schedule=()=>{};
+  await r.tick();
+  await r.tick();
+  assert.deepEqual(claims,[{capabilities:['rfi']},{capabilities:['rfi','meeting','daily'],clientExtendedOnly:true}]);
+  await r.stop();
+});
+
+test('meeting and daily queue jobs reuse the 27B companion and keep raw diagnostics off the website',async()=>{
+  const calls=[];
+  const config={service:'evergreen-local-ai',capstone:{protocol:1},notes:{pipeline:'meeting-notes-test'},pipeline:'daily-test',modelPolicy:'policy-test',models:[{name:'qwen3.5:27b',digest:'model-test'}],token:'local-token'};
+  const r=await runner(async(url,options)=>{
+    if(url.endsWith('/config'))return response(config);
+    calls.push({url,body:JSON.parse(options.body)});
+    const result=url.endsWith('/notes')?{summary:'Summary',items:[]}:{findings:[],responses:['private model traces'],timings:[]};
+    return new Response(JSON.stringify({type:'result',result,model:'qwen3.5:27b',totalMs:500,loadMs:100,elapsedMs:400})+'\n');
+  });
+  const meeting={job:{kind:'meeting',payload:{transcript:'Alex: Review the fabrication drawing.'}}};
+  const daily={job:{kind:'daily',payload:{reports:[{report_id:'F01',report_date:'2026-11-01',issue_or_update:'A clearance check remains open.'}]}}};
+  const signal=new AbortController().signal;
+  const notes=compactResult(await r.infer(meeting,signal),meeting);
+  const reports=compactResult(await r.infer(daily,signal),daily);
+  assert.ok(calls[0].url.endsWith('/notes'));
+  assert.deepEqual(calls[0].body,meeting.job.payload);
+  assert.ok(calls[1].url.endsWith('/analyze'));
+  assert.deepEqual(calls[1].body,{reports:daily.job.payload.reports,model:'qwen3.5:27b',thorough:true,reasoning:false});
+  assert.deepEqual(notes.result,{summary:'Summary',items:[],humanDecision:'pending'});
+  assert.deepEqual(reports.result,{findings:[],humanDecision:'pending'});
+  assert.equal(reports.provenance.modelDigest,'model-test');
+});
+
 const verifiedHealth={service:'capstone-team2-demo3',protocol:1,costPolicy:{mode:'free-only',cloudInference:false,paidFallback:false,accountVerifiedFree:true}};
 function deferred(){let resolve,reject;const promise=new Promise((yes,no)=>{resolve=yes;reject=no;});return{promise,resolve,reject};}
 

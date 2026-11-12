@@ -6,3 +6,18 @@ test('demo keeps project navigation and marks the current page',()=>{assert.matc
 test('browser resources resolve under a GitHub Pages project subpath',()=>{for(const [html,dir] of [[home,''],[demo,'demo-1']]){for(const m of html.matchAll(/(?:src|href)="([^"]+)"/g)){const link=m[1];if(/^(https?:|#)/.test(link))continue;const pathname=link.split(/[?#]/)[0];if(!pathname)continue;const target=path.resolve(root,dir,pathname);assert.ok(target.startsWith(root),link+' escapes project');assert.ok(fs.existsSync(target),link+' is missing');assert.ok(!link.startsWith('/'),link+' incorrectly assumes a domain root');}}});
 test('model worker remains relative and uses free local inference',()=>{const app=fs.readFileSync(path.join(root,'demo-1/app.js'),'utf8'),worker=fs.readFileSync(path.join(root,'demo-1/ai-worker.js'),'utf8');const workerPath=app.match(/new Worker\('([^']+)'/)?.[1];assert.ok(workerPath);assert.equal(workerPath.split('?')[0],'ai-worker.js');assert.ok(fs.existsSync(path.join(root,'demo-1',workerPath.split('?')[0])));assert.match(worker,/CreateMLCEngine/);assert.ok(!/api\.openai\.com|OPENAI_API_KEY/.test(app+worker));});
 test('local site preview serves nested demo and redirects missing slash',async()=>{const {handleRequest}=await import('../scripts/serve.mjs');for(const [url,expected] of [['/',200],['/demo-1/',200],['/demo-1',301],['/demo-1/ai-worker.js',200],['/.git/config',403]]){let status;await handleRequest({url,method:'GET'},{writeHead:s=>status=s,end:()=>{}});assert.equal(status,expected,url);}});
+
+test('the Evergreen Workspace landing links resolve and its modules are executable in preview', async () => {
+  const {handleRequest} = await import('../scripts/serve.mjs');
+  const base = '/demo-3/public/client/';
+  assert.ok(home.includes('href="demo-3/public/client/"'));
+  for (const [url, type] of [[base, 'text/html'], [base + 'client.mjs', 'text/javascript'], [base + 'auth.mjs', 'text/javascript']]) {
+    let status, headers;
+    await handleRequest({url, method:'GET'}, {
+      writeHead(code, values) { status = code; headers = values; },
+      end() {}
+    });
+    assert.equal(status, 200, url);
+    assert.ok(headers['Content-Type'].startsWith(type), url);
+  }
+});

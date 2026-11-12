@@ -83,3 +83,56 @@ CREATE TABLE IF NOT EXISTS board_reviews (
   event_id TEXT NOT NULL REFERENCES board_events(id), decisions_json TEXT NOT NULL,
   metrics_json TEXT NOT NULL
 );
+
+-- The client site is separate from the Team 2 experiment. Client accounts
+-- cannot authenticate as experiment principals or read the experiment board.
+CREATE TABLE IF NOT EXISTS client_projects (
+  id TEXT PRIMARY KEY, name TEXT NOT NULL, created_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS client_users (
+  id TEXT PRIMARY KEY, project_id TEXT NOT NULL REFERENCES client_projects(id),
+  name TEXT NOT NULL, email TEXT NOT NULL UNIQUE,
+  role TEXT NOT NULL CHECK(role IN ('gc','sub')), trade TEXT NOT NULL DEFAULT '',
+  password_salt TEXT NOT NULL, password_hash TEXT NOT NULL, created_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS client_sessions (
+  token_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES client_users(id),
+  created_at TEXT NOT NULL, expires_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS client_sessions_user ON client_sessions(user_id,created_at);
+CREATE INDEX IF NOT EXISTS client_sessions_expiry ON client_sessions(expires_at);
+CREATE TABLE IF NOT EXISTS client_invites (
+  code_hash TEXT PRIMARY KEY, project_id TEXT NOT NULL REFERENCES client_projects(id),
+  email TEXT NOT NULL, trade TEXT NOT NULL, created_at TEXT NOT NULL,
+  expires_at TEXT NOT NULL, used_by TEXT
+);
+CREATE INDEX IF NOT EXISTS client_invites_project ON client_invites(project_id,expires_at);
+CREATE TABLE IF NOT EXISTS client_auth_rates (
+  scope TEXT NOT NULL, bucket INTEGER NOT NULL, hits INTEGER NOT NULL,
+  PRIMARY KEY(scope,bucket)
+);
+CREATE INDEX IF NOT EXISTS client_auth_rates_age ON client_auth_rates(bucket);
+CREATE TABLE IF NOT EXISTS client_runs (
+  job_id TEXT PRIMARY KEY REFERENCES jobs(id),
+  user_id TEXT NOT NULL REFERENCES client_users(id),
+  project_id TEXT NOT NULL REFERENCES client_projects(id),
+  shareable INTEGER NOT NULL CHECK(shareable IN (0,1)),
+  shared INTEGER NOT NULL CHECK(shared IN (0,1) AND shared <= shareable)
+);
+CREATE INDEX IF NOT EXISTS client_runs_user ON client_runs(user_id);
+CREATE INDEX IF NOT EXISTS client_runs_project ON client_runs(project_id,shared);
+CREATE TABLE IF NOT EXISTS client_boards (
+  user_id TEXT NOT NULL REFERENCES client_users(id),
+  shareable INTEGER NOT NULL CHECK(shareable IN (0,1)),
+  version INTEGER NOT NULL, mutation_id TEXT NOT NULL, state_json TEXT NOT NULL,
+  PRIMARY KEY(user_id,shareable)
+);
+CREATE TABLE IF NOT EXISTS client_evaluations (
+  id TEXT PRIMARY KEY, job_id TEXT NOT NULL REFERENCES client_runs(job_id),
+  reviewer_id TEXT NOT NULL REFERENCES client_users(id),
+  decision TEXT NOT NULL CHECK(decision IN ('accept','revise')),
+  notes TEXT NOT NULL, metrics_json TEXT NOT NULL, created_at TEXT NOT NULL,
+  applied INTEGER NOT NULL CHECK(applied IN (0,1)),
+  UNIQUE(job_id,reviewer_id)
+);
+CREATE INDEX IF NOT EXISTS client_evaluations_job ON client_evaluations(job_id,created_at);

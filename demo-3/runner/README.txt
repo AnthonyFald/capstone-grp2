@@ -9,8 +9,9 @@ processing on. While Off, the app does not load the model, use the GPU for AI,
 or check the website queue. Only the small visible app/controller is open.
 
 On starts the app's local Qwen 3.5 27B runtime and companion, then processes
-queued document batches and legacy RFI questions. Status shows Starting, On,
-Stopping, or Off.
+queued document batches and RFI questions. After the upgraded website advertises
+client workflows, the same queue also processes client meeting notes and daily
+report review. Status shows Starting, On, Stopping, or Off.
 
 Off stops queue processing, interrupts current local analysis, and stops the
 model/companion processes owned by this application. Closing the application

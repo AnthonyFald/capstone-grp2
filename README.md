@@ -4,6 +4,8 @@ A static capstone website with functional Demo 1 and Demo 2 tabs. GitHub Pages s
 
 ## Demo 3: document consolidation and task review
 
+[Evergreen Workspace](demo-3/public/client/) is the client entry point for general contractors and subcontractors. See the [workspace guide](demo-3/docs/client-workspace.md) for project roles, the three queued workflows, the Free hosting setup, and the November 11 evaluation.
+
 [Demo 3](https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/) uses a separate, free Capstone Cloudflare account. Incoming RFI/request documents become proposed tasks, shared groups, duplicate links, evidence-backed answers, or open conflicts. A reviewer approves changes to a persistent board; original text and change history remain available. [Operation and evaluation notes](demo-3/README.md) describe the workflow and its limits.
 
 Open the **Capstone Demo 3** desktop shortcut, or `Open Demo 3.cmd` at the repository root, then select **Turn ON** to process the website queue with local Qwen 3.5 27B. The app opens **Off**. Turning it Off or closing it stops its model and helpers. The website remains available while queued work waits. No paid cloud inference, automatic startup, or permanently running PC process is part of this demo. A new clone requires the [Windows runtime setup](demo-3/docs/setup.txt) and its own pairing; no credentials or model weights are included.

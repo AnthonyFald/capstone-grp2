@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#143b32">
+  <meta name="description" content="Evergreen coordination workspace for general contractors and subcontractors.">
+  <title>Evergreen Workspace</title>
+  <link rel="stylesheet" href="./client.css">
+  <script type="module" src="./client.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Evergreen Workspace home"><span class="brand-mark" aria-hidden="true">E</span><span>Evergreen <small>WORKSPACE</small></span></a>
+    <nav class="top-nav" aria-label="Main navigation">
+      <a href="https://anthonyfald.github.io/capstone-grp2/demo-1/">Meeting notes</a>
+      <a href="https://anthonyfald.github.io/capstone-grp2/demo-2/">Daily reports</a>
+      <a href="#evaluation">Evaluation</a>
+    </nav>
+    <div class="header-actions"><a id="header-signin" class="button button-quiet" href="#signin">Sign in</a><button type="button" id="signout" class="button button-quiet" hidden>Sign out</button></div>
+  </header>
+  <main id="main">
+    <div id="global-message" class="notice global-message" role="status" hidden></div>
+    <section id="home" class="landing view" aria-labelledby="home-heading">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="kicker">EVERGREEN CONSTRUCTION COORDINATION</p>
+          <h1 id="home-heading">Keep every request<br class="desktop-break"> in view.</h1>
+          <p class="lead">Turn project questions and records into a clear list of work to review, with each recommendation linked to its source.</p>
+          <div class="actions" id="landing-auth"><a class="button button-primary" href="#signup">Create account <span aria-hidden="true">→</span></a><a class="button button-secondary" href="#signin">Sign in</a></div>
+          <p class="notice landing-status" id="landing-status" hidden>Account access is pending on the hosted workspace. You can view the measured results and use the standalone meeting and daily report tools.</p>
+          <p class="quiet-note">For general contractors and subcontractors.</p>
+        </div>
+        <div class="hero-preview" aria-label="Illustrative result preview">
+          <div class="preview-head"><span class="preview-dot" aria-hidden="true"></span><strong>Repair coordination</strong><span class="preview-tag">EXAMPLE</span></div>
+          <div class="preview-body">
+            <p class="kicker">DOCUMENT REVIEW</p>
+            <h2>East wing flooring</h2>
+            <p>2 requests and 1 approved reference</p>
+            <div class="preview-row"><span class="preview-icon green" aria-hidden="true">↳</span><div><strong>Confirm the moisture test date</strong><span>Linked to the existing request</span></div></div>
+            <div class="preview-row"><span class="preview-icon amber" aria-hidden="true">!</span><div><strong>Check the material approval</strong><span>Needs a reviewer’s decision</span></div></div>
+            <div class="preview-source">Source evidence is available for each recommendation.</div>
+          </div>
+        </div>
+      </div>
+      <div class="workflow-row">
+        <div><span class="step">1</span><h2>Add the records</h2><p>Paste an RFI or import a document. Confirm its status before sending it for review.</p></div>
+        <div><span class="step">2</span><h2>Check the draft</h2><p>See what needs a new task, belongs with existing work, or needs clarification.</p></div>
+        <div><span class="step">3</span><h2>Share and review</h2><p>Subcontractors choose what to share with their GC. The GC records the final review.</p></div>
+      </div>
+      <section class="demo-links" aria-labelledby="tool-heading"><h2 id="tool-heading">More project tools</h2>
+        <div class="tool-grid">
+          <a class="tool-link" href="https://anthonyfald.github.io/capstone-grp2/demo-1/"><span><strong>Meeting notes</strong><small>Find decisions, owners, and due dates.</small></span><span aria-hidden="true">↗</span></a>
+          <a class="tool-link" href="https://anthonyfald.github.io/capstone-grp2/demo-2/"><span><strong>Daily reports</strong><small>Check progress, blockers, and unresolved issues.</small></span><span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </section>
+
+    <section id="auth" class="auth-layout view" aria-labelledby="auth-heading" hidden>
+      <div class="auth-intro"><p class="kicker">EVERGREEN WORKSPACE</p><h1 id="auth-heading">Welcome back.</h1><p class="lead" id="auth-intro">Sign in to see your project and its review queue.</p><a class="text-link" href="#home">← Back to home</a></div>
+      <div class="panel auth-panel">
+        <div class="auth-tabs" aria-label="Account options"><a href="#signin" id="signin-tab">Sign in</a><a href="#signup" id="signup-tab">Create account</a></div>
+        <form id="signin-form">
+          <label>Email<input type="email" name="email" autocomplete="username" maxlength="254" required></label>
+          <label>Password<input type="password" name="password" autocomplete="current-password" maxlength="128" required></label>
+          <button type="submit" class="button button-primary wide">Sign in <span aria-hidden="true">→</span></button>
+          <p class="form-error" role="alert" hidden></p>
+        </form>
+        <form id="signup-form" hidden>
+          <label>Your name<input name="name" autocomplete="name" maxlength="80" required></label>
+          <label>Email<input type="email" name="email" autocomplete="username" maxlength="254" required></label>
+          <label>Password<input type="password" name="password" autocomplete="new-password" minlength="12" maxlength="128" required aria-describedby="password-help"></label>
+          <p class="field-help" id="password-help">Use at least 12 characters and a password unique to Evergreen.</p>
+          <label>Your role<select name="role" required><option value="gc">General contractor (GC)</option><option value="sub">Subcontractor</option></select></label>
+          <p class="field-help" id="role-help">Create a project, invite subcontractors, and review the runs they share.</p>
+          <label id="trade-field" hidden>Your trade <span class="field-help">(optional)</span><input name="trade" maxlength="80" placeholder="e.g. Concrete flooring" disabled></label>
+          <label>Project<select name="projectMode"><option value="create">Create a private project</option><option value="join">Join with an invitation code</option></select></label>
+          <label id="project-name-field">Project name<input name="projectName" maxlength="80" placeholder="e.g. East wing repairs" required></label>
+          <label id="invite-code-field" hidden>Invitation code<input name="inviteCode" maxlength="120" autocomplete="off" spellcheck="false" disabled></label>
+          <button type="submit" class="button button-primary wide">Create account <span aria-hidden="true">→</span></button>
+          <p class="form-error" role="alert" hidden></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="workspace" class="workspace view" aria-labelledby="project-heading" hidden>
+      <div class="project-banner">
+        <div><p id="project-role" class="kicker"></p><h1 id="project-heading"></h1><p id="workspace-intro" class="lead"></p></div>
+        <div class="actions"><button type="button" class="button button-secondary" id="invite-button" hidden>Invite subcontractor</button><button type="button" class="button button-primary" id="start-run">New review <span aria-hidden="true">+</span></button></div>
+      </div>
+      <div class="status-line"><span id="runner-status" class="badge"></span><span id="runner-note"></span><button type="button" id="refresh" class="button button-quiet">Refresh</button></div>
+      <div class="metrics-grid" id="workspace-metrics"></div>
+      <div class="workspace-grid">
+        <section class="panel run-panel" aria-labelledby="runs-heading">
+          <div class="section-title"><div><h2 id="runs-heading">Review queue</h2><p id="runs-scope"></p></div><div id="run-filter-field" hidden><label for="run-filter" class="sr-only">Filter reviews</label><select id="run-filter"><option value="all">All reviews</option><option value="pending">In progress</option><option value="complete">Completed</option></select></div></div>
+          <div id="runs"></div>
+        </section>
+        <aside class="panel guidance-panel"><p class="kicker" id="guide-label"></p><h2 id="guide-heading"></h2><p id="guide-text"></p><ol id="guide-steps"></ol><a class="text-link" href="#evaluation">See measured results →</a></aside>
+      </div>
+      <section id="project-board" class="panel project-board" aria-labelledby="board-heading" hidden>
+        <div class="section-title"><div><h2 id="board-heading">Reviewed work</h2><p>Tasks retained in your workspace after review.</p></div></div>
+        <ul id="board-list" class="board-list"></ul>
+      </section>
+      <section id="shared-board" class="panel project-board" aria-labelledby="shared-board-heading" hidden>
+        <div class="section-title"><div><h2 id="shared-board-heading">Reviewed work from shared runs</h2><p>Tasks from reviews you chose to share with your GC.</p></div></div>
+        <ul id="shared-board-list" class="board-list"></ul>
+      </section>
+    </section>
+
+    <section id="evaluation" class="evaluation view" aria-labelledby="evaluation-heading" hidden>
+      <p class="kicker">TEAM 2 CAPSTONE</p><h1 id="evaluation-heading">What the tests show</h1>
+      <p class="lead">Demo 3 routes requests, checks for duplicate work, and keeps source evidence available for review.</p>
+      <div id="evaluation-content" aria-live="polite"></div>
+      <section id="project-evaluation" class="panel project-evaluation" hidden><h2>Your project reviews</h2><div id="project-evaluation-content"></div></section>
+      <a id="evaluation-back" class="text-link" href="#home">← Back to home</a>
+    </section>
+  </main>
+
+  <dialog id="intake-dialog" aria-labelledby="intake-heading">
+    <form id="run-form">
+      <div class="dialog-head"><div><p class="kicker">NEW REVIEW</p><h2 id="intake-heading">Add project records</h2><p id="intake-description">Include at least one request and any records needed to check it.</p></div><button type="button" class="icon-button" data-close="intake-dialog" aria-label="Close new review">×</button></div>
+      <label>Review type<select name="kind"><option value="rfi">RFI coordination</option><option value="meeting">Meeting notes</option><option value="daily">Daily reports</option></select></label>
+      <label>Review name<input name="title" maxlength="120" required placeholder="e.g. East wing flooring requests"></label>
+      <div class="intake-tools"><button type="button" class="button button-secondary" id="use-example">Use fictional example</button><button type="button" class="button button-secondary" id="add-document">Add another record</button></div>
+      <div id="documents"></div>
+      <label id="transcript-field" hidden>Meeting transcript<textarea name="transcript" rows="10" maxlength="24000" placeholder="Paste the meeting transcript, including speaker names."></textarea></label>
+      <label id="daily-field" hidden>Daily reports<textarea name="reportText" rows="10" maxlength="42000" placeholder="Paste a JSON batch, or open Daily reports to upload CSV."></textarea></label>
+      <label id="text-file-field" class="button button-secondary file-button" hidden>Import file<input id="workflow-file" type="file" accept=".txt"></label>
+      <label>Source of these records<select name="dataClassification"><option value="synthetic">Fictional practice records</option><option value="authorized">Authorized project records</option></select></label>
+      <label id="authorization-field" class="check" hidden><input type="checkbox" name="authorized">I have permission to process these records in this workspace.</label>
+      <label id="share-field" class="check" hidden><input type="checkbox" name="shared">Share this review and its source records with my GC.</label>
+      <p id="intake-note" class="field-help"></p><p class="form-error" role="alert" hidden></p>
+      <button type="submit" class="button button-primary wide">Add to review queue <span aria-hidden="true">→</span></button>
+    </form>
+  </dialog>
+
+  <dialog id="result-dialog" aria-labelledby="result-heading">
+    <div class="dialog-head"><div><p id="result-kicker" class="kicker">RUN RESULTS</p><h2 id="result-heading">Review details</h2></div><button type="button" class="icon-button" data-close="result-dialog" aria-label="Close review details">×</button></div>
+    <div id="result-body" aria-live="polite"></div>
+  </dialog>
+
+  <dialog id="invite-dialog" class="narrow-dialog" aria-labelledby="invite-heading">
+    <div class="dialog-head"><div><p class="kicker">PROJECT ACCESS</p><h2 id="invite-heading">Invite a subcontractor</h2></div><button type="button" class="icon-button" data-close="invite-dialog" aria-label="Close invitation">×</button></div>
+    <form id="invite-form"><label>Subcontractor email<input type="email" name="email" maxlength="254" required></label><label>Trade <span class="field-help">(optional)</span><input name="trade" maxlength="80" placeholder="e.g. Concrete flooring"></label><p class="field-help">Send the code privately. It can only be used with the email above.</p><p class="form-error" role="alert" hidden></p><button class="button button-primary wide" type="submit">Create invitation</button></form>
+    <div id="invite-result" hidden><label>Invitation code<input id="invite-value" readonly></label><p id="invite-expiry" class="field-help"></p><button type="button" id="copy-invite" class="button button-secondary">Copy code</button><p id="copy-status" role="status"></p></div>
+  </dialog>
+
+  <footer class="site-footer"><span>Evergreen · INFO 492 Team 2</span><a href="https://anthonyfald.github.io/capstone-grp2/">Capstone project site ↗</a></footer>
+  <template id="document-template">
+    <fieldset class="record">
+      <legend>Record</legend>
+      <div class="record-grid"><label>Record name<input data-field="title" maxlength="160" required placeholder="e.g. RFI 018"></label><label>Record type<select data-field="kind"><option value="request">RFI or question</option><option value="reference">Supporting record</option></select></label></div>
+      <div class="record-grid"><label>Revision<input data-field="revision" maxlength="40" value="Unverified" required></label><label>Issued date<input data-field="issuedAt" type="date" required></label></div>
+      <div class="reference-options record-grid" hidden><label>Approval<select data-field="approval"><option value="informal">Unverified</option><option value="draft">Draft</option><option value="approved">Approved</option></select></label><label class="check"><input data-field="current" type="checkbox">This revision is current.</label></div>
+      <label>Record text<textarea data-field="text" maxlength="30000" rows="4" required placeholder="Paste the text of the request or supporting record."></textarea></label>
+      <div class="record-actions"><label class="button button-secondary file-button">Import PDF, Word, or text<input type="file" accept=".pdf,.docx,.txt"></label><button class="button button-quiet remove-record" type="button">Remove record</button></div>
+      <p class="import-status field-help" role="status"></p>
+    </fieldset>
+  </template>
+  <noscript><p class="notice">Enable JavaScript to sign in and use the review queue.</p></noscript>
+</body>
+</html>

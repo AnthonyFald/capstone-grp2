@@ -4,6 +4,8 @@ Demo 3 maintains a living construction task board from incoming RFIs, field requ
 
 Live website: https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/
 
+The [Evergreen Workspace guide](docs/client-workspace.md) covers client signup, project sharing, the new queue for all three workflows, local verification, and release status.
+
 Start with the [one-page quick start](docs/quick-start.txt). The sanitized [consolidation benchmark report](docs/consolidation-results.txt) contains the final V12 fresh results, timing comparison, residual wording issues, and all preserved development history. The final hosted aggregate was separately deployed and checked. Raw run evidence stays local; the repository report preserves a sanitized history and the limitations.
 
 V12 passed 18/18 labeled requirements in development, 18/18 in informed regression, and 12/12 in reserved transfer. Development and informed regression each passed 2/2 shared-group checks; transfer did not assess shared grouping. These synthetic, agent-authored checks are separate from independent human validation, RFI reduction, and learning gains, none of which has been established. The report records the remaining explanation/citation issues despite the passing labeled scores.
@@ -44,7 +46,7 @@ The account **Capstone - INFO 492 Team 2** was created with explicit user approv
 
 Only Workers Free, static assets, D1 Free, and the provided `workers.dev` address are part of this design. No payment details, paid subscription, custom domain, R2, Workers AI, paid queues, or paid fallback are required. Reaching free limits should interrupt service until capacity resets; do not upgrade automatically. Re-check the plan before any later deployment or billing change. The plan verification flag records a check; it is not a live billing monitor or a promise that Cloudflare policies never change.
 
-The account-owned deployment key has only Workers Admin and D1 Write within Capstone, as explicitly approved. Cloudflare's seven-day choice expires at the end of November 9 Pacific (`2026-11-10T07:59:59Z`). Its expiration does not stop the deployed website or invalidate the PC's separate pairing; local processing still requires manually opening the app and selecting On. Deployment evidence and sanitized logs are local under `app/.capstone-local/cloudflare-deployment/`.
+The original Capstone-only deployment key expired November 9 Pacific (`2026-11-10T07:59:59Z`). Publishing a new release requires a fresh, short-lived Capstone account-owned key with Workers Admin and D1 Write. The deployed website and PC pairing use separate credentials. Deployment evidence and sanitized logs are local under `app/.capstone-local/cloudflare-deployment/`.
 
 The deployment publishes only the files in `public/` and the Worker. Do not publish the source archive, the old demo repository, model weights, local audits, access tokens, or evaluation answer keys. Source excerpts submitted by the team are stored in the hosted database, so use synthetic material or material explicitly authorized for this destination. The real-project restriction against recording and AI note-taking still applies.
 
@@ -70,7 +72,7 @@ The supplied materials support a multi-day running feedback workflow for the lat
 
 The cloud keeps compact results, source excerpts, reviews, timings, hashes and lesson versions. Raw model calls and complete local audit files stay in `app/.capstone-local/`, protected for the Windows user by the launcher and excluded from Git. Never put Cloudflare deployment keys in the website or runner. The runner uses a separate project token scoped to claim/heartbeat/complete operations. Browser project keys stay in session storage.
 
-The queue uses expiring claims and heartbeats. Canceled or expired claims cannot publish stale results. A completed local result is saved before upload and can be retried from disk during the next enabled session if the connection fails. The companion uses the existing single-inference lock; the desktop app starts its own services only when their ports are free. This runner advertises RFI capability only; the cloud's legacy meeting/daily payload support does not mean those old experiments are running continuously.
+The queue uses expiring claims and heartbeats. Canceled or expired claims cannot publish stale results. A completed local result is saved before upload and can be retried from disk during the next enabled session if the connection fails. The companion processes one run at a time. The runner starts with RFI capability and adds client meeting and daily report workflows after the upgraded Worker advertises support.
 
 ## Development and verification
 
