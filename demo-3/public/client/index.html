@@ -14,8 +14,7 @@
   <header class="site-header">
     <a class="brand" href="#home" aria-label="Evergreen Workspace home"><span class="brand-mark" aria-hidden="true">E</span><span>Evergreen <small>WORKSPACE</small></span></a>
     <nav class="top-nav" aria-label="Main navigation">
-      <a href="https://anthonyfald.github.io/capstone-grp2/demo-1/">Meeting notes</a>
-      <a href="https://anthonyfald.github.io/capstone-grp2/demo-2/">Daily reports</a>
+      <a id="workspace-link" href="#workspace" hidden>Workspace</a>
       <a href="#evaluation">Evaluation</a>
     </nav>
     <div class="header-actions"><a id="header-signin" class="button button-quiet" href="#signin">Sign in</a><button type="button" id="signout" class="button button-quiet" hidden>Sign out</button></div>
@@ -27,9 +26,9 @@
         <div class="hero-copy">
           <p class="kicker">EVERGREEN CONSTRUCTION COORDINATION</p>
           <h1 id="home-heading">Keep every request<br class="desktop-break"> in view.</h1>
-          <p class="lead">Turn project questions and records into a clear list of work to review, with each recommendation linked to its source.</p>
+          <p class="lead">Review meeting notes, daily reports, and RFIs in one project workspace. Each draft keeps the supporting records within reach.</p>
           <div class="actions" id="landing-auth"><a class="button button-primary" href="#signup">Create account <span aria-hidden="true">→</span></a><a class="button button-secondary" href="#signin">Sign in</a></div>
-          <p class="notice landing-status" id="landing-status" hidden>Account access is pending on the hosted workspace. You can view the measured results and use the standalone meeting and daily report tools.</p>
+          <p class="notice landing-status" id="landing-status" hidden>Live account access is pending deployment. The workflow overview and measured results are available here.</p>
           <p class="quiet-note">For general contractors and subcontractors.</p>
         </div>
         <div class="hero-preview" aria-label="Illustrative result preview">
@@ -49,10 +48,11 @@
         <div><span class="step">2</span><h2>Check the draft</h2><p>See what needs a new task, belongs with existing work, or needs clarification.</p></div>
         <div><span class="step">3</span><h2>Share and review</h2><p>Subcontractors choose what to share with their GC. The GC records the final review.</p></div>
       </div>
-      <section class="demo-links" aria-labelledby="tool-heading"><h2 id="tool-heading">More project tools</h2>
-        <div class="tool-grid">
-          <a class="tool-link" href="https://anthonyfald.github.io/capstone-grp2/demo-1/"><span><strong>Meeting notes</strong><small>Find decisions, owners, and due dates.</small></span><span aria-hidden="true">↗</span></a>
-          <a class="tool-link" href="https://anthonyfald.github.io/capstone-grp2/demo-2/"><span><strong>Daily reports</strong><small>Check progress, blockers, and unresolved issues.</small></span><span aria-hidden="true">↗</span></a>
+      <section class="workflow-section" aria-labelledby="tool-heading"><h2 id="tool-heading">What you can review</h2>
+        <div class="workflow-grid">
+          <article class="workflow-card"><h3>Meeting notes</h3><p>Turn a transcript into decisions, assigned actions, and open questions.</p></article>
+          <article class="workflow-card"><h3>Daily reports</h3><p>Check progress, delays, and which issues still need follow-up.</p></article>
+          <article class="workflow-card"><h3>RFI coordination</h3><p>Find answers in approved records and bring related requests together.</p></article>
         </div>
       </section>
     </section>
@@ -87,9 +87,17 @@
     <section id="workspace" class="workspace view" aria-labelledby="project-heading" hidden>
       <div class="project-banner">
         <div><p id="project-role" class="kicker"></p><h1 id="project-heading"></h1><p id="workspace-intro" class="lead"></p></div>
-        <div class="actions"><button type="button" class="button button-secondary" id="invite-button" hidden>Invite subcontractor</button><button type="button" class="button button-primary" id="start-run">New review <span aria-hidden="true">+</span></button></div>
+        <div class="actions"><button type="button" class="button button-secondary" id="invite-button" hidden>Invite subcontractor</button></div>
       </div>
       <div class="status-line"><span id="runner-status" class="badge"></span><span id="runner-note"></span><button type="button" id="refresh" class="button button-quiet">Refresh</button></div>
+      <section id="start-workflows" class="workflow-section workspace-workflows" aria-labelledby="start-heading">
+        <h2 id="start-heading">Start a review</h2>
+        <div class="workflow-grid">
+          <button type="button" class="workflow-card workflow-launch" data-workflow="meeting"><span><strong>Meeting notes</strong><small>Paste or import a transcript.</small></span><span aria-hidden="true">→</span></button>
+          <button type="button" class="workflow-card workflow-launch" data-workflow="daily"><span><strong>Daily reports</strong><small>Paste or import a JSON batch.</small></span><span aria-hidden="true">→</span></button>
+          <button type="button" class="workflow-card workflow-launch" data-workflow="rfi"><span><strong>RFI coordination</strong><small>Paste requests or import documents.</small></span><span aria-hidden="true">→</span></button>
+        </div>
+      </section>
       <div class="metrics-grid" id="workspace-metrics"></div>
       <div class="workspace-grid">
         <section class="panel run-panel" aria-labelledby="runs-heading">
@@ -125,8 +133,9 @@
       <div class="intake-tools"><button type="button" class="button button-secondary" id="use-example">Use fictional example</button><button type="button" class="button button-secondary" id="add-document">Add another record</button></div>
       <div id="documents"></div>
       <label id="transcript-field" hidden>Meeting transcript<textarea name="transcript" rows="10" maxlength="24000" placeholder="Paste the meeting transcript, including speaker names."></textarea></label>
-      <label id="daily-field" hidden>Daily reports<textarea name="reportText" rows="10" maxlength="42000" placeholder="Paste a JSON batch, or open Daily reports to upload CSV."></textarea></label>
-      <label id="text-file-field" class="button button-secondary file-button" hidden>Import file<input id="workflow-file" type="file" accept=".txt"></label>
+      <label id="daily-field" hidden>Daily report data<textarea name="reportText" rows="10" maxlength="42000" placeholder="Paste a JSON array of reports or import a JSON file."></textarea></label>
+      <label id="text-file-field" class="button button-secondary file-button" hidden><span id="workflow-file-label">Import transcript</span><input id="workflow-file" type="file" accept=".txt,.pdf,.docx"></label>
+      <p id="workflow-file-status" class="field-help" role="status" hidden></p>
       <label>Source of these records<select name="dataClassification"><option value="synthetic">Fictional practice records</option><option value="authorized">Authorized project records</option></select></label>
       <label id="authorization-field" class="check" hidden><input type="checkbox" name="authorized">I have permission to process these records in this workspace.</label>
       <label id="share-field" class="check" hidden><input type="checkbox" name="shared">Share this review and its source records with my GC.</label>

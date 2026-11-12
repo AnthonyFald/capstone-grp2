@@ -113,11 +113,13 @@ main { min-height: calc(100vh - 145px); }
 .workflow-row h2 { font-size: 1rem; letter-spacing: 0; }
 .workflow-row p { grid-column: 2; font-size: .92rem; color: var(--muted); max-width: 285px; align-self: start; }
 .step { align-self: start; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--pale); color: var(--green); font-size: .86rem; font-weight: 700; }
-.demo-links { padding: 28px 0 44px; }
-.tool-grid, .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 15px; }
-.tool-link { display: flex; justify-content: space-between; align-items: center; padding: 15px 17px; border: 1px solid var(--line); background: var(--paper); border-radius: 10px; text-decoration: none; }
-.tool-link:hover { border-color: #829c8a; }
-.tool-link small { display: block; color: var(--muted); margin-top: 4px; }
+.workflow-section { padding: 28px 0 44px; }
+.workspace-workflows { padding: 24px 0 4px; }
+.workflow-grid, .metrics-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 15px; }
+.workflow-card { padding: 15px 17px; border: 1px solid var(--line); background: var(--paper); border-radius: 10px; }
+.workflow-card p, .workflow-launch small { display: block; color: var(--muted); font-size: .86rem; margin-top: 5px; }
+.workflow-launch { display: flex; gap: 8px; align-items: center; justify-content: space-between; text-align: left; color: var(--green); }
+.workflow-launch:hover { border-color: #829c8a; background: var(--pale); }
 .auth-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 470px); align-items: start; gap: clamp(24px, 8vw, 95px); padding: 55px 0 65px; }
 .auth-intro { padding-top: 20px; }
 .auth-intro h1, .evaluation h1, .workspace h1 { margin: 9px 0 11px; font-size: clamp(2rem, 5vw, 3.5rem); overflow-wrap: anywhere; }
@@ -239,7 +241,7 @@ input[type=checkbox] { margin: 0; width: 17px; height: 17px; accent-color: var(-
   .view, .site-footer, .global-message { width: calc(100% - 30px); }
   .site-header { padding-inline: 15px; }
   .top-nav a, .button { font-size: .81rem; }
-  .tool-grid { grid-template-columns: 1fr; }
+  .workflow-grid { grid-template-columns: 1fr; gap: 8px; }
   .metrics-grid { gap: 7px; }
   .metric { padding: 10px; }
   .metric span { font-size: .77rem; }

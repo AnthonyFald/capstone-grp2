@@ -6,9 +6,9 @@ const $ = id => document.getElementById(id);
 const apiRoot = '/api/capstone/v1/client';
 const staticLanding = location.hostname === 'anthonyfald.github.io' || location.pathname.includes('/demo-3/public/client/');
 const kinds = {
-  rfi: {label: 'RFI coordination', description: 'Include at least one request and any records needed to check it.'},
-  meeting: {label: 'Meeting notes', description: 'Add a transcript to extract decisions, action items, and open questions.'},
-  daily: {label: 'Daily reports', description: 'Add a JSON batch to check progress, blockers, and follow-up work.'}
+  rfi: {label: 'RFI coordination', description: 'Include at least one request and any records needed to check it.', placeholder:'East wing flooring requests'},
+  meeting: {label: 'Meeting notes', description: 'Add a transcript to extract decisions, action items, and open questions.', placeholder:'East wing coordination meeting'},
+  daily: {label: 'Daily reports', description: 'Add a JSON batch to check progress, blockers, and follow-up work.', placeholder:'East wing weekly reports'}
 };
 const statuses = {queued:'Waiting', running:'Processing', completed:'Draft ready', failed:'Needs attention', canceled:'Canceled'};
 const actions = {
@@ -85,6 +85,7 @@ function paintRoute() {
   for (const id of views) $(id).hidden = selected !== id;
   $('header-signin').hidden = staticLanding || Boolean(state.dashboard);
   $('signout').hidden = !state.dashboard;
+  $('workspace-link').hidden = !state.dashboard;
   $('landing-auth').hidden = staticLanding;
   $('landing-status').hidden = !staticLanding;
   if (selected === 'auth') {
@@ -207,7 +208,7 @@ function paintDashboard() {
   $('project-heading').textContent = project.name;
   $('workspace-intro').textContent = `${user.name}, ${isGc ? 'review your work and requests shared by subcontractors.' : 'track your requests and review their supporting records.'}`;
   $('invite-button').hidden = !capabilities?.invite;
-  $('start-run').hidden = capabilities?.submit === false;
+  $('start-workflows').hidden = capabilities?.submit === false;
   const available = runner?.online === true;
   $('runner-status').className = 'badge ' + (available ? 'online' : 'waiting');
   $('runner-status').textContent = available ? 'Processing computer connected' : 'Processing computer offline';
@@ -263,12 +264,25 @@ $('run-filter').addEventListener('change', paintRuns);
 $('refresh').addEventListener('click', () => refreshDashboard());
 
 const runForm = $('run-form');
+let workflowImport = null;
+
+function cancelWorkflowImport() {
+  workflowImport?.abort();
+  workflowImport = null;
+  $('workflow-file').value = '';
+  $('workflow-file').disabled = false;
+  $('workflow-file-status').hidden = true;
+}
 function syncKind() {
+  cancelWorkflowImport();
   const controls = runForm.elements;
   const kind = controls.kind.value;
+  $('intake-heading').textContent = kinds[kind].label;
   $('intake-description').textContent = kinds[kind].description;
+  controls.title.placeholder = 'e.g. ' + kinds[kind].placeholder;
   $('documents').hidden = kind !== 'rfi';
   $('add-document').hidden = kind !== 'rfi';
+  if (kind === 'rfi' && !$('documents').children.length) addRecord();
   for (const fieldset of $('documents').children) fieldset.disabled = kind !== 'rfi';
   $('transcript-field').hidden = kind !== 'meeting';
   controls.transcript.required = kind === 'meeting';
@@ -277,7 +291,8 @@ function syncKind() {
   controls.reportText.required = kind === 'daily';
   controls.reportText.disabled = kind !== 'daily';
   $('text-file-field').hidden = kind === 'rfi';
-  $('workflow-file').accept = kind === 'daily' ? '.json' : '.txt';
+  $('workflow-file-label').textContent = kind === 'daily' ? 'Import JSON' : 'Import transcript';
+  $('workflow-file').accept = kind === 'daily' ? '.json' : '.txt,.pdf,.docx';
 }
 function syncClassification() {
   const authorized = runForm.elements.dataClassification.value === 'authorized';
@@ -363,12 +378,13 @@ function setExample() {
     controls.reportText.value = JSON.stringify(exampleReports, null, 2);
   }
 }
-function openIntake() {
+function openIntake(kind) {
+  if (!state.dashboard || state.dashboard.capabilities?.submit === false) return;
   runForm.reset();
+  runForm.elements.kind.value = kind;
   state.submissionKey = null;
   formError(runForm);
   $('documents').replaceChildren();
-  addRecord();
   $('share-field').hidden = !state.dashboard?.capabilities?.share;
   runForm.elements.shared.disabled = $('share-field').hidden;
   $('intake-note').textContent = state.dashboard?.runner?.online ? 'The project computer processes reviews in queue order.' : 'Your review will wait until the project computer is switched on.';
@@ -376,28 +392,56 @@ function openIntake() {
   syncClassification();
   $('intake-dialog').showModal();
 }
-$('start-run').addEventListener('click', openIntake);
+for (const control of document.querySelectorAll('[data-workflow]')) {
+  control.addEventListener('click', () => openIntake(control.dataset.workflow));
+}
 $('use-example').addEventListener('click', setExample);
 $('add-document').addEventListener('click', () => addRecord());
 runForm.elements.kind.addEventListener('change', syncKind);
 runForm.elements.dataClassification.addEventListener('change', syncClassification);
+$('intake-dialog').addEventListener('close', cancelWorkflowImport);
 $('workflow-file').addEventListener('change', async event => {
   const input = event.currentTarget;
   const file = input.files[0];
   if (!file) return;
   const kind = runForm.elements.kind.value;
   const target = kind === 'daily' ? runForm.elements.reportText : runForm.elements.transcript;
+  const status = $('workflow-file-status');
+  const request = new AbortController();
+  workflowImport = request;
+  const showStatus = message => {
+    if (workflowImport !== request) return;
+    status.textContent = message;
+    status.hidden = !message;
+  };
+  input.disabled = true;
   try {
-    if (file.size > 180000) throw Error('Use a smaller text file.');
-    const content = await file.text();
+    let content, warnings = [];
+    if (kind === 'daily') {
+      if (!/\.json$/i.test(file.name) || file.size > 180000) throw Error('Choose a JSON file under 180 KB.');
+      content = await file.text();
+    } else {
+      const extracted = await extractFile(file, {signal:request.signal,onStatus:showStatus});
+      content = extracted.text;
+      warnings = arr(extracted.warnings);
+    }
     if (!content.trim() || content.includes('\0') || content.length > target.maxLength) throw Error('Choose a readable text file within the form’s character limit.');
-    if (runForm.elements.kind.value !== kind) return;
+    if (request.signal.aborted || !$('intake-dialog').open) return;
     target.value = content;
+    if (!runForm.elements.title.value.trim()) runForm.elements.title.value = file.name.replace(/\.[^.]+$/, '').slice(0, 120);
     formError(runForm);
+    showStatus(['Imported. Check the text before adding this review.', ...warnings].join(' '));
   } catch (error) {
-    formError(runForm, error.message);
+    if (!request.signal.aborted && $('intake-dialog').open) {
+      showStatus('');
+      formError(runForm, error.message);
+    }
   } finally {
-    input.value = '';
+    if (workflowImport === request) {
+      workflowImport = null;
+      input.value = '';
+      input.disabled = false;
+    }
   }
 });
 function runPayload() {
