@@ -4,7 +4,7 @@ A static capstone website with functional Demo 1 and Demo 2 tabs. GitHub Pages s
 
 ## Demo 3: document consolidation and task review
 
-[Evergreen Workspace](demo-3/public/client/) is the client entry point for general contractors and subcontractors. See the [workspace guide](demo-3/docs/client-workspace.md) for project roles, the three queued workflows, the Free hosting setup, and the November 11 evaluation.
+[Evergreen Workspace](https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/client/) is the live client entry point for general contractors and subcontractors. See the [workspace guide](demo-3/docs/client-workspace.md) for project roles, the three queued workflows, the Free hosting setup, and the November 11 evaluation.
 
 [Demo 3](https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/) uses a separate, free Capstone Cloudflare account. Incoming RFI/request documents become proposed tasks, shared groups, duplicate links, evidence-backed answers, or open conflicts. A reviewer approves changes to a persistent board; original text and change history remain available. [Operation and evaluation notes](demo-3/README.md) describe the workflow and its limits.
 

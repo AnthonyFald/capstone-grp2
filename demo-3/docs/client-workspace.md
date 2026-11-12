@@ -2,7 +2,7 @@
 
 Evergreen Workspace brings meeting notes, daily report review and RFI consolidation into one project account. Open it from the Team 2 homepage. The signed-in dashboard has an entry point for each workflow.
 
-Class materials are available as an editable [Demo 3 writeup](<../../documents/demo-3/Demo 3 Write Up.docx>) and [six-slide presentation](<../../documents/demo-3/Demo 3 Presentation.pptx>). The slide notes contain short speaking prompts, and the interface illustrations use fictional examples.
+Class materials are available as an editable [Demo 3 writeup](<../../documents/demo-3/Demo 3 Write Up.docx>) and [seven-slide presentation](<../../documents/demo-3/Demo 3 Presentation.pptx>). The slide notes contain short speaking prompts. The interface captures show a local workspace signed in with fictional data.
 
 ## Use a project account
 
@@ -32,7 +32,7 @@ For an isolated account, queue and real-model acceptance check, close the previe
 
 The Worker reuses the same D1 database through additive tables. The deployment helper requires a short-lived account-owned key scoped to the isolated Capstone account. It deploys only the Capstone Worker after Free plan verification. The account configuration and database do not rely on Supabase or a hosted GPU service. Keep `.capstone-local/`, model weights, run audits, login material and the source archive out of Git.
 
-The hosted client becomes available at `/client/` on the Capstone Worker after publishing the updated code and schema. Until then the Team 2 button opens the public workspace introduction and evaluation on GitHub Pages.
+The Team 2 button opens the [live Evergreen Workspace](https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/client/). Hosted checks with fictional accounts verified signup, login, logout, single-use invitations, and project isolation on the Capstone Free deployment. The project PC processes queued reviews during manually enabled sessions.
 
 ## Evaluation
 

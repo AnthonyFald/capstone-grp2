@@ -5,6 +5,12 @@ import {derivePasswordProof} from './auth.mjs';
 const $ = id => document.getElementById(id);
 const apiRoot = '/api/capstone/v1/client';
 const staticLanding = location.hostname === 'anthonyfald.github.io' || location.pathname.includes('/demo-3/public/client/');
+const hostedWorkspace = 'https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/client/';
+if (staticLanding) {
+  for (const link of document.querySelectorAll('a[href="#signin"], a[href="#signup"]')) {
+    link.href = hostedWorkspace + link.getAttribute('href');
+  }
+}
 const kinds = {
   rfi: {label: 'RFI coordination', description: 'Include at least one request and any records needed to check it.', placeholder:'East wing flooring requests'},
   meeting: {label: 'Meeting notes', description: 'Add a transcript to extract decisions, action items, and open questions.', placeholder:'East wing coordination meeting'},
@@ -83,11 +89,9 @@ function currentView() {
 function paintRoute() {
   const selected = currentView();
   for (const id of views) $(id).hidden = selected !== id;
-  $('header-signin').hidden = staticLanding || Boolean(state.dashboard);
+  $('header-signin').hidden = Boolean(state.dashboard);
   $('signout').hidden = !state.dashboard;
   $('workspace-link').hidden = !state.dashboard;
-  $('landing-auth').hidden = staticLanding;
-  $('landing-status').hidden = !staticLanding;
   if (selected === 'auth') {
     const signup = location.hash === '#signup';
     $('auth-heading').textContent = signup ? 'Create your account.' : 'Welcome back.';

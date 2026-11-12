@@ -1,8 +1,9 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const home=fs.readFileSync(path.join(root,'index.html'),'utf8'),demo=fs.readFileSync(path.join(root,'demo-1/index.html'),'utf8');
+const liveWorkspace='https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/client/';
 test('project front page offers one workspace launch and retains research links', () => {
-  assert.equal((home.match(/href="demo-3\/public\/client\/"/g) || []).length, 1);
+  assert.equal(home.split('href="'+liveWorkspace+'"').length-1, 1);
   assert.doesNotMatch(home, /href="(?:https?:\/\/[^"]+\/)?demo-[123]\/"|>Open Demo [123]/);
   assert.match(home, /href="demo-2\/research\.html"/);
 });
@@ -14,7 +15,6 @@ test('local site preview serves nested demo and redirects missing slash',async()
 test('the Evergreen Workspace landing links resolve and its modules are executable in preview', async () => {
   const {handleRequest} = await import('../scripts/serve.mjs');
   const base = '/demo-3/public/client/';
-  assert.ok(home.includes('href="demo-3/public/client/"'));
   for (const [url, type] of [[base, 'text/html'], [base + 'client.mjs', 'text/javascript'], [base + 'auth.mjs', 'text/javascript']]) {
     let status, headers;
     await handleRequest({url, method:'GET'}, {
@@ -30,5 +30,7 @@ test('workspace presents all three review actions inside the signed-in product',
   const client = fs.readFileSync(path.join(root,'demo-3/public/client/index.html'),'utf8');
   for (const workflow of ['meeting','daily','rfi']) assert.match(client, new RegExp('data-workflow="' + workflow + '"'));
   assert.doesNotMatch(client, /href="[^"]*\/demo-[123]\//);
-  assert.match(client, /Live account access is pending deployment/);
+  const clientScript = fs.readFileSync(path.join(root,'demo-3/public/client/client.mjs'),'utf8');
+  assert.ok(clientScript.includes(liveWorkspace));
+  assert.match(clientScript, /link\.href = hostedWorkspace \+ link\.getAttribute\('href'\)/);
 });
