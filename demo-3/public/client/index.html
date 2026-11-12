@@ -30,8 +30,8 @@
           <div class="actions" id="landing-auth"><a class="button button-primary" href="#signup">Create account <span aria-hidden="true">→</span></a><a class="button button-secondary" href="#signin">Sign in</a></div>
           <p class="quiet-note">For general contractors and subcontractors.</p>
         </div>
-        <div class="hero-preview" aria-label="Illustrative result preview">
-          <div class="preview-head"><span class="preview-dot" aria-hidden="true"></span><strong>Repair coordination</strong><span class="preview-tag">EXAMPLE</span></div>
+        <div class="hero-preview" aria-label="Sample review">
+          <div class="preview-head"><span class="preview-dot" aria-hidden="true"></span><strong>Sample review</strong></div>
           <div class="preview-body">
             <p class="kicker">DOCUMENT REVIEW</p>
             <h2>East wing flooring</h2>
@@ -113,11 +113,21 @@
         <div class="section-title"><div><h2 id="shared-board-heading">Reviewed work from shared runs</h2><p>Tasks from reviews you chose to share with your GC.</p></div></div>
         <ul id="shared-board-list" class="board-list"></ul>
       </section>
+      <section id="saved-guidance" class="panel project-board" aria-labelledby="saved-guidance-heading" hidden>
+        <div class="section-title"><div><h2 id="saved-guidance-heading">Saved RFI guidance</h2><p>Choose whether to use these instructions when starting a review.</p></div></div>
+        <div id="guidance-lists"></div>
+      </section>
     </section>
 
     <section id="evaluation" class="evaluation view" aria-labelledby="evaluation-heading" hidden>
       <p class="kicker">TEAM 2 CAPSTONE</p><h1 id="evaluation-heading">What the tests show</h1>
-      <p class="lead">Demo 3 routes requests, checks for duplicate work, and keeps source evidence available for review.</p>
+      <p class="lead">See how well the workspace routes requests, identifies duplicate work, and keeps source evidence available for review.</p>
+      <section class="panel" aria-labelledby="live-evaluation-heading">
+        <h2 id="live-evaluation-heading">Live RFI comparison</h2>
+        <p>Both drafts passed 3 of 3 checks and preserved every deadline. The live queue used the same six generated records, starting board, and model in both runs.</p>
+        <p class="evaluation-note">A follow-up linked a repeat request to its existing open task, saved the earlier deadline, and kept a separate request on its own task.</p>
+        <p class="evaluation-note">Model workflow took 283 seconds without saved guidance and 189 seconds with it. The second run used an already-loaded model. This pair showed no gain on the quality checklist.</p>
+      </section>
       <div id="evaluation-content" aria-live="polite"></div>
       <section id="project-evaluation" class="panel project-evaluation" hidden><h2>Your project reviews</h2><div id="project-evaluation-content"></div></section>
       <a id="evaluation-back" class="text-link" href="#home">← Back to home</a>
@@ -129,15 +139,16 @@
       <div class="dialog-head"><div><p class="kicker">NEW REVIEW</p><h2 id="intake-heading">Add project records</h2><p id="intake-description">Include at least one request and any records needed to check it.</p></div><button type="button" class="icon-button" data-close="intake-dialog" aria-label="Close new review">×</button></div>
       <label>Review type<select name="kind"><option value="rfi">RFI coordination</option><option value="meeting">Meeting notes</option><option value="daily">Daily reports</option></select></label>
       <label>Review name<input name="title" maxlength="120" required placeholder="e.g. East wing flooring requests"></label>
-      <div class="intake-tools"><button type="button" class="button button-secondary" id="use-example">Use fictional example</button><button type="button" class="button button-secondary" id="add-document">Add another record</button></div>
+      <div class="intake-tools"><button type="button" class="button button-secondary" id="use-example">Load sample</button><button type="button" class="button button-secondary" id="add-document">Add another record</button></div>
       <div id="documents"></div>
       <label id="transcript-field" hidden>Meeting transcript<textarea name="transcript" rows="10" maxlength="24000" placeholder="Paste the meeting transcript, including speaker names."></textarea></label>
       <label id="daily-field" hidden>Daily report data<textarea name="reportText" rows="10" maxlength="42000" placeholder="Paste a JSON array of reports or import a JSON file."></textarea></label>
       <label id="text-file-field" class="button button-secondary file-button" hidden><span id="workflow-file-label">Import transcript</span><input id="workflow-file" type="file" accept=".txt,.pdf,.docx"></label>
       <p id="workflow-file-status" class="field-help" role="status" hidden></p>
-      <label>Source of these records<select name="dataClassification"><option value="synthetic">Fictional practice records</option><option value="authorized">Authorized project records</option></select></label>
+      <label>Record source<select name="dataClassification"><option value="authorized">Authorized project records</option><option value="synthetic">Test records</option></select></label>
       <label id="authorization-field" class="check" hidden><input type="checkbox" name="authorized">I have permission to process these records in this workspace.</label>
       <label id="share-field" class="check" hidden><input type="checkbox" name="shared">Share this review and its source records with my GC.</label>
+      <div id="use-guidance-field" class="guidance-option" hidden><label class="check"><input type="checkbox" name="useGuidance" disabled>Use saved guidance</label><p class="field-help" id="use-guidance-note"></p></div>
       <p id="intake-note" class="field-help"></p><p class="form-error" role="alert" hidden></p>
       <button type="submit" class="button button-primary wide">Add to review queue <span aria-hidden="true">→</span></button>
     </form>

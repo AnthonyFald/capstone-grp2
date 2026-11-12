@@ -2,7 +2,7 @@
 
 Evergreen Workspace brings meeting notes, daily report review and RFI consolidation into one project account. Open it from the Team 2 homepage. The signed-in dashboard has an entry point for each workflow.
 
-Class materials are available as an editable [Demo 3 writeup](<../../documents/demo-3/Demo 3 Write Up.docx>) and [seven-slide presentation](<../../documents/demo-3/Demo 3 Presentation.pptx>). The slide notes contain short speaking prompts. The interface captures show a local workspace signed in with fictional data.
+Class materials are available as an editable [Demo 3 writeup](<../../documents/demo-3/Demo 3 Write Up.docx>) and [presentation](<../../documents/demo-3/Demo 3 Presentation.pptx>). The slide notes contain short speaking prompts.
 
 ## Use a project account
 
@@ -18,11 +18,12 @@ Create your own unique password. Sessions use an HTTP-only cookie. The demo does
 
 ## Queue and review a run
 
-1. Select **RFI consolidation**, **Meeting notes**, or **Daily reports**. Add the corresponding source material and confirm that it is fictional or authorized for this team and processing PC.
+1. Select **RFI coordination**, **Meeting notes**, or **Daily reports**. Add the source material. Choose **Test records** for generated examples or confirm permission when submitting **Authorized project records**.
 2. Queue the run. The project PC's manual Capstone app processes one job at a time with Qwen 3.5 27B when **On**. Open the Windows app and turn it On for a planned session. **Off** or Close stops its owned model and queue polling. The website and jobs remain available.
 3. Open the result to compare the draft with the source. Record **Accept** or **Needs changes** and any measured evaluation values. Accepting your own RFI proposal can update your saved task history. A human still decides whether to submit a formal RFI.
+4. After reviewing your own completed RFI run, you can save an instruction for future reviews. Choose **Use saved guidance** when you want a new RFI draft to follow those instructions. Each run records the exact version it used. Private guidance and guidance for runs you share with your GC stay in separate lists. Archiving an instruction affects future runs.
 
-Fictional material is the default for class evaluation. Project membership controls client access. The designated processing PC receives claimed source material and retains its local audit. Use records cleared for that destination and workflow.
+The class evaluation uses generated test records. Project membership controls client access. The designated processing PC receives claimed source material and retains its local audit. Use records cleared for that destination and workflow.
 
 ## Run the local workspace
 
@@ -33,6 +34,21 @@ For an isolated account, queue and real-model acceptance check, close the previe
 The Worker reuses the same D1 database through additive tables. The deployment helper requires a short-lived account-owned key scoped to the isolated Capstone account. It deploys only the Capstone Worker after Free plan verification. The account configuration and database do not rely on Supabase or a hosted GPU service. Keep `.capstone-local/`, model weights, run audits, login material and the source archive out of Git.
 
 The Team 2 button opens the [live Evergreen Workspace](https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/client/). Hosted checks with fictional accounts verified signup, login, logout, single-use invitations, and project isolation on the Capstone Free deployment. The project PC processes queued reviews during manually enabled sessions.
+
+## Hosted RFI comparison
+
+On November 11, 2026, the Capstone Free site queued a generated Mezzanine M2 batch and the manually enabled RTX 5080 desktop returned a draft. The batch contained three requests, an approved door schedule, its superseded draft, and an approved QA plan. A test reviewer recorded a review, left the board empty, and saved one instruction about preserving exact deadline wording. The second submission reused the identical canonical input, Qwen 3.5 27B model digest, V12 engine and empty board (version 0), with saved guidance version 1 enabled. The checklist was frozen before either run and stayed outside the prompt.
+
+| Condition | Requirements passed | Deadline wording defects | Model workflow | Queue to draft |
+| --- | ---: | ---: | ---: | ---: |
+| No saved guidance | 3/3 | 0 | 283.46 s | 299.53 s |
+| Saved guidance | 3/3 | 0 | 189.25 s | 193.36 s |
+
+Both drafts used the approved 910 mm door clearance, kept the W4 primer release open without a signed passing record, and kept the W5 retest owner as separate open work. Both preserved **before 07:30**, **before 06:45**, and **by 10:15**. The baseline mentioned the QA-plan prerequisite without showing the plan excerpt on the item. The guided draft displayed the exact excerpt in a warning while its formal citation list stayed empty. The paired checklist tied. The second run used an already-loaded model (0.02 s loading versus 9.88 s on the first), and one ordered pair cannot establish a timing benefit from the guidance.
+
+After review, we applied the guided draft and submitted two new requests through the live form with guidance selected. In 136.57 seconds of model workflow, the system linked the repeat W4 primer-release request to the existing open task and created a separate open task for W5 probe location. Both follow-up checks passed. Accepting the follow-up kept the original **before 06:45** and the updated **before 06:15** deadlines on the same W4 task and kept the W5 owner and probe location on separate tasks. This was an incremental board check using a new input and starting board.
+
+This trial used generated records and AI-assisted scoring. It verifies that the hosted queue runs on the project GPU and that a future run can use a saved review instruction. It measures neither human review time nor field RFI reduction.
 
 ## Evaluation
 

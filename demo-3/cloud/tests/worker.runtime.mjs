@@ -70,4 +70,16 @@ test('real local Workers/D1 runtime stores claims, immutable completion, review 
   assert.equal(clientDashboard.evaluation.reviewedRuns,1);
   assert.equal((await api('/jobs')).jobs.some(job=>job.id===isolated.job.id),false);
 
+  const text='Keep a missing signed delivery record open even when the inspection is complete.';
+  const published=await client('/runs/'+isolated.job.id+'/guidance',{text});
+  assert.equal(published.guidance.scope,'private');
+  const next=await client('/runs',{kind:'rfi',title:'Client follow-up',dataClassification:'synthetic',clientRequestId:'runtime-client-guided',useGuidance:true,payload:{mode:'consolidation',documents:[request]}});
+  await client('/guidance/'+published.guidance.id+'/archive',{});
+  assert.deepEqual((await client('/dashboard')).guidance.private,[]);
+  const guided=await api('/runner/claim',{capabilities:['rfi']},runner.token);
+  assert.equal(guided.job.id,next.run.id);
+  assert.equal(guided.job.cohort,'learning');
+  assert.equal(guided.lessons.releaseId,next.run.guidanceSnapshotId);
+  assert.deepEqual(guided.lessons.items.map(item=>item.text),[text]);
+
 });

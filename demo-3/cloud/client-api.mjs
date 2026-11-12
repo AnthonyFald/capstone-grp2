@@ -179,13 +179,19 @@ const accessParams = user => [user.id,user.project_id,user.role];
 const latestEvaluation = 'LEFT JOIN client_evaluations e ON e.id=(SELECT id FROM client_evaluations WHERE job_id=j.id ORDER BY created_at DESC,id DESC LIMIT 1)';
 
 function runView(row, user) {
+  const owner = row.user_id===user.id;
   return {
     id:row.id,title:row.title,kind:row.kind,status:row.status,stage:row.stage,
     createdAt:row.created_at,completedAt:row.completed_at,
-    shared:!!row.shared,owner:row.user_id===user.id,submittedBy:row.submitted_by,
+    shared:!!row.shared,owner,submittedBy:row.submitted_by,
     reviewed:!!row.review_id,timings:parse(row.timings_json),
     canReview:row.status==='completed'&&!row.own_review,
-    canShare:row.user_id===user.id&&!!row.shareable,
+    canShare:owner&&!!row.shareable,
+    canPublishGuidance:owner&&row.kind==='rfi'&&row.status==='completed'&&!!row.own_review&&!row.saved_guidance,
+    guidanceScope:row.shareable?'shared':'private',
+    useGuidance:!!row.lesson_release_id,
+    guidanceVersion:row.lesson_version||null,
+    guidanceSnapshotId:row.lesson_release_id||null,
     error:row.status==='failed'?'The processing host could not complete this run.':null
   };
 }
@@ -194,12 +200,12 @@ function reviewView(row) {
   return row?.review_id ? {decision:row.review_decision,notes:row.review_notes,metrics:parse(row.metrics_json,{}),createdAt:row.review_at,applied:!!row.review_applied} : null;
 }
 
-const runFields = 'j.id,j.title,j.kind,j.status,j.stage,j.created_at,j.completed_at,j.timings_json,cr.user_id,cr.project_id,cr.shared,cr.shareable,u.name AS submitted_by,e.id AS review_id,e.metrics_json,e.decision AS review_decision,e.notes AS review_notes,e.created_at AS review_at,e.applied AS review_applied';
+const runFields = 'j.id,j.title,j.kind,j.status,j.stage,j.created_at,j.completed_at,j.timings_json,j.lesson_release_id,j.lesson_version,cr.user_id,cr.project_id,cr.shared,cr.shareable,u.name AS submitted_by,e.id AS review_id,e.metrics_json,e.decision AS review_decision,e.notes AS review_notes,e.created_at AS review_at,e.applied AS review_applied,EXISTS(SELECT 1 FROM client_guidance g WHERE g.source_job_id=j.id) AS saved_guidance';
 const ownReview = 'EXISTS(SELECT 1 FROM client_evaluations WHERE job_id=j.id AND reviewer_id=?) AS own_review';
 const runTables = 'FROM client_runs cr JOIN jobs j ON j.id=cr.job_id JOIN client_users u ON u.id=cr.user_id ' + latestEvaluation;
 
 async function getRun(db, user, runId) {
-  const row = await db.prepare('SELECT '+runFields+','+ownReview+',j.payload_json,j.result_json,j.provenance_json '+runTables+' WHERE j.id=? AND '+access).bind(user.id,runId,...accessParams(user)).first();
+  const row = await db.prepare('SELECT '+runFields+','+ownReview+',j.payload_json,j.result_json,j.provenance_json,j.lesson_snapshot_json '+runTables+' WHERE j.id=? AND '+access).bind(user.id,runId,...accessParams(user)).first();
   if (!row) fail(404,'not_found','This run is unavailable.');
   return row;
 }
@@ -207,6 +213,45 @@ async function getRun(db, user, runId) {
 async function readClientBoard(db, userId, shareable) {
   const row = await db.prepare('SELECT state_json FROM client_boards WHERE user_id=? AND shareable=?').bind(userId,shareable).first();
   return row ? parse(row.state_json) : emptyBoard();
+}
+
+function guidanceView(row) {
+  return {id:row.id,text:row.text,version:row.version,createdAt:row.created_at,sourceRunId:row.source_job_id,scope:row.shareable?'shared':'private'};
+}
+
+async function guidanceSnapshot(db, user, shareable) {
+  const active = await db.prepare('SELECT id,version,text,created_at FROM client_guidance WHERE user_id=? AND shareable=? AND archived_at IS NULL ORDER BY version').bind(user.id,shareable).all();
+  const lessons = (active.results||[]).map(row=>({id:row.id,version:row.version,text:row.text,approved:true,approvedBy:user.id,approvedAt:row.created_at,appliesTo:['rfi']}));
+  if (!lessons.length) fail(409,'guidance_unavailable','Save reusable guidance in this scope before turning it on.');
+  const snapshot = json(lessons);
+  return {snapshot,version:lessons.at(-1).version,id:'guidance_'+await digest(snapshot)};
+}
+
+async function publishGuidance(request, db, user, runId, tools) {
+  const run = await getRun(db,user,runId);
+  if (run.user_id!==user.id) fail(403,'forbidden','Only the person who submitted this run can save its guidance.');
+  if (run.kind!=='rfi' || run.status!=='completed' || !run.own_review) fail(409,'review_required','Review your completed RFI result before saving guidance.');
+  if (run.saved_guidance) fail(409,'guidance_exists','This reviewed run already has a saved instruction.');
+  const body = await tools.body(request);
+  const text = string(body.text,'Reusable guidance',1,500);
+  const review = await db.prepare('SELECT id FROM client_evaluations WHERE job_id=? AND reviewer_id=?').bind(runId,user.id).first();
+  const created = await db.prepare(`INSERT INTO client_guidance(id,user_id,shareable,version,text,source_job_id,source_review_id,created_at)
+    SELECT ?,?,?,COALESCE((SELECT MAX(version) FROM client_guidance WHERE user_id=? AND shareable=?),0)+1,?,?,?,?
+    WHERE (SELECT COUNT(*) FROM client_guidance WHERE user_id=? AND shareable=? AND archived_at IS NULL)<8
+    ON CONFLICT(source_job_id) DO NOTHING RETURNING *`)
+    .bind(id('guidance'),user.id,run.shareable,user.id,run.shareable,text,runId,review.id,now(),user.id,run.shareable).first();
+  if (!created) {
+    const duplicate = await db.prepare('SELECT id FROM client_guidance WHERE source_job_id=?').bind(runId).first();
+    if (duplicate) fail(409,'guidance_exists','This reviewed run already has a saved instruction.');
+    fail(409,'guidance_capacity','This scope already has eight active instructions. Archive one before saving another.');
+  }
+  return tools.reply({guidance:guidanceView(created)},201);
+}
+
+async function archiveGuidance(db, user, guidanceId, reply) {
+  const archived = await db.prepare('UPDATE client_guidance SET archived_at=COALESCE(archived_at,?) WHERE id=? AND user_id=? RETURNING id').bind(now(),guidanceId,user.id).first();
+  if (!archived) fail(404,'not_found','This instruction is unavailable.');
+  return reply({archived:true});
 }
 
 function metricsView(rows) {
@@ -244,7 +289,10 @@ async function dashboard(db, user, reply) {
   const lastSeenAt = last?.last_seen_at || null;
   const board = publicBoard(await readClientBoard(db,user.id,0));
   const sharedBoard = user.role==='sub' && user.joined_project ? publicBoard(await readClientBoard(db,user.id,1)) : null;
-  return reply({...accountView(user), runner:{online:!!lastSeenAt&&Date.parse(lastSeenAt)>Date.now()-90000,lastSeenAt},runs:rows.map(row=>runView(row,user)),board,sharedBoard,evaluation:metricsView(rows)});
+  const active = await db.prepare('SELECT * FROM client_guidance WHERE user_id=? AND archived_at IS NULL ORDER BY version').bind(user.id).all();
+  const guidance = {private:[],shared:[]};
+  for (const row of active.results||[]) guidance[row.shareable?'shared':'private'].push(guidanceView(row));
+  return reply({...accountView(user), runner:{online:!!lastSeenAt&&Date.parse(lastSeenAt)>Date.now()-90000,lastSeenAt},runs:rows.map(row=>runView(row,user)),board,sharedBoard,guidance,evaluation:metricsView(rows)});
 }
 
 async function queue(request, db, user, tools) {
@@ -254,13 +302,17 @@ async function queue(request, db, user, tools) {
   const title = string(body.title,'Run name',2,140);
   const clientRequestId = string(body.clientRequestId,'Request ID',1,100);
   const dataClassification = body.dataClassification;
-  if (!['synthetic','authorized'].includes(dataClassification)) fail(400,'invalid_classification','Confirm the project data is fictional or authorized.');
+  if (!['synthetic','authorized'].includes(dataClassification)) fail(400,'invalid_classification','Choose test records or authorized project records.');
   const payload = tools.validatePayload(kind,body.payload);
   if (kind==='rfi' && payload.mode!=='consolidation') fail(400,'invalid_mode','Submit a document consolidation batch.');
   const canShare = user.role==='sub' && user.joined_project;
   if (body.shared===true && !canShare) fail(400,'invalid_share','Only invited subcontractors can share runs with their general contractor.');
   const shareable = canShare && body.shared===true ? 1 : 0;
-  const requestHash = await digest(json({kind,title,payload,dataClassification,shareable}));
+  if (body.useGuidance!==undefined && typeof body.useGuidance!=='boolean') fail(400,'invalid_guidance','Choose whether to use saved guidance.');
+  const useGuidance = body.useGuidance===true;
+  if (useGuidance && kind!=='rfi') fail(400,'invalid_guidance','Saved guidance is available for RFI runs.');
+  // Keep old no-guidance request hashes valid, including retries across a release.
+  const requestHash = await digest(json({kind,title,payload,dataClassification,shareable,...(useGuidance?{useGuidance}:{})}));
   const existing = async () => {
     const previous = await db.prepare('SELECT id,request_hash FROM jobs WHERE created_by=? AND client_request_id=?').bind(user.id,clientRequestId).first();
     if (!previous) return null;
@@ -275,12 +327,13 @@ async function queue(request, db, user, tools) {
     board = await readClientBoard(db,user.id,shareable);
     validateBoardCapacity({...board,documents:combinedDocuments(board,payload.documents)});
   }
-  const insert = db.prepare(`INSERT OR IGNORE INTO jobs(id,kind,title,data_classification,status,cohort,payload_json,input_sha256,request_hash,client_request_id,created_by,created_at,not_before,lesson_policy,lesson_version,lesson_snapshot_json)
-    SELECT ?,?,?,?,'queued','baseline',?,?,?,?,?,?,?,'fixed',0,'[]'
+  const guidance = useGuidance?await guidanceSnapshot(db,user,shareable):null;
+  const insert = db.prepare(`INSERT OR IGNORE INTO jobs(id,kind,title,data_classification,status,cohort,payload_json,input_sha256,request_hash,client_request_id,created_by,created_at,not_before,lesson_policy,lesson_release_id,lesson_version,lesson_snapshot_json)
+    SELECT ?,?,?,?,'queued',?,?,?,?,?,?,?,?,'fixed',?,?,?
     WHERE (SELECT COUNT(*) FROM client_runs)<200 AND (SELECT COUNT(*) FROM client_runs WHERE user_id=?)<30
     AND (SELECT COUNT(*) FROM client_runs cr JOIN jobs j ON j.id=cr.job_id WHERE j.status IN ('queued','running'))<20
     AND (SELECT COUNT(*) FROM client_runs cr JOIN jobs j ON j.id=cr.job_id WHERE cr.user_id=? AND j.status IN ('queued','running'))<3`)
-    .bind(runId,kind,title,dataClassification,json(payload),inputHash,requestHash,clientRequestId,user.id,at,at,user.id,user.id);
+    .bind(runId,kind,title,dataClassification,useGuidance?'learning':'baseline',json(payload),inputHash,requestHash,clientRequestId,user.id,at,at,guidance?.id??null,guidance?.version??0,guidance?.snapshot??'[]',user.id,user.id);
   const statements = [insert, db.prepare('INSERT INTO client_runs(job_id,user_id,project_id,shareable,shared) SELECT ?,?,?,?,? WHERE EXISTS(SELECT 1 FROM jobs WHERE id=?)').bind(runId,user.id,user.project_id,shareable,shareable,runId)];
   if (board) statements.push(db.prepare('INSERT INTO board_snapshots(job_id,board_version,state_json,created_at) SELECT ?,?,?,? WHERE EXISTS(SELECT 1 FROM client_runs WHERE job_id=?)').bind(runId,board.version,json(board),at,runId));
   const saved = await db.batch(statements);
@@ -343,17 +396,21 @@ export async function handleClient(request, env, route, tools) {
   if (method==='GET' && name==='/dashboard') return dashboard(db,user,tools.reply);
   if (method==='POST' && name==='/runs') return queue(request,db,user,tools);
   if (method==='POST' && name==='/invites') return invite(request,db,user,tools);
-  const match = name.match(/^\/runs\/(job_[A-Za-z0-9-]+)(?:\/(review|share))?$/);
+  const guidanceMatch = name.match(/^\/guidance\/(guidance_[A-Za-z0-9-]+)\/archive$/);
+  if (method==='POST' && guidanceMatch) return archiveGuidance(db,user,guidanceMatch[1],tools.reply);
+  const match = name.match(/^\/runs\/(job_[A-Za-z0-9-]+)(?:\/(review|share|guidance))?$/);
   if (match) {
     const [,runId,action] = match;
     if (method==='GET' && !action) {
       const row = await getRun(db,user,runId);
       const recorded = parse(row.provenance_json,{});
       const provenance = Object.fromEntries(['model','modelDigest','backend','policy','engineVersion','jobInputSha256'].filter(key=>typeof recorded[key]==='string').map(key=>[key,recorded[key]]));
-      return tools.reply({run:{...runView(row,user),payload:parse(row.payload_json),result:parse(row.result_json),provenance},review:reviewView(row)});
+      const guidance = row.user_id===user.id ? parse(row.lesson_snapshot_json,[]).map(lesson=>({id:lesson.id,text:lesson.text,version:lesson.version,createdAt:lesson.approvedAt})) : [];
+      return tools.reply({run:{...runView(row,user),payload:parse(row.payload_json),result:parse(row.result_json),provenance,guidance},review:reviewView(row)});
     }
     if (method==='POST' && action==='share') return shareRun(request,db,user,runId,tools);
     if (method==='POST' && action==='review') return reviewRun(request,db,user,runId,tools);
+    if (method==='POST' && action==='guidance') return publishGuidance(request,db,user,runId,tools);
   }
   fail(404,'not_found','Client endpoint not found.');
 }

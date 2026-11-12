@@ -194,6 +194,7 @@ $('signout').addEventListener('click', async () => {
     $('runs').replaceChildren();
     $('board-list').replaceChildren();
     $('shared-board-list').replaceChildren();
+    $('guidance-lists').replaceChildren();
     $('project-evaluation-content').replaceChildren();
     $('result-body').replaceChildren();
     notice('Signed out.');
@@ -206,7 +207,7 @@ $('signout').addEventListener('click', async () => {
 });
 
 function paintDashboard() {
-  const {user, project, capabilities, runner, runs, board, sharedBoard} = state.dashboard;
+  const {user, project, capabilities, runner, runs, board, sharedBoard, guidance} = state.dashboard;
   const isGc = user.role === 'gc';
   $('project-role').textContent = isGc ? 'GENERAL CONTRACTOR' : ['SUBCONTRACTOR', user.trade].filter(Boolean).join(' · ');
   $('project-heading').textContent = project.name;
@@ -239,7 +240,40 @@ function paintDashboard() {
       return item;
     }));
   }
+  paintSavedGuidance(guidance);
+  if ($('intake-dialog').open) syncGuidanceOption();
   paintRuns();
+}
+function paintSavedGuidance(guidance) {
+  const scopes = [['private', 'For private reviews'], ['shared', 'For reviews shared with your GC']];
+  const groups = [];
+  for (const [scope, heading] of scopes) {
+    const instructions = arr(guidance?.[scope]);
+    if (!instructions.length) continue;
+    const group = element('div', null, 'guidance-list');
+    const list = element('ul', null, 'board-list');
+    for (const instruction of instructions) {
+      const row = element('li');
+      const archive = button('Archive', async () => {
+        archive.disabled = true;
+        try {
+          await api(`/guidance/${encodeURIComponent(instruction.id)}/archive`, {});
+          await refreshDashboard({quiet:true});
+          notice('Guidance archived for future reviews.');
+        } catch (error) {
+          notice(error.message);
+        } finally {
+          archive.disabled = false;
+        }
+      }, 'button-quiet');
+      row.append(element('span', instruction.text), archive);
+      list.append(row);
+    }
+    group.append(element('h3', heading), list);
+    groups.push(group);
+  }
+  $('saved-guidance').hidden = !groups.length;
+  $('guidance-lists').replaceChildren(...groups);
 }
 function paintRuns() {
   const allRuns = arr(state.dashboard?.runs);
@@ -248,7 +282,7 @@ function paintRuns() {
   $('run-filter-field').hidden = allRuns.length < 2;
   if (!runs.length) {
     const empty = element('div', null, 'empty');
-    empty.append(element('h3', allRuns.length ? 'No matching reviews' : 'Your queue is empty'), element('p', allRuns.length ? 'Choose another filter to see your reviews.' : 'Start a review or try the fictional example.'));
+    empty.append(element('h3', allRuns.length ? 'No matching reviews' : 'Your queue is empty'), element('p', allRuns.length ? 'Choose another filter to see your reviews.' : 'Choose a workflow to start a review.'));
     $('runs').replaceChildren(empty);
     return;
   }
@@ -297,6 +331,20 @@ function syncKind() {
   $('text-file-field').hidden = kind === 'rfi';
   $('workflow-file-label').textContent = kind === 'daily' ? 'Import JSON' : 'Import transcript';
   $('workflow-file').accept = kind === 'daily' ? '.json' : '.txt,.pdf,.docx';
+  syncGuidanceOption();
+}
+function syncGuidanceOption() {
+  const controls = runForm.elements;
+  const shared = !controls.shared.disabled && controls.shared.checked;
+  const scope = shared ? 'shared' : 'private';
+  const count = arr(state.dashboard?.guidance?.[scope]).length;
+  const available = controls.kind.value === 'rfi' && count > 0;
+  const choice = controls.useGuidance;
+  if (!available || choice.dataset.scope !== scope) choice.checked = false;
+  choice.dataset.scope = scope;
+  choice.disabled = !available;
+  $('use-guidance-field').hidden = !available;
+  $('use-guidance-note').textContent = available ? `${count} saved ${count === 1 ? 'instruction' : 'instructions'} for ${shared ? 'reviews shared with your GC' : 'private reviews'}.` : '';
 }
 function syncClassification() {
   const authorized = runForm.elements.dataClassification.value === 'authorized';
@@ -361,8 +409,8 @@ const exampleRequests = [
 ];
 const exampleTranscript = 'Maya, general contractor: The east wing flooring stays on hold until the accepted moisture test result is filed.\nSam, flooring lead: I will email the testing team today and share the proposed test date by Friday at 3 p.m.\nMaya: Agreed. No date is confirmed today. I will update the project schedule after the test date is confirmed.\nSam: Can we store the flooring material in the dry west room? The owner has not approved that space yet.';
 const exampleReports = [
-  {report_id:'DEMO-01',report_date:'2026-11-04',report_author:'Flooring lead',work_area:'East wing',work_completed:'Prepared flooring substrate.',issue_or_update:'Moisture test date is pending confirmation.',schedule_status:'Flooring installation on hold.',action_required:'Confirm the test date and accepted result.',responsible_party:'Testing team',due_date:'2026-11-06'},
-  {report_id:'DEMO-02',report_date:'2026-11-05',report_author:'Site superintendent',work_area:'East wing',work_completed:'Checked temporary protection.',issue_or_update:'Testing team has acknowledged the request. No date or result was received.',schedule_status:'Installation remains on hold.',action_required:'Record the confirmed date when received.',responsible_party:'General contractor',due_date:'2026-11-06'}
+  {report_id:'REPORT-01',report_date:'2026-11-04',report_author:'Flooring lead',work_area:'East wing',work_completed:'Prepared flooring substrate.',issue_or_update:'Moisture test date is pending confirmation.',schedule_status:'Flooring installation on hold.',action_required:'Confirm the test date and accepted result.',responsible_party:'Testing team',due_date:'2026-11-06'},
+  {report_id:'REPORT-02',report_date:'2026-11-05',report_author:'Site superintendent',work_area:'East wing',work_completed:'Checked temporary protection.',issue_or_update:'Testing team has acknowledged the request. No date or result was received.',schedule_status:'Installation remains on hold.',action_required:'Record the confirmed date when received.',responsible_party:'General contractor',due_date:'2026-11-06'}
 ];
 function setExample() {
   const controls = runForm.elements;
@@ -403,6 +451,7 @@ $('use-example').addEventListener('click', setExample);
 $('add-document').addEventListener('click', () => addRecord());
 runForm.elements.kind.addEventListener('change', syncKind);
 runForm.elements.dataClassification.addEventListener('change', syncClassification);
+runForm.elements.shared.addEventListener('change', syncGuidanceOption);
 $('intake-dialog').addEventListener('close', cancelWorkflowImport);
 $('workflow-file').addEventListener('change', async event => {
   const input = event.currentTarget;
@@ -479,7 +528,10 @@ function runPayload() {
   }
   const dataClassification = values.get('dataClassification');
   if (dataClassification === 'authorized' && values.get('authorized') !== 'on') throw Error('Confirm you have permission to process these records.');
-  return {title,kind,payload,dataClassification,shared:values.get('shared') === 'on'};
+  return {
+    title, kind, payload, dataClassification, shared:values.get('shared') === 'on',
+    ...(kind === 'rfi' && values.get('useGuidance') === 'on' ? {useGuidance:true} : {})
+  };
 }
 runForm.addEventListener('submit', async event => {
   event.preventDefault();
@@ -625,12 +677,65 @@ function reviewForm(run) {
   });
   return form;
 }
+function guidanceForm(run) {
+  const section = element('details', null, 'review-receipt saved-guidance-form');
+  const form = element('form');
+  const heading = element('label', 'Instruction');
+  const input = element('textarea');
+  input.name = 'instruction';
+  input.required = true;
+  input.maxLength = 500;
+  input.rows = 3;
+  input.placeholder = 'For example, track the requested inspection date separately from written acceptance.';
+  heading.append(input);
+  const submit = element('button', 'Save guidance', 'button button-secondary');
+  submit.type = 'submit';
+  const status = element('p', null, 'field-help');
+  status.setAttribute('role', 'status');
+  const error = element('p', null, 'form-error');
+  error.setAttribute('role', 'alert');
+  error.hidden = true;
+  form.append(heading, submit, error, status);
+  section.append(
+    element('summary', 'Save guidance for future RFI reviews'),
+    element('p', run.guidanceScope === 'shared' ? 'Write an instruction suitable for reviews you share with your GC.' : 'Write an instruction for future private reviews.', 'field-help'),
+    form
+  );
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    const text = input.value.trim();
+    formError(form);
+    if (!text) {
+      formError(form, 'Enter an instruction.');
+      return;
+    }
+    busy(form, true);
+    try {
+      await api(`/runs/${encodeURIComponent(run.id)}/guidance`, {text});
+      input.disabled = true;
+      input.value = '';
+      status.textContent = 'Guidance saved for future RFI reviews.';
+      await refreshDashboard({quiet:true});
+    } catch (failure) {
+      formError(form, failure.message);
+    } finally {
+      busy(form, false);
+      submit.disabled = input.disabled;
+    }
+  });
+  return section;
+}
 function renderRun({run, review}) {
   $('result-heading').textContent = run.title;
   $('result-kicker').textContent = kinds[run.kind]?.label.toUpperCase() || 'RUN RESULTS';
   const root = $('result-body');
   const detail = element('p', [shortDate(run.createdAt), Number.isFinite(run.timings?.totalMs) ? 'Processing · ' + duration(run.timings.totalMs / 1000) : null, run.shared ? 'Shared with GC' : 'Private'].filter(Boolean).join(' · '), 'result-summary');
   root.replaceChildren(badge(run.reviewed && !run.canReview ? 'Reviewed' : statuses[run.status] || 'Pending', run.status), detail);
+  if (run.useGuidance) {
+    const version = Number.isInteger(run.guidanceVersion) ? ` · Version ${run.guidanceVersion}` : '';
+    root.append(element('p', 'Saved guidance selected' + version, 'field-help'));
+    addEvidence(root, 'Read guidance selected for this run', arr(run.guidance).map(instruction => instruction.text).filter(Boolean));
+  }
   if (run.result) root.append(renderOutput(run));
   else if (run.error) root.append(element('p', run.error, 'result-summary'));
   else root.append(element('p', run.stage || (run.status === 'queued' ? 'Waiting for the project computer.' : 'Processing the submitted records.'), 'result-summary'));
@@ -661,6 +766,7 @@ function renderRun({run, review}) {
     root.append(receipt);
   }
   if (run.canReview && run.status === 'completed') root.append(reviewForm(run));
+  if (run.canPublishGuidance) root.append(guidanceForm(run));
 }
 async function openRun(id) {
   const requestId = ++state.detailRequest;
@@ -725,8 +831,8 @@ function benchmarkPanel(data) {
   const recent = runs.findLast(run => run.label?.includes('transfer') && run.pipelineVersion === 'rfi-consolidation-12');
   const regression = runs.find(run => run.label?.includes('Final development regression'));
   const panel = element('section', null, 'panel');
-  panel.append(element('h2', 'Demo 3 synthetic tests'));
-  panel.append(element('p', `Model ${data.model || 'Qwen 3.5'} · ${data.hardware || 'Project GPU'} · Frozen practice cases`, 'evaluation-note'));
+  panel.append(element('h2', 'RFI coordination performance'));
+  panel.append(element('p', `Generated test cases · ${data.model || 'Qwen 3.5'} · ${data.hardware || 'Project GPU'}`, 'evaluation-note'));
   const metrics = element('div', null, 'metrics-grid');
   metrics.append(
     metric(regression ? regression.checksPassed + '/' + regression.checksTotal : '—', 'Development checks passed'),
@@ -735,7 +841,7 @@ function benchmarkPanel(data) {
   );
   const wrap = element('div', null, 'table-wrap');
   const table = element('table');
-  const caption = element('caption', 'Demo 3 measured benchmark results', 'sr-only');
+  const caption = element('caption', 'Measured RFI coordination benchmark results', 'sr-only');
   const head = element('thead');
   const row = element('tr');
   for (const label of ['Test run','Checks passed','Passing cases','Median processing']) {
@@ -753,7 +859,7 @@ function benchmarkPanel(data) {
   }
   table.append(caption,head,body);
   wrap.append(table);
-  panel.append(metrics, wrap, element('p', 'These measured model runs used synthetic records. Total human review time and the effect on real RFI submissions remain unmeasured.', 'evaluation-note'));
+  panel.append(metrics, wrap);
   const notes = element('details', null, 'optional-metrics');
   const list = element('ul', null, 'evaluation-note');
   list.append(...arr(data.limitations).map(text => element('li',text)));

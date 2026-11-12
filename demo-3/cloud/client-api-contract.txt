@@ -55,6 +55,28 @@ Jobs and evaluation
   generation, review and manual time for the same run. No result alone
   estimates RFI reductions.
 
+Reviewed guidance
+
+- POST /runs/:id/guidance with {text} saves a reusable instruction after
+  the submitter reviews their own completed RFI run. Use a short rule a
+  reviewer can check. Review notes and uploaded records are never copied
+  into guidance. One instruction can be saved per reviewed run.
+- GET /dashboard lists the signed-in account's active private and shared
+  instructions. The scope follows the run selected at intake. Private
+  instructions and shared-run instructions have separate versions and
+  never mix. The GC cannot read a subcontractor's saved instructions.
+- POST /runs with useGuidance=true opts in for a new RFI run in the
+  matching scope. Up to eight active instructions of 500 characters each
+  are copied into the queued job. Without that opt-in, no instructions
+  go to the model.
+- GET /runs/:id reports useGuidance, guidanceVersion and guidanceSnapshotId.
+  The submitter can inspect the exact saved text used by that run. Other
+  reviewers of a shared result only see that the run used guidance.
+- POST /guidance/:id/archive removes an instruction from future runs.
+  In-flight jobs and retries retain the same snapshot. This feedback loop
+  supplies reviewer guidance to the existing model. To measure its
+  effect, compare the same input and board with guidance on and off.
+
 The Worker uses existing free D1, bounded account/queue capacity and no
 cloud inference. The runner must be started for work to leave the queue.
 Client runs never retrieve experiment lessons or experiment board history.

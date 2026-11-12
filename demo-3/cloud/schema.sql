@@ -136,3 +136,14 @@ CREATE TABLE IF NOT EXISTS client_evaluations (
   UNIQUE(job_id,reviewer_id)
 );
 CREATE INDEX IF NOT EXISTS client_evaluations_job ON client_evaluations(job_id,created_at);
+
+CREATE TABLE IF NOT EXISTS client_guidance (
+  id TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES client_users(id),
+  shareable INTEGER NOT NULL CHECK(shareable IN (0,1)),
+  version INTEGER NOT NULL, text TEXT NOT NULL,
+  source_job_id TEXT NOT NULL UNIQUE REFERENCES client_runs(job_id),
+  source_review_id TEXT NOT NULL REFERENCES client_evaluations(id),
+  created_at TEXT NOT NULL, archived_at TEXT,
+  UNIQUE(user_id,shareable,version)
+);
+CREATE INDEX IF NOT EXISTS client_guidance_active ON client_guidance(user_id,shareable,archived_at,version);
