@@ -13,23 +13,22 @@ if (staticLanding) {
   }
 }
 const kinds = {
-  rfi: {label: 'RFI coordination', description: 'Include at least one request and any records needed to check it.', placeholder:'East wing flooring requests'},
-  meeting: {label: 'Meeting notes', description: 'Add a transcript to extract decisions, action items, and open questions.', placeholder:'East wing coordination meeting'},
-  daily: {label: 'Daily reports', description: 'Add a PDF or Word report, or a JSON batch, to check progress, blockers, and follow-up work.', placeholder:'East wing weekly reports'}
+  rfi: {label: 'RFI coordination', description: 'Add a request and the records that may answer it.', placeholder:'East wing flooring requests'},
+  meeting: {label: 'Meeting notes', description: 'Add a transcript to prepare decisions, action items, and open questions.', placeholder:'Weekly coordination meeting'},
+  daily: {label: 'Daily reports', description: 'Import a report to review progress, delays, and follow-up work.', placeholder:'North building daily reports'}
 };
 const statuses = {queued:'Waiting', running:'Processing', completed:'Draft ready', failed:'Needs attention', canceled:'Canceled'};
 const actions = {
   create_task:'New task', add_subtask:'Related task', link_duplicate:'Link duplicate',
   already_answered:'Answer found', flag_conflict:'Conflict', needs_review:'Needs a decision'
 };
-const state = {dashboard:null, timer:null, dashboardRequest:0, detailRequest:0, submissionKey:null, benchmark:null};
-const views = ['home', 'auth', 'workspace', 'evaluation'];
+const state = {dashboard:null, timer:null, dashboardRequest:0, detailRequest:0, submissionKey:null};
+const views = ['home', 'auth', 'workspace'];
 const active = status => status === 'queued' || status === 'running';
 const shortDate = value => {
   const date = new Date(value);
   return value && !Number.isNaN(date.getTime()) ? date.toLocaleString(undefined, {dateStyle:'medium', timeStyle:'short'}) : '';
 };
-const duration = value => Number.isFinite(value) && value >= 0 ? `${Math.round(value)} s` : 'Unmeasured';
 const arr = value => Array.isArray(value) ? value : [];
 
 function element(tag, text, className) {
@@ -82,7 +81,6 @@ async function api(path, body) {
 
 function currentView() {
   const route = location.hash.slice(1);
-  if (route === 'evaluation') return 'evaluation';
   if (state.dashboard) return 'workspace';
   if (!staticLanding && (route === 'signin' || route === 'signup')) return 'auth';
   return 'home';
@@ -92,11 +90,14 @@ function paintRoute() {
   for (const id of views) $(id).hidden = selected !== id;
   $('header-signin').hidden = Boolean(state.dashboard);
   $('signout').hidden = !state.dashboard;
+  $('workspace-nav').hidden = !state.dashboard;
   $('workspace-link').hidden = !state.dashboard;
+  if (selected === 'workspace') $('workspace-link').setAttribute('aria-current', 'page');
+  else $('workspace-link').removeAttribute('aria-current');
   if (selected === 'auth') {
     const signup = location.hash === '#signup';
-    $('auth-heading').textContent = signup ? 'Create your account.' : 'Welcome back.';
-    $('auth-intro').textContent = signup ? 'Start a private project or join your team with an invitation.' : 'Sign in to see your project workspace.';
+    $('auth-heading').textContent = signup ? 'Create an account' : 'Sign in';
+    $('auth-intro').textContent = signup ? 'Start a project or join your team with an invitation.' : 'Enter your details to access your project.';
     $('signin-form').hidden = signup;
     $('signup-form').hidden = !signup;
     for (const [id, selectedTab] of [['signin-tab', !signup], ['signup-tab', signup]]) {
@@ -105,8 +106,16 @@ function paintRoute() {
     }
   }
   if (selected === 'workspace') paintDashboard();
-  if (selected === 'evaluation') renderEvaluation();
   scheduleRefresh();
+}
+const jumpLinks = Array.from(document.querySelectorAll('[data-jump]'));
+for (const link of jumpLinks) {
+  link.addEventListener('click', () => {
+    const section = $(link.dataset.jump);
+    if (!state.dashboard || !section || section.hidden) return;
+    section.focus({preventScroll:true});
+    section.scrollIntoView({block:'start'});
+  });
 }
 function navigate(route) {
   if (location.hash === '#' + route) paintRoute();
@@ -199,7 +208,6 @@ $('signout').addEventListener('click', async () => {
     $('shared-board-list').replaceChildren();
     $('guidance-lists').replaceChildren();
     $('project-record-groups').replaceChildren();
-    $('project-evaluation-content').replaceChildren();
     $('result-body').replaceChildren();
     notice('Signed out.');
     navigate('home');
@@ -210,34 +218,33 @@ $('signout').addEventListener('click', async () => {
   }
 });
 
+const roleNames = {gc:'General contractor', sub:'Subcontractor', architect:'Architect'};
 function paintDashboard() {
   const {user, project, capabilities, runner, runs, board, sharedBoard, guidance, projectRecords} = state.dashboard;
   const isGc = user.role === 'gc';
   const canSeeShared = capabilities?.sharedReviews === undefined ? isGc : capabilities.sharedReviews !== 'none';
-  $('project-role').textContent = [user.roleLabel || (isGc ? 'General contractor' : 'Subcontractor'), user.trade].filter(Boolean).join(' · ');
+  const canSubmit = capabilities?.submit !== false;
+  $('project-role').textContent = [user.roleLabel || roleNames[user.role], user.trade].filter(Boolean).join(' · ');
   $('project-heading').textContent = project.name;
-  $('workspace-intro').textContent = `${user.name}, ${user.role === 'architect' ? 'add construction records and follow the project’s tasks and milestones.' : canSeeShared ? 'track your work and review requests shared with you.' : 'track your requests and browse the shared project library.'}`;
+  $('workspace-intro').textContent = user.name;
   $('invite-button').hidden = !capabilities?.invite;
-  $('start-workflows').hidden = capabilities?.submit === false;
-  $('workspace-metrics').hidden = capabilities?.submit === false;
-  $('review-workspace').hidden = capabilities?.submit === false;
+  $('start-workflows').hidden = !canSubmit;
+  $('workspace-metrics').hidden = !canSubmit;
+  $('review-workspace').hidden = !canSubmit;
+  for (const link of jumpLinks) {
+    const section = $(link.dataset.jump);
+    link.hidden = !section || section.hidden;
+  }
   const available = runner?.online === true;
   $('runner-status').className = 'badge ' + (available ? 'online' : 'waiting');
-  $('runner-status').textContent = available ? 'Processing computer connected' : 'Processing computer offline';
-  $('runner-note').textContent = available ? 'Queued reviews can start as the project computer becomes available.' : 'New reviews wait until the project computer is switched on.';
+  $('runner-status').textContent = available ? 'Review service online' : 'Review service offline';
+  $('runner-note').textContent = available ? 'Reviews run in queue order.' : 'New reviews stay queued until processing resumes.';
   $('workspace-metrics').replaceChildren(
-    metric(arr(runs).filter(run => active(run.status)).length, 'Waiting or processing'),
-    metric(arr(runs).filter(run => run.status === 'completed' && run.canReview).length, 'Drafts ready to check'),
+    metric(arr(runs).filter(run => active(run.status)).length, 'In progress'),
+    metric(arr(runs).filter(run => run.status === 'completed' && run.canReview).length, 'Ready for review'),
     metric(arr(runs).filter(run => run.reviewed).length, 'Reviewed')
   );
-  $('runs-scope').textContent = canSeeShared ? 'Your reviews and work shared with you.' : 'Your own reviews and submitted records.';
-  $('guide-label').textContent = isGc ? 'GC WORKFLOW' : 'SUBCONTRACTOR WORKFLOW';
-  $('guide-heading').textContent = canSeeShared ? 'Review shared work' : 'Track your work';
-  $('guide-text').textContent = canSeeShared ? 'Check the draft against the source before recording a decision.' : 'Use supporting records to check the analysis.';
-  const steps = [capabilities?.invite ? 'Invite a teammate and select their project role.' : 'Add a question and supporting records.',
-    capabilities?.share ? 'Choose private or shared when you submit.' : 'Open a draft and check the source excerpts.',
-    capabilities?.accept ? 'Accept the draft or record what needs to change.' : capabilities?.respond ? 'Record what needs to change.' : 'Read the draft and supporting evidence.'];
-  $('guide-steps').replaceChildren(...steps.map(text => element('li', text)));
+  $('runs-scope').textContent = canSeeShared ? 'Reviews you submit or receive from your team.' : 'Reviews you’ve submitted.';
   for (const [records, section, list] of [[board, 'project-board', 'board-list'], [sharedBoard, 'shared-board', 'shared-board-list']]) {
     const tasks = arr(records?.tasks);
     $(section).hidden = !tasks.length;
@@ -267,7 +274,7 @@ function paintProjectRecords(records, capabilities) {
     const list = element('ul', null, 'board-list');
     for (const row of rows) {
       const info = element('div');
-      const context = [row.scheduledFor && projectDate(row.scheduledFor), row.author, row.visibility === 'restricted' && 'Restricted', row.dataClassification === 'synthetic' && 'Test record'];
+      const context = [row.scheduledFor && projectDate(row.scheduledFor), row.author, row.visibility === 'restricted' && 'Restricted', row.dataClassification === 'synthetic' && 'Sample record'];
       info.append(element('strong', row.title), element('span', context.filter(Boolean).join(' · ')));
       const item = element('li', null, 'run-row');
       const open = button('Open', () => openProjectRecord(row.id), 'button-quiet');
@@ -275,7 +282,7 @@ function paintProjectRecords(records, capabilities) {
       item.append(info, open);
       list.append(item);
     }
-    section.append(element('h3', title), rows.length ? list : element('p', 'None published yet.', 'field-help'));
+    section.append(element('h3', title), rows.length ? list : element('p', 'Nothing added yet.', 'field-help'));
     return section;
   });
   $('project-record-groups').replaceChildren(...groups);
@@ -436,7 +443,7 @@ function paintRuns() {
   $('run-filter-field').hidden = allRuns.length < 2;
   if (!runs.length) {
     const empty = element('div', null, 'empty');
-    empty.append(element('h3', allRuns.length ? 'No matching reviews' : 'Your queue is empty'), element('p', allRuns.length ? 'Choose another filter to see your reviews.' : 'Choose a workflow to start a review.'));
+    empty.append(element('h3', allRuns.length ? 'No matching reviews' : 'No reviews yet'), element('p', allRuns.length ? 'Try a different filter.' : 'Start a review to track its status here.'));
     $('runs').replaceChildren(empty);
     return;
   }
@@ -528,14 +535,12 @@ function renumber() {
   }
   $('add-document').disabled = $('documents').children.length >= 12;
 }
-function addRecord(values = {}) {
+function addRecord() {
   if ($('documents').children.length >= 12) return;
   const record = $('document-template').content.firstElementChild.cloneNode(true);
-  record.dataset.recordId = values.id || crypto.randomUUID();
+  record.dataset.recordId = crypto.randomUUID();
   const field = name => record.querySelector(`[data-field="${name}"]`);
-  const fieldValues = {title:'',kind:'request',revision:'Unverified',issuedAt:localDate(),approval:'informal',text:'',...values};
-  for (const name of ['title','kind','revision','issuedAt','approval','text']) field(name).value = fieldValues[name];
-  field('current').checked = Boolean(values.current);
+  field('issuedAt').value = localDate();
   const syncRecord = () => {
     const reference = field('kind').value === 'reference';
     record.querySelector('.reference-options').hidden = !reference;
@@ -571,37 +576,6 @@ function addRecord(values = {}) {
   $('documents').append(record);
   renumber();
 }
-const exampleRequests = [
-  {title:'RFI 018 · Moisture test timing', text:'Can the testing team confirm the moisture test date for the east wing flooring? Keep installation on hold until an accepted result is on record.',revision:'A',issuedAt:'2026-11-04'},
-  {title:'Flooring follow-up', text:'Please confirm the east wing flooring moisture test date. Installation should remain on hold until an accepted result is on record. The flooring lead needs the planned date by 3 p.m. Friday.',revision:'A',issuedAt:'2026-11-05'},
-  {title:'Coordination note · East wing', kind:'reference', text:'The flooring crew must wait for an accepted moisture test result before installation. The test date is still pending confirmation from the testing team.',revision:'B',issuedAt:'2026-11-05',approval:'approved',current:true}
-];
-const exampleTranscript = 'Maya, general contractor: The east wing flooring stays on hold until the accepted moisture test result is filed.\nSam, flooring lead: I will email the testing team today and share the proposed test date by Friday at 3 p.m.\nMaya: Agreed. No date is confirmed today. I will update the project schedule after the test date is confirmed.\nSam: Can we store the flooring material in the dry west room? The owner has not approved that space yet.';
-const exampleReports = [
-  {report_id:'REPORT-01',report_date:'2026-11-04',report_author:'Flooring lead',work_area:'East wing',work_completed:'Prepared flooring substrate.',issue_or_update:'Moisture test date is pending confirmation.',schedule_status:'Flooring installation on hold.',action_required:'Confirm the test date and accepted result.',responsible_party:'Testing team',due_date:'2026-11-06'},
-  {report_id:'REPORT-02',report_date:'2026-11-05',report_author:'Site superintendent',work_area:'East wing',work_completed:'Checked temporary protection.',issue_or_update:'Testing team has acknowledged the request. No date or result was received.',schedule_status:'Installation remains on hold.',action_required:'Record the confirmed date when received.',responsible_party:'General contractor',due_date:'2026-11-06'}
-];
-function setExample() {
-  const controls = runForm.elements;
-  cancelWorkflowImport();
-  controls.dataClassification.value = 'synthetic';
-  controls.authorized.checked = false;
-  syncClassification();
-  formError(runForm);
-  if (controls.kind.value === 'rfi') {
-    controls.title.value = 'East wing flooring requests';
-    $('documents').replaceChildren();
-    for (const record of exampleRequests) addRecord(record);
-  } else if (controls.kind.value === 'meeting') {
-    controls.title.value = 'East wing coordination meeting';
-    controls.transcript.value = exampleTranscript;
-  } else {
-    dailyDocument = false;
-    syncDailyFormat();
-    controls.title.value = 'East wing daily report review';
-    controls.reportText.value = JSON.stringify(exampleReports, null, 2);
-  }
-}
 function openIntake(kind) {
   if (!state.dashboard || state.dashboard.capabilities?.submit === false) return;
   runForm.reset();
@@ -612,7 +586,7 @@ function openIntake(kind) {
   $('documents').replaceChildren();
   $('share-field').hidden = !state.dashboard?.capabilities?.share;
   runForm.elements.shared.disabled = $('share-field').hidden;
-  $('intake-note').textContent = state.dashboard?.runner?.online ? 'The project computer processes reviews in queue order.' : 'Your review will wait until the project computer is switched on.';
+  $('intake-note').textContent = state.dashboard?.runner?.online ? '' : 'This review will start when processing resumes.';
   syncKind();
   syncClassification();
   $('intake-dialog').showModal();
@@ -620,7 +594,6 @@ function openIntake(kind) {
 for (const control of document.querySelectorAll('[data-workflow]')) {
   control.addEventListener('click', () => openIntake(control.dataset.workflow));
 }
-$('use-example').addEventListener('click', setExample);
 $('add-document').addEventListener('click', () => addRecord());
 runForm.elements.kind.addEventListener('change', syncKind);
 runForm.elements.dataClassification.addEventListener('change', syncClassification);
@@ -815,17 +788,13 @@ function renderOutput(run) {
     }));
   }
   if (!arr(result.items).length && !arr(result.findings).length && !result.summary) {
-    container.prepend(element('p', 'This run returned no findings.', 'result-summary'));
+    container.prepend(element('p', 'No findings to review.', 'result-summary'));
   }
   return container;
 }
-const evaluationFields = {
-  reviewSeconds:'Time checking this draft (seconds)', manualSeconds:'Matched manual-only time (seconds)',
-  correctFacts:'Correct required facts', incorrectFacts:'Incorrect required facts', missingFacts:'Missing required facts', extraErrors:'Additional unsupported claims'
-};
 function reviewForm(run) {
   const form = element('form', null, 'review-form');
-  form.append(element('h3', 'Record your decision'), element('p', 'Check the evidence first. Add a short note explaining your decision.', 'field-help'));
+  form.append(element('h3', 'Review this draft'));
   const decision = element('label', 'Decision');
   const select = element('select');
   select.name = 'decision';
@@ -845,34 +814,19 @@ function reviewForm(run) {
   textarea.required = true;
   textarea.placeholder = 'What did you check? What should change?';
   notes.append(textarea);
-  const measurements = element('details', null, 'optional-metrics');
-  const grid = element('div', null, 'review-grid');
-  measurements.append(element('summary', 'Add measured evaluation data (optional)'), element('p', 'Enter observed values for this review. Leave unmeasured fields blank.', 'field-help'), grid);
-  for (const [name, label] of Object.entries(evaluationFields)) {
-    const field = element('label', label);
-    const input = element('input');
-    input.type = 'number';
-    input.name = name;
-    input.min = '0';
-    input.max = name.endsWith('Seconds') ? '86400' : '1000';
-    input.step = '1';
-    field.append(input);
-    grid.append(field);
-  }
   const submit = element('button', 'Save review', 'button button-primary wide');
   submit.type = 'submit';
   const error = element('p', null, 'form-error');
   error.role = 'alert';
   error.hidden = true;
-  form.append(decision, notes, measurements, error, submit);
+  form.append(decision, notes, error, submit);
   form.addEventListener('submit', async event => {
     event.preventDefault();
     formError(form);
     busy(form, true);
     const values = new FormData(form);
-    const metrics = Object.fromEntries(Object.keys(evaluationFields).flatMap(key => values.get(key) === '' ? [] : [[key,Number(values.get(key))]]));
     try {
-      await api(`/runs/${encodeURIComponent(run.id)}/review`, {decision:values.get('decision'),notes:String(values.get('notes')).trim(),metrics});
+      await api(`/runs/${encodeURIComponent(run.id)}/review`, {decision:values.get('decision'),notes:String(values.get('notes')).trim()});
       await refreshDashboard({quiet:true});
       if ($('result-dialog').open) await openRun(run.id);
       notice('Review saved.');
@@ -936,7 +890,7 @@ function renderRun({run, review}) {
   $('result-heading').textContent = run.title;
   $('result-kicker').textContent = kinds[run.kind]?.label.toUpperCase() || 'RUN RESULTS';
   const root = $('result-body');
-  const detail = element('p', [shortDate(run.createdAt), Number.isFinite(run.timings?.totalMs) ? 'Processing · ' + duration(run.timings.totalMs / 1000) : null, run.shared ? 'Shared with GC reviewers' : 'Private'].filter(Boolean).join(' · '), 'result-summary');
+  const detail = element('p', [shortDate(run.createdAt), run.shared ? 'Shared with GC reviewers' : 'Private'].filter(Boolean).join(' · '), 'result-summary');
   root.replaceChildren(badge(run.reviewed && !run.canReview ? 'Reviewed' : statuses[run.status] || 'Pending', run.status), detail);
   if (run.useGuidance) {
     const version = Number.isInteger(run.guidanceVersion) ? ` · Version ${run.guidanceVersion}` : '';
@@ -945,7 +899,7 @@ function renderRun({run, review}) {
   }
   if (run.result) root.append(renderOutput(run));
   else if (run.error) root.append(element('p', run.error, 'result-summary'));
-  else root.append(element('p', run.stage || (run.status === 'queued' ? 'Waiting for the project computer.' : 'Processing the submitted records.'), 'result-summary'));
+  else root.append(element('p', run.stage || (run.status === 'queued' ? 'Waiting for processing.' : 'Processing the submitted records.'), 'result-summary'));
   const controls = element('div', null, 'result-actions');
   if (active(run.status)) controls.append(button('Check status', () => openRun(run.id)));
   if (run.canShare) {
@@ -968,8 +922,6 @@ function renderRun({run, review}) {
     const receipt = element('section', null, 'review-receipt');
     receipt.append(element('h3', review.decision === 'accept' ? 'Latest review · Accepted' : 'Latest review · Changes requested'), element('p', review.notes, 'result-summary'));
     if (review.applied) receipt.append(element('p', 'Saved to reviewed work.', 'field-help'));
-    const observations = Object.entries(evaluationFields).filter(([key]) => Number.isFinite(review.metrics?.[key])).map(([key, label]) => `${label} · ${review.metrics[key]}`);
-    if (observations.length) receipt.append(element('p', observations.join(' · '), 'field-help'));
     root.append(receipt);
   }
   if (run.canReview && run.status === 'completed') root.append(reviewForm(run));
@@ -1049,76 +1001,6 @@ $('copy-invite').addEventListener('click', async () => {
     $('copy-status').textContent = 'Select and copy the invitation code.';
   }
 });
-
-function benchmarkPanel(data) {
-  const runs = arr(data.runs);
-  const recent = runs.findLast(run => run.label?.includes('transfer') && run.pipelineVersion === 'rfi-consolidation-12');
-  const regression = runs.find(run => run.label?.includes('Final development regression'));
-  const panel = element('section', null, 'panel');
-  panel.append(element('h2', 'RFI coordination performance'));
-  panel.append(element('p', `Generated test cases · ${data.model || 'Qwen 3.5'} · ${data.hardware || 'Project GPU'}`, 'evaluation-note'));
-  const metrics = element('div', null, 'metrics-grid');
-  metrics.append(
-    metric(regression ? regression.checksPassed + '/' + regression.checksTotal : '—', 'Development checks passed'),
-    metric(recent ? recent.checksPassed + '/' + recent.checksTotal : '—', 'Separate transfer checks passed'),
-    metric(recent ? recent.incorrectMerges : '—', 'Incorrect merges in transfer cases')
-  );
-  const wrap = element('div', null, 'table-wrap');
-  const table = element('table');
-  const caption = element('caption', 'Measured RFI coordination benchmark results', 'sr-only');
-  const head = element('thead');
-  const row = element('tr');
-  for (const label of ['Test run','Checks passed','Passing cases','Median processing']) {
-    const cell = element('th', label);
-    cell.scope = 'col';
-    row.append(cell);
-  }
-  head.append(row);
-  const body = element('tbody');
-  for (const run of runs) {
-    const line = element('tr');
-    const cells = [run.label, run.checksPassed + '/' + run.checksTotal, run.fullyPassingCases + '/' + run.cases, duration(run.medianSeconds)];
-    line.append(...cells.map(value => element('td', value)));
-    body.append(line);
-  }
-  table.append(caption,head,body);
-  wrap.append(table);
-  panel.append(metrics, wrap);
-  const notes = element('details', null, 'optional-metrics');
-  const list = element('ul', null, 'evaluation-note');
-  list.append(...arr(data.limitations).map(text => element('li',text)));
-  notes.append(element('summary','Test methods and limitations'),list);
-  panel.append(notes);
-  return panel;
-}
-async function renderEvaluation() {
-  const content = $('evaluation-content');
-  $('evaluation-back').href = state.dashboard ? '#workspace' : '#home';
-  $('evaluation-back').textContent = state.dashboard ? '← Back to workspace' : '← Back to home';
-  const evaluation = state.dashboard?.evaluation;
-  $('project-evaluation').hidden = !evaluation;
-  if (evaluation) {
-    const metrics = element('div', null, 'metrics-grid');
-    metrics.append(metric(evaluation.reviewedRuns || 0,'Reviewed drafts'), metric(evaluation.assessedRuns || 0,'Reviews with fact counts'), metric(evaluation.matchedRuns || 0,'Matched manual comparisons'));
-    const extra = element('p', evaluation.matchedRuns > 0 ? `Matched time · ${duration(evaluation.assistedSeconds)} assisted and ${duration(evaluation.matchedManualSeconds)} manual.` : 'Add observed review times and facts when recording a decision to measure your project’s results.', 'evaluation-note');
-    const accuracy = evaluation.accuracy;
-    const completeness = evaluation.completeness;
-    $('project-evaluation-content').replaceChildren(metrics, extra);
-    if (Number.isFinite(accuracy) && Number.isFinite(completeness)) $('project-evaluation-content').append(element('p', `Measured quality · ${accuracy.toFixed(1)}% accuracy and ${completeness.toFixed(1)}% completeness.`,'evaluation-note'));
-  }
-  if (!state.benchmark) {
-    content.replaceChildren(element('p', 'Loading measured benchmark results…', 'notice'));
-    try {
-      const response = await fetch('../benchmark-results.json');
-      if (!response.ok) throw Error('Benchmark results could not be loaded.');
-      state.benchmark = await response.json();
-    } catch (error) {
-      content.replaceChildren(element('p', error.message, 'notice'));
-      return;
-    }
-  }
-  content.replaceChildren(benchmarkPanel(state.benchmark));
-}
 
 for (const close of document.querySelectorAll('[data-close]')) close.addEventListener('click', () => $(close.dataset.close).close());
 window.addEventListener('hashchange', paintRoute);

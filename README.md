@@ -4,11 +4,11 @@ A static capstone website with functional Demo 1 and Demo 2 tabs. GitHub Pages s
 
 ## Demo 4: workspace roles and RFI evaluation
 
-Evergreen Workspace adds project roles, a shared area for construction documents, tasks and schedule, and PDF/Word intake for daily reports. See the [Demo 4 guide](demo-4/README.md) for the 100-RFI synthetic evaluation and how to reproduce it locally.
+Field Office adds project roles, a shared area for construction documents, tasks and schedule, and PDF/Word intake for daily reports. See the [Demo 4 guide](demo-4/README.md) for the 100-RFI synthetic evaluation and how to reproduce it locally.
 
 ## Demo 3: document consolidation and task review
 
-[Evergreen Workspace](https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/client/) is the live client entry point for general contractors and subcontractors. See the [workspace guide](demo-3/docs/client-workspace.md) for project roles, the three queued workflows, the Free hosting setup, and the November 11 evaluation.
+[Field Office](https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/client/) is the live workspace for general contractors, subcontractors, and architects. See the [workspace guide](demo-3/docs/client-workspace.md) for project roles, the three queued workflows, and how to run it locally.
 
 [Demo 3](https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/) uses a separate, free Capstone Cloudflare account. Incoming RFI/request documents become proposed tasks, shared groups, duplicate links, evidence-backed answers, or open conflicts. A reviewer approves changes to a persistent board; original text and change history remain available. [Operation and evaluation notes](demo-3/README.md) describe the workflow and its limits.
 

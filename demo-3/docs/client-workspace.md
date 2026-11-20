@@ -1,6 +1,6 @@
-# Evergreen Workspace
+# Field Office
 
-Evergreen Workspace brings meeting notes, daily report review and RFI consolidation into one project account. Open it from the Team 2 homepage. The signed-in dashboard has an entry point for each workflow.
+Field Office brings meeting notes, daily report review and RFI consolidation into one project account. Open it from the Team 2 homepage. The signed-in dashboard has an entry point for each workflow.
 
 Class materials are available as an editable [Demo 3 writeup](<../../documents/demo-3/Demo 3 Write Up.docx>) and [presentation](<../../documents/demo-3/Demo 3 Presentation.pptx>). The slide notes contain short speaking prompts.
 
@@ -24,9 +24,9 @@ Create your own unique password. Sessions use an HTTP-only cookie. The demo does
 
 ## Queue and review a run
 
-1. Select **RFI coordination**, **Meeting notes**, or **Daily reports**. Add the source material. Choose **Test records** for generated examples or confirm permission when submitting **Authorized project records**.
+1. Select **RFI coordination**, **Meeting notes**, or **Daily reports**. Add the source material. Choose **Sample records** for generated examples or confirm permission when submitting **Authorized project records**.
 2. Queue the run. The project PC's manual Capstone app processes one job at a time with Qwen 3.5 27B when **On**. Open the Windows app and turn it On for a planned session. **Off** or Close stops its owned model and queue polling. The website and jobs remain available.
-3. Open the result to compare the draft with the source. Roles with review privileges can record the actions they are permitted to take and add measured evaluation values. Accepting your own RFI proposal can update your saved task history. A human still decides whether to submit a formal RFI.
+3. Open the result to compare the draft with the source. Reviewers can save a decision and note according to their role. Accepting your own RFI proposal can update your saved task history. A human still decides whether to submit a formal RFI.
 4. GC managers and subcontractor leads can save an instruction after reviewing their own completed RFI run. Choose **Use saved guidance** when you want a new RFI draft to follow those instructions. Each run records the exact version it used. Private and shared-run guidance stay in separate lists. Archiving an instruction affects future runs.
 
 The class evaluation uses generated test records. Project membership controls client access. The designated processing PC receives claimed source material and retains its local audit. Use records cleared for that destination and workflow.
@@ -39,7 +39,7 @@ For an isolated account, queue and real-model acceptance check, close the previe
 
 The Worker reuses the same D1 database through additive tables. The deployment helper requires a short-lived account-owned key scoped to the isolated Capstone account. It deploys only the Capstone Worker after Free plan verification. The account configuration and database do not rely on Supabase or a hosted GPU service. Keep `.capstone-local/`, model weights, run audits, login material and the source archive out of Git.
 
-The Team 2 button opens the [live Evergreen Workspace](https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/client/). Hosted checks with fictional accounts verified signup, login, logout, single-use invitations, and project isolation on the Capstone Free deployment. The project PC processes queued reviews during manually enabled sessions.
+The Team 2 button opens [Field Office](https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/client/). Hosted checks with fictional accounts verified signup, login, logout, single-use invitations, and project isolation on the Capstone Free deployment. The project PC processes queued reviews during manually enabled sessions.
 
 ## Hosted RFI comparison
 
