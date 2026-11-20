@@ -261,7 +261,8 @@ dialog::backdrop { background: #351e3463; backdrop-filter: blur(4px); }
   .entry-copy .lead { margin-top: 10px; }
   .entry-tools { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 18px; }
   .auth-layout { padding: 22px 0 34px; }
-  .panel { padding: 15px; }
+  /* Keep the frosted surface without a scrolling blur layer on narrow screens. */
+  .panel { padding: 15px; backdrop-filter: none; }
   .project-header { flex-wrap: wrap; align-items: start; padding: 14px; }
   .project-header .actions { justify-content: flex-start; }
   .workspace { padding-top: 18px; }
