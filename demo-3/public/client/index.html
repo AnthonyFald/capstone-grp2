@@ -127,6 +127,17 @@
     <section id="evaluation" class="evaluation view" aria-labelledby="evaluation-heading" hidden>
       <p class="kicker">TEAM 2 CAPSTONE</p><h1 id="evaluation-heading">What the tests show</h1>
       <p class="lead">See how well the workspace routes requests, identifies duplicate work, and keeps source evidence available for review.</p>
+      <section class="panel" aria-labelledby="demo4-evaluation-heading">
+        <p class="kicker">DEMO 4 · SYNTHETIC EVALUATION</p>
+        <h2 id="demo4-evaluation-heading">Which RFIs could existing records answer?</h2>
+        <div class="metrics-grid">
+          <div class="metric"><strong>92/100</strong><span>Correct routing decisions</span></div>
+          <div class="metric"><strong>52/60</strong><span>Answerable RFIs routed to existing records</span></div>
+          <div class="metric"><strong>40/40</strong><span>Necessary RFIs flagged for clarification</span></div>
+        </div>
+        <p>In the local run, eight answerable RFIs were unnecessarily flagged for formal clarification. Every proposed answer cited at least one of the expected source records.</p>
+        <p class="evaluation-note">Qwen 3.5 27B on the project PC took 20 min 40 sec for 100 RFIs with 200 supporting records. Timing excludes human review. A matched manual run is needed to measure the 30% reduction target.</p>
+      </section>
       <section class="panel" aria-labelledby="live-evaluation-heading">
         <h2 id="live-evaluation-heading">Live RFI comparison</h2>
         <p>Both drafts passed 3 of 3 checks and preserved every deadline. The live queue used the same six generated records, starting board, and model in both runs.</p>

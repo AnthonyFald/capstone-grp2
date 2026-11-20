@@ -23,14 +23,23 @@ const rows = decisions.map(row => {
   const label = reference.ground_truth_classification;
   if (!['Necessary','Unnecessary'].includes(label)) throw Error(`Unknown reference classification for ${row.id}.`);
   const expected = label === 'Unnecessary' ? 'answer_from_records' : 'formal_clarification';
-  const answerSource = reference.document_that_answers_rfi;
+  const expectedSources = label === 'Unnecessary'
+    ? [...new Set(String(reference.document_that_answers_rfi ?? '').split(';').map(source => source.trim()).filter(Boolean))]
+    : [];
+  if (label === 'Unnecessary' && !expectedSources.length) throw Error(`Missing expected answer source for ${row.id}.`);
   const citedIds = [...new Set(row.evidence.map(citation => citation.id))];
   const correctRouting = row.decision === expected || (label === 'Necessary' && row.decision === 'needs_review');
-  return {...row, expected, correctRouting, expectedSource:label === 'Unnecessary' ? answerSource : null,
-    citesExpectedAnswerSource:label === 'Unnecessary' ? row.decision === 'answer_from_records' && citedIds.includes(answerSource) : null};
+  const answered = row.decision === 'answer_from_records';
+  return {...row, expected, correctRouting, expectedSources,
+    citesAnyExpectedSource:expectedSources.length ? answered && expectedSources.some(source => citedIds.includes(source)) : null,
+    citesAllExpectedSources:expectedSources.length ? answered && expectedSources.every(source => citedIds.includes(source)) : null};
 });
 
 const count = filter => rows.filter(filter).length;
+const outcomeCounts = expected => Object.fromEntries(
+  ['answer_from_records','formal_clarification','needs_review','error'].map(decision =>
+    [decision,count(row => row.expected === expected && row.decision === decision)])
+);
 const summary = {
   model:manifest.model, modelDigest:manifest.modelDigest, inputSha256:manifest.inputSha256,
   wallMs:manifest.wallMs, reviewMs:manifest.reviewMs, linkedDocuments:manifest.linkedDocuments, total:rows.length,
@@ -43,10 +52,12 @@ const summary = {
   exactDecisions:count(row => row.decision === row.expected),
   rubricCompatibleRoutes:count(row => row.correctRouting),
   correctlyAnsweredFromRecords:count(row => row.expected === 'answer_from_records' && row.decision === 'answer_from_records'),
-  correctlyCitedAnswerSource:count(row => row.citesExpectedAnswerSource),
+  answerRoutesCitingAnyExpectedSource:count(row => row.citesAnyExpectedSource),
+  answerRoutesCitingAllExpectedSources:count(row => row.citesAllExpectedSources),
   unnecessaryFormalRecommendations:count(row => row.expected === 'answer_from_records' && row.decision === 'formal_clarification'),
   necessaryCasesIncorrectlyRoutedToExistingAnswer:count(row => row.expected === 'formal_clarification' && row.decision === 'answer_from_records'),
-  casesWithRejectedCitations:count(row => row.rejectedEvidence?.length)
+  casesWithRejectedCitations:count(row => row.rejectedEvidence?.length),
+  outcomesByExpectedDecision:{answerFromRecords:outcomeCounts('answer_from_records'),formalClarification:outcomeCounts('formal_clarification')}
 };
 
 function csvCell(value) {
@@ -58,8 +69,8 @@ const outputHeaders = ['RFI ID','Decision','Explanation','Cited document IDs','E
 const outputRow = row => [row.id,row.decision,row.explanation,row.evidence.map(cite => cite.id).join('; '),
   row.evidence.map(cite => cite.quote).join('\n'),row.error];
 const standalone = [outputHeaders,...rows.map(outputRow)];
-const scored = [[...outputHeaders,'Expected decision','Expected answer source','Cites expected answer source','Rubric-compatible routing'],
-  ...rows.map(row => [...outputRow(row),row.expected,row.expectedSource,row.citesExpectedAnswerSource,row.correctRouting])];
+const scored = [[...outputHeaders,'Expected decision','Expected answer sources','Cites any expected source','Cites all expected sources','Rubric-compatible routing'],
+  ...rows.map(row => [...outputRow(row),row.expected,row.expectedSources.join('; '),row.citesAnyExpectedSource,row.citesAllExpectedSources,row.correctRouting])];
 const csv = table => '\uFEFF'+table.map(row => row.map(csvCell).join(',')).join('\r\n')+'\r\n';
 
 await Promise.all([
