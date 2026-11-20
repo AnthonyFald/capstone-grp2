@@ -1,4 +1,5 @@
 import {extractFile, extractedDocument} from '../document-extract.mjs';
+import {DAILY_REPORT_TEXT_LIMIT, dailyReportFromDocument} from './daily-import.mjs';
 import {localDate} from '../board-model.mjs';
 import {derivePasswordProof} from './auth.mjs';
 
@@ -14,7 +15,7 @@ if (staticLanding) {
 const kinds = {
   rfi: {label: 'RFI coordination', description: 'Include at least one request and any records needed to check it.', placeholder:'East wing flooring requests'},
   meeting: {label: 'Meeting notes', description: 'Add a transcript to extract decisions, action items, and open questions.', placeholder:'East wing coordination meeting'},
-  daily: {label: 'Daily reports', description: 'Add a JSON batch to check progress, blockers, and follow-up work.', placeholder:'East wing weekly reports'}
+  daily: {label: 'Daily reports', description: 'Add a PDF or Word report, or a JSON batch, to check progress, blockers, and follow-up work.', placeholder:'East wing weekly reports'}
 };
 const statuses = {queued:'Waiting', running:'Processing', completed:'Draft ready', failed:'Needs attention', canceled:'Canceled'};
 const actions = {
@@ -95,7 +96,7 @@ function paintRoute() {
   if (selected === 'auth') {
     const signup = location.hash === '#signup';
     $('auth-heading').textContent = signup ? 'Create your account.' : 'Welcome back.';
-    $('auth-intro').textContent = signup ? 'Choose your role and start a private project, or join a GC with an invitation.' : 'Sign in to see your project and its review queue.';
+    $('auth-intro').textContent = signup ? 'Start a private project or join your team with an invitation.' : 'Sign in to see your project workspace.';
     $('signin-form').hidden = signup;
     $('signup-form').hidden = !signup;
     for (const [id, selectedTab] of [['signin-tab', !signup], ['signup-tab', signup]]) {
@@ -163,18 +164,20 @@ function authForm(form, path, payload) {
 const signupForm = $('signup-form');
 function syncSignup() {
   const controls = signupForm.elements;
-  const canJoin = controls.role.value === 'sub';
-  controls.projectMode.options[1].disabled = !canJoin;
-  if (!canJoin) controls.projectMode.value = 'create';
+  const family = controls.role.value;
+  const requiresInvitation = family === 'architect';
+  controls.projectMode.options[0].disabled = requiresInvitation;
+  if (requiresInvitation) controls.projectMode.value = 'join';
   const joining = controls.projectMode.value === 'join';
-  $('role-help').textContent = canJoin ? 'Review your own runs and choose what to share when you join a GC’s project.' : 'Create a project, invite subcontractors, and review the runs they share.';
+  $('role-help').textContent = joining ? 'Your invitation determines your role and project permissions.' :
+    family === 'sub' ? 'Start a private project as subcontractor lead.' : 'Start a private project as GC manager.';
   $('project-name-field').hidden = joining;
   controls.projectName.disabled = joining;
   controls.projectName.required = !joining;
   $('invite-code-field').hidden = !joining;
   controls.inviteCode.disabled = !joining;
   controls.inviteCode.required = joining;
-  $('trade-field').hidden = !canJoin || joining;
+  $('trade-field').hidden = family !== 'sub' || joining;
   controls.trade.disabled = $('trade-field').hidden;
 }
 signupForm.elements.role.addEventListener('change', syncSignup);
@@ -195,6 +198,7 @@ $('signout').addEventListener('click', async () => {
     $('board-list').replaceChildren();
     $('shared-board-list').replaceChildren();
     $('guidance-lists').replaceChildren();
+    $('project-record-groups').replaceChildren();
     $('project-evaluation-content').replaceChildren();
     $('result-body').replaceChildren();
     notice('Signed out.');
@@ -207,13 +211,16 @@ $('signout').addEventListener('click', async () => {
 });
 
 function paintDashboard() {
-  const {user, project, capabilities, runner, runs, board, sharedBoard, guidance} = state.dashboard;
+  const {user, project, capabilities, runner, runs, board, sharedBoard, guidance, projectRecords} = state.dashboard;
   const isGc = user.role === 'gc';
-  $('project-role').textContent = isGc ? 'GENERAL CONTRACTOR' : ['SUBCONTRACTOR', user.trade].filter(Boolean).join(' · ');
+  const canSeeShared = capabilities?.sharedReviews === undefined ? isGc : capabilities.sharedReviews !== 'none';
+  $('project-role').textContent = [user.roleLabel || (isGc ? 'General contractor' : 'Subcontractor'), user.trade].filter(Boolean).join(' · ');
   $('project-heading').textContent = project.name;
-  $('workspace-intro').textContent = `${user.name}, ${isGc ? 'review your work and requests shared by subcontractors.' : 'track your requests and review their supporting records.'}`;
+  $('workspace-intro').textContent = `${user.name}, ${user.role === 'architect' ? 'add construction records and follow the project’s tasks and milestones.' : canSeeShared ? 'track your work and review requests shared with you.' : 'track your requests and browse the shared project library.'}`;
   $('invite-button').hidden = !capabilities?.invite;
   $('start-workflows').hidden = capabilities?.submit === false;
+  $('workspace-metrics').hidden = capabilities?.submit === false;
+  $('review-workspace').hidden = capabilities?.submit === false;
   const available = runner?.online === true;
   $('runner-status').className = 'badge ' + (available ? 'online' : 'waiting');
   $('runner-status').textContent = available ? 'Processing computer connected' : 'Processing computer offline';
@@ -223,13 +230,13 @@ function paintDashboard() {
     metric(arr(runs).filter(run => run.status === 'completed' && run.canReview).length, 'Drafts ready to check'),
     metric(arr(runs).filter(run => run.reviewed).length, 'Reviewed')
   );
-  $('runs-scope').textContent = isGc ? 'Your reviews and work shared with you.' : 'Your own reviews and submitted records.';
+  $('runs-scope').textContent = canSeeShared ? 'Your reviews and work shared with you.' : 'Your own reviews and submitted records.';
   $('guide-label').textContent = isGc ? 'GC WORKFLOW' : 'SUBCONTRACTOR WORKFLOW';
-  $('guide-heading').textContent = isGc ? 'Review shared work' : 'Keep control of sharing';
-  $('guide-text').textContent = isGc ? 'Check the draft against the source before recording a decision.' : 'Choose whether the GC can see a review when you add its records.';
-  const steps = isGc ? ['Invite a subcontractor using their email.', 'Open a draft and check the source excerpts.', 'Accept the draft or record what needs to change.'] :
-    ['Add a question and supporting records.', 'Choose private or shared when you submit.', 'Open the result to check the draft and its evidence.'];
-  if (!isGc && !capabilities?.share) steps[1] = 'Use a GC invitation to join a shared project.';
+  $('guide-heading').textContent = canSeeShared ? 'Review shared work' : 'Track your work';
+  $('guide-text').textContent = canSeeShared ? 'Check the draft against the source before recording a decision.' : 'Use supporting records to check the analysis.';
+  const steps = [capabilities?.invite ? 'Invite a teammate and select their project role.' : 'Add a question and supporting records.',
+    capabilities?.share ? 'Choose private or shared when you submit.' : 'Open a draft and check the source excerpts.',
+    capabilities?.accept ? 'Accept the draft or record what needs to change.' : capabilities?.respond ? 'Record what needs to change.' : 'Read the draft and supporting evidence.'];
   $('guide-steps').replaceChildren(...steps.map(text => element('li', text)));
   for (const [records, section, list] of [[board, 'project-board', 'board-list'], [sharedBoard, 'shared-board', 'shared-board-list']]) {
     const tasks = arr(records?.tasks);
@@ -241,9 +248,156 @@ function paintDashboard() {
     }));
   }
   paintSavedGuidance(guidance);
+  paintProjectRecords(projectRecords, capabilities);
   if ($('intake-dialog').open) syncGuidanceOption();
   paintRuns();
 }
+
+const recordTypes = {document:'Construction documents', task:'Tasks', milestone:'Schedule milestones'};
+function projectDate(value) {
+  return new Date(value + 'T00:00:00Z').toLocaleDateString(undefined, {dateStyle:'medium', timeZone:'UTC'});
+}
+
+function paintProjectRecords(records, capabilities) {
+  $('add-project-record').hidden = !(capabilities?.addDocument || capabilities?.plan);
+  const groups = Object.entries(recordTypes).map(([kind, title]) => {
+    const section = element('section', null, 'guidance-list');
+    const rows = arr(records).filter(row => row.kind === kind);
+    if (kind === 'milestone') rows.sort((a, b) => a.scheduledFor.localeCompare(b.scheduledFor));
+    const list = element('ul', null, 'board-list');
+    for (const row of rows) {
+      const info = element('div');
+      const context = [row.scheduledFor && projectDate(row.scheduledFor), row.author, row.visibility === 'restricted' && 'Restricted', row.dataClassification === 'synthetic' && 'Test record'];
+      info.append(element('strong', row.title), element('span', context.filter(Boolean).join(' · ')));
+      const item = element('li', null, 'run-row');
+      const open = button('Open', () => openProjectRecord(row.id), 'button-quiet');
+      open.setAttribute('aria-label', 'Open ' + row.title);
+      item.append(info, open);
+      list.append(item);
+    }
+    section.append(element('h3', title), rows.length ? list : element('p', 'None published yet.', 'field-help'));
+    return section;
+  });
+  $('project-record-groups').replaceChildren(...groups);
+}
+
+async function openProjectRecord(id) {
+  const requestId = ++state.detailRequest;
+  const dialog = $('result-dialog'), root = $('result-body');
+  $('result-heading').textContent = 'Project record';
+  $('result-kicker').textContent = 'PROJECT LIBRARY';
+  root.replaceChildren(element('p', 'Loading project record…', 'result-summary'));
+  if (!dialog.open) dialog.showModal();
+  try {
+    const {record} = await api(`/project-records/${encodeURIComponent(id)}`);
+    if (requestId !== state.detailRequest || !dialog.open) return;
+    $('result-heading').textContent = record.title;
+    const context = [record.scheduledFor && projectDate(record.scheduledFor), record.author, record.visibility === 'restricted' && 'Restricted'];
+    root.replaceChildren(element('p', context.filter(Boolean).join(' · '), 'field-help'), element('p', record.details, 'result-summary'));
+  } catch (error) {
+    if (requestId === state.detailRequest && dialog.open) root.replaceChildren(element('p', error.message, 'form-error'));
+  }
+}
+
+const projectRecordForm = $('project-record-form');
+const projectRecordFile = $('project-record-import').querySelector('input');
+const projectRecordStatus = $('project-record-import-status');
+const projectRecordDialog = $('project-record-dialog');
+let projectImport = null;
+let projectSubmission = null;
+function cancelProjectImport() {
+  if (projectImport) {
+    projectImport.abort();
+    projectImport = null;
+    busy(projectRecordForm, false);
+  }
+  projectRecordFile.value = '';
+  projectRecordStatus.hidden = true;
+}
+function syncProjectRecordForm() {
+  const fields = projectRecordForm.elements;
+  const isDocument = fields.kind.value === 'document';
+  const needsPermission = fields.dataClassification.value === 'authorized';
+  $('project-record-date').hidden = isDocument;
+  fields.scheduledFor.disabled = isDocument;
+  fields.scheduledFor.required = fields.kind.value === 'milestone';
+  fields.details.maxLength = isDocument ? 30000 : 2000;
+  $('project-record-import').hidden = !isDocument;
+  $('project-record-authorization').hidden = !needsPermission;
+  fields.authorized.required = needsPermission;
+  fields.authorized.disabled = !needsPermission;
+}
+$('add-project-record').addEventListener('click', () => {
+  const permissions = state.dashboard?.capabilities;
+  if (!(permissions?.addDocument || permissions?.plan)) return;
+  const fields = projectRecordForm.elements;
+  projectRecordForm.reset();
+  for (const option of fields.kind.options) option.disabled = option.value === 'document' ? !permissions.addDocument : !permissions.plan;
+  fields.kind.value = permissions.addDocument ? 'document' : 'task';
+  $('project-record-visibility').hidden = !permissions.addRestricted;
+  cancelProjectImport();
+  syncProjectRecordForm();
+  formError(projectRecordForm);
+  projectRecordDialog.showModal();
+});
+projectRecordForm.elements.kind.addEventListener('change', () => {
+  cancelProjectImport();
+  syncProjectRecordForm();
+});
+projectRecordForm.elements.dataClassification.addEventListener('change', syncProjectRecordForm);
+projectRecordDialog.addEventListener('close', () => {
+  cancelProjectImport();
+  projectSubmission = null;
+  projectRecordForm.reset();
+  formError(projectRecordForm);
+});
+projectRecordFile.addEventListener('change', async () => {
+  const file = projectRecordFile.files[0];
+  if (!file) return;
+  cancelProjectImport();
+  const controller = new AbortController();
+  projectImport = controller;
+  projectRecordStatus.hidden = false;
+  busy(projectRecordForm, true);
+  formError(projectRecordForm);
+  try {
+    const result = await extractFile(file, {signal:controller.signal, onStatus:text => {projectRecordStatus.textContent = text;}});
+    if (controller.signal.aborted) return;
+    const fields = projectRecordForm.elements;
+    fields.details.value = result.text;
+    if (!fields.title.value.trim()) fields.title.value = file.name.replace(/\.[^.]+$/, '').slice(0, 160);
+    projectRecordStatus.textContent = ['Text imported. Review it before saving.', ...result.warnings].join(' ');
+  } catch (error) {
+    if (!controller.signal.aborted) projectRecordStatus.textContent = error.message;
+  } finally {
+    if (projectImport === controller) {
+      projectImport = null;
+      busy(projectRecordForm, false);
+    }
+  }
+});
+projectRecordForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (projectImport) return;
+  formError(projectRecordForm);
+  busy(projectRecordForm, true);
+  const values = new FormData(projectRecordForm);
+  const fields = ['kind','title','details','dataClassification','visibility','scheduledFor'];
+  try {
+    const record = Object.fromEntries(fields.map(key => [key,values.get(key)]));
+    const content = JSON.stringify(record);
+    if (projectSubmission?.content !== content) projectSubmission = {content,id:crypto.randomUUID()};
+    await api('/project-records', {...record,clientRequestId:projectSubmission.id});
+    projectRecordDialog.close();
+    await refreshDashboard({quiet:true});
+    notice('Project record saved.');
+  } catch (error) {
+    formError(projectRecordForm, error.message);
+  } finally {
+    busy(projectRecordForm, false);
+  }
+});
+
 function paintSavedGuidance(guidance) {
   const scopes = [['private', 'For private reviews'], ['shared', 'For reviews shared with your GC']];
   const groups = [];
@@ -289,7 +443,7 @@ function paintRuns() {
   $('runs').replaceChildren(...runs.map(run => {
     const row = element('article', null, 'run-row');
     const heading = element('div');
-    const scope = run.shared ? 'Shared with GC' : 'Private';
+    const scope = run.shared ? 'Shared with GC reviewers' : 'Private';
     const submitter = typeof run.submittedBy === 'string' ? run.submittedBy : run.submittedBy?.name;
     heading.append(element('h3', run.title), element('p', [kinds[run.kind]?.label, submitter, scope, shortDate(run.createdAt)].filter(Boolean).join(' · ')));
     const controls = element('div', null, 'actions');
@@ -303,6 +457,7 @@ $('refresh').addEventListener('click', () => refreshDashboard());
 
 const runForm = $('run-form');
 let workflowImport = null;
+let dailyDocument = false;
 
 function cancelWorkflowImport() {
   workflowImport?.abort();
@@ -310,6 +465,22 @@ function cancelWorkflowImport() {
   $('workflow-file').value = '';
   $('workflow-file').disabled = false;
   $('workflow-file-status').hidden = true;
+}
+function syncDailyFormat() {
+  const controls = runForm.elements;
+  const daily = controls.kind.value === 'daily';
+  const showDocument = daily && dailyDocument;
+  $('daily-field').hidden = !daily || showDocument;
+  controls.reportText.required = daily && !showDocument;
+  controls.reportText.disabled = !daily || showDocument;
+  $('daily-document-field').hidden = !showDocument;
+  $('daily-document-field').disabled = !showDocument;
+}
+function showDailyTextLimit() {
+  const length = runForm.elements.reportExcerpt.value.length;
+  $('daily-text-note').textContent = length > DAILY_REPORT_TEXT_LIMIT
+    ? `${length.toLocaleString()} characters. Select the relevant excerpt and shorten it to 5,000 characters before submitting.`
+    : '';
 }
 function syncKind() {
   cancelWorkflowImport();
@@ -325,12 +496,10 @@ function syncKind() {
   $('transcript-field').hidden = kind !== 'meeting';
   controls.transcript.required = kind === 'meeting';
   controls.transcript.disabled = kind !== 'meeting';
-  $('daily-field').hidden = kind !== 'daily';
-  controls.reportText.required = kind === 'daily';
-  controls.reportText.disabled = kind !== 'daily';
+  syncDailyFormat();
   $('text-file-field').hidden = kind === 'rfi';
-  $('workflow-file-label').textContent = kind === 'daily' ? 'Import JSON' : 'Import transcript';
-  $('workflow-file').accept = kind === 'daily' ? '.json' : '.txt,.pdf,.docx';
+  $('workflow-file-label').textContent = kind === 'daily' ? 'Import PDF, Word, or JSON' : 'Import transcript';
+  $('workflow-file').accept = kind === 'daily' ? '.pdf,.docx,.json' : '.txt,.pdf,.docx';
   syncGuidanceOption();
 }
 function syncGuidanceOption() {
@@ -414,6 +583,7 @@ const exampleReports = [
 ];
 function setExample() {
   const controls = runForm.elements;
+  cancelWorkflowImport();
   controls.dataClassification.value = 'synthetic';
   controls.authorized.checked = false;
   syncClassification();
@@ -426,6 +596,8 @@ function setExample() {
     controls.title.value = 'East wing coordination meeting';
     controls.transcript.value = exampleTranscript;
   } else {
+    dailyDocument = false;
+    syncDailyFormat();
     controls.title.value = 'East wing daily report review';
     controls.reportText.value = JSON.stringify(exampleReports, null, 2);
   }
@@ -433,6 +605,7 @@ function setExample() {
 function openIntake(kind) {
   if (!state.dashboard || state.dashboard.capabilities?.submit === false) return;
   runForm.reset();
+  dailyDocument = false;
   runForm.elements.kind.value = kind;
   state.submissionKey = null;
   formError(runForm);
@@ -453,12 +626,22 @@ runForm.elements.kind.addEventListener('change', syncKind);
 runForm.elements.dataClassification.addEventListener('change', syncClassification);
 runForm.elements.shared.addEventListener('change', syncGuidanceOption);
 $('intake-dialog').addEventListener('close', cancelWorkflowImport);
+runForm.elements.reportExcerpt.addEventListener('input', showDailyTextLimit);
+$('use-daily-json').addEventListener('click', () => {
+  cancelWorkflowImport();
+  dailyDocument = false;
+  syncDailyFormat();
+  formError(runForm);
+  runForm.elements.reportText.focus();
+});
 $('workflow-file').addEventListener('change', async event => {
   const input = event.currentTarget;
   const file = input.files[0];
   if (!file) return;
-  const kind = runForm.elements.kind.value;
-  const target = kind === 'daily' ? runForm.elements.reportText : runForm.elements.transcript;
+  const controls = runForm.elements;
+  const kind = controls.kind.value;
+  const documentReport = kind === 'daily' && /\.(pdf|docx)$/i.test(file.name);
+  const target = kind === 'daily' ? (documentReport ? controls.reportExcerpt : controls.reportText) : controls.transcript;
   const status = $('workflow-file-status');
   const request = new AbortController();
   workflowImport = request;
@@ -470,20 +653,34 @@ $('workflow-file').addEventListener('change', async event => {
   input.disabled = true;
   try {
     let content, warnings = [];
-    if (kind === 'daily') {
-      if (!/\.json$/i.test(file.name) || file.size > 180000) throw Error('Choose a JSON file under 180 KB.');
+    if (kind === 'daily' && !documentReport) {
+      if (!/\.json$/i.test(file.name)) throw Error('Choose a PDF, DOCX, or JSON file.');
+      if (file.size > 180000) throw Error('Choose a JSON file under 180 KB.');
       content = await file.text();
     } else {
       const extracted = await extractFile(file, {signal:request.signal,onStatus:showStatus});
       content = extracted.text;
       warnings = arr(extracted.warnings);
     }
-    if (!content.trim() || content.includes('\0') || content.length > target.maxLength) throw Error('Choose a readable text file within the form’s character limit.');
+    if (!content.trim() || content.includes('\0') || (!documentReport && content.length > target.maxLength)) {
+      throw Error('Choose a readable file within the form’s character limit.');
+    }
     if (request.signal.aborted || !$('intake-dialog').open) return;
     target.value = content;
-    if (!runForm.elements.title.value.trim()) runForm.elements.title.value = file.name.replace(/\.[^.]+$/, '').slice(0, 120);
+    if (kind === 'daily') {
+      dailyDocument = documentReport;
+      syncDailyFormat();
+      if (documentReport) {
+        controls.reportId.value = '';
+        controls.reportDate.value = '';
+        controls.reportArea.value = '';
+        showDailyTextLimit();
+        controls.reportId.focus();
+      }
+    }
+    if (!controls.title.value.trim()) controls.title.value = file.name.replace(/\.[^.]+$/, '').slice(0, 120);
     formError(runForm);
-    showStatus(['Imported. Check the text before adding this review.', ...warnings].join(' '));
+    showStatus([documentReport ? 'Text extracted. Confirm the report details before adding this review.' : 'Imported. Check the text before adding this review.', ...warnings].join(' '));
   } catch (error) {
     if (!request.signal.aborted && $('intake-dialog').open) {
       showStatus('');
@@ -508,9 +705,17 @@ function runPayload() {
     if (!transcript) throw Error('Add the meeting transcript.');
     payload = {transcript};
   } else if (kind === 'daily') {
-    let parsed;
-    try { parsed = JSON.parse(String(values.get('reportText'))); } catch { throw Error('Use a JSON array of daily reports, or a JSON object with a reports array.'); }
-    const reports = Array.isArray(parsed) ? parsed : parsed?.reports;
+    if (workflowImport) throw Error('Wait for the report file to finish importing.');
+    let reports;
+    if (dailyDocument) {
+      reports = [dailyReportFromDocument({
+        id:values.get('reportId'), date:values.get('reportDate'), area:values.get('reportArea'), text:values.get('reportExcerpt')
+      })];
+    } else {
+      let parsed;
+      try { parsed = JSON.parse(String(values.get('reportText'))); } catch { throw Error('Use a JSON array of daily reports, or a JSON object with a reports array.'); }
+      reports = Array.isArray(parsed) ? parsed : parsed?.reports;
+    }
     if (!Array.isArray(reports) || !reports.length || reports.length > 30) throw Error('Include 1 to 30 daily reports.');
     payload = {reports};
   } else {
@@ -624,7 +829,9 @@ function reviewForm(run) {
   const decision = element('label', 'Decision');
   const select = element('select');
   select.name = 'decision';
+  const allowed = run.reviewDecisions ?? ['accept','revise'];
   for (const [value, title] of [['accept','Accept draft'],['revise','Needs changes']]) {
+    if (!allowed.includes(value)) continue;
     const option = element('option', title);
     option.value = value;
     select.append(option);
@@ -729,7 +936,7 @@ function renderRun({run, review}) {
   $('result-heading').textContent = run.title;
   $('result-kicker').textContent = kinds[run.kind]?.label.toUpperCase() || 'RUN RESULTS';
   const root = $('result-body');
-  const detail = element('p', [shortDate(run.createdAt), Number.isFinite(run.timings?.totalMs) ? 'Processing · ' + duration(run.timings.totalMs / 1000) : null, run.shared ? 'Shared with GC' : 'Private'].filter(Boolean).join(' · '), 'result-summary');
+  const detail = element('p', [shortDate(run.createdAt), Number.isFinite(run.timings?.totalMs) ? 'Processing · ' + duration(run.timings.totalMs / 1000) : null, run.shared ? 'Shared with GC reviewers' : 'Private'].filter(Boolean).join(' · '), 'result-summary');
   root.replaceChildren(badge(run.reviewed && !run.canReview ? 'Reviewed' : statuses[run.status] || 'Pending', run.status), detail);
   if (run.useGuidance) {
     const version = Number.isInteger(run.guidanceVersion) ? ` · Version ${run.guidanceVersion}` : '';
@@ -788,8 +995,25 @@ $('result-dialog').addEventListener('close', () => {
 });
 
 const inviteForm = $('invite-form');
+const inviteRoleHelp = {
+  gc_manager:'Can invite teammates, see shared reviews and restricted records, and accept or respond to RFI drafts.',
+  gc_supervisor:'Can see shared RFIs and respond with changes. Managers accept drafts.',
+  gc_employee:'Can submit and share their own work and see the shared project library.',
+  sub_lead:'Can share their work with GC reviewers, accept or respond to their own RFI drafts, and add documents.',
+  sub_field:'Can submit and share their own work and see the shared project library.',
+  architect_lead:'Can see scheduled work and restricted records and add construction documents.',
+  architect_designer:'Can see scheduled work and add construction documents.'
+};
+function syncInviteRole() {
+  const role = inviteForm.elements.subrole.value;
+  $('invite-role-help').textContent = inviteRoleHelp[role];
+  $('invite-trade-field').hidden = !role.startsWith('sub_');
+  inviteForm.elements.trade.disabled = $('invite-trade-field').hidden;
+}
+inviteForm.elements.subrole.addEventListener('change', syncInviteRole);
 $('invite-button').addEventListener('click', () => {
   inviteForm.reset();
+  syncInviteRole();
   inviteForm.hidden = false;
   formError(inviteForm);
   $('invite-result').hidden = true;
@@ -803,10 +1027,10 @@ inviteForm.addEventListener('submit', async event => {
   busy(inviteForm, true);
   const values = new FormData(inviteForm);
   try {
-    const invite = await api('/invites', {email:String(values.get('email')).trim(),trade:String(values.get('trade')).trim()});
+    const invite = await api('/invites', {email:String(values.get('email')).trim(),trade:String(values.get('trade') || '').trim(),subrole:values.get('subrole')});
     if (!$('invite-dialog').open) return;
     $('invite-value').value = invite.code;
-    $('invite-expiry').textContent = invite.expiresAt ? 'Expires ' + shortDate(invite.expiresAt) + '.' : '';
+    $('invite-expiry').textContent = [invite.roleLabel, invite.expiresAt && 'Expires ' + shortDate(invite.expiresAt)].filter(Boolean).join(' · ');
     $('invite-result').hidden = false;
     inviteForm.hidden = true;
   } catch (error) {

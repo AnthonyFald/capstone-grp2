@@ -6,13 +6,19 @@ Class materials are available as an editable [Demo 3 writeup](<../../documents/d
 
 ## Use a project account
 
-Choose **General contractor** to create a project and invite a subcontractor. Enter the subcontractor's email and trade, then give them the one-time invitation code through your normal project channel. They choose **Subcontractor** and enter the same email and code. A subcontractor can also create a private workspace without an invite. A project name alone grants no access. Each account belongs to one project.
+Choose **General contractor** to create a project as its GC manager. Use **Invite teammate** to assign a role and email address, then give the teammate the one-time code privately. They select their role family and **Join with an invitation code** when signing up. Existing GC accounts retain manager access and existing subcontractor accounts retain lead access. A subcontractor can also create a private workspace as its lead. Architects join by invitation. Each account belongs to one project.
 
 | Who is signed in | What they can see and do |
 | --- | --- |
-| General contractor | See and review their own runs and runs an invited subcontractor explicitly shares. Create invitations for their project. |
-| Subcontractor | See and review their own runs. Choose whether to share an eligible run with their GC before processing. Private analysis stays in a separate task history. |
-| A different project | See only that project's permitted records. A direct link to someone else's run returns unavailable. |
+| GC manager | Invite users, view intentionally shared runs, accept or respond to drafts, and publish construction documents, tasks, or milestones. |
+| GC supervisor | View shared RFIs, submit and share work, request changes to drafts, and add project documents, tasks, or milestones. |
+| GC general employee | Submit and share their own work with eligible GC reviewers. |
+| Subcontractor lead | Submit, accept, or respond to their own drafts, share eligible runs with GC reviewers, and add construction documents. |
+| Subcontractor field employee | Submit and share their own work with eligible GC reviewers. |
+| Project architect | Add construction documents and read published project records, including restricted records. |
+| Architectural team member | Add construction documents and read records published to all project members. |
+
+All project members can read documents, tasks, and dated milestones published to the whole project. A GC manager may limit a record to GC managers and project architects. Use **Add project record** to publish verified text or import a PDF, Word, or text document and check the extracted text before saving. The project library is managed separately from private RFI reviews and personal task history. Direct record links enforce the same project and role permissions as the dashboard.
 
 Create your own unique password. Sessions use an HTTP-only cookie. The demo does not send verification emails or provide automatic password recovery. An invitation proves access to the invite code, so send it privately. There are no shared default user passwords in this repository.
 
@@ -20,8 +26,8 @@ Create your own unique password. Sessions use an HTTP-only cookie. The demo does
 
 1. Select **RFI coordination**, **Meeting notes**, or **Daily reports**. Add the source material. Choose **Test records** for generated examples or confirm permission when submitting **Authorized project records**.
 2. Queue the run. The project PC's manual Capstone app processes one job at a time with Qwen 3.5 27B when **On**. Open the Windows app and turn it On for a planned session. **Off** or Close stops its owned model and queue polling. The website and jobs remain available.
-3. Open the result to compare the draft with the source. Record **Accept** or **Needs changes** and any measured evaluation values. Accepting your own RFI proposal can update your saved task history. A human still decides whether to submit a formal RFI.
-4. After reviewing your own completed RFI run, you can save an instruction for future reviews. Choose **Use saved guidance** when you want a new RFI draft to follow those instructions. Each run records the exact version it used. Private guidance and guidance for runs you share with your GC stay in separate lists. Archiving an instruction affects future runs.
+3. Open the result to compare the draft with the source. Roles with review privileges can record the actions they are permitted to take and add measured evaluation values. Accepting your own RFI proposal can update your saved task history. A human still decides whether to submit a formal RFI.
+4. GC managers and subcontractor leads can save an instruction after reviewing their own completed RFI run. Choose **Use saved guidance** when you want a new RFI draft to follow those instructions. Each run records the exact version it used. Private and shared-run guidance stay in separate lists. Archiving an instruction affects future runs.
 
 The class evaluation uses generated test records. Project membership controls client access. The designated processing PC receives claimed source material and retains its local audit. Use records cleared for that destination and workflow.
 

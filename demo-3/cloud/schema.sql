@@ -107,6 +107,24 @@ CREATE TABLE IF NOT EXISTS client_invites (
   expires_at TEXT NOT NULL, used_by TEXT
 );
 CREATE INDEX IF NOT EXISTS client_invites_project ON client_invites(project_id,expires_at);
+-- Additive role assignments keep existing account, invite, and session rows intact.
+CREATE TABLE IF NOT EXISTS client_member_roles (
+  user_id TEXT PRIMARY KEY REFERENCES client_users(id),
+  role_key TEXT NOT NULL CHECK(role_key IN ('gc_manager','gc_supervisor','gc_employee','sub_lead','sub_field','architect_lead','architect_designer'))
+);
+CREATE TABLE IF NOT EXISTS client_invite_roles (
+  code_hash TEXT PRIMARY KEY REFERENCES client_invites(code_hash),
+  role_key TEXT NOT NULL CHECK(role_key IN ('gc_manager','gc_supervisor','gc_employee','sub_lead','sub_field','architect_lead','architect_designer'))
+);
+CREATE TABLE IF NOT EXISTS client_project_records (
+  id TEXT PRIMARY KEY, project_id TEXT NOT NULL REFERENCES client_projects(id),
+  author_id TEXT NOT NULL REFERENCES client_users(id),
+  kind TEXT NOT NULL CHECK(kind IN ('document','task','milestone')),
+  visibility TEXT NOT NULL CHECK(visibility IN ('project','restricted')),
+  classification TEXT NOT NULL CHECK(classification IN ('synthetic','authorized')),
+  title TEXT NOT NULL, details TEXT NOT NULL, scheduled_for TEXT, created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS client_project_records_by_project ON client_project_records(project_id,created_at,id);
 CREATE TABLE IF NOT EXISTS client_auth_rates (
   scope TEXT NOT NULL, bucket INTEGER NOT NULL, hits INTEGER NOT NULL,
   PRIMARY KEY(scope,bucket)

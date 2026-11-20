@@ -46,6 +46,11 @@ async function signup(s,local,role,extra) {
   return assertStatus(await s.client('/signup',{body:await registration(local,role,extra)}),201);
 }
 
+async function inviteTeammate(s, manager, local, family, subrole) {
+  const {code} = assertStatus(await s.client('/invites',{cookie:manager.cookie,body:{email:local+'@example.test',subrole}}),201).data;
+  return signup(s,local,family,{inviteCode:code});
+}
+
 async function runner(s) {
   const {code} = assertStatus(await s.legacy('/runner/pair-codes',{label:'Synthetic host'}),201).data;
   const {token} = assertStatus(await s.call('/runner/pair',{body:{code,runnerName:'Synthetic host'}}),201).data;
@@ -111,6 +116,89 @@ test('client signup and sessions are independent of legacy access; invites bind 
   assertStatus(await s.client('/dashboard',{cookie:login.cookie}),200);
   s.env.CAPSTONE_CLIENT_SIGNUPS='closed';
   assertStatus(await s.client('/signup',{body:await registration('closed')}),403);
+});
+
+test('the additive role schema preserves existing sessions and unredeemed legacy invitations',async t=>{
+  const s = setup(t), existing = await signup(s,'old-project'), own = await signup(s,'old-independent','sub');
+  // The founder and independent accounts have exactly the same account/session shape as the old schema.
+  const code = 'invite_' + 'f'.repeat(48);
+  await s.db.prepare('INSERT INTO client_invites(code_hash,project_id,email,trade,created_at,expires_at) VALUES(?,?,?,?,?,?)')
+    .bind(await sha256(code),existing.data.project.id,'old-invite@example.test','Electrical',new Date().toISOString(),new Date(Date.now()+60_000).toISOString()).run();
+  s.db.exec('DROP TABLE client_project_records; DROP TABLE client_invite_roles; DROP TABLE client_member_roles;');
+  s.db.exec(schema);
+  s.db.exec(schema);
+  const dashboard = assertStatus(await s.client('/dashboard',{cookie:existing.cookie}),200).data;
+  assert.equal(dashboard.user.subrole,'gc_manager');
+  assert.equal(dashboard.project.id,existing.data.project.id);
+  assert.equal(assertStatus(await s.client('/dashboard',{cookie:own.cookie}),200).data.user.subrole,'sub_lead');
+  const member = await signup(s,'old-invite','sub',{inviteCode:code});
+  assert.equal(member.data.user.subrole,'sub_lead');
+  assert.equal(member.data.user.trade,'Electrical');
+  assert.equal(member.data.project.id,existing.data.project.id);
+});
+
+test('project architects can add and read construction records without gaining review or schedule editing access',async t=>{
+  const s = setup(t), manager = await signup(s,'manager');
+  const architect = await inviteTeammate(s,manager,'project-architect','architect','architect_lead');
+  const designer = await inviteTeammate(s,manager,'designer','architect','architect_designer');
+  const field = await inviteTeammate(s,manager,'field','sub','sub_field');
+  const other = await signup(s,'other');
+  assert.equal(architect.data.user.role,'architect');
+  assert.equal(designer.data.user.subrole,'architect_designer');
+  assert.equal(field.data.user.subrole,'sub_field');
+  const makeRecord = (cookie,fields={}) => s.client('/project-records',{cookie,body:{clientRequestId:crypto.randomUUID(),kind:'document',visibility:'project',dataClassification:'synthetic',title:'Test drawings',details:'Current dimensions are shown on sheet A-101.',...fields}});
+  const clientRequestId = crypto.randomUUID();
+  const {record:publicDocument} = assertStatus(await makeRecord(designer.cookie,{clientRequestId}),201).data;
+  assert.equal(assertStatus(await makeRecord(designer.cookie,{clientRequestId}),200).data.record.id,publicDocument.id);
+  assertStatus(await makeRecord(designer.cookie,{clientRequestId,title:'Different submission'}),409);
+  const {record:secretDocument} = assertStatus(await makeRecord(manager.cookie,{title:'Restricted drawing',visibility:'restricted'}),201).data;
+  const {record:milestone} = assertStatus(await makeRecord(manager.cookie,{kind:'milestone',title:'Framing inspection',scheduledFor:'2026-11-24'}),201).data;
+  const {record:task} = assertStatus(await makeRecord(manager.cookie,{kind:'task',title:'Coordinate framing opening'}),201).data;
+  const architectBoard = assertStatus(await s.client('/dashboard',{cookie:architect.cookie}),200).data;
+  assert.deepEqual(new Set(architectBoard.projectRecords.map(record=>record.id)),new Set([publicDocument.id,secretDocument.id,milestone.id,task.id]));
+  assert(!Object.hasOwn(architectBoard.projectRecords[0],'details'));
+  const designerBoard = assertStatus(await s.client('/dashboard',{cookie:designer.cookie}),200).data;
+  assert.deepEqual(new Set(designerBoard.projectRecords.map(record=>record.id)),new Set([publicDocument.id,milestone.id,task.id]));
+  assert.match(assertStatus(await s.client('/project-records/'+publicDocument.id,{cookie:architect.cookie}),200).data.record.details,/A-101/);
+  assertStatus(await s.client('/project-records/'+secretDocument.id,{cookie:designer.cookie}),404);
+  assertStatus(await s.client('/project-records/'+publicDocument.id,{cookie:other.cookie}),404);
+  assertStatus(await makeRecord(field.cookie),403);
+  assertStatus(await makeRecord(architect.cookie,{visibility:'restricted'}),403);
+  assertStatus(await makeRecord(architect.cookie,{kind:'milestone',scheduledFor:'2026-11-24'}),403);
+  assertStatus(await makeRecord(manager.cookie,{kind:'milestone',scheduledFor:'2026-02-31'}),400);
+  assertStatus(await s.client('/runs',{cookie:architect.cookie,body:rfi('A1','Coordinate a test opening.')}),403);
+  assertStatus(await s.client('/signup',{body:await registration('no-invite','architect')}),400);
+});
+
+test('GC subroles enforce shared run access and RFI response and acceptance separately',async t=>{
+  const s = setup(t), manager = await signup(s,'manager');
+  const {code} = assertStatus(await s.client('/invites',{cookie:manager.cookie,body:{email:'supervisor@example.test',subrole:'gc_supervisor'}}),201).data;
+  const supervisor = await signup(s,'supervisor','gc',{inviteCode:code,subrole:'gc_manager',projectName:'Wrong project name'});
+  const sameAccount = assertStatus(await s.client('/dashboard',{cookie:supervisor.cookie}),200).data;
+  assert.equal(sameAccount.user.subrole,'gc_supervisor');
+  assert.equal(sameAccount.project.id,manager.data.project.id);
+  assert.equal(sameAccount.capabilities.invite,false);
+  const employee = await inviteTeammate(s,manager,'employee','gc','gc_employee');
+  const trade = await inviteTeammate(s,manager,'sub-field','sub','sub_field');
+  assertStatus(await s.client('/invites',{cookie:supervisor.cookie,body:{email:'unexpected@example.test'}}),403);
+  const {run:restrictedMeeting} = assertStatus(await s.client('/runs',{cookie:trade.cookie,body:{kind:'meeting',title:'Shared test meeting',clientRequestId:crypto.randomUUID(),dataClassification:'synthetic',shared:true,payload:{transcript:'Alex: Confirm the clear opening on sheet A-101 before the inspection.'}}}),201).data;
+  const {run:submittedRfi} = assertStatus(await s.client('/runs',{cookie:employee.cookie,body:rfi('E1','Coordinate the test opening.',{shared:true})}),201).data;
+  assertStatus(await s.client('/runs/'+restrictedMeeting.id,{cookie:manager.cookie}),200);
+  assertStatus(await s.client('/runs/'+restrictedMeeting.id,{cookie:supervisor.cookie}),404);
+  assertStatus(await s.client('/runs/'+restrictedMeeting.id,{cookie:employee.cookie}),404);
+  assert.deepEqual(assertStatus(await s.client('/dashboard',{cookie:supervisor.cookie}),200).data.runs.map(run=>run.id),[submittedRfi.id]);
+  const token = await runner(s);
+  const claim = assertStatus(await s.call('/runner/claim',{token,body:{capabilities:['rfi']}}),200).data;
+  assert.equal(claim.job.id,submittedRfi.id);
+  await complete(s,token,claim,consolidation(claim));
+  const path = '/runs/'+submittedRfi.id;
+  assert.deepEqual(assertStatus(await s.client(path,{cookie:supervisor.cookie}),200).data.run.reviewDecisions,['revise']);
+  assert.deepEqual(assertStatus(await s.client(path,{cookie:employee.cookie}),200).data.run.reviewDecisions,[]);
+  assert.deepEqual(assertStatus(await s.client(path,{cookie:manager.cookie}),200).data.run.reviewDecisions,['accept','revise']);
+  assertStatus(await s.client(path+'/review',{cookie:employee.cookie,body:{decision:'revise',notes:'This is an unauthorized response.'}}),403);
+  assertStatus(await s.client(path+'/review',{cookie:supervisor.cookie,body:{decision:'accept',notes:'This is an unauthorized acceptance.'}}),403);
+  assertStatus(await s.client(path+'/review',{cookie:supervisor.cookie,body:{decision:'revise',notes:'Review the dimensions first.'}}),201);
+  assertStatus(await s.client(path+'/review',{cookie:manager.cookie,body:{decision:'accept',notes:'I checked the source record.'}}),201);
 });
 
 test('client queue, accepted project history, sharing and review metrics stay within authorized scopes',async t=>{

@@ -2,6 +2,10 @@
 
 A static capstone website with functional Demo 1 and Demo 2 tabs. GitHub Pages serves the HTML, CSS, and JavaScript directly. Browser models need no install, build step, API key or paid inference service. Both demos now support the local Qwen 3.5 27B model through a shared companion; browser alternatives remain available.
 
+## Demo 4: workspace roles and RFI evaluation
+
+Evergreen Workspace adds project roles, a shared area for construction documents, tasks and schedule, and PDF/Word intake for daily reports. See the [Demo 4 guide](demo-4/README.md) for the 100-RFI synthetic evaluation and how to reproduce it locally.
+
 ## Demo 3: document consolidation and task review
 
 [Evergreen Workspace](https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/client/) is the live client entry point for general contractors and subcontractors. See the [workspace guide](demo-3/docs/client-workspace.md) for project roles, the three queued workflows, the Free hosting setup, and the November 11 evaluation.

@@ -8,9 +8,10 @@ work through the same lease protocol and returns a draft to the client site.
 
 Accounts and projects
 
-- POST /signup: name, email, passwordProof, role (gc or sub), and either a
-  projectName or a subcontractor inviteCode. A new project always has its
-  own ID. Matching the name of an existing project does not join it.
+- POST /signup: name, email, passwordProof, role family (gc, sub, architect),
+  and either a projectName or inviteCode. Only GC and Sub founders can create
+  new projects. New projects have their own IDs. The invitation assigns the
+  exact role within the selected family and checks the recipient email.
 - POST /login: email and passwordProof. POST /logout expires the session.
 - Use public/client/auth.mjs to derive the password proof in the browser.
   Submit it only to this same-origin API. Treat it as a password and keep
@@ -22,17 +23,29 @@ Accounts and projects
   that secret or adding a pepper later will invalidate existing verifiers.
 - CAPSTONE_CLIENT_SIGNUPS=closed disables new accounts. Existing accounts
   can still sign in. There is no account-recovery email service.
-- POST /invites: the project's GC supplies email and optional trade.
-  Returns a one-use code and expiry. It binds the email, project, trade
-  and subcontractor role. Give the code only to the intended teammate.
+- POST /invites: a GC manager supplies email, subrole and optional trade for
+  a subcontractor. Subroles: gc_manager, gc_supervisor, gc_employee, sub_lead,
+  sub_field, architect_lead, architect_designer. Omitted subrole defaults to
+  sub_lead for older clients and legacy invite codes. The one-use code binds
+  email, project, trade and role. Give it only to the intended teammate.
 - GET /dashboard shows the account, project, visible run history, runner
-  check-in and review totals. GCs see their own runs and Sub runs shared
-  with their project. Subcontractors see their own runs.
+  check-in, review totals and authorized project record metadata. GC managers
+  see their own runs and intentionally shared project runs. GC supervisors
+  see their own runs and shared RFIs. Other accounts see their own runs.
+- POST /project-records: clientRequestId (for safe retries), kind (document, task, milestone), title, details,
+  visibility (project, restricted), dataClassification (synthetic, authorized)
+  and scheduledFor (required for milestones, optional for tasks). A GC manager
+  can publish restricted records. GC managers/supervisors can add planning
+  records. GC managers/supervisors, Sub leads and both Architect roles can
+  add documents. Browser file import sends the reviewed extracted text.
+- GET /project-records/:id returns the full record. Project membership limits
+  all reads. Only GC managers and project architects see restricted records.
+  Adding a project record does not submit a model job or update a review board.
 
 Jobs and evaluation
 
 - POST /runs: kind, title, clientRequestId, dataClassification, payload and
-  optional shared=true for an invited subcontractor. The request ID makes
+  optional shared=true for project members with share permission. The request ID makes
   retries idempotent. Choose synthetic or authorized data. Every queued
   batch is sent to the project processing host during an enabled session.
 - Payload for rfi is {mode:"consolidation",documents:[...]}. The document
@@ -40,12 +53,14 @@ Jobs and evaluation
   {transcript:"..."} and daily uses {reports:[...]}.
 - GET /runs/:id returns status, input, draft, review, timings and a small
   provenance record. Access is checked by the Worker for every request.
-- POST /runs/:id/share can retract or restore sharing on a Sub run that
+- POST /runs/:id/share can retract or restore sharing on a run that
   was shared when queued. Private project history and shared history use
   separate task boards. A run generated against private history cannot be
   switched to shared.
 - POST /runs/:id/review records decision (accept or revise), notes, and
-  optional metrics. An owner accepting their RFI batch also applies its
+  optional metrics. GC managers and Sub leads can accept or request changes
+  on accessible runs. GC supervisors can request changes. Other members read
+  drafts without review access. An owner accepting their RFI batch also applies its
   recommendations to their appropriate board. A GC reviewing a shared
   Sub result records a review without modifying either board. An obsolete
   board snapshot must be rerun before it can be accepted.
@@ -79,6 +94,8 @@ Reviewed guidance
 
 The Worker uses existing free D1, bounded account/queue capacity and no
 cloud inference. The runner must be started for work to leave the queue.
+Run the additive schema.sql before deploying this Worker version. Existing
+accounts, sessions, jobs, and old invitation codes are preserved.
 Client runs never retrieve experiment lessons or experiment board history.
 The claim response advertises clientWorkflows. Current runners use
 clientExtendedOnly=true when claiming meeting/daily work so old experiment

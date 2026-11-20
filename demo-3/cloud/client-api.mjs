@@ -21,6 +21,28 @@ const parse = (value, fallback = null) => value == null ? fallback : JSON.parse(
 const sessionAge = 12 * 60 * 60;
 const cookieName = 'evergreen_client';
 
+const memberRoles = Object.freeze({
+  gc_manager: {family:'gc', label:'GC manager', gcShared:'all', invite:true, submit:true, respond:true, accept:true, addDocument:true, plan:true, restricted:true, addRestricted:true},
+  gc_supervisor: {family:'gc', label:'GC supervisor', gcShared:'rfi', submit:true, respond:true, addDocument:true, plan:true, share:true},
+  gc_employee: {family:'gc', label:'GC general employee', submit:true, share:true},
+  sub_lead: {family:'sub', label:'Subcontractor lead', submit:true, respond:true, accept:true, addDocument:true, share:true},
+  sub_field: {family:'sub', label:'Subcontractor field employee', submit:true, share:true},
+  architect_lead: {family:'architect', label:'Project architect', addDocument:true, restricted:true},
+  architect_designer: {family:'architect', label:'Architectural team member', addDocument:true}
+});
+const founderRole = role => role === 'gc' ? 'gc_manager' : 'sub_lead';
+const memberRole = user => memberRoles[user.role_key ?? founderRole(user.role)];
+const capabilitiesFor = user => {
+  const role = memberRole(user);
+  return {
+    invite:!!role.invite, submit:!!role.submit, review:!!(role.respond || role.accept),
+    respond:!!role.respond, accept:!!role.accept, sharedReviews:role.gcShared || 'none',
+    share:!!(role.share && user.joined_project), addDocument:!!role.addDocument,
+    plan:!!role.plan, restricted:!!role.restricted, addRestricted:!!role.addRestricted
+  };
+};
+const joinedProject = "EXISTS(SELECT 1 FROM client_users g WHERE g.project_id=u.project_id AND g.role='gc') AS joined_project";
+
 function string(value, label, min, max) {
   if (typeof value !== 'string' || value.trim().length < min || value.length > max || /\u0000/.test(value)) {
     fail(400, 'invalid_input', label + ' must contain ' + min + '–' + max + ' characters.');
@@ -74,16 +96,17 @@ function sessionToken(request) {
 async function userFor(request, db) {
   const token = sessionToken(request);
   if (!token) fail(401, 'unauthorized', 'Sign in to open your project.');
-  const user = await db.prepare("SELECT u.id,u.project_id,u.name,u.email,u.role,u.trade,p.name AS project_name,EXISTS(SELECT 1 FROM client_users g WHERE g.project_id=u.project_id AND g.role='gc') AS joined_project FROM client_sessions s JOIN client_users u ON u.id=s.user_id JOIN client_projects p ON p.id=u.project_id WHERE s.token_hash=? AND s.expires_at>?").bind(await digest(token), now()).first();
+  const user = await db.prepare(`SELECT u.id,u.project_id,u.name,u.email,u.role,u.trade,m.role_key,p.name AS project_name,${joinedProject} FROM client_sessions s JOIN client_users u ON u.id=s.user_id JOIN client_projects p ON p.id=u.project_id LEFT JOIN client_member_roles m ON m.user_id=u.id WHERE s.token_hash=? AND s.expires_at>?`).bind(await digest(token), now()).first();
   if (!user) fail(401, 'unauthorized', 'Your session ended. Sign in again.');
   return user;
 }
 
 function accountView(user) {
+  const role = memberRole(user);
   return {
-    user:{id:user.id,name:user.name,email:user.email,role:user.role,trade:user.trade},
+    user:{id:user.id,name:user.name,email:user.email,role:role.family,subrole:user.role_key ?? founderRole(user.role),roleLabel:role.label,trade:user.trade},
     project:{id:user.project_id,name:user.project_name},
-    capabilities:{submit:true,review:true,invite:user.role === 'gc',share:user.role === 'sub' && !!user.joined_project}
+    capabilities:capabilitiesFor(user)
   };
 }
 
@@ -116,18 +139,22 @@ async function signUp(request, env, tools) {
   const db = env.CAPSTONE_DB, body = await tools.body(request);
   const address = email(body.email), name = string(body.name, 'Name', 2, 100), credential = passwordProof(body.passwordProof);
   const role = body.role;
-  if (!['gc','sub'].includes(role)) fail(400, 'invalid_role', 'Choose general contractor or subcontractor.');
+  if (!['gc','sub','architect'].includes(role)) fail(400, 'invalid_role', 'Choose your project role.');
   await throttle(request, db, 'signup', address);
   const at = now(), userId = id('client'), salt = random(16);
   let projectId, projectName, trade = '', invitation = null, codeHash = null;
+  let roleKey = founderRole(role);
   if (typeof body.inviteCode === 'string' && body.inviteCode.trim()) {
     const code = body.inviteCode.trim();
-    if (role !== 'sub' || !/^invite_[a-f0-9]{48}$/.test(code)) fail(400, 'invalid_invite', 'Use the subcontractor invite from your general contractor.');
+    if (!/^invite_[a-f0-9]{48}$/.test(code)) fail(400, 'invalid_invite', 'Use the invitation from your project manager.');
     codeHash = await digest(code);
-    invitation = await db.prepare('SELECT i.*,p.name AS project_name FROM client_invites i JOIN client_projects p ON p.id=i.project_id WHERE i.code_hash=? AND i.email=? AND i.used_by IS NULL AND i.expires_at>?').bind(codeHash,address,at).first();
+    invitation = await db.prepare('SELECT i.*,r.role_key,p.name AS project_name FROM client_invites i JOIN client_projects p ON p.id=i.project_id LEFT JOIN client_invite_roles r ON r.code_hash=i.code_hash WHERE i.code_hash=? AND i.email=? AND i.used_by IS NULL AND i.expires_at>?').bind(codeHash,address,at).first();
     if (!invitation) fail(400, 'invalid_invite', 'This invitation is unavailable for this email address.');
+    roleKey = invitation.role_key ?? 'sub_lead';
+    if (memberRoles[roleKey].family!==role) fail(400, 'invalid_invite', 'Choose the role named in your project invitation.');
     ({project_id:projectId, project_name:projectName, trade} = invitation);
   } else {
+    if (role==='architect') fail(400, 'invite_required', 'Architects need an invitation from a project manager.');
     projectId = id('project');
     projectName = string(body.projectName, 'Project name', 2, 120);
     if (role === 'sub' && body.trade) trade = string(body.trade,'Trade or scope',1,100);
@@ -136,7 +163,8 @@ async function signUp(request, env, tools) {
   const statements = [];
   if (invitation) {
     statements.push(db.prepare('UPDATE client_invites SET used_by=? WHERE code_hash=? AND email=? AND used_by IS NULL AND expires_at>? AND (SELECT COUNT(*) FROM client_users)<200').bind(userId,codeHash,address,at));
-    statements.push(db.prepare('INSERT INTO client_users(id,project_id,name,email,role,trade,password_salt,password_hash,created_at) SELECT ?,?,?,?,?,?,?,?,? WHERE EXISTS(SELECT 1 FROM client_invites WHERE code_hash=? AND used_by=?)').bind(userId,projectId,name,address,role,trade,salt,hash,at,codeHash,userId));
+    statements.push(db.prepare('INSERT INTO client_users(id,project_id,name,email,role,trade,password_salt,password_hash,created_at) SELECT ?,?,?,?,?,?,?,?,? WHERE EXISTS(SELECT 1 FROM client_invites WHERE code_hash=? AND used_by=?)').bind(userId,projectId,name,address,role==='gc'?'gc':'sub',trade,salt,hash,at,codeHash,userId));
+    statements.push(db.prepare('INSERT INTO client_member_roles(user_id,role_key) SELECT ?,? WHERE EXISTS(SELECT 1 FROM client_users WHERE id=?)').bind(userId,roleKey,userId));
   } else {
     statements.push(db.prepare('INSERT INTO client_projects(id,name,created_at) SELECT ?,?,? WHERE (SELECT COUNT(*) FROM client_users)<200').bind(projectId,projectName,at));
     statements.push(db.prepare('INSERT INTO client_users(id,project_id,name,email,role,trade,password_salt,password_hash,created_at) SELECT ?,?,?,?,?,?,?,?,? WHERE EXISTS(SELECT 1 FROM client_projects WHERE id=?)').bind(userId,projectId,name,address,role,trade,salt,hash,at,projectId));
@@ -151,43 +179,54 @@ async function signUp(request, env, tools) {
     if (invitation) fail(409, 'invite_unavailable', 'The invitation has already been used or the free signup limit was reached.');
     fail(429, 'signup_capacity', 'The free demo has reached its signup limit.');
   }
-  return newSession(request,env,{id:userId,project_id:projectId,project_name:projectName,name,email:address,role,trade,joined_project:!!invitation},tools.reply,201);
+  return newSession(request,env,{id:userId,project_id:projectId,project_name:projectName,name,email:address,role,role_key:roleKey,trade,joined_project:!!invitation},tools.reply,201);
 }
 
 async function signIn(request, env, tools) {
   const db = env.CAPSTONE_DB, body = await tools.body(request);
   const address = email(body.email), credential = passwordProof(body.passwordProof);
   await throttle(request,db,'login',address);
-  const user = await db.prepare("SELECT u.*,p.name AS project_name,EXISTS(SELECT 1 FROM client_users g WHERE g.project_id=u.project_id AND g.role='gc') AS joined_project FROM client_users u JOIN client_projects p ON p.id=u.project_id WHERE u.email=?").bind(address).first();
+  const user = await db.prepare(`SELECT u.*,m.role_key,p.name AS project_name,${joinedProject} FROM client_users u JOIN client_projects p ON p.id=u.project_id LEFT JOIN client_member_roles m ON m.user_id=u.id WHERE u.email=?`).bind(address).first();
   const actual = await passwordHash(credential, user?.password_salt || '0'.repeat(32), env);
   if (!equal(actual,user?.password_hash || '0'.repeat(64)) || !user) fail(401,'invalid_credentials','The email or password is incorrect.');
   return newSession(request,env,user,tools.reply,200);
 }
 
 async function invite(request, db, user, tools) {
-  if (user.role !== 'gc') fail(403,'forbidden','Only the general contractor can invite teammates.');
+  if (!capabilitiesFor(user).invite) fail(403,'forbidden','Only GC managers can invite teammates.');
   const body = await tools.body(request);
-  const address = email(body.email), trade = body.trade ? string(body.trade,'Trade or scope',1,100) : '';
+  const roleKey = body.subrole ?? 'sub_lead';
+  if (typeof roleKey!=='string' || !Object.hasOwn(memberRoles,roleKey)) fail(400,'invalid_role','Choose a teammate role.');
+  const address = email(body.email), trade = memberRoles[roleKey].family==='sub'&&body.trade ? string(body.trade,'Trade or scope',1,100) : '';
   const at = now(), expiresAt = future(48*3600000), code = 'invite_' + random(24);
-  const created = await db.prepare('INSERT INTO client_invites(code_hash,project_id,email,trade,created_at,expires_at) SELECT ?,?,?,?,?,? WHERE (SELECT COUNT(*) FROM client_invites WHERE project_id=? AND expires_at>? AND used_by IS NULL)<15').bind(await digest(code),user.project_id,address,trade,at,expiresAt,user.project_id,at).run();
+  const codeHash = await digest(code);
+  const [created] = await db.batch([
+    db.prepare('INSERT INTO client_invites(code_hash,project_id,email,trade,created_at,expires_at) SELECT ?,?,?,?,?,? WHERE (SELECT COUNT(*) FROM client_invites WHERE project_id=? AND expires_at>? AND used_by IS NULL)<15').bind(codeHash,user.project_id,address,trade,at,expiresAt,user.project_id,at),
+    db.prepare('INSERT INTO client_invite_roles(code_hash,role_key) SELECT ?,? WHERE EXISTS(SELECT 1 FROM client_invites WHERE code_hash=?)').bind(codeHash,roleKey,codeHash)
+  ]);
   if (!created.meta?.changes) fail(429,'invite_capacity','This project has reached its open-invitation limit.');
-  return tools.reply({code,expiresAt},201);
+  return tools.reply({code,expiresAt,roleLabel:memberRoles[roleKey].label},201);
 }
 
-const access = '(cr.user_id=? OR (cr.project_id=? AND cr.shared=1 AND ?=\'gc\'))';
-const accessParams = user => [user.id,user.project_id,user.role];
+const access = `(cr.user_id=? OR (cr.project_id=? AND cr.shared=1 AND (?='all' OR (?='rfi' AND EXISTS(SELECT 1 FROM jobs k WHERE k.id=cr.job_id AND k.kind='rfi')))))`;
+const accessParams = user => {
+  const scope = capabilitiesFor(user).sharedReviews;
+  return [user.id,user.project_id,scope,scope];
+};
 const latestEvaluation = 'LEFT JOIN client_evaluations e ON e.id=(SELECT id FROM client_evaluations WHERE job_id=j.id ORDER BY created_at DESC,id DESC LIMIT 1)';
 
 function runView(row, user) {
   const owner = row.user_id===user.id;
+  const {accept,respond,share} = capabilitiesFor(user);
+  const reviewDecisions = row.status==='completed'&&!row.own_review ? [...(accept?['accept']:[]),...(respond?['revise']:[])] : [];
   return {
     id:row.id,title:row.title,kind:row.kind,status:row.status,stage:row.stage,
     createdAt:row.created_at,completedAt:row.completed_at,
     shared:!!row.shared,owner,submittedBy:row.submitted_by,
     reviewed:!!row.review_id,timings:parse(row.timings_json),
-    canReview:row.status==='completed'&&!row.own_review,
-    canShare:owner&&!!row.shareable,
-    canPublishGuidance:owner&&row.kind==='rfi'&&row.status==='completed'&&!!row.own_review&&!row.saved_guidance,
+    canReview:reviewDecisions.length>0,reviewDecisions,
+    canShare:owner&&!!row.shareable&&share,
+    canPublishGuidance:owner&&accept&&row.kind==='rfi'&&row.status==='completed'&&!!row.own_review&&!row.saved_guidance,
     guidanceScope:row.shareable?'shared':'private',
     useGuidance:!!row.lesson_release_id,
     guidanceVersion:row.lesson_version||null,
@@ -228,6 +267,7 @@ async function guidanceSnapshot(db, user, shareable) {
 }
 
 async function publishGuidance(request, db, user, runId, tools) {
+  if (!capabilitiesFor(user).accept) fail(403,'forbidden','Your role cannot save review guidance.');
   const run = await getRun(db,user,runId);
   if (run.user_id!==user.id) fail(403,'forbidden','Only the person who submitted this run can save its guidance.');
   if (run.kind!=='rfi' || run.status!=='completed' || !run.own_review) fail(409,'review_required','Review your completed RFI result before saving guidance.');
@@ -249,6 +289,7 @@ async function publishGuidance(request, db, user, runId, tools) {
 }
 
 async function archiveGuidance(db, user, guidanceId, reply) {
+  if (!capabilitiesFor(user).accept) fail(403,'forbidden','Your role cannot archive review guidance.');
   const archived = await db.prepare('UPDATE client_guidance SET archived_at=COALESCE(archived_at,?) WHERE id=? AND user_id=? RETURNING id').bind(now(),guidanceId,user.id).first();
   if (!archived) fail(404,'not_found','This instruction is unavailable.');
   return reply({archived:true});
@@ -282,20 +323,72 @@ function metricsView(rows) {
   return evaluation;
 }
 
+const recordFields = 'r.id,r.kind,r.visibility,r.classification,r.title,r.scheduled_for,r.created_at,u.name AS author';
+const recordTables = "FROM client_project_records r JOIN client_users u ON u.id=r.author_id WHERE r.project_id=? AND (r.visibility='project' OR ?=1)";
+
+function recordView(row) {
+  return {id:row.id,kind:row.kind,visibility:row.visibility,dataClassification:row.classification,title:row.title,scheduledFor:row.scheduled_for,createdAt:row.created_at,author:row.author};
+}
+
+async function listProjectRecords(db, user) {
+  const rows = await db.prepare(`SELECT ${recordFields} ${recordTables} ORDER BY r.created_at DESC,r.id DESC`).bind(user.project_id,capabilitiesFor(user).restricted?1:0).all();
+  return (rows.results||[]).map(recordView);
+}
+
+async function readProjectRecord(db, user, recordId, reply) {
+  const row = await db.prepare(`SELECT ${recordFields},r.details ${recordTables} AND r.id=?`).bind(user.project_id,capabilitiesFor(user).restricted?1:0,recordId).first();
+  if (!row) fail(404,'not_found','This project record is unavailable.');
+  return reply({record:{...recordView(row),details:row.details}});
+}
+
+async function addProjectRecord(request, db, user, tools) {
+  const {kind, visibility, dataClassification, title, details, scheduledFor, clientRequestId} = await tools.body(request);
+  if (!['document','task','milestone'].includes(kind)) fail(400,'invalid_record','Choose document, task, or milestone.');
+  const permissions = capabilitiesFor(user);
+  if (!(kind==='document' ? permissions.addDocument : permissions.plan)) fail(403,'forbidden','Your role cannot add this type of project record.');
+  if (!['project','restricted'].includes(visibility)) fail(400,'invalid_visibility','Choose who can see this project record.');
+  if (visibility==='restricted' && !permissions.addRestricted) fail(403,'forbidden','Only GC managers can publish restricted records.');
+  if (!['synthetic','authorized'].includes(dataClassification)) fail(400,'invalid_classification','Choose test records or authorized project records.');
+  const name = string(title,'Record name',2,160);
+  const content = string(details,'Record details',1,kind==='document'?30000:2000);
+  let date = null;
+  if (scheduledFor || kind==='milestone') {
+    if (kind==='document' || typeof scheduledFor!=='string' || !/^\d{4}-\d{2}-\d{2}$/.test(scheduledFor)) fail(400,'invalid_date','Choose a date for this task or milestone.');
+    const timestamp = new Date(scheduledFor+'T00:00:00Z');
+    if (!Number.isFinite(timestamp.getTime()) || timestamp.toISOString().slice(0,10)!==scheduledFor) fail(400,'invalid_date','Choose a valid date.');
+    date = scheduledFor;
+  }
+  const requestId = string(clientRequestId,'Request ID',1,100);
+  const recordId = 'record_' + await digest(json([user.id,requestId])), at = now();
+  const created = await db.prepare(`INSERT OR IGNORE INTO client_project_records(id,project_id,author_id,kind,visibility,classification,title,details,scheduled_for,created_at)
+    SELECT ?,?,?,?,?,?,?,?,?,? WHERE (SELECT COUNT(*) FROM client_project_records WHERE project_id=?)<80
+    AND (SELECT COUNT(*) FROM client_project_records)<600`).bind(recordId,user.project_id,user.id,kind,visibility,dataClassification,name,content,date,at,user.project_id).run();
+  if (!created.meta?.changes) {
+    const existing = await db.prepare(`SELECT ${recordFields},r.details ${recordTables} AND r.id=? AND r.author_id=?`).bind(user.project_id,1,recordId,user.id).first();
+    if (!existing) fail(429,'record_capacity','The free demo has reached its project-record limit.');
+    if (existing.kind!==kind || existing.visibility!==visibility || existing.classification!==dataClassification || existing.title!==name || existing.details!==content || existing.scheduled_for!==date) fail(409,'idempotency_conflict','This request ID belongs to a different record.');
+    return tools.reply({record:recordView(existing)});
+  }
+  return tools.reply({record:{id:recordId,kind,visibility,dataClassification,title:name,scheduledFor:date,createdAt:at,author:user.name}},201);
+}
+
 async function dashboard(db, user, reply) {
   const result = await db.prepare('SELECT '+runFields+','+ownReview+' '+runTables+' WHERE '+access+' ORDER BY j.created_at DESC,j.id DESC LIMIT 40').bind(user.id,...accessParams(user)).all();
   const rows = result.results || [];
   const last = await db.prepare("SELECT MAX(last_seen_at) AS last_seen_at FROM principals WHERE role='runner' AND revoked_at IS NULL").first();
   const lastSeenAt = last?.last_seen_at || null;
   const board = publicBoard(await readClientBoard(db,user.id,0));
-  const sharedBoard = user.role==='sub' && user.joined_project ? publicBoard(await readClientBoard(db,user.id,1)) : null;
+  const sharedBoard = capabilitiesFor(user).share ? publicBoard(await readClientBoard(db,user.id,1)) : null;
   const active = await db.prepare('SELECT * FROM client_guidance WHERE user_id=? AND archived_at IS NULL ORDER BY version').bind(user.id).all();
   const guidance = {private:[],shared:[]};
   for (const row of active.results||[]) guidance[row.shareable?'shared':'private'].push(guidanceView(row));
-  return reply({...accountView(user), runner:{online:!!lastSeenAt&&Date.parse(lastSeenAt)>Date.now()-90000,lastSeenAt},runs:rows.map(row=>runView(row,user)),board,sharedBoard,guidance,evaluation:metricsView(rows)});
+  const projectRecords = await listProjectRecords(db,user);
+  return reply({...accountView(user), runner:{online:!!lastSeenAt&&Date.parse(lastSeenAt)>Date.now()-90000,lastSeenAt},runs:rows.map(row=>runView(row,user)),board,sharedBoard,projectRecords,guidance,evaluation:metricsView(rows)});
 }
 
 async function queue(request, db, user, tools) {
+  const permissions = capabilitiesFor(user);
+  if (!permissions.submit) fail(403,'forbidden','Your role cannot start review runs.');
   const body = await tools.body(request);
   const kind = body.kind;
   if (!['rfi','meeting','daily'].includes(kind)) fail(400,'invalid_kind','Choose a project workflow.');
@@ -305,9 +398,8 @@ async function queue(request, db, user, tools) {
   if (!['synthetic','authorized'].includes(dataClassification)) fail(400,'invalid_classification','Choose test records or authorized project records.');
   const payload = tools.validatePayload(kind,body.payload);
   if (kind==='rfi' && payload.mode!=='consolidation') fail(400,'invalid_mode','Submit a document consolidation batch.');
-  const canShare = user.role==='sub' && user.joined_project;
-  if (body.shared===true && !canShare) fail(400,'invalid_share','Only invited subcontractors can share runs with their general contractor.');
-  const shareable = canShare && body.shared===true ? 1 : 0;
+  if (body.shared===true && !permissions.share) fail(400,'invalid_share','This account cannot share runs with project reviewers.');
+  const shareable = permissions.share && body.shared===true ? 1 : 0;
   if (body.useGuidance!==undefined && typeof body.useGuidance!=='boolean') fail(400,'invalid_guidance','Choose whether to use saved guidance.');
   const useGuidance = body.useGuidance===true;
   if (useGuidance && kind!=='rfi') fail(400,'invalid_guidance','Saved guidance is available for RFI runs.');
@@ -343,7 +435,7 @@ async function queue(request, db, user, tools) {
 
 async function shareRun(request, db, user, runId, tools) {
   const row = await getRun(db,user,runId), body = await tools.body(request);
-  if (row.user_id!==user.id || !row.shareable || typeof body.shared!=='boolean') fail(403,'forbidden','Choose sharing when queueing the run. Private analysis can contain private project history.');
+  if (!capabilitiesFor(user).share || row.user_id!==user.id || !row.shareable || typeof body.shared!=='boolean') fail(403,'forbidden','Choose sharing when queueing the run. Private analysis can contain private project history.');
   await db.prepare('UPDATE client_runs SET shared=? WHERE job_id=? AND user_id=? AND shareable=1').bind(body.shared?1:0,runId,user.id).run();
   return tools.reply({run:runView(await getRun(db,user,runId),user)});
 }
@@ -352,6 +444,8 @@ async function reviewRun(request, db, user, runId, tools) {
   const row = await getRun(db,user,runId), body = await tools.body(request);
   if (row.status!=='completed' || row.own_review) fail(409,'invalid_state','Review each completed result once.');
   if (!['accept','revise'].includes(body.decision)) fail(400,'invalid_decision','Choose accept or needs changes.');
+  const permissions = capabilitiesFor(user);
+  if (!(body.decision==='accept' ? permissions.accept : permissions.respond)) fail(403,'forbidden','Your role cannot record this review decision.');
   const notes = body.notes ? string(body.notes,'Review note',1,3000) : '';
   const metrics = tools.validateMetrics(body.metrics);
   const reviewId = id('client_eval'), at = now();
@@ -396,6 +490,9 @@ export async function handleClient(request, env, route, tools) {
   if (method==='GET' && name==='/dashboard') return dashboard(db,user,tools.reply);
   if (method==='POST' && name==='/runs') return queue(request,db,user,tools);
   if (method==='POST' && name==='/invites') return invite(request,db,user,tools);
+  if (method==='POST' && name==='/project-records') return addProjectRecord(request,db,user,tools);
+  const recordMatch = name.match(/^\/project-records\/(record_[A-Za-z0-9-]+)$/);
+  if (method==='GET' && recordMatch) return readProjectRecord(db,user,recordMatch[1],tools.reply);
   const guidanceMatch = name.match(/^\/guidance\/(guidance_[A-Za-z0-9-]+)\/archive$/);
   if (method==='POST' && guidanceMatch) return archiveGuidance(db,user,guidanceMatch[1],tools.reply);
   const match = name.match(/^\/runs\/(job_[A-Za-z0-9-]+)(?:\/(review|share|guidance))?$/);
