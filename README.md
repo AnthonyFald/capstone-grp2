@@ -1,6 +1,40 @@
-# Evergreen — INFO 492 Team 2
+# Evergreen Field Office · INFO 492 Team 2
 
-A static capstone website with functional Demo 1 and Demo 2 tabs. GitHub Pages serves the HTML, CSS, and JavaScript directly. Browser models need no install, build step, API key or paid inference service. Both demos now support the local Qwen 3.5 27B model through a shared companion; browser alternatives remain available.
+We studied whether a concrete flooring subcontractor could use existing construction records to answer a question before submitting a request for information (RFI). The May 2024 water damage during the Evergreen High School replacement project motivated our case. The experiments use synthetic records. Our Week 2 target was 30% fewer unnecessary RFIs while preserving questions that need formal clarification.
+
+**Final assessment.** The small matched Demo 3 comparison met the target. One unnecessary recommendation across two manual reviews accounts for the entire difference. Demo 4 correctly routed 92 of 100 synthetic RFIs and escalated all 40 that needed clarification. Its 52 proposed answers out of 60 answerable cases measure recognition of existing answers. A matched manual review of those 100 cases is still needed to estimate a reduction. The project did not measure submissions on an active construction site.
+
+[Final paper and individual contributions](https://docs.google.com/document/d/1L6IZAQRwA88hgFA1sjHMe4LLFTYQSffalDDJ4wtfV8A/edit) · [Final presentation with speaker notes](https://docs.google.com/presentation/d/1AA3uGYlsSEzDDn87RPepBazs-ET2jnTyUYBjwOjvhhk/edit) · [Open Field Office for Demo 5](https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/client/). Google Drive materials use their existing team permissions.
+
+## Experiments and evidence
+
+| Activity | Inputs, method, and implementation | Outcome and evidence |
+| --- | --- | --- |
+| RFI Lab · concrete removal | A flooring subcontractor drafts SUB-RFI-001 from Change Order 1, identifies six questions and asks the GC for written clarification. This was a written classroom exercise. | [Lab case and questions](documents/rfi-lab.md). No model run or scored comparison. |
+| Demo 1 · meeting notes | Two synthetic meetings. Compare the decisions, owners and deadlines in manual and AI drafts. [Transcripts and references](demo-1/data/), [note prompts](demo-1/note-engine.js), [local model implementation](demo-1/native-engine.cjs), [dependencies](demo-1/docs/dependencies.txt). | Manual preparation totaled 60 minutes, AI preparation 27 min 31 sec, before verification. Average accuracy was about 92% manually and 88% with AI. [Class comparison](https://anthonyfald.github.io/capstone-grp2/mid-quarter/#findings) and [later development evaluation](demo-1/docs/demo3-rerun.txt). |
+| Demo 2 · daily reports | Compare ten Room B104 reports across dates and trades, keeping facts and approval status separate. [Reports and reference files](demo-2/data/), [prompts and engine](demo-2/engine.js), [dependencies and local setup](demo-2/docs/local-setup.md). | The AI covered 12 of 12 expected issue categories. Two people covered 11 and 7. The recorded 209-second timing has inconsistent workload descriptions. [Class analysis](https://anthonyfald.github.io/capstone-grp2/mid-quarter/#findings), [protocol](demo-2/docs/protocol.md), [broader development runs](demo-2/docs/results.md). |
+| Demo 3 · RFI and task review | Two manual runs and one agent run on the same 12 synthetic RFIs, 12 daily reports and 12 meeting records. The board also tests linking duplicates and retaining separate requirements. [Team evaluation files](https://drive.google.com/drive/u/0/folders/1DylOdzVVKradyALoZTsUbsNuDVLUvxWp), [model prompts and logic](demo-3/engine/consolidation-engine-v12.cjs), [software benchmark inputs](demo-3/consolidation-bench/), [setup](demo-3/docs/setup.txt). | Manual average and agent each scored 11/12. On five answerable cases, unnecessary recommendations averaged 0.5 manually versus 0 for the agent. Reported review time was 53.7 versus 15 minutes. [Class write-up and slides](documents/demo-3/). [Separate engineering benchmark](demo-3/docs/consolidation-results.txt). |
+| Demo 4 · RFI routing and project roles | The batch evaluation gave each RFI one linked daily report and one linked meeting record. [Synthetic input workbook](https://docs.google.com/spreadsheets/d/1yKYOxtbT1sxFzX4OSsmwz4J4Z-9zsDFg/edit), [workbook preparation](demo-4/evaluation/prepare.py), [model prompt and runner](demo-4/evaluation/run.mjs), [scoring](demo-4/evaluation/score.mjs). Requires Node.js, Python with openpyxl and the local Qwen runtime. The team's restricted answer key is used only after model inference. | 52/60 answerable cases received a proposed answer and 8/60 were escalated. All 40/40 necessary RFIs were escalated. Wall time was 20 min 40 sec, excluding workbook preparation and human review. [Full results and reproduction steps](demo-4/README.md). |
+| Demo 5 · final live walkthrough | The [Field Office workspace](https://capstone-team2-demo3.capstone-info-492-team-2.workers.dev/client/) brings the earlier workflows together. [Client code](demo-3/public/client/), [role and workflow guide](demo-3/docs/client-workspace.md), [hosted service](demo-3/cloud/), [local runner](demo-3/runner/). | The presenter inspects a previously completed synthetic case in the live interface. This illustrates how a reviewer checks a draft. It adds no separate experimental result. |
+
+## Final live demo
+
+Allow about two minutes. Before class, sign in to the team's test project and locate the completed D-24 door-opening draft in the review queue. Open the request, expand its source evidence, and compare the 910 mm width with the cited door schedule for the Mezzanine M2 west service vestibule. Check the revision and location. Show where the reviewer can accept the draft or request changes. A distinct firestop question still needs its own direction. Slide 7 includes the captured synthetic draft if the classroom connection is unavailable.
+
+## Hosting and model operation
+
+GitHub Pages serves the early demos and documentation. Field Office uses a Cloudflare Worker and D1 for the website, project records, queue, and review history. The hosted website remains available while the project PC is off. Local inference runs on the paired PC with Qwen 3.5 27B only while an operator turns on the Capstone desktop app. The earlier background processes were stopped on November 2. Queued requests wait when the runner is off. The hosted queue is distinct from a continuously running model. [Hosting history and limits](demo-3/README.md) · [Operator quick start](demo-3/docs/quick-start.txt) · [Cloud implementation and dependencies](demo-3/cloud/package.json).
+
+## Stakeholder evidence and individual contributions
+
+Trent McMorrow, a Cornerstone project engineer on Evergreen, described checking questions against current specifications and drawings and obtaining formal direction when needed. The owner prohibited meeting recording and AI note-taking. His Demo 3 feedback informed the seven project roles and wider document intake. He was unavailable for a separate Demo 4 review. [Complete mid-quarter interview transcript](mid-quarter/transcript.txt) · [Demo 3 feedback and class write-up](documents/demo-3/) · [Demo 4 team write-up](https://docs.google.com/document/d/1v4Z8Bvm4umAvvBgWZIEXXZ9aep784Qf_4SgA0chEvv0/edit).
+
+| Student | Section | Documented contribution |
+| --- | --- | --- |
+| Anthony Faldetta | Software and model evaluation | Built the agents and interfaces, integrated local drafting, added role-based access and document intake, and ran the Demo 4 evaluation. |
+| Crystal Doan Tran | Evaluation and synthetic data | Prepared manual notes, developed and analyzed evaluations, and created the synthetic Demo 4 records and answer key. |
+| Haohao Li | Manual review and documentation | Prepared manual notes, reviewed daily reports and Demo 3 cases, documented Demo 4, and supported evaluation planning. |
+| Cole Wieland | Scenario development and stakeholder research | Created meeting transcripts, recorded sample audio, contributed to human testing, and coordinated stakeholder interviews and feedback. |
 
 ## Demo 4: workspace roles and RFI evaluation
 
@@ -16,7 +50,7 @@ Open the **Capstone Demo 3** desktop shortcut, or `Open Demo 3.cmd` at the repos
 
 See the [Demo 3 quick start](demo-3/docs/quick-start.txt) and sanitized [consolidation benchmark report](demo-3/docs/consolidation-results.txt) for operation, final V12 synthetic results, limitations, and preserved failures. Benchmark completion is separate from remote deployment verification and does not establish human superiority, RFI reduction, or a learning gain.
 
-## Mid-quarter analysis
+## Mid-quarter analysis (October 28)
 
 **[Read the mid-quarter analysis →](https://anthonyfald.github.io/capstone-grp2/mid-quarter/)**
 
@@ -96,4 +130,4 @@ See the [demo README](demo-1/README.md) for requirements and experiment instruct
 
 ## Evaluation boundary
 
-This project is a hypothesis to test. Synthetic records are not actual Evergreen correspondence. Neither completed demo establishes a reduction in real RFIs. The stakeholder interview is evidence about practice, not a controlled evaluation of our tool. Reference annotations authored with Codex assistance need independent team review. The mid-quarter analysis distinguishes the team’s small human comparisons from the broader software-development runs; results and limitations should be read together. See the analysis and demo READMEs for the relevant scope.
+The following limits apply to the first two experiments. Synthetic records are not actual Evergreen correspondence. Neither completed demo establishes a reduction in real RFIs. The stakeholder interview is evidence about practice, not a controlled evaluation of our tool. Reference annotations authored with Codex assistance need independent team review. The mid-quarter analysis distinguishes the team’s small human comparisons from the broader software-development runs; results and limitations should be read together. See the analysis and demo READMEs for the relevant scope.
